@@ -8,59 +8,41 @@
 
 <body>
 
-<section class="container">
-  <div class="detail">
+<div class="container detail">
 
-    <div class="gallery">
-      <button class="prev">‹</button>
-      <img id="img">
-      <button class="next">›</button>
-    </div>
+<div class="left">
+  <button id="prev">‹</button>
+  <img id="img">
+  <button id="next">›</button>
+</div>
 
-    <div class="info">
-      <h1 id="name"></h1>
-      <p><b>Thương hiệu:</b> <span id="brand"></span></p>
-      <p><b>Xuất xứ:</b> <span id="origin"></span></p>
-      <p id="desc"></p>
-      <ul id="specs"></ul>
-    </div>
+<div class="right">
+  <h1 id="name"></h1>
+  <p id="desc"></p>
+  <ul id="specs"></ul>
+</div>
 
-  </div>
-</section>
+</div>
 
 <script src="products.js"></script>
 
 <script>
-const id = new URLSearchParams(location.search).get("id");
-const p = products.find(x=>x.id==id);
+const id=new URLSearchParams(location.search).get("id");
+const p=products.find(x=>x.id==id);
 
-name.innerText = p.name;
-brand.innerText = p.brand;
-origin.innerText = p.origin;
-desc.innerText = p.desc;
+name.innerText=p.name;
+desc.innerText=p.desc;
 
-p.specs.forEach(s=>{
-  specs.innerHTML += `<li>${s}</li>`;
-});
+p.specs.forEach(s=>specs.innerHTML+=`<li>${s}</li>`);
 
-/* slider fix */
-let images = p.images || ["images/no-image.png"];
-let i = 0;
-
+let i=0;
 function show(){
-  img.src = images[i];
-  img.onerror = ()=> img.src = "images/no-image.png";
+  img.src=p.images[i];
+  img.onerror=()=>img.src="images/no-image.png";
 }
 
-next.onclick = ()=>{
-  i = (i+1) % images.length;
-  show();
-};
-
-prev.onclick = ()=>{
-  i = (i-1+images.length) % images.length;
-  show();
-};
+next.onclick=()=>{i=(i+1)%p.images.length;show();}
+prev.onclick=()=>{i=(i-1+p.images.length)%p.images.length;show();}
 
 show();
 </script>
