@@ -1,9 +1,7 @@
-body{
-  font-family: Arial;
-  margin:0;
-}
+body{margin:0;font-family:Arial}
 
-.top{
+/* HEADER */
+.header{
   display:flex;
   justify-content:space-between;
   padding:10px 20px;
@@ -11,53 +9,64 @@ body{
   color:white;
 }
 
-.logo{
-  height:50px;
-}
+.logo{height:50px}
 
-nav{
+/* MENU */
+.menu{
   background:#1e73be;
   padding:10px;
-  display:flex;
-  gap:20px;
 }
 
-nav a{
+.menu a{
   color:white;
+  margin-right:20px;
   text-decoration:none;
 }
 
-.dropdown{
-  position:relative;
-}
+.dropdown{display:inline-block;position:relative}
 
 .dropdown-menu{
   display:none;
   position:absolute;
   background:white;
-  top:30px;
 }
 
-.dropdown:hover .dropdown-menu{
-  display:block;
-}
+.dropdown:hover .dropdown-menu{display:block}
 
 .dropdown-menu a{
   display:block;
-  padding:10px;
   color:black;
+  padding:10px;
 }
 
-.banner{
-  background:#0b5ed7;
+/* SLIDER */
+.slider{
+  position:relative;
+  height:400px;
+  overflow:hidden;
+}
+
+.slide{
+  width:100%;
+  height:400px;
+  object-fit:cover;
+  display:none;
+}
+
+.slider-text{
+  position:absolute;
+  top:30%;
+  left:10%;
   color:white;
-  padding:50px;
-  text-align:center;
 }
 
-.container{
-  padding:20px;
+.slider button{
+  background:orange;
+  padding:10px 20px;
 }
+
+/* PRODUCT */
+.container{padding:20px}
 
 .grid{
   display:grid;
@@ -71,9 +80,7 @@ nav a{
   text-align:center;
 }
 
-.card img{
-  width:100%;
-}
+.card img{width:100%}
 
 .btn{
   display:inline-block;
@@ -82,15 +89,3 @@ nav a{
   padding:8px;
   margin-top:10px;
 }
-
-.detail{
-  display:flex;
-  gap:30px;
-}
-
-.detail img{
-  width:400px;
-}
-
-.green{background:green}
-.blue{background:blue}
