@@ -8,58 +8,52 @@
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
-  <div class="logo-box">
-    <img src="images/logo.png">
-    <span>QTN GLOBAL</span>
-  </div>
-
-  <div class="hotline">
-    📞 0905.913.636 - 0383.598.603
+  <div class="container header-inner">
+    <img src="images/logo.png" class="logo">
+    <div class="hotline">📞 0905.913.636 - 0383.598.603</div>
   </div>
 </header>
 
-<!-- MENU -->
 <nav class="menu">
-  <a href="#">Trang chủ</a>
-  <a href="#">Giới thiệu</a>
+  <div class="container">
+    <a href="#">Trang chủ</a>
 
-  <div class="dropdown">
-    <a>Sản phẩm ▾</a>
-    <div class="dropdown-menu">
-      <a onclick="filterProduct('all')">Tất cả</a>
-      <a onclick="filterProduct('can-ban')">Cân bàn</a>
-      <a onclick="filterProduct('can-dem')">Cân đếm</a>
-      <a onclick="filterProduct('can-san')">Cân sàn</a>
+    <div class="dropdown">
+      <a>Sản phẩm ▾</a>
+      <div class="dropdown-menu">
+        <a onclick="filterProduct('all')">Tất cả</a>
+        <a onclick="filterProduct('can-ban')">Cân bàn</a>
+        <a onclick="filterProduct('can-dem')">Cân đếm</a>
+      </div>
     </div>
-  </div>
 
-  <a href="#">Liên hệ</a>
+    <a href="#">Liên hệ</a>
+  </div>
 </nav>
 
-<!-- SLIDER -->
-<section class="slider">
-  <div id="slides"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
 
-  <div class="overlay">
-    <h1>GIẢI PHÁP CÂN ĐIỆN TỬ</h1>
-    <p>✔ Chính xác cao ✔ Bền bỉ ✔ Giá tốt</p>
-    <button class="btn-main">LIÊN HỆ NGAY</button>
+    <div class="hero-left">
+      <h1>GIẢI PHÁP CÂN ĐIỆN TỬ</h1>
+      <p>✔ Chính xác cao</p>
+      <p>✔ Bền bỉ</p>
+      <p>✔ Giá tốt</p>
+    </div>
+
+    <div class="hero-right">
+      <img id="hero-img">
+    </div>
+
   </div>
 </section>
 
-<!-- SẢN PHẨM -->
 <section class="container">
   <h2>SẢN PHẨM</h2>
   <div id="product-list" class="grid"></div>
 </section>
-
-<!-- NÚT NỔI -->
-<div class="floating">
-  <a href="tel:0905913636">📞</a>
-  <a href="https://zalo.me/0905913636">💬</a>
-</div>
 
 <script src="products.js"></script>
 <script src="script.js"></script>
