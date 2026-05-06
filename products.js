@@ -13,13 +13,12 @@ const products = [
     brand: "Jadever",
     origin: "Đài Loan",
 
-    desc: "Cân bàn điện tử độ chính xác cao, phù hợp sản xuất.",
+    desc: "Cân bàn điện tử độ chính xác cao.",
 
     specs: [
       "Tải trọng: 30kg",
       "Sai số: 1g",
-      "Màn hình LED",
-      "Nguồn: Adapter"
+      "Màn hình LED"
     ]
   },
 
@@ -35,12 +34,11 @@ const products = [
     brand: "Vibra",
     origin: "Nhật Bản",
 
-    desc: "Cân đếm linh kiện chính xác cao.",
+    desc: "Cân đếm linh kiện chính xác.",
 
     specs: [
-      "Độ chính xác cao",
       "Đếm nhanh",
-      "Pin sạc"
+      "Độ chính xác cao"
     ]
   }
 ];
