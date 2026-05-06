@@ -29,6 +29,7 @@ const products = [
 
     images: [
       "images/vibra-alc/main.jpg"
+       "images/vibra-alc/1.jpg"
     ],
 
     brand: "Vibra",
