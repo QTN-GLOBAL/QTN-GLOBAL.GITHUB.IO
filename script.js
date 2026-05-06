@@ -1,6 +1,6 @@
 const list = document.getElementById("product-list");
 
-/* PRODUCTS */
+/* RENDER */
 function renderProducts(data){
   list.innerHTML = "";
   data.forEach(p=>{
@@ -27,7 +27,7 @@ const heroImg = document.getElementById("hero-img");
 function runHero(){
   setInterval(()=>{
     i++;
-    if(i>=products.length) i=0;
+    if(i >= products.length) i = 0;
     heroImg.src = products[i].images[0];
   },2500);
 }
