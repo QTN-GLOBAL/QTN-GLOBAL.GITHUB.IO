@@ -1,30 +1,6 @@
 const products = [
-  {
-    id: 1,
-    name: "Cân điện tử JCL",
-    category: "can-ban",
-    image: "images/jcl/main.jpg",
-    desc: "Cân bàn điện tử chính xác cao"
-  },
-  {
-    id: 2,
-    name: "Cân điện tử JWL",
-    category: "can-ban",
-    image: "images/jwl/main.jpg",
-    desc: "Cân bàn Jadever chất lượng cao"
-  },
-  {
-    id: 3,
-    name: "Cân Vibra ALC",
-    category: "can-dem",
-    image: "images/vibra-alc/main.jpg",
-    desc: "Cân đếm linh kiện"
-  },
-  {
-    id: 4,
-    name: "Cân sàn RC21P",
-    category: "can-san",
-    image: "images/rc21p/main.jpg",
-    desc: "Cân sàn công nghiệp"
-  }
-]; 
+  {id:1,name:"Cân JCL",category:"can-ban",image:"images/jcl/main.jpg"},
+  {id:2,name:"Cân JWL",category:"can-ban",image:"images/jwl/main.jpg"},
+  {id:3,name:"Cân Vibra ALC",category:"can-dem",image:"images/vibra-alc/main.jpg"},
+  {id:4,name:"Cân RC21P",category:"can-san",image:"images/rc21p/main.jpg"}
+];
