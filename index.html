@@ -17,33 +17,30 @@
 
 <nav class="menu">
   <div class="container">
-    <a href="#">Trang chủ</a>
-    <a href="#">Sản phẩm</a>
+    <div class="dropdown">
+      <span>SẢN PHẨM</span>
+      <div class="dropdown-content">
+        <div onclick="filter('all')">Tất cả</div>
+        <div onclick="filter('can-ban')">Cân bàn</div>
+        <div onclick="filter('can-dem')">Cân đếm</div>
+      </div>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="container hero-inner">
-
-    <div class="hero-left">
-      <h1>GIẢI PHÁP CÂN ĐIỆN TỬ</h1>
-      <p>✔ Chính xác cao</p>
-      <p>✔ Bền bỉ</p>
-      <p>✔ Giá tốt</p>
+    <div>
+      <h1>QTN GLOBAL</h1>
+      <p>Chuyên cung cấp cân điện tử</p>
     </div>
-
-    <div class="hero-right">
-      <img id="hero-img">
-    </div>
-
+    <img id="hero-img">
   </div>
 </section>
 
-<section class="container">
-  <h2>SẢN PHẨM</h2>
-  <div id="product-list" class="grid"></div>
-</section>
+<div class="container">
+  <div id="list" class="grid"></div>
+</div>
 
 <script src="products.js"></script>
 <script src="script.js"></script>
