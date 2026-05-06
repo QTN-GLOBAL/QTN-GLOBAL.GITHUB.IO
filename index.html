@@ -9,41 +9,44 @@
 <body>
 
 <!-- HEADER -->
-<header>
-  <div class="top">
-    <img src="images/logo.png" class="logo">
-    <div class="hotline">📞 0905.913.636 - 0383.598.603</div>
-  </div>
-
-  <nav>
-    <a href="#">Trang chủ</a>
-    <a href="#">Giới thiệu</a>
-
-    <div class="dropdown">
-      <a href="#">Sản phẩm ▼</a>
-      <div class="dropdown-menu">
-        <a onclick="filterProduct('all')">Tất cả</a>
-        <a onclick="filterProduct('can-ban')">Cân bàn</a>
-        <a onclick="filterProduct('can-treo')">Cân treo</a>
-        <a onclick="filterProduct('can-dem')">Cân đếm</a>
-        <a onclick="filterProduct('can-san')">Cân sàn</a>
-        <a onclick="filterProduct('can-mini')">Cân mini</a>
-      </div>
-    </div>
-
-    <a href="#">Liên hệ</a>
-  </nav>
+<header class="header">
+  <img src="images/logo.png" class="logo">
+  <div class="hotline">📞 0905.913.636 - 0383.598.603</div>
 </header>
 
-<!-- BANNER -->
-<section class="banner">
-  <h1>GIẢI PHÁP CÂN ĐIỆN TỬ</h1>
-  <button>MUA NGAY / LIÊN HỆ NGAY</button>
+<!-- MENU -->
+<nav class="menu">
+  <a href="#">Trang chủ</a>
+  <a href="#">Giới thiệu</a>
+
+  <div class="dropdown">
+    <a href="#">Sản phẩm ▼</a>
+    <div class="dropdown-menu">
+      <a onclick="filterProduct('all')">Tất cả</a>
+      <a onclick="filterProduct('can-ban')">Cân bàn</a>
+      <a onclick="filterProduct('can-treo')">Cân treo</a>
+      <a onclick="filterProduct('can-dem')">Cân đếm</a>
+      <a onclick="filterProduct('can-san')">Cân sàn</a>
+    </div>
+  </div>
+
+  <a href="#">Liên hệ</a>
+</nav>
+
+<!-- SLIDER -->
+<section class="slider">
+  <div id="slides"></div>
+
+  <div class="slider-text">
+    <h1>GIẢI PHÁP CÂN ĐIỆN TỬ</h1>
+    <p>✔ Chính xác cao ✔ Bền bỉ ✔ Giá tốt</p>
+    <button>MUA NGAY</button>
+  </div>
 </section>
 
 <!-- SẢN PHẨM -->
 <section class="container">
-  <h2>DANH MỤC SẢN PHẨM</h2>
+  <h2>SẢN PHẨM</h2>
   <div id="product-list" class="grid"></div>
 </section>
 
