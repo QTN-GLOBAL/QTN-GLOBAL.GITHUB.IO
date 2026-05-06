@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>QTN GLOBAL</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>QTN GLOBAL - Cân Điện Tử</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="header">
-  <div class="container header-inner">
-    <img src="images/logo.png" class="logo">
-    <div class="hotline">📞 0905.913.636</div>
-  </div>
+<header>
+    <h1>QTN GLOBAL</h1>
+    <p>Cân điện tử công nghiệp chính hãng</p>
 </header>
 
-<nav class="menu">
-  <div class="container">
-    <div class="dropdown">
-      <span>SẢN PHẨM</span>
-      <div class="dropdown-content">
-        <div onclick="filter('all')">Tất cả</div>
-        <div onclick="filter('can-ban')">Cân bàn</div>
-        <div onclick="filter('can-dem')">Cân đếm</div>
-      </div>
-    </div>
-  </div>
-</nav>
+<div class="cart-box">
+    🛒 Giỏ hàng: <span id="cart-count">0</span>
+</div>
 
-<section class="hero">
-  <div class="container hero-inner">
-    <div>
-      <h1>QTN GLOBAL</h1>
-      <p>Chuyên cung cấp cân điện tử</p>
-    </div>
-    <img id="hero-img">
-  </div>
-</section>
+<div id="product-list"></div>
 
-<div class="container">
-  <div id="list" class="grid"></div>
+<hr>
+
+<div class="checkout-box">
+    <h2>Đặt hàng</h2>
+
+    <input type="text" id="name" placeholder="Họ tên">
+    <input type="tel" id="phone" placeholder="Số điện thoại">
+    <input type="text" id="address" placeholder="Địa chỉ">
+
+    <button onclick="checkout()">📩 Gửi đơn hàng</button>
 </div>
 
 <script src="products.js"></script>
