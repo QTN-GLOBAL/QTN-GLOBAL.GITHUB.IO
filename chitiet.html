@@ -8,36 +8,21 @@
 
 <body>
 
-<header>
-  <div class="top">
-    <img src="images/logo.png" class="logo">
-    <div class="hotline">📞 0905.913.636 - 0383.598.603</div>
-  </div>
-</header>
-
-<section class="container detail">
-
+<section class="container">
   <img id="img">
-
-  <div>
-    <h1 id="name"></h1>
-    <p id="desc"></p>
-
-    <a href="tel:0905913636" class="btn green">Gọi</a>
-    <a href="https://zalo.me/0905913636" class="btn blue">Zalo</a>
-  </div>
-
+  <h1 id="name"></h1>
+  <p id="desc"></p>
 </section>
 
 <script src="products.js"></script>
 
 <script>
-const id = new URLSearchParams(window.location.search).get("id");
-const p = products.find(x => x.id == id);
+const id = new URLSearchParams(location.search).get("id");
+const p = products.find(x=>x.id==id);
 
-document.getElementById("img").src = p.image;
-document.getElementById("name").innerText = p.name;
-document.getElementById("desc").innerText = p.desc;
+img.src = p.image;
+name.innerText = p.name;
+desc.innerText = p.desc;
 </script>
 
 </body>
