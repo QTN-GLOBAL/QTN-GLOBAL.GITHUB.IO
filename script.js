@@ -1,14 +1,29 @@
-const container = document.getElementById("product-list");
+const list = document.getElementById("product-list");
 
-products.forEach(p => {
-  container.innerHTML += `
-    <div class="card">
-      <img src="images/${p.image_folder}/main.jpg"
-           onerror="this.src='images/${p.image_folder}/1.jpg'">
+// load tất cả
+function renderProducts(data){
+  list.innerHTML = "";
 
-      <h3>${p.name}</h3>
+  data.forEach(p => {
+    list.innerHTML += `
+      <div class="card">
+        <img src="${p.image}">
+        <h3>${p.name}</h3>
+        <a href="chitiet.html?id=${p.id}" class="btn">Chi tiết</a>
+      </div>
+    `;
+  });
+}
 
-      <a href="chitiet.html?slug=${p.slug}" class="btn">Chi tiết</a>
-    </div>
-  `;
-});
+// lọc
+function filterProduct(category){
+  if(category === "all"){
+    renderProducts(products);
+  }else{
+    const filtered = products.filter(p => p.category === category);
+    renderProducts(filtered);
+  }
+}
+
+// load lần đầu
+renderProducts(products);
