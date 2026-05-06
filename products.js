@@ -1,16 +1,30 @@
 const products = [
   {
-    name: "Cân điện tử Jadever JWL",
-    slug: "jadever-jwl",
-    image_folder: "jwl",
-    description: "Jadever-JWL với thiết kế màn hình hiển thị số tinh thể lỏng LCD độ phân giải hiển thị cao.",
-    variants: ["3kg", "6kg", "15kg", "30kg"]
+    id: 1,
+    name: "Cân điện tử JCL",
+    category: "can-ban",
+    image: "images/jcl/main.jpg",
+    desc: "Cân bàn điện tử chính xác cao"
   },
   {
-    name: "Cân điện tử đếm VIBRA ALC",
-    slug: "vibra-alc",
-    image_folder: "vibra-alc",
-    description: "Cân điện tử VIBRA ALC là dòng cân đếm nổi tiếng của hãng Vibra Nhật Bản. Cân điện tử ALC đạt độ chính xác tiêu chuẩn quốc tế, thiết kế chống bụi, thân thiện với người dùng. Cân ALC có nhiều ưu điểm nổi bật, giá thành hấp dẫn nên được lựa chọn sử dụng trong các ngành sản xuất, chế tạo, y tế, giáo dục…",
-    variants: ["3kg", "6kg", "15kg"]
+    id: 2,
+    name: "Cân điện tử JWL",
+    category: "can-ban",
+    image: "images/jwl/main.jpg",
+    desc: "Cân bàn Jadever chất lượng cao"
+  },
+  {
+    id: 3,
+    name: "Cân đếm Vibra ALC",
+    category: "can-dem",
+    image: "images/vibra-alc/main.jpg",
+    desc: "Cân đếm linh kiện chính xác"
+  },
+  {
+    id: 4,
+    name: "Cân RC21P",
+    category: "can-san",
+    image: "images/rc21p/main.jpg",
+    desc: "Cân sàn công nghiệp"
   }
 ];
