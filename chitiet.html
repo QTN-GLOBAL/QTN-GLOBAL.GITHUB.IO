@@ -11,24 +11,17 @@
 <section class="container">
   <div class="detail">
 
-    <!-- LEFT -->
     <div class="gallery">
       <button class="prev">‹</button>
       <img id="img">
       <button class="next">›</button>
     </div>
 
-    <!-- RIGHT -->
     <div class="info">
       <h1 id="name"></h1>
-
       <p><b>Thương hiệu:</b> <span id="brand"></span></p>
       <p><b>Xuất xứ:</b> <span id="origin"></span></p>
-
-      <p><b>Mô tả:</b></p>
       <p id="desc"></p>
-
-      <p><b>Thông số:</b></p>
       <ul id="specs"></ul>
     </div>
 
@@ -41,31 +34,31 @@
 const id = new URLSearchParams(location.search).get("id");
 const p = products.find(x=>x.id==id);
 
-/* DATA */
-name.innerText=p.name;
-brand.innerText=p.brand;
-origin.innerText=p.origin;
-desc.innerText=p.desc;
+name.innerText = p.name;
+brand.innerText = p.brand;
+origin.innerText = p.origin;
+desc.innerText = p.desc;
 
 p.specs.forEach(s=>{
   specs.innerHTML += `<li>${s}</li>`;
 });
 
-/* SLIDER */
-let i=0;
+/* slider fix */
+let images = p.images || ["images/no-image.png"];
+let i = 0;
+
 function show(){
-  img.src=p.images[i];
+  img.src = images[i];
+  img.onerror = ()=> img.src = "images/no-image.png";
 }
 
-next.onclick=()=>{
-  i++;
-  if(i>=p.images.length) i=0;
+next.onclick = ()=>{
+  i = (i+1) % images.length;
   show();
 };
 
-prev.onclick=()=>{
-  i--;
-  if(i<0) i=p.images.length-1;
+prev.onclick = ()=>{
+  i = (i-1+images.length) % images.length;
   show();
 };
 
