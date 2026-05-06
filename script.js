@@ -1,13 +1,12 @@
 const list = document.getElementById("product-list");
-const slides = document.getElementById("slides");
 
-/* PRODUCT */
+/* PRODUCTS */
 function renderProducts(data){
-  list.innerHTML="";
+  list.innerHTML = "";
   data.forEach(p=>{
-    list.innerHTML+=`
+    list.innerHTML += `
       <div class="card">
-        <img src="${p.image}">
+        <img src="${p.images[0]}">
         <h3>${p.name}</h3>
         <a href="chitiet.html?id=${p.id}" class="btn">Chi tiết</a>
       </div>
@@ -21,33 +20,19 @@ function filterProduct(c){
   else renderProducts(products.filter(p=>p.category===c));
 }
 
-/* SLIDER FIX */
+/* HERO SLIDER */
 let i = 0;
+const heroImg = document.getElementById("hero-img");
 
-function renderSlider(){
-  slides.innerHTML = products.map(p =>
-    `<img src="${p.image}" class="slide">`
-  ).join("");
-
-  const s = document.querySelectorAll(".slide");
-  if(s.length > 0){
-    s[0].style.opacity = 1;
-  }
+function runHero(){
+  setInterval(()=>{
+    i++;
+    if(i>=products.length) i=0;
+    heroImg.src = products[i].images[0];
+  },2500);
 }
 
-function autoSlide(){
-  const s = document.querySelectorAll(".slide");
+heroImg.src = products[0].images[0];
+runHero();
 
-  s.forEach(x => x.style.opacity = 0);
-
-  i++;
-  if(i >= s.length) i = 0;
-
-  s[i].style.opacity = 1;
-}
-
-renderSlider();
-setInterval(autoSlide, 2500);
-
-/* LOAD */
 renderProducts(products);
