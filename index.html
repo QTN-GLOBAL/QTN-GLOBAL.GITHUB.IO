@@ -10,8 +10,14 @@
 
 <!-- HEADER -->
 <header class="header">
-  <img src="images/logo.png" class="logo">
-  <div class="hotline">📞 0905.913.636 - 0383.598.603</div>
+  <div class="logo-box">
+    <img src="images/logo.png">
+    <span>QTN GLOBAL</span>
+  </div>
+
+  <div class="contact">
+    📞 0905.913.636 - 0383.598.603
+  </div>
 </header>
 
 <!-- MENU -->
@@ -20,11 +26,10 @@
   <a href="#">Giới thiệu</a>
 
   <div class="dropdown">
-    <a href="#">Sản phẩm ▼</a>
+    <a>Sản phẩm ▾</a>
     <div class="dropdown-menu">
       <a onclick="filterProduct('all')">Tất cả</a>
       <a onclick="filterProduct('can-ban')">Cân bàn</a>
-      <a onclick="filterProduct('can-treo')">Cân treo</a>
       <a onclick="filterProduct('can-dem')">Cân đếm</a>
       <a onclick="filterProduct('can-san')">Cân sàn</a>
     </div>
@@ -37,11 +42,18 @@
 <section class="slider">
   <div id="slides"></div>
 
-  <div class="slider-text">
+  <div class="overlay">
     <h1>GIẢI PHÁP CÂN ĐIỆN TỬ</h1>
-    <p>✔ Chính xác cao ✔ Bền bỉ ✔ Giá tốt</p>
-    <button>MUA NGAY</button>
+    <p>✔ Chính xác ✔ Bền bỉ ✔ Giá tốt</p>
+    <button class="btn-main">LIÊN HỆ NGAY</button>
   </div>
+</section>
+
+<!-- DANH MỤC -->
+<section class="categories">
+  <div onclick="filterProduct('can-ban')">Cân bàn</div>
+  <div onclick="filterProduct('can-dem')">Cân đếm</div>
+  <div onclick="filterProduct('can-san')">Cân sàn</div>
 </section>
 
 <!-- SẢN PHẨM -->
@@ -49,6 +61,12 @@
   <h2>SẢN PHẨM</h2>
   <div id="product-list" class="grid"></div>
 </section>
+
+<!-- FLOAT BUTTON -->
+<div class="floating">
+  <a href="tel:0905913636">📞</a>
+  <a href="https://zalo.me/0905913636">💬</a>
+</div>
 
 <script src="products.js"></script>
 <script src="script.js"></script>
