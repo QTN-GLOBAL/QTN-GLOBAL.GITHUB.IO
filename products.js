@@ -28,7 +28,7 @@ const products = [
     category: "can-dem",
 
     images: [
-      "images/vibra-alc/main.jpg"
+      "images/vibra-alc/main.jpg",
        "images/vibra-alc/1.jpg"
     ],
 
