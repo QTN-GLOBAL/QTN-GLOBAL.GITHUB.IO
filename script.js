@@ -1,31 +1,27 @@
 const list = document.getElementById("product-list");
 const slides = document.getElementById("slides");
 
-/* ===== RENDER PRODUCT ===== */
+/* PRODUCT */
 function renderProducts(data){
-  list.innerHTML = "";
+  list.innerHTML="";
   data.forEach(p=>{
-    list.innerHTML += `
+    list.innerHTML+=`
       <div class="card">
         <img src="${p.image}">
         <h3>${p.name}</h3>
-        <a href="chitiet.html?id=${p.id}" class="btn">Chi tiết</a>
+        <a href="chitiet.html?id=${p.id}" class="btn">Xem chi tiết</a>
       </div>
     `;
   });
 }
 
-/* ===== FILTER ===== */
-function filterProduct(category){
-  if(category==="all"){
-    renderProducts(products);
-  }else{
-    renderProducts(products.filter(p=>p.category===category));
-  }
+function filterProduct(c){
+  if(c==="all") renderProducts(products);
+  else renderProducts(products.filter(p=>p.category===c));
 }
 
-/* ===== SLIDER ===== */
-let index = 0;
+/* SLIDER */
+let i=0;
 
 function renderSlider(){
   slides.innerHTML = products.map(p=>
@@ -34,17 +30,17 @@ function renderSlider(){
 }
 
 function autoSlide(){
-  const all = document.querySelectorAll(".slide");
-  all.forEach(s=>s.style.display="none");
+  let s=document.querySelectorAll(".slide");
+  s.forEach(x=>x.style.opacity=0);
 
-  index++;
-  if(index > all.length) index = 1;
+  i++;
+  if(i>=s.length) i=0;
 
-  all[index-1].style.display = "block";
+  s[i].style.opacity=1;
 }
 
 renderSlider();
-setInterval(autoSlide, 2500);
+setInterval(autoSlide,3000);
 
 /* LOAD */
 renderProducts(products);
