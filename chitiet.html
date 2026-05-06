@@ -9,123 +9,35 @@
 <body>
 
 <header>
-  <img src="images/logo.png" class="logo">
+  <div class="top">
+    <img src="images/logo.png" class="logo">
+    <div class="hotline">📞 0905.913.636 - 0383.598.603</div>
+  </div>
 </header>
 
-<div class="detail">
+<section class="container detail">
 
-  <div class="left">
-    <div class="slider">
-      <button class="nav prev">‹</button>
-      <img id="main-img">
-      <button class="nav next">›</button>
-    </div>
+  <img id="img">
 
-    <div id="thumbs" class="thumbs"></div>
-  </div>
-
-  <div class="right">
+  <div>
     <h1 id="name"></h1>
     <p id="desc"></p>
-    <ul id="variants"></ul>
+
+    <a href="tel:0905913636" class="btn green">Gọi</a>
+    <a href="https://zalo.me/0905913636" class="btn blue">Zalo</a>
   </div>
 
-</div>
+</section>
 
 <script src="products.js"></script>
 
 <script>
-const slug = new URLSearchParams(location.search).get("slug");
-const p = products.find(x => x.slug === slug);
+const id = new URLSearchParams(window.location.search).get("id");
+const p = products.find(x => x.id == id);
 
+document.getElementById("img").src = p.image;
 document.getElementById("name").innerText = p.name;
-document.getElementById("desc").innerText = p.description;
-
-p.variants.forEach(v=>{
-  document.getElementById("variants").innerHTML += `<li>${v}</li>`;
-});
-
-// ===== SLIDER PRO MAX++ =====
-let images = [];
-let current = 0;
-
-const mainImg = document.getElementById("main-img");
-const thumbs = document.getElementById("thumbs");
-
-function loadImages() {
-  let i = 1;
-
-  function check() {
-    const path = `images/${p.image_folder}/${i}.jpg`;
-    const img = new Image();
-    img.src = path;
-
-    img.onload = () => {
-      images.push(path);
-      i++;
-      if(i<=5) check();
-      else init();
-    };
-
-    img.onerror = () => {
-      if(i===1){
-        images.push(`images/${p.image_folder}/main.jpg`);
-      }
-      init();
-    };
-  }
-
-  check();
-}
-
-function init(){
-  show(0);
-
-  images.forEach((src,i)=>{
-    const t = document.createElement("img");
-    t.src = src;
-    t.className="thumb";
-
-    t.onclick = ()=>{
-      current=i;
-      show(i);
-    };
-
-    thumbs.appendChild(t);
-  });
-
-  auto();
-}
-
-function show(i){
-  current=i;
-  mainImg.src = images[i];
-
-  document.querySelectorAll(".thumb").forEach((t,idx)=>{
-    t.classList.toggle("active", idx===i);
-  });
-}
-
-// next prev
-document.querySelector(".next").onclick=()=>{
-  current=(current+1)%images.length;
-  show(current);
-};
-
-document.querySelector(".prev").onclick=()=>{
-  current=(current-1+images.length)%images.length;
-  show(current);
-};
-
-// auto
-function auto(){
-  setInterval(()=>{
-    current=(current+1)%images.length;
-    show(current);
-  },3000);
-}
-
-loadImages();
+document.getElementById("desc").innerText = p.desc;
 </script>
 
 </body>
