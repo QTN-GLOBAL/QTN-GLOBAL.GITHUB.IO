@@ -9,14 +9,9 @@
 <body>
 
 <section class="container">
-  <div class="detail">
+  <div class="card">
     <img id="img">
-    <div>
-      <h1 id="name"></h1>
-      <p id="desc"></p>
-
-      <a href="tel:0905913636" class="btn">GỌI NGAY</a>
-    </div>
+    <h1 id="name"></h1>
   </div>
 </section>
 
@@ -28,7 +23,6 @@ const p = products.find(x=>x.id==id);
 
 img.src=p.image;
 name.innerText=p.name;
-desc.innerText=p.desc;
 </script>
 
 </body>
