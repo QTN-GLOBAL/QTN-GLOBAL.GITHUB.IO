@@ -9,9 +9,29 @@
 <body>
 
 <section class="container">
-  <div class="card">
-    <img id="img">
-    <h1 id="name"></h1>
+  <div class="detail">
+
+    <!-- LEFT -->
+    <div class="gallery">
+      <button class="prev">‹</button>
+      <img id="img">
+      <button class="next">›</button>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="info">
+      <h1 id="name"></h1>
+
+      <p><b>Thương hiệu:</b> <span id="brand"></span></p>
+      <p><b>Xuất xứ:</b> <span id="origin"></span></p>
+
+      <p><b>Mô tả:</b></p>
+      <p id="desc"></p>
+
+      <p><b>Thông số:</b></p>
+      <ul id="specs"></ul>
+    </div>
+
   </div>
 </section>
 
@@ -21,8 +41,35 @@
 const id = new URLSearchParams(location.search).get("id");
 const p = products.find(x=>x.id==id);
 
-img.src=p.image;
+/* DATA */
 name.innerText=p.name;
+brand.innerText=p.brand;
+origin.innerText=p.origin;
+desc.innerText=p.desc;
+
+p.specs.forEach(s=>{
+  specs.innerHTML += `<li>${s}</li>`;
+});
+
+/* SLIDER */
+let i=0;
+function show(){
+  img.src=p.images[i];
+}
+
+next.onclick=()=>{
+  i++;
+  if(i>=p.images.length) i=0;
+  show();
+};
+
+prev.onclick=()=>{
+  i--;
+  if(i<0) i=p.images.length-1;
+  show();
+};
+
+show();
 </script>
 
 </body>
