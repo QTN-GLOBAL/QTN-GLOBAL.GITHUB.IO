@@ -315,5 +315,66 @@ const products = [
 
 ]
 },
+    {
+    id:7,
+
+    name:"Cân điện tử đếm Oneko JK-A+",
+
+    category:"can-dem",
+
+    folder:"oneko-jk-a+",
+
+    brand:"Oneko",
+
+    origin:"Nhật Bản",
+
+    description:"Cân điện tử đếm Oneko JK-A+ thiết kế chắc chắn, độ chính xác cao, màn hình LCD đèn nền dễ quan sát, chuyên dùng cân đếm linh kiện, kho vận, sản xuất và kiểm kê hàng hóa.",
+
+    specs:[
+
+    "Mức cân: 1.5kg / 3kg / 6kg / 15kg / 30kg",
+
+    "Bước nhảy: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+
+    "Độ phân giải nội: 1/30.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 3 cửa sổ đèn nền xanh",
+
+    "Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
+
+    "Chiều cao số hiển thị: 25mm",
+
+    "Kích thước đĩa cân: 230 x 280 mm",
+
+    "Kích thước cân: 300 x 330 x 120 mm",
+
+    "Mặt bàn cân inox chống gỉ",
+
+    "Vỏ cân nhựa ABS công nghiệp",
+
+    "Đơn vị cân: kg / g / lb / oz / pcs",
+
+    "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
+
+    "Tự động về zero khi khởi động",
+
+    "Chức năng cảnh báo quá tải",
+
+    "Tự động tắt nguồn tiết kiệm pin",
+
+    "Cổng giao tiếp RS232 (tùy chọn)",
+
+    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+    "Thời gian sử dụng pin: khoảng 70 giờ",
+
+    "Nhiệt độ hoạt động: -5°C ~ 40°C",
+
+    "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+
+    ]
+},
 
 ];
