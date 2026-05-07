@@ -376,5 +376,119 @@ const products = [
 
     ]
 },
+    {
+    id:8,
+
+    name:"Cân đếm mẫu Ohaus RC21P",
+
+    category:"can-dem",
+
+    folder:"rc21p",
+
+    brand:"Ohaus",
+
+    origin:"Mỹ",
+
+    description:"Cân đếm mẫu Ohaus RC21P thuộc dòng Ranger Count 2000 của Ohaus, thiết kế chắc chắn, tốc độ xử lý nhanh, độ chính xác cao, phù hợp kiểm đếm linh kiện, kho vận, sản xuất và kiểm kê hàng hóa.",
+
+    specs:[
+
+    "Mức cân: 3kg / 6kg / 15kg / 30kg",
+
+    "Bước nhảy: 0.1g / 0.2g / 0.5g / 1g",
+
+    "Độ phân giải nội: lên đến 1/600.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Thời gian ổn định: khoảng 1 giây",
+
+    "Màn hình LCD 3 cửa sổ đèn nền trắng",
+
+    "Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
+
+    "Đèn LED kiểm tra trọng lượng 3 màu",
+
+    "Kích thước đĩa cân: 300 x 225 mm",
+
+    "Kích thước cân: 311 x 327 x 117 mm",
+
+    "Mặt bàn cân inox chống gỉ",
+
+    "Vỏ cân nhựa ABS công nghiệp",
+
+    "Đơn vị cân: kg / g / lb / oz / pcs",
+
+    "Chức năng: cân trọng lượng, đếm số lượng, kiểm tra trọng lượng, cộng dồn",
+
+    "Tự động tối ưu hóa lấy mẫu đếm",
+
+    "Cổng giao tiếp RS232 tiêu chuẩn",
+
+    "Nguồn điện: AC Adapter hoặc pin sạc",
+
+    "Thời gian sử dụng pin: khoảng 110 giờ",
+
+    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+    "Thiết kế chống bụi, phù hợp môi trường công nghiệp"
+
+    ]
+},
+    {
+    id:9,
+
+    name:"Cân điện tử đếm Yaohua XK3190 A15E",
+
+    category:"can-dem",
+
+    folder:"xk3190-a15e",
+
+    brand:"Yaohua",
+
+    origin:"Trung Quốc",
+
+    description:"Cân điện tử đếm Yaohua XK3190 A15E sử dụng đầu cân điện tử Yaohua nổi tiếng với độ ổn định cao, màn hình LED sáng rõ, phù hợp cân bàn, cân sàn, kiểm đếm hàng hóa và ứng dụng công nghiệp.",
+
+    specs:[
+
+    "Model đầu cân: XK3190-A15E",
+
+    "Thương hiệu: Yaohua",
+
+    "Màn hình LED đỏ độ sáng cao",
+
+    "Độ phân giải hiển thị: 1/30.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Hỗ trợ nhiều mức tải: 30kg / 60kg / 100kg / 150kg / 300kg / 500kg",
+
+    "Tốc độ xử lý nhanh và ổn định",
+
+    "Chức năng: cân trọng lượng, trừ bì, đếm số lượng, cộng dồn",
+
+    "Tự động về zero khi khởi động",
+
+    "Chức năng cảnh báo quá tải",
+
+    "Kết nối loadcell 4 dây hoặc 6 dây",
+
+    "Cổng giao tiếp RS232",
+
+    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+    "Thời gian sử dụng pin: khoảng 60 ~ 80 giờ",
+
+    "Bàn phím chống bụi và chống nước nhẹ",
+
+    "Vỏ đầu cân bằng nhựa ABS công nghiệp",
+
+    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
+
+    ]
+},
 
 ];
