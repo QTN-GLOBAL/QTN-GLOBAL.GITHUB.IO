@@ -195,8 +195,7 @@ const products = [
 
     "Thiết kế chống bụi, phù hợp môi trường công nghiệp"
 
-    ]
-}
+]
 },
 
 ];
