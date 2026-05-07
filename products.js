@@ -82,6 +82,62 @@ const products = [
 "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
 
 ]
+},
+
+{
+    id:3,
+
+    name:"Cân điện tử Oneko JK-A",
+
+    category:"can-dem",
+
+    folder:"oneko-jk-a",
+
+    brand:"Oneko",
+
+    origin:"Nhật Bản",
+
+    description:"Cân điện tử Oneko JK-A thiết kế chống bụi, độ chính xác cao, màn hình LCD dễ quan sát, phù hợp cân đếm và kiểm tra trọng lượng trong sản xuất, kho vận và đóng gói.",
+
+    specs:[
+
+    "Mức cân: 1.5kg / 3kg / 6kg / 7.5kg / 15kg / 30kg",
+
+    "Vạch chia: 0.1g / 0.2g / 0.5g / 1g",
+
+    "Độ phân giải nội: 1/10.000 ~ 1/30.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 6 số, đèn nền LED xanh",
+
+    "Chiều cao số hiển thị: 30mm",
+
+    "Kích thước đĩa cân: 280 x 230 mm",
+
+    "Kích thước cân: 355 x 335 x 137 mm",
+
+    "Mặt bàn cân inox chống gỉ",
+
+    "Đơn vị cân: kg / g / lb / pcs",
+
+    "Chức năng: cân trọng lượng, trừ bì, đếm số lượng",
+
+    "Tự động báo ổn định khi cân",
+
+    "Chức năng cảnh báo pin yếu",
+
+    "Tự động tắt nguồn tiết kiệm pin",
+
+    "Cổng giao tiếp RS232 (tùy chọn)",
+
+    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+    "Nhiệt độ hoạt động: -5°C ~ 40°C",
+
+    "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+
+    ]
 }
 
 ];
