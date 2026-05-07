@@ -66,6 +66,8 @@ const id = Number(params.get("id"));
 const product = products.find(p=>p.id === id);
 
 document.getElementById("productName").innerText = product.name;
+  
+document.getElementById("productOrigin").innerText = product.origin;
 
 document.getElementById("productBrand").innerText = product.brand;
 
