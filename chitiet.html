@@ -38,6 +38,10 @@
 <b>Thương hiệu:</b>
 <span id="productBrand"></span>
 </p>
+<p>
+<b>Xuất xứ:</b>
+<span id="productOrigin"></span>
+</p>
 
 <p id="productDescription"></p>
 
@@ -75,31 +79,53 @@ specs.innerHTML += `<li>${spec}</li>`;
 
 });
 
-const images = [
+const basePath = `images/${product.category}/${product.folder}`;
 
-`images/${product.category}/${product.folder}/1.jpg`,
-`images/${product.category}/${product.folder}/2.jpg`,
-`images/${product.category}/${product.folder}/3.jpg`,
-`images/${product.category}/${product.folder}/4.jpg`,
-`images/${product.category}/${product.folder}/5.jpg`
+let images = [];
 
-];
+for(let i = 1; i <= 5; i++){
+
+    const img = new Image();
+
+    img.src = `${basePath}/${i}.jpg`;
+
+    img.onload = function(){
+
+        if(!images.includes(img.src)){
+
+            images.push(img.src);
+
+            renderThumbs();
+
+        }
+
+    };
+
+}
+
+function renderThumbs(){
+
+    if(images.length === 0) return;
+
+    mainImage.src = images[currentSlide];
+
+    thumbList.innerHTML = "";
+
+    images.forEach((img,index)=>{
+
+        thumbList.innerHTML += `
+        <img src="${img}" onclick="showSlide(${index})">
+        `;
+
+    });
+
+}
 
 let currentSlide = 0;
 
 const mainImage = document.getElementById("mainImage");
 
-mainImage.src = images[0];
-
 const thumbList = document.getElementById("thumbList");
-
-images.forEach((img,index)=>{
-
-thumbList.innerHTML += `
-<img src="${img}" onclick="showSlide(${index})">
-`;
-
-});
 
 function showSlide(index){
 
