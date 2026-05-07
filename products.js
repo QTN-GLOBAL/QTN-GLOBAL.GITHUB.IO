@@ -258,5 +258,62 @@ const products = [
 
 ]
 },
+{
+    id:6,
+
+    name:"Cân đếm Jadever JCL",
+
+    category:"can-dem",
+
+    folder:"jcl",
+
+    brand:"Jadever",
+
+    origin:"Đài Loan",
+
+    description:"Cân đếm Jadever JCL thiết kế chắc chắn, độ chính xác cao, chuyên dùng kiểm đếm linh kiện, phụ tùng, sản xuất và kho vận. Màn hình hiển thị rõ nét, thao tác đơn giản, hoạt động ổn định trong môi trường công nghiệp.",
+
+    specs:[
+
+    "Mức cân: 1.5kg / 3kg / 6kg / 15kg / 30kg",
+
+    "Bước nhảy: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+
+    "Độ phân giải nội: 1/30.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 3 cửa sổ đèn nền xanh",
+
+    "Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
+
+    "Kích thước đĩa cân: 294 x 228 mm",
+
+    "Kích thước cân: 341 x 294 x 104 mm",
+
+    "Mặt bàn cân inox chống gỉ",
+
+    "Vỏ cân nhựa ABS công nghiệp",
+
+    "Đơn vị cân: kg / g / lb / oz / pcs",
+
+    "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
+
+    "Tự động về zero khi khởi động",
+
+    "Chức năng cảnh báo quá tải",
+
+    "Cổng giao tiếp RS232 (tùy chọn)",
+
+    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+    "Thời gian sử dụng pin: khoảng 70 giờ",
+
+    "Nhiệt độ hoạt động: -5°C ~ 40°C",
+
+    "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+
+]
+},
 
 ];
