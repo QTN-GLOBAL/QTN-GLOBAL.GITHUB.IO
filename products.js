@@ -197,5 +197,66 @@ const products = [
 
 ]
 },
+    {
+    id:5,
+
+    name:"Cân điện tử Nhật Bản VIBRA HAW",
+
+    category:"can-ky-thuat",
+
+    folder:"vibra-haw",
+
+    brand:"VIBRA",
+
+    origin:"Nhật Bản",
+
+    description:"Cân điện tử VIBRA HAW sử dụng cảm biến tuning fork độc quyền của Shinko Denshi Nhật Bản, cho độ chính xác cao, hoạt động ổn định, phù hợp cân kỹ thuật, kiểm tra trọng lượng, sản xuất và phòng thí nghiệm.",
+
+    specs:[
+
+    "Mức cân: 1.5kg / 3kg / 6kg / 10kg / 15kg / 30kg",
+
+    "Sai số: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+
+    "Độ phân giải nội: 1/30.000 hoặc 1/60.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Cảm biến lực tuning fork Vibra Nhật Bản",
+
+    "Màn hình LCD đèn nền xanh",
+
+    "Chiều cao số hiển thị: 30mm",
+
+    "Kích thước đĩa cân: 220 x 295 mm",
+
+    "Kích thước cân: 230 x 350 x 110 mm",
+
+    "Mặt bàn cân inox chống gỉ",
+
+    "Vỏ cân nhựa ABS công nghiệp",
+
+    "Đơn vị cân: kg / g / lb / oz / pcs",
+
+    "Chức năng: cân trọng lượng, trừ bì, đếm số lượng, cộng dồn",
+
+    "Chế độ tự động về zero",
+
+    "Chức năng cảnh báo quá tải",
+
+    "Tự động tắt nguồn tiết kiệm pin",
+
+    "Cổng giao tiếp RS232 (tùy chọn)",
+
+    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+    "Thời gian sử dụng pin: khoảng 72 ~ 80 giờ",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Thiết kế chống bụi, hoạt động ổn định trong môi trường công nghiệp"
+
+]
+},
 
 ];
