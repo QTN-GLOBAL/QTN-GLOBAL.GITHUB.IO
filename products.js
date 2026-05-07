@@ -802,7 +802,7 @@ const products = [
 
     name:"Đầu Cân Điện Tử In Biểu FB530",
 
-    category:"dau-can",
+    category:"dau-can-dien-tu",
 
     folder:"fb530",
 
