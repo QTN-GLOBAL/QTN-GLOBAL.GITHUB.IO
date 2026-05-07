@@ -4,7 +4,7 @@ const products = [
     id:1,
     name:"Cân điện tử Jadever JWL",
     category:"can-ban",
-    folder:"jadever-jwl",
+    folder:"jwl",
     brand:"Jadever",
     description:"Cân điện tử chất lượng cao.",
     specs:["3kg","6kg","15kg","30kg"]
