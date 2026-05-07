@@ -89,7 +89,7 @@ const products = [
 
     name:"Cân điện tử Oneko JK-A",
 
-    category:"can-dem",
+    category:"can-ban",
 
     folder:"oneko-jk-a",
 
