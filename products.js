@@ -137,7 +137,66 @@ const products = [
 
     "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
 
+]
+},
+    
+{
+    id:4,
+
+    name:"Cân điện tử Ohaus RC21PE",
+
+    category:"can-ban",
+
+    folder:"rc21pe",
+
+    brand:"Ohaus",
+
+    origin:"Mỹ",
+
+    description:"Cân điện tử Ohaus RC21PE thuộc dòng Ranger Count 2000, thiết kế chắc chắn, tốc độ xử lý nhanh, độ chính xác cao, phù hợp cân đếm linh kiện, kho vận, sản xuất và kiểm kê hàng hóa.",
+
+    specs:[
+
+    "Mức cân: 3kg / 6kg / 15kg / 30kg",
+
+    "Độ chia: 0.1g / 0.2g / 0.5g / 1g",
+
+    "Độ phân giải nội: 1/600.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Thời gian ổn định: khoảng 1 giây",
+
+    "Màn hình LCD 3 cửa sổ đèn nền",
+
+    "Hiển thị: trọng lượng tổng / trọng lượng mẫu / số lượng đếm",
+
+    "Đèn LED kiểm tra trọng lượng 3 màu",
+
+    "Kích thước đĩa cân: 300 x 255 mm",
+
+    "Kích thước cân: 311 x 327 x 117 mm",
+
+    "Mặt bàn cân inox chống gỉ",
+
+    "Vỏ cân nhựa ABS công nghiệp",
+
+    "Chức năng: cân trọng lượng, đếm số lượng, kiểm tra trọng lượng, cộng dồn",
+
+    "Tự động tối ưu hóa đếm mẫu",
+
+    "Cổng giao tiếp RS232",
+
+    "Nguồn điện: AC 220V hoặc pin sạc",
+
+    "Thời gian sử dụng pin: khoảng 110 giờ",
+
+    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+    "Thiết kế chống bụi, phù hợp môi trường công nghiệp"
+
     ]
+}
 },
 
 ];
