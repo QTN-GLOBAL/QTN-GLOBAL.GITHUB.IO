@@ -1,50 +1,185 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Chi tiết</title>
-<link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Chi tiết</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<div class="container detail">
+<header class="topbar">
 
-<div class="left">
-  <button id="prev">‹</button>
-  <img id="img">
-  <button id="next">›</button>
-</div>
+  <img src="images/logo.png" class="logo">
 
-<div class="right">
-  <h1 id="name"></h1>
-  <p id="desc"></p>
-  <ul id="specs"></ul>
-</div>
+  <div class="contact">
+    Hotline: 0905913636 - 0383598603<br>
+    Zalo: 0905913636 - 0383598603
+  </div>
+
+</header>
+
+<div class="detail-page">
+
+  <div class="detail-box">
+
+    <div id="detail"></div>
+
+  </div>
 
 </div>
 
 <script src="products.js"></script>
 
 <script>
-const id=new URLSearchParams(location.search).get("id");
-const p=products.find(x=>x.id==id);
 
-name.innerText=p.name;
-desc.innerText=p.desc;
+const params = new URLSearchParams(window.location.search);
 
-p.specs.forEach(s=>specs.innerHTML+=`<li>${s}</li>`);
+const id = Number(params.get("id"));
 
-let i=0;
-function show(){
-  img.src=p.images[i];
-  img.onerror=()=>img.src="images/no-image.png";
+const p = products.find(x => x.id === id);
+
+const detail = document.getElementById("detail");
+
+let images = [];
+
+images.push(
+`images/${p.category_folder}/${p.image_folder}/main.jpg`
+);
+
+for(let i=1;i<=5;i++){
+
+  images.push(
+   `images/${p.category_folder}/${p.image_folder}/${i}.jpg`
+  );
+
 }
 
-next.onclick=()=>{i=(i+1)%p.images.length;show();}
-prev.onclick=()=>{i=(i-1+p.images.length)%p.images.length;show();}
+let current = 0;
 
-show();
+detail.innerHTML = `
+
+<div class="detail">
+
+  <div class="left">
+
+    <div class="slider">
+
+      <button class="nav prev">❮</button>
+
+      <img id="main-img" src="${images[0]}">
+
+      <button class="nav next">❯</button>
+
+    </div>
+
+    <div class="thumbs">
+
+      ${images.map((img,index)=>`
+
+        <img
+          src="${img}"
+          class="thumb ${index===0 ? 'active' : ''}"
+          data-index="${index}"
+          onerror="this.style.display='none'"
+        >
+
+      `).join("")}
+
+    </div>
+
+  </div>
+
+  <div class="right info">
+
+    <h1>${p.name}</h1>
+
+    <p>${p.description}</p>
+
+    <h3>Thông số kỹ thuật</h3>
+
+    <ul class="specs">
+
+      ${p.specs.map(s=>`<li>${s}</li>`).join("")}
+
+    </ul>
+
+    <a href="index.html" class="btn back-btn">
+      Trang chủ
+    </a>
+
+  </div>
+
+</div>
+
+`;
+
+const mainImg = document.getElementById("main-img");
+
+const thumbs = document.querySelectorAll(".thumb");
+
+function showImage(index){
+
+  current = index;
+
+  mainImg.src = images[index];
+
+  thumbs.forEach(t=>t.classList.remove("active"));
+
+  if(thumbs[index]){
+    thumbs[index].classList.add("active");
+  }
+
+}
+
+document.querySelector(".next").onclick = ()=>{
+
+  current++;
+
+  if(current >= images.length){
+    current = 0;
+  }
+
+  showImage(current);
+
+};
+
+document.querySelector(".prev").onclick = ()=>{
+
+  current--;
+
+  if(current < 0){
+    current = images.length - 1;
+  }
+
+  showImage(current);
+
+};
+
+thumbs.forEach(t=>{
+
+  t.onclick = ()=>{
+
+    showImage(Number(t.dataset.index));
+
+  };
+
+});
+
+setInterval(()=>{
+
+  current++;
+
+  if(current >= images.length){
+    current = 0;
+  }
+
+  showImage(current);
+
+},3000);
+
 </script>
 
 </body>

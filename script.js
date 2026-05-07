@@ -1,32 +1,30 @@
-const list = document.getElementById("list");
+const productList = document.getElementById("product-list");
 
-function render(data){
-  list.innerHTML="";
-  data.forEach(p=>{
-    list.innerHTML+=`
+products.forEach(p => {
+
+  const imagePath =
+  `images/${p.category_folder}/${p.image_folder}/main.jpg`;
+
+  productList.innerHTML += `
+
     <div class="card">
-      <img src="${p.images[0]}" onerror="this.src='images/no-image.png'">
-      <h3>${p.name}</h3>
-      <a href="chitiet.html?id=${p.id}">Chi tiết</a>
-    </div>`;
-  });
-}
 
-function filter(cat){
-  if(cat==="all") render(products);
-  else render(products.filter(p=>p.category===cat));
-}
+      <img
+        src="${imagePath}"
+        onerror="this.src='images/logo.png'"
+      >
 
-/* slider */
-const hero=document.getElementById("hero-img");
-let i=0;
+      <div class="card-content">
 
-if(hero){
-  hero.src=products[0].images[0];
-  setInterval(()=>{
-    i=(i+1)%products.length;
-    hero.src=products[i].images[0];
-  },2500);
-}
+        <h3>${p.name}</h3>
 
-render(products);
+        <a href="chitiet.html?id=${p.id}" class="btn">
+          Chi tiết
+        </a>
+
+      </div>
+
+    </div>
+
+  `;
+});

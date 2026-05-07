@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>QTN GLOBAL</title>
-<link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QTN GLOBAL</title>
 
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<header class="header">
-  <div class="container header-inner">
+<header class="topbar">
+  <div class="logo-wrap">
     <img src="images/logo.png" class="logo">
-    <div class="hotline">📞 0905.913.636</div>
+  </div>
+
+  <div class="contact">
+    Hotline: 0905913636 - 0383598603<br>
+    Zalo: 0905913636 - 0383598603
   </div>
 </header>
 
-<nav class="menu">
-  <div class="container">
-    <div class="dropdown">
-      <span>SẢN PHẨM</span>
-      <div class="dropdown-content">
-        <div onclick="filter('all')">Tất cả</div>
-        <div onclick="filter('can-ban')">Cân bàn</div>
-        <div onclick="filter('can-dem')">Cân đếm</div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="container hero-inner">
-    <div>
-      <h1>QTN GLOBAL</h1>
-      <p>Chuyên cung cấp cân điện tử</p>
-    </div>
-    <img id="hero-img">
-  </div>
+<section class="banner">
+  <div class="overlay"></div>
+  <h1>QTN GLOBAL</h1>
+  <p>Thiết bị cân điện tử chuyên nghiệp</p>
 </section>
 
 <div class="container">
-  <div id="list" class="grid"></div>
+
+  <aside class="sidebar">
+
+    <h3>DANH MỤC</h3>
+
+    <ul>
+      <li>Cân bàn</li>
+      <li>Cân đếm</li>
+      <li>Cân kỹ thuật</li>
+      <li>Cân sàn</li>
+      <li>Cân treo</li>
+    </ul>
+
+  </aside>
+
+  <main class="main-content">
+
+    <div id="product-list" class="product-grid"></div>
+
+  </main>
+
 </div>
 
 <script src="products.js"></script>
