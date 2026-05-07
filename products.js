@@ -608,5 +608,515 @@ const products = [
 
 ]
 },
+    {
+    id:12,
+
+    name:"Đầu Cân Điện Tử Chống Nước GW",
+
+    category:"dau-can-dien-tu",
+
+    folder:"gw",
+
+    brand:"Excel",
+
+    origin:"Đài Loan",
+
+    description:"Đầu cân điện tử chống nước GW IP68 thiết kế chuyên dụng cho môi trường ẩm ướt, thủy sản, thực phẩm và công nghiệp. Vỏ inox chống nước, màn hình LED siêu sáng, hoạt động ổn định trong điều kiện môi trường khắc nghiệt.",
+
+    specs:[
+
+    "Model: GW-IP68",
+
+    "Tiêu chuẩn chống nước: IP68",
+
+    "Màn hình LED đỏ siêu sáng",
+
+    "Độ phân giải hiển thị: 1/30.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Kết nối loadcell 4 dây hoặc 6 dây",
+
+    "Hỗ trợ nhiều mức tải: 30kg / 60kg / 100kg / 150kg / 300kg / 500kg / 1 tấn",
+
+    "Chức năng: cân trọng lượng, trừ bì, cộng dồn, kiểm tra trọng lượng",
+
+    "Tự động về zero khi khởi động",
+
+    "Chức năng cảnh báo quá tải",
+
+    "Bàn phím chống nước và chống bụi",
+
+    "Vỏ đầu cân inox 304 chống gỉ",
+
+    "Cổng giao tiếp RS232",
+
+    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+    "Thời gian sử dụng pin: khoảng 60 ~ 80 giờ",
+
+    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+    "Thiết kế chuyên dụng cho môi trường thủy sản và thực phẩm"
+
+]
+},
+    {
+    id:13,
+
+    name:"Đầu Cân Điện Tử KW",
+
+    category:"dau-can-dien-tu",
+
+    folder:"kw",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Đầu cân điện tử KW Excell là bộ hiển thị đa năng có độ chính xác cao, thiết kế chắc chắn, phù hợp lắp cho cân bàn, cân sàn và hệ thống cân công nghiệp. Màn hình LCD lớn, hỗ trợ cân trọng lượng, đếm số lượng và kiểm tra trọng lượng.",
+
+    specs:[
+
+    "Model: KW",
+
+    "Thương hiệu: Excell",
+
+    "Xuất xứ: Đài Loan",
+
+    "Độ phân giải hiển thị: 1/15.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 6 số, đèn nền LED",
+
+    "Chiều cao số hiển thị: 25mm",
+
+    "Kích thước màn hình: 132 x 49mm",
+
+    "Kích thước đầu cân: 245 x 170 x 153 mm",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Nguồn điện: AC 110V/220V hoặc pin sạc DC 6V/4Ah",
+
+    "Kết nối loadcell 4 dây hoặc 6 dây",
+
+    "Đơn vị cân: kg / lb",
+
+    "Chức năng: cân trọng lượng, đếm số lượng, tính phần trăm",
+
+    "Chức năng kiểm tra trọng lượng CHECK WEIGH (HI / OK / LO)",
+
+    "Tự động hiệu chỉnh trọng lượng và theo dõi điểm zero",
+
+    "Trừ bì toàn phần và trừ bì định trước",
+
+    "Bảo vệ quá tải 2 cấp",
+
+    "Thiết lập 15 mức lọc chống nhiễu",
+
+    "3 chế độ HOLD lưu trọng lượng",
+
+    "Cổng giao tiếp RS232",
+
+    "Có thể đặt bàn hoặc treo tường",
+
+    "Bàn phím chống nước bằng keo 3M",
+
+    "Thiết kế phù hợp môi trường công nghiệp"
+
+    ]
+},
+    {
+    id:14,
+
+    name:"Đầu Cân Đếm Số Lượng KC",
+
+    category:"dau-can-dien-tu",
+
+    folder:"kc",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Đầu cân đếm số lượng KC Excell thiết kế chuyên dụng cho cân đếm công nghiệp, độ chính xác cao, màn hình LCD rõ nét, hỗ trợ đếm số lượng và tích lũy dữ liệu. Phù hợp lắp cho cân bàn, cân sàn và hệ thống kiểm đếm hàng hóa.",
+
+    specs:[
+
+    "Model: KC",
+
+    "Thương hiệu: Excell",
+
+    "Xuất xứ: Đài Loan",
+
+    "Độ chính xác hiển thị: 1/15.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 3 cửa sổ, đèn nền LED",
+
+    "Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
+
+    "Kích thước màn hình: 132 x 49 mm",
+
+    "Chiều cao số hiển thị: 25 mm",
+
+    "Kích thước đầu cân: 175 x 56 x 226 mm",
+
+    "Đơn vị cân: kg / lb",
+
+    "Chức năng: cân trọng lượng, đếm số lượng, cộng dồn",
+
+    "Chức năng tự động chia đều trọng lượng từng mẫu",
+
+    "Chức năng xác định số lượng và lấy mẫu tự động",
+
+    "Tự động hiệu chỉnh trọng lượng và theo dõi điểm zero",
+
+    "Trừ bì toàn phần và trừ bì định trước",
+
+    "Cài đặt trước 10 trọng lượng đơn",
+
+    "Bảo vệ quá tải 2 cấp",
+
+    "Bàn phím nhạy chống nước bằng keo 3M",
+
+    "Có thể đặt bàn hoặc treo tường",
+
+    "Nguồn điện: AC 110V/220V hoặc pin sạc DC 6V/4.5Ah",
+
+    "Đèn LED báo sạc và tự động ngắt điện",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Cổng giao tiếp RS232 (tùy chọn)",
+
+    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
+
+    ]
+},
+    {
+    id:15,
+
+    name:"Đầu Cân Điện Tử In Biểu FB530",
+
+    category:"dau-can",
+
+    folder:"fb530",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Đầu cân điện tử in biểu FB530 Excell là bộ hiển thị cân công nghiệp cao cấp tích hợp máy in nhiệt, chuyên dùng cho cân sàn, cân bàn, cân động vật và hệ thống cân công nghiệp. Thiết bị hỗ trợ in phiếu cân, kiểm tra trọng lượng, đếm số lượng và lưu dữ liệu nhanh chóng.",
+
+    specs:[
+
+    "Model: FB530",
+
+    "Thương hiệu: Excell",
+
+    "Xuất xứ: Đài Loan",
+
+    "Độ phân giải hiển thị: 1/30.000",
+
+    "Độ phân giải nội: 1/600.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 6 số, đèn nền LED",
+
+    "Chiều cao số hiển thị: 25mm",
+
+    "Kích thước đầu cân: 276 x 172 x 153 mm",
+
+    "Kết nối tối đa: 4 loadcell 350Ω",
+
+    "Đơn vị cân: kg / g / lb",
+
+    "Chức năng: cân trọng lượng, đếm số lượng, cộng dồn, trừ bì",
+
+    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+
+    "Chức năng HOLD giữ số cân",
+
+    "Chức năng cân động vật",
+
+    "Tự động về zero khi khởi động",
+
+    "Tự động hiệu chỉnh trọng lượng",
+
+    "Lưu dữ liệu khi mất nguồn",
+
+    "Máy in nhiệt mini tích hợp",
+
+    "Hỗ trợ in ngày giờ, số phiếu, tổng trọng lượng",
+
+    "Cổng giao tiếp RS232",
+
+    "Nguồn điện: AC 110V/220V ±10% + pin sạc DC 6V/4Ah",
+
+    "Thời gian sử dụng pin: khoảng 48 ~ 72 giờ",
+
+    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+    "Thiết kế chống bụi, phù hợp môi trường công nghiệp"
+
+    ]
+},
+    {
+    id:16,
+
+    name:"Đầu Cân Điện Tử BTW",
+
+    category:"dau-can-dien-tu",
+
+    folder:"btw",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Đầu cân điện tử BTW Excell thiết kế công nghiệp chắc chắn, độ ổn định cao, phù hợp lắp cho cân bàn, cân sàn và hệ thống cân công nghiệp. Màn hình LCD hoặc LED dễ quan sát, hỗ trợ nhiều chức năng cân và kiểm tra trọng lượng.",
+
+    specs:[
+
+    "Model: BTW",
+
+    "Thương hiệu: Excell",
+
+    "Xuất xứ: Đài Loan",
+
+    "Độ phân giải hiển thị: 1/15.000",
+
+    "Độ phân giải nội: 1/30.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 6 số đèn nền xanh hoặc LED đỏ",
+
+    "Chiều cao số hiển thị: 25mm",
+
+    "Kích thước đầu cân: 235 x 165 x 127 mm",
+
+    "Kết nối loadcell 4 dây hoặc 6 dây",
+
+    "Đơn vị cân: kg / lb",
+
+    "Chức năng: cân trọng lượng, đếm đơn giản, trừ bì, cộng dồn",
+
+    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+
+    "Tự động về zero khi khởi động",
+
+    "Tự động hiệu chỉnh trọng lượng",
+
+    "Bộ lọc chống nhiễu môi trường",
+
+    "Board mạch phủ keo chống ẩm và chống nhiễm từ",
+
+    "Cổng giao tiếp RS232",
+
+    "Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4.4Ah",
+
+    "Thời gian sử dụng pin: khoảng 72 giờ",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
+
+    ]
+},
+    {
+    id:17,
+
+    name:"Đầu Hiển Thị BTW-E",
+
+    category:"dau-can-dien-tu",
+
+    folder:"btwe",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Đầu hiển thị BTW-E Excell thiết kế công nghiệp chắc chắn, màn hình LED/LCD rõ nét, phù hợp cho cân bàn, cân sàn và các hệ thống cân công nghiệp. Thiết bị có tốc độ xử lý nhanh, độ ổn định cao và hỗ trợ nhiều chức năng kiểm tra trọng lượng.",
+
+    specs:[
+
+    "Model: BTW-E",
+
+    "Thương hiệu: Excell",
+
+    "Xuất xứ: Đài Loan",
+
+    "Độ phân giải hiển thị: 1/15.000",
+
+    "AD tốc độ cao 24 bits",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 6 số đèn nền xanh hoặc LED đỏ",
+
+    "Chiều cao số hiển thị: 25mm",
+
+    "Kích thước đầu cân: 235 x 165 x 127 mm",
+
+    "Đơn vị cân: kg / lb",
+
+    "Kết nối loadcell 4 dây hoặc 6 dây",
+
+    "Chức năng: cân trọng lượng, đếm đơn giản, cộng dồn, trừ bì",
+
+    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+
+    "Tự động về zero khi khởi động",
+
+    "Chức năng HOLD giữ số cân",
+
+    "Board mạch phủ keo chống ẩm và chống nhiễm từ",
+
+    "Bàn phím chống bụi và chống nước nhẹ",
+
+    "Cổng giao tiếp RS232",
+
+    "Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4Ah",
+
+    "Thời gian sử dụng pin: khoảng 72 giờ",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
+
+    ]
+},
+    {
+    id:18,
+
+    name:"Đầu Cân Ô Tô EX-2001",
+
+    category:"dau-can-dien-tu",
+
+    folder:"ex-2001",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Đầu cân ô tô EX-2001 Excell là bộ hiển thị chuyên dụng cho cân ô tô, cân bồn, cân trạm trộn và hệ thống cân công nghiệp. Thiết bị có độ ổn định cao, chống nhiễu tốt, tốc độ xử lý nhanh và hỗ trợ nhiều chức năng điều khiển tự động.",
+
+    specs:[
+
+    "Model: EX-2001",
+
+    "Thương hiệu: Excell",
+
+    "Xuất xứ: Đài Loan",
+
+    "Tiêu chuẩn chính xác: OIML Class III",
+
+    "Màn hình LED đỏ 7 số, chiều cao số 20mm",
+
+    "Độ phân giải hiển thị: 1/30.000",
+
+    "Độ nhạy đầu vào: 0.3 μV/d",
+
+    "Tốc độ chuyển đổi A/D: tối đa 120 lần/giây",
+
+    "Dải tín hiệu loadcell: 1 ~ 20mV/V",
+
+    "Kết nối: 8 ~ 16 loadcell 350Ω hoặc 700Ω",
+
+    "Hiệu chuẩn tuyến tính 5 điểm",
+
+    "Bộ lọc kỹ thuật số chống rung và chống nhiễu",
+
+    "Chức năng cân động vật",
+
+    "Chức năng kiểm tra HI / OK / LO",
+
+    "Chức năng cộng dồn và lưu dữ liệu",
+
+    "Tự động về zero khi khởi động",
+
+    "Cổng giao tiếp RS232",
+
+    "Hỗ trợ ngõ ra Analog / Relay / BCD (Option)",
+
+    "Nguồn điện: AC 100V ~ 240V",
+
+    "Kích thước đầu cân: 210 x 108 x 207 mm",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Thiết kế chuyên dụng cho cân ô tô và hệ thống cân công nghiệp"
+
+    ]
+},
+      {
+    id:19,
+
+    name:"Đầu Cân Điện Tử KWS",
+
+    category:"dau-can-dien-tu",
+
+    folder:"kws",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Đầu cân điện tử KWS Excell thiết kế công nghiệp chắc chắn, độ ổn định cao, phù hợp cho cân bàn, cân sàn và hệ thống cân công nghiệp. Màn hình LCD lớn dễ quan sát, hỗ trợ nhiều chức năng cân và kiểm tra trọng lượng.",
+
+    specs:[
+
+    "Model: KWS",
+
+    "Thương hiệu: Excell",
+
+    "Xuất xứ: Đài Loan",
+
+    "Độ chính xác hiển thị: 1/15.000",
+
+    "Độ phân giải nội: 1/30.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LCD 6 số đèn nền LED",
+
+    "Kích thước màn hình: 113 x 45 mm",
+
+    "Chiều cao số hiển thị: 25 mm",
+
+    "Kích thước đầu cân: 245 x 170 x 153 mm",
+
+    "Đơn vị cân: kg / lb",
+
+    "Kết nối loadcell 4 dây hoặc 6 dây",
+
+    "Chức năng: cân trọng lượng, trừ bì, theo dõi điểm zero",
+
+    "Tự động hiệu chỉnh trọng lượng",
+
+    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+
+    "Bảo vệ quá tải 2 tầng",
+
+    "Bộ lọc chống nhiễu môi trường công nghiệp",
+
+    "Bàn phím chống nước bằng keo 3M",
+
+    "Có thể đặt bàn hoặc treo tường",
+
+    "Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4Ah",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
+
+    ]
+},  
 
 ];
