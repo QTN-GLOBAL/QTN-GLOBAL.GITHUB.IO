@@ -138,6 +138,6 @@ const products = [
     "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
 
     ]
-}
+},
 
 ];
