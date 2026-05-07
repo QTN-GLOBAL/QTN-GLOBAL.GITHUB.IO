@@ -1,30 +1,56 @@
-const productList = document.getElementById("product-list");
+const productGrid = document.getElementById("productGrid");
 
-products.forEach(p => {
+if(productGrid){
 
-  const imagePath =
-  `images/${p.category_folder}/${p.image_folder}/main.jpg`;
+products.forEach(product=>{
 
-  productList.innerHTML += `
+productGrid.innerHTML += `
 
-    <div class="card">
+<div class="product-card">
 
-      <img
-        src="${imagePath}"
-        onerror="this.src='images/logo.png'"
-      >
+<img src="images/${product.category}/${product.folder}/main.jpg">
 
-      <div class="card-content">
+<div class="product-info">
 
-        <h3>${p.name}</h3>
+<h3>${product.name}</h3>
 
-        <a href="chitiet.html?id=${p.id}" class="btn">
-          Chi tiết
-        </a>
+<a class="detail-btn" href="chitiet.html?id=${product.id}">
+Chi tiết
+</a>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-  `;
+`;
+
 });
+
+}
+
+const bannerImages = [
+
+"images/can-ban/jadever-jwl/main.jpg",
+"images/can-dem/vibra-alc/main.jpg"
+
+];
+
+let bannerIndex = 0;
+
+const bannerImage = document.getElementById("bannerImage");
+
+if(bannerImage){
+
+setInterval(()=>{
+
+bannerIndex++;
+
+if(bannerIndex >= bannerImages.length){
+bannerIndex = 0;
+}
+
+bannerImage.src = bannerImages[bannerIndex];
+
+},3000);
+
+}

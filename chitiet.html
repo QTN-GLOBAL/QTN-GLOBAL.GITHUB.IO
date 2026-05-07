@@ -4,30 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Chi tiết</title>
+  <title>Chi tiết sản phẩm</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="topbar">
-
-  <img src="images/logo.png" class="logo">
-
-  <div class="contact">
-    Hotline: 0905913636 - 0383598603<br>
-    Zalo: 0905913636 - 0383598603
-  </div>
-
-</header>
-
 <div class="detail-page">
 
-  <div class="detail-box">
+<div class="detail-container">
 
-    <div id="detail"></div>
+<div class="slider-area">
 
-  </div>
+<div class="slider-wrapper">
+
+<button class="prev-btn" onclick="prevSlide()">❮</button>
+
+<img id="mainImage" class="main-image">
+
+<button class="next-btn" onclick="nextSlide()">❯</button>
+
+</div>
+
+<div class="thumb-list" id="thumbList"></div>
+
+</div>
+
+<div class="detail-info">
+
+<h1 id="productName"></h1>
+
+<p>
+<b>Thương hiệu:</b>
+<span id="productBrand"></span>
+</p>
+
+<p id="productDescription"></p>
+
+<h3>Thông số kỹ thuật</h3>
+
+<ul id="productSpecs"></ul>
+
+</div>
+
+</div>
 
 </div>
 
@@ -39,144 +59,83 @@ const params = new URLSearchParams(window.location.search);
 
 const id = Number(params.get("id"));
 
-const p = products.find(x => x.id === id);
+const product = products.find(p=>p.id === id);
 
-const detail = document.getElementById("detail");
+document.getElementById("productName").innerText = product.name;
 
-let images = [];
+document.getElementById("productBrand").innerText = product.brand;
 
-images.push(
-`images/${p.category_folder}/${p.image_folder}/main.jpg`
-);
+document.getElementById("productDescription").innerText = product.description;
 
-for(let i=1;i<=5;i++){
+const specs = document.getElementById("productSpecs");
 
-  images.push(
-   `images/${p.category_folder}/${p.image_folder}/${i}.jpg`
-  );
+product.specs.forEach(spec=>{
 
-}
-
-let current = 0;
-
-detail.innerHTML = `
-
-<div class="detail">
-
-  <div class="left">
-
-    <div class="slider">
-
-      <button class="nav prev">❮</button>
-
-      <img id="main-img" src="${images[0]}">
-
-      <button class="nav next">❯</button>
-
-    </div>
-
-    <div class="thumbs">
-
-      ${images.map((img,index)=>`
-
-        <img
-          src="${img}"
-          class="thumb ${index===0 ? 'active' : ''}"
-          data-index="${index}"
-          onerror="this.style.display='none'"
-        >
-
-      `).join("")}
-
-    </div>
-
-  </div>
-
-  <div class="right info">
-
-    <h1>${p.name}</h1>
-
-    <p>${p.description}</p>
-
-    <h3>Thông số kỹ thuật</h3>
-
-    <ul class="specs">
-
-      ${p.specs.map(s=>`<li>${s}</li>`).join("")}
-
-    </ul>
-
-    <a href="index.html" class="btn back-btn">
-      Trang chủ
-    </a>
-
-  </div>
-
-</div>
-
-`;
-
-const mainImg = document.getElementById("main-img");
-
-const thumbs = document.querySelectorAll(".thumb");
-
-function showImage(index){
-
-  current = index;
-
-  mainImg.src = images[index];
-
-  thumbs.forEach(t=>t.classList.remove("active"));
-
-  if(thumbs[index]){
-    thumbs[index].classList.add("active");
-  }
-
-}
-
-document.querySelector(".next").onclick = ()=>{
-
-  current++;
-
-  if(current >= images.length){
-    current = 0;
-  }
-
-  showImage(current);
-
-};
-
-document.querySelector(".prev").onclick = ()=>{
-
-  current--;
-
-  if(current < 0){
-    current = images.length - 1;
-  }
-
-  showImage(current);
-
-};
-
-thumbs.forEach(t=>{
-
-  t.onclick = ()=>{
-
-    showImage(Number(t.dataset.index));
-
-  };
+specs.innerHTML += `<li>${spec}</li>`;
 
 });
 
+const images = [
+
+`images/${product.category}/${product.folder}/1.jpg`,
+`images/${product.category}/${product.folder}/2.jpg`,
+`images/${product.category}/${product.folder}/3.jpg`,
+`images/${product.category}/${product.folder}/4.jpg`,
+`images/${product.category}/${product.folder}/5.jpg`
+
+];
+
+let currentSlide = 0;
+
+const mainImage = document.getElementById("mainImage");
+
+mainImage.src = images[0];
+
+const thumbList = document.getElementById("thumbList");
+
+images.forEach((img,index)=>{
+
+thumbList.innerHTML += `
+<img src="${img}" onclick="showSlide(${index})">
+`;
+
+});
+
+function showSlide(index){
+
+currentSlide = index;
+
+mainImage.src = images[index];
+
+}
+
+function nextSlide(){
+
+currentSlide++;
+
+if(currentSlide >= images.length){
+currentSlide = 0;
+}
+
+mainImage.src = images[currentSlide];
+
+}
+
+function prevSlide(){
+
+currentSlide--;
+
+if(currentSlide < 0){
+currentSlide = images.length - 1;
+}
+
+mainImage.src = images[currentSlide];
+
+}
+
 setInterval(()=>{
 
-  current++;
-
-  if(current >= images.length){
-    current = 0;
-  }
-
-  showImage(current);
+nextSlide();
 
 },3000);
 

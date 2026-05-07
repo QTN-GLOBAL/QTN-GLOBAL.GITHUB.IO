@@ -10,45 +10,59 @@
 <body>
 
 <header class="topbar">
-  <div class="logo-wrap">
+
+  <div class="logo-area">
     <img src="images/logo.png" class="logo">
   </div>
 
-  <div class="contact">
-    Hotline: 0905913636 - 0383598603<br>
-    Zalo: 0905913636 - 0383598603
+  <div class="contact-area">
+    <p>Hotline: 0905913636 - 0383598603</p>
+    <p>Zalo: 0905913636 - 0383598603</p>
   </div>
+
 </header>
 
-<section class="banner">
-  <div class="overlay"></div>
-  <h1>QTN GLOBAL</h1>
-  <p>Thiết bị cân điện tử chuyên nghiệp</p>
+<section class="hero">
+
+  <div class="hero-left">
+
+    <h1>QTN GLOBAL</h1>
+
+    <p>Thiết bị cân điện tử chuyên nghiệp</p>
+
+  </div>
+
+  <div class="hero-right">
+
+    <div class="banner-slider">
+
+      <img id="bannerImage" src="images/can-ban/jadever-jwl/main.jpg">
+
+    </div>
+
+  </div>
+
 </section>
 
-<div class="container">
+<section class="main-layout">
 
   <aside class="sidebar">
 
-    <h3>DANH MỤC</h3>
+    <h2>DANH MỤC</h2>
 
     <ul>
       <li>Cân bàn</li>
       <li>Cân đếm</li>
       <li>Cân kỹ thuật</li>
-      <li>Cân sàn</li>
       <li>Cân treo</li>
+      <li>Cân sàn</li>
     </ul>
 
   </aside>
 
-  <main class="main-content">
+  <main class="product-grid" id="productGrid"></main>
 
-    <div id="product-list" class="product-grid"></div>
-
-  </main>
-
-</div>
+</section>
 
 <script src="products.js"></script>
 <script src="script.js"></script>
