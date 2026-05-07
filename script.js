@@ -30,7 +30,7 @@ Chi tiết
 
 const bannerImages = [
 
-"images/can-ban/jadever-jwl/main.jpg",
+"images/can-ban/jwl/main.jpg",
 "images/can-dem/vibra-alc/main.jpg"
 
 ];
