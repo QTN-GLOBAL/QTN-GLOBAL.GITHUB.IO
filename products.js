@@ -549,5 +549,64 @@ const products = [
 
 ]
 },
+    {
+    id:11,
+
+    name:"Cân treo điện tử FJ5",
+
+    category:"can-treo",
+
+    folder:"fj5",
+
+    brand:"Excell",
+
+    origin:"Đài Loan",
+
+    description:"Cân treo điện tử FJ5 thiết kế chống nước, chịu tải cao, chuyên dùng cho ngành thép, cơ khí, kho vận và môi trường công nghiệp nặng. Móc treo xoay 360 độ, màn hình LED đỏ siêu sáng, hoạt động ổn định ngoài trời.",
+
+    specs:[
+
+    "Mức cân: 1.5 tấn / 3 tấn / 5 tấn / 10 tấn / 15 tấn",
+
+    "Độ chia: 0.5kg / 1kg / 2kg / 5kg",
+
+    "Độ chính xác: 1/2.500 ~ 1/3.000",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML",
+
+    "Màn hình LED đỏ 5 số, chiều cao số 25.4mm",
+
+    "Vỏ cân hợp kim nhôm sơn tĩnh điện chống nước",
+
+    "Móc treo xoay 360 độ",
+
+    "Giới hạn quá tải lên đến 600%",
+
+    "Chức năng: cân trọng lượng, giữ số HOLD, trừ bì, về zero",
+
+    "Đơn vị cân: kg / lb / t",
+
+    "Remote điều khiển từ xa khoảng cách 24 mét",
+
+    "Tự động theo dõi điểm zero",
+
+    "Tự động cảnh báo pin yếu",
+
+    "Thiết kế chống bụi và chống nước IP65",
+
+    "Nguồn điện: Adapter AC 110V/220V + pin sạc 6V/10Ah",
+
+    "Thời gian sử dụng pin: khoảng 100 ~ 120 giờ",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Kích thước cân 1~5T: 210 x 216 x 460~665 mm",
+
+    "Kích thước cân 10~15T: 210 x 278 x 770~885 mm",
+
+    "Thiết kế chuyên dụng cho môi trường công nghiệp nặng"
+
+]
+},
 
 ];
