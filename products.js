@@ -202,7 +202,7 @@ const products = [
 
     name:"Cân điện tử Nhật Bản VIBRA HAW",
 
-    category:"can-ky-thuat",
+    category:"can-ban",
 
     folder:"vibra-haw",
 
