@@ -294,3 +294,130 @@ body{
     }
 
 }
+/* HEADER */
+
+.header{
+    background:white;
+}
+
+/* TOP HEADER */
+
+.top-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:white;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-area img{
+    width:80px;
+}
+
+.company-info h2{
+    margin:0;
+    font-size:34px;
+    color:#1e3a8a;
+}
+
+.company-info p{
+    margin:5px 0 0;
+    color:#666;
+}
+
+/* CONTACT */
+
+.top-contact{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.top-btn{
+    background:#1e3a8a;
+    color:white;
+    padding:14px 24px;
+    border-radius:40px;
+    text-decoration:none;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.social-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+}
+
+.zalo{
+    background:#0ea5e9;
+}
+
+.facebook{
+    background:#1877f2;
+}
+
+/* MENU */
+
+.navbar{
+    background:#1e3a8a;
+    display:flex;
+    align-items:center;
+    padding:0 40px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    padding:18px 20px;
+    display:block;
+    font-weight:600;
+}
+
+.navbar a:hover{
+    background:rgba(255,255,255,0.1);
+}
+
+/* DROPDOWN */
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    background:white;
+    min-width:220px;
+    top:100%;
+    left:0;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+    z-index:999;
+}
+
+.dropdown-content a{
+    color:#222;
+    padding:14px 18px;
+}
+
+.dropdown-content a:hover{
+    background:#f3f4f6;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
