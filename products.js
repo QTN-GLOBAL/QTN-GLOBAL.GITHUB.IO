@@ -1117,6 +1117,88 @@ const products = [
     "Thiết kế phù hợp môi trường công nghiệp và kho vận"
 
     ]
-},  
+},
+    {
+    id: 12,
+
+    name: "Cân điện tử 5 số FA10035XN",
+
+    category: "Cân phân tích",
+
+    brand: "FAITHFUL",
+
+    origin: "Trung Quốc",
+
+    imageFolder: "images/can-phan-tich/fa10035xn",
+
+    description: `
+        Cân điện tử 5 số FA10035XN là dòng cân phân tích độ chính xác cao dùng trong phòng thí nghiệm, nghiên cứu và kiểm nghiệm chất lượng.
+        Thiết kế buồng kính chống gió giúp kết quả ổn định nhanh, độ phân giải đến 0.01mg cho khả năng cân cực kỳ chính xác.
+    `,
+
+    specifications: `
+        - Model: FA10035XN<br>
+        - Hãng sản xuất: FAITHFUL<br>
+        - Loại cân: Cân phân tích điện tử 5 số<br>
+        - Mức cân tối đa: 31g / 120g<br>
+        - Độ đọc: 0.01mg / 0.1mg<br>
+        - Độ lặp lại: ±0.02mg<br>
+        - Độ tuyến tính: ±0.03mg<br>
+        - Đĩa cân: Ø90mm<br>
+        - Thời gian ổn định: ≤ 3 giây<br>
+        - Màn hình: LCD nền sáng<br>
+        - Chức năng: Trừ bì, đếm mẫu, cân %, hiệu chuẩn nội, đổi đơn vị<br>
+        - Cổng giao tiếp: RS232<br>
+        - Nguồn điện: AC 220V<br>
+        - Kích thước: 350 × 215 × 340 mm<br>
+        - Trọng lượng: khoảng 7kg
+    `,
+
+    {
+    id: 12,
+
+    name: "Cân điện tử 5 số FA10035XN",
+
+    category: "Cân phân tích",
+
+    brand: "FAITHFUL",
+
+    origin: "Trung Quốc",
+
+    imageFolder: "images/can-phan-tich/fa10035xn",
+
+    description: `
+        Cân điện tử 5 số FA10035XN là dòng cân phân tích độ chính xác cao dùng trong phòng thí nghiệm, nghiên cứu và kiểm nghiệm chất lượng.
+        Thiết kế buồng kính chống gió giúp kết quả ổn định nhanh, độ phân giải đến 0.01mg cho khả năng cân cực kỳ chính xác.
+    `,
+
+    specifications: `
+        - Model: FA10035XN<br>
+        - Hãng sản xuất: FAITHFUL<br>
+        - Loại cân: Cân phân tích điện tử 5 số<br>
+        - Mức cân tối đa: 31g / 120g<br>
+        - Độ đọc: 0.01mg / 0.1mg<br>
+        - Độ lặp lại: ±0.02mg<br>
+        - Độ tuyến tính: ±0.03mg<br>
+        - Đĩa cân: Ø90mm<br>
+        - Thời gian ổn định: ≤ 3 giây<br>
+        - Màn hình: LCD nền sáng<br>
+        - Chức năng: Trừ bì, đếm mẫu, cân %, hiệu chuẩn nội, đổi đơn vị<br>
+        - Cổng giao tiếp: RS232<br>
+        - Nguồn điện: AC 220V<br>
+        - Kích thước: 350 × 215 × 340 mm<br>
+        - Trọng lượng: khoảng 7kg
+    `,
+
+    capacities: [
+    "FA10035X / FA10035XN: 0-100g / 0-30g",
+    "FA10055X / FA10055XN: 0-100g / 50g",
+    "FA10085X / FA10085XN: 0-100g / 80g",
+    "FA20035X / FA20035XN: 0-200g / 0-30g",
+    "FA20055X / FA20055XN: 0-200g / 50g",
+    "FA20085X / FA20085XN: 0-200g / 80g"
+]
+},
+},
 
 ];
