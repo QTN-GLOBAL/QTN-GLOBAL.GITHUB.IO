@@ -541,3 +541,34 @@ body{
     height:100%;
     object-fit:cover;
 }
+/* BẢNG THÔNG SỐ */
+
+.spec-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+    font-size:15px;
+    background:white;
+}
+
+.spec-table th,
+.spec-table td{
+    border:1px solid #d1d5db;
+    padding:12px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+.spec-table th{
+    background:#1e3a8a;
+    color:white;
+    font-weight:700;
+}
+
+.spec-table tr:nth-child(even){
+    background:#f9fafb;
+}
+
+.spec-table tr:hover{
+    background:#eef2ff;
+}
