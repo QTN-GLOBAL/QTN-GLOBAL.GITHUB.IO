@@ -1189,7 +1189,131 @@ const products = [
 
     ]
 },
-   
+   {
+    id:21,
+
+    name:"Cân điện tử Shinko GS",
+
+    category:"can-phan-tich",
+
+    folder:"sinco-gs",
+
+    brand:"Shinko",
+
+    origin:"Đài Loan",
+
+    description:"Cân điện tử Shinko GS là dòng cân bàn điện tử độ chính xác cao, thiết kế chắc chắn, hoạt động ổn định và phù hợp cho nhiều lĩnh vực như sản xuất, đóng gói, kiểm tra trọng lượng và thương mại. Cân sử dụng màn hình LCD sắc nét, bàn cân inox chống gỉ và tích hợp pin sạc tiện lợi.",
+
+    specs:[
+
+"Model: GS223",
+
+"Mức cân: 220g",
+
+"Sai số: 0.001g",
+
+"Kích thước đĩa cân: φ118mm",
+
+"Kích thước cân: 235 × 182 × 165mm",
+
+"Trọng lượng cân: khoảng 1.3kg",
+
+"Model: GS323",
+
+"Mức cân: 320g",
+
+"Sai số: 0.001g",
+
+"Model: GS423",
+
+"Mức cân: 420g",
+
+"Sai số: 0.001g",
+
+"Model: GS623",
+
+"Mức cân: 620g",
+
+"Sai số: 0.001g",
+
+"Model: GS620",
+
+"Mức cân: 620g",
+
+"Sai số: 0.01g",
+
+"Kích thước đĩa cân: 170 × 142mm",
+
+"Kích thước cân: 235 × 182 × 75mm",
+
+"Model: GS1202",
+
+"Mức cân: 1200g",
+
+"Sai số: 0.01g",
+
+"Model: GS2202",
+
+"Mức cân: 2200g",
+
+"Sai số: 0.01g",
+
+"Kích thước đĩa cân: φ118mm / 180 × 160mm",
+
+"Kích thước cân: 265 × 192 × 87mm",
+
+"Trọng lượng cân: khoảng 2.8kg",
+
+"Model: GS3202",
+
+"Mức cân: 3200g",
+
+"Sai số: 0.01g",
+
+"Model: GS4202",
+
+"Mức cân: 4200g",
+
+"Sai số: 0.01g",
+
+"Model: GS6202",
+
+"Mức cân: 6200g",
+
+"Sai số: 0.01g",
+
+"Model: GS8201",
+
+"Mức cân: 8200g",
+
+"Sai số: 0.1g",
+
+"Model: GS12001",
+
+"Mức cân: 12000g",
+
+"Sai số: 0.1g",
+
+"Màn hình LCD nền sáng dễ quan sát",
+
+"Cảm biến độ chính xác cao",
+
+"Độ ổn định nhanh",
+
+"Chức năng cân trọng lượng và trừ bì",
+
+"Tự động về zero khi khởi động",
+
+"Đơn vị cân: g / kg / oz",
+
+"Nguồn điện: Adapter AC hoặc pin sạc",
+
+"Thiết kế nhỏ gọn phù hợp phòng thí nghiệm, cửa hàng và sản xuất"
+
+]
+    
+
+},
         
 
 ];
