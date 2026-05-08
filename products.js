@@ -1119,7 +1119,7 @@ const products = [
     ]
 },
     {
-    id:12,
+    id:20,
 
     name:"Cân điện tử 5 số FA10035XN",
 
