@@ -1125,7 +1125,7 @@ const products = [
 
     category:"can-phan-tich",
 
-    folder:"fa10035xn",
+    folder:"FA10035XN",
 
     brand:"FAITHFUL",
 
