@@ -1176,7 +1176,6 @@ const products = [
         - Model: FA10035XN<br>
         - Hãng sản xuất: FAITHFUL<br>
         - Loại cân: Cân phân tích điện tử 5 số<br>
-        - Mức cân tối đa: 31g / 120g<br>
         - Độ đọc: 0.01mg / 0.1mg<br>
         - Độ lặp lại: ±0.02mg<br>
         - Độ tuyến tính: ±0.03mg<br>
