@@ -572,3 +572,36 @@ body{
 .spec-table tr:hover{
     background:#eef2ff;
 }
+/* NÚT TRANG CHI TIẾT */
+
+.detail-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.buy-btn,
+.contact-btn{
+    flex:1;
+    text-align:center;
+    padding:14px;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.3s;
+    font-size:16px;
+}
+
+.buy-btn{
+    background:#ef4444;
+}
+
+.contact-btn{
+    background:#0284c7;
+}
+
+.buy-btn:hover,
+.contact-btn:hover{
+    transform:translateY(-2px);
+}
