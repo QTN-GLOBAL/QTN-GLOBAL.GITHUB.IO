@@ -10,19 +10,56 @@ const products = [
     description:"Cân điện tử chất lượng cao.",
     specs:[
 
-"Mức cân: 1.5kg / 3kg / 6kg / 7.5kg / 15kg / 30kg",
+`
+<table class="spec-table">
 
-"Độ chia: 0.1g / 0.2g / 0.5g / 1g / 2g",
+<tr>
+<th>Mức cân</th>
+<th>Độ chia</th>
+</tr>
+
+<tr>
+<td>1.5kg</td>
+<td>0.1g</td>
+</tr>
+
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
+
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
+
+<tr>
+<td>7.5kg</td>
+<td>0.5g</td>
+</tr>
+
+<tr>
+<td>15kg</td>
+<td>1g</td>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>2g</td>
+</tr>
+
+</table>
+`,
 
 "Độ phân giải nội: 1/30.000",
 
 "Màn hình LCD 6 số, đèn nền LED xanh",
 
-"Kích thước đĩa cân: 294 x 228 mm",
+"Kích thước đĩa cân: 294 × 228 mm",
 
-"Kích thước cân: 341 x 249 x 104 mm",
+"Kích thước cân: 341 × 249 × 104 mm",
 
-"Đơn vị cân: kg, g, lb, oz, pcs",
+"Đơn vị cân: kg / g / lb / oz / pcs",
 
 "Chức năng: cân trọng lượng, trừ bì, đếm số lượng",
 
@@ -47,9 +84,51 @@ const products = [
     description:"Cân đếm điện tử chính xác.",
     specs:[
 
-"Mức cân: 1.5kg / 3kg / 6kg / 7.5kg / 15kg / 20kg / 30kg",
+`
+<table class="spec-table">
 
-"Bước nhảy: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
+</tr>
+
+<tr>
+<td>1.5kg</td>
+<td>0.05g</td>
+</tr>
+
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
+
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
+
+<tr>
+<td>7.5kg</td>
+<td>0.5g</td>
+</tr>
+
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
+
+<tr>
+<td>20kg</td>
+<td>1g</td>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
+
+</table>
+`,
 
 "Độ phân giải nội: 1/30.000",
 
@@ -59,9 +138,9 @@ const products = [
 
 "Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
 
-"Kích thước đĩa cân: 235 x 280 mm",
+"Kích thước đĩa cân: 235 × 280 mm",
 
-"Kích thước cân: 275 x 310 x 120 mm",
+"Kích thước cân: 275 × 310 × 120 mm",
 
 "Chất liệu vỏ: nhựa ABS",
 
@@ -99,43 +178,81 @@ const products = [
 
     description:"Cân điện tử Oneko JK-A thiết kế chống bụi, độ chính xác cao, màn hình LCD dễ quan sát, phù hợp cân đếm và kiểm tra trọng lượng trong sản xuất, kho vận và đóng gói.",
 
-    specs:[
+   
+   specs:[
 
-    "Mức cân: 1.5kg / 3kg / 6kg / 7.5kg / 15kg / 30kg",
+`
+<table class="spec-table">
 
-    "Vạch chia: 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<th>Mức cân</th>
+<th>Vạch chia</th>
+</tr>
 
-    "Độ phân giải nội: 1/10.000 ~ 1/30.000",
+<tr>
+<td>1.5kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Màn hình LCD 6 số, đèn nền LED xanh",
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
 
-    "Chiều cao số hiển thị: 30mm",
+<tr>
+<td>7.5kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Kích thước đĩa cân: 280 x 230 mm",
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Kích thước cân: 355 x 335 x 137 mm",
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
 
-    "Mặt bàn cân inox chống gỉ",
+</table>
+`,
 
-    "Đơn vị cân: kg / g / lb / pcs",
+"Độ phân giải nội: 1/10.000 ~ 1/30.000",
 
-    "Chức năng: cân trọng lượng, trừ bì, đếm số lượng",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Tự động báo ổn định khi cân",
+"Màn hình LCD 6 số, đèn nền LED xanh",
 
-    "Chức năng cảnh báo pin yếu",
+"Chiều cao số hiển thị: 30mm",
 
-    "Tự động tắt nguồn tiết kiệm pin",
+"Kích thước đĩa cân: 280 × 230 mm",
 
-    "Cổng giao tiếp RS232 (tùy chọn)",
+"Kích thước cân: 355 × 335 × 137 mm",
 
-    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Mặt bàn cân inox chống gỉ",
 
-    "Nhiệt độ hoạt động: -5°C ~ 40°C",
+"Đơn vị cân: kg / g / lb / pcs",
 
-    "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+"Chức năng: cân trọng lượng, trừ bì",
+
+"Tự động báo ổn định khi cân",
+
+"Chức năng cảnh báo pin yếu",
+
+"Tự động tắt nguồn tiết kiệm pin",
+
+"Cổng giao tiếp RS232 (tùy chọn)",
+
+"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+"Nhiệt độ hoạt động: -5°C ~ 40°C",
+
+"Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
 
 ]
 },
@@ -157,43 +274,70 @@ const products = [
 
     specs:[
 
-    "Mức cân: 3kg / 6kg / 15kg / 30kg",
+`
+<table class="spec-table">
 
-    "Độ chia: 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<th>Mức cân</th>
+<th>Độ chia</th>
+</tr>
 
-    "Độ phân giải nội: 1/600.000",
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
 
-    "Thời gian ổn định: khoảng 1 giây",
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Màn hình LCD 3 cửa sổ đèn nền",
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
 
-    "Hiển thị: trọng lượng tổng / trọng lượng mẫu / số lượng đếm",
+</table>
+`,
 
-    "Đèn LED kiểm tra trọng lượng 3 màu",
+"Độ phân giải nội: 1/600.000",
 
-    "Kích thước đĩa cân: 300 x 255 mm",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Kích thước cân: 311 x 327 x 117 mm",
+"Thời gian ổn định: khoảng 1 giây",
 
-    "Mặt bàn cân inox chống gỉ",
+"Màn hình LCD 3 cửa sổ đèn nền",
 
-    "Vỏ cân nhựa ABS công nghiệp",
+"Hiển thị: trọng lượng tổng / trọng lượng mẫu / số lượng đếm",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, kiểm tra trọng lượng, cộng dồn",
+"Đèn LED kiểm tra trọng lượng 3 màu",
 
-    "Tự động tối ưu hóa đếm mẫu",
+"Kích thước đĩa cân: 300 × 255 mm",
 
-    "Cổng giao tiếp RS232",
+"Kích thước cân: 311 × 327 × 117 mm",
 
-    "Nguồn điện: AC 220V hoặc pin sạc",
+"Mặt bàn cân inox chống gỉ",
 
-    "Thời gian sử dụng pin: khoảng 110 giờ",
+"Vỏ cân nhựa ABS công nghiệp",
 
-    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+"Chức năng: cân trọng lượng, đếm số lượng, kiểm tra trọng lượng, cộng dồn",
 
-    "Thiết kế chống bụi, phù hợp môi trường công nghiệp"
+"Tự động tối ưu hóa đếm mẫu",
+
+"Cổng giao tiếp RS232",
+
+"Nguồn điện: AC 220V hoặc pin sạc",
+
+"Thời gian sử dụng pin: khoảng 110 giờ",
+
+"Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+"Thiết kế chống bụi, phù hợp môi trường công nghiệp"
 
 ]
 },
@@ -214,47 +358,84 @@ const products = [
 
     specs:[
 
-    "Mức cân: 1.5kg / 3kg / 6kg / 10kg / 15kg / 30kg",
+`
+<table class="spec-table">
 
-    "Sai số: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<th>Mức cân</th>
+<th>Sai số</th>
+</tr>
 
-    "Độ phân giải nội: 1/30.000 hoặc 1/60.000",
+<tr>
+<td>1.5kg</td>
+<td>0.05g</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Cảm biến lực tuning fork Vibra Nhật Bản",
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
 
-    "Màn hình LCD đèn nền xanh",
+<tr>
+<td>10kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Chiều cao số hiển thị: 30mm",
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Kích thước đĩa cân: 220 x 295 mm",
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
 
-    "Kích thước cân: 230 x 350 x 110 mm",
+</table>
+`,
 
-    "Mặt bàn cân inox chống gỉ",
+"Độ phân giải nội: 1/30.000 hoặc 1/60.000",
 
-    "Vỏ cân nhựa ABS công nghiệp",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Đơn vị cân: kg / g / lb / oz / pcs",
+"Cảm biến lực tuning fork Vibra Nhật Bản",
 
-    "Chức năng: cân trọng lượng, trừ bì, đếm số lượng, cộng dồn",
+"Màn hình LCD đèn nền xanh",
 
-    "Chế độ tự động về zero",
+"Chiều cao số hiển thị: 30mm",
 
-    "Chức năng cảnh báo quá tải",
+"Kích thước đĩa cân: 220 × 295 mm",
 
-    "Tự động tắt nguồn tiết kiệm pin",
+"Kích thước cân: 230 × 350 × 110 mm",
 
-    "Cổng giao tiếp RS232 (tùy chọn)",
+"Mặt bàn cân inox chống gỉ",
 
-    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Vỏ cân nhựa ABS công nghiệp",
 
-    "Thời gian sử dụng pin: khoảng 72 ~ 80 giờ",
+"Đơn vị cân: kg / g / lb / oz / pcs",
 
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+"Chức năng: cân trọng lượng, trừ bì, đếm số lượng, cộng dồn",
 
-    "Thiết kế chống bụi, hoạt động ổn định trong môi trường công nghiệp"
+"Chế độ tự động về zero",
+
+"Chức năng cảnh báo quá tải",
+
+"Tự động tắt nguồn tiết kiệm pin",
+
+"Cổng giao tiếp RS232 (tùy chọn)",
+
+"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+"Thời gian sử dụng pin: khoảng 72 ~ 80 giờ",
+
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+"Thiết kế chống bụi, hoạt động ổn định trong môi trường công nghiệp"
 
 ]
 },
@@ -273,45 +454,78 @@ const products = [
 
     description:"Cân đếm Jadever JCL thiết kế chắc chắn, độ chính xác cao, chuyên dùng kiểm đếm linh kiện, phụ tùng, sản xuất và kho vận. Màn hình hiển thị rõ nét, thao tác đơn giản, hoạt động ổn định trong môi trường công nghiệp.",
 
-    specs:[
+   
+   specs:[
 
-    "Mức cân: 1.5kg / 3kg / 6kg / 15kg / 30kg",
+`
+<table class="spec-table">
 
-    "Bước nhảy: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
+</tr>
 
-    "Độ phân giải nội: 1/30.000",
+<tr>
+<td>1.5kg</td>
+<td>0.05g</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Màn hình LCD 3 cửa sổ đèn nền xanh",
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
 
-    "Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Kích thước đĩa cân: 294 x 228 mm",
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
 
-    "Kích thước cân: 341 x 294 x 104 mm",
+</table>
+`,
 
-    "Mặt bàn cân inox chống gỉ",
+"Độ phân giải nội: 1/30.000",
 
-    "Vỏ cân nhựa ABS công nghiệp",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Đơn vị cân: kg / g / lb / oz / pcs",
+"Màn hình LCD 3 cửa sổ đèn nền xanh",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
+"Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
 
-    "Tự động về zero khi khởi động",
+"Kích thước đĩa cân: 294 × 228 mm",
 
-    "Chức năng cảnh báo quá tải",
+"Kích thước cân: 341 × 294 × 104 mm",
 
-    "Cổng giao tiếp RS232 (tùy chọn)",
+"Mặt bàn cân inox chống gỉ",
 
-    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Vỏ cân nhựa ABS công nghiệp",
 
-    "Thời gian sử dụng pin: khoảng 70 giờ",
+"Đơn vị cân: kg / g / lb / oz / pcs",
 
-    "Nhiệt độ hoạt động: -5°C ~ 40°C",
+"Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
 
-    "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+"Tự động về zero khi khởi động",
+
+"Chức năng cảnh báo quá tải",
+
+"Cổng giao tiếp RS232 (tùy chọn)",
+
+"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+"Thời gian sử dụng pin: khoảng 70 giờ",
+
+"Nhiệt độ hoạt động: -5°C ~ 40°C",
+
+"Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
 
 ]
 },
@@ -329,52 +543,83 @@ const products = [
     origin:"Nhật Bản",
 
     description:"Cân điện tử đếm Oneko JK-A+ thiết kế chắc chắn, độ chính xác cao, màn hình LCD đèn nền dễ quan sát, chuyên dùng cân đếm linh kiện, kho vận, sản xuất và kiểm kê hàng hóa.",
+   specs:[
 
-    specs:[
+`
+<table class="spec-table">
 
-    "Mức cân: 1.5kg / 3kg / 6kg / 15kg / 30kg",
+<tr>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
+</tr>
 
-    "Bước nhảy: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<td>1.5kg</td>
+<td>0.05g</td>
+</tr>
 
-    "Độ phân giải nội: 1/30.000",
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
 
-    "Màn hình LCD 3 cửa sổ đèn nền xanh",
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
 
-    "Chiều cao số hiển thị: 25mm",
+</table>
+`,
 
-    "Kích thước đĩa cân: 230 x 280 mm",
+"Độ phân giải nội: 1/30.000",
 
-    "Kích thước cân: 300 x 330 x 120 mm",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Mặt bàn cân inox chống gỉ",
+"Màn hình LCD 3 cửa sổ đèn nền xanh",
 
-    "Vỏ cân nhựa ABS công nghiệp",
+"Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
 
-    "Đơn vị cân: kg / g / lb / oz / pcs",
+"Chiều cao số hiển thị: 25mm",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
+"Kích thước đĩa cân: 230 × 280 mm",
 
-    "Tự động về zero khi khởi động",
+"Kích thước cân: 300 × 330 × 120 mm",
 
-    "Chức năng cảnh báo quá tải",
+"Mặt bàn cân inox chống gỉ",
 
-    "Tự động tắt nguồn tiết kiệm pin",
+"Vỏ cân nhựa ABS công nghiệp",
 
-    "Cổng giao tiếp RS232 (tùy chọn)",
+"Đơn vị cân: kg / g / lb / oz / pcs",
 
-    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
 
-    "Thời gian sử dụng pin: khoảng 70 giờ",
+"Tự động về zero khi khởi động",
 
-    "Nhiệt độ hoạt động: -5°C ~ 40°C",
+"Chức năng cảnh báo quá tải",
 
-    "Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+"Tự động tắt nguồn tiết kiệm pin",
 
-    ]
+"Cổng giao tiếp RS232 (tùy chọn)",
+
+"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+"Thời gian sử dụng pin: khoảng 70 giờ",
+
+"Nhiệt độ hoạt động: -5°C ~ 40°C",
+
+"Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+
+]
 },
     {
     id:8,
@@ -393,47 +638,74 @@ const products = [
 
     specs:[
 
-    "Mức cân: 3kg / 6kg / 15kg / 30kg",
+`
+<table class="spec-table">
 
-    "Bước nhảy: 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
+</tr>
 
-    "Độ phân giải nội: lên đến 1/600.000",
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
 
-    "Thời gian ổn định: khoảng 1 giây",
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Màn hình LCD 3 cửa sổ đèn nền trắng",
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
 
-    "Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
+</table>
+`,
 
-    "Đèn LED kiểm tra trọng lượng 3 màu",
+"Độ phân giải nội: lên đến 1/600.000",
 
-    "Kích thước đĩa cân: 300 x 225 mm",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Kích thước cân: 311 x 327 x 117 mm",
+"Thời gian ổn định: khoảng 1 giây",
 
-    "Mặt bàn cân inox chống gỉ",
+"Màn hình LCD 3 cửa sổ đèn nền trắng",
 
-    "Vỏ cân nhựa ABS công nghiệp",
+"Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
 
-    "Đơn vị cân: kg / g / lb / oz / pcs",
+"Đèn LED kiểm tra trọng lượng 3 màu",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, kiểm tra trọng lượng, cộng dồn",
+"Kích thước đĩa cân: 300 × 225 mm",
 
-    "Tự động tối ưu hóa lấy mẫu đếm",
+"Kích thước cân: 311 × 327 × 117 mm",
 
-    "Cổng giao tiếp RS232 tiêu chuẩn",
+"Mặt bàn cân inox chống gỉ",
 
-    "Nguồn điện: AC Adapter hoặc pin sạc",
+"Vỏ cân nhựa ABS công nghiệp",
 
-    "Thời gian sử dụng pin: khoảng 110 giờ",
+"Đơn vị cân: kg / g / lb / oz / pcs",
 
-    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+"Chức năng: cân trọng lượng, đếm số lượng, kiểm tra trọng lượng, cộng dồn",
 
-    "Thiết kế chống bụi, phù hợp môi trường công nghiệp"
+"Tự động tối ưu hóa lấy mẫu đếm",
 
-    ]
+"Cổng giao tiếp RS232 tiêu chuẩn",
+
+"Nguồn điện: AC Adapter hoặc pin sạc",
+
+"Thời gian sử dụng pin: khoảng 110 giờ",
+
+"Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+"Thiết kế chống bụi, phù hợp môi trường công nghiệp"
+
+]
 },
     {
     id:9,
@@ -450,45 +722,57 @@ const products = [
 
     description:"Cân điện tử đếm Yaohua XK3190 A15E sử dụng đầu cân điện tử Yaohua nổi tiếng với độ ổn định cao, màn hình LED sáng rõ, phù hợp cân bàn, cân sàn, kiểm đếm hàng hóa và ứng dụng công nghiệp.",
 
-    specs:[
+   specs:[
 
-    "Model đầu cân: XK3190-A15E",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Yaohua",
+<tr>
+<th>Model đầu cân</th>
+<th>Mức tải hỗ trợ</th>
+<th>Độ phân giải</th>
+</tr>
 
-    "Màn hình LED đỏ độ sáng cao",
+<tr>
+<td>XK3190-A15E</td>
+<td>30kg / 60kg / 100kg / 150kg / 300kg / 500kg</td>
+<td>1/30.000</td>
+</tr>
 
-    "Độ phân giải hiển thị: 1/30.000",
+</table>
+`,
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Thương hiệu: Yaohua",
 
-    "Hỗ trợ nhiều mức tải: 30kg / 60kg / 100kg / 150kg / 300kg / 500kg",
+"Màn hình LED đỏ độ sáng cao",
 
-    "Tốc độ xử lý nhanh và ổn định",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Chức năng: cân trọng lượng, trừ bì, đếm số lượng, cộng dồn",
+"Tốc độ xử lý nhanh và ổn định",
 
-    "Tự động về zero khi khởi động",
+"Chức năng: cân trọng lượng, trừ bì, đếm số lượng, cộng dồn",
 
-    "Chức năng cảnh báo quá tải",
+"Tự động về zero khi khởi động",
 
-    "Kết nối loadcell 4 dây hoặc 6 dây",
+"Chức năng cảnh báo quá tải",
 
-    "Cổng giao tiếp RS232",
+"Kết nối loadcell 4 dây hoặc 6 dây",
 
-    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Cổng giao tiếp RS232",
 
-    "Thời gian sử dụng pin: khoảng 60 ~ 80 giờ",
+"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
 
-    "Bàn phím chống bụi và chống nước nhẹ",
+"Thời gian sử dụng pin: khoảng 60 ~ 80 giờ",
 
-    "Vỏ đầu cân bằng nhựa ABS công nghiệp",
+"Bàn phím chống bụi và chống nước nhẹ",
 
-    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+"Vỏ đầu cân bằng nhựa ABS công nghiệp",
 
-    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
+"Nhiệt độ hoạt động: -10°C ~ 40°C",
 
-    ]
+"Thiết kế phù hợp môi trường công nghiệp và kho vận"
+
+]
 },
     {
     id:10,
@@ -507,45 +791,77 @@ const products = [
 
     specs:[
 
-    "Mức cân: 1.5kg / 3kg / 6kg / 15kg / 30kg",
+`
+<table class="spec-table">
 
-    "Bước nhảy: 0.05g / 0.1g / 0.2g / 0.5g / 1g",
+<tr>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
+</tr>
 
-    "Độ phân giải nội: 1/30.000",
+<tr>
+<td>1.5kg</td>
+<td>0.05g</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>3kg</td>
+<td>0.1g</td>
+</tr>
 
-    "Màn hình LCD 3 cửa sổ đèn nền xanh",
+<tr>
+<td>6kg</td>
+<td>0.2g</td>
+</tr>
 
-    "Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
+<tr>
+<td>15kg</td>
+<td>0.5g</td>
+</tr>
 
-    "Kích thước đĩa cân: 230 x 280 mm",
+<tr>
+<td>30kg</td>
+<td>1g</td>
+</tr>
 
-    "Kích thước cân: 300 x 330 x 120 mm",
+</table>
+`,
 
-    "Mặt bàn cân inox chống gỉ",
+"Độ phân giải nội: 1/30.000",
 
-    "Vỏ cân nhựa ABS công nghiệp",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Đơn vị cân: kg / g / lb / pcs",
+"Màn hình LCD 3 cửa sổ đèn nền xanh",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
+"Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
 
-    "Tự động về zero khi khởi động",
+"Kích thước đĩa cân: 230 × 280 mm",
 
-    "Chức năng cảnh báo quá tải",
+"Kích thước cân: 300 × 330 × 120 mm",
 
-    "Tự động tắt nguồn tiết kiệm pin",
+"Mặt bàn cân inox chống gỉ",
 
-    "Cổng giao tiếp RS232 (tùy chọn)",
+"Vỏ cân nhựa ABS công nghiệp",
 
-    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Đơn vị cân: kg / g / lb / pcs",
 
-    "Thời gian sử dụng pin: khoảng 70 giờ",
+"Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
 
-    "Nhiệt độ hoạt động: -5°C ~ 40°C",
+"Tự động về zero khi khởi động",
 
-    "Thiết kế chống bụi và phù hợp môi trường công nghiệp"
+"Chức năng cảnh báo quá tải",
+
+"Tự động tắt nguồn tiết kiệm pin",
+
+"Cổng giao tiếp RS232 (tùy chọn)",
+
+"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+
+"Thời gian sử dụng pin: khoảng 70 giờ",
+
+"Nhiệt độ hoạt động: -5°C ~ 40°C",
+
+"Thiết kế chống bụi và phù hợp môi trường công nghiệp"
 
 ]
 },
@@ -566,45 +882,77 @@ const products = [
 
     specs:[
 
-    "Mức cân: 1.5 tấn / 3 tấn / 5 tấn / 10 tấn / 15 tấn",
+`
+<table class="spec-table">
 
-    "Độ chia: 0.5kg / 1kg / 2kg / 5kg",
+<tr>
+<th>Mức cân</th>
+<th>Độ chia</th>
+</tr>
 
-    "Độ chính xác: 1/2.500 ~ 1/3.000",
+<tr>
+<td>1.5 tấn</td>
+<td>0.5kg</td>
+</tr>
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+<tr>
+<td>3 tấn</td>
+<td>1kg</td>
+</tr>
 
-    "Màn hình LED đỏ 5 số, chiều cao số 25.4mm",
+<tr>
+<td>5 tấn</td>
+<td>2kg</td>
+</tr>
 
-    "Vỏ cân hợp kim nhôm sơn tĩnh điện chống nước",
+<tr>
+<td>10 tấn</td>
+<td>5kg</td>
+</tr>
 
-    "Móc treo xoay 360 độ",
+<tr>
+<td>15 tấn</td>
+<td>5kg</td>
+</tr>
 
-    "Giới hạn quá tải lên đến 600%",
+</table>
+`,
 
-    "Chức năng: cân trọng lượng, giữ số HOLD, trừ bì, về zero",
+"Độ chính xác: 1/2.500 ~ 1/3.000",
 
-    "Đơn vị cân: kg / lb / t",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Remote điều khiển từ xa khoảng cách 24 mét",
+"Màn hình LED đỏ 5 số, chiều cao số 25.4mm",
 
-    "Tự động theo dõi điểm zero",
+"Vỏ cân hợp kim nhôm sơn tĩnh điện chống nước",
 
-    "Tự động cảnh báo pin yếu",
+"Móc treo xoay 360 độ",
 
-    "Thiết kế chống bụi và chống nước IP65",
+"Giới hạn quá tải lên đến 600%",
 
-    "Nguồn điện: Adapter AC 110V/220V + pin sạc 6V/10Ah",
+"Chức năng: cân trọng lượng, giữ số HOLD, trừ bì, về zero",
 
-    "Thời gian sử dụng pin: khoảng 100 ~ 120 giờ",
+"Đơn vị cân: kg / lb / t",
 
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+"Remote điều khiển từ xa khoảng cách 24 mét",
 
-    "Kích thước cân 1~5T: 210 x 216 x 460~665 mm",
+"Tự động theo dõi điểm zero",
 
-    "Kích thước cân 10~15T: 210 x 278 x 770~885 mm",
+"Tự động cảnh báo pin yếu",
 
-    "Thiết kế chuyên dụng cho môi trường công nghiệp nặng"
+"Thiết kế chống bụi và chống nước IP65",
+
+"Nguồn điện: Adapter AC 110V/220V + pin sạc 6V/10Ah",
+
+"Thời gian sử dụng pin: khoảng 100 ~ 120 giờ",
+
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+"Kích thước cân 1~5T: 210 × 216 × 460 ~ 665 mm",
+
+"Kích thước cân 10~15T: 210 × 278 × 770 ~ 885 mm",
+
+"Thiết kế chuyên dụng cho môi trường công nghiệp nặng"
 
 ]
 },
@@ -1135,59 +1483,81 @@ const products = [
 
     specs:[
 
-    "Model: FA10035X / FA10035XN",
+`
+<table class="spec-table">
 
-    "Mức cân: 0-100g / 0-30g",
+<tr>
+<th>Model</th>
+<th>Mức cân</th>
+<th>Độ đọc</th>
+</tr>
 
-    "Model: FA10055X / FA10055XN",
+<tr>
+<td>FA10035X / FA10035XN</td>
+<td>0-100g / 0-30g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
 
-    "Mức cân: 0-100g / 50g",
+<tr>
+<td>FA10055X / FA10055XN</td>
+<td>0-100g / 50g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
 
-    "Model: FA10085X / FA10085XN",
+<tr>
+<td>FA10085X / FA10085XN</td>
+<td>0-100g / 80g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
 
-    "Mức cân: 0-100g / 80g",
+<tr>
+<td>FA20035X / FA20035XN</td>
+<td>0-200g / 0-30g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
 
-    "Model: FA20035X / FA20035XN",
+<tr>
+<td>FA20055X / FA20055XN</td>
+<td>0-200g / 50g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
 
-    "Mức cân: 0-200g / 0-30g",
+<tr>
+<td>FA20085X / FA20085XN</td>
+<td>0-200g / 80g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
 
-    "Model: FA20055X / FA20055XN",
+</table>
+`,
 
-    "Mức cân: 0-200g / 50g",
+"Độ lặp lại: ±0.02mg",
 
-    "Model: FA20085X / FA20085XN",
+"Độ tuyến tính: ±0.03mg",
 
-    "Mức cân: 0-200g / 80g",
+"Đĩa cân inox Ø90mm",
 
-    "Độ đọc: 0.01mg / 0.1mg",
+"Buồng kính chắn gió 3 cửa",
 
-    "Độ lặp lại: ±0.02mg",
+"Màn hình LCD nền sáng dễ quan sát",
 
-    "Độ tuyến tính: ±0.03mg",
+"Thời gian ổn định: ≤ 3 giây",
 
-    "Đĩa cân inox Ø90mm",
+"Hiệu chuẩn nội tự động",
 
-    "Buồng kính chắn gió 3 cửa",
+"Chức năng: cân %, trừ bì, đếm mẫu, chuyển đổi đơn vị",
 
-    "Màn hình LCD nền sáng dễ quan sát",
+"Đơn vị cân: g / mg / ct / oz",
 
-    "Thời gian ổn định: ≤ 3 giây",
+"Cổng giao tiếp RS232 kết nối máy tính và máy in",
 
-    "Hiệu chuẩn nội tự động",
+"Nguồn điện: Adapter AC 220V",
 
-    "Chức năng: cân %, trừ bì, đếm mẫu, chuyển đổi đơn vị",
+"Nhiệt độ hoạt động: 5°C ~ 25°C",
 
-    "Đơn vị cân: g / mg / ct / oz",
+"Ứng dụng: phòng thí nghiệm, nghiên cứu, kiểm nghiệm, vàng bạc"
 
-    "Cổng giao tiếp RS232 kết nối máy tính và máy in",
-
-    "Nguồn điện: Adapter AC 220V",
-
-    "Nhiệt độ hoạt động: 5°C ~ 25°C",
-
-    "Ứng dụng: phòng thí nghiệm, nghiên cứu, kiểm nghiệm, vàng bạc"
-
-    ]
+]
 },
    {
     id:21,
@@ -1204,95 +1574,98 @@ const products = [
 
     description:"Cân điện tử Shinko GS là dòng cân bàn điện tử độ chính xác cao, thiết kế chắc chắn, hoạt động ổn định và phù hợp cho nhiều lĩnh vực như sản xuất, đóng gói, kiểm tra trọng lượng và thương mại. Cân sử dụng màn hình LCD sắc nét, bàn cân inox chống gỉ và tích hợp pin sạc tiện lợi.",
 
-    specs:[
+   
+specs:[
 
-"Model: GS223",
+`
+<table class="spec-table">
 
-"Mức cân: 220g",
+<tr>
+<th>Model</th>
+<th>Mức cân</th>
+<th>Sai số</th>
+</tr>
 
-"Sai số: 0.001g",
+<tr>
+<td>GS223</td>
+<td>220g</td>
+<td>0.001g</td>
+</tr>
 
-"Kích thước đĩa cân: φ118mm",
+<tr>
+<td>GS323</td>
+<td>320g</td>
+<td>0.001g</td>
+</tr>
 
-"Kích thước cân: 235 × 182 × 165mm",
+<tr>
+<td>GS423</td>
+<td>420g</td>
+<td>0.001g</td>
+</tr>
 
-"Trọng lượng cân: khoảng 1.3kg",
+<tr>
+<td>GS623</td>
+<td>620g</td>
+<td>0.001g</td>
+</tr>
 
-"Model: GS323",
+<tr>
+<td>GS620</td>
+<td>620g</td>
+<td>0.01g</td>
+</tr>
 
-"Mức cân: 320g",
+<tr>
+<td>GS1202</td>
+<td>1200g</td>
+<td>0.01g</td>
+</tr>
 
-"Sai số: 0.001g",
+<tr>
+<td>GS2202</td>
+<td>2200g</td>
+<td>0.01g</td>
+</tr>
 
-"Model: GS423",
+<tr>
+<td>GS3202</td>
+<td>3200g</td>
+<td>0.01g</td>
+</tr>
 
-"Mức cân: 420g",
+<tr>
+<td>GS4202</td>
+<td>4200g</td>
+<td>0.01g</td>
+</tr>
 
-"Sai số: 0.001g",
+<tr>
+<td>GS6202</td>
+<td>6200g</td>
+<td>0.01g</td>
+</tr>
 
-"Model: GS623",
+<tr>
+<td>GS8201</td>
+<td>8200g</td>
+<td>0.1g</td>
+</tr>
 
-"Mức cân: 620g",
+<tr>
+<td>GS12001</td>
+<td>12000g</td>
+<td>0.1g</td>
+</tr>
 
-"Sai số: 0.001g",
+</table>
+`,
 
-"Model: GS620",
+"Kích thước đĩa cân: φ118mm / 170 × 142mm / 180 × 160mm",
 
-"Mức cân: 620g",
+"Kích thước cân: 235 × 182 × 165mm / 235 × 182 × 75mm / 265 × 192 × 87mm",
 
-"Sai số: 0.01g",
-
-"Kích thước đĩa cân: 170 × 142mm",
-
-"Kích thước cân: 235 × 182 × 75mm",
-
-"Model: GS1202",
-
-"Mức cân: 1200g",
-
-"Sai số: 0.01g",
-
-"Model: GS2202",
-
-"Mức cân: 2200g",
-
-"Sai số: 0.01g",
-
-"Kích thước đĩa cân: φ118mm / 180 × 160mm",
-
-"Kích thước cân: 265 × 192 × 87mm",
-
-"Trọng lượng cân: khoảng 2.8kg",
-
-"Model: GS3202",
-
-"Mức cân: 3200g",
-
-"Sai số: 0.01g",
-
-"Model: GS4202",
-
-"Mức cân: 4200g",
-
-"Sai số: 0.01g",
-
-"Model: GS6202",
-
-"Mức cân: 6200g",
-
-"Sai số: 0.01g",
-
-"Model: GS8201",
-
-"Mức cân: 8200g",
-
-"Sai số: 0.1g",
-
-"Model: GS12001",
-
-"Mức cân: 12000g",
-
-"Sai số: 0.1g",
+"Trọng lượng cân: khoảng 1.3kg ~ 2.8kg",
 
 "Màn hình LCD nền sáng dễ quan sát",
 
