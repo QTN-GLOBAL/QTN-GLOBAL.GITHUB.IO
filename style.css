@@ -82,8 +82,12 @@ body{
 }
 
 .hero-left h1{
-    font-size:60px;
-    margin-bottom:20px;
+    font-size:68px;
+    line-height:1.15;
+    font-weight:900;
+    margin-bottom:35px;
+    max-width:700px;
+    letter-spacing:-1px;
 }
 
 .hero-left p{
@@ -322,13 +326,18 @@ body{
 
 .company-info h2{
     margin:0;
-    font-size:34px;
-    color:#1e3a8a;
+    font-size:42px;
+    font-weight:800;
+    line-height:1;
+    letter-spacing:1px;
 }
 
 .company-info p{
-    margin:5px 0 0;
-    color:#666;
+    margin-top:6px;
+    font-size:14px;
+    color:#777;
+    font-weight:600;
+    letter-spacing:0.5px;
 }
 
 /* CONTACT */
@@ -452,18 +461,18 @@ body{
 }
 
 .hero-list li{
-    margin-bottom:18px;
-    font-size:22px;
-    font-weight:600;
+    margin-bottom:20px;
+    font-size:28px;
+    font-weight:700;
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:14px;
 }
 
 .hero-list i{
     color:white;
+    font-size:26px;
 }
-
 /* BUTTON */
 
 .btn-orange{
@@ -514,13 +523,17 @@ body{
 /* RIGHT */
 
 .hero-right{
-    flex:0.8;
+    flex:0.9;
+    display:flex;
+    justify-content:center;
 }
 
 .hero-slider{
+    width:620px;
     height:420px;
     border-radius:24px;
     overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 .hero-slider img{
