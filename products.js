@@ -1314,6 +1314,111 @@ const products = [
     
 
 },
+{
+    id:22,
+
+    name:"Cân kỹ thuật OKS – DJ",
+
+    category:"can-phan-tich",
+
+    folder:"oks-dj",
+
+    brand:"OKS",
+
+    origin:"Đài Loan",
+
+    description:"Cân kỹ thuật OKS – DJ là dòng cân điện tử độ chính xác cao, thiết kế nhỏ gọn, màn hình LCD dễ quan sát và hoạt động ổn định. Cân phù hợp sử dụng trong phòng thí nghiệm, cửa hàng vàng bạc, kiểm tra mẫu, sản xuất và nghiên cứu kỹ thuật.",
+
+    specs:[
+
+`
+<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Khối lượng</th>
+<th>Sai số</th>
+<th>Đĩa cân</th>
+<th>Kích thước cân</th>
+</tr>
+
+<tr>
+<td>OKS-DJ 320A</td>
+<td>320g</td>
+<td>0.01g</td>
+<td>φ118mm</td>
+<td>270 × 178 × 165mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 502A</td>
+<td>500g</td>
+<td>0.01g</td>
+<td>φ118mm</td>
+<td>270 × 178 × 165mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 602A</td>
+<td>600g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 1202A</td>
+<td>1200g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 2202A</td>
+<td>2200g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 3202A</td>
+<td>3200g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 5202A</td>
+<td>5200g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+</table>
+`,
+
+"Màn hình LCD nền sáng dễ quan sát",
+
+"Cảm biến tải độ chính xác cao",
+
+"Độ ổn định nhanh",
+
+"Đĩa cân inox chống gỉ",
+
+"Chức năng: cân trọng lượng, trừ bì, đếm mẫu",
+
+"Đơn vị cân: g / oz / ct",
+
+"Nguồn điện: Adapter AC hoặc pin sạc",
+
+"Thiết kế nhỏ gọn phù hợp phòng thí nghiệm và sản xuất"
+
+]
+},
         
 
 ];
