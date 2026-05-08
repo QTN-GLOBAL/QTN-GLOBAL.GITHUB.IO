@@ -1136,7 +1136,7 @@ const products = [
         Thiết kế buồng kính chống gió giúp kết quả ổn định nhanh, độ phân giải đến 0.01mg cho khả năng cân cực kỳ chính xác.
     `,
 
-    specifications: `
+    specs:[
         - Model: FA10035XN<br>
         - Hãng sản xuất: FAITHFUL<br>
         - Loại cân: Cân phân tích điện tử 5 số<br>
@@ -1152,9 +1152,9 @@ const products = [
         - Nguồn điện: AC 220V<br>
         - Kích thước: 350 × 215 × 340 mm<br>
         - Trọng lượng: khoảng 7kg
+        ]
     `,
-
-    capacities: [
+    capacities:[
     "FA10035X / FA10035XN: 0-100g / 0-30g",
     "FA10055X / FA10055XN: 0-100g / 50g",
     "FA10085X / FA10085XN: 0-100g / 80g",
