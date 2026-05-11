@@ -93,3 +93,34 @@ function filterProducts(category){
     });
 
 }
+function openOrderPopup(){
+
+    document
+    .getElementById("orderPopup")
+    .style.display = "flex";
+
+}
+
+function closeOrderPopup(){
+
+    document
+    .getElementById("orderPopup")
+    .style.display = "none";
+
+}
+
+function openCartPopup(){
+
+    document
+    .getElementById("cartPopup")
+    .style.display = "flex";
+
+}
+
+function closeCartPopup(){
+
+    document
+    .getElementById("cartPopup")
+    .style.display = "none";
+
+}
