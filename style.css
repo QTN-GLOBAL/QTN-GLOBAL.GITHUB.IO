@@ -877,3 +877,80 @@ body{
     padding-left:6px;
 
 }
+/* TRANG CHI TIẾT GỌN HƠN */
+
+.detail-container{
+
+    align-items:flex-start;
+
+    gap:30px;
+
+}
+
+/* KHỐI SLIDER */
+
+.slider-area{
+
+    width:42%;
+
+}
+
+/* ẢNH CHÍNH */
+
+.main-image{
+
+    max-height:320px;
+
+    object-fit:contain;
+
+}
+
+/* THUMB */
+
+.thumb-list img{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+/* PHẦN THÔNG TIN */
+
+.detail-info{
+
+    width:55%;
+
+}
+
+/* TÊN SẢN PHẨM */
+
+.detail-info h1{
+
+    font-size:28px;
+
+    margin-bottom:12px;
+
+}
+
+/* MÔ TẢ */
+
+.detail-info p{
+
+    font-size:15px;
+
+    line-height:1.5;
+
+    margin-bottom:10px;
+
+}
+
+/* THÔNG SỐ */
+
+#productSpecs li{
+
+    font-size:14px;
+
+    margin-bottom:6px;
+
+}
