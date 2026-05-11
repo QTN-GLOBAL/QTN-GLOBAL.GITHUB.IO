@@ -682,3 +682,76 @@ body{
     color:#facc15;
 
 }
+/* KHỐI HERO NHỎ LẠI */
+
+.hero{
+
+    padding:40px 60px;
+
+    gap:40px;
+
+    min-height:520px;
+
+}
+
+/* BÊN TRÁI */
+
+.hero-left{
+
+    flex:1;
+
+    max-width:48%;
+
+}
+
+/* TIÊU ĐỀ */
+
+.hero-left h1{
+
+    font-size:48px;
+
+    line-height:1.15;
+
+}
+
+/* ICON LIST */
+
+.hero-list li{
+
+    font-size:18px;
+
+    margin-bottom:18px;
+
+}
+
+/* NÚT */
+
+.hero-buttons{
+
+    margin-top:25px;
+
+}
+
+/* BÊN PHẢI */
+
+.hero-right{
+
+    flex:1;
+
+    max-width:45%;
+
+}
+
+/* SLIDER */
+
+.banner-slider img{
+
+    width:100%;
+
+    max-height:420px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+}
