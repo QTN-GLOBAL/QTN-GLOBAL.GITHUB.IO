@@ -84,12 +84,19 @@ body{
 }
 
 .hero-left h1{
-    font-size:68px;
-    line-height:1.15;
-    font-weight:900;
-    margin-bottom:35px;
-    max-width:700px;
+
+    font-size:42px;
+
+    line-height:1.2;
+
+    font-weight:800;
+
+    color:white;
+
     letter-spacing:-1px;
+
+    margin-bottom:25px;
+
 }
 
 .hero-left p{
@@ -753,5 +760,59 @@ body{
     object-fit:cover;
 
     border-radius:20px;
+
+}
+.highlight{
+
+    background:linear-gradient(90deg,#ffd700,#ffb300);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+/* HERO NHỎ GỌN HƠN */
+
+.hero{
+
+    padding:35px 50px;
+
+    gap:30px;
+
+    min-height:480px;
+
+}
+
+/* BÊN TRÁI */
+
+.hero-left{
+
+    max-width:45%;
+
+}
+
+/* LIST */
+
+.hero-list li{
+
+    font-size:16px;
+
+    margin-bottom:14px;
+
+}
+
+/* SLIDER */
+
+.hero-right{
+
+    max-width:40%;
+
+}
+
+.banner-slider img{
+
+    max-height:360px;
+
+    border-radius:18px;
 
 }
