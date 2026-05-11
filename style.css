@@ -883,7 +883,7 @@ body{
 
     align-items:flex-start;
 
-    gap:30px;
+    gap:20px;
 
 }
 
@@ -899,7 +899,7 @@ body{
 
 .main-image{
 
-    max-height:320px;
+    max-height:220px;
 
     object-fit:contain;
 
@@ -927,9 +927,9 @@ body{
 
 .detail-info h1{
 
-    font-size:28px;
+    font-size:24px;
 
-    margin-bottom:12px;
+    margin-bottom:8px;
 
 }
 
@@ -937,11 +937,11 @@ body{
 
 .detail-info p{
 
-    font-size:15px;
+    font-size:14px;
 
-    line-height:1.5;
+    line-height:1.4;
 
-    margin-bottom:10px;
+    margin-bottom:6px;
 
 }
 
@@ -949,8 +949,13 @@ body{
 
 #productSpecs li{
 
-    font-size:14px;
+    font-size:13px;
 
-    margin-bottom:6px;
+    margin-bottom:4px;
+
+}
+.detail-page{
+
+    padding:20px;
 
 }
