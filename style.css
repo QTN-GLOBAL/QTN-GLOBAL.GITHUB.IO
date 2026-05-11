@@ -89,8 +89,8 @@ body{
 }
 
 .hero-left h1{
-    font-size:62px;
-    line-height:1.08;
+    font-size:48px;
+    line-height:1.1;
 
     font-weight:800;
 
@@ -104,7 +104,7 @@ body{
 .hero-left h1 .highlight{
     color:#ffd000;
 
-    font-size:62px;
+    font-size:48px;
 
     font-weight:800;
 
@@ -852,4 +852,8 @@ body{
 
     border-radius:18px;
 
+}
+.hero{
+    min-height:480px;
+    padding:40px 50px;
 }
