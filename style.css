@@ -862,3 +862,18 @@ body{
     min-height:300px;
     padding:10px 40px;
 }
+.sidebar li{
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+.sidebar li:hover{
+
+    color:#0d47a1;
+
+    padding-left:6px;
+
+}
