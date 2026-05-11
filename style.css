@@ -89,7 +89,7 @@ body{
 }
 
 .hero-left h1{
-    font-size:34px;
+    font-size:30px;
     line-height:1.05;
 
     font-weight:800;
@@ -104,7 +104,7 @@ body{
 .hero-left h1 .highlight{
     color:#ffd000;
 
-    font-size:38px;
+    font-size:30px;
 
     font-weight:800;
 
@@ -494,7 +494,7 @@ body{
 }
 
 .hero-left h1{
-    font-size:34px;
+    font-size:30px;
     line-height:1.05;
     margin-bottom:10px;
     font-weight:800;
@@ -705,11 +705,11 @@ body{
 
 .hero-left h1{
 
-    font-size:58px;
+    font-size:30px;
 
-    line-height:1.15;
+    line-height:1.05;
 
-    font-weight:900;
+    font-weight:800;
 
     margin-bottom:30px;
 
@@ -752,9 +752,9 @@ body{
 
 .hero-left h1{
 
-    font-size:48px;
+    font-size:30px;
 
-    line-height:1.15;
+    line-height:1.05;
 
 }
 
@@ -762,9 +762,9 @@ body{
 
 .hero-list li{
 
-    font-size:18px;
+    font-size:14px;
 
-    margin-bottom:18px;
+    margin-bottom:5px;
 
 }
 
@@ -772,7 +772,7 @@ body{
 
 .hero-buttons{
 
-    margin-top:25px;
+    margin-top:10px;
 
 }
 
@@ -832,9 +832,9 @@ body{
 
 .hero-list li{
 
-    font-size:16px;
+    font-size:14px;
 
-    margin-bottom:14px;
+    margin-bottom:5px;
 
 }
 
@@ -848,12 +848,12 @@ body{
 
 .banner-slider img{
 
-    max-height:300px;
+    max-height:250px;
 
     border-radius:18px;
 
 }
 .hero{
-    min-height:340px;
-    padding:15px 50px;
+    min-height:300px;
+    padding:10px 40px;
 }
