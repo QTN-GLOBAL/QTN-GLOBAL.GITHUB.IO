@@ -848,12 +848,12 @@ body{
 
 .banner-slider img{
 
-    max-height:360px;
+    max-height:300px;
 
     border-radius:18px;
 
 }
 .hero{
-    min-height:380px;
-    padding:20px 50px;
+    min-height:340px;
+    padding:15px 50px;
 }
