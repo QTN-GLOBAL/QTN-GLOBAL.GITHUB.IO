@@ -137,7 +137,7 @@ function addToCart(){
     alert("Đã thêm vào giỏ hàng");
 
 }
-let cart = 0;
+
 
 function confirmAddCart(){
 
