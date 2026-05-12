@@ -353,59 +353,64 @@ function renderWeightLevels(){
 
 <div class="order-popup" id="orderPopup">
 
-    <form class="order-box"
-      action="https://formsubmit.co/quannguyensky3105@gmail.com"
+    
+     <form class="order-box"
+      action="https://formsubmit.co/EMAILCUABAN@gmail.com"
       method="POST">
 
-        <span class="close-popup"
-              onclick="closeOrderPopup()">
-              &times;
-        </span>
+    <span class="close-popup"
+          onclick="closeOrderPopup()">
+          &times;
+    </span>
 
-        <h2>THÔNG TIN ĐẶT HÀNG</h2>
+    <h2>THÔNG TIN ĐẶT HÀNG</h2>
 
-        <input type="text"
-               placeholder="Tên khách hàng">
+    <input type="text"
+           name="Tên khách hàng"
+           placeholder="Tên khách hàng"
+           required>
 
-        <input type="text"
-               placeholder="Số điện thoại">
+    <input type="text"
+           name="Số điện thoại"
+           placeholder="Số điện thoại"
+           required>
 
-        <input type="text"
-               placeholder="Tên công ty">
+    <input type="text"
+           name="Tên công ty"
+           placeholder="Tên công ty">
 
-        <input type="text"
-               placeholder="Mã số thuế">
+    <input type="text"
+           name="Mã số thuế"
+           placeholder="Mã số thuế">
 
-        <input type="text"
-               placeholder="Địa chỉ xuất hóa đơn">
+    <input type="text"
+           name="Địa chỉ xuất hóa đơn"
+           placeholder="Địa chỉ xuất hóa đơn">
 
-        <input type="text"
-               placeholder="Địa chỉ giao hàng">
+    <input type="text"
+           name="Địa chỉ giao hàng"
+           placeholder="Địa chỉ giao hàng">
 
-        <h3>CHỌN MỨC CÂN</h3>
-        <div id="orderLevels"></div>
+    <input type="hidden"
+           name="_subject"
+           value="ĐƠN ĐẶT HÀNG WEBSITE QTN GLOBAL">
 
-       <input type="hidden"
-       name="_captcha"
-       value="false">
+    <input type="hidden"
+           name="_captcha"
+           value="false">
 
-<input type="hidden"
-       name="_subject"
-       value="ĐƠN ĐẶT HÀNG WEBSITE QTN GLOBAL">
-<input type="hidden"
-       name="_next"
-       value="https://candientuthongminh.github.io/web-qtn-global/">
+    <input type="hidden"
+           name="_next"
+           value="https://candientuthongminh.github.io/web-qtn-global/">
 
-<button class="submit-order"
-        type="submit">
+    <button type="submit"
+            class="submit-order">
 
-    GỬI THÔNG TIN
+        GỬI THÔNG TIN
 
-</button>
+    </button>
 
 </form>
-
-</div>
 
 
 <!-- POPUP GIỎ HÀNG -->
