@@ -137,3 +137,39 @@ function addToCart(){
     alert("Đã thêm vào giỏ hàng");
 
 }
+let cart = 0;
+
+function confirmAddCart(){
+
+    const inputs =
+    document.querySelectorAll(
+        "#cartLevels input"
+    );
+
+    let total = 0;
+
+    inputs.forEach(input=>{
+
+        total += Number(input.value);
+
+    });
+
+    if(total <= 0){
+
+        alert("Vui lòng chọn số lượng");
+
+        return;
+
+    }
+
+    cart += total;
+
+    document
+    .getElementById("cartCount")
+    .innerText = cart;
+
+    alert("Đã thêm vào giỏ hàng");
+
+    closeCartPopup();
+
+}
