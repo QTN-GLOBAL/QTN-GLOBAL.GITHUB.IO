@@ -114,19 +114,19 @@
 
 <div class="detail-buttons">
 
-    <a href="tel:0905913636" class="buy-btn">
+    <button onclick="openOrderPopup()"
+            class="buy-btn">
 
         MUA NGAY
 
-    </a>
+    </button>
 
-    <a href="https://zalo.me/0383598603"
-       target="_blank"
-       class="contact-btn">
+    <button onclick="openCartPopup()"
+            class="contact-btn">
 
-       THÊM VÀO GIỎ HÀNG
+        THÊM VÀO GIỎ HÀNG
 
-    </a>
+    </button>
 
 </div>
 
@@ -158,6 +158,7 @@
 </div>
 
 <script src="products.js"></script>
+<script src="script.js"></script>
 
 <script>
 
@@ -270,12 +271,7 @@ nextSlide();
 },3000);
 
 </script>
-<button onclick="openOrderPopup()"
-        class="buy-btn">
 
-    MUA NGAY
-
-</button>
 <!-- POPUP MUA NGAY -->
 
 <div class="order-popup" id="orderPopup">
@@ -343,12 +339,7 @@ nextSlide();
     </div>
 
 </div>
-<button onclick="openCartPopup()"
-        class="cart-btn">
 
-    THÊM VÀO GIỎ
-
-</button>
 
 <!-- POPUP GIỎ HÀNG -->
 
