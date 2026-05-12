@@ -338,7 +338,7 @@ function renderWeightLevels(){
 
 }
 
-renderWeightLevels();
+
 
 </script>
 
@@ -410,5 +410,79 @@ renderWeightLevels();
     </div>
 
 </div>
+<script>
+
+function renderWeightLevels(){
+
+    const orderLevels =
+    document.getElementById("orderLevels");
+
+    const cartLevels =
+    document.getElementById("cartLevels");
+
+    if(!orderLevels || !cartLevels) return;
+
+    orderLevels.innerHTML = "";
+    cartLevels.innerHTML = "";
+
+    let levels = [];
+
+    product.specs.forEach(spec=>{
+
+        if(
+            spec.toLowerCase().includes("mức cân")
+        ){
+
+            const text =
+            spec.split(":")[1];
+
+            if(text){
+
+                levels =
+                text.split("/");
+
+            }
+
+        }
+
+    });
+
+    if(levels.length === 0){
+
+        levels = ["Liên hệ"];
+
+    }
+
+    levels.forEach(level=>{
+
+        const cleanLevel = level.trim();
+
+        orderLevels.innerHTML += `
+        <div class="cart-row">
+            <span>${cleanLevel}</span>
+
+            <input type="number"
+                   min="0"
+                   value="0">
+        </div>
+        `;
+
+        cartLevels.innerHTML += `
+        <div class="cart-row">
+            <span>${cleanLevel}</span>
+
+            <input type="number"
+                   min="0"
+                   value="0">
+        </div>
+        `;
+
+    });
+
+}
+
+renderWeightLevels();
+
+</script>
 </body>
 </html>
