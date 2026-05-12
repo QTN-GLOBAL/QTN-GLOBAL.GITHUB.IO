@@ -1107,3 +1107,16 @@ body{
     cursor:pointer;
 
 }
+.cart-header{
+
+    background:#e60000;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+}

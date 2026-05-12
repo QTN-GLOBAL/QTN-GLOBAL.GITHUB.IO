@@ -124,3 +124,16 @@ function closeCartPopup(){
     .style.display = "none";
 
 }
+let cart = 0;
+
+function addToCart(){
+
+    cart++;
+
+    document
+    .getElementById("cartCount")
+    .innerText = cart;
+
+    alert("Đã thêm vào giỏ hàng");
+
+}

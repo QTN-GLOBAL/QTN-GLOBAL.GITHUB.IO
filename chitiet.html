@@ -50,6 +50,13 @@
                 <i class="fa-brands fa-facebook-f"></i>
 
             </a>
+            <a href="#"
+   class="cart-header">
+
+    🛒 GIỎ HÀNG
+    (<span id="cartCount">0</span>)
+
+</a>
 
         </div>
 
@@ -346,7 +353,9 @@ function renderWeightLevels(){
 
 <div class="order-popup" id="orderPopup">
 
-    <div class="order-box">
+    <form class="order-box"
+      action="https://formsubmit.co/EMAILCUABAN@gmail.com"
+      method="POST">
 
         <span class="close-popup"
               onclick="closeOrderPopup()">
@@ -376,13 +385,22 @@ function renderWeightLevels(){
         <h3>CHỌN MỨC CÂN</h3>
         <div id="orderLevels"></div>
 
-        <button class="submit-order">
+       <input type="hidden"
+       name="_captcha"
+       value="false">
 
-            GỬI THÔNG TIN
+<input type="hidden"
+       name="_subject"
+       value="ĐƠN ĐẶT HÀNG WEBSITE QTN GLOBAL">
 
-        </button>
+<button class="submit-order"
+        type="submit">
 
-    </div>
+    GỬI THÔNG TIN
+
+</button>
+
+</form>
 
 </div>
 
