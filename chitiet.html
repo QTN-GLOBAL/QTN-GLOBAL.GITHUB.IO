@@ -411,7 +411,6 @@ function renderWeightLevels(){
 
 </div>
 <script>
-
 function renderWeightLevels(){
 
     const orderLevels =
@@ -429,24 +428,43 @@ function renderWeightLevels(){
 
     product.specs.forEach(spec=>{
 
-        if(
-            spec.toLowerCase().includes("mức cân")
-        ){
+        // tìm table mức cân
+        if(spec.includes("<table")){
 
-            const text =
-            spec.split(":")[1];
+            // tạo html tạm
+            const tempDiv =
+            document.createElement("div");
 
-            if(text){
+            tempDiv.innerHTML = spec;
 
-                levels =
-                text.split("/");
+            // lấy tất cả dòng table
+            const rows =
+            tempDiv.querySelectorAll("tr");
 
-            }
+            rows.forEach((row,index)=>{
+
+                // bỏ dòng tiêu đề
+                if(index === 0) return;
+
+                const cols =
+                row.querySelectorAll("td");
+
+                if(cols.length > 0){
+
+                    const level =
+                    cols[0].innerText.trim();
+
+                    levels.push(level);
+
+                }
+
+            });
 
         }
 
     });
 
+    // nếu không có
     if(levels.length === 0){
 
         levels = ["Liên hệ"];
@@ -455,26 +473,32 @@ function renderWeightLevels(){
 
     levels.forEach(level=>{
 
-        const cleanLevel = level.trim();
-
         orderLevels.innerHTML += `
+
         <div class="cart-row">
-            <span>${cleanLevel}</span>
+
+            <span>${level}</span>
 
             <input type="number"
                    min="0"
                    value="0">
+
         </div>
+
         `;
 
         cartLevels.innerHTML += `
+
         <div class="cart-row">
-            <span>${cleanLevel}</span>
+
+            <span>${level}</span>
 
             <input type="number"
                    min="0"
                    value="0">
+
         </div>
+
         `;
 
     });
@@ -482,7 +506,7 @@ function renderWeightLevels(){
 }
 
 renderWeightLevels();
-
+    
 </script>
 </body>
 </html>
