@@ -128,9 +128,14 @@ function closeCartPopup(){
 let cart =
 Number(localStorage.getItem("cart")) || 0;
 
-document
-.getElementById("cartCount")
-.innerText = cart;
+const cartCount =
+document.getElementById("cartCount");
+
+if(cartCount){
+
+    cartCount.innerText = cart;
+
+}
 
 function addToCart(){
 
@@ -138,9 +143,11 @@ function addToCart(){
 
     localStorage.setItem("cart", cart);
 
-    document
-    .getElementById("cartCount")
-    .innerText = cart;
+    if(cartCount){
+
+    cartCount.innerText = cart;
+
+}
 
     alert("Đã thêm vào giỏ hàng");
 
@@ -172,9 +179,11 @@ function confirmAddCart(){
     cart += total;
     localStorage.setItem("cart", cart);
 
-    document
-    .getElementById("cartCount")
-    .innerText = cart;
+    if(cartCount){
+
+    cartCount.innerText = cart;
+
+}
 
     alert("Đã thêm vào giỏ hàng");
 
