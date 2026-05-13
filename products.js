@@ -1792,6 +1792,244 @@ specs:[
 
 ]
 },
+{
+    id:23,
+
+    name:"Cân điện tử chống nước cân hải sản HZ-8X",
+
+    category:"can-chong-nuoc",
+
+    folder:"hz-8x",
+
+    brand:"HZ",
+
+    origin:"Đài Loan",
+
+    description:"Cân điện tử chống nước HZ-8X là dòng cân chuyên dụng cho ngành hải sản, thực phẩm tươi sống và môi trường ẩm ướt. Thiết kế chắc chắn, khả năng chống nước tốt, màn hình hiển thị rõ nét cùng độ chính xác cao giúp cân hoạt động ổn định trong chợ, kho lạnh, nhà máy chế biến thủy sản và khu vực sản xuất thực phẩm.",
+
+    specs:[
+
+    `
+    <table class="spec-table">
+
+    <tr>
+    <th>Mức cân</th>
+    <th>Độ chia</th>
+    </tr>
+
+    <tr>
+    <td>3kg</td>
+    <td>0.5g</td>
+    </tr>
+
+    <tr>
+    <td>6kg</td>
+    <td>1g</td>
+    </tr>
+
+    <tr>
+    <td>15kg</td>
+    <td>2g</td>
+    </tr>
+
+    <tr>
+    <td>30kg</td>
+    <td>5g</td>
+    </tr>
+
+    </table>
+    `,
+
+    "Thiết kế chống nước chuyên dụng cho môi trường ẩm ướt",
+
+    "Màn hình LED/LCD hiển thị sáng rõ dễ quan sát",
+
+    "Khung cân chắc chắn, đĩa inox chống gỉ",
+
+    "Chức năng cân trọng lượng và trừ bì",
+
+    "Hoạt động ổn định trong môi trường hải sản, thực phẩm",
+
+    "Nguồn điện: AC 220V hoặc pin sạc",
+
+    "Thời gian sử dụng pin dài",
+
+    "Độ chính xác cao, phản hồi nhanh",
+
+    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML"
+
+    ]
+},
+{
+    id:24,
+
+    name:"Cân điện tử chống nước mặn SUPER SS",
+
+    category:"can-chong-nuoc",
+
+    folder:"super-ss",
+
+    brand:"Jadever",
+
+    origin:"Đài Loan",
+
+    description:"Cân điện tử chống nước mặn SUPER SS là dòng cân thủy sản chuyên dụng được thiết kế với khả năng chống nước IP68, chống ăn mòn muối biển và hoạt động ổn định trong môi trường ẩm ướt. Cân sử dụng chất liệu inox 304 bền chắc, màn hình LED đỏ dễ quan sát và độ chính xác cao, phù hợp cho chợ hải sản, kho lạnh, nhà máy chế biến thực phẩm và thủy sản.",
+
+    specs:[
+
+    `
+    <table class="spec-table">
+
+    <tr>
+    <th>Mức cân</th>
+    <th>Độ chia</th>
+    </tr>
+
+    <tr>
+    <td>3kg</td>
+    <td>0.5g</td>
+    </tr>
+
+    <tr>
+    <td>6kg</td>
+    <td>1g</td>
+    </tr>
+
+    <tr>
+    <td>15kg</td>
+    <td>2g</td>
+    </tr>
+
+    <tr>
+    <td>30kg</td>
+    <td>5g</td>
+    </tr>
+
+    </table>
+    `,
+
+    "Tiêu chuẩn chống nước IP68 chống nước mặn hiệu quả",
+
+    "Khung và vỏ cân làm bằng inox 304 chống gỉ",
+
+    "02 màn hình LED số đỏ hiển thị rõ nét",
+
+    "Kích thước đĩa cân: 230 × 190 mm",
+
+    "Kích thước cân: 235 × 220 × 65 mm",
+
+    "Đơn vị cân: kg / g / lb / oz",
+
+    "Chức năng: cân trọng lượng, trừ bì, về zero",
+
+    "Thời gian ổn định nhanh khoảng 3 giây",
+
+    "Nguồn điện: AC 220V và pin sạc 6V/4Ah",
+
+    "Thời gian sử dụng pin lên đến 80 giờ",
+
+    "Hoạt động tốt trong môi trường ẩm ướt, kho lạnh",
+
+    "Nhiệt độ hoạt động: 10°C ~ 60°C",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML"
+
+    ]
+},
+{
+    id:25,
+
+    name:"Cân điện tử in tem IND – PP",
+
+    category:"can-in-tem",
+
+    folder:"ind-pp",
+
+    brand:"FUJI",
+
+    origin:"Đài Loan",
+
+    description:"Cân điện tử in tem IND – PP  là dòng cân bàn tính tiền tích hợp máy in tem chuyên dụng cho kho hàng, nông sản, thực phẩm và hệ thống bán lẻ. Cân hỗ trợ lưu trữ thông tin hàng hóa, in tem mã sản phẩm nhanh chóng và hoạt động ổn định với độ chính xác cao. Thiết kế chắc chắn, thao tác đơn giản phù hợp cho môi trường công nghiệp và thương mại.",
+
+    specs:[
+
+    `
+    <table class="spec-table">
+
+    <tr>
+    <th>Mức cân</th>
+    <th>Độ chia</th>
+    </tr>
+
+    <tr>
+    <td>50kg</td>
+    <td>10g</td>
+    </tr>
+
+    <tr>
+    <td>60kg</td>
+    <td>10g</td>
+    </tr>
+
+    <tr>
+    <td>100kg</td>
+    <td>20g</td>
+    </tr>
+
+    <tr>
+    <td>150kg</td>
+    <td>20g</td>
+    </tr>
+
+    <tr>
+    <td>200kg</td>
+    <td>20g / 50g</td>
+    </tr>
+
+    <tr>
+    <td>300kg</td>
+    <td>50g</td>
+    </tr>
+
+    <tr>
+    <td>500kg</td>
+    <td>100g</td>
+    </tr>
+
+    </table>
+    `,
+
+    "Model: IND PP",
+
+    "Tích hợp máy in tem mini trực tiếp trên đầu cân",
+
+    "Lưu trữ lên đến 2000 PLU hàng hóa",
+
+    "In thông tin sản phẩm, ngày giờ, khối lượng, đơn giá, thành tiền",
+
+    "Thiết kế 3 màn hình hiển thị tiện dụng",
+
+    "Cổng giao tiếp RS232 hỗ trợ truyền dữ liệu",
+
+    "Tùy chọn cổng USB xuất dữ liệu Excel",
+
+    "Kích thước bàn cân: 30x40cm, 40x50cm, 50x60cm, 60x80cm",
+
+    "Thời gian ổn định nhanh dưới 2 giây",
+
+    "Nguồn điện: Adapter 12V/3A và pin sạc 6V/4.5Ah",
+
+    "Chức năng: cân trọng lượng, tính tiền, in tem, lưu dữ liệu",
+
+    "Thao tác đơn giản dễ sử dụng",
+
+    "Tiêu chuẩn chính xác cấp III theo OIML"
+
+    ]
+}
+
         
 
 ];
