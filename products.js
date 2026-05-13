@@ -1943,7 +1943,7 @@ specs:[
 
     name:"Cân điện tử in tem IND – PP",
 
-    category:"can-in-tem",
+    category:"can-in-tem-ma-vach",
 
     folder:"ind-pp",
 
