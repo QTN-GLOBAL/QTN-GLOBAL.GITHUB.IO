@@ -268,3 +268,18 @@ function renderCart(){
 
 }
 renderCart();
+function openViewCartPopup(){
+
+    document
+    .getElementById("viewCartPopup")
+    .style.display = "flex";
+
+}
+
+function closeViewCartPopup(){
+
+    document
+    .getElementById("viewCartPopup")
+    .style.display = "none";
+
+}
