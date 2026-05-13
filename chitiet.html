@@ -29,11 +29,11 @@
         <div class="top-contact">
 
             <a href="tel:0905913636" class="top-btn">
-                <i class="fa-solid fa-phone"></i>
-                0905 913 636
+            <i class="fa-solid fa-phone"></i>
+            0905 913 636
+            </a>
+
             <a href="tel:0383598603" class="top-btn">
-                <i class="fa-solid fa-phone"></i>
-                0383 598 603
             </a>
 
             <a href="https://zalo.me/0383598603"
@@ -349,14 +349,16 @@ function renderWeightLevels(){
 
 </script>
 
+
+
 <!-- POPUP MUA NGAY -->
 
 <div class="order-popup" id="orderPopup">
 
-    
-     <form class="order-box"
-      action="https://formsubmit.co/EMAILCUABAN@gmail.com"
-      method="POST">
+<form class="order-box"
+      action="https://formsubmit.co/quannguyensky3105@gmail.com"
+      method="POST"
+      target="hidden_iframe">
 
     <span class="close-popup"
           onclick="closeOrderPopup()">
@@ -399,20 +401,24 @@ function renderWeightLevels(){
            name="_captcha"
            value="false">
 
-    <input type="hidden"
-           name="_next"
-           value="https://candientuthongminh.github.io/web-qtn-global/">
-<h3>CHỌN MỨC CÂN</h3>
+    <h3>CHỌN MỨC CÂN</h3>
 
-<div id="orderLevels"></div>
+    <div id="orderLevels"></div>
+
     <button type="submit"
-            class="submit-order">
+            class="submit-order"
+            onclick="submitSuccess()">
 
         GỬI THÔNG TIN
 
     </button>
 
 </form>
+
+</div>
+
+<iframe name="hidden_iframe"
+        style="display:none;"></iframe>
 
 
 <!-- POPUP GIỎ HÀNG -->
@@ -429,7 +435,8 @@ function renderWeightLevels(){
         <h2>THÊM VÀO GIỎ HÀNG</h2>
 
         <div id="cartLevels"></div>
-        <button class="submit-cart"
+        <button type="button"
+        class="submit-cart"
         onclick="confirmAddCart()">
             XÁC NHẬN THÊM GIỎ
 
@@ -535,6 +542,46 @@ function renderWeightLevels(){
 
 renderWeightLevels();
     
+<script>
+
+function submitSuccess(){
+
+    setTimeout(()=>{
+
+        alert("Đã gửi thông tin thành công");
+
+        closeOrderPopup();
+
+    },1000);
+
+}
+
 </script>
+<script>
+
+window.onclick = function(event){
+
+    const orderPopup =
+    document.getElementById("orderPopup");
+
+    const cartPopup =
+    document.getElementById("cartPopup");
+
+    if(event.target === orderPopup){
+
+        closeOrderPopup();
+
+    }
+
+    if(event.target === cartPopup){
+
+        closeCartPopup();
+
+    }
+
+}
+
+</script>
+
 </body>
 </html>

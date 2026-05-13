@@ -173,3 +173,24 @@ function confirmAddCart(){
     closeCartPopup();
 
 }
+window.onclick = function(event){
+
+    const orderPopup =
+    document.getElementById("orderPopup");
+
+    const cartPopup =
+    document.getElementById("cartPopup");
+
+    if(event.target === orderPopup){
+
+        closeOrderPopup();
+
+    }
+
+    if(event.target === cartPopup){
+
+        closeCartPopup();
+
+    }
+
+}
