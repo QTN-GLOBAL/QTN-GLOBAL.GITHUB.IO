@@ -52,7 +52,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             </a>
             <a href="#"
-   class="cart-header">
+   class="cart-header"
+   onclick="openViewCartPopup()"
 
     🛒 GIỎ HÀNG
     (<span id="cartCount">0</span>)
@@ -228,6 +229,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <script src="products.js"></script>
 <script src="script.js"></script>
+<div class="cart-popup" id="viewCartPopup">
+
+    <div class="cart-box">
+
+        <span class="close-popup"
+              onclick="closeViewCartPopup()">
+              &times;
+        </span>
+
+        <h2>GIỎ HÀNG</h2>
+
+        <div id="cartItems"></div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
