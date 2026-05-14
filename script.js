@@ -313,28 +313,39 @@ function renderCart(){
 
 function removeCartItem(index){
 
-    cart -= cartItems[index].quantity;
+    // trừ số lượng
+    cart -= Number(cartItems[index].quantity);
 
+    // nếu âm thì về 0
     if(cart < 0){
+
         cart = 0;
+
     }
 
+    // cập nhật localStorage
     localStorage.setItem("cart", cart);
 
+    // cập nhật số trên icon giỏ
     if(cartCount){
 
         cartCount.innerText = cart;
 
     }
 
+    // xóa sản phẩm
     cartItems.splice(index, 1);
 
+    // lưu lại giỏ hàng
     localStorage.setItem(
         "cartItems",
         JSON.stringify(cartItems)
     );
 
+    // render lại
     renderCart();
+
+}
 
 }
 
