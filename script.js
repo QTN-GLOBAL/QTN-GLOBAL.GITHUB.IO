@@ -347,7 +347,6 @@ function removeCartItem(index){
 
 }
 
-}
 
 function openViewCartPopup(){
 
