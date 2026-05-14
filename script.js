@@ -186,13 +186,32 @@ function confirmAddCart(){
 }
 
 
-cartItems.push({
+inputs.forEach(input=>{
+
+    const qty = Number(input.value);
+
+    if(qty > 0){
+
+        const level =
+        input.parentElement
+        .querySelector("span")
+        .innerText;
+
+        cartItems.push({
 
     name: document
     .getElementById("productName")
     ?.innerText || "Sản phẩm",
 
+    level: document.querySelector(
+        "#cartLevels .cart-row span"
+    )?.innerText || "",
+
     quantity: total
+
+});
+
+    }
 
 });
 
@@ -258,19 +277,50 @@ function renderCart(){
 
     }
 
-    cartItems.forEach(item=>{
+    cartItems.forEach((item,index)=>{
 
-        cartBox.innerHTML += `
-        <div class="cart-row">
+    cartBox.innerHTML += `
 
-            <span>${item.name}</span>
+    <div class="cart-row">
+
+        <div class="cart-left">
+
+            <span>${item.name}</span><br>
+
+            <small>${item.level}</small>
+
+        </div>
+
+        <div class="cart-right">
 
             <b>${item.quantity}</b>
 
-        </div>
-        `;
+            <button onclick="removeCartItem(${index})"
+                    class="remove-cart">
 
-    });
+                Xóa
+
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+});
+}
+
+function removeCartItem(index){
+
+    cartItems.splice(index, 1);
+
+    localStorage.setItem(
+        "cartItems",
+        JSON.stringify(cartItems)
+    );
+
+    renderCart();
 
 }
 window.onload = function(){
@@ -278,6 +328,7 @@ window.onload = function(){
     renderCart();
 
 }
+
 function openViewCartPopup(){
 
     document
