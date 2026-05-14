@@ -153,6 +153,10 @@ function addToCart(){
 
 }
 
+let cartItems =
+JSON.parse(localStorage.getItem("cartItems")) || [];
+
+
 function confirmAddCart(){
 
     const inputs =
@@ -203,14 +207,11 @@ inputs.forEach(input=>{
     .getElementById("productName")
     ?.innerText || "Sản phẩm",
 
-    level: document.querySelector(
-        "#cartLevels .cart-row span"
-    )?.innerText || "",
+    level: level,
 
-    quantity: total
+    quantity: qty
 
 });
-
     }
 
 });
@@ -220,12 +221,14 @@ localStorage.setItem(
     JSON.stringify(cartItems)
 );
 
+renderCart();
 
-    alert("Đã thêm vào giỏ hàng");
+alert("Đã thêm vào giỏ hàng");
 
-    closeCartPopup();
+closeCartPopup();
 
 }
+
 window.onclick = function(event){
 
     const orderPopup =
@@ -247,8 +250,6 @@ window.onclick = function(event){
     }
 
 }
-let cartItems =
-JSON.parse(localStorage.getItem("cartItems")) || [];
 
 function saveCart(){
 
@@ -346,15 +347,22 @@ function removeCartItem(index){
     renderCart();
 
 }
+window.onload = function(){
 
+    renderCart();
+
+}
 
 function openViewCartPopup(){
+
+    renderCart();
 
     document
     .getElementById("viewCartPopup")
     .style.display = "flex";
 
 }
+
 
 function closeViewCartPopup(){
 
