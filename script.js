@@ -273,7 +273,11 @@ function renderCart(){
     });
 
 }
-renderCart();
+window.onload = function(){
+
+    renderCart();
+
+}
 function openViewCartPopup(){
 
     document
