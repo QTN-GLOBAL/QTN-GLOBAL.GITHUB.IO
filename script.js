@@ -313,17 +313,26 @@ function renderCart(){
 
 function removeCartItem(index){
 
+    cart -= cartItems[index].quantity;
+
+    if(cart < 0){
+        cart = 0;
+    }
+
+    localStorage.setItem("cart", cart);
+
+    if(cartCount){
+
+        cartCount.innerText = cart;
+
+    }
+
     cartItems.splice(index, 1);
 
     localStorage.setItem(
         "cartItems",
         JSON.stringify(cartItems)
     );
-
-    renderCart();
-
-}
-window.onload = function(){
 
     renderCart();
 
