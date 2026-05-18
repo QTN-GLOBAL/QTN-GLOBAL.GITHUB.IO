@@ -345,21 +345,20 @@ nextSlide();
 
     <div id="orderLevels"></div>
 
-    <a href="https://zalo.me/0383598603"
-   target="_blank"
-   class="submit-order zalo-order">
+   <button type="button"
+        class="submit-order zalo-order"
+        onclick="sendToZalo()">
 
     GỬI ĐƠN QUA ZALO
 
-</a>
-<a href="https://m.me/QTNSCALE"
-   target="_blank"
-   class="submit-order messenger-order">
+</button>
+<button type="button"
+        class="submit-order messenger-order"
+        onclick="sendToMessenger()">
 
     GỬI ĐƠN QUA MESSENGER
 
-</a>
-
+</button>
 </form>
 
 </div>
@@ -535,5 +534,96 @@ orderForm.addEventListener("submit", function(){
 });
 
 </script>
+
+
+
+
+<script>
+
+function sendToZalo(){
+
+    const name =
+    document.querySelector('input[name="Tên khách hàng"]').value;
+
+    const phone =
+    document.querySelector('input[name="Số điện thoại"]').value;
+
+    const company =
+    document.querySelector('input[name="Tên công ty"]').value;
+
+    const address =
+    document.querySelector('input[name="Địa chỉ giao hàng"]').value;
+
+    const message =
+`ĐƠN HÀNG QTN GLOBAL
+
+Sản phẩm: ${product.name}
+
+Khách hàng: ${name}
+
+SĐT: ${phone}
+
+Công ty: ${company}
+
+Địa chỉ:
+${address}`;
+
+    navigator.clipboard.writeText(message);
+
+    alert(
+    "Đã copy nội dung đơn hàng. Hãy dán vào Zalo."
+    );
+
+    window.open(
+    "https://zalo.me/0383598603",
+    "_blank"
+    );
+
+}
+
+function sendToMessenger(){
+
+    const name =
+    document.querySelector('input[name="Tên khách hàng"]').value;
+
+    const phone =
+    document.querySelector('input[name="Số điện thoại"]').value;
+
+    const company =
+    document.querySelector('input[name="Tên công ty"]').value;
+
+    const address =
+    document.querySelector('input[name="Địa chỉ giao hàng"]').value;
+
+    const message =
+`ĐƠN HÀNG QTN GLOBAL
+
+Sản phẩm: ${product.name}
+
+Khách hàng: ${name}
+
+SĐT: ${phone}
+
+Công ty: ${company}
+
+Địa chỉ:
+${address}`;
+
+    navigator.clipboard.writeText(message);
+
+    alert(
+    "Đã copy nội dung đơn hàng. Hãy dán vào Messenger."
+    );
+
+    window.open(
+    "https://m.me/QTNSCALE",
+    "_blank"
+    );
+
+}
+
+</script>
+
 </body>
 </html>
+
