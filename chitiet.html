@@ -295,7 +295,7 @@ nextSlide();
 <form class="order-box"
       action="https://formsubmit.co/quannguyensky3105@gmail.com"
       method="POST"
-      target="hidden_iframe">
+     
 
     <span class="close-popup"
           onclick="closeOrderPopup()">
@@ -337,25 +337,24 @@ nextSlide();
     <input type="hidden"
            name="_captcha"
            value="false">
+    <input type="hidden"
+       name="_next"
+       value="https://candientuthongminh.github.io/web-qtn-global/chitiet.html">
 
     <h3>CHỌN MỨC CÂN</h3>
 
     <div id="orderLevels"></div>
 
     <button type="submit"
-            class="submit-order"
-            onclick="submitSuccess()">
+        class="submit-order">
 
-        GỬI THÔNG TIN
+    GỬI THÔNG TIN
 
-    </button>
+</button>
 
 </form>
 
 </div>
-
-<iframe name="hidden_iframe"
-        style="display:none;"></iframe>
 
 
 <!-- POPUP GIỎ HÀNG -->
@@ -481,22 +480,7 @@ renderWeightLevels();
 
 </script> 
 
-<script> 
-   
 
-function submitSuccess(){
-
-    setTimeout(()=>{
-
-        alert("Đã gửi thông tin thành công");
-
-        closeOrderPopup();
-
-    },1000);
-
-}
-
-</script>
 <script>
 
 window.onclick = function(event){
@@ -522,6 +506,25 @@ window.onclick = function(event){
 }
 
 </script>
+<script>
 
+const orderForm =
+document.querySelector(".order-box");
+
+orderForm.addEventListener("submit", function(){
+
+    setTimeout(()=>{
+
+        alert("Đã gửi thông tin thành công");
+
+        closeOrderPopup();
+
+        orderForm.reset();
+
+    },1000);
+
+});
+
+</script>
 </body>
 </html>
