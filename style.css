@@ -1120,3 +1120,26 @@ body{
     gap:6px;
 
 }
+.zalo-order{
+    background:#0A88FF;
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    padding:14px;
+    border-radius:8px;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.messenger-order{
+    background:#1877F2;
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    padding:14px;
+    border-radius:8px;
+    margin-top:10px;
+    font-weight:bold;
+}
