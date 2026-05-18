@@ -54,7 +54,8 @@
 
 </a>
             <a href="#"
-   class="cart-header">
+   class="cart-header"
+   onclick="openMainCart()">
 
     🛒 GIỎ HÀNG
     (<span id="cartCount">0</span>)
@@ -381,10 +382,8 @@ nextSlide();
         <div id="cartLevels"></div>
         <button type="button"
         class="submit-cart"
-        onclick="buyFromCart()">
-
-    MUA NGAY
-
+        onclick="confirmAddCart()">
+    XÁC NHẬN THÊM GIỎ
 </button>
     </div>
 
@@ -727,31 +726,236 @@ ${orderText}`;
 }
 
 </script>
+<div class="main-cart-popup" id="mainCartPopup">
+
+    <div class="main-cart-box">
+
+        <span class="close-popup"
+              onclick="closeMainCart()">
+              &times;
+        </span>
+
+        <h2>GIỎ HÀNG</h2>
+
+        <div id="mainCartItems"></div>
+
+        <button class="buy-btn"
+                onclick="checkoutCart()">
+
+            MUA NGAY
+
+        </button>
+
+    </div>
+
+</div>
 <script>
 
-function buyFromCart(){
+let cart = [];
 
-    // đóng popup giỏ hàng
-    closeCartPopup();
+function confirmAddCart(){
 
-    // mở popup mua ngay
-    openOrderPopup();
-
-    // copy số lượng từ giỏ sang popup mua ngay
-
-    const cartRows =
+    const rows =
     document.querySelectorAll("#cartLevels .cart-row");
 
-    const orderRows =
-    document.querySelectorAll("#orderLevels .cart-row");
+    rows.forEach(row=>{
 
-    cartRows.forEach((cartRow,index)=>{
+        const level =
+        row.querySelector("span").innerText;
 
         const qty =
-        cartRow.querySelector("input").value;
+        Number(row.querySelector("input").value);
 
-        orderRows[index]
-        .querySelector("input").value = qty;
+        if(qty > 0){
+
+            cart.push({
+
+                product: product.name,
+                level: level,
+                qty: qty
+
+            });
+
+        }
+
+    });
+
+    updateCartCount();
+
+    closeCartPopup();
+
+    alert("Đã thêm vào giỏ hàng");
+
+}
+
+function updateCartCount(){
+
+    document.getElementById("cartCount")
+    .innerText = cart.length;
+
+}
+
+function openMainCart(){
+
+    const popup =
+    document.getElementById("mainCartPopup");
+
+    const items =
+    document.getElementById("mainCartItems");
+
+    items.innerHTML = "";
+
+    if(cart.length === 0){
+
+        items.innerHTML =
+        "<p>Giỏ hàng đang trống</p>";
+
+    }else{
+
+        cart.forEach((item,index)=>{
+
+            items.innerHTML += `
+
+            <div class="cart-item">
+
+                <p>
+                <b>${item.product}</b>
+                </p>
+
+                <p>
+                ${item.level}
+                </p>
+
+                <p>
+                SL: ${item.qty}
+                </p>
+
+                <button onclick="removeCart(${index})">
+
+                    Xóa
+
+                </button>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    popup.style.display = "flex";
+
+}
+
+function closeMainCart(){
+
+    document.getElementById("mainCartPopup")
+    .style.display = "none";
+
+}
+
+function removeCart(index){
+
+    cart.splice(index,1);
+
+    updateCartCount();
+
+    openMainCart();
+
+}
+
+function checkoutCart(){
+
+    closeMainCart();
+
+    openOrderPopup();
+
+}
+
+</script>
+<script>
+
+/* =========================
+   POPUP MUA NGAY
+========================= */
+
+function openOrderPopup(){
+
+    document.getElementById("orderPopup")
+    .style.display = "flex";
+
+}
+
+function closeOrderPopup(){
+
+    document.getElementById("orderPopup")
+    .style.display = "none";
+
+}
+
+/* =========================
+   POPUP THÊM GIỎ
+========================= */
+
+function openCartPopup(){
+
+    document.getElementById("cartPopup")
+    .style.display = "flex";
+
+}
+
+function closeCartPopup(){
+
+    document.getElementById("cartPopup")
+    .style.display = "none";
+
+}
+
+/* =========================
+   MUA NGAY TỪ GIỎ HÀNG
+========================= */
+
+function checkoutCart(){
+
+    closeMainCart();
+
+    openOrderPopup();
+
+    // reset số lượng
+    const orderInputs =
+    document.querySelectorAll(
+    "#orderLevels input"
+    );
+
+    orderInputs.forEach(input=>{
+
+        input.value = 0;
+
+    });
+
+    // đổ dữ liệu giỏ hàng
+    cart.forEach(item=>{
+
+        const rows =
+        document.querySelectorAll(
+        "#orderLevels .cart-row"
+        );
+
+        rows.forEach(row=>{
+
+            const level =
+            row.querySelector("span")
+            .innerText;
+
+            if(level === item.level){
+
+                row.querySelector("input")
+                .value = item.qty;
+
+            }
+
+        });
 
     });
 
