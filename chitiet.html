@@ -537,8 +537,6 @@ orderForm.addEventListener("submit", function(){
 </script>
 
 
-
-
 <script>
 
 function sendToZalo(){
@@ -549,30 +547,79 @@ function sendToZalo(){
     const phone =
     document.querySelector('input[name="Số điện thoại"]').value;
 
+    if(name === "" || phone === ""){
+
+        alert("Vui lòng nhập tên và số điện thoại");
+
+        return;
+
+    }
+
     const company =
     document.querySelector('input[name="Tên công ty"]').value;
+
+    const tax =
+    document.querySelector('input[name="Mã số thuế"]').value;
+
+    const invoice =
+    document.querySelector('input[name="Địa chỉ xuất hóa đơn"]').value;
 
     const address =
     document.querySelector('input[name="Địa chỉ giao hàng"]').value;
 
+    let orderText = "";
+
+    const rows =
+    document.querySelectorAll("#orderLevels .cart-row");
+
+    rows.forEach(row=>{
+
+        const level =
+        row.querySelector("span").innerText;
+
+        const qty =
+        row.querySelector("input").value;
+
+        if(qty > 0){
+
+            orderText +=
+            `- ${level} : ${qty} cái\n`;
+
+        }
+
+    });
+
     const message =
 `ĐƠN HÀNG QTN GLOBAL
 
-Sản phẩm: ${product.name}
+Sản phẩm:
+${product.name}
 
-Khách hàng: ${name}
+Khách hàng:
+${name}
 
-SĐT: ${phone}
+SĐT:
+${phone}
 
-Công ty: ${company}
+Công ty:
+${company}
 
-Địa chỉ:
-${address}`;
+Mã số thuế:
+${tax}
+
+Địa chỉ xuất hóa đơn:
+${invoice}
+
+Địa chỉ giao hàng:
+${address}
+
+CHI TIẾT ĐẶT HÀNG:
+${orderText}`;
 
     navigator.clipboard.writeText(message);
 
     alert(
-    "Đã copy nội dung đơn hàng. Hãy dán vào Zalo."
+    "Đã copy đơn hàng.\nHãy CTRL + V vào Zalo để gửi."
     );
 
     window.open(
@@ -581,6 +628,9 @@ ${address}`;
     );
 
 }
+</script>
+
+<script>
 
 function sendToMessenger(){
 
@@ -590,30 +640,79 @@ function sendToMessenger(){
     const phone =
     document.querySelector('input[name="Số điện thoại"]').value;
 
+    if(name === "" || phone === ""){
+
+        alert("Vui lòng nhập tên và số điện thoại");
+
+        return;
+
+    }
+
     const company =
     document.querySelector('input[name="Tên công ty"]').value;
+
+    const tax =
+    document.querySelector('input[name="Mã số thuế"]').value;
+
+    const invoice =
+    document.querySelector('input[name="Địa chỉ xuất hóa đơn"]').value;
 
     const address =
     document.querySelector('input[name="Địa chỉ giao hàng"]').value;
 
+    let orderText = "";
+
+    const rows =
+    document.querySelectorAll("#orderLevels .cart-row");
+
+    rows.forEach(row=>{
+
+        const level =
+        row.querySelector("span").innerText;
+
+        const qty =
+        row.querySelector("input").value;
+
+        if(qty > 0){
+
+            orderText +=
+            `- ${level} : ${qty} cái\n`;
+
+        }
+
+    });
+
     const message =
 `ĐƠN HÀNG QTN GLOBAL
 
-Sản phẩm: ${product.name}
+Sản phẩm:
+${product.name}
 
-Khách hàng: ${name}
+Khách hàng:
+${name}
 
-SĐT: ${phone}
+SĐT:
+${phone}
 
-Công ty: ${company}
+Công ty:
+${company}
 
-Địa chỉ:
-${address}`;
+Mã số thuế:
+${tax}
+
+Địa chỉ xuất hóa đơn:
+${invoice}
+
+Địa chỉ giao hàng:
+${address}
+
+CHI TIẾT ĐẶT HÀNG:
+${orderText}`;
 
     navigator.clipboard.writeText(message);
 
     alert(
-    "Đã copy nội dung đơn hàng. Hãy dán vào Messenger."
+    "Đã copy đơn hàng.\nHãy CTRL + V vào Messenger để gửi."
     );
 
     window.open(
