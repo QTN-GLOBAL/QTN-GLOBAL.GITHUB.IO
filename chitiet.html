@@ -381,11 +381,11 @@ nextSlide();
         <div id="cartLevels"></div>
         <button type="button"
         class="submit-cart"
-        onclick="confirmAddCart()">
-            XÁC NHẬN THÊM GIỎ
+        onclick="buyFromCart()">
 
-        </button>
+    MUA NGAY
 
+</button>
     </div>
 
 </div>
@@ -727,7 +727,37 @@ ${orderText}`;
 }
 
 </script>
+<script>
 
+function buyFromCart(){
+
+    // đóng popup giỏ hàng
+    closeCartPopup();
+
+    // mở popup mua ngay
+    openOrderPopup();
+
+    // copy số lượng từ giỏ sang popup mua ngay
+
+    const cartRows =
+    document.querySelectorAll("#cartLevels .cart-row");
+
+    const orderRows =
+    document.querySelectorAll("#orderLevels .cart-row");
+
+    cartRows.forEach((cartRow,index)=>{
+
+        const qty =
+        cartRow.querySelector("input").value;
+
+        orderRows[index]
+        .querySelector("input").value = qty;
+
+    });
+
+}
+
+</script>
 </body>
 </html>
 
