@@ -491,13 +491,14 @@ window.onclick = function(event){
     const cartPopup =
     document.getElementById("cartPopup");
 
-    if(event.target === orderPopup){
+    // chỉ đóng khi bấm vùng nền tối
+    if(event.target.classList.contains("order-popup")){
 
         closeOrderPopup();
 
     }
 
-    if(event.target === cartPopup){
+    if(event.target.classList.contains("cart-popup")){
 
         closeCartPopup();
 
