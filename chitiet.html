@@ -275,12 +275,15 @@ mainImage.src = images[currentSlide];
 
 }
 
-setInterval(()=>{
+if(images.length > 1){
 
-nextSlide();
+    setInterval(()=>{
 
-},3000);
+        nextSlide();
 
+    },3000);
+
+}
            
 
       
@@ -749,9 +752,15 @@ ${orderText}`;
     </div>
 
 </div>
+
+
+
+
 <script>
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+updateCartCount();
 
 function confirmAddCart(){
 
@@ -768,13 +777,26 @@ function confirmAddCart(){
 
         if(qty > 0){
 
-            cart.push({
+            const existed = cart.find(item =>
+                item.product === product.name &&
+                item.level === level
+            );
 
-                product: product.name,
-                level: level,
-                qty: qty
+            if(existed){
 
-            });
+                existed.qty += qty;
+
+            }else{
+
+                cart.push({
+
+                    product: product.name,
+                    level: level,
+                    qty: qty
+
+                });
+
+            }
 
         }
 
@@ -790,10 +812,23 @@ function confirmAddCart(){
 
 function updateCartCount(){
 
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
     document.getElementById("cartCount")
     .innerText = cart.length;
 
 }
+
+</script>
+
+<script>
+
+cart = JSON.parse(
+    localStorage.getItem("cart")
+) || [];
 
 function openMainCart(){
 

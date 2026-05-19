@@ -250,10 +250,15 @@ body{
 }
 
 .main-image{
+
     width:100%;
-    height:500px;
-    object-fit:cover;
-    border-radius:10px;
+
+    max-height:220px;
+
+    object-fit:contain;
+
+    background:#fff;
+
 }
 
 .thumb-list{
@@ -631,17 +636,27 @@ body{
     margin-top:20px;
 }
 
-.buy-btn,
-.contact-btn{
+.detail-buttons .buy-btn,
+.detail-buttons .contact-btn{
+
     flex:1;
+
     text-align:center;
+
     padding:14px;
+
     border-radius:10px;
+
     color:white;
+
     text-decoration:none;
+
     font-weight:700;
+
     transition:0.3s;
+
     font-size:16px;
+
 }
 
 .buy-btn{
@@ -897,13 +912,7 @@ body{
 
 /* ẢNH CHÍNH */
 
-.main-image{
 
-    max-height:220px;
-
-    object-fit:contain;
-
-}
 
 /* THUMB */
 
@@ -1110,14 +1119,32 @@ body{
 .cart-header{
 
     background:#e60000;
+
     color:#fff;
-    padding:10px 16px;
-    border-radius:6px;
+
+    padding:12px 18px;
+
+    border-radius:40px;
+
     text-decoration:none;
-    font-weight:bold;
+
+    font-weight:700;
+
     display:flex;
+
     align-items:center;
-    gap:6px;
+
+    gap:8px;
+
+    transition:0.3s;
+
+}
+
+.cart-header:hover{
+
+    background:#c40000;
+
+    transform:translateY(-2px);
 
 }
 .zalo-order{
@@ -1148,102 +1175,102 @@ body{
 ========================= */
 
 .main-cart-popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
 
-    position: fixed;
+    display:none;
+    justify-content:center;
+    align-items:center;
 
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(0,0,0,0.5);
-
-    display: none;
-
-    justify-content: center;
-    align-items: center;
-
-    z-index: 99999;
-
+    z-index:999999;
 }
 
 .main-cart-box{
-
-    width: 450px;
-
-    max-width: 95%;
-
-    background: #fff;
-
-    border-radius: 12px;
-
-    padding: 25px;
-
-    position: relative;
-
+    width:450px;
+    max-width:95%;
+    background:#fff;
+    border-radius:12px;
+    padding:25px;
+    position:relative;
 }
 
 .main-cart-box h2{
-
-    text-align: center;
-
-    margin-bottom: 20px;
-
+    text-align:center;
+    margin-bottom:20px;
 }
 
 #mainCartItems{
-
-    max-height: 350px;
-
-    overflow-y: auto;
-
+    max-height:350px;
+    overflow-y:auto;
 }
 
 .cart-item{
-
-    border-bottom: 1px solid #ddd;
-
-    padding: 10px 0;
-
+    border-bottom:1px solid #ddd;
+    padding:12px 0;
 }
 
 .cart-item button{
-
-    background: red;
-
-    color: white;
-
-    border: none;
-
-    padding: 6px 12px;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
+    background:red;
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
 }
+
+/* FIX NÚT MUA NGAY */
 
 .main-cart-box .buy-btn{
 
-    width: 100%;
+    width:100%;
 
-    margin-top: 20px;
+    display:block;
 
-    background: #e60000;
+    margin-top:20px;
 
-    color: #fff;
+    background:#e60000;
 
-    border: none;
+    color:#fff;
 
-    padding: 14px;
+    border:none;
 
-    border-radius: 8px;
+    padding:16px;
 
-    font-size: 18px;
+    border-radius:10px;
 
-    font-weight: bold;
+    font-size:18px;
 
-    cursor: pointer;
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+.order-box,
+.cart-box,
+.main-cart-box{
+
+    scrollbar-width:thin;
+
+}
+
+.order-box::-webkit-scrollbar,
+.cart-box::-webkit-scrollbar,
+.main-cart-box::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.order-box::-webkit-scrollbar-thumb,
+.cart-box::-webkit-scrollbar-thumb,
+.main-cart-box::-webkit-scrollbar-thumb{
+
+    background:#ccc;
+
+    border-radius:10px;
 
 }
