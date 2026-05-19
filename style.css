@@ -1206,8 +1206,6 @@ body{
 #mainCartItems{
     max-height:350px;
     overflow-y:auto;
-
-    padding-bottom:90px;
 }
 
 .cart-item{
@@ -1226,17 +1224,13 @@ body{
 
 /* FIX NÚT MUA NGAY */
 
-.main-cart-box .buy-btn{
+.submit-cart{
 
     width:100%;
 
-    display:block;
-
-    margin-top:20px;
-
     background:#e60000;
 
-    color:#fff;
+    color:white;
 
     border:none;
 
@@ -1246,16 +1240,26 @@ body{
 
     font-size:18px;
 
-    font-weight:700;
+    font-weight:bold;
 
     cursor:pointer;
+
+    margin-top:20px;
+
+    flex-shrink:0;
 
 }
 .order-box,
 .cart-box,
 .main-cart-box{
 
-    scrollbar-width:thin;
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    display:flex;
+
+    flex-direction:column;
 
 }
 
