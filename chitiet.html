@@ -179,6 +179,13 @@ const id = Number(params.get("id"));
 
 const product = products.find(p=>p.id === id);
 
+const product = products.find(p=>p.id === id);
+
+if (!product) {
+    alert("Không tìm thấy sản phẩm!");
+    throw new Error("Product not found");
+}
+
 document.getElementById("productName").innerText = product.name;
   
 document.getElementById("productOrigin").innerText = product.origin;
