@@ -347,11 +347,7 @@ function removeCartItem(index){
     renderCart();
 
 }
-window.onload = function(){
 
-    renderCart();
-
-}
 
 function openViewCartPopup(){
 
@@ -371,3 +367,4 @@ function closeViewCartPopup(){
     .style.display = "none";
 
 }
+
