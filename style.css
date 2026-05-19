@@ -1274,3 +1274,40 @@ body{
     border-radius:10px;
 
 }
+.main-cart-box{
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+}
+
+.main-cart-box .buy-btn{
+
+    width:100%;
+
+    display:block;
+
+    margin-top:20px;
+
+    background:#e60000;
+
+    color:#fff;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    position:sticky;
+
+    bottom:0;
+
+}
