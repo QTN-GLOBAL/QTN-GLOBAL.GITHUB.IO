@@ -1206,6 +1206,8 @@ body{
 #mainCartItems{
     max-height:350px;
     overflow-y:auto;
+
+    padding-bottom:90px;
 }
 
 .cart-item{
