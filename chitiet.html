@@ -1,65 +1,107 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Chi tiết sản phẩm</title>
+<meta charset="UTF-8">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+Chi tiết sản phẩm | QTN GLOBAL
+</title>
+
+<link rel="stylesheet"
+      href="style.css">
+
+<link rel="stylesheet"
+href="
+https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css
+">
+
 </head>
+
 <body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
 
-    <!-- TOP HEADER -->
-
-            <div class="top-header">
+    <div class="top-header">
 
         <div class="logo-area">
 
-            <img src="images/logo.png" alt="QTN GLOBAL">
+            <img src="images/logo.png"
+                 alt="QTN GLOBAL">
 
             <div class="company-info">
+
                 <h2>QTN GLOBAL</h2>
-                <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+
+                <p>
+                    CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
+                </p>
+
             </div>
 
         </div>
 
         <div class="top-contact">
 
-            <a href="tel:0905913636" class="top-btn">
+            <a href="tel:0905913636"
+               class="top-btn">
+
                 <i class="fa-solid fa-phone"></i>
+
                 0905 913 636
-            </a>
-            <a href="tel:0383598603" class="top-btn">
-                <i class="fa-solid fa-phone"></i>
-                0383 598 603
+
             </a>
 
-            <a href="https://zalo.me/0383598603"
+            <a href="tel:0383598603"
+               class="top-btn">
+
+                <i class="fa-solid fa-phone"></i>
+
+                0383 598 603
+
+            </a>
+
+            <a href="
+            https://zalo.me/0383598603
+            "
                target="_blank"
                class="social-icon zalo">
 
-                <span class="zalo-text">Zalo</span>
+                <span class="zalo-text">
+                    Zalo
+                </span>
+
             </a>
 
-            <a href="https://m.me/QTNSCALE"
-   target="_blank"
-   class="social-icon facebook">
+            <a href="
+            https://m.me/QTNSCALE
+            "
+               target="_blank"
+               class="social-icon facebook">
 
-    <i class="fa-brands fa-facebook-messenger"></i>
+                <i class="
+                fa-brands fa-facebook-messenger
+                "></i>
 
-</a>
-<a class="cart-header"
-   onclick="openViewCartPopup()">
+            </a>
 
-    🛒 GIỎ HÀNG
-    (<span id="cartCount">0</span>)
+            <a class="cart-header"
+               onclick="openViewCartPopup()">
 
-</a>
+                🛒 GIỎ HÀNG
+                (<span id="cartCount">0</span>)
+
+            </a>
+
+        </div>
 
     </div>
 
@@ -67,9 +109,13 @@
 
     <nav class="navbar">
 
-        <a href="index.html">TRANG CHỦ</a>
+        <a href="index.html">
+            TRANG CHỦ
+        </a>
 
-        <a href="#">GIỚI THIỆU</a>
+        <a href="#">
+            GIỚI THIỆU
+        </a>
 
         <div class="dropdown">
 
@@ -79,299 +125,425 @@
 
             <div class="dropdown-content">
 
-                <a href="#">Cân bàn</a>
+                <a href="
+                sanpham.html?category=can-ban
+                ">
+                    Cân bàn
+                </a>
 
-                <a href="#">Cân đếm</a>
+                <a href="
+                sanpham.html?category=can-dem
+                ">
+                    Cân đếm
+                </a>
 
-                <a href="#">Cân kỹ thuật</a>
+                <a href="
+                sanpham.html?category=can-phan-tich
+                ">
+                    Cân kỹ thuật
+                </a>
 
-                <a href="#">Cân treo</a>
+                <a href="
+                sanpham.html?category=can-treo
+                ">
+                    Cân treo
+                </a>
 
-                <a href="#">Cân sàn</a>
+                <a href="
+                sanpham.html?category=can-chong-nuoc
+                ">
+                    Cân chống nước
+                </a>
 
-                <a href="#">Đầu cân điện tử</a>
+                <a href="
+                sanpham.html?category=dau-can-dien-tu
+                ">
+                    Đầu cân điện tử
+                </a>
 
             </div>
 
         </div>
 
-        <a href="#">LIÊN HỆ</a>
+        <a href="#">
+            LIÊN HỆ
+        </a>
 
     </nav>
 
 </header>
 
+<!-- =========================
+     DETAIL PAGE
+========================= -->
 
-<div class="detail-page">
+<section class="detail-page">
 
-<div class="detail-container">
+    <div class="detail-container">
 
-<div class="slider-area">
+        <!-- LEFT -->
 
-<div class="slider-wrapper">
+        <div class="detail-left">
 
-<button class="prev-btn" onclick="prevSlide()">❮</button>
+            <div class="slider-wrapper">
 
-<img id="mainImage" class="main-image">
+                <img id="mainImage"
+                     class="main-image"
+                     src=""
+                     alt="QTN GLOBAL">
 
-<button class="next-btn" onclick="nextSlide()">❯</button>
+                <button class="prev-btn"
+                        onclick="prevSlide()">
+
+                    ❮
+
+                </button>
+
+                <button class="next-btn"
+                        onclick="nextSlide()">
+
+                    ❯
+
+                </button>
+
+            </div>
+
+            <div class="thumb-list"
+                 id="thumbList">
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="detail-info">
+
+            <h1 id="productName">
+
+                ĐANG TẢI...
+
+            </h1>
+
+            <div id="productDescription">
+
+            </div>
+
+            <div id="productSpecs">
+
+            </div>
+
+            <div class="detail-buttons">
+
+                <button class="buy-btn"
+                        onclick="openOrderPopup()">
+
+                    ĐẶT HÀNG
+
+                </button>
+
+                <button class="contact-btn"
+                        onclick="
+                        window.open(
+                        'https://zalo.me/0383598603'
+                        )
+                        ">
+
+                    TƯ VẤN ZALO
+
+                </button>
+
+            </div>
+
+            <button class="add-cart-btn"
+                    onclick="openCartPopup()">
+
+                THÊM VÀO GIỎ HÀNG
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     ORDER POPUP
+========================= -->
+
+<div class="popup-overlay"
+     id="orderPopup">
+
+    <div class="popup-box">
+
+        <span class="close-popup"
+              onclick="closeOrderPopup()">
+
+            &times;
+
+        </span>
+
+        <h2>ĐẶT HÀNG</h2>
+
+        <input type="text"
+               id="orderProductName"
+               readonly>
+
+        <select id="orderLevel">
+
+        </select>
+
+        <input type="number"
+               id="orderQty"
+               min="1"
+               value="1">
+
+        <div class="popup-buttons">
+
+            <button class="zalo-btn"
+                    onclick="
+                    window.open(
+                    'https://zalo.me/0383598603'
+                    )
+                    ">
+
+                GỬI ZALO
+
+            </button>
+
+            <button class="messenger-btn"
+                    onclick="
+                    window.open(
+                    'https://m.me/QTNSCALE'
+                    )
+                    ">
+
+                MESSENGER
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-<div class="thumb-list" id="thumbList"></div>
+<!-- =========================
+     CART POPUP
+========================= -->
 
-<div class="detail-buttons">
+<div class="popup-overlay"
+     id="cartPopup">
 
-    <button onclick="openOrderPopup()"
-            class="buy-btn">
+    <div class="popup-box">
 
-        MUA NGAY
+        <span class="close-popup"
+              onclick="closeCartPopup()">
 
-    </button>
+            &times;
 
-    <button onclick="openCartPopup()"
-            class="contact-btn">
+        </span>
 
-        THÊM VÀO GIỎ HÀNG
+        <h2>THÊM VÀO GIỎ</h2>
 
-    </button>
+        <input type="text"
+               id="cartProductName"
+               readonly>
 
-</div>
+        <select id="cartLevel">
 
-</div>
+        </select>
 
-<div class="detail-info">
+        <input type="number"
+               id="cartQty"
+               min="1"
+               value="1">
 
-<h1 id="productName"></h1>
+        <button class="add-cart-btn"
+                onclick="addToCart()">
 
-<p>
-<b>Thương hiệu:</b>
-<span id="productBrand"></span>
-</p>
-<p>
-<b>Xuất xứ:</b>
-<span id="productOrigin"></span>
-</p>
+            THÊM VÀO GIỎ
 
-<p id="productDescription"></p>
+        </button>
 
-<h3>Thông số kỹ thuật</h3>
-
-<ul id="productSpecs"></ul>
-
-</div>
+    </div>
 
 </div>
 
+<!-- =========================
+     VIEW CART POPUP
+========================= -->
+
+<div class="popup-overlay"
+     id="viewCartPopup">
+
+    <div class="popup-box view-cart-box">
+
+        <span class="close-popup"
+              onclick="closeViewCartPopup()">
+
+            &times;
+
+        </span>
+
+        <h2>GIỎ HÀNG CỦA BẠN</h2>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-footer">
+
+            <h3>
+
+                Tổng sản phẩm:
+                <span id="cartTotalQty">
+                    0
+                </span>
+
+            </h3>
+
+            <div class="cart-footer-buttons">
+
+                <button class="clear-cart-btn"
+                        onclick="clearCart()">
+
+                    XÓA GIỎ HÀNG
+
+                </button>
+
+                <button class="cart-zalo-btn"
+                        onclick="sendCartToZalo()">
+
+                    GỬI ĐƠN QUA ZALO
+
+                </button>
+
+                <button class="cart-messenger-btn"
+                        onclick="
+                        sendCartToMessenger()
+                        ">
+
+                    GỬI QUA MESSENGER
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 QTN GLOBAL.
+        All rights reserved.
+
+    </p>
+
+</footer>
+
+<!-- =========================
+     JS
+========================= -->
 
 <script src="products.js"></script>
 
+<script src="script.js"></script>
 
 <script>
 
-const params = new URLSearchParams(window.location.search);
+/* =========================
+   GET PRODUCT
+========================= */
 
-const id = Number(params.get("id"));
+const params =
+new URLSearchParams(window.location.search);
 
-const product = products.find(p=>p.id === id);
+const id =
+parseInt(params.get("id"));
 
+const product =
+products.find(p => p.id === id);
 
-if (!product) {
-    alert("Không tìm thấy sản phẩm!");
-    throw new Error("Product not found");
-}
+/* =========================
+   LOAD PRODUCT
+========================= */
 
-document.getElementById("productName").innerText = product.name;
-  
-document.getElementById("productOrigin").innerText = product.origin;
+if(product){
 
-document.getElementById("productBrand").innerText = product.brand;
+    currentProduct = product;
 
-document.getElementById("productDescription").innerText = product.description;
+    document.title =
+    product.name + " | QTN GLOBAL";
 
-const specs = document.getElementById("productSpecs");
+    document.getElementById(
+        "productName"
+    ).innerText = product.name;
 
-product.specs.forEach(spec=>{
+    /* DESCRIPTION */
 
-specs.innerHTML += `<li>${spec}</li>`;
+    let descHtml = "";
 
-});
+    if(product.description){
 
-const basePath = `images/${product.category}/${product.folder}`;
+        product.description.forEach(desc=>{
 
-let images = [];
+            descHtml += `
+            <p>${desc}</p>
+            `;
 
-for(let i = 1; i <= 5; i++){
+        });
 
-    const img = new Image();
+    }
 
-    img.src = `${basePath}/${i}.jpg`;
+    document.getElementById(
+        "productDescription"
+    ).innerHTML = descHtml;
 
-    img.onload = function(){
+    /* SPECS */
 
-        if(!images.includes(img.src)){
+    let specsHtml = "";
 
-            images.push(img.src);
+    if(product.specs){
 
-            renderThumbs();
+        product.specs.forEach(spec=>{
 
-        }
+            specsHtml += `
+            <div class="spec-box">
+                ${spec}
+            </div>
+            `;
 
-    };
+        });
 
-}
+    }
 
-function renderThumbs(){
+    document.getElementById(
+        "productSpecs"
+    ).innerHTML = specsHtml;
 
-    if(images.length === 0) return;
+    /* IMAGES */
 
-    mainImage.src = images[currentSlide];
+    loadProductImages(product);
 
-    thumbList.innerHTML = "";
+}else{
 
-    images.forEach((img,index)=>{
-
-        thumbList.innerHTML += `
-        <img src="${img}" onclick="showSlide(${index})">
-        `;
-
-    });
-
-}
-
-let currentSlide = 0;
-
-const mainImage = document.getElementById("mainImage");
-
-const thumbList = document.getElementById("thumbList");
-
-function showSlide(index){
-
-currentSlide = index;
-
-mainImage.src = images[index];
-
-}
-
-function nextSlide(){
-
-currentSlide++;
-
-if(currentSlide >= images.length){
-currentSlide = 0;
-}
-
-mainImage.src = images[currentSlide];
+    document.getElementById(
+        "productName"
+    ).innerText =
+    "Không tìm thấy sản phẩm";
 
 }
-
-function prevSlide(){
-
-currentSlide--;
-
-if(currentSlide < 0){
-currentSlide = images.length - 1;
-}
-
-mainImage.src = images[currentSlide];
-
-}
-
-if(images.length > 1){
-
-    setInterval(()=>{
-
-        nextSlide();
-
-    },3000);
-
-}
-           
-
-      
-
 
 </script>
 
-
-
-<!-- POPUP MUA NGAY -->
-
-<div class="order-popup" id="orderPopup">
-
-<form class="order-box"
-      action="https://formsubmit.co/quannguyensky3105@gmail.com"
-      method="POST">
-     
-
-    <span class="close-popup"
-          onclick="closeOrderPopup()">
-          &times;
-    </span>
-
-    <h2>THÔNG TIN ĐẶT HÀNG</h2>
-
-    <input type="text"
-           name="Tên khách hàng"
-           placeholder="Tên khách hàng"
-           required>
-
-    <input type="text"
-           name="Số điện thoại"
-           placeholder="Số điện thoại"
-           required>
-
-    <input type="text"
-           name="Tên công ty"
-           placeholder="Tên công ty">
-
-    <input type="text"
-           name="Mã số thuế"
-           placeholder="Mã số thuế">
-
-    <input type="text"
-           name="Địa chỉ xuất hóa đơn"
-           placeholder="Địa chỉ xuất hóa đơn">
-
-    <input type="text"
-           name="Địa chỉ giao hàng"
-           placeholder="Địa chỉ giao hàng">
-
-    <input type="hidden"
-           name="_subject"
-           value="ĐƠN ĐẶT HÀNG WEBSITE QTN GLOBAL">
-
-    <input type="hidden"
-           name="_captcha"
-           value="false">
-    <input type="hidden"
-       name="_next"
-       value="https://candientuthongminh.github.io/web-qtn-global/chitiet.html">
-
-    <h3>CHỌN MỨC CÂN</h3>
-
-    <div id="orderLevels"></div>
-
-   <button type="button"
-        class="submit-order zalo-order"
-        onclick="sendToZalo()">
-
-    GỬI ĐƠN QUA ZALO
-
-</button>
-<button type="button"
-        class="submit-order messenger-order"
-        onclick="sendToMessenger()">
-
-    GỬI ĐƠN QUA MESSENGER
-
-</button>
-</form>
-
-</div>
-
-
 </body>
 </html>
-

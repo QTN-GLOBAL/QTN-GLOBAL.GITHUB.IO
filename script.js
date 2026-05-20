@@ -1,54 +1,85 @@
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+let currentSlide = 0;
+
+let images = [];
+
+let currentProduct = null;
+
 /* =========================
-   GIỎ HÀNG
+   SAVE CART
 ========================= */
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function saveCart(){
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+}
 
 /* =========================
-   ĐẾM GIỎ HÀNG
+   UPDATE CART COUNT
 ========================= */
 
 function updateCartCount(){
 
-    const cartCount = document.getElementById("cartCount");
+    const cartCount =
+    document.getElementById("cartCount");
 
-    if(cartCount){
+    if(!cartCount) return;
 
-        cartCount.innerText = cart.length;
+    let total = 0;
 
-    }
+    cart.forEach(item=>{
+
+        total += Number(item.qty);
+
+    });
+
+    cartCount.innerText = total;
 
 }
 
 updateCartCount();
 
 /* =========================
-   LẤY MỨC CÂN TỪ TABLE
+   GET LEVELS
 ========================= */
 
 function getLevelsFromSpecs(product){
 
     let levels = [];
 
+    if(!product || !product.specs)
+        return levels;
+
     product.specs.forEach(spec=>{
 
         if(spec.includes("<table")){
 
-            const temp = document.createElement("div");
+            const temp =
+            document.createElement("div");
 
             temp.innerHTML = spec;
 
-            const rows = temp.querySelectorAll("tr");
+            const rows =
+            temp.querySelectorAll("tr");
 
             rows.forEach((row,index)=>{
 
                 if(index === 0) return;
 
-                const cols = row.querySelectorAll("td");
+                const cols =
+                row.querySelectorAll("td");
 
                 if(cols.length > 0){
 
-                    levels.push(cols[0].innerText);
+                    levels.push(
+                        cols[0].innerText
+                    );
 
                 }
 
@@ -63,22 +94,40 @@ function getLevelsFromSpecs(product){
 }
 
 /* =========================
-   POPUP MUA NGAY
+   ORDER POPUP
 ========================= */
 
 function openOrderPopup(){
 
-    document.getElementById("orderPopup").style.display = "flex";
+    const popup =
+    document.getElementById("orderPopup");
 
-    if(typeof product !== "undefined"){
+    if(!popup || !currentProduct)
+        return;
 
-        document.getElementById("orderProductName").value = product.name;
+    popup.classList.add("active");
 
-        const levels = getLevelsFromSpecs(product);
+    document.getElementById(
+        "orderProductName"
+    ).value = currentProduct.name;
 
-        const select = document.getElementById("orderLevel");
+    const levels =
+    getLevelsFromSpecs(currentProduct);
 
-        select.innerHTML = "";
+    const select =
+    document.getElementById("orderLevel");
+
+    select.innerHTML = "";
+
+    if(levels.length === 0){
+
+        select.innerHTML = `
+        <option value="Liên hệ">
+            Liên hệ
+        </option>
+        `;
+
+    }else{
 
         levels.forEach(level=>{
 
@@ -96,27 +145,52 @@ function openOrderPopup(){
 
 function closeOrderPopup(){
 
-    document.getElementById("orderPopup").style.display = "none";
+    const popup =
+    document.getElementById("orderPopup");
+
+    if(popup){
+
+        popup.classList.remove("active");
+
+    }
 
 }
 
 /* =========================
-   POPUP GIỎ HÀNG
+   CART POPUP
 ========================= */
 
 function openCartPopup(){
 
-    document.getElementById("cartPopup").style.display = "flex";
+    const popup =
+    document.getElementById("cartPopup");
 
-    if(typeof product !== "undefined"){
+    if(!popup || !currentProduct)
+        return;
 
-        document.getElementById("cartProductName").value = product.name;
+    popup.classList.add("active");
 
-        const levels = getLevelsFromSpecs(product);
+    document.getElementById(
+        "cartProductName"
+    ).value = currentProduct.name;
 
-        const select = document.getElementById("cartLevel");
+    const levels =
+    getLevelsFromSpecs(currentProduct);
 
-        select.innerHTML = "";
+    const select =
+    document.getElementById("cartLevel");
+
+    select.innerHTML = "";
+
+    if(levels.length === 0){
+
+        select.innerHTML = `
+        <option value="Liên hệ">
+            Liên hệ
+        </option>
+        `;
+
+    }else{
 
         levels.forEach(level=>{
 
@@ -134,70 +208,95 @@ function openCartPopup(){
 
 function closeCartPopup(){
 
-    document.getElementById("cartPopup").style.display = "none";
+    const popup =
+    document.getElementById("cartPopup");
+
+    if(popup){
+
+        popup.classList.remove("active");
+
+    }
 
 }
 
 /* =========================
-   THÊM GIỎ HÀNG
+   ADD TO CART
 ========================= */
 
 function addToCart(){
 
-    const level = document.getElementById("cartLevel").value;
+    if(!currentProduct) return;
 
-    const qty = document.getElementById("cartQty").value;
+    const level =
+    document.getElementById("cartLevel").value;
 
-    cart.push({
+    const qty = parseInt(
+        document.getElementById("cartQty").value
+    ) || 1;
 
-        id: product.id,
+    const existingItem =
+    cart.find(item=>
 
-        name: product.name,
+        item.id === currentProduct.id
+        &&
+        item.level === level
 
-        level: level,
+    );
 
-        qty: qty,
+    if(existingItem){
 
-        image: `images/${product.category}/${product.folder}/1.jpg`
+        existingItem.qty += qty;
 
-    });
+    }else{
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+        cart.push({
+
+            id: currentProduct.id,
+
+            name: currentProduct.name,
+
+            category: currentProduct.category,
+
+            folder: currentProduct.folder,
+
+            level,
+
+            qty
+
+        });
+
+    }
+
+    saveCart();
 
     updateCartCount();
 
-    alert("Đã thêm vào giỏ hàng!");
+    alert("Đã thêm vào giỏ hàng");
 
     closeCartPopup();
 
 }
 
 /* =========================
-   MỞ TRANG GIỎ HÀNG
+   LOAD PRODUCT IMAGES
 ========================= */
-
-function openViewCartPopup(){
-
-    window.location.href = "giohang.html";
-
-}
-
-/* =========================
-   SLIDER ẢNH
-========================= */
-
-let currentSlide = 0;
-
-let images = [];
 
 function loadProductImages(product){
+
+    if(!product) return;
+
+    currentProduct = product;
+
+    currentSlide = 0;
 
     const basePath =
     `images/${product.category}/${product.folder}`;
 
     images = [];
 
-    for(let i = 1; i <= 5; i++){
+    let loaded = 0;
+
+    for(let i = 1; i <= 10; i++){
 
         const img = new Image();
 
@@ -209,6 +308,8 @@ function loadProductImages(product){
 
                 images.push(img.src);
 
+                loaded++;
+
                 renderThumbs();
 
             }
@@ -219,6 +320,10 @@ function loadProductImages(product){
 
 }
 
+/* =========================
+   RENDER THUMBNAILS
+========================= */
+
 function renderThumbs(){
 
     const mainImage =
@@ -227,35 +332,64 @@ function renderThumbs(){
     const thumbList =
     document.getElementById("thumbList");
 
-    if(!mainImage || !thumbList) return;
+    if(!mainImage || !thumbList)
+        return;
 
-    if(images.length === 0) return;
+    if(images.length === 0){
+
+        mainImage.src =
+        "images/no-image.jpg";
+
+        return;
+
+    }
 
     mainImage.src = images[currentSlide];
 
-    thumbList.innerHTML = "";
+    let html = "";
 
     images.forEach((img,index)=>{
 
-        thumbList.innerHTML += `
+        html += `
+
         <img src="${img}"
-             onclick="showSlide(${index})">
+             loading="lazy"
+             onclick="showSlide(${index})"
+             onerror="
+             this.src='images/no-image.jpg'
+             ">
+
         `;
 
     });
 
+    thumbList.innerHTML = html;
+
 }
+
+/* =========================
+   SLIDER
+========================= */
 
 function showSlide(index){
 
     currentSlide = index;
 
-    document.getElementById("mainImage").src =
-    images[index];
+    const mainImage =
+    document.getElementById("mainImage");
+
+    if(mainImage){
+
+        mainImage.src = images[index];
+
+    }
 
 }
 
 function nextSlide(){
+
+    if(images.length === 0)
+        return;
 
     currentSlide++;
 
@@ -265,23 +399,25 @@ function nextSlide(){
 
     }
 
-    document.getElementById("mainImage").src =
-    images[currentSlide];
+    showSlide(currentSlide);
 
 }
 
 function prevSlide(){
 
+    if(images.length === 0)
+        return;
+
     currentSlide--;
 
     if(currentSlide < 0){
 
-        currentSlide = images.length - 1;
+        currentSlide =
+        images.length - 1;
 
     }
 
-    document.getElementById("mainImage").src =
-    images[currentSlide];
+    showSlide(currentSlide);
 
 }
 
@@ -289,84 +425,253 @@ function prevSlide(){
    AUTO SLIDE
 ========================= */
 
-setInterval(()=>{
+if(document.getElementById("mainImage")){
 
-    if(images.length > 1){
+    setInterval(()=>{
 
-        nextSlide();
+        if(images.length > 1){
 
-    }
+            nextSlide();
 
-},3000);
+        }
 
-/* =========================
-   GỬI ZALO
-========================= */
-
-function sendToZalo(){
-
-    const name =
-    document.getElementById("customerName").value;
-
-    const phone =
-    document.getElementById("customerPhone").value;
-
-    const company =
-    document.getElementById("customerCompany").value;
-
-    const tax =
-    document.getElementById("customerTax").value;
-
-    const bill =
-    document.getElementById("customerBill").value;
-
-    const address =
-    document.getElementById("customerAddress").value;
-
-    const level =
-    document.getElementById("orderLevel").value;
-
-    const qty =
-    document.getElementById("orderQty").value;
-
-    const message =
-`ĐƠN ĐẶT HÀNG QTN GLOBAL
-
-Tên KH: ${name}
-
-SĐT: ${phone}
-
-Công ty: ${company}
-
-MST: ${tax}
-
-Địa chỉ hóa đơn:
-${bill}
-
-Địa chỉ giao hàng:
-${address}
-
-Sản phẩm:
-${product.name}
-
-Mức cân:
-${level}
-
-Số lượng:
-${qty}`;
-
-    const zaloUrl =
-`https://zalo.me/0383598603`;
-
-    window.open(zaloUrl,"_blank");
+    },3000);
 
 }
 
 /* =========================
-   GỬI MESSENGER
+   VIEW CART
 ========================= */
 
-function sendToMessenger(){
+function openViewCartPopup(){
+
+    const popup =
+    document.getElementById("viewCartPopup");
+
+    if(!popup) return;
+
+    popup.classList.add("active");
+
+    renderCart();
+
+}
+
+function closeViewCartPopup(){
+
+    const popup =
+    document.getElementById("viewCartPopup");
+
+    if(popup){
+
+        popup.classList.remove("active");
+
+    }
+
+}
+
+/* =========================
+   RENDER CART
+========================= */
+
+function renderCart(){
+
+    const cartItems =
+    document.getElementById("cartItems");
+
+    if(!cartItems) return;
+
+    let totalQty = 0;
+
+    let html = "";
+
+    if(cart.length === 0){
+
+        html = `
+
+        <p class="empty-cart">
+
+            Chưa có sản phẩm nào
+            trong giỏ hàng
+
+        </p>
+
+        `;
+
+    }else{
+
+        cart.forEach((item,index)=>{
+
+            totalQty += Number(item.qty);
+
+            html += `
+
+            <div class="cart-item">
+
+                <div class="cart-top">
+
+                    <img src="
+                    images/${item.category}/${item.folder}/1.jpg
+                    "
+                    class="cart-image"
+                    loading="lazy"
+                    onerror="
+                    this.src='images/no-image.jpg'
+                    ">
+
+                    <div class="cart-info">
+
+                        <h4>${item.name}</h4>
+
+                        <p>
+
+                            <b>Mức cân:</b>
+
+                            ${item.level}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="cart-actions">
+
+                    <button onclick="
+                    decreaseQty(${index})
+                    ">
+                        -
+                    </button>
+
+                    <span>${item.qty}</span>
+
+                    <button onclick="
+                    increaseQty(${index})
+                    ">
+                        +
+                    </button>
+
+                    <button class="remove-btn"
+                            onclick="
+                            removeCart(${index})
+                            ">
+                        Xóa
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    cartItems.innerHTML = html;
+
+    const totalEl =
+    document.getElementById("cartTotalQty");
+
+    if(totalEl){
+
+        totalEl.innerText = totalQty;
+
+    }
+
+}
+
+/* =========================
+   CART FUNCTIONS
+========================= */
+
+function increaseQty(index){
+
+    cart[index].qty++;
+
+    saveCart();
+
+    renderCart();
+
+    updateCartCount();
+
+}
+
+function decreaseQty(index){
+
+    if(cart[index].qty > 1){
+
+        cart[index].qty--;
+
+    }
+
+    saveCart();
+
+    renderCart();
+
+    updateCartCount();
+
+}
+
+function removeCart(index){
+
+    cart.splice(index,1);
+
+    saveCart();
+
+    renderCart();
+
+    updateCartCount();
+
+}
+
+function clearCart(){
+
+    if(confirm(
+        "Xóa toàn bộ giỏ hàng?"
+    )){
+
+        cart = [];
+
+        localStorage.removeItem("cart");
+
+        renderCart();
+
+        updateCartCount();
+
+    }
+
+}
+
+/* =========================
+   SEND CART
+========================= */
+
+function sendCartToZalo(){
+
+    if(cart.length === 0){
+
+        alert("Giỏ hàng đang trống");
+
+        return;
+
+    }
+
+    window.open(
+        "https://zalo.me/0383598603",
+        "_blank"
+    );
+
+}
+
+function sendCartToMessenger(){
+
+    if(cart.length === 0){
+
+        alert("Giỏ hàng đang trống");
+
+        return;
+
+    }
 
     window.open(
         "https://m.me/QTNSCALE",
@@ -374,3 +679,23 @@ function sendToMessenger(){
     );
 
 }
+
+/* =========================
+   CLOSE POPUP CLICK OUTSIDE
+========================= */
+
+window.onclick = function(event){
+
+    document
+    .querySelectorAll(".popup-overlay")
+    .forEach(popup=>{
+
+        if(event.target === popup){
+
+            popup.classList.remove("active");
+
+        }
+
+    });
+
+};
