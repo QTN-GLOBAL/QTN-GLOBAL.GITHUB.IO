@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Giỏ hàng | QTN GLOBAL</title>
+
+<link rel="stylesheet"
+      href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <!-- TOP HEADER -->
+
+    <div class="top-header">
+
+        <div class="logo-area">
+
+            <img src="images/logo.png"
+                 alt="QTN GLOBAL">
+
+            <div class="company-info">
+
+                <h2>QTN GLOBAL</h2>
+
+                <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+
+            </div>
+
+        </div>
+
+        <div class="top-contact">
+
+            <a href="tel:0905913636"
+               class="top-btn">
+
+                <i class="fa-solid fa-phone"></i>
+                0905 913 636
+
+            </a>
+
+            <a href="tel:0383598603"
+               class="top-btn">
+
+                <i class="fa-solid fa-phone"></i>
+                0383 598 603
+
+            </a>
+
+            <a href="https://zalo.me/0383598603"
+               target="_blank"
+               class="social-icon zalo">
+
+                <span class="zalo-text">
+                    Zalo
+                </span>
+
+            </a>
+
+            <a href="https://m.me/QTNSCALE"
+               target="_blank"
+               class="social-icon facebook">
+
+                <i class="fa-brands fa-facebook-messenger"></i>
+
+            </a>
+
+            <a class="cart-header">
+
+                🛒 GIỎ HÀNG
+                (<span id="cartCount">0</span>)
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MENU -->
+
+    <nav class="navbar">
+
+        <a href="index.html">
+            TRANG CHỦ
+        </a>
+
+        <a href="#">
+            GIỚI THIỆU
+        </a>
+
+        <div class="dropdown">
+
+            <a href="#">
+                SẢN PHẨM ▼
+            </a>
+
+            <div class="dropdown-content">
+
+                <a href="sanpham.html?category=can-ban">
+                    Cân bàn
+                </a>
+
+                <a href="sanpham.html?category=can-dem">
+                    Cân đếm
+                </a>
+
+                <a href="sanpham.html?category=can-phan-tich">
+                    Cân kỹ thuật
+                </a>
+
+                <a href="sanpham.html?category=can-treo">
+                    Cân treo
+                </a>
+
+                <a href="sanpham.html?category=can-chong-nuoc">
+                    Cân chống nước
+                </a>
+
+                <a href="sanpham.html?category=dau-can-dien-tu">
+                    Đầu cân điện tử
+                </a>
+
+                <a href="sanpham.html?category=can-in-tem-ma-vach">
+                    Cân in tem mã vạch
+                </a>
+
+            </div>
+
+        </div>
+
+        <a href="#">
+            LIÊN HỆ
+        </a>
+
+    </nav>
+
+</header>
+
+<!-- PAGE -->
+
+<section class="cart-page">
+
+    <h1>
+        GIỎ HÀNG CỦA BẠN
+    </h1>
+
+    <div id="cartPageItems"
+         class="cart-page-items">
+
+    </div>
+
+</section>
+
+<!-- POPUP MUA NGAY -->
+
+<div class="popup-overlay"
+     id="buyNowPopup">
+
+    <div class="popup-box buy-popup">
+
+        <span class="close-popup"
+              onclick="closeBuyNowPopup()">
+
+              ×
+
+        </span>
+
+        <h2>
+            THÔNG TIN ĐẶT HÀNG
+        </h2>
+
+        <form id="buyNowForm">
+
+            <input type="text"
+                   id="customerName"
+                   placeholder="Tên khách hàng"
+                   required>
+
+            <input type="text"
+                   id="customerPhone"
+                   placeholder="Số điện thoại"
+                   required>
+
+            <input type="text"
+                   id="customerCompany"
+                   placeholder="Công ty">
+
+            <input type="text"
+                   id="customerTax"
+                   placeholder="Mã số thuế">
+
+            <textarea id="customerBillAddress"
+                      placeholder="Địa chỉ viết hóa đơn"></textarea>
+
+            <textarea id="customerShipAddress"
+                      placeholder="Địa chỉ giao hàng"></textarea>
+
+            <input type="text"
+                   id="productOrderName"
+                   readonly>
+
+            <input type="text"
+                   id="productOrderWeight"
+                   placeholder="Mức cân">
+
+            <input type="number"
+                   id="productOrderQty"
+                   value="1"
+                   min="1">
+
+            <div class="buy-buttons">
+
+                <button type="button"
+                        class="zalo-send"
+                        onclick="sendOrderZalo()">
+
+                    Gửi đơn qua Zalo
+
+                </button>
+
+                <button type="button"
+                        class="messenger-send"
+                        onclick="sendOrderMessenger()">
+
+                    Gửi đơn qua Messenger
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+
+<script src="products.js"></script>
+
+<script src="script.js"></script>
+
+<script>
+
+/* =========================
+   LOAD CART
+========================= */
+
+renderCartPage();
+
+updateCartCount();
+
+/* =========================
+   RENDER CART PAGE
+========================= */
+
+function renderCartPage(){
+
+    const cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
+
+    const box =
+    document.getElementById("cartPageItems");
+
+    if(cart.length === 0){
+
+        box.innerHTML = `
+
+        <div class="empty-cart">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <p>
+                Giỏ hàng đang trống
+            </p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    let html = "";
+
+    cart.forEach((item,index)=>{
+
+        html += `
+
+        <div class="cart-item">
+
+            <div class="cart-item-left">
+
+                <img src="
+                images/${item.category}/${item.folder}/1.jpg
+                "
+                alt="${item.name}">
+
+            </div>
+
+            <div class="cart-item-right">
+
+                <h3>
+                    ${item.name}
+                </h3>
+
+                <p>
+                    <strong>Mức cân:</strong>
+                    ${item.weight}
+                </p>
+
+                <div class="qty-box">
+
+                    <button onclick="
+                    decreaseQty(${index})
+                    ">
+
+                        -
+
+                    </button>
+
+                    <span>
+                        ${item.qty}
+                    </span>
+
+                    <button onclick="
+                    increaseQty(${index})
+                    ">
+
+                        +
+
+                    </button>
+
+                </div>
+
+                <button class="buy-cart-btn"
+                        onclick="
+                        buyCartItem(
+                        '${item.name}',
+                        '${item.weight}',
+                        '${item.qty}'
+                        )
+                        ">
+
+                    MUA NGAY
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    box.innerHTML = html;
+
+}
+
+/* =========================
+   INCREASE QTY
+========================= */
+
+function increaseQty(index){
+
+    let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
+
+    cart[index].qty++;
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    renderCartPage();
+
+    updateCartCount();
+
+}
+
+/* =========================
+   DECREASE QTY
+========================= */
+
+function decreaseQty(index){
+
+    let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
+
+    cart[index].qty--;
+
+    if(cart[index].qty <= 0){
+
+        cart.splice(index,1);
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    renderCartPage();
+
+    updateCartCount();
+
+}
+
+/* =========================
+   BUY ITEM
+========================= */
+
+function buyCartItem(
+    name,
+    weight,
+    qty
+){
+
+    document.getElementById(
+        "buyNowPopup"
+    ).classList.add("active");
+
+    document.getElementById(
+        "productOrderName"
+    ).value = name;
+
+    document.getElementById(
+        "productOrderWeight"
+    ).value = weight;
+
+    document.getElementById(
+        "productOrderQty"
+    ).value = qty;
+
+}
+
+</script>
+
+</body>
+</html>

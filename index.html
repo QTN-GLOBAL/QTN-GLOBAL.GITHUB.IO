@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QTN GLOBAL</title>
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet"
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>QTN GLOBAL | Cân Điện Tử Chính Hãng</title>
+
+<link rel="stylesheet"
+      href="style.css">
+
+<link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
+
 <body>
+
+<!-- =========================
+HEADER
+========================= -->
+
 <header class="header">
 
     <!-- TOP HEADER -->
@@ -18,48 +32,64 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
         <div class="logo-area">
 
-            <img src="images/logo.png" alt="QTN GLOBAL">
+            <img src="images/logo.png"
+                 alt="QTN GLOBAL">
 
             <div class="company-info">
+
                 <h2>QTN GLOBAL</h2>
+
                 <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+
             </div>
 
         </div>
 
         <div class="top-contact">
 
-            <a href="tel:0905913636" class="top-btn">
+            <a href="tel:0905913636"
+               class="top-btn">
+
                 <i class="fa-solid fa-phone"></i>
+
                 0905 913 636
+
             </a>
-            <a href="tel:0383598603" class="top-btn">
+
+            <a href="tel:0383598603"
+               class="top-btn">
+
                 <i class="fa-solid fa-phone"></i>
+
                 0383 598 603
+
             </a>
 
             <a href="https://zalo.me/0383598603"
                target="_blank"
                class="social-icon zalo">
 
-                <span class="zalo-text">Zalo</span>
+                <span class="zalo-text">
+                    Zalo
+                </span>
+
             </a>
 
-           <a href="https://m.me/QTNSCALE"
-   target="_blank"
-   class="social-icon facebook">
+            <a href="https://m.me/QTNSCALE"
+               target="_blank"
+               class="social-icon facebook">
 
-    <i class="fa-brands fa-facebook-messenger"></i>
+                <i class="fa-brands fa-facebook-messenger"></i>
 
-</a>
-<a class="cart-header"
-   href="javascript:void(0)"
-   onclick="openCart()">
+            </a>
 
-    🛒 GIỎ HÀNG
-    (<span id="cartCount">0</span>)
+            <a class="cart-header"
+               onclick="openViewCartPopup()">
 
-</a>
+                🛒 GIỎ HÀNG
+                (<span id="cartCount">0</span>)
+
+            </a>
 
         </div>
 
@@ -69,9 +99,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     <nav class="navbar">
 
-        <a href="index.html">TRANG CHỦ</a>
+        <a href="index.html">
+            TRANG CHỦ
+        </a>
 
-        <a href="#">GIỚI THIỆU</a>
+        <a href="#">
+            GIỚI THIỆU
+        </a>
 
         <div class="dropdown">
 
@@ -81,208 +115,336 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             <div class="dropdown-content">
 
-               <a href="#" onclick="filterProducts('can-ban')">
-               Cân bàn
-               </a>
+                <a href="sanpham.html?category=can-ban">
+                    Cân bàn
+                </a>
 
-               <a href="#" onclick="filterProducts('can-dem')">
-               Cân đếm
-               </a>
+                <a href="sanpham.html?category=can-dem">
+                    Cân đếm
+                </a>
 
-               <a href="#" onclick="filterProducts('can-ky-thuat')">  
-               Cân kỹ thuật
-               </a>
+                <a href="sanpham.html?category=can-phan-tich">
+                    Cân kỹ thuật
+                </a>
 
-               <a href="#" onclick="filterProducts('can-treo')">
-               Cân treo
-               </a>
+                <a href="sanpham.html?category=can-treo">
+                    Cân treo
+                </a>
 
-               <a href="#" onclick="filterProducts('can-san')">
-               Cân sàn
-               </a>
+                <a href="sanpham.html?category=can-chong-nuoc">
+                    Cân chống nước
+                </a>
 
-               <a href="#" onclick="filterProducts('dau-can-dien-tu')">
-               Đầu cân điện tử
-               </a>
-               <a href="#" onclick="filterProducts('can-phan-tich')">
-               Cân phân tích 
-               </a>
-               <a href="#" onclick="filterProducts('can-chong-nuoc')">
-               Cân chống nước
-               </a>
-               <a href="#" onclick="filterProducts('can-in-tem-ma-vach')">
-               Cân in tem mã vạch
-               </a>
-               <a href="#" onclick="filterProducts('can-say-am')">
-               Cân sấy ẩm
-               </a>
-
+                <a href="sanpham.html?category=dau-can-dien-tu">
+                    Đầu cân điện tử
+                </a>
 
             </div>
 
         </div>
 
-        <a href="#">LIÊN HỆ</a>
+        <a href="#">
+            LIÊN HỆ
+        </a>
 
     </nav>
 
 </header>
 
-<section class="hero">
+<!-- =========================
+SLIDER
+========================= -->
 
-  <div class="hero-left">
+<section class="banner-slider">
 
-   <h1>
-   GIẢI PHÁP
-   <br>
+    <div class="slides">
 
-   <span class="highlight">
-      CÂN ĐIỆN TỬ
-   </span>
+        <div class="slide active">
 
-   <br>
+            <img src="images/banner/1.jpg"
+                 alt="Banner 1">
 
-   CHÍNH XÁC CHO
-   <br>
+        </div>
 
-   DOANH NGHIỆP
-</h1>
-    <ul class="hero-list">
+        <div class="slide">
 
-        <li>
-            <i class="fa-solid fa-circle-check"></i>
-            SẢN PHẨM CHÍNH HÃNG
-        </li>
+            <img src="images/banner/2.jpg"
+                 alt="Banner 2">
 
-        <li>
-            <i class="fa-solid fa-circle-check"></i>
-            BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC
-        </li>
+        </div>
 
-        <li>
-            <i class="fa-solid fa-circle-check"></i>
-            HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP
-        </li>
+        <div class="slide">
 
-    </ul>
+            <img src="images/banner/3.jpg"
+                 alt="Banner 3">
 
-    
+        </div>
 
-    <div class="hero-contact">
+    </div>
 
-        <a href="tel:0905913636" class="hero-phone green">
-            <i class="fa-solid fa-phone"></i>
-            0905.913.636
+</section>
+
+<!-- =========================
+CATEGORY SECTION
+========================= -->
+
+<section class="category-section">
+
+    <h2 class="section-title">
+        DANH MỤC SẢN PHẨM
+    </h2>
+
+    <div class="category-grid">
+
+        <a href="sanpham.html?category=can-ban"
+           class="category-card">
+
+            <img src="images/categories/can-ban.jpg"
+                 alt="Cân bàn">
+
+            <span>CÂN BÀN</span>
+
         </a>
 
-        <a href="tel:0383598603" class="hero-phone blue">
-            <i class="fa-solid fa-phone"></i>
-            0383.598.603
+        <a href="sanpham.html?category=can-dem"
+           class="category-card">
+
+            <img src="images/categories/can-dem.jpg"
+                 alt="Cân đếm">
+
+            <span>CÂN ĐẾM</span>
+
+        </a>
+
+        <a href="sanpham.html?category=can-phan-tich"
+           class="category-card">
+
+            <img src="images/categories/can-phan-tich.jpg"
+                 alt="Cân kỹ thuật">
+
+            <span>CÂN KỸ THUẬT</span>
+
+        </a>
+
+        <a href="sanpham.html?category=can-treo"
+           class="category-card">
+
+            <img src="images/categories/can-treo.jpg"
+                 alt="Cân treo">
+
+            <span>CÂN TREO</span>
+
+        </a>
+
+        <a href="sanpham.html?category=can-chong-nuoc"
+           class="category-card">
+
+            <img src="images/categories/can-chong-nuoc.jpg"
+                 alt="Cân chống nước">
+
+            <span>CÂN CHỐNG NƯỚC</span>
+
+        </a>
+
+        <a href="sanpham.html?category=dau-can-dien-tu"
+           class="category-card">
+
+            <img src="images/categories/dau-can.jpg"
+                 alt="Đầu cân điện tử">
+
+            <span>ĐẦU CÂN ĐIỆN TỬ</span>
+
         </a>
 
     </div>
 
-</div>
+</section>
 
-  <div class="hero-right">
+<!-- =========================
+FEATURED PRODUCTS
+========================= -->
 
-    <div class="banner-slider">
+<section class="home-products">
 
-      <img id="bannerImage" src="images/can-ban/jadever-jwl/main.jpg">
+    <h2 class="section-title">
+        SẢN PHẨM NỔI BẬT
+    </h2>
+
+    <div class="product-grid"
+         id="featuredProducts">
 
     </div>
 
-  </div>
-
 </section>
 
-<section class="main-layout">
+<!-- =========================
+FOOTER
+========================= -->
 
-  <aside class="sidebar">
+<footer class="footer">
 
-    <h2>DANH MỤC</h2>
+    <div class="footer-content">
 
-    <ul>
-      <li onclick="filterProducts('can-ban')">
-      Cân bàn
-      </li>
+        <div class="footer-box">
 
-      <li onclick="filterProducts('can-dem')">
-      Cân đếm
-      </li>
+            <h3>QTN GLOBAL</h3>
 
-      <li onclick="filterProducts('can-ky-thuat')">
-      Cân kỹ thuật
-      </li>
+            <p>
+                Chuyên cung cấp cân điện tử,
+                đầu cân điện tử và giải pháp cân công nghiệp.
+            </p>
 
-      <li onclick="filterProducts('can-treo')">
-      Cân treo
-      </li>
+        </div>
 
-      <li onclick="filterProducts('can-san')">
-      Cân sàn
-      </li>
+        <div class="footer-box">
 
-      <li onclick="filterProducts('dau-can-dien-tu')">
-      Đầu cân điện tử
-      </li>
-      <li onclick="filterProducts('can-phan-tich')">
-      Cân phân tích
-      </li>
-      <li onclick="filterProducts('can-chong-nuoc')">
-      Cân chống nước
-      </li>
-       <li onclick="filterProducts('can-in-tem-ma-vach')">
-      Cân in tem mã vạch
-      </li>
-       <li onclick="filterProducts('can-say-am')">
-      Cân sấy ẩm
-      </li>
-      
-    </ul>
+            <h3>THÔNG TIN LIÊN HỆ</h3>
 
-  </aside>
+            <p>
+                Hotline: 0905 913 636
+            </p>
 
-  <main class="product-grid" id="productGrid"></main>
+            <p>
+                Hotline: 0383 598 603
+            </p>
 
-</section>
+            <p>
+                Facebook: QTNSCALE
+            </p>
 
-<script src="products.js"></script>
-<script src="script.js"></script>
-<div class="cart-popup" id="viewCartPopup">
+        </div>
 
-    <div class="cart-box">
+        <div class="footer-box">
+
+            <h3>HỖ TRỢ</h3>
+
+            <p>
+                Tư vấn sản phẩm
+            </p>
+
+            <p>
+                Báo giá nhanh
+            </p>
+
+            <p>
+                Giao hàng toàn quốc
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- =========================
+POPUP GIỎ HÀNG
+========================= -->
+
+<div class="cart-popup"
+     id="cartPopup">
+
+    <div class="cart-popup-content">
 
         <span class="close-popup"
-              onclick="closeViewCartPopup()">
-              &times;
+              onclick="closeCartPopup()">
+
+            &times;
+
         </span>
 
-        <h2>GIỎ HÀNG</h2>
+        <h2>
+            GIỎ HÀNG CỦA BẠN
+        </h2>
 
-        <div id="viewCartItems"></div>
+        <div id="cartItems">
+
+        </div>
 
     </div>
 
 </div>
-<!-- GIỎ HÀNG PRO -->
-<div id="cartOverlay" class="cart-overlay"></div>
 
-<div id="cartModal" class="cart-modal">
+<!-- =========================
+JS
+========================= -->
 
-    <div class="cart-header">
-        <h2>Giỏ hàng</h2>
-        <button onclick="closeCart()">✕</button>
-    </div>
+<script src="products.js"></script>
 
-    <div id="cartBody"></div>
+<script src="script.js"></script>
 
-    <div class="cart-footer">
-        <button onclick="checkoutCart()" class="btn-buy">
-            MUA NGAY
-        </button>
-    </div>
+<script>
+
+/* =========================
+RENDER HOME PRODUCTS
+========================= */
+
+const featuredProducts =
+products.slice(0,8);
+
+const featuredContainer =
+document.getElementById("featuredProducts");
+
+featuredProducts.forEach(product=>{
+
+featuredContainer.innerHTML += `
+
+<div class="product-card">
+
+    <a href="chitiet.html?id=${product.id}">
+
+        <img src="
+        images/${product.category}/${product.folder}/1.jpg
+        ">
+
+    </a>
+
+    <h3>
+        ${product.name}
+    </h3>
+
+    <a href="
+    chitiet.html?id=${product.id}
+    "
+       class="detail-btn">
+
+       CHI TIẾT
+
+    </a>
 
 </div>
+
+`;
+
+});
+
+/* =========================
+HOME SLIDER
+========================= */
+
+let currentSlide = 0;
+
+const slides =
+document.querySelectorAll(".slide");
+
+setInterval(()=>{
+
+slides[currentSlide]
+.classList.remove("active");
+
+currentSlide++;
+
+if(currentSlide >= slides.length){
+
+currentSlide = 0;
+
+}
+
+slides[currentSlide]
+.classList.add("active");
+
+},4000);
+
+</script>
+
 </body>
 </html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Sản phẩm | QTN GLOBAL</title>
+
+<link rel="stylesheet"
+      href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <!-- TOP HEADER -->
+
+    <div class="top-header">
+
+        <div class="logo-area">
+
+            <img src="images/logo.png"
+                 alt="QTN GLOBAL">
+
+            <div class="company-info">
+
+                <h2>QTN GLOBAL</h2>
+
+                <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+
+            </div>
+
+        </div>
+
+        <div class="top-contact">
+
+            <a href="tel:0905913636"
+               class="top-btn">
+
+                <i class="fa-solid fa-phone"></i>
+                0905 913 636
+
+            </a>
+
+            <a href="tel:0383598603"
+               class="top-btn">
+
+                <i class="fa-solid fa-phone"></i>
+                0383 598 603
+
+            </a>
+
+            <a href="https://zalo.me/0383598603"
+               target="_blank"
+               class="social-icon zalo">
+
+                <span class="zalo-text">
+                    Zalo
+                </span>
+
+            </a>
+
+            <a href="https://m.me/QTNSCALE"
+               target="_blank"
+               class="social-icon facebook">
+
+                <i class="fa-brands fa-facebook-messenger"></i>
+
+            </a>
+
+            <a class="cart-header"
+               onclick="openViewCartPopup()">
+
+                🛒 GIỎ HÀNG
+                (<span id="cartCount">0</span>)
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MENU -->
+
+    <nav class="navbar">
+
+        <a href="index.html">
+            TRANG CHỦ
+        </a>
+
+        <a href="#">
+            GIỚI THIỆU
+        </a>
+
+        <div class="dropdown">
+
+            <a href="#">
+                SẢN PHẨM ▼
+            </a>
+
+            <div class="dropdown-content">
+
+                <a href="sanpham.html?category=can-ban">
+                    Cân bàn
+                </a>
+
+                <a href="sanpham.html?category=can-dem">
+                    Cân đếm
+                </a>
+
+                <a href="sanpham.html?category=can-phan-tich">
+                    Cân kỹ thuật
+                </a>
+
+                <a href="sanpham.html?category=can-treo">
+                    Cân treo
+                </a>
+
+                <a href="sanpham.html?category=can-chong-nuoc">
+                    Cân chống nước
+                </a>
+
+                <a href="sanpham.html?category=dau-can-dien-tu">
+                    Đầu cân điện tử
+                </a>
+
+                <a href="sanpham.html?category=can-in-tem-ma-vach">
+                    Cân in tem mã vạch
+                </a>
+
+            </div>
+
+        </div>
+
+        <a href="#">
+            LIÊN HỆ
+        </a>
+
+    </nav>
+
+</header>
+
+<!-- PAGE -->
+
+<div class="product-page">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h3>DANH MỤC</h3>
+
+        <a href="sanpham.html?category=can-ban">
+            Cân bàn
+        </a>
+
+        <a href="sanpham.html?category=can-dem">
+            Cân đếm
+        </a>
+
+        <a href="sanpham.html?category=can-phan-tich">
+            Cân kỹ thuật
+        </a>
+
+        <a href="sanpham.html?category=can-treo">
+            Cân treo
+        </a>
+
+        <a href="sanpham.html?category=can-chong-nuoc">
+            Cân chống nước
+        </a>
+
+        <a href="sanpham.html?category=dau-can-dien-tu">
+            Đầu cân điện tử
+        </a>
+
+        <a href="sanpham.html?category=can-in-tem-ma-vach">
+            Cân in tem mã vạch
+        </a>
+
+    </aside>
+
+    <!-- PRODUCT AREA -->
+
+    <div class="product-area">
+
+        <h1 id="pageTitle">
+            DANH SÁCH SẢN PHẨM
+        </h1>
+
+        <div class="product-grid"
+             id="productGrid">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- POPUP GIỎ HÀNG -->
+
+<div class="popup-overlay"
+     id="cartPopup">
+
+    <div class="popup-box cart-popup">
+
+        <span class="close-popup"
+              onclick="closeCartPopup()">
+
+              ×
+
+        </span>
+
+        <h2>
+            GIỎ HÀNG CỦA BẠN
+        </h2>
+
+        <div id="cartItems"></div>
+
+    </div>
+
+</div>
+
+<!-- POPUP MUA NGAY -->
+
+<div class="popup-overlay"
+     id="buyNowPopup">
+
+    <div class="popup-box buy-popup">
+
+        <span class="close-popup"
+              onclick="closeBuyNowPopup()">
+
+              ×
+
+        </span>
+
+        <h2>
+            THÔNG TIN ĐẶT HÀNG
+        </h2>
+
+        <form id="buyNowForm">
+
+            <input type="text"
+                   id="customerName"
+                   placeholder="Tên khách hàng"
+                   required>
+
+            <input type="text"
+                   id="customerPhone"
+                   placeholder="Số điện thoại"
+                   required>
+
+            <input type="text"
+                   id="customerCompany"
+                   placeholder="Công ty">
+
+            <input type="text"
+                   id="customerTax"
+                   placeholder="Mã số thuế">
+
+            <textarea id="customerBillAddress"
+                      placeholder="Địa chỉ viết hóa đơn"></textarea>
+
+            <textarea id="customerShipAddress"
+                      placeholder="Địa chỉ giao hàng"></textarea>
+
+            <input type="text"
+                   id="productName"
+                   placeholder="Tên sản phẩm"
+                   readonly>
+
+            <input type="text"
+                   id="productWeight"
+                   placeholder="Mức cân">
+
+            <input type="number"
+                   id="productQty"
+                   value="1"
+                   min="1">
+
+            <div class="buy-buttons">
+
+                <button type="button"
+                        class="zalo-send"
+                        onclick="sendOrderZalo()">
+
+                    Gửi đơn qua Zalo
+
+                </button>
+
+                <button type="button"
+                        class="messenger-send"
+                        onclick="sendOrderMessenger()">
+
+                    Gửi đơn qua Messenger
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+
+<script src="products.js"></script>
+
+<script src="script.js"></script>
+
+<script>
+
+const params =
+new URLSearchParams(window.location.search);
+
+const category =
+params.get("category");
+
+const productGrid =
+document.getElementById("productGrid");
+
+const pageTitle =
+document.getElementById("pageTitle");
+
+/* =========================
+   CATEGORY TITLE
+========================= */
+
+const categoryNames = {
+
+    "can-ban":"CÂN BÀN",
+
+    "can-dem":"CÂN ĐẾM",
+
+    "can-phan-tich":"CÂN KỸ THUẬT",
+
+    "can-treo":"CÂN TREO",
+
+    "can-chong-nuoc":"CÂN CHỐNG NƯỚC",
+
+    "dau-can-dien-tu":"ĐẦU CÂN ĐIỆN TỬ",
+
+    "can-in-tem-ma-vach":"CÂN IN TEM MÃ VẠCH"
+
+};
+
+if(categoryNames[category]){
+
+    pageTitle.innerText =
+    categoryNames[category];
+
+}
+
+/* =========================
+   FILTER PRODUCTS
+========================= */
+
+const filteredProducts =
+products.filter(
+    p => p.category === category
+);
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+filteredProducts.forEach(product=>{
+
+    productGrid.innerHTML += `
+
+    <div class="product-card">
+
+        <a href="
+        chitiet.html?id=${product.id}
+        ">
+
+            <img src="
+            images/${product.category}/${product.folder}/1.jpg
+            "
+            alt="${product.name}">
+
+        </a>
+
+        <div class="product-info">
+
+            <h3>
+                ${product.name}
+            </h3>
+
+            <p>
+                ${product.brand}
+            </p>
+
+            <div class="product-buttons">
+
+                <a href="
+                chitiet.html?id=${product.id}
+                "
+                class="detail-btn">
+
+                    CHI TIẾT
+
+                </a>
+
+                <button class="cart-btn"
+                        onclick="openAddCartPopup(
+                        '${product.name}'
+                        )">
+
+                    THÊM GIỎ
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+});
+
+/* =========================
+   UPDATE CART COUNT
+========================= */
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>
