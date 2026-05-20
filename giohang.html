@@ -24,8 +24,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <header class="header">
 
-    <!-- TOP HEADER -->
-
     <div class="top-header">
 
         <div class="logo-area">
@@ -79,7 +77,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             </a>
 
-            <a class="cart-header">
+            <a class="cart-header active-cart">
 
                 🛒 GIỎ HÀNG
                 (<span id="cartCount">0</span>)
@@ -134,10 +132,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                     Đầu cân điện tử
                 </a>
 
-                <a href="sanpham.html?category=can-in-tem-ma-vach">
-                    Cân in tem mã vạch
-                </a>
-
             </div>
 
         </div>
@@ -150,9 +144,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </header>
 
-<!-- PAGE -->
+<!-- CART PAGE -->
 
-<section class="cart-page">
+<div class="cart-page">
 
     <h1>
         GIỎ HÀNG CỦA BẠN
@@ -163,14 +157,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     </div>
 
-</section>
+</div>
 
 <!-- POPUP MUA NGAY -->
 
 <div class="popup-overlay"
      id="buyNowPopup">
 
-    <div class="popup-box buy-popup">
+    <div class="popup-box buy-box">
 
         <span class="close-popup"
               onclick="closeBuyNowPopup()">
@@ -180,69 +174,61 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </span>
 
         <h2>
-            THÔNG TIN ĐẶT HÀNG
+            ĐẶT HÀNG
         </h2>
 
-        <form id="buyNowForm">
+        <input type="text"
+               id="customerName"
+               placeholder="Tên khách hàng">
 
-            <input type="text"
-                   id="customerName"
-                   placeholder="Tên khách hàng"
-                   required>
+        <input type="text"
+               id="customerPhone"
+               placeholder="Số điện thoại">
 
-            <input type="text"
-                   id="customerPhone"
-                   placeholder="Số điện thoại"
-                   required>
+        <input type="text"
+               id="customerCompany"
+               placeholder="Công ty">
 
-            <input type="text"
-                   id="customerCompany"
-                   placeholder="Công ty">
+        <input type="text"
+               id="customerTax"
+               placeholder="Mã số thuế">
 
-            <input type="text"
-                   id="customerTax"
-                   placeholder="Mã số thuế">
+        <textarea id="customerInvoice"
+                  placeholder="Địa chỉ viết hóa đơn"></textarea>
 
-            <textarea id="customerBillAddress"
-                      placeholder="Địa chỉ viết hóa đơn"></textarea>
+        <textarea id="customerAddress"
+                  placeholder="Địa chỉ giao hàng"></textarea>
 
-            <textarea id="customerShipAddress"
-                      placeholder="Địa chỉ giao hàng"></textarea>
+        <input type="text"
+               id="buyProductName"
+               readonly>
 
-            <input type="text"
-                   id="productOrderName"
-                   readonly>
+        <input type="text"
+               id="buyWeight"
+               readonly>
 
-            <input type="text"
-                   id="productOrderWeight"
-                   placeholder="Mức cân">
+        <input type="number"
+               id="buyQty"
+               value="1"
+               min="1">
 
-            <input type="number"
-                   id="productOrderQty"
-                   value="1"
-                   min="1">
+        <div class="buy-buttons">
 
-            <div class="buy-buttons">
+            <button class="zalo-btn"
+                    onclick="sendOrderZalo()">
 
-                <button type="button"
-                        class="zalo-send"
-                        onclick="sendOrderZalo()">
+                GỬI ĐƠN QUA ZALO
 
-                    Gửi đơn qua Zalo
+            </button>
 
-                </button>
+            <button class="messenger-btn"
+                    onclick="sendOrderMessenger()">
 
-                <button type="button"
-                        class="messenger-send"
-                        onclick="sendOrderMessenger()">
+                GỬI ĐƠN QUA MESSENGER
 
-                    Gửi đơn qua Messenger
+            </button>
 
-                </button>
-
-            </div>
-
-        </form>
+        </div>
 
     </div>
 
@@ -256,31 +242,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <script>
 
-/* =========================
-   LOAD CART
-========================= */
-
-renderCartPage();
-
-updateCartCount();
-
-/* =========================
-   RENDER CART PAGE
-========================= */
+const cartPageItems =
+document.getElementById("cartPageItems");
 
 function renderCartPage(){
 
-    const cart =
-    JSON.parse(
-        localStorage.getItem("cart")
-    ) || [];
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
 
-    const box =
-    document.getElementById("cartPageItems");
+    updateCartCount();
 
     if(cart.length === 0){
 
-        box.innerHTML = `
+        cartPageItems.innerHTML = `
 
         <div class="empty-cart">
 
@@ -289,6 +263,13 @@ function renderCartPage(){
             <p>
                 Giỏ hàng đang trống
             </p>
+
+            <a href="index.html"
+               class="continue-btn">
+
+               TIẾP TỤC MUA HÀNG
+
+            </a>
 
         </div>
 
@@ -304,9 +285,9 @@ function renderCartPage(){
 
         html += `
 
-        <div class="cart-item">
+        <div class="cart-page-card">
 
-            <div class="cart-item-left">
+            <div class="cart-page-image">
 
                 <img src="
                 images/${item.category}/${item.folder}/1.jpg
@@ -315,7 +296,7 @@ function renderCartPage(){
 
             </div>
 
-            <div class="cart-item-right">
+            <div class="cart-page-info">
 
                 <h3>
                     ${item.name}
@@ -326,14 +307,12 @@ function renderCartPage(){
                     ${item.weight}
                 </p>
 
-                <div class="qty-box">
+                <div class="cart-qty">
 
                     <button onclick="
-                    decreaseQty(${index})
+                    changeCartQty(${index},-1)
                     ">
-
                         -
-
                     </button>
 
                     <span>
@@ -341,21 +320,19 @@ function renderCartPage(){
                     </span>
 
                     <button onclick="
-                    increaseQty(${index})
+                    changeCartQty(${index},1)
                     ">
-
                         +
-
                     </button>
 
                 </div>
 
-                <button class="buy-cart-btn"
+                <button class="buy-btn"
                         onclick="
                         buyCartItem(
                         '${item.name}',
                         '${item.weight}',
-                        '${item.qty}'
+                        ${item.qty}
                         )
                         ">
 
@@ -371,46 +348,16 @@ function renderCartPage(){
 
     });
 
-    box.innerHTML = html;
+    cartPageItems.innerHTML = html;
 
 }
 
-/* =========================
-   INCREASE QTY
-========================= */
-
-function increaseQty(index){
+function changeCartQty(index,change){
 
     let cart =
-    JSON.parse(
-        localStorage.getItem("cart")
-    ) || [];
+    JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart[index].qty++;
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    renderCartPage();
-
-    updateCartCount();
-
-}
-
-/* =========================
-   DECREASE QTY
-========================= */
-
-function decreaseQty(index){
-
-    let cart =
-    JSON.parse(
-        localStorage.getItem("cart")
-    ) || [];
-
-    cart[index].qty--;
+    cart[index].qty += change;
 
     if(cart[index].qty <= 0){
 
@@ -425,37 +372,29 @@ function decreaseQty(index){
 
     renderCartPage();
 
-    updateCartCount();
-
 }
 
-/* =========================
-   BUY ITEM
-========================= */
-
-function buyCartItem(
-    name,
-    weight,
-    qty
-){
+function buyCartItem(name,weight,qty){
 
     document.getElementById(
         "buyNowPopup"
-    ).classList.add("active");
+    ).style.display = "flex";
 
     document.getElementById(
-        "productOrderName"
+        "buyProductName"
     ).value = name;
 
     document.getElementById(
-        "productOrderWeight"
+        "buyWeight"
     ).value = weight;
 
     document.getElementById(
-        "productOrderQty"
+        "buyQty"
     ).value = qty;
 
 }
+
+renderCartPage();
 
 </script>
 

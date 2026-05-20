@@ -24,8 +24,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <header class="header">
 
-    <!-- TOP HEADER -->
-
     <div class="top-header">
 
         <div class="logo-area">
@@ -135,10 +133,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                     Đầu cân điện tử
                 </a>
 
-                <a href="sanpham.html?category=can-in-tem-ma-vach">
-                    Cân in tem mã vạch
-                </a>
-
             </div>
 
         </div>
@@ -151,106 +145,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </header>
 
-<!-- CHI TIẾT -->
+<!-- DETAIL -->
 
-<section class="detail-page">
+<div class="detail-container"
+     id="detailContainer">
 
-    <div class="detail-container">
+</div>
 
-        <!-- SLIDER -->
-
-        <div class="detail-left">
-
-            <div class="main-image-box">
-
-                <img id="mainImage"
-                     src=""
-                     alt="">
-
-            </div>
-
-            <div class="thumb-images"
-                 id="thumbImages">
-
-            </div>
-
-        </div>
-
-        <!-- INFO -->
-
-        <div class="detail-right">
-
-            <h1 id="productName"></h1>
-
-            <div class="detail-meta">
-
-                <p>
-                    <strong>Thương hiệu:</strong>
-                    <span id="productBrand"></span>
-                </p>
-
-                <p>
-                    <strong>Xuất xứ:</strong>
-                    <span id="productOrigin"></span>
-                </p>
-
-            </div>
-
-            <div class="detail-description">
-
-                <h3>
-                    MÔ TẢ SẢN PHẨM
-                </h3>
-
-                <p id="productDescription"></p>
-
-            </div>
-
-            <div class="detail-actions">
-
-                <button class="buy-btn"
-                        id="buyNowBtn">
-
-                    MUA NGAY
-
-                </button>
-
-                <button class="add-cart-btn"
-                        id="addCartBtn">
-
-                    THÊM VÀO GIỎ
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- THÔNG SỐ -->
-
-    <div class="specs-section">
-
-        <h2>
-            THÔNG SỐ KỸ THUẬT
-        </h2>
-
-        <div id="productSpecs"></div>
-
-    </div>
-
-</section>
-
-<!-- POPUP THÊM GIỎ -->
+<!-- POPUP GIỎ HÀNG -->
 
 <div class="popup-overlay"
-     id="addCartPopup">
+     id="cartPopup">
 
     <div class="popup-box">
 
         <span class="close-popup"
-              onclick="closeAddCartPopup()">
+              onclick="closeCartPopup()">
 
               ×
 
@@ -260,29 +170,44 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             THÊM VÀO GIỎ HÀNG
         </h2>
 
-        <div class="popup-form">
+        <div class="popup-product-name"
+             id="popupProductName">
 
-            <input type="text"
-                   id="cartProductName"
-                   readonly>
+        </div>
 
-            <input type="text"
-                   id="cartWeight"
-                   placeholder="Mức cân">
+        <label>
+            Mức cân
+        </label>
+
+        <select id="popupWeight"></select>
+
+        <label>
+            Số lượng
+        </label>
+
+        <div class="qty-box">
+
+            <button onclick="decreaseQty()">
+                -
+            </button>
 
             <input type="number"
-                   id="cartQty"
+                   id="popupQty"
                    value="1"
                    min="1">
 
-            <button onclick="addToCart()"
-                    class="popup-submit">
-
-                THÊM VÀO GIỎ
-
+            <button onclick="increaseQty()">
+                +
             </button>
 
         </div>
+
+        <button class="main-btn"
+                onclick="confirmAddToCart()">
+
+            THÊM VÀO GIỎ
+
+        </button>
 
     </div>
 
@@ -293,7 +218,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <div class="popup-overlay"
      id="buyNowPopup">
 
-    <div class="popup-box buy-popup">
+    <div class="popup-box buy-box">
 
         <span class="close-popup"
               onclick="closeBuyNowPopup()">
@@ -303,83 +228,73 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </span>
 
         <h2>
-            THÔNG TIN ĐẶT HÀNG
+            ĐẶT HÀNG
         </h2>
 
-        <form id="buyNowForm">
+        <input type="text"
+               id="customerName"
+               placeholder="Tên khách hàng">
 
-            <input type="text"
-                   id="customerName"
-                   placeholder="Tên khách hàng"
-                   required>
+        <input type="text"
+               id="customerPhone"
+               placeholder="Số điện thoại">
 
-            <input type="text"
-                   id="customerPhone"
-                   placeholder="Số điện thoại"
-                   required>
+        <input type="text"
+               id="customerCompany"
+               placeholder="Công ty">
 
-            <input type="text"
-                   id="customerCompany"
-                   placeholder="Công ty">
+        <input type="text"
+               id="customerTax"
+               placeholder="Mã số thuế">
 
-            <input type="text"
-                   id="customerTax"
-                   placeholder="Mã số thuế">
+        <textarea id="customerInvoice"
+                  placeholder="Địa chỉ viết hóa đơn"></textarea>
 
-            <textarea id="customerBillAddress"
-                      placeholder="Địa chỉ viết hóa đơn"></textarea>
+        <textarea id="customerAddress"
+                  placeholder="Địa chỉ giao hàng"></textarea>
 
-            <textarea id="customerShipAddress"
-                      placeholder="Địa chỉ giao hàng"></textarea>
+        <input type="text"
+               id="buyProductName"
+               readonly>
 
-            <input type="text"
-                   id="productOrderName"
-                   readonly>
+        <select id="buyWeight"></select>
 
-            <input type="text"
-                   id="productOrderWeight"
-                   placeholder="Mức cân">
+        <input type="number"
+               id="buyQty"
+               value="1"
+               min="1">
 
-            <input type="number"
-                   id="productOrderQty"
-                   value="1"
-                   min="1">
+        <div class="buy-buttons">
 
-            <div class="buy-buttons">
+            <button class="zalo-btn"
+                    onclick="sendOrderZalo()">
 
-                <button type="button"
-                        class="zalo-send"
-                        onclick="sendOrderZalo()">
+                GỬI ĐƠN QUA ZALO
 
-                    Gửi đơn qua Zalo
+            </button>
 
-                </button>
+            <button class="messenger-btn"
+                    onclick="sendOrderMessenger()">
 
-                <button type="button"
-                        class="messenger-send"
-                        onclick="sendOrderMessenger()">
+                GỬI ĐƠN QUA MESSENGER
 
-                    Gửi đơn qua Messenger
+            </button>
 
-                </button>
-
-            </div>
-
-        </form>
+        </div>
 
     </div>
 
 </div>
 
-<!-- POPUP GIỎ HÀNG -->
+<!-- VIEW CART -->
 
 <div class="popup-overlay"
-     id="cartPopup">
+     id="viewCartPopup">
 
-    <div class="popup-box cart-popup">
+    <div class="popup-box cart-view-box">
 
         <span class="close-popup"
-              onclick="closeCartPopup()">
+              onclick="closeViewCartPopup()">
 
               ×
 
@@ -403,10 +318,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <script>
 
-/* =========================
-   GET PRODUCT
-========================= */
-
 const params =
 new URLSearchParams(window.location.search);
 
@@ -414,123 +325,158 @@ const id =
 parseInt(params.get("id"));
 
 const product =
-products.find(
-    p => p.id === id
-);
+products.find(p => p.id === id);
 
-/* =========================
-   RENDER PRODUCT
-========================= */
+const detailContainer =
+document.getElementById("detailContainer");
 
 if(product){
 
-    document.title =
-    product.name + " | QTN GLOBAL";
+    let sliderImages = "";
 
-    document.getElementById("productName").innerText =
-    product.name;
+    for(let i=1;i<=5;i++){
 
-    document.getElementById("productBrand").innerText =
-    product.brand;
+        sliderImages += `
 
-    document.getElementById("productOrigin").innerText =
-    product.origin;
+        <img src="
+        images/${product.category}/${product.folder}/${i}.jpg
+        "
+        class="
+        detail-slide ${i===1 ? 'active' : ''}
+        "
+        onerror="this.style.display='none'">
 
-    document.getElementById("productDescription").innerText =
-    product.description;
+        `;
 
-    document.getElementById("productOrderName").value =
-    product.name;
+    }
 
-    document.getElementById("cartProductName").value =
-    product.name;
+    let specsHtml = "";
 
-}
+    product.specs.forEach(spec=>{
 
-/* =========================
-   SLIDER 1 -> 5 ẢNH
-========================= */
+        specsHtml += `
+        <li>${spec}</li>
+        `;
 
-const mainImage =
-document.getElementById("mainImage");
+    });
 
-const thumbImages =
-document.getElementById("thumbImages");
+    detailContainer.innerHTML = `
 
-let totalImages = 5;
+    <div class="detail-left">
 
-mainImage.src =
-`images/${product.category}/${product.folder}/1.jpg`;
+        <div class="detail-slider">
 
-for(let i = 1; i <= totalImages; i++){
+            ${sliderImages}
 
-    const img =
-    document.createElement("img");
+            <button class="slider-btn prev"
+                    onclick="changeSlide(-1)">
 
-    img.src =
-    `images/${product.category}/${product.folder}/${i}.jpg`;
+                ❮
 
-    img.onerror = function(){
+            </button>
 
-        this.style.display = "none";
+            <button class="slider-btn next"
+                    onclick="changeSlide(1)">
 
-    };
+                ❯
 
-    img.onclick = function(){
+            </button>
 
-        mainImage.src = this.src;
+        </div>
 
-    };
+    </div>
 
-    thumbImages.appendChild(img);
+    <div class="detail-right">
 
-}
+        <h1>
+            ${product.name}
+        </h1>
 
-/* =========================
-   THÔNG SỐ
-========================= */
+        <div class="detail-meta">
 
-const specsBox =
-document.getElementById("productSpecs");
+            <p>
+                <strong>Thương hiệu:</strong>
+                ${product.brand}
+            </p>
 
-product.specs.forEach(spec=>{
+            <p>
+                <strong>Xuất xứ:</strong>
+                ${product.origin}
+            </p>
 
-    specsBox.innerHTML += `
+        </div>
 
-    <div class="spec-item">
+        <div class="detail-description">
 
-        ${spec}
+            ${product.description}
+
+        </div>
+
+        <div class="detail-specs">
+
+            <h3>
+                THÔNG SỐ KỸ THUẬT
+            </h3>
+
+            <ul>
+                ${specsHtml}
+            </ul>
+
+        </div>
+
+        <div class="detail-buttons">
+
+            <button class="buy-btn"
+                    onclick="openBuyNow('${product.name}')">
+
+                MUA NGAY
+
+            </button>
+
+            <button class="cart-btn"
+                    onclick="openCartPopup('${product.name}')">
+
+                THÊM VÀO GIỎ HÀNG
+
+            </button>
+
+        </div>
 
     </div>
 
     `;
 
-});
+}
 
-/* =========================
-   BUTTON ACTIONS
-========================= */
+let currentSlide = 0;
 
-document.getElementById("buyNowBtn")
-.onclick = function(){
+function changeSlide(direction){
 
-    document.getElementById("buyNowPopup")
+    const slides =
+    document.querySelectorAll(".detail-slide");
+
+    slides[currentSlide]
+    .classList.remove("active");
+
+    currentSlide += direction;
+
+    if(currentSlide < 0){
+
+        currentSlide =
+        slides.length - 1;
+
+    }
+
+    if(currentSlide >= slides.length){
+
+        currentSlide = 0;
+
+    }
+
+    slides[currentSlide]
     .classList.add("active");
 
-};
-
-document.getElementById("addCartBtn")
-.onclick = function(){
-
-    openAddCartPopup(product.name);
-
-};
-
-/* =========================
-   UPDATE CART
-========================= */
-
-updateCartCount();
+}
 
 </script>
 

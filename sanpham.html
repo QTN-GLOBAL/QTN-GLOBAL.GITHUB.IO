@@ -49,6 +49,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                class="top-btn">
 
                 <i class="fa-solid fa-phone"></i>
+
                 0905 913 636
 
             </a>
@@ -57,6 +58,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                class="top-btn">
 
                 <i class="fa-solid fa-phone"></i>
+
                 0383 598 603
 
             </a>
@@ -135,10 +137,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                     Đầu cân điện tử
                 </a>
 
-                <a href="sanpham.html?category=can-in-tem-ma-vach">
-                    Cân in tem mã vạch
-                </a>
-
             </div>
 
         </div>
@@ -159,7 +157,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     <aside class="sidebar">
 
-        <h3>DANH MỤC</h3>
+        <h3>
+            DANH MỤC
+        </h3>
 
         <a href="sanpham.html?category=can-ban">
             Cân bàn
@@ -185,10 +185,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             Đầu cân điện tử
         </a>
 
-        <a href="sanpham.html?category=can-in-tem-ma-vach">
-            Cân in tem mã vạch
-        </a>
-
     </aside>
 
     <!-- PRODUCT AREA -->
@@ -208,15 +204,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </div>
 
-<!-- POPUP GIỎ HÀNG -->
+<!-- VIEW CART -->
 
 <div class="popup-overlay"
-     id="cartPopup">
+     id="viewCartPopup">
 
-    <div class="popup-box cart-popup">
+    <div class="popup-box cart-view-box">
 
         <span class="close-popup"
-              onclick="closeCartPopup()">
+              onclick="closeViewCartPopup()">
 
               ×
 
@@ -227,90 +223,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </h2>
 
         <div id="cartItems"></div>
-
-    </div>
-
-</div>
-
-<!-- POPUP MUA NGAY -->
-
-<div class="popup-overlay"
-     id="buyNowPopup">
-
-    <div class="popup-box buy-popup">
-
-        <span class="close-popup"
-              onclick="closeBuyNowPopup()">
-
-              ×
-
-        </span>
-
-        <h2>
-            THÔNG TIN ĐẶT HÀNG
-        </h2>
-
-        <form id="buyNowForm">
-
-            <input type="text"
-                   id="customerName"
-                   placeholder="Tên khách hàng"
-                   required>
-
-            <input type="text"
-                   id="customerPhone"
-                   placeholder="Số điện thoại"
-                   required>
-
-            <input type="text"
-                   id="customerCompany"
-                   placeholder="Công ty">
-
-            <input type="text"
-                   id="customerTax"
-                   placeholder="Mã số thuế">
-
-            <textarea id="customerBillAddress"
-                      placeholder="Địa chỉ viết hóa đơn"></textarea>
-
-            <textarea id="customerShipAddress"
-                      placeholder="Địa chỉ giao hàng"></textarea>
-
-            <input type="text"
-                   id="productName"
-                   placeholder="Tên sản phẩm"
-                   readonly>
-
-            <input type="text"
-                   id="productWeight"
-                   placeholder="Mức cân">
-
-            <input type="number"
-                   id="productQty"
-                   value="1"
-                   min="1">
-
-            <div class="buy-buttons">
-
-                <button type="button"
-                        class="zalo-send"
-                        onclick="sendOrderZalo()">
-
-                    Gửi đơn qua Zalo
-
-                </button>
-
-                <button type="button"
-                        class="messenger-send"
-                        onclick="sendOrderMessenger()">
-
-                    Gửi đơn qua Messenger
-
-                </button>
-
-            </div>
-
-        </form>
 
     </div>
 
@@ -378,34 +290,38 @@ products.filter(
    RENDER PRODUCTS
 ========================= */
 
-filteredProducts.forEach(product=>{
+if(filteredProducts.length > 0){
 
-    productGrid.innerHTML += `
+    filteredProducts.forEach(product=>{
 
-    <div class="product-card">
+        productGrid.innerHTML += `
 
-        <a href="
-        chitiet.html?id=${product.id}
-        ">
+        <div class="product-card">
 
-            <img src="
-            images/${product.category}/${product.folder}/1.jpg
+            <a href="
+            chitiet.html?id=${product.id}
             "
-            alt="${product.name}">
+            class="product-image">
 
-        </a>
+                <img src="
+                images/${product.category}/${product.folder}/1.jpg
+                "
+                alt="${product.name}">
 
-        <div class="product-info">
+            </a>
 
-            <h3>
-                ${product.name}
-            </h3>
+            <div class="product-info">
 
-            <p>
-                ${product.brand}
-            </p>
+                <h3>
+                    ${product.name}
+                </h3>
 
-            <div class="product-buttons">
+                <p class="product-brand">
+
+                    ${product.brand}
+                    | ${product.origin}
+
+                </p>
 
                 <a href="
                 chitiet.html?id=${product.id}
@@ -416,30 +332,27 @@ filteredProducts.forEach(product=>{
 
                 </a>
 
-                <button class="cart-btn"
-                        onclick="openAddCartPopup(
-                        '${product.name}'
-                        )">
-
-                    THÊM GIỎ
-
-                </button>
-
             </div>
 
         </div>
+
+        `;
+
+    });
+
+}else{
+
+    productGrid.innerHTML = `
+
+    <div class="empty-product">
+
+        Chưa có sản phẩm trong danh mục này.
 
     </div>
 
     `;
 
-});
-
-/* =========================
-   UPDATE CART COUNT
-========================= */
-
-updateCartCount();
+}
 
 </script>
 
