@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>QTN GLOBAL</title>
+<title>Sản phẩm | QTN GLOBAL</title>
 
 <link rel="stylesheet"
       href="style.css">
@@ -150,9 +150,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </header>
 
-<!-- MAIN -->
+<!-- PAGE -->
 
-<main class="home-layout">
+<div class="page-layout">
 
     <!-- SIDEBAR -->
 
@@ -188,59 +188,26 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     </aside>
 
-    <!-- CONTENT -->
+    <!-- PRODUCT AREA -->
 
     <section class="main-content">
 
-        <!-- SLIDER -->
+        <div class="page-title">
 
-        <div class="banner-slider">
-
-            <div class="slide fade">
-
-                <img src="images/banner/1.jpg"
-                     alt="Banner 1">
-
-            </div>
-
-            <div class="slide fade">
-
-                <img src="images/banner/2.jpg"
-                     alt="Banner 2">
-
-            </div>
-
-            <div class="slide fade">
-
-                <img src="images/banner/3.jpg"
-                     alt="Banner 3">
-
-            </div>
+            <h1 id="pageTitle">
+                DANH SÁCH SẢN PHẨM
+            </h1>
 
         </div>
 
-        <!-- PRODUCT SECTION -->
+        <div class="product-grid"
+             id="productGrid">
 
-        <section class="home-products">
-
-            <div class="section-title">
-
-                <h2>
-                    SẢN PHẨM NỔI BẬT
-                </h2>
-
-            </div>
-
-            <div class="product-grid"
-                 id="homeProductGrid">
-
-            </div>
-
-        </section>
+        </div>
 
     </section>
 
-</main>
+</div>
 
 <!-- POPUP -->
 
@@ -316,18 +283,67 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <script>
 
 /* =========================================
-   HIỂN THỊ SẢN PHẨM NỔI BẬT
+   CATEGORY
 ========================================= */
 
-const homeGrid =
-document.getElementById("homeProductGrid");
+const params =
+new URLSearchParams(window.location.search);
 
-const featuredProducts =
-products.slice(0,8);
+const category =
+params.get("category");
 
-featuredProducts.forEach(product=>{
+const pageTitle =
+document.getElementById("pageTitle");
 
-    homeGrid.innerHTML += `
+const productGrid =
+document.getElementById("productGrid");
+
+/* =========================================
+   CATEGORY NAME
+========================================= */
+
+const categoryNames = {
+
+    "can-ban":"CÂN BÀN",
+
+    "can-dem":"CÂN ĐẾM",
+
+    "can-phan-tich":"CÂN KỸ THUẬT",
+
+    "can-treo":"CÂN TREO",
+
+    "can-chong-nuoc":"CÂN CHỐNG NƯỚC",
+
+    "dau-can-dien-tu":"ĐẦU CÂN ĐIỆN TỬ",
+
+    "can-in-tem-ma-vach":"CÂN IN TEM MÃ VẠCH"
+
+};
+
+if(categoryNames[category]){
+
+    pageTitle.innerText =
+    categoryNames[category];
+
+}
+
+/* =========================================
+   FILTER PRODUCTS
+========================================= */
+
+const filteredProducts =
+products.filter(
+    product =>
+    product.category === category
+);
+
+/* =========================================
+   RENDER PRODUCTS
+========================================= */
+
+filteredProducts.forEach(product=>{
+
+    productGrid.innerHTML += `
 
     <div class="product-card">
 
@@ -337,13 +353,20 @@ featuredProducts.forEach(product=>{
 
             <img src="
             images/${product.category}/${product.folder}/1.jpg
-            ">
+            "
+                 alt="${product.name}">
 
         </a>
 
         <h3>
             ${product.name}
         </h3>
+
+        <p class="product-brand">
+
+            ${product.brand}
+
+        </p>
 
         <div class="product-buttons">
 
@@ -356,7 +379,12 @@ featuredProducts.forEach(product=>{
 
             </a>
 
-           
+            <button class="cart-btn"
+                    onclick="openAddCartPopup(${product.id})">
+
+                THÊM GIỎ
+
+            </button>
 
         </div>
 

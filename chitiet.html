@@ -1,54 +1,529 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi tiết sản phẩm</title>
 
-<link rel="stylesheet" href="style.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Chi tiết sản phẩm | QTN GLOBAL</title>
+
+<link rel="stylesheet"
+      href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
 
-<div class="detail">
+<!-- HEADER -->
 
-  <img id="img" class="detail-img">
+<header class="header">
 
-  <h1 id="name"></h1>
-  <p id="spec"></p>
+    <!-- TOP HEADER -->
 
-  <button onclick="addToCartDetail()">Thêm vào giỏ</button>
-  <button onclick="buyNow()">Mua ngay</button>
+    <div class="top-header">
+
+        <div class="logo-area">
+
+            <img src="images/logo.png"
+                 alt="QTN GLOBAL">
+
+            <div class="company-info">
+
+                <h2>
+                    QTN GLOBAL
+                </h2>
+
+                <p>
+                    CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="top-contact">
+
+            <a href="tel:0905913636"
+               class="top-btn">
+
+                <i class="fa-solid fa-phone"></i>
+                0905 913 636
+
+            </a>
+
+            <a href="tel:0383598603"
+               class="top-btn">
+
+                <i class="fa-solid fa-phone"></i>
+                0383 598 603
+
+            </a>
+
+            <a href="https://zalo.me/0383598603"
+               target="_blank"
+               class="social-icon zalo">
+
+                Zalo
+
+            </a>
+
+            <a href="https://m.me/QTNSCALE"
+               target="_blank"
+               class="social-icon messenger">
+
+                <i class="fa-brands fa-facebook-messenger"></i>
+
+            </a>
+
+            <button class="cart-header"
+                    onclick="openViewCartPopup()">
+
+                🛒 GIỎ HÀNG
+                (<span id="cartCount">0</span>)
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- MENU -->
+
+    <nav class="navbar"
+         id="navbar">
+
+        <a href="index.html">
+            TRANG CHỦ
+        </a>
+
+        <a href="#">
+            GIỚI THIỆU
+        </a>
+
+        <div class="dropdown">
+
+            <a href="#">
+                SẢN PHẨM ▼
+            </a>
+
+            <div class="dropdown-content">
+
+                <a href="sanpham.html?category=can-ban">
+                    Cân bàn
+                </a>
+
+                <a href="sanpham.html?category=can-dem">
+                    Cân đếm
+                </a>
+
+                <a href="sanpham.html?category=can-phan-tich">
+                    Cân kỹ thuật
+                </a>
+
+                <a href="sanpham.html?category=can-treo">
+                    Cân treo
+                </a>
+
+                <a href="sanpham.html?category=can-chong-nuoc">
+                    Cân chống nước
+                </a>
+
+                <a href="sanpham.html?category=dau-can-dien-tu">
+                    Đầu cân điện tử
+                </a>
+
+            </div>
+
+        </div>
+
+        <a href="#">
+            LIÊN HỆ
+        </a>
+
+    </nav>
+
+</header>
+
+<!-- DETAIL PAGE -->
+
+<div class="detail-page">
+
+    <!-- LEFT -->
+
+    <div class="detail-left">
+
+        <!-- SLIDER -->
+
+        <div class="detail-slider">
+
+            <button class="slider-btn prev"
+                    onclick="changeSlide(-1)">
+
+                ❮
+
+            </button>
+
+            <img id="mainImage"
+                 src=""
+                 alt="Ảnh sản phẩm">
+
+            <button class="slider-btn next"
+                    onclick="changeSlide(1)">
+
+                ❯
+
+            </button>
+
+        </div>
+
+        <!-- THUMBNAILS -->
+
+        <div class="thumbnail-list"
+             id="thumbnailList">
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="detail-right">
+
+        <h1 id="productName">
+
+        </h1>
+
+        <div class="detail-info">
+
+            <p>
+
+                <strong>
+                    Thương hiệu:
+                </strong>
+
+                <span id="productBrand">
+
+                </span>
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Xuất xứ:
+                </strong>
+
+                <span id="productOrigin">
+
+                </span>
+
+            </p>
+
+        </div>
+
+        <div class="product-description">
+
+            <h3>
+                MÔ TẢ SẢN PHẨM
+            </h3>
+
+            <p id="productDescription">
+
+            </p>
+
+        </div>
+
+        <div class="product-specs">
+
+            <h3>
+                THÔNG SỐ KỸ THUẬT
+            </h3>
+
+            <div id="productSpecs">
+
+            </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="detail-buttons">
+
+            <button class="buy-btn"
+                    id="buyNowBtn">
+
+                MUA NGAY
+
+            </button>
+
+            <button class="cart-btn-detail"
+                    id="addCartBtn">
+
+                THÊM VÀO GIỎ
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-<!-- CART -->
-<div id="cartOverlay" class="overlay" onclick="closeCart()"></div>
+<!-- POPUP -->
 
-<div id="cartModal" class="cart">
-
-  <div class="cart-header">
-    <h2>Giỏ hàng</h2>
-    <button onclick="closeCart()">✕</button>
-  </div>
-
-  <div id="cartBody"></div>
-
-  <button class="btn-buy" onclick="sendZalo()">Gửi Zalo</button>
+<div class="popup-overlay"
+     id="cartPopup">
 
 </div>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-box">
+
+            <h3>
+                QTN GLOBAL
+            </h3>
+
+            <p>
+                Chuyên cung cấp cân điện tử,
+                đầu cân điện tử,
+                cân công nghiệp chính hãng.
+            </p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>
+                LIÊN HỆ
+            </h3>
+
+            <p>
+                Hotline:
+                0905 913 636
+            </p>
+
+            <p>
+                Zalo:
+                0383 598 603
+            </p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>
+                HỖ TRỢ
+            </h3>
+
+            <p>
+                Giao hàng toàn quốc
+            </p>
+
+            <p>
+                Tư vấn kỹ thuật miễn phí
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- JS -->
+
+<script src="products.js"></script>
 
 <script src="script.js"></script>
 
 <script>
-let product = {
-  name: "Cân mẫu",
-  spec: "30kg",
-  price: ""
+
+/* =========================================
+   GET PRODUCT
+========================================= */
+
+const params =
+new URLSearchParams(window.location.search);
+
+const id =
+params.get("id");
+
+const product =
+products.find(
+    p => p.id == id
+);
+
+/* =========================================
+   DOM
+========================================= */
+
+const productName =
+document.getElementById("productName");
+
+const productBrand =
+document.getElementById("productBrand");
+
+const productOrigin =
+document.getElementById("productOrigin");
+
+const productDescription =
+document.getElementById("productDescription");
+
+const productSpecs =
+document.getElementById("productSpecs");
+
+const mainImage =
+document.getElementById("mainImage");
+
+const thumbnailList =
+document.getElementById("thumbnailList");
+
+/* =========================================
+   RENDER INFO
+========================================= */
+
+productName.innerText =
+product.name;
+
+productBrand.innerText =
+product.brand;
+
+productOrigin.innerText =
+product.origin;
+
+productDescription.innerText =
+product.description;
+
+/* =========================================
+   SPECS
+========================================= */
+
+product.specs.forEach(spec=>{
+
+    productSpecs.innerHTML += `
+
+    <div class="spec-item">
+
+        ${spec}
+
+    </div>
+
+    `;
+
+});
+
+/* =========================================
+   SLIDER
+========================================= */
+
+let currentSlide = 0;
+
+let images = [];
+
+/* =========================================
+   LOAD IMAGES
+========================================= */
+
+for(let i = 1; i <= 5; i++){
+
+    images.push(
+        `images/${product.category}/${product.folder}/${i}.jpg`
+    );
+
+}
+
+/* =========================================
+   MAIN IMAGE
+========================================= */
+
+mainImage.src =
+images[currentSlide];
+
+/* =========================================
+   THUMBNAILS
+========================================= */
+
+images.forEach((img,index)=>{
+
+    thumbnailList.innerHTML += `
+
+    <img src="${img}"
+         class="thumbnail"
+         onclick="selectImage(${index})">
+
+    `;
+
+});
+
+/* =========================================
+   SELECT IMAGE
+========================================= */
+
+function selectImage(index){
+
+    currentSlide = index;
+
+    mainImage.src =
+    images[currentSlide];
+
+}
+
+/* =========================================
+   CHANGE SLIDE
+========================================= */
+
+function changeSlide(step){
+
+    currentSlide += step;
+
+    if(currentSlide >= images.length){
+
+        currentSlide = 0;
+
+    }
+
+    if(currentSlide < 0){
+
+        currentSlide =
+        images.length - 1;
+
+    }
+
+    mainImage.src =
+    images[currentSlide];
+
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+document
+.getElementById("buyNowBtn")
+.onclick = () => {
+
+    openBuyNow(product.id);
+
 };
 
-document.getElementById("name").innerText = product.name;
-document.getElementById("spec").innerText = product.spec;
+document
+.getElementById("addCartBtn")
+.onclick = () => {
+
+    openAddCartPopup(product.id);
+
+};
+
 </script>
 
 </body>
