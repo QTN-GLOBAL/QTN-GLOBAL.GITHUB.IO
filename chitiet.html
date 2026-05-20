@@ -1,500 +1,493 @@
-```html
-<!DOCTYPE html>
-<html lang="vi">
+<!-- ===== POPUP MUA NGAY ===== -->
 
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Chi tiết sản phẩm</title>
-
-<link rel="stylesheet"
-      href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-</head>
-
-<body>
-
-<!-- HEADER -->
-
-<header class="header">
-
-<div class="top-header">
-
-<div class="logo-area">
-
-<img src="images/logo.png"
-     alt="QTN GLOBAL">
-
-<div class="company-info">
-
-<h2>QTN GLOBAL</h2>
-
-<p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
-
-</div>
-
-</div>
-
-<div class="top-contact">
-
-<a href="tel:0905913636"
-   class="top-btn">
-
-<i class="fa-solid fa-phone"></i>
-0905 913 636
-
-</a>
-
-<a href="tel:0383598603"
-   class="top-btn">
-
-<i class="fa-solid fa-phone"></i>
-0383 598 603
-
-</a>
-
-<a href="https://zalo.me/0383598603"
-   target="_blank"
-   class="social-icon zalo">
-
-<span class="zalo-text">Zalo</span>
-
-</a>
-
-<a href="https://m.me/QTNSCALE"
-   target="_blank"
-   class="social-icon facebook">
-
-<i class="fa-brands fa-facebook-messenger"></i>
-
-</a>
-
-<a class="cart-header"
-   onclick="openViewCartPopup()">
-
-🛒 GIỎ HÀNG
-(<span id="cartCount">0</span>)
-
-</a>
-
-</div>
-
-</div>
-
-<!-- MENU -->
-
-<nav class="navbar">
-
-<a href="index.html">TRANG CHỦ</a>
-
-<a href="#">GIỚI THIỆU</a>
-
-<div class="dropdown">
-
-<a href="#">
-SẢN PHẨM ▼
-</a>
-
-<div class="dropdown-content">
-
-<a href="#">Cân bàn</a>
-
-<a href="#">Cân đếm</a>
-
-<a href="#">Cân kỹ thuật</a>
-
-<a href="#">Cân treo</a>
-
-<a href="#">Cân sàn</a>
-
-<a href="#">Đầu cân điện tử</a>
-
-</div>
-
-</div>
-
-<a href="#">LIÊN HỆ</a>
-
-</nav>
-
-</header>
-
-<!-- CHI TIẾT -->
-
-<div class="detail-page">
-
-<div class="detail-container">
-
-<!-- SLIDER -->
-
-<div class="slider-area">
-
-<div class="slider-wrapper">
-
-<button class="prev-btn"
-        onclick="prevSlide()">
-
-❮
-
-</button>
-
-<img id="mainImage"
-     class="main-image">
-
-<button class="next-btn"
-        onclick="nextSlide()">
-
-❯
-
-</button>
-
-</div>
-
-<div class="thumb-list"
-     id="thumbList">
-
-</div>
-
-<div class="detail-buttons">
-
-<button onclick="openOrderPopup()"
-        class="buy-btn">
-
-MUA NGAY
-
-</button>
-
-<button onclick="addToCart()"
-        class="contact-btn">
-
-THÊM VÀO GIỎ HÀNG
-
-</button>
-
-</div>
-
-</div>
-
-<!-- THÔNG TIN -->
-
-<div class="detail-info">
-
-<h1 id="productName"></h1>
-
-<p>
-
-<b>Thương hiệu:</b>
-
-<span id="productBrand"></span>
-
-</p>
-
-<p>
-
-<b>Xuất xứ:</b>
-
-<span id="productOrigin"></span>
-
-</p>
-
-<p id="productDescription"></p>
-
-<h3>Thông số kỹ thuật</h3>
-
-<ul id="productSpecs"></ul>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- POPUP -->
-
-<div class="order-popup"
+<div class="popup-overlay"
      id="orderPopup">
 
-<form class="order-box"
-      action="https://formsubmit.co/quannguyensky3105@gmail.com"
-      method="POST">
+    <div class="popup-box order-box">
 
-<span class="close-popup"
-      onclick="closeOrderPopup()">
+        <span class="close-popup"
+              onclick="closeOrderPopup()">
+            &times;
+        </span>
 
-&times;
+        <h2>THÔNG TIN ĐẶT HÀNG</h2>
 
-</span>
+        <form id="orderForm">
 
-<h2>THÔNG TIN ĐẶT HÀNG</h2>
+            <input type="text"
+                   id="customerName"
+                   placeholder="Tên khách hàng"
+                   required>
 
-<input type="text"
-       name="Tên khách hàng"
-       placeholder="Tên khách hàng"
-       required>
+            <input type="text"
+                   id="customerPhone"
+                   placeholder="Số điện thoại"
+                   required>
 
-<input type="text"
-       name="Số điện thoại"
-       placeholder="Số điện thoại"
-       required>
+            <input type="text"
+                   id="customerCompany"
+                   placeholder="Tên công ty">
 
-<input type="text"
-       name="Tên công ty"
-       placeholder="Tên công ty">
+            <input type="text"
+                   id="customerTax"
+                   placeholder="Mã số thuế">
 
-<input type="text"
-       name="Mã số thuế"
-       placeholder="Mã số thuế">
+            <input type="text"
+                   id="customerInvoice"
+                   placeholder="Địa chỉ xuất hóa đơn">
 
-<input type="text"
-       name="Địa chỉ giao hàng"
-       placeholder="Địa chỉ giao hàng">
+            <input type="text"
+                   id="customerAddress"
+                   placeholder="Địa chỉ giao hàng">
 
-<input type="hidden"
-       name="_subject"
-       value="ĐƠN ĐẶT HÀNG WEBSITE QTN GLOBAL">
+            <div class="popup-product">
 
-<input type="hidden"
-       name="_captcha"
-       value="false">
+                <h3 id="popupProductName"></h3>
 
-<button type="submit"
-        class="submit-order">
+                <label>Chọn mức cân</label>
 
-GỬI ĐƠN HÀNG
+                <select id="weightLevel"></select>
 
-</button>
+                <label>Số lượng</label>
 
-</form>
+                <input type="number"
+                       id="orderQty"
+                       min="1"
+                       value="1">
+
+            </div>
+
+            <div class="popup-buttons">
+
+                <button type="button"
+                        class="zalo-btn"
+                        onclick="sendToZalo()">
+
+                    GỬI QUA ZALO
+
+                </button>
+
+                <button type="button"
+                        class="messenger-btn"
+                        onclick="sendToMessenger()">
+
+                    GỬI QUA MESSENGER
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
 
-<!-- SCRIPT -->
 
-<script src="products.js"></script>
+
+<!-- ===== POPUP GIỎ HÀNG ===== -->
+
+<div class="popup-overlay"
+     id="cartPopup">
+
+    <div class="popup-box cart-box">
+
+        <span class="close-popup"
+              onclick="closeCartPopup()">
+            &times;
+        </span>
+
+        <h2>THÊM VÀO GIỎ HÀNG</h2>
+
+        <div class="popup-product">
+
+            <h3 id="cartProductName"></h3>
+
+            <label>Chọn mức cân</label>
+
+            <select id="cartWeightLevel"></select>
+
+            <label>Số lượng</label>
+
+            <input type="number"
+                   id="cartQty"
+                   min="1"
+                   value="1">
+
+        </div>
+
+        <button class="add-cart-btn"
+                onclick="addToCart()">
+
+            THÊM VÀO GIỎ
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ===== POPUP XEM GIỎ HÀNG ===== -->
+
+<div class="popup-overlay"
+     id="viewCartPopup">
+
+    <div class="popup-box view-cart-box">
+
+        <span class="close-popup"
+              onclick="closeViewCartPopup()">
+            &times;
+        </span>
+
+        <h2>GIỎ HÀNG</h2>
+
+        <div id="cartItems"></div>
+
+    </div>
+
+</div>
+
+
 
 <script>
 
-const params = new URLSearchParams(window.location.search);
+/* =========================
+   LẤY DANH SÁCH MỨC CÂN
+========================= */
 
-const id = Number(params.get("id"));
+function extractLevels(){
 
-const product = products.find(p => p.id === id);
+    let levels = [];
 
-if(!product){
+    const tableHTML = product.specs[0];
 
-    alert("Không tìm thấy sản phẩm!");
+    const temp = document.createElement("div");
 
-    throw new Error("Không tìm thấy sản phẩm");
+    temp.innerHTML = tableHTML;
 
-}
+    const rows = temp.querySelectorAll("tr");
 
-/* THÔNG TIN */
+    rows.forEach((row,index)=>{
 
-document.getElementById("productName").innerText = product.name;
+        if(index === 0) return;
 
-document.getElementById("productBrand").innerText = product.brand;
+        const firstCell = row.querySelector("td");
 
-document.getElementById("productOrigin").innerText = product.origin;
+        if(firstCell){
 
-document.getElementById("productDescription").innerText = product.description;
-
-/* THÔNG SỐ */
-
-const specs = document.getElementById("productSpecs");
-
-product.specs.forEach(spec => {
-
-    if(spec.includes("<table")){
-
-        specs.innerHTML += `
-        <div class="spec-table-wrap">
-            ${spec}
-        </div>
-        `;
-
-    }
-
-    else{
-
-        specs.innerHTML += `
-        <li>${spec}</li>
-        `;
-
-    }
-
-});
-
-/* ẢNH */
-
-const basePath = `images/${product.category}/${product.folder}`;
-
-const images = [];
-
-let currentSlide = 0;
-
-const mainImage = document.getElementById("mainImage");
-
-const thumbList = document.getElementById("thumbList");
-
-/* LOAD ẢNH */
-
-for(let i = 1; i <= 10; i++){
-
-    const imagePath = `${basePath}/${i}.jpg`;
-
-    const img = new Image();
-
-    img.src = imagePath;
-
-    img.onload = function(){
-
-        if(!images.includes(imagePath)){
-
-            images.push(imagePath);
-
-            renderSlider();
+            levels.push(firstCell.innerText);
 
         }
 
-    };
+    });
+
+    return levels;
 
 }
 
-/* RENDER */
 
-function renderSlider(){
 
-    if(images.length === 0){
+/* =========================
+   MỞ POPUP MUA NGAY
+========================= */
 
-        mainImage.src = "images/no-image.jpg";
+function openOrderPopup(){
 
-        return;
+    document.getElementById("orderPopup")
+            .classList.add("active");
 
-    }
+    document.getElementById("popupProductName")
+            .innerText = product.name;
 
-    mainImage.src = images[currentSlide];
+    const select = document.getElementById("weightLevel");
 
-    thumbList.innerHTML = "";
+    select.innerHTML = "";
 
-    images.forEach((img,index)=>{
+    extractLevels().forEach(level=>{
 
-        thumbList.innerHTML += `
-
-        <img src="${img}"
-             class="${index === currentSlide ? 'active-thumb' : ''}"
-             onclick="showSlide(${index})">
-
+        select.innerHTML += `
+        <option value="${level}">
+            ${level}
+        </option>
         `;
 
     });
 
 }
 
-/* SLIDE */
 
-function showSlide(index){
 
-    currentSlide = index;
-
-    renderSlider();
-
-}
-
-function nextSlide(){
-
-    currentSlide++;
-
-    if(currentSlide >= images.length){
-
-        currentSlide = 0;
-
-    }
-
-    renderSlider();
-
-}
-
-function prevSlide(){
-
-    currentSlide--;
-
-    if(currentSlide < 0){
-
-        currentSlide = images.length - 1;
-
-    }
-
-    renderSlider();
-
-}
-
-/* AUTO */
-
-setInterval(()=>{
-
-    if(images.length > 1){
-
-        nextSlide();
-
-    }
-
-},3000);
-
-/* POPUP */
-
-function openOrderPopup(){
-
-    document.getElementById("orderPopup").style.display = "flex";
-
-}
+/* =========================
+   ĐÓNG POPUP MUA NGAY
+========================= */
 
 function closeOrderPopup(){
 
-    document.getElementById("orderPopup").style.display = "none";
+    document.getElementById("orderPopup")
+            .classList.remove("active");
 
 }
 
-/* GIỎ HÀNG */
+
+
+/* =========================
+   GỬI ZALO
+========================= */
+
+function sendToZalo(){
+
+    const name =
+    document.getElementById("customerName").value;
+
+    const phone =
+    document.getElementById("customerPhone").value;
+
+    const company =
+    document.getElementById("customerCompany").value;
+
+    const tax =
+    document.getElementById("customerTax").value;
+
+    const invoice =
+    document.getElementById("customerInvoice").value;
+
+    const address =
+    document.getElementById("customerAddress").value;
+
+    const level =
+    document.getElementById("weightLevel").value;
+
+    const qty =
+    document.getElementById("orderQty").value;
+
+    const message = `ĐƠN HÀNG QTN GLOBAL
+
+Tên khách hàng: ${name}
+
+Số điện thoại: ${phone}
+
+Tên công ty: ${company}
+
+Mã số thuế: ${tax}
+
+Địa chỉ xuất hóa đơn: ${invoice}
+
+Địa chỉ giao hàng: ${address}
+
+Sản phẩm: ${product.name}
+
+Mức cân: ${level}
+
+Số lượng: ${qty}`;
+
+    const zaloURL =
+    `https://zalo.me/0383598603`;
+
+    window.open(zaloURL,"_blank");
+
+}
+
+
+
+/* =========================
+   GỬI MESSENGER
+========================= */
+
+function sendToMessenger(){
+
+    window.open(
+    "https://m.me/QTNSCALE",
+    "_blank"
+    );
+
+}
+
+
+
+/* =========================
+   POPUP THÊM GIỎ HÀNG
+========================= */
+
+function openCartPopup(){
+
+    document.getElementById("cartPopup")
+            .classList.add("active");
+
+    document.getElementById("cartProductName")
+            .innerText = product.name;
+
+    const select =
+    document.getElementById("cartWeightLevel");
+
+    select.innerHTML = "";
+
+    extractLevels().forEach(level=>{
+
+        select.innerHTML += `
+        <option value="${level}">
+            ${level}
+        </option>
+        `;
+
+    });
+
+}
+
+
+
+function closeCartPopup(){
+
+    document.getElementById("cartPopup")
+            .classList.remove("active");
+
+}
+
+
+
+/* =========================
+   THÊM VÀO GIỎ
+========================= */
 
 function addToCart(){
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const level =
+    document.getElementById("cartWeightLevel").value;
+
+    const qty =
+    document.getElementById("cartQty").value;
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
 
     cart.push({
 
         id: product.id,
+
         name: product.name,
-        image: `${basePath}/1.jpg`
+
+        level: level,
+
+        qty: qty
 
     });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
 
     updateCartCount();
 
     alert("Đã thêm vào giỏ hàng");
 
+    closeCartPopup();
+
 }
+
+
+
+/* =========================
+   ĐẾM GIỎ HÀNG
+========================= */
 
 function updateCartCount(){
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
 
-    document.getElementById("cartCount").innerText = cart.length;
+    document.getElementById("cartCount")
+            .innerText = cart.length;
 
 }
 
 updateCartCount();
 
-</script>
 
-</body>
-</html>
-```
+
+/* =========================
+   XEM GIỎ HÀNG
+========================= */
+
+function openViewCartPopup(){
+
+    document.getElementById("viewCartPopup")
+            .classList.add("active");
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+    let html = "";
+
+    if(cart.length === 0){
+
+        html = "<p>Chưa có sản phẩm nào.</p>";
+
+    }else{
+
+        cart.forEach((item,index)=>{
+
+            html += `
+
+            <div class="cart-item">
+
+                <h4>${item.name}</h4>
+
+                <p>Mức cân: ${item.level}</p>
+
+                <p>Số lượng: ${item.qty}</p>
+
+                <button onclick="removeCart(${index})">
+
+                    Xóa
+
+                </button>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    document.getElementById("cartItems")
+            .innerHTML = html;
+
+}
+
+
+
+function closeViewCartPopup(){
+
+    document.getElementById("viewCartPopup")
+            .classList.remove("active");
+
+}
+
+
+
+/* =========================
+   XÓA GIỎ HÀNG
+========================= */
+
+function removeCart(index){
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.splice(index,1);
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+    openViewCartPopup();
+
+}
+
+</script>

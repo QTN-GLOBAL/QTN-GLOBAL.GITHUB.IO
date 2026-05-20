@@ -1,662 +1,411 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#f4f4f4;
-    color:#222;
-}
-
 /* =========================
-   HEADER
+   POPUP OVERLAY
 ========================= */
 
-.header{
-    background:#fff;
+.popup-overlay{
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+
+    padding: 20px;
+
 }
 
-.top-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    flex-wrap:wrap;
-    gap:20px;
+.popup-overlay.active{
+
+    display: flex;
+
 }
 
-.logo-area{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
 
-.logo-area img{
-    height:75px;
-    width:auto;
-    object-fit:contain;
-}
-
-.company-info h2{
-    font-size:52px;
-    font-weight:900;
-    line-height:1;
-
-    background:linear-gradient(
-        90deg,
-        #2563eb,
-        #1d4ed8,
-        #d4a017,
-        #facc15
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.company-info p{
-    margin-top:5px;
-    color:#666;
-    font-size:18px;
-    font-weight:600;
-}
-
-.top-contact{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
-}
-
-.top-btn{
-    background:#1e3a8a;
-    color:#fff;
-    padding:12px 22px;
-    border-radius:40px;
-    text-decoration:none;
-    font-weight:700;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.social-icon{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:#fff;
-    text-decoration:none;
-}
-
-.zalo{
-    background:#0ea5e9;
-}
-
-.facebook{
-    background:#1877f2;
-}
-
-.zalo-text{
-    color:#fff;
-    font-size:14px;
-    font-weight:bold;
-}
-
-.cart-header{
-    background:#e60000;
-    color:#fff;
-
-    padding:12px 18px;
-    border-radius:40px;
-
-    cursor:pointer;
-    font-weight:700;
-}
 
 /* =========================
-   MENU
+   POPUP BOX
 ========================= */
 
-.navbar{
-    background:#1e3a8a;
-    display:flex;
-    align-items:center;
-    padding:0 40px;
-    flex-wrap:wrap;
+.popup-box{
+
+    background: #fff;
+
+    width: 100%;
+
+    max-width: 550px;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    position: relative;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    animation: popupShow 0.25s ease;
+
 }
 
-.navbar a{
-    color:#fff;
-    text-decoration:none;
-    padding:18px 20px;
-    display:block;
-    font-weight:600;
+
+
+@keyframes popupShow{
+
+    from{
+
+        transform: scale(0.9);
+
+        opacity: 0;
+
+    }
+
+    to{
+
+        transform: scale(1);
+
+        opacity: 1;
+
+    }
+
 }
 
-.navbar a:hover{
-    background:rgba(255,255,255,0.1);
-}
 
-.dropdown{
-    position:relative;
-}
-
-.dropdown-content{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0;
-
-    background:#fff;
-    min-width:220px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,0.15);
-
-    z-index:999;
-}
-
-.dropdown-content a{
-    color:#222;
-}
-
-.dropdown:hover .dropdown-content{
-    display:block;
-}
 
 /* =========================
-   HERO
+   NÚT ĐÓNG
 ========================= */
 
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.close-popup{
 
-    gap:40px;
+    position: absolute;
 
-    padding:40px 50px;
+    top: 10px;
 
-    background:linear-gradient(
-        to right,
-        #08152f,
-        #2f3d56
-    );
+    right: 15px;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    color: #444;
+
 }
 
-.hero-left{
-    width:48%;
-    color:#fff;
-}
 
-.hero-left h1{
-    font-size:42px;
-    line-height:1.1;
-    margin-bottom:25px;
-    font-weight:800;
-}
-
-.highlight{
-    color:#facc15;
-}
-
-.hero-list{
-    list-style:none;
-    margin-bottom:25px;
-}
-
-.hero-list li{
-    margin-bottom:10px;
-    font-size:16px;
-    font-weight:700;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.hero-contact{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.hero-phone{
-    text-decoration:none;
-    color:#fff;
-
-    padding:14px 22px;
-    border-radius:40px;
-
-    font-weight:700;
-}
-
-.hero-phone.green{
-    background:#16a34a;
-}
-
-.hero-phone.blue{
-    background:#2563eb;
-}
-
-.hero-right{
-    width:42%;
-}
-
-.banner-slider img{
-    width:100%;
-    height:280px;
-
-    object-fit:cover;
-
-    border-radius:20px;
-}
 
 /* =========================
-   MAIN
+   TIÊU ĐỀ
 ========================= */
 
-.main-layout{
-    display:flex;
-    gap:25px;
-    padding:30px;
+.popup-box h2{
+
+    margin-bottom: 20px;
+
+    font-size: 24px;
+
+    color: #0d47a1;
+
+    text-align: center;
+
 }
 
-.sidebar{
-    width:250px;
 
-    background:#fff;
-
-    border-radius:12px;
-
-    padding:20px;
-
-    height:fit-content;
-}
-
-.sidebar h2{
-    margin-bottom:20px;
-}
-
-.sidebar ul{
-    list-style:none;
-}
-
-.sidebar li{
-    padding:14px 0;
-    border-bottom:1px solid #eee;
-
-    cursor:pointer;
-
-    transition:0.3s;
-}
-
-.sidebar li:hover{
-    color:#2563eb;
-    padding-left:5px;
-}
-
-.product-grid{
-    flex:1;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fill,minmax(260px,1fr));
-
-    gap:25px;
-}
 
 /* =========================
-   CARD
+   INPUT
 ========================= */
 
-.product-card{
-    background:#fff;
+.popup-box input,
+.popup-box select{
 
-    border-radius:14px;
+    width: 100%;
 
-    overflow:hidden;
+    padding: 12px;
 
-    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
 
-    transition:0.3s;
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
 }
 
-.product-card:hover{
-    transform:translateY(-5px);
+
+
+.popup-box input:focus,
+.popup-box select:focus{
+
+    border-color: #0d47a1;
+
 }
 
-.product-card img{
-    width:100%;
-    height:240px;
-    object-fit:cover;
-}
 
-.product-info{
-    padding:18px;
-}
-
-.product-info h3{
-    font-size:20px;
-    margin-bottom:15px;
-}
-
-.detail-btn{
-    display:inline-block;
-
-    background:#e60000;
-    color:#fff;
-
-    padding:12px 18px;
-
-    border-radius:8px;
-
-    text-decoration:none;
-    font-weight:bold;
-}
 
 /* =========================
-   CART PRO
+   THÔNG TIN SẢN PHẨM
 ========================= */
 
-.cart-overlay{
-    position:fixed;
-    inset:0;
+.popup-product{
 
-    background:rgba(0,0,0,0.5);
+    margin-top: 15px;
 
-    display:none;
-
-    z-index:999;
 }
 
-.cart-modal{
-    position:fixed;
 
-    top:0;
-    right:0;
 
-    width:360px;
-    max-width:100%;
+.popup-product h3{
 
-    height:100%;
+    margin-bottom: 15px;
 
-    background:#fff;
+    color: #e53935;
 
-    display:none;
-    flex-direction:column;
+    font-size: 20px;
 
-    z-index:1000;
-
-    box-shadow:-5px 0 20px rgba(0,0,0,0.2);
 }
 
-.cart-modal .cart-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
 
-    background:#fff;
-    color:#222;
 
-    border-bottom:1px solid #eee;
+.popup-product label{
 
-    border-radius:0;
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-weight: bold;
+
 }
 
-.cart-modal .cart-header button{
-    border:none;
-    background:none;
-    font-size:24px;
-    cursor:pointer;
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.popup-buttons{
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
 }
 
-#cartBody{
-    flex:1;
-    overflow-y:auto;
+
+
+.popup-buttons button{
+
+    flex: 1;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    color: #fff;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
 }
+
+
+
+.zalo-btn{
+
+    background: #0068ff;
+
+}
+
+
+
+.zalo-btn:hover{
+
+    opacity: 0.9;
+
+}
+
+
+
+.messenger-btn{
+
+    background: #0084ff;
+
+}
+
+
+
+.messenger-btn:hover{
+
+    opacity: 0.9;
+
+}
+
+
+
+/* =========================
+   THÊM GIỎ HÀNG
+========================= */
+
+.add-cart-btn{
+
+    width: 100%;
+
+    border: none;
+
+    background: #e53935;
+
+    color: #fff;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 15px;
+
+    transition: 0.3s;
+
+}
+
+
+
+.add-cart-btn:hover{
+
+    background: #c62828;
+
+}
+
+
+
+/* =========================
+   GIỎ HÀNG
+========================= */
 
 .cart-item{
-    padding:15px;
-    border-bottom:1px solid #eee;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
 }
+
+
 
 .cart-item h4{
-    margin-bottom:5px;
+
+    margin-bottom: 10px;
+
+    color: #0d47a1;
+
 }
+
+
 
 .cart-item p{
-    margin-bottom:10px;
-    color:#666;
+
+    margin-bottom: 6px;
+
 }
 
-.cart-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+
+
+.cart-item button{
+
+    margin-top: 10px;
+
+    border: none;
+
+    background: #e53935;
+
+    color: #fff;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
 }
 
-.cart-remove{
-    border:none;
-    background:#e60000;
-    color:#fff;
 
-    padding:5px 10px;
-
-    border-radius:6px;
-
-    cursor:pointer;
-}
-
-.cart-footer{
-    padding:15px;
-    border-top:1px solid #eee;
-}
-
-.btn-buy{
-    width:100%;
-
-    border:none;
-
-    background:#16a34a;
-    color:#fff;
-
-    padding:14px;
-
-    border-radius:10px;
-
-    font-size:16px;
-    font-weight:bold;
-
-    cursor:pointer;
-}
 
 /* =========================
-   DETAIL
+   GIỎ HÀNG HEADER
 ========================= */
 
-.detail-page{
-    padding:30px;
+.cart-header{
+
+    background: #e53935;
+
+    color: #fff;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
 }
 
-.detail-container{
-    display:flex;
-    gap:30px;
 
-    background:#fff;
 
-    padding:25px;
+.cart-header:hover{
 
-    border-radius:15px;
+    background: #c62828;
+
 }
 
-.slider-area{
-    width:45%;
-}
 
-.slider-wrapper{
-    position:relative;
-}
-
-.main-image{
-    width:100%;
-    height:350px;
-
-    object-fit:contain;
-
-    background:#fff;
-}
-
-.prev-btn,
-.next-btn{
-    position:absolute;
-
-    top:50%;
-
-    transform:translateY(-50%);
-
-    width:45px;
-    height:45px;
-
-    border:none;
-
-    background:rgba(0,0,0,0.5);
-    color:#fff;
-
-    cursor:pointer;
-
-    font-size:20px;
-}
-
-.prev-btn{
-    left:10px;
-}
-
-.next-btn{
-    right:10px;
-}
-
-.thumb-list{
-    display:flex;
-    gap:10px;
-    margin-top:15px;
-}
-
-.thumb-list img{
-    width:70px;
-    height:70px;
-
-    object-fit:cover;
-
-    border-radius:8px;
-
-    cursor:pointer;
-}
-
-.detail-buttons{
-    display:flex;
-    gap:15px;
-
-    margin-top:20px;
-}
-
-.buy-btn,
-.contact-btn{
-    flex:1;
-
-    border:none;
-
-    color:#fff;
-
-    padding:14px;
-
-    border-radius:10px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-.buy-btn{
-    background:#ef4444;
-}
-
-.contact-btn{
-    background:#0284c7;
-}
-
-.detail-info{
-    width:55%;
-}
-
-.detail-info h1{
-    margin-bottom:15px;
-    font-size:30px;
-}
-
-.detail-info p{
-    margin-bottom:10px;
-    line-height:1.6;
-}
-
-#productSpecs{
-    margin-left:20px;
-}
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width:768px){
 
-    .hero{
-        flex-direction:column;
+    .popup-box{
+
+        padding: 18px;
+
     }
 
-    .hero-left,
-    .hero-right{
-        width:100%;
-    }
+    .popup-buttons{
 
-    .main-layout{
-        flex-direction:column;
-    }
+        flex-direction: column;
 
-    .sidebar{
-        width:100%;
-    }
-
-    .detail-container{
-        flex-direction:column;
-    }
-
-    .slider-area,
-    .detail-info{
-        width:100%;
-    }
-
-    .top-header{
-        padding:20px;
-    }
-
-    .navbar{
-        padding:0 10px;
-    }
-
-    .hero{
-        padding:30px 20px;
-    }
-
-    .main-layout{
-        padding:20px;
     }
 
 }

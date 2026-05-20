@@ -1,321 +1,376 @@
 /* =========================
-   HIỂN THỊ SẢN PHẨM
+   GIỎ HÀNG
 ========================= */
 
-const productGrid = document.getElementById("productGrid");
-
-function renderProducts(list){
-
-    if(!productGrid) return;
-
-    productGrid.innerHTML = "";
-
-    list.forEach(product => {
-
-        productGrid.innerHTML += `
-
-        <div class="product-card">
-
-            <img src="images/${product.category}/${product.folder}/main.jpg">
-
-            <div class="product-info">
-
-                <h3>${product.name}</h3>
-
-                <a class="detail-btn"
-                   href="chitiet.html?id=${product.id}">
-
-                    Chi tiết
-
-                </a>
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-/* LOAD TOÀN BỘ */
-if(productGrid){
-
-    renderProducts(products);
-
-}
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 /* =========================
-   FILTER DANH MỤC
+   ĐẾM GIỎ HÀNG
 ========================= */
 
-function filterProducts(category){
+function updateCartCount(){
 
-    const filtered = products.filter(product =>
-        product.category === category
-    );
+    const cartCount = document.getElementById("cartCount");
 
-    renderProducts(filtered);
+    if(cartCount){
+
+        cartCount.innerText = cart.length;
+
+    }
 
 }
 
+updateCartCount();
+
 /* =========================
-   BANNER SLIDER
+   LẤY MỨC CÂN TỪ TABLE
 ========================= */
 
-const bannerImages = [
+function getLevelsFromSpecs(product){
 
-    "images/can-ban/jadever-jwl/main.jpg",
-    "images/can-dem/vibra-alc/main.jpg"
+    let levels = [];
 
-];
+    product.specs.forEach(spec=>{
 
-let bannerIndex = 0;
+        if(spec.includes("<table")){
 
-const bannerImage =
-document.getElementById("bannerImage");
+            const temp = document.createElement("div");
 
-if(bannerImage){
+            temp.innerHTML = spec;
 
-    setInterval(()=>{
+            const rows = temp.querySelectorAll("tr");
 
-        bannerIndex++;
+            rows.forEach((row,index)=>{
 
-        if(bannerIndex >= bannerImages.length){
+                if(index === 0) return;
 
-            bannerIndex = 0;
+                const cols = row.querySelectorAll("td");
+
+                if(cols.length > 0){
+
+                    levels.push(cols[0].innerText);
+
+                }
+
+            });
 
         }
 
-        bannerImage.src =
-        bannerImages[bannerIndex];
+    });
 
-    },3000);
+    return levels;
 
 }
 
 /* =========================
-   GIỎ HÀNG PRO
+   POPUP MUA NGAY
 ========================= */
 
-let cart =
-JSON.parse(localStorage.getItem("cart")) || [];
+function openOrderPopup(){
 
-/* ===== OPEN ===== */
+    document.getElementById("orderPopup").style.display = "flex";
 
-function openCart(){
+    if(typeof product !== "undefined"){
 
-    const modal =
-    document.getElementById("cartModal");
+        document.getElementById("orderProductName").value = product.name;
 
-    const overlay =
-    document.getElementById("cartOverlay");
+        const levels = getLevelsFromSpecs(product);
 
-    if(modal) modal.style.display = "flex";
+        const select = document.getElementById("orderLevel");
 
-    if(overlay) overlay.style.display = "block";
+        select.innerHTML = "";
 
-    renderCart();
+        levels.forEach(level=>{
 
-}
+            select.innerHTML += `
+            <option value="${level}">
+                ${level}
+            </option>
+            `;
 
-/* ===== CLOSE ===== */
-
-function closeCart(){
-
-    const modal =
-    document.getElementById("cartModal");
-
-    const overlay =
-    document.getElementById("cartOverlay");
-
-    if(modal) modal.style.display = "none";
-
-    if(overlay) overlay.style.display = "none";
-
-}
-
-/* ===== ADD ===== */
-
-function addToCart(name, level, qty){
-
-    qty = Number(qty);
-
-    if(qty <= 0) return;
-
-    const existed = cart.find(item =>
-
-        item.name === name &&
-        item.level === level
-
-    );
-
-    if(existed){
-
-        existed.qty += qty;
-
-    }else{
-
-        cart.push({
-            name,
-            level,
-            qty
         });
 
     }
 
-    saveCart();
+}
 
-    updateCartCount();
+function closeOrderPopup(){
 
-    alert("Đã thêm vào giỏ hàng");
+    document.getElementById("orderPopup").style.display = "none";
 
 }
 
-/* ===== REMOVE ===== */
+/* =========================
+   POPUP GIỎ HÀNG
+========================= */
 
-function removeItem(index){
+function openCartPopup(){
 
-    cart.splice(index,1);
+    document.getElementById("cartPopup").style.display = "flex";
 
-    saveCart();
+    if(typeof product !== "undefined"){
 
-    updateCartCount();
+        document.getElementById("cartProductName").value = product.name;
 
-    renderCart();
+        const levels = getLevelsFromSpecs(product);
 
-}
+        const select = document.getElementById("cartLevel");
 
-/* ===== RENDER ===== */
+        select.innerHTML = "";
 
-function renderCart(){
+        levels.forEach(level=>{
 
-    const cartBody =
-    document.getElementById("cartBody");
+            select.innerHTML += `
+            <option value="${level}">
+                ${level}
+            </option>
+            `;
 
-    if(!cartBody) return;
-
-    cartBody.innerHTML = "";
-
-    if(cart.length === 0){
-
-        cartBody.innerHTML = `
-        <p class="empty-cart">
-            Giỏ hàng đang trống
-        </p>
-        `;
-
-        return;
+        });
 
     }
 
-    cart.forEach((item,index)=>{
+}
 
-        cartBody.innerHTML += `
+function closeCartPopup(){
 
-        <div class="cart-item">
+    document.getElementById("cartPopup").style.display = "none";
 
-            <h4>${item.name}</h4>
+}
 
-            <p>${item.level}</p>
+/* =========================
+   THÊM GIỎ HÀNG
+========================= */
 
-            <div class="cart-row">
+function addToCart(){
 
-                <span>
-                    SL: ${item.qty}
-                </span>
+    const level = document.getElementById("cartLevel").value;
 
-                <button
-                    class="cart-remove"
-                    onclick="removeItem(${index})">
+    const qty = document.getElementById("cartQty").value;
 
-                    Xóa
+    cart.push({
 
-                </button>
+        id: product.id,
 
-            </div>
+        name: product.name,
 
-        </div>
+        level: level,
 
+        qty: qty,
+
+        image: `images/${product.category}/${product.folder}/1.jpg`
+
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert("Đã thêm vào giỏ hàng!");
+
+    closeCartPopup();
+
+}
+
+/* =========================
+   MỞ TRANG GIỎ HÀNG
+========================= */
+
+function openViewCartPopup(){
+
+    window.location.href = "giohang.html";
+
+}
+
+/* =========================
+   SLIDER ẢNH
+========================= */
+
+let currentSlide = 0;
+
+let images = [];
+
+function loadProductImages(product){
+
+    const basePath =
+    `images/${product.category}/${product.folder}`;
+
+    images = [];
+
+    for(let i = 1; i <= 5; i++){
+
+        const img = new Image();
+
+        img.src = `${basePath}/${i}.jpg`;
+
+        img.onload = function(){
+
+            if(!images.includes(img.src)){
+
+                images.push(img.src);
+
+                renderThumbs();
+
+            }
+
+        };
+
+    }
+
+}
+
+function renderThumbs(){
+
+    const mainImage =
+    document.getElementById("mainImage");
+
+    const thumbList =
+    document.getElementById("thumbList");
+
+    if(!mainImage || !thumbList) return;
+
+    if(images.length === 0) return;
+
+    mainImage.src = images[currentSlide];
+
+    thumbList.innerHTML = "";
+
+    images.forEach((img,index)=>{
+
+        thumbList.innerHTML += `
+        <img src="${img}"
+             onclick="showSlide(${index})">
         `;
 
     });
 
 }
 
-/* ===== SAVE ===== */
+function showSlide(index){
 
-function saveCart(){
+    currentSlide = index;
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
+    document.getElementById("mainImage").src =
+    images[index];
 
 }
 
-/* ===== HEADER COUNT ===== */
+function nextSlide(){
 
-function updateCartCount(){
+    currentSlide++;
 
-    const total = cart.reduce(
-        (sum,item)=>sum + item.qty,
-        0
-    );
+    if(currentSlide >= images.length){
 
-    const count =
-    document.getElementById("cartCount");
-
-    if(count){
-
-        count.innerText = total;
+        currentSlide = 0;
 
     }
+
+    document.getElementById("mainImage").src =
+    images[currentSlide];
 
 }
 
-/* ===== CHECKOUT ===== */
+function prevSlide(){
 
-function checkoutCart(){
+    currentSlide--;
 
-    if(cart.length === 0){
+    if(currentSlide < 0){
 
-        alert("Giỏ hàng đang trống");
-
-        return;
+        currentSlide = images.length - 1;
 
     }
 
-    let message =
-`ĐƠN HÀNG QTN GLOBAL
+    document.getElementById("mainImage").src =
+    images[currentSlide];
 
-`;
+}
 
-    cart.forEach(item=>{
+/* =========================
+   AUTO SLIDE
+========================= */
 
-        message +=
-`- ${item.name}
-${item.level}
-SL: ${item.qty}
+setInterval(()=>{
 
-`;
+    if(images.length > 1){
 
-    });
+        nextSlide();
 
-    navigator.clipboard.writeText(message);
+    }
 
-    alert(
-        "Đã copy đơn hàng.\nHãy dán vào Zalo để gửi."
-    );
+},3000);
+
+/* =========================
+   GỬI ZALO
+========================= */
+
+function sendToZalo(){
+
+    const name =
+    document.getElementById("customerName").value;
+
+    const phone =
+    document.getElementById("customerPhone").value;
+
+    const company =
+    document.getElementById("customerCompany").value;
+
+    const tax =
+    document.getElementById("customerTax").value;
+
+    const bill =
+    document.getElementById("customerBill").value;
+
+    const address =
+    document.getElementById("customerAddress").value;
+
+    const level =
+    document.getElementById("orderLevel").value;
+
+    const qty =
+    document.getElementById("orderQty").value;
+
+    const message =
+`ĐƠN ĐẶT HÀNG QTN GLOBAL
+
+Tên KH: ${name}
+
+SĐT: ${phone}
+
+Công ty: ${company}
+
+MST: ${tax}
+
+Địa chỉ hóa đơn:
+${bill}
+
+Địa chỉ giao hàng:
+${address}
+
+Sản phẩm:
+${product.name}
+
+Mức cân:
+${level}
+
+Số lượng:
+${qty}`;
+
+    const zaloUrl =
+`https://zalo.me/0383598603`;
+
+    window.open(zaloUrl,"_blank");
+
+}
+
+/* =========================
+   GỬI MESSENGER
+========================= */
+
+function sendToMessenger(){
 
     window.open(
-        "https://zalo.me/0383598603",
+        "https://m.me/QTNSCALE",
         "_blank"
     );
 
 }
-
-/* ===== LOAD ===== */
-
-updateCartCount();
