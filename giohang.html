@@ -1,401 +1,173 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng - QTN GLOBAL</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
 
-<meta charset="UTF-8">
+        h1 {
+            text-align: center;
+        }
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+        .cart-container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-<title>Giỏ hàng | QTN GLOBAL</title>
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            gap: 10px;
+        }
 
-<link rel="stylesheet"
-      href="style.css">
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        .info {
+            flex: 1;
+            margin-left: 10px;
+        }
 
+        .price {
+            color: red;
+            font-weight: bold;
+        }
+
+        .qty button {
+            padding: 5px 10px;
+        }
+
+        .qty span {
+            margin: 0 10px;
+        }
+
+        .remove {
+            background: red;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px;
+            color: #777;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<h1>🛒 Giỏ hàng của bạn</h1>
 
-<header class="header">
+<div class="cart-container">
+    <div id="cart-list"></div>
 
-    <div class="top-header">
-
-        <div class="logo-area">
-
-            <img src="images/logo.png"
-                 alt="QTN GLOBAL">
-
-            <div class="company-info">
-
-                <h2>QTN GLOBAL</h2>
-
-                <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
-
-            </div>
-
-        </div>
-
-        <div class="top-contact">
-
-            <a href="tel:0905913636"
-               class="top-btn">
-
-                <i class="fa-solid fa-phone"></i>
-                0905 913 636
-
-            </a>
-
-            <a href="tel:0383598603"
-               class="top-btn">
-
-                <i class="fa-solid fa-phone"></i>
-                0383 598 603
-
-            </a>
-
-            <a href="https://zalo.me/0383598603"
-               target="_blank"
-               class="social-icon zalo">
-
-                <span class="zalo-text">
-                    Zalo
-                </span>
-
-            </a>
-
-            <a href="https://m.me/QTNSCALE"
-               target="_blank"
-               class="social-icon facebook">
-
-                <i class="fa-brands fa-facebook-messenger"></i>
-
-            </a>
-
-            <a class="cart-header active-cart">
-
-                🛒 GIỎ HÀNG
-                (<span id="cartCount">0</span>)
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- MENU -->
-
-    <nav class="navbar">
-
-        <a href="index.html">
-            TRANG CHỦ
-        </a>
-
-        <a href="#">
-            GIỚI THIỆU
-        </a>
-
-        <div class="dropdown">
-
-            <a href="#">
-                SẢN PHẨM ▼
-            </a>
-
-            <div class="dropdown-content">
-
-                <a href="sanpham.html?category=can-ban">
-                    Cân bàn
-                </a>
-
-                <a href="sanpham.html?category=can-dem">
-                    Cân đếm
-                </a>
-
-                <a href="sanpham.html?category=can-phan-tich">
-                    Cân kỹ thuật
-                </a>
-
-                <a href="sanpham.html?category=can-treo">
-                    Cân treo
-                </a>
-
-                <a href="sanpham.html?category=can-chong-nuoc">
-                    Cân chống nước
-                </a>
-
-                <a href="sanpham.html?category=dau-can-dien-tu">
-                    Đầu cân điện tử
-                </a>
-
-            </div>
-
-        </div>
-
-        <a href="#">
-            LIÊN HỆ
-        </a>
-
-    </nav>
-
-</header>
-
-<!-- CART PAGE -->
-
-<div class="cart-page">
-
-    <h1>
-        GIỎ HÀNG CỦA BẠN
-    </h1>
-
-    <div id="cartPageItems"
-         class="cart-page-items">
-
-    </div>
-
+    <div class="total" id="total"></div>
 </div>
-
-<!-- POPUP MUA NGAY -->
-
-<div class="popup-overlay"
-     id="buyNowPopup">
-
-    <div class="popup-box buy-box">
-
-        <span class="close-popup"
-              onclick="closeBuyNowPopup()">
-
-              ×
-
-        </span>
-
-        <h2>
-            ĐẶT HÀNG
-        </h2>
-
-        <input type="text"
-               id="customerName"
-               placeholder="Tên khách hàng">
-
-        <input type="text"
-               id="customerPhone"
-               placeholder="Số điện thoại">
-
-        <input type="text"
-               id="customerCompany"
-               placeholder="Công ty">
-
-        <input type="text"
-               id="customerTax"
-               placeholder="Mã số thuế">
-
-        <textarea id="customerInvoice"
-                  placeholder="Địa chỉ viết hóa đơn"></textarea>
-
-        <textarea id="customerAddress"
-                  placeholder="Địa chỉ giao hàng"></textarea>
-
-        <input type="text"
-               id="buyProductName"
-               readonly>
-
-        <input type="text"
-               id="buyWeight"
-               readonly>
-
-        <input type="number"
-               id="buyQty"
-               value="1"
-               min="1">
-
-        <div class="buy-buttons">
-
-            <button class="zalo-btn"
-                    onclick="sendOrderZalo()">
-
-                GỬI ĐƠN QUA ZALO
-
-            </button>
-
-            <button class="messenger-btn"
-                    onclick="sendOrderMessenger()">
-
-                GỬI ĐƠN QUA MESSENGER
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- JS -->
-
-<script src="products.js"></script>
-
-<script src="script.js"></script>
 
 <script>
+function loadCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let list = document.getElementById("cart-list");
+    let totalBox = document.getElementById("total");
 
-const cartPageItems =
-document.getElementById("cartPageItems");
+    list.innerHTML = "";
 
-function renderCartPage(){
-
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
-
-    updateCartCount();
-
-    if(cart.length === 0){
-
-        cartPageItems.innerHTML = `
-
-        <div class="empty-cart">
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-            <p>
-                Giỏ hàng đang trống
-            </p>
-
-            <a href="index.html"
-               class="continue-btn">
-
-               TIẾP TỤC MUA HÀNG
-
-            </a>
-
-        </div>
-
-        `;
-
+    if (cart.length === 0) {
+        list.innerHTML = "<p class='empty'>Giỏ hàng đang trống</p>";
+        totalBox.innerHTML = "";
         return;
-
     }
 
-    let html = "";
+    let total = 0;
 
-    cart.forEach((item,index)=>{
+    cart.forEach((item, index) => {
+        total += item.price * item.quantity;
 
-        html += `
+        list.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}">
 
-        <div class="cart-page-card">
-
-            <div class="cart-page-image">
-
-                <img src="
-                images/${item.category}/${item.folder}/1.jpg
-                "
-                alt="${item.name}">
-
-            </div>
-
-            <div class="cart-page-info">
-
-                <h3>
-                    ${item.name}
-                </h3>
-
-                <p>
-                    <strong>Mức cân:</strong>
-                    ${item.weight}
-                </p>
-
-                <div class="cart-qty">
-
-                    <button onclick="
-                    changeCartQty(${index},-1)
-                    ">
-                        -
-                    </button>
-
-                    <span>
-                        ${item.qty}
-                    </span>
-
-                    <button onclick="
-                    changeCartQty(${index},1)
-                    ">
-                        +
-                    </button>
-
+                <div class="info">
+                    <h3>${item.name}</h3>
+                    <div class="price">${item.price.toLocaleString()} đ</div>
                 </div>
 
-                <button class="buy-btn"
-                        onclick="
-                        buyCartItem(
-                        '${item.name}',
-                        '${item.weight}',
-                        ${item.qty}
-                        )
-                        ">
+                <div class="qty">
+                    <button onclick="changeQty(${index}, -1)">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="changeQty(${index}, 1)">+</button>
+                </div>
 
-                    MUA NGAY
-
-                </button>
-
+                <button class="remove" onclick="removeItem(${index})">Xóa</button>
             </div>
-
-        </div>
-
         `;
-
     });
 
-    cartPageItems.innerHTML = html;
-
+    totalBox.innerHTML = "Tổng tiền: " + total.toLocaleString() + " đ";
 }
 
-function changeCartQty(index,change){
+function changeQty(index, change) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+    cart[index].quantity += change;
 
-    cart[index].qty += change;
-
-    if(cart[index].qty <= 0){
-
-        cart.splice(index,1);
-
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
     }
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    renderCartPage();
-
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+    updateCartCount();
 }
 
-function buyCartItem(name,weight,qty){
+function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    document.getElementById(
-        "buyNowPopup"
-    ).style.display = "flex";
+    cart.splice(index, 1);
 
-    document.getElementById(
-        "buyProductName"
-    ).value = name;
-
-    document.getElementById(
-        "buyWeight"
-    ).value = weight;
-
-    document.getElementById(
-        "buyQty"
-    ).value = qty;
-
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+    updateCartCount();
 }
 
-renderCartPage();
+// cập nhật icon giỏ hàng (nếu có trên header)
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+    let el = document.getElementById("cart-count");
+    if (el) el.innerText = count;
+}
+
+loadCart();
+updateCartCount();
 </script>
 
 </body>
