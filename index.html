@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>QTN GLOBAL | Cân Điện Tử Chính Hãng</title>
+<title>QTN GLOBAL</title>
 
 <link rel="stylesheet"
       href="style.css">
@@ -35,7 +35,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             <div class="company-info">
 
-                <h2>QTN GLOBAL</h2>
+                <h2>
+                    QTN GLOBAL
+                </h2>
 
                 <p>
                     CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
@@ -67,27 +69,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                target="_blank"
                class="social-icon zalo">
 
-                <span class="zalo-text">
-                    Zalo
-                </span>
+                Zalo
 
             </a>
 
             <a href="https://m.me/QTNSCALE"
                target="_blank"
-               class="social-icon facebook">
+               class="social-icon messenger">
 
                 <i class="fa-brands fa-facebook-messenger"></i>
 
             </a>
 
-            <a class="cart-header"
-               onclick="openViewCartPopup()">
+            <button class="cart-header"
+                    onclick="openViewCartPopup()">
 
                 🛒 GIỎ HÀNG
                 (<span id="cartCount">0</span>)
 
-            </a>
+            </button>
 
         </div>
 
@@ -95,7 +95,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     <!-- MENU -->
 
-    <nav class="navbar">
+    <nav class="navbar"
+         id="navbar">
 
         <a href="index.html">
             TRANG CHỦ
@@ -137,10 +138,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                     Đầu cân điện tử
                 </a>
 
-                <a href="sanpham.html?category=can-in-tem-ma-vach">
-                    Cân in tem mã vạch
-                </a>
-
             </div>
 
         </div>
@@ -153,236 +150,162 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </header>
 
-<!-- SLIDER -->
+<!-- MAIN -->
 
-<section class="banner-slider">
+<main class="home-layout">
 
-    <div class="slides">
+    <!-- SIDEBAR -->
 
-        <img src="images/banner/1.jpg"
-             class="slide active">
+    <aside class="sidebar">
 
-        <img src="images/banner/2.jpg"
-             class="slide">
+        <h3>
+            DANH MỤC SẢN PHẨM
+        </h3>
 
-        <img src="images/banner/3.jpg"
-             class="slide">
-
-    </div>
-
-</section>
-
-<!-- CATEGORY -->
-
-<section class="category-section">
-
-    <h2>
-        DANH MỤC SẢN PHẨM
-    </h2>
-
-    <div class="category-grid">
-
-        <a href="sanpham.html?category=can-ban"
-           class="category-card">
-
-            <img src="images/categories/can-ban.jpg"
-                 alt="Cân bàn">
-
-            <span>
-                Cân bàn
-            </span>
-
+        <a href="sanpham.html?category=can-ban">
+            Cân bàn
         </a>
 
-        <a href="sanpham.html?category=can-dem"
-           class="category-card">
-
-            <img src="images/categories/can-dem.jpg"
-                 alt="Cân đếm">
-
-            <span>
-                Cân đếm
-            </span>
-
+        <a href="sanpham.html?category=can-dem">
+            Cân đếm
         </a>
 
-        <a href="sanpham.html?category=can-phan-tich"
-           class="category-card">
-
-            <img src="images/categories/can-phan-tich.jpg"
-                 alt="Cân kỹ thuật">
-
-            <span>
-                Cân kỹ thuật
-            </span>
-
+        <a href="sanpham.html?category=can-phan-tich">
+            Cân kỹ thuật
         </a>
 
-        <a href="sanpham.html?category=can-treo"
-           class="category-card">
-
-            <img src="images/categories/can-treo.jpg"
-                 alt="Cân treo">
-
-            <span>
-                Cân treo
-            </span>
-
+        <a href="sanpham.html?category=can-treo">
+            Cân treo
         </a>
 
-        <a href="sanpham.html?category=can-chong-nuoc"
-           class="category-card">
-
-            <img src="images/categories/can-chong-nuoc.jpg"
-                 alt="Cân chống nước">
-
-            <span>
-                Cân chống nước
-            </span>
-
+        <a href="sanpham.html?category=can-chong-nuoc">
+            Cân chống nước
         </a>
 
-        <a href="sanpham.html?category=dau-can-dien-tu"
-           class="category-card">
-
-            <img src="images/categories/dau-can.jpg"
-                 alt="Đầu cân điện tử">
-
-            <span>
-                Đầu cân điện tử
-            </span>
-
+        <a href="sanpham.html?category=dau-can-dien-tu">
+            Đầu cân điện tử
         </a>
 
-    </div>
+    </aside>
 
-</section>
+    <!-- CONTENT -->
 
-<!-- SẢN PHẨM MỚI -->
+    <section class="main-content">
 
-<section class="home-products">
+        <!-- SLIDER -->
 
-    <h2>
-        SẢN PHẨM NỔI BẬT
-    </h2>
+        <div class="banner-slider">
 
-    <div class="product-grid"
-         id="homeProducts">
+            <div class="slide fade">
 
-    </div>
+                <img src="images/banner/1.jpg"
+                     alt="Banner 1">
 
-</section>
+            </div>
+
+            <div class="slide fade">
+
+                <img src="images/banner/2.jpg"
+                     alt="Banner 2">
+
+            </div>
+
+            <div class="slide fade">
+
+                <img src="images/banner/3.jpg"
+                     alt="Banner 3">
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT SECTION -->
+
+        <section class="home-products">
+
+            <div class="section-title">
+
+                <h2>
+                    SẢN PHẨM NỔI BẬT
+                </h2>
+
+            </div>
+
+            <div class="product-grid"
+                 id="homeProductGrid">
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+<!-- POPUP -->
+
+<div class="popup-overlay"
+     id="cartPopup">
+
+</div>
 
 <!-- FOOTER -->
 
 <footer class="footer">
 
-    <div class="footer-box">
+    <div class="footer-content">
 
-        <h3>
-            QTN GLOBAL
-        </h3>
+        <div class="footer-box">
 
-        <p>
-            Chuyên cung cấp cân điện tử chính hãng,
-            thiết bị cân công nghiệp,
-            cân thủy sản,
-            cân kỹ thuật.
-        </p>
+            <h3>
+                QTN GLOBAL
+            </h3>
 
-    </div>
+            <p>
+                Chuyên cung cấp cân điện tử,
+                đầu cân điện tử,
+                cân công nghiệp chính hãng.
+            </p>
 
-    <div class="footer-box">
+        </div>
 
-        <h3>
-            LIÊN HỆ
-        </h3>
+        <div class="footer-box">
 
-        <p>
-            Hotline: 0905 913 636
-        </p>
+            <h3>
+                LIÊN HỆ
+            </h3>
 
-        <p>
-            Zalo: 0383 598 603
-        </p>
+            <p>
+                Hotline:
+                0905 913 636
+            </p>
 
-        <p>
-            Facebook: QTN SCALE
-        </p>
+            <p>
+                Zalo:
+                0383 598 603
+            </p>
 
-    </div>
+        </div>
 
-</footer>
+        <div class="footer-box">
 
-<!-- POPUP GIỎ HÀNG -->
+            <h3>
+                HỖ TRỢ
+            </h3>
 
-<div class="popup-overlay"
-     id="cartPopup">
+            <p>
+                Giao hàng toàn quốc
+            </p>
 
-    <div class="popup-box cart-popup">
-
-        <span class="close-popup"
-              onclick="closeCartPopup()">
-
-              ×
-
-        </span>
-
-        <h2>
-            GIỎ HÀNG CỦA BẠN
-        </h2>
-
-        <div id="cartItems"></div>
-
-    </div>
-
-</div>
-
-<!-- POPUP THÊM GIỎ -->
-
-<div class="popup-overlay"
-     id="addCartPopup">
-
-    <div class="popup-box">
-
-        <span class="close-popup"
-              onclick="closeAddCartPopup()">
-
-              ×
-
-        </span>
-
-        <h2>
-            THÊM VÀO GIỎ HÀNG
-        </h2>
-
-        <div class="popup-form">
-
-            <input type="text"
-                   id="cartProductName"
-                   readonly>
-
-            <input type="text"
-                   id="cartWeight"
-                   placeholder="Mức cân">
-
-            <input type="number"
-                   id="cartQty"
-                   value="1"
-                   min="1">
-
-            <button onclick="addToCart()"
-                    class="popup-submit">
-
-                THÊM VÀO GIỎ
-
-            </button>
+            <p>
+                Tư vấn kỹ thuật miễn phí
+            </p>
 
         </div>
 
     </div>
 
-</div>
+</footer>
 
 <!-- JS -->
 
@@ -392,16 +315,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <script>
 
-/* =========================
-   HOME PRODUCTS
-========================= */
+/* =========================================
+   HIỂN THỊ SẢN PHẨM NỔI BẬT
+========================================= */
 
-const homeProducts =
-document.getElementById("homeProducts");
+const homeGrid =
+document.getElementById("homeProductGrid");
 
-products.slice(0,8).forEach(product=>{
+const featuredProducts =
+products.slice(0,8);
 
-    homeProducts.innerHTML += `
+featuredProducts.forEach(product=>{
+
+    homeGrid.innerHTML += `
 
     <div class="product-card">
 
@@ -411,44 +337,31 @@ products.slice(0,8).forEach(product=>{
 
             <img src="
             images/${product.category}/${product.folder}/1.jpg
-            "
-            alt="${product.name}">
+            ">
 
         </a>
 
-        <div class="product-info">
+        <h3>
+            ${product.name}
+        </h3>
 
-            <h3>
-                ${product.name}
-            </h3>
+        <div class="product-buttons">
 
-            <p>
-                ${product.brand}
-            </p>
+            <a href="
+            chitiet.html?id=${product.id}
+            "
+               class="detail-btn">
 
-            <div class="product-buttons">
+                CHI TIẾT
 
-                <a href="
-                chitiet.html?id=${product.id}
-                "
-                class="detail-btn">
+            </a>
 
-                    CHI TIẾT
+            <button class="cart-btn"
+                    onclick="openAddCartPopup(${product.id})">
 
-                </a>
+                THÊM GIỎ
 
-                <button class="cart-btn"
-                        onclick="
-                        openAddCartPopup(
-                        '${product.name}'
-                        )
-                        ">
-
-                    THÊM GIỎ
-
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
@@ -457,47 +370,6 @@ products.slice(0,8).forEach(product=>{
     `;
 
 });
-
-/* =========================
-   SLIDER
-========================= */
-
-let currentSlide = 0;
-
-const slides =
-document.querySelectorAll(".slide");
-
-function showSlide(index){
-
-    slides.forEach(slide=>{
-
-        slide.classList.remove("active");
-
-    });
-
-    slides[index].classList.add("active");
-
-}
-
-setInterval(()=>{
-
-    currentSlide++;
-
-    if(currentSlide >= slides.length){
-
-        currentSlide = 0;
-
-    }
-
-    showSlide(currentSlide);
-
-},4000);
-
-/* =========================
-   UPDATE CART
-========================= */
-
-updateCartCount();
 
 </script>
 
