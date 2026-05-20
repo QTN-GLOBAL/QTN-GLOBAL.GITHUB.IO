@@ -6,73 +6,55 @@
 <title>Chi tiết sản phẩm</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
 <header class="header">
-  <a href="index.html">← Quay lại</a>
+  <div class="top-header">
+    <div class="logo-area">
+      <img src="images/logo.png">
+      <div>
+        <h2>QTN GLOBAL</h2>
+        <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+      </div>
+    </div>
 
-  <a href="javascript:void(0)" onclick="openCart()">
-    🛒 (<span id="cartCount">0</span>)
-  </a>
+    <div class="top-contact">
+      <a class="cart-btn" onclick="openCart()">🛒 <span id="cartCount">0</span></a>
+    </div>
+  </div>
 </header>
 
 <section class="detail">
 
-  <!-- LEFT SLIDER -->
-  <div class="slider">
-
-    <button onclick="prevSlide()">‹</button>
-
-    <img id="mainImage" src="">
-
-    <button onclick="nextSlide()">›</button>
-
-    <div id="thumbs"></div>
-
+  <div class="detail-left">
+    <img id="mainImg">
   </div>
 
-  <!-- RIGHT INFO -->
-  <div class="info">
+  <div class="detail-right">
+    <h2 id="pName"></h2>
+    <p id="pDesc"></p>
+    <div id="pSpecs"></div>
 
-    <h1 id="name"></h1>
-    <p id="desc"></p>
-
-    <div id="meta"></div>
-
-    <div id="specs"></div>
-
-    <!-- LEVEL SELECT -->
-    <select id="levelSelect"></select>
-
-    <input type="number" id="qty" value="1" min="1">
-
-    <button onclick="addToCart()">THÊM VÀO GIỎ</button>
-    <button onclick="buyNow()">MUA NGAY</button>
-
+    <button onclick="addToCart()">➕ Thêm giỏ hàng</button>
+    <button onclick="buyNow()">🟢 Mua ngay</button>
   </div>
 
 </section>
 
 <!-- CART -->
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
-
-<div class="cart-modal" id="cartModal">
-  <div class="cart-header">
-    <h3>Giỏ hàng của bạn</h3>
-    <button onclick="closeCart()">✕</button>
-  </div>
-
-  <div id="cartItems"></div>
-
-  <div class="cart-footer">
-    <button onclick="openCheckout()">MUA NGAY</button>
+<div id="cartModal" class="cart-modal">
+  <div class="cart-box">
+    <h3>Giỏ hàng</h3>
+    <div id="cartBody"></div>
+    <button onclick="checkout()">Mua ngay</button>
+    <button onclick="closeCart()">Đóng</button>
   </div>
 </div>
 
 <script src="products.js"></script>
-<script src="giohang.js"></script>
 <script src="script.js"></script>
 
 </body>

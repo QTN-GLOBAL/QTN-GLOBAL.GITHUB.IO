@@ -1,80 +1,82 @@
-let currentProduct = null;
-let currentIndex = 0;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* INDEX RENDER */
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart));
+updateCartCount();
+}
+
+function updateCartCount(){
+document.querySelectorAll("#cartCount").forEach(e=>{
+e.innerText = cart.length;
+});
+}
+
+function addToCart(product){
+cart.push(product);
+saveCart();
+}
+
+function openCart(){
+document.getElementById("cartModal").style.display="block";
+renderCart();
+}
+
+function closeCart(){
+document.getElementById("cartModal").style.display="none";
+}
+
+function renderCart(){
+let html="";
+cart.forEach((p,i)=>{
+html+=`
+<div>
+<p>${p.name}</p>
+<button onclick="removeItem(${i})">X</button>
+</div>
+`;
+});
+document.getElementById("cartBody").innerHTML=html;
+}
+
+function removeItem(i){
+cart.splice(i,1);
+saveCart();
+renderCart();
+}
+
 function renderProducts(){
-const grid = document.getElementById("productGrid");
+let grid=document.getElementById("productGrid");
 if(!grid) return;
 
-grid.innerHTML = products.map(p => `
-<div class="card" onclick="goDetail(${p.id})">
-<h3>${p.name}</h3>
-<p>${p.brand}</p>
+grid.innerHTML=products.map(p=>`
+<div onclick="openDetail(${p.id})">
+<h4>${p.name}</h4>
 </div>
 `).join("");
 }
 
-function goDetail(id){
-location.href = "chitiet.html?id=" + id;
+function openDetail(id){
+location.href="chitiet.html?id="+id;
 }
 
-/* LOAD DETAIL */
 function loadDetail(){
-if(!location.pathname.includes("chitiet")) return;
+let id=new URLSearchParams(location.search).get("id");
+if(!id) return;
 
-const id = new URLSearchParams(location.search).get("id");
-currentProduct = products.find(p => p.id == id);
+let p=products.find(x=>x.id==id);
 
-document.getElementById("name").innerText = currentProduct.name;
-document.getElementById("desc").innerText = currentProduct.description;
+document.getElementById("pName").innerText=p.name;
+document.getElementById("pDesc").innerText=p.description;
+document.getElementById("pSpecs").innerHTML=p.specs[0];
 
-/* LEVELS */
-const levels = extractLevels(currentProduct.specs[0]);
-document.getElementById("levelSelect").innerHTML =
-levels.map(l => `<option>${l}</option>`).join("");
-
-/* SLIDER */
-loadImages(currentProduct);
+document.getElementById("mainImg").src=
+"images/"+p.category+"/"+p.folder+"/1.jpg";
 }
 
-/* EXTRACT LEVEL */
-function extractLevels(html){
-let div = document.createElement("div");
-div.innerHTML = html;
-return [...div.querySelectorAll("tr td:first-child")]
-.map(e => e.innerText);
-}
-
-/* SLIDER */
-function loadImages(p){
-let imgs = [];
-for(let i=1;i<=5;i++){
-imgs.push(`images/${p.category}/${p.folder}/${i}.jpg`);
-}
-document.getElementById("mainImage").src = imgs[0];
-
-window.images = imgs;
-}
-
-function nextSlide(){
-currentIndex = (currentIndex+1)%images.length;
-document.getElementById("mainImage").src = images[currentIndex];
-}
-
-function prevSlide(){
-currentIndex = (currentIndex-1+images.length)%images.length;
-document.getElementById("mainImage").src = images[currentIndex];
-}
-
-/* CART */
-function addToCart(){
-addItem(currentProduct, levelSelect.value, qty.value);
-}
-
-/* BUY NOW */
 function buyNow(){
-openCheckoutSingle(currentProduct);
+alert("Tạo form gửi Zalo/Messenger (bản sau mình nâng cấp tiếp)");
 }
 
+updateCartCount();
 renderProducts();
 loadDetail();

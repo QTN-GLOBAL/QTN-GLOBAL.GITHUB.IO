@@ -11,7 +11,6 @@
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
 
   <div class="top-header">
@@ -26,37 +25,60 @@
 
     <div class="top-contact">
 
-      <a href="javascript:void(0)" class="cart-header" onclick="openCart()">
-        🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
+      <a class="top-btn" href="tel:0905913636">
+        <i class="fa fa-phone"></i> 0905 913 636
+      </a>
+
+      <a class="top-btn" href="tel:0383598603">
+        <i class="fa fa-phone"></i> 0383 598 603
+      </a>
+
+      <a class="social zalo" href="https://zalo.me/0383598603">Zalo</a>
+
+      <a class="social fb" href="https://m.me/QTNSCALE">
+        <i class="fa-brands fa-facebook-messenger"></i>
+      </a>
+
+      <a class="cart-btn" onclick="openCart()">
+        🛒 <span id="cartCount">0</span>
       </a>
 
     </div>
 
   </div>
 
+  <nav class="navbar">
+    <a href="index.html">Trang chủ</a>
+    <a href="#">Giới thiệu</a>
+    <a href="#">Liên hệ</a>
+  </nav>
+
 </header>
 
-<!-- PRODUCT GRID -->
-<main class="grid" id="productGrid"></main>
+<section class="layout">
+
+  <aside class="sidebar">
+    <h3>Danh mục</h3>
+    <ul id="categoryList"></ul>
+  </aside>
+
+  <main>
+    <div id="productGrid" class="grid"></div>
+  </main>
+
+</section>
 
 <!-- CART -->
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
-
-<div class="cart-modal" id="cartModal">
-  <div class="cart-header">
+<div id="cartModal" class="cart-modal">
+  <div class="cart-box">
     <h3>Giỏ hàng của bạn</h3>
-    <button onclick="closeCart()">✕</button>
-  </div>
-
-  <div id="cartItems"></div>
-
-  <div class="cart-footer">
-    <button onclick="openCheckout()">MUA NGAY</button>
+    <div id="cartBody"></div>
+    <button onclick="checkout()">Mua ngay</button>
+    <button onclick="closeCart()">Đóng</button>
   </div>
 </div>
 
 <script src="products.js"></script>
-<script src="giohang.js"></script>
 <script src="script.js"></script>
 
 </body>
