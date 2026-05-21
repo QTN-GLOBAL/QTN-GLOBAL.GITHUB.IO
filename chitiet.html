@@ -11,9 +11,10 @@
 
 <body>
 
-<!-- HEADER (GIỮ NGUYÊN CỦA BẠN) -->
+<!-- HEADER -->
 <header class="header">
     <div class="top-header">
+
         <div class="logo-area">
             <img src="images/logo.png" alt="QTN GLOBAL">
             <div class="company-info">
@@ -26,17 +27,20 @@
             <a href="tel:0905913636" class="top-btn">📞 0905 913 636</a>
             <a href="tel:0383598603" class="top-btn">📞 0383 598 603</a>
 
-            <a class="cart-header" href="javascript:void(0)" onclick="openCart()">
+            <a href="javascript:void(0)" class="cart-header" onclick="openCart()">
                 🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
             </a>
         </div>
+
     </div>
 </header>
 
 <!-- DETAIL -->
 <div class="detail-page">
 
+    <!-- LEFT -->
     <div class="detail-left">
+
         <div class="main-image">
             <img id="mainImage">
         </div>
@@ -52,9 +56,12 @@
                 <i class="fa-solid fa-bolt"></i> MUA NGAY
             </button>
         </div>
+
     </div>
 
+    <!-- RIGHT -->
     <div class="detail-right">
+
         <h1 id="productName"></h1>
 
         <p><b>Hãng:</b> <span id="productBrand"></span></p>
@@ -65,11 +72,12 @@
 
         <h3>Thông số kỹ thuật</h3>
         <div id="productSpecs"></div>
+
     </div>
 
 </div>
 
-<!-- CART (GIỮ 1 BẢN) -->
+<!-- CART -->
 <div id="cartOverlay" onclick="closeCart()"></div>
 <div id="cartModal">
     <h2>Giỏ hàng</h2>
@@ -77,9 +85,10 @@
     <button onclick="sendZalo()">Gửi Zalo</button>
 </div>
 
-<!-- ADD CART POPUP (CHỈ 1) -->
+<!-- ADD CART POPUP -->
 <div id="addCartPopup" class="popup-overlay">
     <div class="popup-box">
+
         <span onclick="closeAddCart()">✕</span>
 
         <h2>THÊM GIỎ HÀNG</h2>
@@ -96,10 +105,11 @@
         </div>
 
         <button onclick="confirmAddCart()">THÊM VÀO GIỎ</button>
+
     </div>
 </div>
 
-<!-- BUY POPUP (CHỈ 1 DUY NHẤT - ĐÃ FIX) -->
+<!-- BUY POPUP -->
 <div id="buyPopup" class="popup-overlay">
     <div class="popup-box">
 
@@ -137,47 +147,103 @@
 <script src="script.js"></script>
 
 <script>
+/* =========================
+   LOAD PRODUCT
+========================= */
+
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
 
 const product = products.find(p => p.id === id);
-window.currentProduct = product;
 
-if(product){
+if (product) {
 
-document.getElementById("productName").innerText = product.name;
-document.getElementById("productBrand").innerText = product.brand;
-document.getElementById("productOrigin").innerText = product.origin;
-document.getElementById("productDesc").innerText = product.description;
+    // ⭐ FIX GLOBAL PRODUCT
+    window.currentProduct = product;
 
-document.getElementById("mainImage").src =
-`images/${product.category}/${product.folder}/main.jpg`;
+    document.getElementById("productName").innerText = product.name;
+    document.getElementById("productBrand").innerText = product.brand;
+    document.getElementById("productOrigin").innerText = product.origin;
+    document.getElementById("productDesc").innerText = product.description;
 
-let thumbHTML = "";
-for(let i=1;i<=5;i++){
-thumbHTML += `
-<img src="images/${product.category}/${product.folder}/${i}.jpg"
-onclick="changeImage(this.src)"
-onerror="this.remove()">
-`;
-}
-document.getElementById("thumbList").innerHTML = thumbHTML;
+    document.getElementById("mainImage").src =
+        `images/${product.category}/${product.folder}/main.jpg`;
 
-let specsHTML = "<ul>";
-product.specs.forEach(s => specsHTML += `<li>${s}</li>`);
-specsHTML += "</ul>";
+    // thumbnails
+    let thumbHTML = "";
+    for (let i = 1; i <= 5; i++) {
+        thumbHTML += `
+        <img src="images/${product.category}/${product.folder}/${i}.jpg"
+        onclick="changeImage(this.src)"
+        onerror="this.remove()">`;
+    }
+    document.getElementById("thumbList").innerHTML = thumbHTML;
 
-document.getElementById("productSpecs").innerHTML = specsHTML;
-
-}
-
-function changeImage(src){
-document.getElementById("mainImage").src = src;
+    // specs
+    let specsHTML = "<ul>";
+    product.specs.forEach(s => specsHTML += `<li>${s}</li>`);
+    specsHTML += "</ul>";
+    document.getElementById("productSpecs").innerHTML = specsHTML;
 }
 
-function addToCartDetail(){
-addToCart(product.id);
+/* =========================
+   CHANGE IMAGE
+========================= */
+
+function changeImage(src) {
+    document.getElementById("mainImage").src = src;
 }
+
+/* =========================
+   FIX OPEN ADD CART (QUAN TRỌNG)
+========================= */
+
+function openAddCartPopup() {
+
+    const p = window.currentProduct;
+    if (!p) return;
+
+    selectedProduct = p;
+
+    document.getElementById("addCartPopup").style.display = "flex";
+
+    document.getElementById("popupCartImg").src =
+        `images/${p.category}/${p.folder}/main.jpg`;
+
+    document.getElementById("popupCartName").innerText = p.name;
+
+    // 🔥 LẤY MỨC CÂN TỪ SPECS
+    let html = "";
+
+    const cap = (p.specs || []).find(s =>
+        s.toLowerCase().includes("mức cân")
+    );
+
+    if (cap) {
+        const value = cap.split(":")[1] || "";
+        value.split("/").forEach(v => {
+            html += `<option>${v.trim()}</option>`;
+        });
+    }
+
+    document.getElementById("popupCartCapacity").innerHTML = html;
+}
+
+/* =========================
+   FIX BUY POPUP
+========================= */
+
+function openBuyPopup() {
+
+    const p = window.currentProduct;
+    if (!p) return;
+
+    selectedProduct = p;
+
+    document.getElementById("buyPopup").style.display = "flex";
+    document.getElementById("buyProductName").value = p.name;
+}
+
 </script>
 
 </body>
