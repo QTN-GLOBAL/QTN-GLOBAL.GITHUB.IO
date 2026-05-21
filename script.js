@@ -161,49 +161,51 @@ function removeCart(id) {
 ========================= */
 
     function openAddCartPopup() {
-    if (!window.product) return;
+    const product = getCurrentProduct();
+    if (!product) return;
 
-    selectedProduct = window.product;
+    selectedProduct = product;
 
     const popup = document.getElementById("addCartPopup");
     popup.style.display = "flex";
 
-    // Ảnh + tên
-    document.getElementById("popupCartImg").src =
-        `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
+    // ảnh
+    const img = document.getElementById("popupCartImg");
+    img.src = `images/${product.category}/${product.folder}/main.jpg`;
 
-    document.getElementById("popupCartName").innerText =
-        selectedProduct.name;
+    // tên
+    document.getElementById("popupCartName").innerText = product.name;
 
-    // =========================
-    // RENDER MỨC CÂN DẠNG BUTTON
-    // =========================
-    const capWrap = document.getElementById("popupCartCapacity");
-    capWrap.innerHTML = "";
+    // RESET + RENDER MỨC CÂN
+    const wrap = document.getElementById("popupCartCapacity");
+    wrap.innerHTML = "";
 
-    const capLine = selectedProduct.specs.find(s =>
+    const capLine = product.specs.find(s =>
         s.toLowerCase().includes("mức cân")
     );
 
-    if (!capLine || !capLine.includes(":")) return;
+    if (capLine) {
+        const values = capLine.split(":")[1]?.split("/") || [];
 
-    const values = capLine.split(":")[1].split("/");
+        values.forEach((v, i) => {
+            const btn = document.createElement("button");
+            btn.className = "cap-btn";
+            btn.innerText = v.trim();
 
-    values.forEach((v, index) => {
-        const btn = document.createElement("button");
-        btn.innerText = v.trim();
-        btn.className = "cap-btn";
+            if (i === 0) btn.classList.add("active");
 
-        if (index === 0) btn.classList.add("active");
+            btn.onclick = () => {
+                document.querySelectorAll(".cap-btn")
+                    .forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+            };
 
-        btn.onclick = function () {
-            document.querySelectorAll(".cap-btn")
-                .forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-        };
+            wrap.appendChild(btn);
+        });
+    }
 
-        capWrap.appendChild(btn);
-    });
+    // reset qty
+    document.getElementById("popupCartQty").value = 1;
 }
 
 /* =========================
