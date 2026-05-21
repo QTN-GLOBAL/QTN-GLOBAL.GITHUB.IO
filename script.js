@@ -1,117 +1,118 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* ================= CART ================= */
-
-function updateCartCount(){
-    const el = document.getElementById("cartCount");
-    if(!el) return;
-    let total = 0;
-    cart.forEach(i => total += i.qty || 1);
-    el.innerText = total;
+/* =========================
+   SAFE DATA
+========================= */
+function getProducts() {
+    return Array.isArray(products) ? products : [];
 }
 
-function saveCart(){
+/* =========================
+   RENDER INDEX PRODUCTS
+========================= */
+function renderProducts(list = getProducts()) {
+    const grid = document.getElementById("productGrid");
+    if (!grid) return;
+
+    grid.innerHTML = list.map(p => `
+        <div class="product-card">
+            <img src="images/${p.category}/${p.folder}/main.jpg"
+                 onerror="this.src='images/logo.png'">
+
+            <h3>${p.name}</h3>
+
+            <a class="detail-btn" href="chitiet.html?id=${p.id}">
+                Chi tiết
+            </a>
+        </div>
+    `).join("");
+}
+
+/* =========================
+   FILTER
+========================= */
+function filterProducts(cat) {
+    renderProducts(getProducts().filter(p => p.category === cat));
+}
+
+function resetProducts() {
+    renderProducts();
+}
+
+/* =========================
+   CART CORE
+========================= */
+function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-/* ================= CART UI ================= */
+function updateCartCount() {
+    const el = document.getElementById("cartCount");
+    if (!el) return;
 
-function openCart(){
+    el.innerText = cart.reduce((t, i) => t + (i.qty || 1), 0);
+}
+
+/* =========================
+   ADD CART (GLOBAL SAFE)
+========================= */
+function addToCart(product, qty = 1) {
+    if (!product) return;
+
+    const existing = cart.find(i => i.id === product.id);
+
+    if (existing) {
+        existing.qty += qty;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            qty: qty
+        });
+    }
+
+    saveCart();
+    updateCartCount();
+}
+
+/* =========================
+   CART UI
+========================= */
+function openCart() {
     document.getElementById("cartOverlay").style.display = "block";
-    document.getElementById("cartModal").style.display = "block";
+    document.getElementById("cartModal").classList.add("active");
     renderCart();
 }
 
-function closeCart(){
+function closeCart() {
     document.getElementById("cartOverlay").style.display = "none";
-    document.getElementById("cartModal").style.display = "none";
+    document.getElementById("cartModal").classList.remove("active");
 }
 
-function renderCart(){
+function renderCart() {
     const body = document.getElementById("cartBody");
-    if(!body) return;
+    if (!body) return;
 
-    let html = "";
-
-    cart.forEach((i, index) => {
-        html += `
-        <div>
-            ${i.name} x${i.qty}
-            <button onclick="removeCart(${index})">Xóa</button>
-        </div>`;
-    });
-
-    body.innerHTML = html;
+    body.innerHTML = cart.map((item, i) => `
+        <div class="cart-item">
+            <p>${item.name}</p>
+            <p>x${item.qty}</p>
+            <button onclick="removeCart(${i})">Xóa</button>
+        </div>
+    `).join("");
 }
 
-function removeCart(index){
-    cart.splice(index,1);
+function removeCart(i) {
+    cart.splice(i, 1);
     saveCart();
     updateCartCount();
     renderCart();
 }
 
-/* ================= ADD CART ================= */
-
-function openAddCartPopup(){
-    const p = window.currentProduct;
-    if(!p) return;
-
-    document.getElementById("popupCartImg").src =
-        `images/${p.category}/${p.folder}/main.jpg`;
-
-    document.getElementById("popupCartName").innerText = p.name;
-    document.getElementById("addCartPopup").style.display = "block";
-}
-
-function closeAddCart(){
-    document.getElementById("addCartPopup").style.display = "none";
-}
-
-function confirmAddCart(){
-    const p = window.currentProduct;
-
-    cart.push({
-        id: p.id,
-        name: p.name,
-        qty: Number(document.getElementById("popupCartQty").value)
-    });
-
-    saveCart();
-    updateCartCount();
-    closeAddCart();
-}
-
-/* ================= BUY ================= */
-
-function openBuyPopup(){
-    document.getElementById("buyPopup").style.display = "block";
-}
-
-function closeBuyPopup(){
-    document.getElementById("buyPopup").style.display = "none";
-}
-
-function sendOrder(){
-    const name = document.getElementById("customerName").value;
-    const phone = document.getElementById("customerPhone").value;
-    const address = document.getElementById("customerAddress").value;
-
-    const p = window.currentProduct;
-
-    let msg =
-`ĐƠN HÀNG
-- SP: ${p.name}
-- KH: ${name}
-- SĐT: ${phone}
-- DC: ${address}`;
-
-    window.open("https://zalo.me/0383598603");
-    alert(msg);
-}
-
-/* ================= INIT ================= */
-
+/* =========================
+   INIT
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
     updateCartCount();
 });
