@@ -159,18 +159,13 @@ function removeCart(id) {
 /* =========================
    DETAIL PAGE POPUP OPEN
 ========================= */
-
 function openAddCartPopup() {
-    addToCartDetail();
-}
-
-function addToCartDetail() {
     if (!window.product) return;
 
     selectedProduct = window.product;
 
     const popup = document.getElementById("addCartPopup");
-    if (popup) popup.style.display = "flex";
+    popup.style.display = "flex";
 
     document.getElementById("popupCartImg").src =
         `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
@@ -178,7 +173,8 @@ function addToCartDetail() {
     document.getElementById("popupCartName").innerText =
         selectedProduct.name;
 
-    // 👉 LẤY MỨC CÂN NGAY TRONG specs
+    // 👉 FIX MỨC CÂN
+    const capSelect = document.getElementById("popupCartCapacity");
     let html = "";
 
     const cap = selectedProduct.specs.find(s =>
@@ -193,7 +189,7 @@ function addToCartDetail() {
             });
     }
 
-    document.getElementById("popupCartCapacity").innerHTML = html;
+    capSelect.innerHTML = html;
 }
 
 /* =========================
@@ -203,22 +199,24 @@ function addToCartDetail() {
 function confirmAddCart() {
     if (!selectedProduct) return;
 
+    const qty = Number(document.getElementById("popupCartQty").value || 1);
+
     cart.push({
         id: selectedProduct.id,
         name: selectedProduct.name,
         category: selectedProduct.category,
         folder: selectedProduct.folder,
-        quantity: Number(document.getElementById("popupCartQty").value)
+        quantity: qty
     });
 
     saveCart();
-    closeAddCart();
 
-    alert("Đã thêm vào giỏ");
-}
-
-function closeAddCart() {
     document.getElementById("addCartPopup").style.display = "none";
+
+    // reset qty
+    document.getElementById("popupCartQty").value = 1;
+
+    alert("Đã thêm vào giỏ hàng");
 }
 
 /* =========================
@@ -230,12 +228,13 @@ function openBuyPopup() {
 
     selectedProduct = window.product;
 
-    const popup = document.getElementById("buyPopup");
-    if (popup) popup.style.display = "flex";
+    document.getElementById("buyPopup").style.display = "flex";
 
     document.getElementById("buyProductName").value =
         selectedProduct.name;
 
+    // 👉 THÊM HIỂN THỊ MỨC CÂN (FIX QUAN TRỌNG)
+    const capSelect = document.getElementById("buyCapacity");
     let html = "";
 
     const cap = selectedProduct.specs.find(s =>
@@ -250,9 +249,8 @@ function openBuyPopup() {
             });
     }
 
-    document.getElementById("buyCapacity").innerHTML = html;
+    capSelect.innerHTML = html;
 }
-
 function closeBuyPopup() {
     document.getElementById("buyPopup").style.display = "none";
 }

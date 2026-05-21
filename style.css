@@ -801,3 +801,38 @@ POPUP
 position:fixed;
 inset:0;
 background:rgba(0,
+.popup-box {
+    width: 420px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.popup-box h2 {
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+.popup-box input,
+.popup-box select,
+.popup-box textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.popup-box button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.popup-box button:hover {
+    opacity: 0.9;
+}
