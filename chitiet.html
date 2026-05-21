@@ -179,8 +179,130 @@ Gửi đơn qua Zalo
 </div>
 
 </div>
+<!-- ADD CART POPUP -->
 
+<div id="addCartPopup" class="popup-overlay">
+
+<div class="popup-box small-popup">
+
+<span class="close-popup"
+onclick="closeAddCart()">&times;</span>
+
+<h2>THÊM GIỎ HÀNG</h2>
+
+<div class="popup-product">
+
+<img id="popupCartImg">
+
+<div>
+
+<h3 id="popupCartName"></h3>
+
+<select id="popupCartCapacity"></select>
+
+<div class="qty-box">
+
+<button onclick="changeQty('cart',-1)">-</button>
+
+<input type="number"
+id="popupCartQty"
+value="1">
+
+<button onclick="changeQty('cart',1)">+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="popup-btn"
+onclick="confirmAddCart()">
+
+THÊM VÀO GIỎ
+
+</button>
+
+</div>
+
+</div>
 <script src="products.js"></script>
+<!-- BUY NOW POPUP -->
+
+<div id="buyPopup" class="popup-overlay">
+
+<div class="popup-box">
+
+<span class="close-popup"
+onclick="closeBuyPopup()">&times;</span>
+
+<h2>THÔNG TIN ĐẶT HÀNG</h2>
+
+<div class="buy-form">
+
+<input type="text"
+id="customerName"
+placeholder="Tên khách hàng">
+
+<input type="text"
+id="customerPhone"
+placeholder="Số điện thoại">
+
+<input type="text"
+id="customerCompany"
+placeholder="Tên công ty">
+
+<input type="text"
+id="customerTax"
+placeholder="Mã số thuế">
+
+<textarea id="customerInvoice"
+placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+<textarea id="customerAddress"
+placeholder="Địa chỉ giao hàng"></textarea>
+
+<input type="text"
+id="buyProductName"
+readonly>
+
+<select id="buyCapacity"></select>
+
+<div class="qty-box">
+
+<button onclick="changeQty('buy',-1)">-</button>
+
+<input type="number"
+id="buyQty"
+value="1">
+
+<button onclick="changeQty('buy',1)">+</button>
+
+</div>
+
+<div class="buy-actions">
+
+<button class="zalo-btn"
+onclick="sendOrderZalo()">
+
+Gửi Zalo
+
+</button>
+
+<button class="mess-btn"
+onclick="sendOrderMessenger()">
+
+Messenger
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 <script src="script.js"></script>
 
 <script>

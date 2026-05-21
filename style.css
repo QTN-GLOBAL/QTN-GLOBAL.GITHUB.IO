@@ -668,3 +668,128 @@ body{
     position:sticky;
     top:100px;
 }
+/* =========================
+POPUP
+========================= */
+
+.popup-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.5);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+padding:20px;
+}
+
+.popup-box{
+background:#fff;
+width:100%;
+max-width:520px;
+border-radius:16px;
+padding:25px;
+position:relative;
+max-height:90vh;
+overflow:auto;
+}
+
+.small-popup{
+max-width:420px;
+}
+
+.close-popup{
+position:absolute;
+top:12px;
+right:15px;
+font-size:28px;
+cursor:pointer;
+}
+
+.popup-box h2{
+margin-bottom:20px;
+font-size:24px;
+color:#0d47a1;
+}
+
+.popup-product{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.popup-product img{
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+.popup-product h3{
+font-size:18px;
+margin-bottom:10px;
+}
+
+.popup-product select,
+.buy-form input,
+.buy-form textarea,
+.buy-form select{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+margin-bottom:12px;
+font-size:15px;
+}
+
+.qty-box{
+display:flex;
+align-items:center;
+gap:10px;
+margin:15px 0;
+}
+
+.qty-box button{
+width:40px;
+height:40px;
+border:none;
+background:#0d47a1;
+color:#fff;
+font-size:20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.qty-box input{
+width:70px;
+text-align:center;
+height:40px;
+}
+
+.popup-btn,
+.buy-actions button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+margin-top:10px;
+}
+
+.popup-btn{
+background:#0d47a1;
+color:#fff;
+}
+
+.zalo-btn{
+background:#0068ff;
+color:#fff;
+}
+
+.mess-btn{
+background:#0084ff;
+color:#fff;
+}

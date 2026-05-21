@@ -365,3 +365,221 @@ bannerImage.src = banners[currentBanner];
 },3000);
 
 }
+/* =========================
+POPUP ADD CART
+========================= */
+
+let selectedProduct = null;
+
+function addToCartDetail(){
+
+selectedProduct = product;
+
+document.getElementById("addCartPopup").style.display="flex";
+
+document.getElementById("popupCartImg").src =
+`images/${product.category}/${product.folder}/main.jpg`;
+
+document.getElementById("popupCartName").innerText =
+product.name;
+
+let html = "";
+
+const capSpec = product.specs.find(spec =>
+spec.includes("Mức cân")
+);
+
+let capacities = [];
+
+if(capSpec){
+
+capacities = capSpec
+.replace("Mức cân:","")
+.split("/");
+
+}
+
+capacities.forEach(cap=>{
+
+html += `<option>${cap.trim()}</option>`;
+
+});
+
+document.getElementById("popupCartCapacity").innerHTML =
+html;
+
+}
+
+/* =========================
+CLOSE ADD CART
+========================= */
+
+function closeAddCart(){
+
+document.getElementById("addCartPopup").style.display="none";
+
+}
+
+/* =========================
+CONFIRM ADD CART
+========================= */
+
+function confirmAddCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+
+id:selectedProduct.id,
+
+name:selectedProduct.name,
+
+capacity:document.getElementById("popupCartCapacity").value,
+
+qty:Number(document.getElementById("popupCartQty").value),
+
+image:`images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`
+
+});
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+updateCartCount();
+
+closeAddCart();
+
+alert("Đã thêm vào giỏ hàng");
+
+}
+
+/* =========================
+BUY NOW
+========================= */
+
+function buyNow(){
+
+selectedProduct = product;
+
+document.getElementById("buyPopup").style.display="flex";
+
+document.getElementById("buyProductName").value =
+product.name;
+
+let html = "";
+
+const capSpec = product.specs.find(spec =>
+spec.includes("Mức cân")
+);
+
+let capacities = [];
+
+if(capSpec){
+
+capacities = capSpec
+.replace("Mức cân:","")
+.split("/");
+
+}
+
+capacities.forEach(cap=>{
+
+}
+
+/* =========================
+CLOSE BUY
+========================= */
+
+function closeBuyPopup(){
+
+document.getElementById("buyPopup").style.display="none";
+
+}
+
+/* =========================
+QTY
+========================= */
+
+function changeQty(type,amount){
+
+let input;
+
+if(type==="cart"){
+input=document.getElementById("popupCartQty");
+}else{
+input=document.getElementById("buyQty");
+}
+
+let value = Number(input.value);
+
+value += amount;
+
+if(value<1) value=1;
+
+input.value = value;
+
+}
+
+/* =========================
+COPY ORDER
+========================= */
+
+function buildOrderText(){
+
+return `
+KHÁCH HÀNG: ${document.getElementById("customerName").value}
+
+SĐT: ${document.getElementById("customerPhone").value}
+
+CÔNG TY: ${document.getElementById("customerCompany").value}
+
+MST: ${document.getElementById("customerTax").value}
+
+ĐỊA CHỈ XUẤT HÓA ĐƠN:
+${document.getElementById("customerInvoice").value}
+
+ĐỊA CHỈ GIAO HÀNG:
+${document.getElementById("customerAddress").value}
+
+SẢN PHẨM:
+${document.getElementById("buyProductName").value}
+
+MỨC CÂN:
+${document.getElementById("buyCapacity").value}
+
+SỐ LƯỢNG:
+${document.getElementById("buyQty").value}
+`;
+
+}
+
+/* =========================
+SEND ZALO
+========================= */
+
+function sendOrderZalo(){
+
+const text = buildOrderText();
+
+navigator.clipboard.writeText(text);
+
+alert("Đã copy nội dung đơn hàng");
+
+window.open("https://zalo.me/0383598603","_blank");
+
+}
+
+/* =========================
+SEND MESS
+========================= */
+
+function sendOrderMessenger(){
+
+const text = buildOrderText();
+
+navigator.clipboard.writeText(text);
+
+alert("Đã copy nội dung đơn hàng");
+
+window.open("https://m.me/QTNSCALE","_blank");
+
+}
