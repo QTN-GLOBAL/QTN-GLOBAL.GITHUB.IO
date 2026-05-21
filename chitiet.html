@@ -315,7 +315,7 @@ const params = new URLSearchParams(window.location.search);
 
 const id = Number(params.get("id"));
 
-const product = products.find(p => p.id === id);
+window.product = products.find(p => p.id === id);
 
 /* =========================
    HIỂN THỊ

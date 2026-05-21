@@ -341,7 +341,9 @@ let selectedProduct = null;
 
 function addToCartDetail(){
 
-selectedProduct = product;
+if(!window.product) return;
+
+selectedProduct = window.product;
 
 document.getElementById("addCartPopup").style.display="flex";
 
@@ -426,16 +428,16 @@ BUY NOW
 
 function buyNow(){
 
-selectedProduct = product;
+selectedProduct = window.product;
 
 document.getElementById("buyPopup").style.display="flex";
 
 document.getElementById("buyProductName").value =
-product.name;
+selectedProduct.name;
 
 let html = "";
 
-const capSpec = product.specs.find(spec =>
+const capSpec = selectedProduct.specs.find(spec =>
 spec.includes("Mức cân")
 );
 
