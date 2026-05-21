@@ -159,7 +159,8 @@ function removeCart(id) {
 /* =========================
    DETAIL PAGE POPUP OPEN
 ========================= */
-function openAddCartPopup() {
+
+    function openAddCartPopup() {
     if (!window.product) return;
 
     selectedProduct = window.product;
@@ -167,29 +168,42 @@ function openAddCartPopup() {
     const popup = document.getElementById("addCartPopup");
     popup.style.display = "flex";
 
+    // Ảnh + tên
     document.getElementById("popupCartImg").src =
         `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
 
     document.getElementById("popupCartName").innerText =
         selectedProduct.name;
 
-    // 👉 FIX MỨC CÂN
-    const capSelect = document.getElementById("popupCartCapacity");
-    let html = "";
+    // =========================
+    // RENDER MỨC CÂN DẠNG BUTTON
+    // =========================
+    const capWrap = document.getElementById("popupCartCapacity");
+    capWrap.innerHTML = "";
 
-    const cap = selectedProduct.specs.find(s =>
+    const capLine = selectedProduct.specs.find(s =>
         s.toLowerCase().includes("mức cân")
     );
 
-    if (cap) {
-        cap.split(":")[1]
-            ?.split("/")
-            .forEach(v => {
-                html += `<option>${v.trim()}</option>`;
-            });
-    }
+    if (!capLine || !capLine.includes(":")) return;
 
-    capSelect.innerHTML = html;
+    const values = capLine.split(":")[1].split("/");
+
+    values.forEach((v, index) => {
+        const btn = document.createElement("button");
+        btn.innerText = v.trim();
+        btn.className = "cap-btn";
+
+        if (index === 0) btn.classList.add("active");
+
+        btn.onclick = function () {
+            document.querySelectorAll(".cap-btn")
+                .forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+        };
+
+        capWrap.appendChild(btn);
+    });
 }
 
 /* =========================
@@ -201,19 +215,24 @@ function confirmAddCart() {
 
     const qty = Number(document.getElementById("popupCartQty").value || 1);
 
+    // lấy mức cân đang chọn
+    let capacity = "";
+    const activeBtn = document.querySelector(".cap-btn.active");
+    if (activeBtn) capacity = activeBtn.innerText;
+
     cart.push({
         id: selectedProduct.id,
         name: selectedProduct.name,
         category: selectedProduct.category,
         folder: selectedProduct.folder,
-        quantity: qty
+        quantity: qty,
+        capacity: capacity
     });
 
     saveCart();
 
     document.getElementById("addCartPopup").style.display = "none";
 
-    // reset qty
     document.getElementById("popupCartQty").value = 1;
 
     alert("Đã thêm vào giỏ hàng");
