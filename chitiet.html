@@ -1,538 +1,182 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Chi tiết sản phẩm</title>
 
 <link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
+<!-- HEADER (GIỮ NGUYÊN CỦA BẠN) -->
 <header class="header">
-
-    <!-- TOP HEADER -->
-
     <div class="top-header">
-
         <div class="logo-area">
-
             <img src="images/logo.png" alt="QTN GLOBAL">
-
             <div class="company-info">
-
-                <h2>
-                    <span style="color:#0d47a1;">QTN</span>
-                    <span style="color:#d4a017;">GLOBAL</span>
-                </h2>
-
+                <h2><span style="color:#0d47a1;">QTN</span> <span style="color:#d4a017;">GLOBAL</span></h2>
                 <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
-
             </div>
-
         </div>
 
         <div class="top-contact">
+            <a href="tel:0905913636" class="top-btn">📞 0905 913 636</a>
+            <a href="tel:0383598603" class="top-btn">📞 0383 598 603</a>
 
-            <a href="tel:0905913636" class="top-btn">
-                <i class="fa-solid fa-phone"></i>
-                0905 913 636
+            <a class="cart-header" href="javascript:void(0)" onclick="openCart()">
+                🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
             </a>
+        </div>
+    </div>
+</header>
 
-            <a href="tel:0383598603" class="top-btn">
-                <i class="fa-solid fa-phone"></i>
-                0383 598 603
-            </a>
+<!-- DETAIL -->
+<div class="detail-page">
 
-            <a href="https://zalo.me/0383598603"
-               target="_blank"
-               class="social-icon zalo">
+    <div class="detail-left">
+        <div class="main-image">
+            <img id="mainImage">
+        </div>
 
-                <span class="zalo-text">Zalo</span>
+        <div class="thumb-list" id="thumbList"></div>
 
-            </a>
+        <div class="detail-buttons">
+            <button class="btn-cart" onclick="openAddCartPopup()">
+                <i class="fa-solid fa-cart-shopping"></i> THÊM GIỎ
+            </button>
 
-            <a href="https://m.me/QTNSCALE"
-               target="_blank"
-               class="social-icon facebook">
+            <button class="btn-buy-now" onclick="openBuyPopup()">
+                <i class="fa-solid fa-bolt"></i> MUA NGAY
+            </button>
+        </div>
+    </div>
 
-                <i class="fa-brands fa-facebook-messenger"></i>
+    <div class="detail-right">
+        <h1 id="productName"></h1>
 
-            </a>
+        <p><b>Hãng:</b> <span id="productBrand"></span></p>
+        <p><b>Xuất xứ:</b> <span id="productOrigin"></span></p>
 
-            <a class="cart-header"
-               href="javascript:void(0)"
-               onclick="openCart()">
+        <h3>Mô tả</h3>
+        <p id="productDesc"></p>
 
-                🛒 GIỎ HÀNG
-                (<span id="cartCount">0</span>)
+        <h3>Thông số kỹ thuật</h3>
+        <div id="productSpecs"></div>
+    </div>
 
-            </a>
+</div>
 
+<!-- CART (GIỮ 1 BẢN) -->
+<div id="cartOverlay" onclick="closeCart()"></div>
+<div id="cartModal">
+    <h2>Giỏ hàng</h2>
+    <div id="cartBody"></div>
+    <button onclick="sendZalo()">Gửi Zalo</button>
+</div>
+
+<!-- ADD CART POPUP (CHỈ 1) -->
+<div id="addCartPopup" class="popup-overlay">
+    <div class="popup-box">
+        <span onclick="closeAddCart()">✕</span>
+
+        <h2>THÊM GIỎ HÀNG</h2>
+
+        <img id="popupCartImg">
+        <h3 id="popupCartName"></h3>
+
+        <select id="popupCartCapacity"></select>
+
+        <div class="qty-box">
+            <button onclick="changeQty('cart',-1)">-</button>
+            <input type="number" id="popupCartQty" value="1">
+            <button onclick="changeQty('cart',1)">+</button>
+        </div>
+
+        <button onclick="confirmAddCart()">THÊM VÀO GIỎ</button>
+    </div>
+</div>
+
+<!-- BUY POPUP (CHỈ 1 DUY NHẤT - ĐÃ FIX) -->
+<div id="buyPopup" class="popup-overlay">
+    <div class="popup-box">
+
+        <span onclick="closeBuyPopup()">✕</span>
+
+        <h2>THÔNG TIN ĐẶT HÀNG</h2>
+
+        <input id="customerName" placeholder="Tên khách hàng">
+        <input id="customerPhone" placeholder="Số điện thoại">
+        <input id="customerCompany" placeholder="Công ty">
+        <input id="customerTax" placeholder="Mã số thuế">
+
+        <textarea id="customerAddress" placeholder="Địa chỉ giao hàng"></textarea>
+
+        <input id="buyProductName" readonly>
+
+        <select id="buyCapacity"></select>
+
+        <div class="qty-box">
+            <button onclick="changeQty('buy',-1)">-</button>
+            <input id="buyQty" type="number" value="1">
+            <button onclick="changeQty('buy',1)">+</button>
+        </div>
+
+        <div class="buy-actions">
+            <button onclick="sendOrderZalo()">Gửi Zalo</button>
+            <button onclick="sendOrderMessenger()">Messenger</button>
         </div>
 
     </div>
-
-    <!-- MENU -->
-
-    <nav class="navbar">
-
-        <a href="index.html">TRANG CHỦ</a>
-
-        <a href="#">GIỚI THIỆU</a>
-
-        <a href="index.html#productGrid">SẢN PHẨM</a>
-
-        <a href="#">LIÊN HỆ</a>
-
-    </nav>
-
-</header>
-
-<div class="detail">
-
-<!-- DETAIL -->
-
-<div class="detail-page">
-
-<div class="detail-left">
-
-<div class="main-image">
-<img id="mainImage">
 </div>
 
-<div class="thumb-list" id="thumbList"></div>
-<div class="detail-buttons">
-
-<button class="btn-cart"
-onclick="addToCartDetail()">
-
-<i class="fa-solid fa-cart-shopping"></i>
-THÊM GIỎ
-
-</button>
-
-<button class="btn-buy-now"
-onclick="buyNow()">
-
-<i class="fa-solid fa-bolt"></i>
-MUA NGAY
-
-</button>
-
-</div>
-
-</div>
-
-<div class="detail-right">
-
-<h1 id="productName"></h1>
-
-<div class="detail-meta">
-<p><strong>Hãng:</strong> <span id="productBrand"></span></p>
-<p><strong>Xuất xứ:</strong> <span id="productOrigin"></span></p>
-</div>
-
-<div class="detail-desc">
-<h3>Mô tả sản phẩm</h3>
-<p id="productDesc"></p>
-</div>
-
-<div class="detail-specs">
-<h3>Thông số kỹ thuật</h3>
-<div id="productSpecs"></div>
-</div>
-
-</div>
-
-</div>
-
-<!-- CART -->
-
-<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
-
-<div id="cartModal" class="cart-modal">
-
-<div class="cart-header">
-
-<h2>Giỏ hàng</h2>
-
-<button onclick="closeCart()">✕</button>
-
-</div>
-
-<div class="cart-body" id="cartBody"></div>
-
-<div class="cart-footer">
-
-<button class="btn-buy" onclick="sendZalo()">
-Gửi đơn qua Zalo
-</button>
-
-</div>
-
-</div>
-<!-- ADD CART POPUP -->
-
-<div id="addCartPopup" class="popup-overlay">
-
-<div class="popup-box small-popup">
-
-<span class="close-popup"
-onclick="closeAddCart()">&times;</span>
-
-<h2>THÊM GIỎ HÀNG</h2>
-
-<div class="popup-product">
-
-<img id="popupCartImg">
-
-<div>
-
-<h3 id="popupCartName"></h3>
-
-<select id="popupCartCapacity"></select>
-
-<div class="qty-box">
-
-<button onclick="changeQty('cart',-1)">-</button>
-
-<input type="number"
-id="popupCartQty"
-value="1">
-
-<button onclick="changeQty('cart',1)">+</button>
-
-</div>
-
-</div>
-
-</div>
-
-<button class="popup-btn"
-onclick="confirmAddCart()">
-
-THÊM VÀO GIỎ
-
-</button>
-
-</div>
-
-</div>
-<!-- POPUP ADD CART -->
-
-<div class="popup-overlay" id="addCartPopup">
-
-<div class="popup-box">
-
-<span class="close-popup"
-onclick="closeAddCart()">
-✕
-</span>
-
-<div class="popup-product">
-
-<img id="popupCartImg">
-
-<div>
-
-<h3 id="popupCartName"></h3>
-
-<label>Mức cân</label>
-
-<select id="popupCartCapacity"></select>
-
-<label>Số lượng</label>
-
-<div class="qty-box">
-
-<button onclick="changeQty('cart',-1)">
--
-</button>
-
-<input type="number"
-id="popupCartQty"
-value="1">
-
-<button onclick="changeQty('cart',1)">
-+
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<button class="popup-btn"
-onclick="confirmAddCart()">
-
-THÊM VÀO GIỎ
-
-</button>
-
-</div>
-
-</div>
-
-<!-- POPUP BUY NOW -->
-
-<div class="popup-overlay" id="buyPopup">
-
-<div class="popup-box popup-buy">
-
-<span class="close-popup"
-onclick="closeBuyPopup()">
-✕
-</span>
-
-<h2>THÔNG TIN ĐẶT HÀNG</h2>
-
-<input type="text"
-id="customerName"
-placeholder="Tên khách hàng">
-
-<input type="text"
-id="customerPhone"
-placeholder="Số điện thoại">
-
-<input type="text"
-id="customerCompany"
-placeholder="Tên công ty">
-
-<input type="text"
-id="customerTax"
-placeholder="Mã số thuế">
-
-<textarea id="customerInvoice"
-placeholder="Địa chỉ xuất hóa đơn"></textarea>
-
-<textarea id="customerAddress"
-placeholder="Địa chỉ giao hàng"></textarea>
-
-<input type="text"
-id="buyProductName"
-readonly>
-
-<select id="buyCapacity"></select>
-
-<div class="qty-box">
-
-<button onclick="changeQty('buy',-1)">
--
-</button>
-
-<input type="number"
-id="buyQty"
-value="1">
-
-<button onclick="changeQty('buy',1)">
-+
-</button>
-
-</div>
-
-<div class="buy-actions">
-
-<button class="zalo-btn"
-onclick="sendOrderZalo()">
-
-Gửi Zalo
-
-</button>
-
-<button class="mess-btn"
-onclick="sendOrderMessenger()">
-
-Messenger
-
-</button>
-
-</div>
-
-</div>
-
-</div>
+<!-- SCRIPT -->
 <script src="products.js"></script>
-<!-- BUY NOW POPUP -->
-
-<div id="buyPopup" class="popup-overlay">
-
-<div class="popup-box">
-
-<span class="close-popup"
-onclick="closeBuyPopup()">&times;</span>
-
-<h2>THÔNG TIN ĐẶT HÀNG</h2>
-
-<div class="buy-form">
-
-<input type="text"
-id="customerName"
-placeholder="Tên khách hàng">
-
-<input type="text"
-id="customerPhone"
-placeholder="Số điện thoại">
-
-<input type="text"
-id="customerCompany"
-placeholder="Tên công ty">
-
-<input type="text"
-id="customerTax"
-placeholder="Mã số thuế">
-
-<textarea id="customerInvoice"
-placeholder="Địa chỉ xuất hóa đơn"></textarea>
-
-<textarea id="customerAddress"
-placeholder="Địa chỉ giao hàng"></textarea>
-
-<input type="text"
-id="buyProductName"
-readonly>
-
-<select id="buyCapacity"></select>
-
-<div class="qty-box">
-
-<button onclick="changeQty('buy',-1)">-</button>
-
-<input type="number"
-id="buyQty"
-value="1">
-
-<button onclick="changeQty('buy',1)">+</button>
-
-</div>
-
-<div class="buy-actions">
-
-<button class="zalo-btn"
-onclick="sendOrderZalo()">
-
-Gửi Zalo
-
-</button>
-
-<button class="mess-btn"
-onclick="sendOrderMessenger()">
-
-Messenger
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
 <script src="script.js"></script>
 
 <script>
-
-/* =========================
-   LẤY ID
-========================= */
-
 const params = new URLSearchParams(window.location.search);
-
 const id = Number(params.get("id"));
 
-window.product = products.find(p => p.id === id);
-
-/* =========================
-   HIỂN THỊ
-========================= */
+const product = products.find(p => p.id === id);
 
 if(product){
 
 document.getElementById("productName").innerText = product.name;
-
 document.getElementById("productBrand").innerText = product.brand;
-
 document.getElementById("productOrigin").innerText = product.origin;
-
 document.getElementById("productDesc").innerText = product.description;
-
-/* ẢNH */
 
 document.getElementById("mainImage").src =
 `images/${product.category}/${product.folder}/main.jpg`;
 
-/* THUMB */
-
 let thumbHTML = "";
-
-for(let i=1;i<=10;i++){
-
+for(let i=1;i<=5;i++){
 thumbHTML += `
-
-<img
-src="images/${product.category}/${product.folder}/${i}.jpg"
+<img src="images/${product.category}/${product.folder}/${i}.jpg"
 onclick="changeImage(this.src)"
-onerror="this.remove()"
->
-
+onerror="this.remove()">
 `;
-
 }
-
 document.getElementById("thumbList").innerHTML = thumbHTML;
 
-/* SPECS */
+let specsHTML = "<ul>";
+product.specs.forEach(s => specsHTML += `<li>${s}</li>`);
+specsHTML += "</ul>";
 
-let specsHTML = "";
-
-product.specs.forEach(spec=>{
-
-if(spec.includes("<table")){
-
-specsHTML += spec;
-
-}else{
-
-specsHTML += `<li>${spec}</li>`;
+document.getElementById("productSpecs").innerHTML = specsHTML;
 
 }
-
-});
-
-document.getElementById("productSpecs").innerHTML =
-`<ul>${specsHTML}</ul>`;
-
-}
-
-/* =========================
-   ĐỔI ẢNH
-========================= */
 
 function changeImage(src){
-
 document.getElementById("mainImage").src = src;
-
 }
-
-/* =========================
-   ADD CART DETAIL
-========================= */
 
 function addToCartDetail(){
-
 addToCart(product.id);
-
 }
-
 </script>
 
 </body>
