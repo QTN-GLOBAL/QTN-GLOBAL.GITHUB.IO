@@ -330,3 +330,37 @@ function checkoutCart(){
 renderProducts();
 
 updateCartCount();
+/* =========================
+   HERO SLIDER
+========================= */
+
+const bannerImage = document.getElementById("bannerImage");
+
+if(bannerImage){
+
+const banners = [
+
+"images/can-ban/jwl/main.jpg",
+"images/can-dem/jcl/main.jpg",
+"images/can-treo/fj5/main.jpg",
+"images/can-phan-tich/oks-dj/main.jpg",
+"images/can-chong-nuoc/super-ss/main.jpg",
+"images/can-in-tem-ma-vach/ind-pp/main.jpg"
+
+];
+
+let currentBanner = 0;
+
+setInterval(()=>{
+
+currentBanner++;
+
+if(currentBanner >= banners.length){
+currentBanner = 0;
+}
+
+bannerImage.src = banners[currentBanner];
+
+},3000);
+
+}
