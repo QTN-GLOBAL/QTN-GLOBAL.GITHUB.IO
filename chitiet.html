@@ -1,61 +1,216 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Chi tiết sản phẩm</title>
 
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
 
-<header class="header">
-  <div class="top-header">
-    <div class="logo-area">
-      <img src="images/logo.png">
-      <div>
-        <h2>QTN GLOBAL</h2>
-        <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
-      </div>
-    </div>
+<!-- HEADER -->
 
-    <div class="top-contact">
-      <a class="cart-btn" onclick="openCart()">🛒 <span id="cartCount">0</span></a>
-    </div>
-  </div>
+<header class="header">
+
+<div class="top-header">
+
+<div class="logo-area">
+
+<img src="images/logo.png">
+
+<div class="company-info">
+<h2>QTN GLOBAL</h2>
+<p>Chuyên cân điện tử chính hãng</p>
+</div>
+
+</div>
+
+<a class="cart-header" onclick="openCart()">
+🛒 Giỏ hàng (<span id="cartCount">0</span>)
+</a>
+
+</div>
+
 </header>
 
-<section class="detail">
+<!-- DETAIL -->
 
-  <div class="detail-left">
-    <img id="mainImg">
-  </div>
+<div class="detail-page">
 
-  <div class="detail-right">
-    <h2 id="pName"></h2>
-    <p id="pDesc"></p>
-    <div id="pSpecs"></div>
+<div class="detail-left">
 
-    <button onclick="addToCart()">➕ Thêm giỏ hàng</button>
-    <button onclick="buyNow()">🟢 Mua ngay</button>
-  </div>
+<div class="main-image">
+<img id="mainImage">
+</div>
 
-</section>
+<div class="thumb-list" id="thumbList"></div>
+
+</div>
+
+<div class="detail-right">
+
+<h1 id="productName"></h1>
+
+<div class="detail-meta">
+<p><strong>Hãng:</strong> <span id="productBrand"></span></p>
+<p><strong>Xuất xứ:</strong> <span id="productOrigin"></span></p>
+</div>
+
+<div class="detail-desc">
+<h3>Mô tả sản phẩm</h3>
+<p id="productDesc"></p>
+</div>
+
+<div class="detail-specs">
+<h3>Thông số kỹ thuật</h3>
+<div id="productSpecs"></div>
+</div>
+
+<div class="detail-buttons">
+
+<button class="btn-cart" onclick="addToCartDetail()">
+Thêm vào giỏ
+</button>
+
+<button class="btn-buy-now" onclick="buyNow()">
+Mua ngay
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 <!-- CART -->
+
+<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+
 <div id="cartModal" class="cart-modal">
-  <div class="cart-box">
-    <h3>Giỏ hàng</h3>
-    <div id="cartBody"></div>
-    <button onclick="checkout()">Mua ngay</button>
-    <button onclick="closeCart()">Đóng</button>
-  </div>
+
+<div class="cart-header">
+
+<h2>Giỏ hàng</h2>
+
+<button onclick="closeCart()">✕</button>
+
+</div>
+
+<div class="cart-body" id="cartBody"></div>
+
+<div class="cart-footer">
+
+<button class="btn-buy" onclick="sendZalo()">
+Gửi đơn qua Zalo
+</button>
+
+</div>
+
 </div>
 
 <script src="products.js"></script>
 <script src="script.js"></script>
+
+<script>
+
+/* =========================
+   LẤY ID
+========================= */
+
+const params = new URLSearchParams(window.location.search);
+
+const id = Number(params.get("id"));
+
+const product = products.find(p => p.id === id);
+
+/* =========================
+   HIỂN THỊ
+========================= */
+
+if(product){
+
+document.getElementById("productName").innerText = product.name;
+
+document.getElementById("productBrand").innerText = product.brand;
+
+document.getElementById("productOrigin").innerText = product.origin;
+
+document.getElementById("productDesc").innerText = product.description;
+
+/* ẢNH */
+
+document.getElementById("mainImage").src =
+`images/${product.category}/${product.folder}/main.jpg`;
+
+/* THUMB */
+
+let thumbHTML = "";
+
+for(let i=1;i<=5;i++){
+
+thumbHTML += `
+
+<img
+src="images/${product.category}/${product.folder}/${i}.jpg"
+onclick="changeImage(this.src)"
+onerror="this.style.display='none'"
+>
+
+`;
+
+}
+
+document.getElementById("thumbList").innerHTML = thumbHTML;
+
+/* SPECS */
+
+let specsHTML = "";
+
+product.specs.forEach(spec=>{
+
+if(spec.includes("<table")){
+
+specsHTML += spec;
+
+}else{
+
+specsHTML += `<li>${spec}</li>`;
+
+}
+
+});
+
+document.getElementById("productSpecs").innerHTML =
+`<ul>${specsHTML}</ul>`;
+
+}
+
+/* =========================
+   ĐỔI ẢNH
+========================= */
+
+function changeImage(src){
+
+document.getElementById("mainImage").src = src;
+
+}
+
+/* =========================
+   ADD CART DETAIL
+========================= */
+
+function addToCartDetail(){
+
+addToCart(product.id);
+
+}
+
+</script>
 
 </body>
 </html>
