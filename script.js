@@ -6,6 +6,16 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let selectedProduct = null;
 
 /* =========================
+   HELPER: SAVE CART
+========================= */
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+}
+
+/* =========================
    CART COUNT
 ========================= */
 
@@ -21,7 +31,7 @@ function updateCartCount() {
 }
 
 /* =========================
-   RENDER PRODUCTS (INDEX)
+   PRODUCT GRID (INDEX)
 ========================= */
 
 function renderProducts(list = products) {
@@ -44,13 +54,8 @@ function renderProducts(list = products) {
     });
 }
 
-/* =========================
-   FILTER CATEGORY
-========================= */
-
-function filterProducts(category) {
-    const filtered = products.filter(p => p.category === category);
-    renderProducts(filtered);
+function filterProducts(cat) {
+    renderProducts(products.filter(p => p.category === cat));
 }
 
 /* =========================
@@ -59,33 +64,33 @@ function filterProducts(category) {
 
 function openCart() {
     document.getElementById("cartModal")?.classList.add("active");
-    document.getElementById("cartOverlay")?.style && (document.getElementById("cartOverlay").style.display = "block");
+    document.getElementById("cartOverlay").style.display = "block";
     renderCart();
 }
 
 function closeCart() {
     document.getElementById("cartModal")?.classList.remove("active");
-    document.getElementById("cartOverlay")?.style && (document.getElementById("cartOverlay").style.display = "none");
+    document.getElementById("cartOverlay").style.display = "none";
 }
 
 /* =========================
-   ADD TO CART (CORE)
+   ADD TO CART CORE
 ========================= */
 
 function addToCart(id, qty = 1) {
-    const p = products.find(x => x.id == id);
-    if (!p) return;
+    const product = products.find(p => p.id == id);
+    if (!product) return;
 
-    const ex = cart.find(x => x.id == id);
+    const item = cart.find(i => i.id == id);
 
-    if (ex) {
-        ex.quantity += qty;
+    if (item) {
+        item.quantity += qty;
     } else {
         cart.push({
-            id: p.id,
-            name: p.name,
-            category: p.category,
-            folder: p.folder,
+            id: product.id,
+            name: product.name,
+            category: product.category,
+            folder: product.folder,
             quantity: qty
         });
     }
@@ -94,34 +99,24 @@ function addToCart(id, qty = 1) {
 }
 
 /* =========================
-   SAVE CART
-========================= */
-
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-    renderCart();
-}
-
-/* =========================
    RENDER CART
 ========================= */
 
 function renderCart() {
-    const body = document.getElementById("cartBody");
-    if (!body) return;
+    const box = document.getElementById("cartBody");
+    if (!box) return;
 
     if (cart.length === 0) {
-        body.innerHTML = "<p>Giỏ hàng trống</p>";
+        box.innerHTML = "<p>Giỏ hàng trống</p>";
         return;
     }
 
-    body.innerHTML = "";
+    box.innerHTML = "";
 
     cart.forEach(item => {
-        body.innerHTML += `
+        box.innerHTML += `
         <div class="cart-item">
-            <img src="images/${item.category}/${item.folder}/main.jpg" width="60">
+            <img src="images/${item.category}/${item.folder}/main.jpg">
             <h4>${item.name}</h4>
 
             <div class="qty">
@@ -135,77 +130,66 @@ function renderCart() {
     });
 }
 
-/* =========================
-   CART QTY
-========================= */
-
 function changeCartQty(id, n) {
-    const item = cart.find(x => x.id == id);
+    const item = cart.find(i => i.id == id);
     if (!item) return;
 
     item.quantity += n;
+
     if (item.quantity <= 0) {
-        cart = cart.filter(x => x.id != id);
+        cart = cart.filter(i => i.id != id);
     }
 
     saveCart();
 }
 
 function removeCart(id) {
-    cart = cart.filter(x => x.id != id);
+    cart = cart.filter(i => i.id != id);
     saveCart();
 }
 
 /* =========================
-   DETAIL PAGE POPUP OPEN
+   🔥 FIX QUAN TRỌNG: DETAIL PRODUCT GLOBAL
 ========================= */
 
-    function openAddCartPopup() {
-    const product = getCurrentProduct();
-    if (!product) return;
-
+function setCurrentProduct(product) {
     selectedProduct = product;
+    window.currentProduct = product; // fallback an toàn
+}
+
+/* =========================
+   ADD CART POPUP (FIX MỨC CÂN)
+========================= */
+
+function openAddCartPopup() {
+    const p = window.currentProduct || selectedProduct;
+    if (!p) return;
+
+    selectedProduct = p;
 
     const popup = document.getElementById("addCartPopup");
-    popup.style.display = "flex";
+    if (popup) popup.style.display = "flex";
 
-    // ảnh
-    const img = document.getElementById("popupCartImg");
-    img.src = `images/${product.category}/${product.folder}/main.jpg`;
+    document.getElementById("popupCartImg").src =
+        `images/${p.category}/${p.folder}/main.jpg`;
 
-    // tên
-    document.getElementById("popupCartName").innerText = product.name;
+    document.getElementById("popupCartName").innerText = p.name;
 
-    // RESET + RENDER MỨC CÂN
-    const wrap = document.getElementById("popupCartCapacity");
-    wrap.innerHTML = "";
+    /* 👉 FIX: lấy mức cân đúng từ specs */
+    let options = "";
 
-    const capLine = product.specs.find(s =>
+    const spec = (p.specs || []).find(s =>
         s.toLowerCase().includes("mức cân")
     );
 
-    if (capLine) {
-        const values = capLine.split(":")[1]?.split("/") || [];
-
-        values.forEach((v, i) => {
-            const btn = document.createElement("button");
-            btn.className = "cap-btn";
-            btn.innerText = v.trim();
-
-            if (i === 0) btn.classList.add("active");
-
-            btn.onclick = () => {
-                document.querySelectorAll(".cap-btn")
-                    .forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-            };
-
-            wrap.appendChild(btn);
+    if (spec) {
+        const value = spec.split(":")[1] || "";
+        value.split("/").forEach(v => {
+            options += `<option>${v.trim()}</option>`;
         });
     }
 
-    // reset qty
-    document.getElementById("popupCartQty").value = 1;
+    document.getElementById("popupCartCapacity").innerHTML = options;
 }
 
 /* =========================
@@ -213,30 +197,19 @@ function removeCart(id) {
 ========================= */
 
 function confirmAddCart() {
-    if (!selectedProduct) return;
-
-    const qty = Number(document.getElementById("popupCartQty").value || 1);
-
-    // lấy mức cân đang chọn
-    let capacity = "";
-    const activeBtn = document.querySelector(".cap-btn.active");
-    if (activeBtn) capacity = activeBtn.innerText;
+    const qty = Number(document.getElementById("popupCartQty").value);
 
     cart.push({
         id: selectedProduct.id,
         name: selectedProduct.name,
         category: selectedProduct.category,
         folder: selectedProduct.folder,
-        quantity: qty,
-        capacity: capacity
+        quantity: qty
     });
 
     saveCart();
 
     document.getElementById("addCartPopup").style.display = "none";
-
-    document.getElementById("popupCartQty").value = 1;
-
     alert("Đã thêm vào giỏ hàng");
 }
 
@@ -245,35 +218,15 @@ function confirmAddCart() {
 ========================= */
 
 function openBuyPopup() {
-    if (!window.product) return;
+    const p = window.currentProduct || selectedProduct;
+    if (!p) return;
 
-    selectedProduct = window.product;
+    selectedProduct = p;
 
-    document.getElementById("buyPopup").style.display = "flex";
+    const popup = document.getElementById("buyPopup");
+    if (popup) popup.style.display = "flex";
 
-    document.getElementById("buyProductName").value =
-        selectedProduct.name;
-
-    // 👉 THÊM HIỂN THỊ MỨC CÂN (FIX QUAN TRỌNG)
-    const capSelect = document.getElementById("buyCapacity");
-    let html = "";
-
-    const cap = selectedProduct.specs.find(s =>
-        s.toLowerCase().includes("mức cân")
-    );
-
-    if (cap) {
-        cap.split(":")[1]
-            ?.split("/")
-            .forEach(v => {
-                html += `<option>${v.trim()}</option>`;
-            });
-    }
-
-    capSelect.innerHTML = html;
-}
-function closeBuyPopup() {
-    document.getElementById("buyPopup").style.display = "none";
+    document.getElementById("buyProductName").value = p.name;
 }
 
 /* =========================
@@ -282,30 +235,12 @@ function closeBuyPopup() {
 
 function changeQty(type, n) {
     const id = type === "cart" ? "popupCartQty" : "buyQty";
-    const input = document.getElementById(id);
+    const el = document.getElementById(id);
 
-    let val = Number(input.value) + n;
-    if (val < 1) val = 1;
+    let v = Number(el.value) + n;
+    if (v < 1) v = 1;
 
-    input.value = val;
-}
-
-/* =========================
-   ORDER
-========================= */
-
-function buildOrderText() {
-    return `
-KH: ${document.getElementById("customerName")?.value || ""}
-SĐT: ${document.getElementById("customerPhone")?.value || ""}
-SP: ${document.getElementById("buyProductName")?.value || ""}
-SL: ${document.getElementById("buyQty")?.value || ""}
-`;
-}
-
-function sendOrderZalo() {
-    navigator.clipboard.writeText(buildOrderText());
-    window.open("https://zalo.me/0383598603", "_blank");
+    el.value = v;
 }
 
 /* =========================
