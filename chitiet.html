@@ -11,11 +11,11 @@
 
 <body>
 
-<!-- HEADER (GIỮ NGUYÊN CỦA BẠN) -->
+<!-- HEADER -->
 <header class="header">
     <div class="top-header">
         <div class="logo-area">
-            <img src="images/logo.png" alt="QTN GLOBAL">
+            <img src="images/logo.png">
             <div class="company-info">
                 <h2><span style="color:#0d47a1;">QTN</span> <span style="color:#d4a017;">GLOBAL</span></h2>
                 <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
@@ -26,8 +26,8 @@
             <a href="tel:0905913636" class="top-btn">📞 0905 913 636</a>
             <a href="tel:0383598603" class="top-btn">📞 0383 598 603</a>
 
-            <a class="cart-header" href="javascript:void(0)" onclick="openCart()">
-                🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
+            <a href="javascript:void(0)" class="top-cart-btn" onclick="openCart()">
+                🛒 (<span id="cartCount">0</span>)
             </a>
         </div>
     </div>
@@ -37,21 +37,21 @@
 <div class="detail-page">
 
     <div class="detail-left">
-        <div class="main-image">
-            <img id="mainImage">
-        </div>
 
-        <div class="thumb-list" id="thumbList"></div>
+        <img id="mainImage">
+
+        <div id="thumbList"></div>
 
         <div class="detail-buttons">
-            <button class="btn-cart" onclick="openAddCartPopup()">
-                <i class="fa-solid fa-cart-shopping"></i> THÊM GIỎ
+            <button onclick="openAddCartPopup()">
+                <i class="fa fa-cart-shopping"></i> THÊM GIỎ
             </button>
 
-            <button class="btn-buy-now" onclick="openBuyPopup()">
-                <i class="fa-solid fa-bolt"></i> MUA NGAY
+            <button onclick="openBuyPopup()">
+                <i class="fa fa-bolt"></i> MUA NGAY
             </button>
         </div>
+
     </div>
 
     <div class="detail-right">
@@ -63,23 +63,25 @@
         <h3>Mô tả</h3>
         <p id="productDesc"></p>
 
-        <h3>Thông số kỹ thuật</h3>
+        <h3>Thông số</h3>
         <div id="productSpecs"></div>
     </div>
 
 </div>
 
-<!-- CART (GIỮ 1 BẢN) -->
+<!-- CART -->
 <div id="cartOverlay" onclick="closeCart()"></div>
+
 <div id="cartModal">
     <h2>Giỏ hàng</h2>
     <div id="cartBody"></div>
     <button onclick="sendZalo()">Gửi Zalo</button>
 </div>
 
-<!-- ADD CART POPUP (CHỈ 1) -->
+<!-- ADD CART -->
 <div id="addCartPopup" class="popup-overlay">
     <div class="popup-box">
+
         <span onclick="closeAddCart()">✕</span>
 
         <h2>THÊM GIỎ HÀNG</h2>
@@ -89,94 +91,79 @@
 
         <select id="popupCartCapacity"></select>
 
-        <div class="qty-box">
+        <div>
             <button onclick="changeQty('cart',-1)">-</button>
-            <input type="number" id="popupCartQty" value="1">
+            <input id="popupCartQty" type="number" value="1">
             <button onclick="changeQty('cart',1)">+</button>
         </div>
 
-        <button onclick="confirmAddCart()">THÊM VÀO GIỎ</button>
+        <button onclick="confirmAddCart()">THÊM</button>
+
     </div>
 </div>
 
-<!-- BUY POPUP (CHỈ 1 DUY NHẤT - ĐÃ FIX) -->
+<!-- BUY -->
 <div id="buyPopup" class="popup-overlay">
     <div class="popup-box">
 
         <span onclick="closeBuyPopup()">✕</span>
 
-        <h2>THÔNG TIN ĐẶT HÀNG</h2>
+        <h2>ĐẶT HÀNG</h2>
 
-        <input id="customerName" placeholder="Tên khách hàng">
-        <input id="customerPhone" placeholder="Số điện thoại">
-        <input id="customerCompany" placeholder="Công ty">
-        <input id="customerTax" placeholder="Mã số thuế">
-
-        <textarea id="customerAddress" placeholder="Địa chỉ giao hàng"></textarea>
+        <input id="customerName" placeholder="Tên">
+        <input id="customerPhone" placeholder="SĐT">
+        <textarea id="customerAddress" placeholder="Địa chỉ"></textarea>
 
         <input id="buyProductName" readonly>
 
         <select id="buyCapacity"></select>
 
-        <div class="qty-box">
+        <div>
             <button onclick="changeQty('buy',-1)">-</button>
             <input id="buyQty" type="number" value="1">
             <button onclick="changeQty('buy',1)">+</button>
         </div>
 
-        <div class="buy-actions">
-            <button onclick="sendOrderZalo()">Gửi Zalo</button>
-            <button onclick="sendOrderMessenger()">Messenger</button>
-        </div>
+        <button onclick="sendOrder()">GỬI ZALO</button>
 
     </div>
 </div>
 
-<!-- SCRIPT -->
 <script src="products.js"></script>
 <script src="script.js"></script>
 
+<!-- PRODUCT LOAD -->
 <script>
-const params = new URLSearchParams(window.location.search);
-const id = Number(params.get("id"));
-
+const id = Number(new URLSearchParams(location.search).get("id"));
 const product = products.find(p => p.id === id);
 window.currentProduct = product;
 
 if(product){
 
-document.getElementById("productName").innerText = product.name;
-document.getElementById("productBrand").innerText = product.brand;
-document.getElementById("productOrigin").innerText = product.origin;
-document.getElementById("productDesc").innerText = product.description;
+    document.getElementById("productName").innerText = product.name;
+    document.getElementById("productBrand").innerText = product.brand;
+    document.getElementById("productOrigin").innerText = product.origin;
+    document.getElementById("productDesc").innerText = product.description;
 
-document.getElementById("mainImage").src =
-`images/${product.category}/${product.folder}/main.jpg`;
+    document.getElementById("mainImage").src =
+        `images/${product.category}/${product.folder}/main.jpg`;
 
-let thumbHTML = "";
-for(let i=1;i<=5;i++){
-thumbHTML += `
-<img src="images/${product.category}/${product.folder}/${i}.jpg"
-onclick="changeImage(this.src)"
-onerror="this.remove()">
-`;
-}
-document.getElementById("thumbList").innerHTML = thumbHTML;
+    let thumbs = "";
+    for(let i=1;i<=5;i++){
+        thumbs += `
+        <img src="images/${product.category}/${product.folder}/${i}.jpg"
+        onclick="document.getElementById('mainImage').src=this.src"
+        onerror="this.remove()">
+        `;
+    }
+    document.getElementById("thumbList").innerHTML = thumbs;
 
-let specsHTML = "<ul>";
-product.specs.forEach(s => specsHTML += `<li>${s}</li>`);
-specsHTML += "</ul>";
+    let specs = "<ul>";
+    product.specs.forEach(s => specs += `<li>${s}</li>`);
+    specs += "</ul>";
+    document.getElementById("productSpecs").innerHTML = specs;
 
-document.getElementById("productSpecs").innerHTML = specsHTML;
-
-}
-
-function changeImage(src){
-document.getElementById("mainImage").src = src;
-}
-
-function addToCartDetail(){
-addToCart(product.id);
+    document.getElementById("buyProductName").value = product.name;
 }
 </script>
 
