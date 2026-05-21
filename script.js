@@ -3,50 +3,64 @@
 ========================= */
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-/* =========================
-   SẢN PHẨM HIỆN TẠI
-========================= */
-
 let selectedProduct = null;
 
 /* =========================
-   CẬP NHẬT SỐ LƯỢNG CART
+   SAFE HELPERS
+========================= */
+
+function $(id) {
+    return document.getElementById(id);
+}
+
+/* =========================
+   SAVE CART
+========================= */
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+}
+
+/* =========================
+   CẬP NHẬT SỐ LƯỢNG
 ========================= */
 
 function updateCartCount() {
     let total = 0;
 
     cart.forEach(item => {
-        total += item.quantity || item.qty || 0;
+        total += Number(item.quantity || 0);
     });
 
-    const cartCount = document.getElementById("cartCount");
-    if (cartCount) cartCount.innerText = total;
+    const el = $("cartCount");
+    if (el) el.innerText = total;
 }
 
 /* =========================
-   HIỂN THỊ SẢN PHẨM INDEX
+   HIỂN THỊ SẢN PHẨM
 ========================= */
 
-const productGrid = document.getElementById("productGrid");
-
 function renderProducts(productList = products) {
-    if (!productGrid) return;
+    const productGrid = $("productGrid");
+    if (!productGrid || !Array.isArray(productList)) return;
 
     productGrid.innerHTML = "";
 
-    productList.forEach(product => {
+    productList.forEach(p => {
         productGrid.innerHTML += `
         <div class="product-card">
-            <img src="images/${product.category}/${product.folder}/main.jpg">
+            <img src="images/${p.category}/${p.folder}/main.jpg">
 
             <div class="product-info">
-                <h3>${product.name}</h3>
+                <h3>${p.name}</h3>
 
-                <a class="detail-btn"
-                   href="chitiet.html?id=${product.id}">
-                   Chi tiết
+                <button onclick="buyNow(${p.id})">Mua ngay</button>
+                <button onclick="addToCart(${p.id})">Thêm giỏ</button>
+
+                <a class="detail-btn" href="chitiet.html?id=${p.id}">
+                    Chi tiết
                 </a>
             </div>
         </div>`;
@@ -54,49 +68,17 @@ function renderProducts(productList = products) {
 }
 
 /* =========================
-   FILTER
-========================= */
-
-function filterProducts(category) {
-    const filtered = products.filter(p => p.category === category);
-    renderProducts(filtered);
-}
-
-/* =========================
-   CART OPEN / CLOSE
-========================= */
-
-function openCart() {
-    const modal = document.getElementById("cartModal");
-    const overlay = document.getElementById("cartOverlay");
-
-    if (modal) modal.classList.add("active");
-    if (overlay) overlay.style.display = "block";
-
-    renderCart();
-}
-
-function closeCart() {
-    const modal = document.getElementById("cartModal");
-    const overlay = document.getElementById("cartOverlay");
-
-    if (modal) modal.classList.remove("active");
-    if (overlay) overlay.style.display = "none";
-}
-
-/* =========================
-   THÊM GIỎ HÀNG (INDEX + CHI TIẾT)
+   THÊM GIỎ HÀNG
 ========================= */
 
 function addToCart(id, qty = 1) {
-
-    const product = products.find(p => p.id == id);
+    const product = products.find(p => String(p.id) === String(id));
     if (!product) return;
 
-    const existing = cart.find(i => i.id == id);
+    const item = cart.find(i => String(i.id) === String(id));
 
-    if (existing) {
-        existing.quantity += qty;
+    if (item) {
+        item.quantity += qty;
     } else {
         cart.push({
             id: product.id,
@@ -107,10 +89,100 @@ function addToCart(id, qty = 1) {
         });
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    saveCart();
+}
 
-    updateCartCount();
+/* =========================
+   MUA NGAY (POPUP)
+========================= */
+
+function buyNow(id) {
+    const product = products.find(p => String(p.id) === String(id));
+    if (!product) return;
+
+    selectedProduct = product;
+
+    const popup = $("buyPopup");
+    if (popup) popup.style.display = "flex";
+
+    const nameEl = $("buyProductName");
+    if (nameEl) nameEl.value = product.name;
+
+    const qtyEl = $("buyQty");
+    if (qtyEl) qtyEl.value = 1;
+
+    // capacity
+    const capEl = $("buyCapacity");
+    if (capEl && product.specs) {
+        let html = "";
+
+        const capSpec = product.specs.find(s => s.includes("Mức cân"));
+
+        if (capSpec) {
+            capSpec
+                .replace("Mức cân:", "")
+                .split("/")
+                .forEach(c => {
+                    html += `<option>${c.trim()}</option>`;
+                });
+        }
+
+        capEl.innerHTML = html;
+    }
+}
+
+/* =========================
+   ĐÓNG POPUP MUA NGAY
+========================= */
+
+function closeBuyPopup() {
+    const popup = $("buyPopup");
+    if (popup) popup.style.display = "none";
+}
+
+/* =========================
+   XÁC NHẬN MUA
+========================= */
+
+function confirmBuy() {
+    if (!selectedProduct) return;
+
+    const qty = Number($("buyQty")?.value || 1);
+
+    cart.push({
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        category: selectedProduct.category,
+        folder: selectedProduct.folder,
+        quantity: qty
+    });
+
+    saveCart();
+    closeBuyPopup();
+
+    alert("Đã thêm vào giỏ hàng");
+}
+
+/* =========================
+   CART UI
+========================= */
+
+function openCart() {
+    const modal = $("cartModal");
+    const overlay = $("cartOverlay");
+
+    if (modal) modal.classList.add("active");
+    if (overlay) overlay.style.display = "block";
+
     renderCart();
+}
+
+function closeCart() {
+    const modal = $("cartModal");
+    const overlay = $("cartOverlay");
+
+    if (modal) modal.classList.remove("active");
+    if (overlay) overlay.style.display = "none";
 }
 
 /* =========================
@@ -118,8 +190,7 @@ function addToCart(id, qty = 1) {
 ========================= */
 
 function renderCart() {
-
-    const cartBody = document.getElementById("cartBody");
+    const cartBody = $("cartBody");
     if (!cartBody) return;
 
     if (cart.length === 0) {
@@ -130,14 +201,13 @@ function renderCart() {
     cartBody.innerHTML = "";
 
     cart.forEach(item => {
-
         cartBody.innerHTML += `
         <div class="cart-item">
             <img src="images/${item.category}/${item.folder}/main.jpg" width="70">
 
             <h4>${item.name}</h4>
 
-            <div class="qty">
+            <div>
                 <button onclick="decreaseQty(${item.id})">-</button>
                 <span>${item.quantity}</span>
                 <button onclick="increaseQty(${item.id})">+</button>
@@ -149,176 +219,33 @@ function renderCart() {
 }
 
 /* =========================
-   TĂNG GIẢM GIỎ
+   UPDATE QTY
 ========================= */
 
 function increaseQty(id) {
-    const item = cart.find(i => i.id == id);
+    const item = cart.find(i => String(i.id) === String(id));
     if (item) item.quantity++;
 
     saveCart();
 }
 
 function decreaseQty(id) {
-    const item = cart.find(i => i.id == id);
+    const item = cart.find(i => String(i.id) === String(id));
 
-    if (item) {
-        item.quantity--;
-        if (item.quantity <= 0) {
-            cart = cart.filter(i => i.id != id);
-        }
+    if (!item) return;
+
+    item.quantity--;
+
+    if (item.quantity <= 0) {
+        cart = cart.filter(i => String(i.id) !== String(id));
     }
 
     saveCart();
 }
 
 function removeCart(id) {
-    cart = cart.filter(i => i.id != id);
+    cart = cart.filter(i => String(i.id) !== String(id));
     saveCart();
-}
-
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-    renderCart();
-}
-
-/* =========================
-   ADD CART POPUP (CHI TIẾT)
-========================= */
-
-function addToCartDetail() {
-    if (!window.product) return;
-
-    selectedProduct = window.product;
-
-    const popup = document.getElementById("addCartPopup");
-    if (popup) popup.style.display = "flex";
-
-    document.getElementById("popupCartImg").src =
-        `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
-
-    document.getElementById("popupCartName").innerText =
-        selectedProduct.name;
-
-    let html = "";
-    const capSpec = selectedProduct.specs.find(s => s.includes("Mức cân"));
-
-    if (capSpec) {
-        capSpec.replace("Mức cân:", "")
-            .split("/")
-            .forEach(cap => {
-                html += `<option>${cap.trim()}</option>`;
-            });
-    }
-
-    document.getElementById("popupCartCapacity").innerHTML = html;
-}
-
-function closeAddCart() {
-    const popup = document.getElementById("addCartPopup");
-    if (popup) popup.style.display = "none";
-}
-
-function confirmAddCart() {
-
-    if (!selectedProduct) return;
-
-    cart.push({
-        id: selectedProduct.id,
-        name: selectedProduct.name,
-        category: selectedProduct.category,
-        folder: selectedProduct.folder,
-        quantity: Number(document.getElementById("popupCartQty").value)
-    });
-
-    saveCart();
-
-    closeAddCart();
-
-    alert("Đã thêm vào giỏ hàng");
-}
-
-/* =========================
-   BUY NOW POPUP
-========================= */
-
-function buyNow() {
-
-    if (!window.product) return;
-
-    selectedProduct = window.product;
-
-    const popup = document.getElementById("buyPopup");
-    if (popup) popup.style.display = "flex";
-
-    document.getElementById("buyProductName").value =
-        selectedProduct.name;
-
-    let html = "";
-    const capSpec = selectedProduct.specs.find(s => s.includes("Mức cân"));
-
-    if (capSpec) {
-        capSpec.replace("Mức cân:", "")
-            .split("/")
-            .forEach(cap => {
-                html += `<option>${cap.trim()}</option>`;
-            });
-    }
-
-    document.getElementById("buyCapacity").innerHTML = html;
-}
-
-function closeBuyPopup() {
-    const popup = document.getElementById("buyPopup");
-    if (popup) popup.style.display = "none";
-}
-
-/* =========================
-   QTY CONTROL
-========================= */
-
-function changeQty(type, amount) {
-
-    let input = document.getElementById(
-        type === "cart" ? "popupCartQty" : "buyQty"
-    );
-
-    let val = Number(input.value) + amount;
-    if (val < 1) val = 1;
-
-    input.value = val;
-}
-
-/* =========================
-   ORDER TEXT
-========================= */
-
-function buildOrderText() {
-
-    return `
-KHÁCH HÀNG: ${document.getElementById("customerName")?.value || ""}
-SĐT: ${document.getElementById("customerPhone")?.value || ""}
-CÔNG TY: ${document.getElementById("customerCompany")?.value || ""}
-SẢN PHẨM: ${document.getElementById("buyProductName")?.value || ""}
-SỐ LƯỢNG: ${document.getElementById("buyQty")?.value || ""}
-`;
-}
-
-/* =========================
-   ZALO / MESS
-========================= */
-
-function sendOrderZalo() {
-    navigator.clipboard.writeText(buildOrderText());
-    alert("Đã copy đơn hàng");
-    window.open("https://zalo.me/0383598603", "_blank");
-}
-
-function sendOrderMessenger() {
-    navigator.clipboard.writeText(buildOrderText());
-    alert("Đã copy đơn hàng");
-    window.open("https://m.me/QTNSCALE", "_blank");
 }
 
 /* =========================
