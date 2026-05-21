@@ -76,40 +76,8 @@ function filterProducts(category){
     renderProducts(filtered);
 
 }
-/* =========================
-   SLIDER BANNER
-========================= */
 
-const bannerImages = [
 
-    "images/can-ban/jwl/main.jpg",
-    "images/can-dem/jcl/main.jpg",
-    "images/can-phan-tich/oks-dj/main.jpg",
-    "images/can-treo/fj5/main.jpg",
-    "images/can-chong-nuoc/super-ss/main.jpg",
-    "images/can-in-tem-ma-vach/ind-pp/main.jpg"
-
-];
-
-let currentBanner = 0;
-
-function changeBanner(){
-
-    const banner = document.getElementById("bannerImage");
-
-    if(!banner) return;
-
-    currentBanner++;
-
-    if(currentBanner >= bannerImages.length){
-        currentBanner = 0;
-    }
-
-    banner.src = bannerImages[currentBanner];
-
-}
-
-setInterval(changeBanner,3000);
 /* =========================
    MỞ GIỎ HÀNG
 ========================= */
@@ -482,6 +450,13 @@ capacities = capSpec
 }
 
 capacities.forEach(cap=>{
+
+html += `<option>${cap.trim()}</option>`;
+
+});
+
+document.getElementById("buyCapacity").innerHTML =
+html;
 
 }
 
