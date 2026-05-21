@@ -1,22 +1,26 @@
 /* =========================
    CART DATA
 ========================= */
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 /* =========================
-   SAFE PRODUCTS CHECK
+   GET PRODUCTS SAFE
 ========================= */
+function getProducts() {
+    return Array.isArray(window.products) ? window.products : [];
+}
 
-function safeProducts() {
-    return Array.isArray(products) ? products : [];
+/* =========================
+   SAVE CART
+========================= */
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 /* =========================
    RENDER PRODUCTS
 ========================= */
-
-function renderProducts(list = safeProducts()) {
+function renderProducts(list = getProducts()) {
 
     const grid = document.getElementById("productGrid");
     if (!grid) return;
@@ -24,7 +28,6 @@ function renderProducts(list = safeProducts()) {
     let html = "";
 
     list.forEach(p => {
-
         if (!p || !p.id) return;
 
         const img = `images/${p.category}/${p.folder}/main.jpg`;
@@ -40,6 +43,14 @@ function renderProducts(list = safeProducts()) {
                 Chi tiết
             </a>
 
+            <button onclick="addToCart(${p.id})">
+                Thêm giỏ
+            </button>
+
+            <button onclick="buyNow(${p.id})">
+                Mua ngay
+            </button>
+
         </div>
         `;
     });
@@ -50,36 +61,96 @@ function renderProducts(list = safeProducts()) {
 /* =========================
    FILTER CATEGORY
 ========================= */
-
 function filterProducts(category) {
-
-    const filtered = safeProducts().filter(p => p.category === category);
-
+    const filtered = getProducts().filter(p => p.category === category);
     renderProducts(filtered);
 }
 
 /* =========================
-   RESET FILTER (optional click logo/home)
+   RESET
 ========================= */
-
 function resetProducts() {
     renderProducts();
 }
 
 /* =========================
+   ADD TO CART
+========================= */
+function addToCart(id) {
+
+    const product = getProducts().find(p => p.id == id);
+    if (!product) return;
+
+    const item = cart.find(i => i.id == id);
+
+    if (item) {
+        item.qty += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            qty: 1
+        });
+    }
+
+    saveCart();
+    updateCartCount();
+    renderCart();
+}
+
+/* =========================
+   INCREASE QTY
+========================= */
+function increaseQty(id) {
+    const item = cart.find(i => i.id == id);
+    if (!item) return;
+
+    item.qty += 1;
+
+    saveCart();
+    updateCartCount();
+    renderCart();
+}
+
+/* =========================
+   DECREASE QTY
+========================= */
+function decreaseQty(id) {
+    const item = cart.find(i => i.id == id);
+    if (!item) return;
+
+    item.qty -= 1;
+
+    if (item.qty <= 0) {
+        cart = cart.filter(i => i.id != id);
+    }
+
+    saveCart();
+    updateCartCount();
+    renderCart();
+}
+
+/* =========================
+   REMOVE ITEM
+========================= */
+function removeCart(index) {
+
+    cart.splice(index, 1);
+
+    saveCart();
+    updateCartCount();
+    renderCart();
+}
+
+/* =========================
    CART COUNT
 ========================= */
-
 function updateCartCount() {
 
     const el = document.getElementById("cartCount");
     if (!el) return;
 
-    let total = 0;
-
-    cart.forEach(i => {
-        total += i.qty || 1;
-    });
+    const total = cart.reduce((sum, i) => sum + (i.qty || 1), 0);
 
     el.innerText = total;
 }
@@ -87,21 +158,16 @@ function updateCartCount() {
 /* =========================
    OPEN CART
 ========================= */
-
 function openCart() {
-
     document.getElementById("cartOverlay").style.display = "block";
     document.getElementById("cartModal").style.display = "block";
-
     renderCart();
 }
 
 /* =========================
    CLOSE CART
 ========================= */
-
 function closeCart() {
-
     document.getElementById("cartOverlay").style.display = "none";
     document.getElementById("cartModal").style.display = "none";
 }
@@ -109,11 +175,15 @@ function closeCart() {
 /* =========================
    RENDER CART
 ========================= */
-
 function renderCart() {
 
     const body = document.getElementById("cartBody");
     if (!body) return;
+
+    if (cart.length === 0) {
+        body.innerHTML = "<p>Giỏ hàng trống</p>";
+        return;
+    }
 
     let html = "";
 
@@ -122,9 +192,15 @@ function renderCart() {
         html += `
         <div class="cart-item">
 
-            <p>${item.name}</p>
+            <div class="cart-name">
+                ${item.name}
+            </div>
 
-            <p>Số lượng: ${item.qty}</p>
+            <div class="cart-controls">
+                <button onclick="decreaseQty(${item.id})">-</button>
+                <span>${item.qty}</span>
+                <button onclick="increaseQty(${item.id})">+</button>
+            </div>
 
             <button onclick="removeCart(${index})">Xóa</button>
 
@@ -136,22 +212,16 @@ function renderCart() {
 }
 
 /* =========================
-   REMOVE CART
+   BUY NOW
 ========================= */
-
-function removeCart(index) {
-
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    updateCartCount();
-    renderCart();
+function buyNow(id) {
+    addToCart(id);
+    openCart();
 }
 
 /* =========================
-   CHECKOUT (ZALO)
+   CHECKOUT ZALO
 ========================= */
-
 function checkoutCart() {
 
     if (cart.length === 0) {
@@ -159,7 +229,7 @@ function checkoutCart() {
         return;
     }
 
-    let msg = "Đơn hàng:\n\n";
+    let msg = "ĐƠN HÀNG:\n\n";
 
     cart.forEach(i => {
         msg += `- ${i.name} x${i.qty}\n`;
@@ -173,10 +243,8 @@ function checkoutCart() {
 /* =========================
    INIT
 ========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
+window.addEventListener("load", () => {
     renderProducts();
     updateCartCount();
-
+    renderCart();
 });
