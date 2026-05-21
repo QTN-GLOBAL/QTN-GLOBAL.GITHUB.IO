@@ -226,6 +226,140 @@ THÊM VÀO GIỎ
 </div>
 
 </div>
+<!-- POPUP ADD CART -->
+
+<div class="popup-overlay" id="addCartPopup">
+
+<div class="popup-box">
+
+<span class="close-popup"
+onclick="closeAddCart()">
+✕
+</span>
+
+<div class="popup-product">
+
+<img id="popupCartImg">
+
+<div>
+
+<h3 id="popupCartName"></h3>
+
+<label>Mức cân</label>
+
+<select id="popupCartCapacity"></select>
+
+<label>Số lượng</label>
+
+<div class="qty-box">
+
+<button onclick="changeQty('cart',-1)">
+-
+</button>
+
+<input type="number"
+id="popupCartQty"
+value="1">
+
+<button onclick="changeQty('cart',1)">
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="popup-btn"
+onclick="confirmAddCart()">
+
+THÊM VÀO GIỎ
+
+</button>
+
+</div>
+
+</div>
+
+<!-- POPUP BUY NOW -->
+
+<div class="popup-overlay" id="buyPopup">
+
+<div class="popup-box popup-buy">
+
+<span class="close-popup"
+onclick="closeBuyPopup()">
+✕
+</span>
+
+<h2>THÔNG TIN ĐẶT HÀNG</h2>
+
+<input type="text"
+id="customerName"
+placeholder="Tên khách hàng">
+
+<input type="text"
+id="customerPhone"
+placeholder="Số điện thoại">
+
+<input type="text"
+id="customerCompany"
+placeholder="Tên công ty">
+
+<input type="text"
+id="customerTax"
+placeholder="Mã số thuế">
+
+<textarea id="customerInvoice"
+placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+<textarea id="customerAddress"
+placeholder="Địa chỉ giao hàng"></textarea>
+
+<input type="text"
+id="buyProductName"
+readonly>
+
+<select id="buyCapacity"></select>
+
+<div class="qty-box">
+
+<button onclick="changeQty('buy',-1)">
+-
+</button>
+
+<input type="number"
+id="buyQty"
+value="1">
+
+<button onclick="changeQty('buy',1)">
++
+</button>
+
+</div>
+
+<div class="buy-actions">
+
+<button class="zalo-btn"
+onclick="sendOrderZalo()">
+
+Gửi Zalo
+
+</button>
+
+<button class="mess-btn"
+onclick="sendOrderMessenger()">
+
+Messenger
+
+</button>
+
+</div>
+
+</div>
+
+</div>
 <script src="products.js"></script>
 <!-- BUY NOW POPUP -->
 
