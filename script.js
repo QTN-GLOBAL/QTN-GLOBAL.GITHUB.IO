@@ -1,68 +1,38 @@
+/* =========================
+   CART STATE
+========================= */
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* =========================
-   SAFE DATA
-========================= */
-function getProducts() {
-    return Array.isArray(products) ? products : [];
-}
-
-/* =========================
-   RENDER INDEX PRODUCTS
-========================= */
-function renderProducts(list = getProducts()) {
-    const grid = document.getElementById("productGrid");
-    if (!grid) return;
-
-    grid.innerHTML = list.map(p => `
-        <div class="product-card">
-            <img src="images/${p.category}/${p.folder}/main.jpg"
-                 onerror="this.src='images/logo.png'">
-
-            <h3>${p.name}</h3>
-
-            <a class="detail-btn" href="chitiet.html?id=${p.id}">
-                Chi tiết
-            </a>
-        </div>
-    `).join("");
-}
-
-/* =========================
-   FILTER
-========================= */
-function filterProducts(cat) {
-    renderProducts(getProducts().filter(p => p.category === cat));
-}
-
-function resetProducts() {
-    renderProducts();
-}
-
-/* =========================
-   CART CORE
-========================= */
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
+
+/* =========================
+   UPDATE COUNT
+========================= */
 
 function updateCartCount() {
     const el = document.getElementById("cartCount");
     if (!el) return;
 
-    el.innerText = cart.reduce((t, i) => t + (i.qty || 1), 0);
+    let total = cart.reduce((sum, i) => sum + (i.qty || 1), 0);
+    el.innerText = total;
 }
 
 /* =========================
-   ADD CART (GLOBAL SAFE)
+   ADD TO CART (GLOBAL)
 ========================= */
-function addToCart(product, qty = 1) {
+
+function addToCart(productId, qty = 1) {
+
+    const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    const existing = cart.find(i => i.id === product.id);
+    const exist = cart.find(i => i.id === productId);
 
-    if (existing) {
-        existing.qty += qty;
+    if (exist) {
+        exist.qty += qty;
     } else {
         cart.push({
             id: product.id,
@@ -76,43 +46,92 @@ function addToCart(product, qty = 1) {
 }
 
 /* =========================
-   CART UI
+   OPEN CART
 ========================= */
+
 function openCart() {
-    document.getElementById("cartOverlay").style.display = "block";
-    document.getElementById("cartModal").classList.add("active");
+    const overlay = document.getElementById("cartOverlay");
+    const modal = document.getElementById("cartModal");
+
+    if (!overlay || !modal) return;
+
+    overlay.style.display = "block";
+    modal.classList.add("active");
+
     renderCart();
 }
 
+/* =========================
+   CLOSE CART
+========================= */
+
 function closeCart() {
-    document.getElementById("cartOverlay").style.display = "none";
-    document.getElementById("cartModal").classList.remove("active");
+    const overlay = document.getElementById("cartOverlay");
+    const modal = document.getElementById("cartModal");
+
+    if (!overlay || !modal) return;
+
+    overlay.style.display = "none";
+    modal.classList.remove("active");
 }
+
+/* =========================
+   RENDER CART
+========================= */
 
 function renderCart() {
     const body = document.getElementById("cartBody");
     if (!body) return;
 
-    body.innerHTML = cart.map((item, i) => `
+    if (cart.length === 0) {
+        body.innerHTML = "<p>Giỏ hàng trống</p>";
+        return;
+    }
+
+    body.innerHTML = cart.map((i, index) => `
         <div class="cart-item">
-            <p>${item.name}</p>
-            <p>x${item.qty}</p>
-            <button onclick="removeCart(${i})">Xóa</button>
+            <p>${i.name}</p>
+            <p>Số lượng: ${i.qty}</p>
+            <button onclick="removeCart(${index})">Xóa</button>
         </div>
     `).join("");
 }
 
-function removeCart(i) {
-    cart.splice(i, 1);
+/* =========================
+   REMOVE ITEM
+========================= */
+
+function removeCart(index) {
+    cart.splice(index, 1);
     saveCart();
     updateCartCount();
     renderCart();
 }
 
 /* =========================
-   INIT
+   CHECKOUT ZALO
 ========================= */
+
+function checkoutCart() {
+
+    if (cart.length === 0) {
+        alert("Giỏ hàng trống!");
+        return;
+    }
+
+    let msg = "Đơn hàng:\n\n";
+
+    cart.forEach(i => {
+        msg += `- ${i.name} x${i.qty}\n`;
+    });
+
+    window.open("https://zalo.me/0383598603");
+}
+
+/* =========================
+   INIT SAFE
+========================= */
+
 document.addEventListener("DOMContentLoaded", () => {
-    renderProducts();
     updateCartCount();
 });
