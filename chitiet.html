@@ -109,6 +109,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </div>
 
 <div class="thumb-list" id="thumbList"></div>
+<div class="detail-buttons">
+
+<button class="btn-cart"
+onclick="addToCartDetail()">
+
+<i class="fa-solid fa-cart-shopping"></i>
+THÊM GIỎ
+
+</button>
+
+<button class="btn-buy-now"
+onclick="buyNow()">
+
+<i class="fa-solid fa-bolt"></i>
+MUA NGAY
+
+</button>
+
+</div>
 
 </div>
 
@@ -129,18 +148,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <div class="detail-specs">
 <h3>Thông số kỹ thuật</h3>
 <div id="productSpecs"></div>
-</div>
-
-<div class="detail-buttons">
-
-<button class="btn-cart" onclick="addToCartDetail()">
-Thêm vào giỏ
-</button>
-
-<button class="btn-buy-now" onclick="buyNow()">
-Mua ngay
-</button>
-
 </div>
 
 </div>
@@ -211,14 +218,14 @@ document.getElementById("mainImage").src =
 
 let thumbHTML = "";
 
-for(let i=1;i<=5;i++){
+for(let i=1;i<=10;i++){
 
 thumbHTML += `
 
 <img
 src="images/${product.category}/${product.folder}/${i}.jpg"
 onclick="changeImage(this.src)"
-onerror="this.style.display='none'"
+onerror="this.remove()"
 >
 
 `;

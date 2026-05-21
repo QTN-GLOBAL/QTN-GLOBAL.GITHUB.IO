@@ -598,3 +598,70 @@ body{
 }
 
 }
+/* =========================
+   NÚT DETAIL
+========================= */
+
+.detail-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:25px;
+}
+
+.detail-buttons button{
+    flex:1;
+    border:none;
+    padding:16px;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+/* THÊM GIỎ */
+
+.btn-cart{
+    background:#0d47a1;
+    color:#fff;
+    box-shadow:0 4px 12px rgba(13,71,161,0.25);
+}
+
+.btn-cart:hover{
+    transform:translateY(-3px);
+}
+
+/* MUA NGAY */
+
+.btn-buy-now{
+    background:#e53935;
+    color:#fff;
+    box-shadow:0 4px 12px rgba(229,57,53,0.25);
+}
+
+.btn-buy-now:hover{
+    transform:translateY(-3px);
+}
+
+/* ẢNH */
+
+.main-image img{
+    width:100%;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.main-image img:hover{
+    transform:scale(1.03);
+}
+
+/* DETAIL */
+
+.detail-page{
+    gap:40px;
+}
+
+.detail-left{
+    position:sticky;
+    top:100px;
+}
