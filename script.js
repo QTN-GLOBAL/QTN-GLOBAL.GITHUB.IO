@@ -76,16 +76,18 @@ function filterProducts(category){
     renderProducts(filtered);
 
 }
-
 /* =========================
    SLIDER BANNER
 ========================= */
 
 const bannerImages = [
 
-    "images/can-ban/jadever-jwl/main.jpg",
+    "images/can-ban/jwl/main.jpg",
     "images/can-dem/jcl/main.jpg",
-    "images/can-ky-thuat/ohaus/main.jpg"
+    "images/can-phan-tich/oks-dj/main.jpg",
+    "images/can-treo/fj5/main.jpg",
+    "images/can-chong-nuoc/super-ss/main.jpg",
+    "images/can-in-tem-ma-vach/ind-pp/main.jpg"
 
 ];
 
@@ -107,8 +109,7 @@ function changeBanner(){
 
 }
 
-setInterval(changeBanner,5000);
-
+setInterval(changeBanner,3000);
 /* =========================
    MỞ GIỎ HÀNG
 ========================= */
