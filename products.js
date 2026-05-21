@@ -1,4 +1,4 @@
-window.products = [
+const products = window.products = [
 
 {
     id:1,

@@ -1,33 +1,59 @@
-/* =========================
-   CART STATE
-========================= */
+// =========================
+// SAFE PRODUCTS LOAD
+// =========================
+const products = window.products || [];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// =========================
+// RENDER PRODUCTS
+// =========================
+const productGrid = document.getElementById("productGrid");
 
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
+function renderProducts() {
+    if (!productGrid || !Array.isArray(products)) return;
+
+    productGrid.innerHTML = products.map(p => `
+        <div class="product-card">
+            <img src="images/${p.category}/${p.folder}/main.jpg"
+                 alt="${p.name}"
+                 onerror="this.src='images/default.jpg'">
+
+            <div class="product-info">
+                <h3>${p.name}</h3>
+                <a href="chitiet.html?id=${p.id}">Chi tiết</a>
+            </div>
+        </div>
+    `).join("");
 }
 
-/* =========================
-   UPDATE COUNT
-========================= */
+// =========================
+// CART SYSTEM (LOCALSTORAGE)
+// =========================
+function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 function updateCartCount() {
     const el = document.getElementById("cartCount");
     if (!el) return;
 
-    let total = cart.reduce((sum, i) => sum + (i.qty || 1), 0);
+    const cart = getCart();
+    const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
     el.innerText = total;
 }
 
-/* =========================
-   ADD TO CART (GLOBAL)
-========================= */
-
+// =========================
+// ADD TO CART
+// =========================
 function addToCart(productId, qty = 1) {
 
-    const product = products.find(p => p.id === productId);
+    const product = (window.products || []).find(p => p.id === productId);
     if (!product) return;
+
+    const cart = getCart();
 
     const exist = cart.find(i => i.id === productId);
 
@@ -41,97 +67,14 @@ function addToCart(productId, qty = 1) {
         });
     }
 
-    saveCart();
+    saveCart(cart);
     updateCartCount();
 }
 
-/* =========================
-   OPEN CART
-========================= */
-
-function openCart() {
-    const overlay = document.getElementById("cartOverlay");
-    const modal = document.getElementById("cartModal");
-
-    if (!overlay || !modal) return;
-
-    overlay.style.display = "block";
-    modal.classList.add("active");
-
-    renderCart();
-}
-
-/* =========================
-   CLOSE CART
-========================= */
-
-function closeCart() {
-    const overlay = document.getElementById("cartOverlay");
-    const modal = document.getElementById("cartModal");
-
-    if (!overlay || !modal) return;
-
-    overlay.style.display = "none";
-    modal.classList.remove("active");
-}
-
-/* =========================
-   RENDER CART
-========================= */
-
-function renderCart() {
-    const body = document.getElementById("cartBody");
-    if (!body) return;
-
-    if (cart.length === 0) {
-        body.innerHTML = "<p>Giỏ hàng trống</p>";
-        return;
-    }
-
-    body.innerHTML = cart.map((i, index) => `
-        <div class="cart-item">
-            <p>${i.name}</p>
-            <p>Số lượng: ${i.qty}</p>
-            <button onclick="removeCart(${index})">Xóa</button>
-        </div>
-    `).join("");
-}
-
-/* =========================
-   REMOVE ITEM
-========================= */
-
-function removeCart(index) {
-    cart.splice(index, 1);
-    saveCart();
-    updateCartCount();
-    renderCart();
-}
-
-/* =========================
-   CHECKOUT ZALO
-========================= */
-
-function checkoutCart() {
-
-    if (cart.length === 0) {
-        alert("Giỏ hàng trống!");
-        return;
-    }
-
-    let msg = "Đơn hàng:\n\n";
-
-    cart.forEach(i => {
-        msg += `- ${i.name} x${i.qty}\n`;
-    });
-
-    window.open("https://zalo.me/0383598603");
-}
-
-/* =========================
-   INIT SAFE
-========================= */
-
+// =========================
+// INIT
+// =========================
 document.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
     updateCartCount();
 });
