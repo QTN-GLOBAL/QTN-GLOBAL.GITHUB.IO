@@ -1,9 +1,13 @@
-/* =========================
-   GLOBAL STATE
-========================= */
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let selectedProduct = null;
+
+/* =========================
+   SAFE CHECK PRODUCTS
+========================= */
+
+function getProducts() {
+    return window.products || [];
+}
 
 /* =========================
    CART COUNT
@@ -12,8 +16,8 @@ let selectedProduct = null;
 function updateCartCount() {
     let total = 0;
 
-    cart.forEach(item => {
-        total += item.quantity || 0;
+    cart.forEach(i => {
+        total += i.quantity || 0;
     });
 
     const el = document.getElementById("cartCount");
@@ -21,52 +25,51 @@ function updateCartCount() {
 }
 
 /* =========================
-   SAVE CART
+   RENDER PRODUCTS SAFE
 ========================= */
 
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-    renderCart();
-}
+function renderProducts(list) {
 
-/* =========================
-   RENDER PRODUCTS (INDEX)
-========================= */
-
-function renderProducts(productList = products) {
     const grid = document.getElementById("productGrid");
     if (!grid) return;
 
+    const productsData = list || getProducts();
+
+    if (!Array.isArray(productsData)) return;
+
     grid.innerHTML = "";
 
-    productList.forEach(p => {
+    productsData.forEach(p => {
+
+        if (!p) return;
+
         grid.innerHTML += `
         <div class="product-card">
             <img src="images/${p.category}/${p.folder}/main.jpg">
             <div class="product-info">
-                <h3>${p.name}</h3>
-                <a class="detail-btn" href="chitiet.html?id=${p.id}">Chi tiết</a>
+                <h3>${p.name || ""}</h3>
+                <a href="chitiet.html?id=${p.id}">Chi tiết</a>
             </div>
         </div>`;
     });
 }
 
 /* =========================
-   FILTER
+   FILTER SAFE
 ========================= */
 
-function filterProducts(category) {
-    renderProducts(products.filter(p => p.category === category));
+function filterProducts(cat) {
+    const list = getProducts().filter(p => p.category === cat);
+    renderProducts(list);
 }
 
 /* =========================
-   CART
+   CART SAFE
 ========================= */
 
 function addToCart(id, qty = 1) {
 
-    const p = products.find(x => x.id == id);
+    const p = getProducts().find(x => x.id == id);
     if (!p) return;
 
     const exist = cart.find(x => x.id == id);
@@ -82,8 +85,29 @@ function addToCart(id, qty = 1) {
         });
     }
 
-    saveCart();
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
 }
+
+/* =========================
+   CART OPEN/CLOSE SAFE
+========================= */
+
+function openCart() {
+    document.getElementById("cartModal")?.classList.add("active");
+    document.getElementById("cartOverlay")?.style.display = "block";
+    renderCart();
+}
+
+function closeCart() {
+    document.getElementById("cartModal")?.classList.remove("active");
+    document.getElementById("cartOverlay")?.style.display = "none";
+}
+
+/* =========================
+   RENDER CART SAFE
+========================= */
 
 function renderCart() {
 
@@ -99,33 +123,15 @@ function renderCart() {
 
     cart.forEach(i => {
         body.innerHTML += `
-        <div class="cart-item">
-            <img src="images/${i.category}/${i.folder}/main.jpg" width="60">
+        <div>
             <h4>${i.name}</h4>
             <span>${i.quantity}</span>
-            <button onclick="removeCart(${i.id})">X</button>
         </div>`;
     });
 }
 
-function removeCart(id) {
-    cart = cart.filter(i => i.id != id);
-    saveCart();
-}
-
-function openCart() {
-    document.getElementById("cartModal")?.classList.add("active");
-    document.getElementById("cartOverlay")?.style.display = "block";
-    renderCart();
-}
-
-function closeCart() {
-    document.getElementById("cartModal")?.classList.remove("active");
-    document.getElementById("cartOverlay")?.style.display = "none";
-}
-
 /* =========================
-   DETAIL POPUP FIX (QUAN TRỌNG)
+   DETAIL SAFE GLOBAL FIX
 ========================= */
 
 function openAddCartPopup() {
@@ -142,16 +148,15 @@ function openAddCartPopup() {
 
     document.getElementById("popupCartName").innerText = p.name;
 
-    // 🔥 FIX LẤY MỨC CÂN
-    let capText = (p.specs || []).find(s =>
+    let html = "";
+
+    const cap = (p.specs || []).find(s =>
         s.toLowerCase().includes("mức cân")
     );
 
-    let html = "";
-
-    if (capText) {
-        let values = capText.split(":")[1] || capText;
-        values.split("/").forEach(v => {
+    if (cap) {
+        let val = cap.split(":")[1] || "";
+        val.split("/").forEach(v => {
             html += `<option>${v.trim()}</option>`;
         });
     }
@@ -159,34 +164,11 @@ function openAddCartPopup() {
     document.getElementById("popupCartCapacity").innerHTML = html;
 }
 
-function closeAddCart() {
-    document.getElementById("addCartPopup").style.display = "none";
-}
-
-function confirmAddCart() {
-
-    if (!selectedProduct) return;
-
-    cart.push({
-        id: selectedProduct.id,
-        name: selectedProduct.name,
-        category: selectedProduct.category,
-        folder: selectedProduct.folder,
-        quantity: Number(document.getElementById("popupCartQty").value || 1)
-    });
-
-    saveCart();
-    closeAddCart();
-
-    alert("Đã thêm vào giỏ");
-}
-
 /* =========================
-   BUY POPUP FIX
+   BUY POPUP SAFE
 ========================= */
 
 function openBuyPopup() {
-
     const p = window.currentProduct;
     if (!p) return;
 
@@ -196,29 +178,15 @@ function openBuyPopup() {
     document.getElementById("buyProductName").value = p.name;
 }
 
-function closeBuyPopup() {
-    document.getElementById("buyPopup").style.display = "none";
-}
-
 /* =========================
-   QTY
-========================= */
-
-function changeQty(type, num) {
-    const id = type === "cart" ? "popupCartQty" : "buyQty";
-    let el = document.getElementById(id);
-
-    let val = Number(el.value) + num;
-    if (val < 1) val = 1;
-
-    el.value = val;
-}
-
-/* =========================
-   INIT
+   INIT SAFE
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderProducts();
-    updateCartCount();
+    try {
+        renderProducts();
+        updateCartCount();
+    } catch (e) {
+        console.error("SCRIPT ERROR:", e);
+    }
 });
