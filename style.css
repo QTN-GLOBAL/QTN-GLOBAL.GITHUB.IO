@@ -11,88 +11,119 @@ body{
 }
 
 /* =========================
-   HEADER
+   TOP HEADER
 ========================= */
 
-.header{
-    background:#0d47a1;
-    color:#fff;
-}
-
 .top-header{
+    background:#fff;
+    padding:18px 40px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:12px 20px;
-    flex-wrap:wrap;
+    border-bottom:1px solid #eee;
 }
+
+/* LOGO + TEXT */
 
 .logo-area{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:15px;
 }
 
 .logo-area img{
-    width:70px;
+    height:70px;
 }
 
 .company-info h2{
-    font-size:24px;
+    font-size:46px;
+    margin:0;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#0d47a1;
+}
+
+.company-info h2::first-letter{
+    color:#d4a017;
 }
 
 .company-info p{
-    font-size:13px;
+    margin-top:6px;
+    color:#555;
+    font-size:20px;
+    font-weight:500;
 }
+
+/* RIGHT SIDE */
 
 .top-contact{
     display:flex;
     align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
+    gap:15px;
 }
+
+/* PHONE BUTTON */
 
 .top-btn{
-    background:#1565c0;
+    background:#0d47a1;
     color:#fff;
-    padding:10px 14px;
-    border-radius:6px;
     text-decoration:none;
-    font-size:14px;
+    padding:12px 22px;
+    border-radius:40px;
+    font-weight:700;
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:0.3s;
 }
 
+.top-btn:hover{
+    background:#1565c0;
+    transform:translateY(-2px);
+}
+
+/* ICON */
+
 .social-icon{
-    width:42px;
-    height:42px;
+    width:45px;
+    height:45px;
     border-radius:50%;
+    background:#0d47a1;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
     text-decoration:none;
-    color:#fff;
-    font-size:18px;
+    font-size:20px;
+    transition:0.3s;
 }
+
+.social-icon:hover{
+    background:#1565c0;
+    transform:scale(1.05);
+}
+
+/* ZALO */
 
 .zalo{
-    background:#008fe5;
-}
-
-.facebook{
-    background:#1877f2;
-}
-
-.zalo-text{
-    font-size:14px;
+    font-size:15px;
     font-weight:bold;
 }
+
+/* CART */
 
 .cart-header{
-    background:red;
-    padding:10px 15px;
-    border-radius:6px;
-    color:#fff;
+    color:#0d47a1;
+    font-weight:700;
     text-decoration:none;
-    font-weight:bold;
+    font-size:18px;
+    margin-left:10px;
+}
+
+.cart-header:hover{
+    color:#1565c0;
 }
 
 /* =========================
