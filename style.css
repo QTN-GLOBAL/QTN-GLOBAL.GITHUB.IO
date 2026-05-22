@@ -448,21 +448,22 @@ body{
 /* LEFT */
 
 .detail-left{
-    width:38%;
+    flex:0 0 38%;
+    min-width:0;
 }
 
 /* RIGHT */
 
 .detail-right{
-    width:62%;
+    flex:1;
+    min-width:0;
 
     background:#fff;
     padding:25px;
-    border-radius:14px;
 
+    border-radius:14px;
     box-shadow:0 2px 12px rgba(0,0,0,0.08);
 }
-
 /* MAIN IMAGE */
 
 #mainImage{
