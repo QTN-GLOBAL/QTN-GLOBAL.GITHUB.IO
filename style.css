@@ -1084,3 +1084,48 @@ background:rgba(0,
         max-width: 100%;
     }
 }
+.fix-layout{
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 18px !important;
+    max-width: 1100px !important;
+    margin: 20px auto !important;
+}
+
+/* LEFT KHÓA CỨNG */
+.fix-layout .detail-left{
+    flex: 0 0 420px !important;
+    max-width: 420px !important;
+}
+
+/* CHẶN ẢNH BỊ PHÌNH */
+.fix-layout .detail-left img{
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 320px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+/* RIGHT KHÓA CỨNG */
+.fix-layout .detail-right{
+    flex: 1 !important;
+    display: block !important;
+    min-width: 0 !important;
+    background: #fff !important;
+    padding: 15px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+    .fix-layout{
+        flex-direction: column !important;
+    }
+
+    .fix-layout .detail-left{
+        max-width: 100% !important;
+    }
+}
