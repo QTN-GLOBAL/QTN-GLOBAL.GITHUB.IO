@@ -430,37 +430,45 @@ body{
 
 }
 
-/* =========================
-   DETAIL PAGE
-========================= */
+```css id="4k9z2v"
+/* =========================================
+   DETAIL PAGE PRO
+========================================= */
 
 .fix-layout{
-    max-width:1200px;
-    margin:30px auto;
-    padding:0 20px;
+    max-width:1100px;
+    margin:25px auto;
+    padding:0 15px;
 
     display:flex;
-    gap:40px;
+    gap:25px;
     align-items:flex-start;
 }
 
 /* LEFT */
 
 .detail-left{
-    width:45%;
+    width:38%;
 }
 
 /* RIGHT */
 
 .detail-right{
-    width:55%;
+    width:62%;
+
+    background:#fff;
+    padding:25px;
+    border-radius:14px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
 }
 
 /* MAIN IMAGE */
 
 #mainImage{
     width:100%;
-    height:450px;
+    height:360px;
+
     object-fit:contain;
 
     background:#fff;
@@ -474,104 +482,138 @@ body{
 
 #thumbList{
     display:flex;
-    gap:10px;
+    gap:8px;
     flex-wrap:wrap;
 
-    margin-top:15px;
+    margin-top:12px;
 }
 
 #thumbList img{
-    width:80px;
-    height:80px;
+    width:65px;
+    height:65px;
 
     object-fit:cover;
 
     border:2px solid #ddd;
-    border-radius:10px;
+    border-radius:8px;
 
     cursor:pointer;
     transition:0.3s;
 }
 
 #thumbList img:hover{
-    border-color:#0d47a1;
-    transform:translateY(-2px);
+    border-color:#d32f2f;
 }
 
 /* BUTTONS */
 
 .detail-buttons{
     display:flex;
-    gap:15px;
+    gap:12px;
 
-    margin-top:20px;
+    margin-top:18px;
 }
 
 .detail-buttons button{
     flex:1;
 
+    height:48px;
+
     border:none;
     border-radius:10px;
 
-    padding:16px;
-
-    font-size:16px;
+    color:#fff;
+    font-size:15px;
     font-weight:bold;
 
     cursor:pointer;
-    transition:0.3s;
 }
-
-/* CART */
 
 .detail-buttons button:first-child{
     background:#1565c0;
-    color:#fff;
 }
-
-/* BUY */
 
 .detail-buttons button:last-child{
     background:#e53935;
-    color:#fff;
-}
-
-.detail-buttons button:hover{
-    transform:translateY(-2px);
 }
 
 /* RIGHT CONTENT */
 
 .detail-right h1{
-    font-size:30px;
-    margin-bottom:20px;
+    font-size:28px;
     line-height:1.4;
+
+    margin-bottom:20px;
+
+    color:#0d47a1;
 }
 
 .detail-right p{
-    margin-bottom:12px;
+    margin-bottom:10px;
     line-height:1.7;
-    font-size:15px;
 }
 
 .detail-right h3{
     margin-top:25px;
     margin-bottom:12px;
 
-    color:#0d47a1;
+    color:#d32f2f;
     font-size:22px;
 }
 
 /* SPECS */
 
-#productSpecs ul{
-    padding-left:20px;
-}
-
-#productSpecs li{
+#productSpecs p{
     margin-bottom:10px;
     line-height:1.7;
 }
+
+/* TABLE */
+
+.spec-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-bottom:20px;
+}
+
+.spec-table th{
+    background:#0d47a1;
+    color:#fff;
+
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+.spec-table td{
+    padding:12px;
+    border:1px solid #ddd;
+    background:#fff;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.fix-layout{
+    flex-direction:column;
+}
+
+.detail-left,
+.detail-right{
+    width:100%;
+}
+
+#mainImage{
+    height:300px;
+}
+
+.detail-buttons{
+    flex-direction:column;
+}
+
+}
+```
+
 
 /* =========================
    CART MODAL

@@ -158,11 +158,19 @@ if(product){
     }
     document.getElementById("thumbList").innerHTML = thumbs;
 
-    let specs = "<ul>";
-    product.specs.forEach(s => specs += `<li>${s}</li>`);
-    specs += "</ul>";
-    document.getElementById("productSpecs").innerHTML = specs;
+    let specs = "";
 
+product.specs.forEach(s=>{
+
+    if(s.includes("<table")){
+        specs += s;
+    }else{
+        specs += `<p>• ${s}</p>`;
+    }
+
+});
+
+document.getElementById("productSpecs").innerHTML = specs;
     document.getElementById("buyProductName").value = product.name;
 }
 </script>
