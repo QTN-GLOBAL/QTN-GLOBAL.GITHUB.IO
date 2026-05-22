@@ -274,6 +274,14 @@ if(product){
 
 });
 
+let specs = "<ul>";
+
+product.specs.forEach(s=>{
+    specs += `<li>${s}</li>`;
+});
+
+specs += "</ul>";
+
 document.getElementById("productSpecs").innerHTML = specs;
     document.getElementById("buyProductName").value = product.name;
 }
