@@ -245,46 +245,62 @@ LIÊN HỆ
 
 <!-- PRODUCT LOAD -->
 <script>
+
 const id = Number(new URLSearchParams(location.search).get("id"));
+
 const product = products.find(p => p.id === id);
+
 window.currentProduct = product;
 
 if(product){
 
     document.getElementById("productName").innerText = product.name;
+
     document.getElementById("productBrand").innerText = product.brand;
+
     document.getElementById("productOrigin").innerText = product.origin;
+
     document.getElementById("productDesc").innerText = product.description;
 
+    /* MAIN IMAGE */
+
     document.getElementById("mainImage").src =
-        `images/${product.category}/${product.folder}/main.jpg`;
+    `images/${product.category}/${product.folder}/main.jpg`;
+
+    /* THUMB */
 
     let thumbs = "";
+
     for(let i=1;i<=5;i++){
+
         thumbs += `
-        <img src="images/${product.category}/${product.folder}/${i}.jpg"
-        onclick="document.getElementById('mainImage').src=this.src"
-        onerror="this.remove()">
+        <img
+            src="images/${product.category}/${product.folder}/${i}.jpg"
+            onclick="document.getElementById('mainImage').src=this.src"
+            onerror="this.remove()"
+        >
         `;
     }
+
     document.getElementById("thumbList").innerHTML = thumbs;
 
-    document.getElementById("productSpecs").innerHTML = product.specs;
-    }
+    /* SPECS */
 
-});
+    let specs = "<ul>";
 
-let specs = "<ul>";
+    product.specs.forEach(s=>{
+        specs += `<li>${s}</li>`;
+    });
 
-product.specs.forEach(s=>{
-    specs += `<li>${s}</li>`;
-});
+    specs += "</ul>";
 
-specs += "</ul>";
+    document.getElementById("productSpecs").innerHTML = specs;
 
-document.getElementById("productSpecs").innerHTML = specs;
+    /* BUY */
+
     document.getElementById("buyProductName").value = product.name;
 }
+
 </script>
 
 </body>
