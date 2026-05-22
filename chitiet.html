@@ -11,38 +11,52 @@
 
 <body>
 
+<!-- HEADER -->
 <header class="header">
     <div class="top-header">
         <div class="logo-area">
             <img src="images/logo.png">
             <div class="company-info">
-                <h2>QTN GLOBAL</h2>
+                <h2><span style="color:#0d47a1;">QTN</span> <span style="color:#d4a017;">GLOBAL</span></h2>
+                <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
             </div>
         </div>
 
         <div class="top-contact">
-            <a href="javascript:void(0)" onclick="openCart()">
+            <a href="tel:0905913636" class="top-btn">📞 0905 913 636</a>
+            <a href="tel:0383598603" class="top-btn">📞 0383 598 603</a>
+
+            <a href="javascript:void(0)" class="top-cart-btn" onclick="openCart()">
                 🛒 (<span id="cartCount">0</span>)
             </a>
         </div>
     </div>
 </header>
 
+<!-- DETAIL -->
 <div class="detail-page">
 
     <div class="detail-left">
+
         <img id="mainImage">
 
         <div id="thumbList"></div>
 
         <div class="detail-buttons">
-            <button onclick="openAddCart()">THÊM GIỎ</button>
-            <button onclick="openBuy()">MUA NGAY</button>
+            <button onclick="openAddCartPopup()">
+                <i class="fa fa-cart-shopping"></i> THÊM GIỎ
+            </button>
+
+            <button onclick="openBuyPopup()">
+                <i class="fa fa-bolt"></i> MUA NGAY
+            </button>
         </div>
+
     </div>
 
     <div class="detail-right">
         <h1 id="productName"></h1>
+
         <p><b>Hãng:</b> <span id="productBrand"></span></p>
         <p><b>Xuất xứ:</b> <span id="productOrigin"></span></p>
 
@@ -57,36 +71,101 @@
 
 <!-- CART -->
 <div id="cartOverlay" onclick="closeCart()"></div>
+
 <div id="cartModal">
-    <h3>Giỏ hàng</h3>
+    <h2>Giỏ hàng</h2>
     <div id="cartBody"></div>
+    <button onclick="sendZalo()">Gửi Zalo</button>
 </div>
 
-<!-- POPUP ADD -->
-<div id="popupAdd" class="popup-overlay">
+<!-- ADD CART -->
+<div id="addCartPopup" class="popup-overlay">
     <div class="popup-box">
-        <span onclick="closeAdd()">✕</span>
-        <h3>Thêm giỏ hàng</h3>
-        <button onclick="confirmAdd()">Xác nhận</button>
+
+        <span onclick="closeAddCart()">✕</span>
+
+        <h2>THÊM GIỎ HÀNG</h2>
+
+        <img id="popupCartImg">
+        <h3 id="popupCartName"></h3>
+
+        <select id="popupCartCapacity"></select>
+
+        <div>
+            <button onclick="changeQty('cart',-1)">-</button>
+            <input id="popupCartQty" type="number" value="1">
+            <button onclick="changeQty('cart',1)">+</button>
+        </div>
+
+        <button onclick="confirmAddCart()">THÊM</button>
+
     </div>
 </div>
 
-<!-- POPUP BUY -->
-<div id="popupBuy" class="popup-overlay">
+<!-- BUY -->
+<div id="buyPopup" class="popup-overlay">
     <div class="popup-box">
-        <span onclick="closeBuy()">✕</span>
-        <h3>Đặt hàng</h3>
 
-        <input id="cusName" placeholder="Tên">
-        <input id="cusPhone" placeholder="SĐT">
+        <span onclick="closeBuyPopup()">✕</span>
 
-        <button onclick="sendOrder()">Gửi Zalo</button>
+        <h2>ĐẶT HÀNG</h2>
+
+        <input id="customerName" placeholder="Tên">
+        <input id="customerPhone" placeholder="SĐT">
+        <textarea id="customerAddress" placeholder="Địa chỉ"></textarea>
+
+        <input id="buyProductName" readonly>
+
+        <select id="buyCapacity"></select>
+
+        <div>
+            <button onclick="changeQty('buy',-1)">-</button>
+            <input id="buyQty" type="number" value="1">
+            <button onclick="changeQty('buy',1)">+</button>
+        </div>
+
+        <button onclick="sendOrder()">GỬI ZALO</button>
+
     </div>
 </div>
 
 <script src="products.js"></script>
 <script src="script.js"></script>
-<script src="chitiet.js"></script>
+
+<!-- PRODUCT LOAD -->
+<script>
+const id = Number(new URLSearchParams(location.search).get("id"));
+const product = products.find(p => p.id === id);
+window.currentProduct = product;
+
+if(product){
+
+    document.getElementById("productName").innerText = product.name;
+    document.getElementById("productBrand").innerText = product.brand;
+    document.getElementById("productOrigin").innerText = product.origin;
+    document.getElementById("productDesc").innerText = product.description;
+
+    document.getElementById("mainImage").src =
+        `images/${product.category}/${product.folder}/main.jpg`;
+
+    let thumbs = "";
+    for(let i=1;i<=5;i++){
+        thumbs += `
+        <img src="images/${product.category}/${product.folder}/${i}.jpg"
+        onclick="document.getElementById('mainImage').src=this.src"
+        onerror="this.remove()">
+        `;
+    }
+    document.getElementById("thumbList").innerHTML = thumbs;
+
+    let specs = "<ul>";
+    product.specs.forEach(s => specs += `<li>${s}</li>`);
+    specs += "</ul>";
+    document.getElementById("productSpecs").innerHTML = specs;
+
+    document.getElementById("buyProductName").value = product.name;
+}
+</script>
 
 </body>
 </html>
