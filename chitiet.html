@@ -187,14 +187,7 @@ LIÊN HỆ
 
 </div>
 
-<!-- CART -->
-<div id="cartOverlay" onclick="closeCart()"></div>
 
-<div id="cartModal">
-    <h2>Giỏ hàng</h2>
-    <div id="cartBody"></div>
-    <button onclick="sendZalo()">Gửi Zalo</button>
-</div>
 
 <!-- ADD CART -->
 <div id="addCartPopup" class="popup-overlay">
@@ -276,14 +269,7 @@ if(product){
     }
     document.getElementById("thumbList").innerHTML = thumbs;
 
-    let specs = "";
-
-product.specs.forEach(s=>{
-
-    if(s.includes("<table")){
-        specs += s;
-    }else{
-        specs += `<p>• ${s}</p>`;
+    document.getElementById("productSpecs").innerHTML = product.specs;
     }
 
 });
