@@ -240,35 +240,15 @@ function confirmAddCart() {
 /* =========================
    BUY NOW
 ========================= */
+function buyNow(){
 
-function buyNow() {
-
-    if (!window.product) return;
+    if(!window.product) return;
 
     selectedProduct = window.product;
 
-    const popup = document.getElementById("buyPopup");
-    if (popup) popup.style.display = "flex";
+    document.getElementById("buyPopup").style.display = "flex";
 
-    const nameInput = document.getElementById("buyProductName");
-    if (nameInput) nameInput.value = selectedProduct.name;
-
-    let html = "";
-    const capSpec = selectedProduct.specs.find(s => s.includes("Mức cân"));
-
-    if (capSpec) {
-        capSpec
-            .replace("Mức cân:", "")
-            .split("/")
-            .forEach(cap => {
-                html += `<option>${cap.trim()}</option>`;
-            });
-    }
-
-    const capSelect = document.getElementById("buyCapacity");
-    if (capSelect) capSelect.innerHTML = html;
-}
-
+    document
 function closeBuyPopup() {
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "none";
@@ -296,13 +276,39 @@ function changeQty(type, amount) {
    ORDER TEXT
 ========================= */
 
-function buildOrderText() {
+function buildOrderText(){
+
     return `
-KHÁCH HÀNG: ${document.getElementById("customerName")?.value || ""}
-SĐT: ${document.getElementById("customerPhone")?.value || ""}
-CÔNG TY: ${document.getElementById("customerCompany")?.value || ""}
-SẢN PHẨM: ${document.getElementById("buyProductName")?.value || ""}
-SỐ LƯỢNG: ${document.getElementById("buyQty")?.value || ""}
+===== ĐƠN ĐẶT HÀNG =====
+
+Tên khách hàng:
+${document.getElementById("customerName")?.value || ""}
+
+Số điện thoại:
+${document.getElementById("customerPhone")?.value || ""}
+
+Tên công ty:
+${document.getElementById("customerCompany")?.value || ""}
+
+Mã số thuế:
+${document.getElementById("customerTax")?.value || ""}
+
+Địa chỉ xuất hóa đơn:
+${document.getElementById("customerInvoice")?.value || ""}
+
+Địa chỉ giao hàng:
+${document.getElementById("customerAddress")?.value || ""}
+
+Tên cân:
+${document.getElementById("buyProductName")?.value || ""}
+
+Mức cân:
+${document.getElementById("buyCapacity")?.value || ""}
+
+Số lượng:
+${document.getElementById("buyQty")?.value || ""}
+
+========================
 `;
 }
 
@@ -310,18 +316,23 @@ SỐ LƯỢNG: ${document.getElementById("buyQty")?.value || ""}
    ZALO / MESS
 ========================= */
 
-function sendOrderZalo() {
+function sendOrderZalo(){
+
     navigator.clipboard.writeText(buildOrderText());
+
     alert("Đã copy đơn hàng");
-    window.open("https://zalo.me/0383598603", "_blank");
+
+    window.open("https://zalo.me/0383598603","_blank");
 }
 
-function sendOrderMessenger() {
-    navigator.clipboard.writeText(buildOrderText());
-    alert("Đã copy đơn hàng");
-    window.open("https://m.me/QTNSCALE", "_blank");
-}
+function sendOrderMessenger(){
 
+    navigator.clipboard.writeText(buildOrderText());
+
+    alert("Đã copy đơn hàng");
+
+    window.open("https://m.me/QTNSCALE","_blank");
+}
 function openAddCartPopup() {
     addToCartDetail();
 }
