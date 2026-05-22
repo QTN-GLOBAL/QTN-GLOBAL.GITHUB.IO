@@ -190,7 +190,7 @@ function addToCartDetail() {
     selectedProduct = window.product;
 
     const popup = document.getElementById("addCartPopup");
-    if (popup) popup.style.display = "flex";
+    if (popup) popup.classList.add("active");
 
     document.getElementById("popupCartImg").src =
         `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
@@ -216,7 +216,7 @@ function addToCartDetail() {
 
 function closeAddCart() {
     const popup = document.getElementById("addCartPopup");
-    if (popup) popup.style.display = "none";
+    if (popup) popup.classList.remove("active");
 }
 
 function confirmAddCart() {

@@ -648,6 +648,9 @@ body{
 
     padding:20px;
 }
+.popup-overlay.active{
+    display:flex;
+}
 
 .popup-box{
     width:420px;
