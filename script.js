@@ -248,7 +248,25 @@ function buyNow(){
 
     document.getElementById("buyPopup").style.display = "flex";
 
-    document
+    document.getElementById("buyProductName").value =
+        selectedProduct.name;
+
+    let html = "";
+
+    if(Array.isArray(selectedProduct.specs)){
+
+        selectedProduct.specs.forEach(spec=>{
+
+            html += `<option>${spec}</option>`;
+
+        });
+
+    }
+
+    document.getElementById("buyCapacity").innerHTML = html;
+
+    document.getElementById("buyQty").value = 1;
+}
 function closeBuyPopup() {
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "none";
