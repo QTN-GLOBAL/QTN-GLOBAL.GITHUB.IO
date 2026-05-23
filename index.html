@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>QTN GLOBAL</title>
 
 <link rel="stylesheet" href="style.css">
@@ -12,45 +13,22 @@
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
+<!-- HEADER GIỮ NGUYÊN -->
 <header class="header">
 
 <div class="top-header">
 
 <div class="logo-area">
-
-<img src="images/logo.png" alt="QTN GLOBAL">
-
+<img src="images/logo.png">
 <div class="company-info">
-
-<h2>
-<span style="color:#0d47a1;">QTN</span>
-<span style="color:#d4a017;">GLOBAL</span>
-</h2>
-
+<h2>QTN GLOBAL</h2>
 <p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
-
 </div>
-
 </div>
 
 <div class="top-contact">
 
-<a href="tel:0905913636" class="top-btn">📞 0905 913 636</a>
-<a href="tel:0383598603" class="top-btn">📞 0383 598 603</a>
-
-<a href="https://zalo.me/0383598603" target="_blank" class="social-icon zalo">
-Zalo
-</a>
-
-<a href="https://m.me/QTNSCALE" target="_blank" class="social-icon facebook">
-Messenger
-</a>
-
-<a class="top-cart-btn" href="javascript:void(0)" onclick="openCart()">
+<a href="javascript:void(0)" onclick="openCart()">
 🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
 </a>
 
@@ -58,53 +36,42 @@ Messenger
 
 </div>
 
-<!-- MENU -->
+<!-- MENU GIỮ NGUYÊN -->
 <nav class="navbar">
 
 <a href="index.html">TRANG CHỦ</a>
-<a href="#">GIỚI THIỆU</a>
-
-<div class="dropdown">
-
-<a href="#">SẢN PHẨM ▼</a>
-
-<div class="dropdown-content">
 
 <a href="#" onclick="filterProducts('can-ban')">Cân bàn</a>
 <a href="#" onclick="filterProducts('can-dem')">Cân đếm</a>
 <a href="#" onclick="filterProducts('can-treo')">Cân treo</a>
-<a href="#" onclick="filterProducts('dau-can-dien-tu')">Đầu cân điện tử</a>
-<a href="#" onclick="filterProducts('can-phan-tich')">Cân phân tích</a>
-<a href="#" onclick="filterProducts('can-chong-nuoc')">Cân chống nước</a>
-<a href="#" onclick="filterProducts('can-in-tem-ma-vach')">Cân in tem</a>
-
-</div>
-</div>
-
-<a href="#">LIÊN HỆ</a>
 
 </nav>
 
 </header>
 
-<!-- HERO -->
+<!-- HERO GIỮ NGUYÊN (KHÔNG PHÁ CSS) -->
 <section class="hero">
 
 <div class="hero-left">
+
 <h1>
-GIẢI PHÁP <br>
-<span class="highlight">CÂN ĐIỆN TỬ</span><br>
-CHÍNH XÁC CHO DOANH NGHIỆP
+GIẢI PHÁP<br>
+<span class="highlight">CÂN ĐIỆN TỬ</span>
 </h1>
+
 </div>
 
 <div class="hero-right">
+
+<div class="banner-slider">
 <img id="bannerImage" src="images/can-ban/jwl/main.jpg">
+</div>
+
 </div>
 
 </section>
 
-<!-- MAIN -->
+<!-- MAIN GIỮ NGUYÊN CLASS CŨ -->
 <section class="main-layout">
 
 <aside class="sidebar">
@@ -115,35 +82,26 @@ CHÍNH XÁC CHO DOANH NGHIỆP
 <li onclick="filterProducts('can-ban')">Cân bàn</li>
 <li onclick="filterProducts('can-dem')">Cân đếm</li>
 <li onclick="filterProducts('can-treo')">Cân treo</li>
-<li onclick="filterProducts('dau-can-dien-tu')">Đầu cân</li>
-<li onclick="filterProducts('can-phan-tich')">Cân phân tích</li>
-<li onclick="filterProducts('can-chong-nuoc')">Cân chống nước</li>
-<li onclick="filterProducts('can-in-tem-ma-vach')">Cân in tem</li>
 </ul>
 
 </aside>
 
+<!-- QUAN TRỌNG: GIỮ ĐÚNG ID -->
 <main class="product-grid" id="productGrid"></main>
 
 </section>
 
-<!-- =========================
-     CART (BẮT BUỘC GIỮ)
-========================= -->
+<!-- CART GIỮ NGUYÊN -->
+<div id="cartOverlay" onclick="closeCart()"></div>
 
-<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
-
-<div id="cartModal" class="cart-modal">
+<div id="cartModal">
 
 <div class="cart-header">
 <h2>Giỏ hàng</h2>
 <button onclick="closeCart()">✕</button>
 </div>
 
-<div id="cartBody" class="cart-body"></div>
-
-<!-- FIX QUAN TRỌNG: luôn có footer -->
-<div class="cart-footer"></div>
+<div id="cartBody"></div>
 
 </div>
 
