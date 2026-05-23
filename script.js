@@ -190,9 +190,8 @@ function addToCartDetail() {
     selectedProduct = window.currentProduct;
 
     const popup = document.getElementById("addCartPopup");
-    if(popup){
+   if(popup){
     popup.style.display = "flex";
-    popup.classList.add("active");
 }
 
     document.getElementById("popupCartImg").src =
@@ -260,7 +259,6 @@ function confirmAddCart(){
     const popup = document.getElementById("addCartPopup");
 
     popup.style.display = "none";
-    popup.classList.remove("active");
 
     
 }
@@ -406,7 +404,6 @@ function closeAddCart(){
     if(!popup) return;
 
     popup.style.display = "none";
-    popup.classList.remove("active");
 }
 /* =========================
    INIT
