@@ -653,39 +653,45 @@ body{
 }
 
 .popup-box{
-    width:420px;
-    max-width:95%;
-
+    width:90%;
+    max-width:420px;
     background:#fff;
-
-    border-radius:14px;
-
+    border-radius:16px;
     padding:20px;
-
     position:relative;
-
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+    animation:popupShow .25s ease;
 }
 
-.popup-box span{
-    position:absolute;
-    top:12px;
-    right:15px;
-
-    font-size:24px;
-    cursor:pointer;
+.popup-box h2{
+    font-size:28px;
+    margin-bottom:15px;
 }
-.popup-box{
-    position:relative;
-    z-index:99999;
+
+.popup-box input,
+.popup-box textarea,
+.popup-box select{
+    width:100%;
+    padding:10px;
+    margin-bottom:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.popup-box textarea{
+    min-height:70px;
+    resize:none;
 }
 
 .popup-box button{
-    position:relative;
-    z-index:99999;
-    pointer-events:auto;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
 }
 
 .popup-overlay{

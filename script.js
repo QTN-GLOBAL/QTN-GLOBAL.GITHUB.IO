@@ -3,6 +3,10 @@
 ========================= */
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(!Array.isArray(cart)){
+    cart = [];
+}
 let selectedProduct = null;
 
 /* =========================
@@ -382,18 +386,28 @@ function sendOrderZalo(){
 
     navigator.clipboard.writeText(buildOrderText());
 
-    alert("Đã copy đơn hàng");
+    window.open(
+        "https://zalo.me/0383598603",
+        "_blank"
+    );
 
-    window.open("https://zalo.me/0383598603","_blank");
+    closeBuyPopup();
+
+    alert("Đã copy đơn hàng");
 }
 
 function sendOrderMessenger(){
 
     navigator.clipboard.writeText(buildOrderText());
 
-    alert("Đã copy đơn hàng");
+    window.open(
+        "https://m.me/QTNSCALE",
+        "_blank"
+    );
 
-    window.open("https://m.me/QTNSCALE","_blank");
+    closeBuyPopup();
+
+    alert("Đã copy đơn hàng");
 }
 function openAddCartPopup() {
     addToCartDetail();
