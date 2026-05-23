@@ -1,12 +1,14 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Chi tiết sản phẩm - QTN GLOBAL</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Chi tiết sản phẩm</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -45,25 +47,37 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <div class="top-contact">
 
 <a href="tel:0905913636" class="top-btn">
+
 <i class="fa-solid fa-phone"></i>
+
 0905 913 636
+
 </a>
 
 <a href="tel:0383598603" class="top-btn">
+
 <i class="fa-solid fa-phone"></i>
+
 0383 598 603
+
 </a>
 
 <a href="https://zalo.me/0383598603"
 target="_blank"
 class="social-icon zalo">
-<span class="zalo-text">Zalo</span>
+
+<span class="zalo-text">
+Zalo
+</span>
+
 </a>
 
 <a href="https://m.me/QTNSCALE"
 target="_blank"
 class="social-icon facebook">
+
 <i class="fa-brands fa-facebook-messenger"></i>
+
 </a>
 
 <a class="top-cart-btn"
@@ -83,9 +97,13 @@ onclick="openCart()">
 
 <nav class="navbar">
 
-<a href="index.html">TRANG CHỦ</a>
+<a href="index.html">
+TRANG CHỦ
+</a>
 
-<a href="#">GIỚI THIỆU</a>
+<a href="#">
+GIỚI THIỆU
+</a>
 
 <div class="dropdown">
 
@@ -95,16 +113,41 @@ SẢN PHẨM ▼
 
 <div class="dropdown-content">
 
-<a href="#">Cân bàn</a>
-<a href="#">Cân đếm</a>
-<a href="#">Cân treo</a>
-<a href="#">Đầu cân điện tử</a>
+<a href="#">
+Cân bàn
+</a>
+
+<a href="#">
+Cân đếm
+</a>
+
+<a href="#">
+Cân treo
+</a>
+
+<a href="#">
+Đầu cân điện tử
+</a>
+
+<a href="#">
+Cân phân tích
+</a>
+
+<a href="#">
+Cân chống nước
+</a>
+
+<a href="#">
+Cân in tem mã vạch
+</a>
 
 </div>
 
 </div>
 
-<a href="#">LIÊN HỆ</a>
+<a href="#">
+LIÊN HỆ
+</a>
 
 </nav>
 
@@ -118,20 +161,30 @@ SẢN PHẨM ▼
 
 <div class="detail-left">
 
-<img id="mainImage" class="main-image">
+<img id="mainImage"
+class="main-image">
 
-<div id="thumbList" class="thumb-list"></div>
+<div id="thumbList"
+class="thumb-list">
+
+</div>
 
 <div class="detail-buttons">
 
 <button onclick="openAddCartPopup()">
+
 <i class="fa-solid fa-cart-shopping"></i>
+
 THÊM GIỎ
+
 </button>
 
 <button onclick="openBuyPopup()">
+
 <i class="fa-solid fa-bolt"></i>
+
 MUA NGAY
+
 </button>
 
 </div>
@@ -171,6 +224,7 @@ MUA NGAY
 <div id="cartOverlay"
 class="cart-overlay"
 onclick="closeCart()">
+
 </div>
 
 <div id="cartModal"
@@ -180,12 +234,15 @@ class="cart-modal">
 
 <h2>Giỏ hàng</h2>
 
-<button onclick="closeCart()">✕</button>
+<button onclick="closeCart()">
+✕
+</button>
 
 </div>
 
 <div id="cartBody"
 class="cart-body">
+
 </div>
 
 </div>
@@ -200,8 +257,7 @@ style="display:none">
 
 <div class="popup-box">
 
-<span class="popup-close"
-onclick="closeAddCart()">
+<span onclick="closeAddCart()">
 ✕
 </span>
 
@@ -215,7 +271,9 @@ onclick="closeAddCart()">
 
 <div class="qty-box">
 
-<button onclick="changeQty('cart',-1)">
+<button
+type="button"
+onclick="changeQty('cart',-1)">
 -
 </button>
 
@@ -223,15 +281,21 @@ onclick="closeAddCart()">
 type="number"
 value="1">
 
-<button onclick="changeQty('cart',1)">
+<button
+type="button"
+onclick="changeQty('cart',1)">
 +
 </button>
 
 </div>
 
-<button id="btnAddCart"
+<button
+type="button"
+id="btnAddCart"
 class="add-cart-btn">
+
 THÊM
+
 </button>
 
 </div>
@@ -246,10 +310,9 @@ THÊM
 class="popup-overlay"
 style="display:none">
 
-<div class="popup-box buy-box">
+<div class="popup-box">
 
-<span class="popup-close"
-onclick="closeBuyPopup()">
+<span onclick="closeBuyPopup()">
 ✕
 </span>
 
@@ -273,13 +336,16 @@ placeholder="Địa chỉ xuất hóa đơn"></textarea>
 <textarea id="customerAddress"
 placeholder="Địa chỉ giao hàng"></textarea>
 
-<input id="buyProductName" readonly>
+<input id="buyProductName"
+readonly>
 
 <select id="buyCapacity"></select>
 
 <div class="qty-box">
 
-<button onclick="changeQty('buy',-1)">
+<button
+type="button"
+onclick="changeQty('buy',-1)">
 -
 </button>
 
@@ -287,7 +353,9 @@ placeholder="Địa chỉ giao hàng"></textarea>
 type="number"
 value="1">
 
-<button onclick="changeQty('buy',1)">
+<button
+type="button"
+onclick="changeQty('buy',1)">
 +
 </button>
 
@@ -319,6 +387,10 @@ GỬI MESSENGER
 
 <script src="script.js"></script>
 
+<!-- =========================
+     LOAD PRODUCT
+========================= -->
+
 <script>
 
 const id =
@@ -327,73 +399,58 @@ new URLSearchParams(location.search).get("id")
 );
 
 const product =
-products.find(p => p.id === id);
+window.products.find(p => p.id == id);
 
 window.currentProduct = product;
 
 if(product){
 
-document.getElementById("productName").innerText =
-product.name;
+    document.getElementById("productName").innerText =
+    product.name;
 
-document.getElementById("productBrand").innerText =
-product.brand || "";
+    document.getElementById("productBrand").innerText =
+    product.brand || "";
 
-document.getElementById("productOrigin").innerText =
-product.origin || "";
+    document.getElementById("productOrigin").innerText =
+    product.origin || "";
 
-document.getElementById("productDesc").innerText =
-product.description || "";
+    document.getElementById("productDesc").innerText =
+    product.description || "";
 
-document.getElementById("mainImage").src =
-`images/${product.category}/${product.folder}/main.jpg`;
+    /* MAIN IMAGE */
 
-let thumbs = "";
+    document.getElementById("mainImage").src =
+    `images/${product.category}/${product.folder}/main.jpg`;
 
-for(let i=1;i<=5;i++){
+    /* THUMB */
 
-thumbs += `
-<img
-src="images/${product.category}/${product.folder}/${i}.jpg"
+    let thumbs = "";
 
-onclick="
-document.getElementById('mainImage').src=this.src
-"
+    for(let i=1;i<=5;i++){
 
-onerror="this.remove()"
->
-`;
-}
+        thumbs += `
+        <img
+        src="images/${product.category}/${product.folder}/${i}.jpg"
 
-document.getElementById("thumbList").innerHTML =
-thumbs;
+        onclick="
+        document.getElementById('mainImage').src=this.src
+        "
 
-let specsHTML = "";
+        onerror="this.remove()"
+        >
+        `;
+    }
 
-if(Array.isArray(product.specs)){
+    document.getElementById("thumbList").innerHTML =
+    thumbs;
 
-specsHTML += "<ul>";
+    /* SPECS */
 
-product.specs.forEach(s=>{
-
-specsHTML += `<li>${s}</li>`;
-
-});
-
-specsHTML += "</ul>";
-
-}else{
-
-specsHTML = product.specs;
-}
-
-document.getElementById("productSpecs").innerHTML =
-specsHTML;
-
+    document.getElementById("productSpecs").innerHTML =
+    product.specs || "";
 }
 
 </script>
 
 </body>
 </html>
-```
