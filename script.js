@@ -190,7 +190,10 @@ function addToCartDetail() {
     selectedProduct = window.currentProduct;
 
     const popup = document.getElementById("addCartPopup");
-    if (popup) popup.style.display = "flex";
+    if(popup){
+    popup.style.display = "flex";
+    popup.classList.add("active");
+}
 
     document.getElementById("popupCartImg").src =
         `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
@@ -228,27 +231,31 @@ rows.forEach(row=>{
     if (capSelect) capSelect.innerHTML = html;
 }
 
-function closeAddCart() {
-    const popup = document.getElementById("addCartPopup");
-    if (popup) popup.style.display = "none";
-}
+function confirmAddCart(){
 
-function confirmAddCart() {
+    if(!selectedProduct) return;
 
-    if (!selectedProduct) return;
-
-    const qty = Number(document.getElementById("popupCartQty")?.value || 1);
+    const qty = Number(
+        document.getElementById("popupCartQty").value
+    );
 
     cart.push({
-        id: selectedProduct.id,
-        name: selectedProduct.name,
-        category: selectedProduct.category,
-        folder: selectedProduct.folder,
-        quantity: qty
+        id:selectedProduct.id,
+        name:selectedProduct.name,
+        category:selectedProduct.category,
+        folder:selectedProduct.folder,
+        quantity:qty
     });
 
     saveCart();
+
+    // reset
+    document.getElementById("popupCartQty").value = 1;
+
+    // đóng popup
     closeAddCart();
+
+    alert("Đã thêm vào giỏ hàng");
 }
 
 /* =========================
@@ -294,6 +301,32 @@ function openBuyPopup(){
     });
 
     document.getElementById("buyCapacity").innerHTML = html;
+}
+/* =========================
+   QTY POPUP
+========================= */
+
+function changeQty(type, value){
+
+    let input;
+
+    if(type === "cart"){
+        input = document.getElementById("popupCartQty");
+    }else{
+        input = document.getElementById("buyQty");
+    }
+
+    if(!input) return;
+
+    let qty = Number(input.value);
+
+    qty += value;
+
+    if(qty < 1){
+        qty = 1;
+    }
+
+    input.value = qty;
 }
 /* =========================
    ORDER TEXT
@@ -359,7 +392,15 @@ function sendOrderMessenger(){
 function openAddCartPopup() {
     addToCartDetail();
 }
+function closeAddCart(){
 
+    const popup = document.getElementById("addCartPopup");
+
+    if(popup){
+        popup.classList.remove("active");
+        popup.style.display = "none";
+    }
+}
 /* =========================
    INIT
 ========================= */
