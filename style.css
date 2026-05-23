@@ -850,3 +850,45 @@ body{
 }
 
 }
+.zalo-btn,
+.mess-btn{
+    width:100%;
+    border:none;
+    border-radius:8px;
+    padding:12px;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.zalo-btn{
+    background:#1565c0;
+}
+
+.mess-btn{
+    background:#0084ff;
+    margin-top:8px;
+}
+
+.add-cart-btn{
+    display:block;
+    margin:0 auto;
+    padding:12px 28px;
+    background:#1565c0;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.add-cart-btn{
+    display:block;
+    margin:0 auto;
+    padding:12px 28px;
+    background:#1565c0;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
