@@ -221,6 +221,32 @@ function removeCart(id) {
     cart = cart.filter(i => i.id != id);
     saveCart();
 }
+function cartBuyNowAll(){
+
+    if(cart.length === 0){
+
+        alert("Giỏ hàng trống");
+
+        return;
+    }
+
+    let text = "";
+
+    cart.forEach(item=>{
+
+        text += `
+${item.name}
+Số lượng: ${item.quantity}
+
+`;
+    });
+
+    document.getElementById("buyPopup").style.display = "flex";
+
+    document.getElementById("buyProductName").value = text;
+
+    document.getElementById("buyQty").value = 1;
+}
 function buySelectedCart(){
 
     const checked =
