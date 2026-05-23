@@ -239,21 +239,28 @@ function confirmAddCart(){
         document.getElementById("popupCartQty").value
     );
 
+    const level =
+        document.getElementById("popupCartCapacity").value;
+
     cart.push({
         id:selectedProduct.id,
         name:selectedProduct.name,
         category:selectedProduct.category,
         folder:selectedProduct.folder,
+        level:level,
         quantity:qty
     });
 
     saveCart();
 
-    // reset
+    // reset qty
     document.getElementById("popupCartQty").value = 1;
 
     // đóng popup
-    closeAddCart();
+    const popup = document.getElementById("addCartPopup");
+
+    popup.style.display = "none";
+    popup.classList.remove("active");
 
     alert("Đã thêm vào giỏ hàng");
 }
@@ -396,10 +403,10 @@ function closeAddCart(){
 
     const popup = document.getElementById("addCartPopup");
 
-    if(popup){
-        popup.classList.remove("active");
-        popup.style.display = "none";
-    }
+    if(!popup) return;
+
+    popup.style.display = "none";
+    popup.classList.remove("active");
 }
 /* =========================
    INIT
