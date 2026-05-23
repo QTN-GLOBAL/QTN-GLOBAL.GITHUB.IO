@@ -707,7 +707,7 @@ body{
 
 /* QTY */
 
-.popup-box div{
+.popup-qty{
     display:flex;
     gap:10px;
     align-items:center;

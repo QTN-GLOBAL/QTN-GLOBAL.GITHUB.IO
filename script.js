@@ -262,7 +262,7 @@ function confirmAddCart(){
     popup.style.display = "none";
     popup.classList.remove("active");
 
-    alert("Đã thêm vào giỏ hàng");
+    
 }
 
 /* =========================
