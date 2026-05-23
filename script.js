@@ -232,35 +232,36 @@ rows.forEach(row=>{
 
 function confirmAddCart(){
 
-    if(!selectedProduct) return;
+    console.log("CLICK ADD CART");
+
+    if(!selectedProduct){
+        alert("Không có sản phẩm");
+        return;
+    }
 
     const qty = Number(
         document.getElementById("popupCartQty").value
     );
-
-    const level =
-        document.getElementById("popupCartCapacity").value;
 
     cart.push({
         id:selectedProduct.id,
         name:selectedProduct.name,
         category:selectedProduct.category,
         folder:selectedProduct.folder,
-        level:level,
         quantity:qty
     });
 
-    saveCart();
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-    // reset qty
-    document.getElementById("popupCartQty").value = 1;
+    updateCartCount();
 
-    // đóng popup
     const popup = document.getElementById("addCartPopup");
 
     popup.style.display = "none";
 
-    
+    document.getElementById("popupCartQty").value = 1;
+
+    alert("Đã thêm vào giỏ");
 }
 
 /* =========================
