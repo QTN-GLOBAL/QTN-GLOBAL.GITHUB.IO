@@ -133,21 +133,41 @@ function renderCart() {
 
     cart.forEach(item => {
 
-        cartBody.innerHTML += `
-        <div class="cart-item">
-            <img src="images/${item.category}/${item.folder}/main.jpg" width="70">
+    cartBody.innerHTML += `
+    <div class="cart-item">
 
-            <h4>${item.name}</h4>
+        <img src="images/${item.category}/${item.folder}/main.jpg" width="70">
 
-            <div class="qty">
-                <button onclick="decreaseQty(${item.id})">-</button>
-                <span>${item.quantity}</span>
-                <button onclick="increaseQty(${item.id})">+</button>
-            </div>
+        <h4>${item.name}</h4>
 
-            <button onclick="removeCart(${item.id})">Xóa</button>
-        </div>`;
-    });
+        <div class="qty">
+            <button onclick="decreaseQty(${item.id})">-</button>
+
+            <span>${item.quantity}</span>
+
+            <button onclick="increaseQty(${item.id})">+</button>
+        </div>
+
+        <div class="cart-actions">
+
+            <button
+            class="buy-btn"
+            onclick="cartBuyNow(${item.id})">
+
+            MUA NGAY
+
+            </button>
+
+            <button onclick="removeCart(${item.id})">
+
+            Xóa
+
+            </button>
+
+        </div>
+
+    </div>`;
+});
 }
 
 /* =========================
@@ -182,6 +202,53 @@ function decreaseQty(id) {
 function removeCart(id) {
     cart = cart.filter(i => i.id != id);
     saveCart();
+}
+function cartBuyNow(id){
+
+    const item = cart.find(i => i.id == id);
+
+    if(!item) return;
+
+    const product = getProducts().find(p => p.id == id);
+
+    if(!product) return;
+
+    selectedProduct = product;
+
+    document.getElementById("buyPopup").style.display = "flex";
+
+    document.getElementById("buyProductName").value =
+        product.name;
+
+    let html = "";
+
+    const temp = document.createElement("div");
+
+    temp.innerHTML = product.specs;
+
+    const rows = temp.querySelectorAll("tr");
+
+    rows.forEach(row=>{
+
+        const cols = row.querySelectorAll("td");
+
+        if(cols.length >= 2){
+
+            html += `
+            <option>
+                ${cols[0].innerText.trim()}
+                -
+                ${cols[1].innerText.trim()}
+            </option>
+            `;
+        }
+
+    });
+
+    document.getElementById("buyCapacity").innerHTML = html;
+
+    document.getElementById("buyQty").value =
+        item.quantity || 1;
 }
 
 /* =========================
