@@ -312,6 +312,15 @@ function openBuyPopup(){
 
     document.getElementById("buyCapacity").innerHTML = html;
 }
+function closeBuyPopup(){
+
+    const popup = document.getElementById("buyPopup");
+
+    if(popup){
+        popup.style.display = "none";
+    }
+
+}
 /* =========================
    QTY POPUP
 ========================= */
@@ -393,7 +402,6 @@ function sendOrderZalo(){
 
     closeBuyPopup();
 
-    alert("Đã copy đơn hàng");
 }
 
 function sendOrderMessenger(){
@@ -407,7 +415,6 @@ function sendOrderMessenger(){
 
     closeBuyPopup();
 
-    alert("Đã copy đơn hàng");
 }
 function openAddCartPopup() {
     addToCartDetail();

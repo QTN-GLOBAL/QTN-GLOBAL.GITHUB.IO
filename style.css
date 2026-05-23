@@ -654,42 +654,99 @@ body{
     animation:popupShow .2s ease;
 }
 
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.popup-box{
+    width:90%;
+    max-width:360px;
+    background:#fff;
+    border-radius:12px;
+    padding:14px;
+    position:relative;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
 .popup-box h2{
-    font-size:24px;
-    margin-bottom:12px;
     text-align:center;
+    font-size:22px;
+    margin-bottom:10px;
 }
 
 .popup-box input,
 .popup-box textarea,
 .popup-box select{
     width:100%;
-    padding:10px 12px;
-    margin-bottom:10px;
+    padding:10px;
+    margin-bottom:8px;
     border:1px solid #ddd;
     border-radius:8px;
     font-size:14px;
 }
 
 .popup-box textarea{
-    min-height:60px;
+    min-height:55px;
     resize:none;
-}
-
-.popup-box button{
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:bold;
 }
 
 .popup-box span{
     position:absolute;
-    top:10px;
-    right:14px;
+    top:8px;
+    right:12px;
+    font-size:22px;
     cursor:pointer;
-    font-size:20px;
+}
+
+.qty-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+}
+
+.qty-box button{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:8px;
+    background:#0d47a1;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.qty-box input{
+    flex:1;
+    text-align:center;
+    margin:0;
+}
+
+.zalo-btn,
+.mess-btn{
+    width:100%;
+    border:none;
+    border-radius:8px;
+    padding:12px;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.zalo-btn{
+    background:#1565c0;
+}
+
+.mess-btn{
+    background:#0084ff;
+    margin-top:8px;
 }
 
 /* POPUP IMAGE */
@@ -792,39 +849,4 @@ body{
     font-size:24px;
 }
 
-}
-.qty-box{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom:12px;
-}
-
-.qty-box button{
-    width:36px;
-    height:36px;
-    background:#0d47a1;
-    color:#fff;
-    font-size:20px;
-}
-
-.qty-box input{
-    flex:1;
-    text-align:center;
-    margin:0;
-}
-
-.zalo-btn{
-    width:100%;
-    background:#1565c0;
-    color:#fff;
-    padding:12px;
-}
-
-.mess-btn{
-    width:100%;
-    background:#0084ff;
-    color:#fff;
-    padding:12px;
-    margin-top:8px;
 }
