@@ -185,9 +185,9 @@ function removeCart(id) {
 ========================= */
 
 function addToCartDetail() {
-    if (!window.product) return;
+    if (!window.currentProduct) return;
 
-    selectedProduct = window.product;
+    selectedProduct = window.currentProduct;
 
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.classList.add("active");
@@ -240,11 +240,12 @@ function confirmAddCart() {
 /* =========================
    BUY NOW
 ========================= */
-function buyNow(){
 
-    if(!window.product) return;
+function openBuyPopup(){
 
-    selectedProduct = window.product;
+    if(!window.currentProduct) return;
+
+    selectedProduct = window.currentProduct;
 
     document.getElementById("buyPopup").style.display = "flex";
 
@@ -255,41 +256,22 @@ function buyNow(){
 
     if(Array.isArray(selectedProduct.specs)){
 
-        selectedProduct.specs.forEach(spec=>{
+        selectedProduct.specs.forEach(s=>{
 
-            html += `<option>${spec}</option>`;
+            html += `<option>${s}</option>`;
 
         });
 
     }
 
     document.getElementById("buyCapacity").innerHTML = html;
-
-    document.getElementById("buyQty").value = 1;
-}
-function closeBuyPopup() {
-    const popup = document.getElementById("buyPopup");
-    if (popup) popup.style.display = "none";
 }
 
-/* =========================
-   QTY
-========================= */
+function closeBuyPopup(){
 
-function changeQty(type, amount) {
+    document.getElementById("buyPopup").style.display = "none";
 
-    const input = document.getElementById(
-        type === "cart" ? "popupCartQty" : "buyQty"
-    );
-
-    if (!input) return;
-
-    let val = Number(input.value || 1) + amount;
-    if (val < 1) val = 1;
-
-    input.value = val;
 }
-
 /* =========================
    ORDER TEXT
 ========================= */

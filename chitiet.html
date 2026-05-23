@@ -221,9 +221,19 @@ LIÊN HỆ
 
         <h2>ĐẶT HÀNG</h2>
 
-        <input id="customerName" placeholder="Tên">
-        <input id="customerPhone" placeholder="SĐT">
-        <textarea id="customerAddress" placeholder="Địa chỉ"></textarea>
+        <input id="customerName" placeholder="Tên khách hàng">
+
+        <input id="customerPhone" placeholder="Số điện thoại">
+
+        <input id="customerCompany" placeholder="Tên công ty">
+
+        <input id="customerTax" placeholder="Mã số thuế">
+
+        <textarea id="customerInvoice"
+        placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+        <textarea id="customerAddress"
+        placeholder="Địa chỉ giao hàng"></textarea>
 
         <input id="buyProductName" readonly>
 
@@ -235,7 +245,13 @@ LIÊN HỆ
             <button onclick="changeQty('buy',1)">+</button>
         </div>
 
-        <button onclick="sendOrder()">GỬI ZALO</button>
+        <button onclick="sendOrderZalo()">
+        GỬI ZALO
+        </button>
+
+        <button onclick="sendOrderMessenger()">
+        GỬI MESSENGER
+        </button>
 
     </div>
 </div>
