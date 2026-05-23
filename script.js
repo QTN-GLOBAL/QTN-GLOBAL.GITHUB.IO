@@ -91,11 +91,10 @@ function openCart() {
     const modal = document.getElementById("cartModal");
     const overlay = document.getElementById("cartOverlay");
 
-    if (modal) modal.classList.add("active");
+    if (!modal || !overlay) return; // FIX
 
-    if (overlay) {
-        overlay.style.display = "block";
-    }
+    modal.classList.add("active");
+    overlay.style.display = "block";
 
     renderCart();
 }
@@ -294,43 +293,40 @@ function buySelectedCart(){
         document.querySelectorAll(".cart-buy-check:checked");
 
     if(checked.length === 0){
-
         alert("Vui lòng chọn sản phẩm");
-
         return;
     }
 
     let text = "";
     let html = "";
+    let totalQty = 0;
 
-    checked.forEach(check=>{
+    checked.forEach(check => {
 
         const id = Number(check.value);
 
-        const item =
-            cart.find(i => i.id == id);
-
-        const product =
-            getProducts().find(p => p.id == id);
+        const item = cart.find(i => i.id == id);
 
         if(item){
+            totalQty += item.quantity;
 
             text += `
 ${item.name}
 Số lượng: ${item.quantity}
-
+-----------------
 `;
         }
+
+        const product = getProducts().find(p => p.id == id);
 
         if(product){
 
             const temp = document.createElement("div");
-
             temp.innerHTML = product.specs;
 
             const rows = temp.querySelectorAll("tr");
 
-            rows.forEach(row=>{
+            rows.forEach(row => {
 
                 const cols = row.querySelectorAll("td");
 
@@ -338,33 +334,24 @@ Số lượng: ${item.quantity}
 
                     html += `
 <option>
-${product.name}
--
-${cols[0].innerText.trim()}
--
-${cols[1].innerText.trim()}
+${product.name} - ${cols[0].innerText.trim()} - ${cols[1].innerText.trim()}
 </option>
 `;
                 }
-
             });
-
         }
-
     });
 
-    // mở popup
-    const popup =
-        document.getElementById("buyPopup");
+    const popup = document.getElementById("buyPopup");
 
     popup.style.display = "flex";
 
-    // đổ dữ liệu
-    document.getElementById("buyProductName").value = text;
+    document.getElementById("buyProductName").value =
+        "ĐƠN HÀNG GIỎ HÀNG (" + totalQty + " sản phẩm)";
 
     document.getElementById("buyCapacity").innerHTML = html;
 
-    document.getElementById("buyQty").value = 1;
+    document.getElementById("buyQty").value = totalQty;
 }
 /* =========================
    ADD CART POPUP
@@ -574,11 +561,11 @@ ${document.getElementById("customerInvoice")?.value || ""}
 Địa chỉ giao hàng:
 ${document.getElementById("customerAddress")?.value || ""}
 
-Tên cân:
+Sản phẩm:
 ${document.getElementById("buyProductName")?.value || ""}
 
-Mức cân:
-${document.getElementById("buyCapacity")?.value || ""}
+Chi tiết:
+${document.getElementById("buyCapacity")?.innerText || ""}
 
 Số lượng:
 ${document.getElementById("buyQty")?.value || ""}
