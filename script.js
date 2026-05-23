@@ -199,16 +199,30 @@ function addToCartDetail() {
         selectedProduct.name;
 
     let html = "";
-    const capSpec = selectedProduct.specs.find(s => s.includes("Mức cân"));
 
-    if (capSpec) {
-        capSpec
-            .replace("Mức cân:", "")
-            .split("/")
-            .forEach(cap => {
-                html += `<option>${cap.trim()}</option>`;
-            });
+const temp = document.createElement("div");
+
+temp.innerHTML = selectedProduct.specs;
+
+const rows = temp.querySelectorAll("tr");
+
+rows.forEach(row=>{
+
+    const cols = row.querySelectorAll("td");
+
+    if(cols.length >= 2){
+
+        const mucCan = cols[0].innerText.trim();
+        const doChia = cols[1].innerText.trim();
+
+        html += `
+        <option>
+            ${mucCan} - ${doChia}
+        </option>
+        `;
     }
+
+});
 
     const capSelect = document.getElementById("popupCartCapacity");
     if (capSelect) capSelect.innerHTML = html;
@@ -254,37 +268,32 @@ function openBuyPopup(){
 
     let html = "";
 
-   if(Array.isArray(selectedProduct.specs)){
+    // lấy tất cả td trong bảng
+    const temp = document.createElement("div");
 
-    selectedProduct.specs.forEach(s=>{
+    temp.innerHTML = selectedProduct.specs;
 
-        // chỉ lấy dòng có kg hoặc g
-        if(
-            s.includes("kg") ||
-            s.includes("g")
-        ){
+    const rows = temp.querySelectorAll("tr");
 
-            // xoá html nếu có
-            let clean = s
-                .replace(/<[^>]*>/g,"")
-                .trim();
+    rows.forEach(row=>{
 
-            if(clean){
-                html += `<option>${clean}</option>`;
-            }
+        const cols = row.querySelectorAll("td");
+
+        if(cols.length >= 2){
+
+            const mucCan = cols[0].innerText.trim();
+            const doChia = cols[1].innerText.trim();
+
+            html += `
+            <option>
+                ${mucCan} - ${doChia}
+            </option>
+            `;
         }
 
     });
 
-}
-
     document.getElementById("buyCapacity").innerHTML = html;
-}
-
-function closeBuyPopup(){
-
-    document.getElementById("buyPopup").style.display = "none";
-
 }
 /* =========================
    ORDER TEXT
