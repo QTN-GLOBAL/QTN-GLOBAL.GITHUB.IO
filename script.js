@@ -254,15 +254,29 @@ function openBuyPopup(){
 
     let html = "";
 
-    if(Array.isArray(selectedProduct.specs)){
+   if(Array.isArray(selectedProduct.specs)){
 
-        selectedProduct.specs.forEach(s=>{
+    selectedProduct.specs.forEach(s=>{
 
-            html += `<option>${s}</option>`;
+        // chỉ lấy dòng có kg hoặc g
+        if(
+            s.includes("kg") ||
+            s.includes("g")
+        ){
 
-        });
+            // xoá html nếu có
+            let clean = s
+                .replace(/<[^>]*>/g,"")
+                .trim();
 
-    }
+            if(clean){
+                html += `<option>${clean}</option>`;
+            }
+        }
+
+    });
+
+}
 
     document.getElementById("buyCapacity").innerHTML = html;
 }
