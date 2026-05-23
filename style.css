@@ -907,3 +907,14 @@ body{
     cursor:pointer;
     font-weight:bold;
 }
+.cart-buy-footer{
+    margin-top:16px;
+    text-align:center;
+}
+
+.cart-check{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:14px;
+}

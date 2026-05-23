@@ -150,24 +150,42 @@ function renderCart() {
 
         <div class="cart-actions">
 
-            <button
-            class="buy-btn"
-            onclick="cartBuyNow(${item.id})">
+    <label class="cart-check">
 
-            MUA NGAY
+        <input
+        type="checkbox"
+        class="cart-buy-check"
+        value="${item.id}">
 
-            </button>
+        Chọn mua
 
-            <button onclick="removeCart(${item.id})">
+    </label>
 
-            Xóa
+    <button onclick="removeCart(${item.id})">
 
-            </button>
+    Xóa
 
-        </div>
+    </button>
+
+</div>
 
     </div>`;
 });
+cartBody.innerHTML += `
+
+<div class="cart-buy-footer">
+
+    <button
+    class="buy-btn"
+    onclick="buySelectedCart()">
+
+    MUA NGAY
+
+    </button>
+
+</div>
+
+`;
 }
 
 /* =========================
@@ -202,6 +220,43 @@ function decreaseQty(id) {
 function removeCart(id) {
     cart = cart.filter(i => i.id != id);
     saveCart();
+}
+function buySelectedCart(){
+
+    const checked =
+        document.querySelectorAll(".cart-buy-check:checked");
+
+    if(checked.length === 0){
+
+        alert("Vui lòng chọn sản phẩm");
+
+        return;
+    }
+
+    let text = "";
+
+    checked.forEach(check=>{
+
+        const id = Number(check.value);
+
+        const item = cart.find(i => i.id == id);
+
+        if(item){
+
+            text += `
+${item.name}
+Số lượng: ${item.quantity}
+
+`;
+        }
+
+    });
+
+    document.getElementById("buyPopup").style.display = "flex";
+
+    document.getElementById("buyProductName").value = text;
+
+    document.getElementById("buyQty").value = 1;
 }
 function cartBuyNow(id){
 
