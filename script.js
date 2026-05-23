@@ -301,14 +301,14 @@ function buySelectedCart(){
     }
 
     let text = "";
-
     let html = "";
 
     checked.forEach(check=>{
 
         const id = Number(check.value);
 
-        const item = cart.find(i => i.id == id);
+        const item =
+            cart.find(i => i.id == id);
 
         const product =
             getProducts().find(p => p.id == id);
@@ -320,7 +320,6 @@ ${item.name}
 Số lượng: ${item.quantity}
 
 `;
-
         }
 
         if(product){
@@ -337,19 +336,13 @@ Số lượng: ${item.quantity}
 
                 if(cols.length >= 2){
 
-                    const mucCan =
-                        cols[0].innerText.trim();
-
-                    const doChia =
-                        cols[1].innerText.trim();
-
                     html += `
 <option>
 ${product.name}
 -
-${mucCan}
+${cols[0].innerText.trim()}
 -
-${doChia}
+${cols[1].innerText.trim()}
 </option>
 `;
                 }
@@ -360,15 +353,19 @@ ${doChia}
 
     });
 
-    document.getElementById("buyPopup").style.display = "flex";
+    // mở popup
+    const popup =
+        document.getElementById("buyPopup");
 
+    popup.style.display = "flex";
+
+    // đổ dữ liệu
     document.getElementById("buyProductName").value = text;
 
     document.getElementById("buyCapacity").innerHTML = html;
 
     document.getElementById("buyQty").value = 1;
 }
-
 /* =========================
    ADD CART POPUP
 ========================= */
