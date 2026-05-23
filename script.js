@@ -173,13 +173,11 @@ function renderCart() {
 });
 cartBody.innerHTML += `
 
-<div class="cart-buy-footer">
+<div class="cart-actions">
 
-    <button
-    class="buy-btn"
-    onclick="buySelectedCart()">
+    <button onclick="removeCart(${item.id})">
 
-    MUA NGAY
+    Xóa
 
     </button>
 
