@@ -1,6 +1,5 @@
-```javascript
 /* =========================
-   GLOBAL
+   GIỎ HÀNG
 ========================= */
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -11,88 +10,11 @@ if (!Array.isArray(cart)) {
 
 let selectedProduct = null;
 
+/* =========================
+   PRODUCTS
+========================= */
+
 const getProducts = () => window.products || [];
-
-/* =========================
-   HERO SLIDER
-========================= */
-
-const banners = [
-    "images/banner1.jpg",
-    "images/banner2.jpg",
-    "images/banner3.jpg"
-];
-
-let bannerIndex = 0;
-
-function startBannerSlider() {
-
-    const banner = document.getElementById("bannerImage");
-
-    if (!banner) return;
-
-    setInterval(() => {
-
-        bannerIndex++;
-
-        if (bannerIndex >= banners.length) {
-            bannerIndex = 0;
-        }
-
-        banner.src = banners[bannerIndex];
-
-    }, 3000);
-}
-
-/* =========================
-   PRODUCT HOME
-========================= */
-
-function renderProducts(productList = getProducts()) {
-
-    const productGrid =
-        document.getElementById("productGrid");
-
-    if (!productGrid) return;
-
-    productGrid.innerHTML = "";
-
-    productList.forEach(product => {
-
-        productGrid.innerHTML += `
-        <div class="product-card">
-
-            <img
-            src="images/${product.category}/${product.folder}/main.jpg">
-
-            <div class="product-info">
-
-                <h3>${product.name}</h3>
-
-                <a
-                class="detail-btn"
-                href="chitiet.html?id=${product.id}">
-
-                Chi tiết
-
-                </a>
-
-            </div>
-
-        </div>
-        `;
-    });
-}
-
-function filterProducts(category) {
-
-    const filtered =
-        getProducts().filter(
-            p => p.category === category
-        );
-
-    renderProducts(filtered);
-}
 
 /* =========================
    CART COUNT
@@ -106,11 +28,87 @@ function updateCartCount() {
         total += item.quantity || 0;
     });
 
-    const cartCount =
-        document.getElementById("cartCount");
+    const cartCount = document.getElementById("cartCount");
 
     if (cartCount) {
         cartCount.innerText = total;
+    }
+}
+
+/* =========================
+   PRODUCTS HOME
+========================= */
+
+function renderProducts(productList = getProducts()) {
+
+    const productGrid = document.getElementById("productGrid");
+
+    if (!productGrid) return;
+
+    productGrid.innerHTML = "";
+
+    productList.forEach(product => {
+
+        productGrid.innerHTML += `
+        <div class="product-card">
+
+            <img src="images/${product.category}/${product.folder}/main.jpg">
+
+            <div class="product-info">
+
+                <h3>${product.name}</h3>
+
+                <a class="detail-btn"
+                   href="chitiet.html?id=${product.id}">
+                   Chi tiết
+                </a>
+
+            </div>
+
+        </div>
+        `;
+    });
+}
+
+/* =========================
+   FILTER
+========================= */
+
+function filterProducts(category) {
+
+    const filtered =
+        getProducts().filter(p => p.category === category);
+
+    renderProducts(filtered);
+}
+
+/* =========================
+   OPEN CART
+========================= */
+
+function openCart() {
+
+    const modal = document.getElementById("cartModal");
+    const overlay = document.getElementById("cartOverlay");
+
+    if (modal) modal.classList.add("active");
+
+    if (overlay) {
+        overlay.style.display = "block";
+    }
+
+    renderCart();
+}
+
+function closeCart() {
+
+    const modal = document.getElementById("cartModal");
+    const overlay = document.getElementById("cartOverlay");
+
+    if (modal) modal.classList.remove("active");
+
+    if (overlay) {
+        overlay.style.display = "none";
     }
 }
 
@@ -163,120 +161,20 @@ function addToCart(id, qty = 1) {
 }
 
 /* =========================
-   DETAIL ADD CART
-========================= */
-
-function addToCartDetail() {
-
-    if (!window.currentProduct) return;
-
-    selectedProduct = window.currentProduct;
-
-    const popup =
-        document.getElementById("addCartPopup");
-
-    if (popup) {
-        popup.style.display = "flex";
-    }
-
-    document.getElementById(
-        "popupCartImg"
-    ).src =
-    `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
-
-    document.getElementById(
-        "popupCartName"
-    ).innerText =
-    selectedProduct.name;
-
-    renderPopupCapacity(
-        selectedProduct,
-        "popupCartCapacity"
-    );
-}
-
-function confirmAddCart() {
-
-    if (!selectedProduct) return;
-
-    const qty = Number(
-        document.getElementById(
-            "popupCartQty"
-        ).value
-    );
-
-    addToCart(selectedProduct.id, qty);
-
-    closeAddCart();
-
-    alert("Đã thêm vào giỏ");
-}
-
-function closeAddCart() {
-
-    const popup =
-        document.getElementById("addCartPopup");
-
-    if (popup) {
-        popup.style.display = "none";
-    }
-}
-
-/* =========================
-   CART MODAL
-========================= */
-
-function openCart() {
-
-    const modal =
-        document.getElementById("cartModal");
-
-    const overlay =
-        document.getElementById("cartOverlay");
-
-    if (modal) {
-        modal.classList.add("active");
-    }
-
-    if (overlay) {
-        overlay.style.display = "block";
-    }
-
-    renderCart();
-}
-
-function closeCart() {
-
-    const modal =
-        document.getElementById("cartModal");
-
-    const overlay =
-        document.getElementById("cartOverlay");
-
-    if (modal) {
-        modal.classList.remove("active");
-    }
-
-    if (overlay) {
-        overlay.style.display = "none";
-    }
-}
-
-/* =========================
    RENDER CART
 ========================= */
 
 function renderCart() {
 
-    const cartBody =
-        document.getElementById("cartBody");
+    const cartBody = document.getElementById("cartBody");
 
     if (!cartBody) return;
 
     if (cart.length === 0) {
 
-        cartBody.innerHTML =
-        "<p>Giỏ hàng trống</p>";
+        cartBody.innerHTML = `
+        <p>Giỏ hàng trống</p>
+        `;
 
         return;
     }
@@ -286,6 +184,7 @@ function renderCart() {
     cart.forEach(item => {
 
         cartBody.innerHTML += `
+
         <div class="cart-item">
 
             <img
@@ -296,21 +195,11 @@ function renderCart() {
 
             <div class="qty">
 
-                <button
-                onclick="decreaseQty(${item.id})">
-
-                -
-
-                </button>
+                <button onclick="decreaseQty(${item.id})">-</button>
 
                 <span>${item.quantity}</span>
 
-                <button
-                onclick="increaseQty(${item.id})">
-
-                +
-
-                </button>
+                <button onclick="increaseQty(${item.id})">+</button>
 
             </div>
 
@@ -327,11 +216,8 @@ function renderCart() {
 
                 </label>
 
-                <button
-                onclick="removeCart(${item.id})">
-
-                Xóa
-
+                <button onclick="removeCart(${item.id})">
+                    Xóa
                 </button>
 
             </div>
@@ -341,13 +227,14 @@ function renderCart() {
     });
 
     cartBody.innerHTML += `
+
     <div class="cart-footer">
 
         <button
-        class="btn-buy"
-        onclick="buySelectedCart()">
+        onclick="buySelectedCart()"
+        class="btn-buy">
 
-        MUA NGAY
+            MUA NGAY
 
         </button>
 
@@ -356,7 +243,7 @@ function renderCart() {
 }
 
 /* =========================
-   CART QTY
+   UPDATE QTY
 ========================= */
 
 function increaseQty(id) {
@@ -398,17 +285,15 @@ function removeCart(id) {
 }
 
 /* =========================
-   BUY FROM CART
+   BUY SELECTED CART
 ========================= */
 
-function buySelectedCart() {
+function buySelectedCart(){
 
     const checked =
-        document.querySelectorAll(
-            ".cart-buy-check:checked"
-        );
+        document.querySelectorAll(".cart-buy-check:checked");
 
-    if (checked.length === 0) {
+    if(checked.length === 0){
 
         alert("Vui lòng chọn sản phẩm");
 
@@ -418,7 +303,7 @@ function buySelectedCart() {
     let text = "";
     let html = "";
 
-    checked.forEach(check => {
+    checked.forEach(check=>{
 
         const id = Number(check.value);
 
@@ -428,7 +313,7 @@ function buySelectedCart() {
         const product =
             getProducts().find(p => p.id == id);
 
-        if (item) {
+        if(item){
 
             text += `
 ${item.name}
@@ -437,34 +322,150 @@ Số lượng: ${item.quantity}
 `;
         }
 
-        if (product) {
+        if(product){
 
-            html += getCapacityOptions(product);
+            const temp = document.createElement("div");
+
+            temp.innerHTML = product.specs;
+
+            const rows = temp.querySelectorAll("tr");
+
+            rows.forEach(row=>{
+
+                const cols = row.querySelectorAll("td");
+
+                if(cols.length >= 2){
+
+                    html += `
+<option>
+${product.name}
+-
+${cols[0].innerText.trim()}
+-
+${cols[1].innerText.trim()}
+</option>
+`;
+                }
+
+            });
+
         }
 
     });
 
+    // mở popup
     const popup =
         document.getElementById("buyPopup");
 
     popup.style.display = "flex";
 
-    document.getElementById(
-        "buyProductName"
-    ).value = text;
+    // đổ dữ liệu
+    document.getElementById("buyProductName").value = text;
+
+    document.getElementById("buyCapacity").innerHTML = html;
+
+    document.getElementById("buyQty").value = 1;
+}
+/* =========================
+   ADD CART POPUP
+========================= */
+
+function openAddCartPopup() {
+
+    addToCartDetail();
+}
+
+function addToCartDetail() {
+
+    if (!window.currentProduct) return;
+
+    selectedProduct = window.currentProduct;
+
+    const popup =
+        document.getElementById("addCartPopup");
+
+    if (popup) {
+        popup.style.display = "flex";
+    }
+
+    document.getElementById("popupCartImg").src =
+        `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
+
+    document.getElementById("popupCartName").innerText =
+        selectedProduct.name;
+
+    let html = "";
+
+    const temp = document.createElement("div");
+
+    temp.innerHTML = selectedProduct.specs;
+
+    const rows = temp.querySelectorAll("tr");
+
+    rows.forEach(row => {
+
+        const cols = row.querySelectorAll("td");
+
+        if (cols.length >= 2) {
+
+            html += `
+            <option>
+                ${cols[0].innerText.trim()}
+                -
+                ${cols[1].innerText.trim()}
+            </option>
+            `;
+        }
+    });
 
     document.getElementById(
-        "buyCapacity"
+        "popupCartCapacity"
     ).innerHTML = html;
+}
 
-    document.getElementById(
-        "buyQty"
-    ).value = 1;
+function closeAddCart() {
+
+    const popup =
+        document.getElementById("addCartPopup");
+
+    if (popup) {
+        popup.style.display = "none";
+    }
+}
+
+function confirmAddCart() {
+
+    if (!selectedProduct) return;
+
+    const qty = Number(
+        document.getElementById("popupCartQty").value
+    );
+
+    cart.push({
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        category: selectedProduct.category,
+        folder: selectedProduct.folder,
+        quantity: qty
+    });
+
+    saveCart();
+
+    document.getElementById("popupCartQty").value = 1;
+
+    closeAddCart();
+
+    alert("Đã thêm vào giỏ");
 }
 
 /* =========================
-   BUY DETAIL
+   BUY POPUP
 ========================= */
+
+function buyNow() {
+
+    openBuyPopup();
+}
 
 function openBuyPopup() {
 
@@ -472,20 +473,36 @@ function openBuyPopup() {
 
     selectedProduct = window.currentProduct;
 
-    const popup =
-        document.getElementById("buyPopup");
+    document.getElementById("buyPopup").style.display = "flex";
 
-    popup.style.display = "flex";
+    document.getElementById("buyProductName").value =
+        selectedProduct.name;
 
-    document.getElementById(
-        "buyProductName"
-    ).value =
-    selectedProduct.name;
+    let html = "";
 
-    renderPopupCapacity(
-        selectedProduct,
-        "buyCapacity"
-    );
+    const temp = document.createElement("div");
+
+    temp.innerHTML = selectedProduct.specs;
+
+    const rows = temp.querySelectorAll("tr");
+
+    rows.forEach(row => {
+
+        const cols = row.querySelectorAll("td");
+
+        if (cols.length >= 2) {
+
+            html += `
+            <option>
+                ${cols[0].innerText.trim()}
+                -
+                ${cols[1].innerText.trim()}
+            </option>
+            `;
+        }
+    });
+
+    document.getElementById("buyCapacity").innerHTML = html;
 }
 
 function closeBuyPopup() {
@@ -499,51 +516,6 @@ function closeBuyPopup() {
 }
 
 /* =========================
-   CAPACITY
-========================= */
-
-function getCapacityOptions(product) {
-
-    let html = "";
-
-    const temp =
-        document.createElement("div");
-
-    temp.innerHTML = product.specs;
-
-    const rows =
-        temp.querySelectorAll("tr");
-
-    rows.forEach(row => {
-
-        const cols =
-            row.querySelectorAll("td");
-
-        if (cols.length >= 2) {
-
-            html += `
-            <option>
-                ${cols[0].innerText.trim()}
-                -
-                ${cols[1].innerText.trim()}
-            </option>
-            `;
-        }
-
-    });
-
-    return html;
-}
-
-function renderPopupCapacity(product, targetId) {
-
-    document.getElementById(
-        targetId
-    ).innerHTML =
-    getCapacityOptions(product);
-}
-
-/* =========================
    CHANGE QTY
 ========================= */
 
@@ -554,22 +526,17 @@ function changeQty(type, value) {
     if (type === "cart") {
 
         input =
-            document.getElementById(
-                "popupCartQty"
-            );
+            document.getElementById("popupCartQty");
 
     } else {
 
         input =
-            document.getElementById(
-                "buyQty"
-            );
+            document.getElementById("buyQty");
     }
 
     if (!input) return;
 
-    let qty =
-        Number(input.value);
+    let qty = Number(input.value);
 
     qty += value;
 
@@ -656,15 +623,17 @@ function sendOrderMessenger() {
    INIT
 ========================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("click", function(e) {
 
-        renderProducts();
+    if (e.target.id === "btnAddCart") {
 
-        updateCartCount();
-
-        startBannerSlider();
+        confirmAddCart();
     }
-);
-```
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    renderProducts();
+
+    updateCartCount();
+});

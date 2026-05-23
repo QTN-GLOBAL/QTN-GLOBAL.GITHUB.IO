@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chi tiết sản phẩm</title>
 
 <link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
+<!-- HEADER -->
 <header class="header">
 
 <div class="top-header">
@@ -93,7 +82,9 @@ onclick="openCart()">
 
 </div>
 
-<!-- MENU -->
+<!-- =========================
+     MENU
+========================= -->
 
 <nav class="navbar">
 
@@ -113,31 +104,38 @@ SẢN PHẨM ▼
 
 <div class="dropdown-content">
 
-<a href="#">
+<a href="#"
+onclick="filterProducts('can-ban')">
 Cân bàn
 </a>
 
-<a href="#">
+<a href="#"
+onclick="filterProducts('can-dem')">
 Cân đếm
 </a>
 
-<a href="#">
+<a href="#"
+onclick="filterProducts('can-treo')">
 Cân treo
 </a>
 
-<a href="#">
+<a href="#"
+onclick="filterProducts('dau-can-dien-tu')">
 Đầu cân điện tử
 </a>
 
-<a href="#">
+<a href="#"
+onclick="filterProducts('can-phan-tich')">
 Cân phân tích
 </a>
 
-<a href="#">
+<a href="#"
+onclick="filterProducts('can-chong-nuoc')">
 Cân chống nước
 </a>
 
-<a href="#">
+<a href="#"
+onclick="filterProducts('can-in-tem-ma-vach')">
 Cân in tem mã vạch
 </a>
 
@@ -153,269 +151,152 @@ LIÊN HỆ
 
 </header>
 
-<!-- =========================
-     DETAIL
-========================= -->
+<!-- DETAIL -->
+<div class="detail-page fix-layout">
 
-<section class="detail-page">
+    <div class="detail-left">
 
-<div class="detail-left">
+        <img id="mainImage">
 
-<img id="mainImage"
-class="main-image">
+        <div id="thumbList"></div>
 
-<div id="thumbList"
-class="thumb-list">
+        <div class="detail-buttons">
+            <button onclick="openAddCartPopup()">
+                <i class="fa fa-cart-shopping"></i> THÊM GIỎ
+            </button>
+
+            <button onclick="openBuyPopup()">
+                <i class="fa fa-bolt"></i> MUA NGAY
+            </button>
+        </div>
+
+    </div>
+
+    <div class="detail-right">
+        <h1 id="productName"></h1>
+
+        <p><b>Hãng:</b> <span id="productBrand"></span></p>
+        <p><b>Xuất xứ:</b> <span id="productOrigin"></span></p>
+
+        <h3>Mô tả</h3>
+        <p id="productDesc"></p>
+
+        <h3>Thông số</h3>
+        <div id="productSpecs"></div>
+    </div>
 
 </div>
 
-<div class="detail-buttons">
 
-<button onclick="openAddCartPopup()">
 
-<i class="fa-solid fa-cart-shopping"></i>
+<!-- ADD CART -->
+<div id="addCartPopup" class="popup-overlay" style="display:none">
+    <div class="popup-box">
 
-THÊM GIỎ
+        <span onclick="closeAddCart()">✕</span>
+
+        <h2>THÊM GIỎ HÀNG</h2>
+
+        <img id="popupCartImg">
+        <h3 id="popupCartName"></h3>
+
+        <select id="popupCartCapacity"></select>
+
+        <div class="popup-qty">
+    <button onclick="changeQty('cart',-1)">-</button>
+            <input id="popupCartQty" type="number" value="1">
+            <button onclick="changeQty('cart',1)">+</button>
+        </div>
+
+        <button
+    type="button"
+    id="btnAddCart"
+    class="add-cart-btn">
+
+    THÊM
 
 </button>
+    </div>
+</div>
 
-<button onclick="openBuyPopup()">
+<!-- BUY -->
+<div id="buyPopup" class="popup-overlay" style="display:none">
+    <div class="popup-box">
 
-<i class="fa-solid fa-bolt"></i>
+        <span onclick="closeBuyPopup()">✕</span>
 
-MUA NGAY
+        <h2>ĐẶT HÀNG</h2>
 
-</button>
+        <input id="customerName" placeholder="Tên khách hàng">
+
+        <input id="customerPhone" placeholder="Số điện thoại">
+
+        <input id="customerCompany" placeholder="Tên công ty">
+
+        <input id="customerTax" placeholder="Mã số thuế">
+
+        <textarea id="customerInvoice"
+        placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+        <textarea id="customerAddress"
+        placeholder="Địa chỉ giao hàng"></textarea>
+
+        <input id="buyProductName" readonly>
+
+        <select id="buyCapacity"></select>
+
+        <div class="qty-box">
+
+    <button type="button"
+    onclick="changeQty('buy',-1)">
+    -
+    </button>
+
+    <input id="buyQty"
+    type="number"
+    value="1">
+
+    <button type="button"
+    onclick="changeQty('buy',1)">
+    +
+    </button>
 
 </div>
 
+        <button class="zalo-btn"
+        onclick="sendOrderZalo()">
+        GỬI ZALO
+        </button>
+
+       <button class="mess-btn"
+       onclick="sendOrderMessenger()">
+       GỬI MESSENGER
+       </button>
+
+    </div>
 </div>
-
-<div class="detail-right">
-
-<h1 id="productName"></h1>
-
-<p>
-<b>Hãng:</b>
-<span id="productBrand"></span>
-</p>
-
-<p>
-<b>Xuất xứ:</b>
-<span id="productOrigin"></span>
-</p>
-
-<h3>Mô tả</h3>
-
-<p id="productDesc"></p>
-
-<h3>Thông số kỹ thuật</h3>
-
-<div id="productSpecs"></div>
-
-</div>
-
-</section>
-
-<!-- =========================
-     GIỎ HÀNG
-========================= -->
-
-<div id="cartOverlay"
-class="cart-overlay"
-onclick="closeCart()">
-
-</div>
-
-<div id="cartModal"
-class="cart-modal">
-
-<div class="cart-header">
-
-<h2>Giỏ hàng</h2>
-
-<button onclick="closeCart()">
-✕
-</button>
-
-</div>
-
-<div id="cartBody"
-class="cart-body">
-
-</div>
-
-</div>
-
-<!-- =========================
-     ADD CART POPUP
-========================= -->
-
-<div id="addCartPopup"
-class="popup-overlay"
-style="display:none">
-
-<div class="popup-box">
-
-<span onclick="closeAddCart()">
-✕
-</span>
-
-<h2>THÊM GIỎ HÀNG</h2>
-
-<img id="popupCartImg">
-
-<h3 id="popupCartName"></h3>
-
-<select id="popupCartCapacity"></select>
-
-<div class="qty-box">
-
-<button
-type="button"
-onclick="changeQty('cart',-1)">
--
-</button>
-
-<input id="popupCartQty"
-type="number"
-value="1">
-
-<button
-type="button"
-onclick="changeQty('cart',1)">
-+
-</button>
-
-</div>
-
-<button
-type="button"
-id="btnAddCart"
-class="add-cart-btn">
-
-THÊM
-
-</button>
-
-</div>
-
-</div>
-
-<!-- =========================
-     BUY POPUP
-========================= -->
-
-<div id="buyPopup"
-class="popup-overlay"
-style="display:none">
-
-<div class="popup-box">
-
-<span onclick="closeBuyPopup()">
-✕
-</span>
-
-<h2>ĐẶT HÀNG</h2>
-
-<input id="customerName"
-placeholder="Tên khách hàng">
-
-<input id="customerPhone"
-placeholder="Số điện thoại">
-
-<input id="customerCompany"
-placeholder="Tên công ty">
-
-<input id="customerTax"
-placeholder="Mã số thuế">
-
-<textarea id="customerInvoice"
-placeholder="Địa chỉ xuất hóa đơn"></textarea>
-
-<textarea id="customerAddress"
-placeholder="Địa chỉ giao hàng"></textarea>
-
-<input id="buyProductName"
-readonly>
-
-<select id="buyCapacity"></select>
-
-<div class="qty-box">
-
-<button
-type="button"
-onclick="changeQty('buy',-1)">
--
-</button>
-
-<input id="buyQty"
-type="number"
-value="1">
-
-<button
-type="button"
-onclick="changeQty('buy',1)">
-+
-</button>
-
-</div>
-
-<button class="zalo-btn"
-onclick="sendOrderZalo()">
-
-GỬI ZALO
-
-</button>
-
-<button class="mess-btn"
-onclick="sendOrderMessenger()">
-
-GỬI MESSENGER
-
-</button>
-
-</div>
-
-</div>
-
-<!-- =========================
-     SCRIPT
-========================= -->
 
 <script src="products.js"></script>
-
 <script src="script.js"></script>
 
-<!-- =========================
-     LOAD PRODUCT
-========================= -->
-
+<!-- PRODUCT LOAD -->
 <script>
 
-const id =
-Number(
-new URLSearchParams(location.search).get("id")
-);
+const id = Number(new URLSearchParams(location.search).get("id"));
 
-const product =
-window.products.find(p => p.id == id);
+const product = products.find(p => p.id === id);
 
 window.currentProduct = product;
 
 if(product){
 
-    document.getElementById("productName").innerText =
-    product.name;
+    document.getElementById("productName").innerText = product.name;
 
-    document.getElementById("productBrand").innerText =
-    product.brand || "";
+    document.getElementById("productBrand").innerText = product.brand;
 
-    document.getElementById("productOrigin").innerText =
-    product.origin || "";
+    document.getElementById("productOrigin").innerText = product.origin;
 
-    document.getElementById("productDesc").innerText =
-    product.description || "";
+    document.getElementById("productDesc").innerText = product.description;
 
     /* MAIN IMAGE */
 
@@ -430,24 +311,30 @@ if(product){
 
         thumbs += `
         <img
-        src="images/${product.category}/${product.folder}/${i}.jpg"
-
-        onclick="
-        document.getElementById('mainImage').src=this.src
-        "
-
-        onerror="this.remove()"
+            src="images/${product.category}/${product.folder}/${i}.jpg"
+            onclick="document.getElementById('mainImage').src=this.src"
+            onerror="this.remove()"
         >
         `;
     }
 
-    document.getElementById("thumbList").innerHTML =
-    thumbs;
+    document.getElementById("thumbList").innerHTML = thumbs;
 
     /* SPECS */
 
-    document.getElementById("productSpecs").innerHTML =
-    product.specs || "";
+    let specs = "<ul>";
+
+    product.specs.forEach(s=>{
+        specs += `<li>${s}</li>`;
+    });
+
+    specs += "</ul>";
+
+    document.getElementById("productSpecs").innerHTML = specs;
+
+    /* BUY */
+
+    document.getElementById("buyProductName").value = product.name;
 }
 
 </script>
