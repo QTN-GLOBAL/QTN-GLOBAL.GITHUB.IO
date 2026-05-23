@@ -241,19 +241,33 @@ LIÊN HỆ
 
         <select id="buyCapacity"></select>
 
-        <div class="popup-qty">
-    <button onclick="changeQty('buy',-1)">-</button>
-            <input id="buyQty" type="number" value="1">
-            <button onclick="changeQty('buy',1)">+</button>
-        </div>
+        <div class="qty-box">
 
-        <button onclick="sendOrderZalo()">
+    <button type="button"
+    onclick="changeQty('buy',-1)">
+    -
+    </button>
+
+    <input id="buyQty"
+    type="number"
+    value="1">
+
+    <button type="button"
+    onclick="changeQty('buy',1)">
+    +
+    </button>
+
+</div>
+
+        <button class="zalo-btn"
+        onclick="sendOrderZalo()">
         GỬI ZALO
         </button>
 
-        <button onclick="sendOrderMessenger()">
-        GỬI MESSENGER
-        </button>
+       <button class="mess-btn"
+       onclick="sendOrderMessenger()">
+       GỬI MESSENGER
+       </button>
 
     </div>
 </div>
