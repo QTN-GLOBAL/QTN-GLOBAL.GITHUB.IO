@@ -409,7 +409,16 @@ function closeAddCart(){
 /* =========================
    INIT
 ========================= */
+document.addEventListener("click",function(e){
 
+    if(e.target.id === "btnAddCart"){
+
+        console.log("CLICK ADD CART");
+
+        confirmAddCart();
+    }
+
+});
 document.addEventListener("DOMContentLoaded", () => {
     renderProducts();
     updateCartCount();

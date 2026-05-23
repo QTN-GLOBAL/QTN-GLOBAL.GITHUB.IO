@@ -677,6 +677,20 @@ body{
     font-size:24px;
     cursor:pointer;
 }
+.popup-box{
+    position:relative;
+    z-index:99999;
+}
+
+.popup-box button{
+    position:relative;
+    z-index:99999;
+    pointer-events:auto;
+}
+
+.popup-overlay{
+    z-index:99998;
+}
 
 /* POPUP IMAGE */
 
