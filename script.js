@@ -298,7 +298,6 @@ function buySelectedCart(){
     }
 
     let html = "";
-    let totalQty = 0;
     let productNames = [];
 
     checked.forEach(check => {
@@ -312,7 +311,7 @@ function buySelectedCart(){
 
         if(item && product){
 
-            totalQty += item.quantity;
+            
 
             productNames.push(product.name);
 
@@ -330,7 +329,10 @@ function buySelectedCart(){
 
                     html += `
 <option>
-${product.name} - ${cols[0].innerText.trim()} - ${cols[1].innerText.trim()}
+${product.name}
+- ${cols[0].innerText.trim()}
+- ${cols[1].innerText.trim()}
+- SL: ${item.quantity}
 </option>
 `;
                 }
@@ -348,7 +350,7 @@ ${product.name} - ${cols[0].innerText.trim()} - ${cols[1].innerText.trim()}
 
     document.getElementById("buyCapacity").innerHTML = html;
 
-    document.getElementById("buyQty").value = totalQty;
+    document.getElementById("buyQty").style.display = "none";
 }
 /* =========================
    ADD CART POPUP
@@ -458,6 +460,7 @@ function openBuyPopup() {
     selectedProduct = window.currentProduct;
 
     document.getElementById("buyPopup").style.display = "flex";
+    document.getElementById("buyQtyBox").style.display = "flex";
 
     document.getElementById("buyProductName").value =
         selectedProduct.name;
