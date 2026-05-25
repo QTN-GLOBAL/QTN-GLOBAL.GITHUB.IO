@@ -310,16 +310,11 @@ function buySelectedCart(){
 
         if(item){
 
-        html += `
+            html += `
 <option>
-${item.name}
-
-| ${item.level || ""}
-
-| SL: ${item.quantity}
+${item.name} | ${item.level || ""} | SL: ${item.quantity}
 </option>
 `;
-
         }
     });
 
@@ -328,14 +323,11 @@ ${item.name}
     document.getElementById("buyProductName").value =
         "ĐƠN HÀNG TỪ GIỎ HÀNG";
 
-    const buyCapacity =
-    document.getElementById("buyCapacity");
+    document.getElementById("buyCapacity").innerHTML =
+        html;
 
-    buyCapacity.innerHTML = html;
-
-    buyCapacity.style.height = "auto";
-
-    document.getElementById("buyQtyBox").style.display = "none";
+    document.getElementById("buyQtyBox").style.display =
+        "none";
 }
 /* =========================
    ADD CART POPUP
