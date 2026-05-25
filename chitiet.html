@@ -241,11 +241,14 @@ LIÊN HỆ
         <textarea id="customerAddress"
         placeholder="Địa chỉ giao hàng"></textarea>
 
-        <input id="buyProductName" readonly>
+        <div id="cartOrderList"></div>
+
+        <input
+        id="buyProductName"
+        readonly>
 
         <select id="buyCapacity"></select>
-
-        <div class="qty-box">
+        <div class="qty-box" id="buyQtyBox">
 
     <button type="button"
     onclick="changeQty('buy',-1)">
@@ -313,13 +316,17 @@ window.currentProduct = product;
 
 if(product){
 
-    document.getElementById("productName").innerText = product.name;
+    document.getElementById("productName").innerText =
+    product.name;
 
-    document.getElementById("productBrand").innerText = product.brand;
+    document.getElementById("productBrand").innerText =
+    product.brand;
 
-    document.getElementById("productOrigin").innerText = product.origin;
+    document.getElementById("productOrigin").innerText =
+    product.origin;
 
-    document.getElementById("productDesc").innerText = product.description;
+    document.getElementById("productDesc").innerText =
+    product.description;
 
     /* MAIN IMAGE */
 
@@ -341,24 +348,20 @@ if(product){
         `;
     }
 
-    document.getElementById("thumbList").innerHTML = thumbs;
+    document.getElementById("thumbList").innerHTML =
+    thumbs;
 
     /* SPECS */
 
-    let specs = "<ul>";
-
-    product.specs.forEach(s=>{
-        specs += `<li>${s}</li>`;
-    });
-
-    specs += "</ul>";
-
-    document.getElementById("productSpecs").innerHTML = specs;
-
+document.getElementById("productSpecs").innerHTML =
+product.specs;
     /* BUY */
 
-    document.getElementById("buyProductName").value = product.name;
+    document.getElementById("buyProductName").value =
+    product.name;
+
 }
+   
 
 </script>
 
