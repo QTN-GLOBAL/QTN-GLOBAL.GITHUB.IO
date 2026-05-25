@@ -192,6 +192,9 @@ function renderCart() {
 
             <h4>${item.name}</h4>
 
+            <p class="cart-level">
+            ${item.level || ""}
+            </p>
             <div class="qty">
 
                 <button onclick="decreaseQty(${item.id})">-</button>
@@ -297,77 +300,53 @@ function buySelectedCart(){
         return;
     }
 
-    let orderHTML = "";
+    let html = "";
 
     checked.forEach(check => {
 
         const id = Number(check.value);
 
-        const item =
-            cart.find(i => i.id == id);
+        const item = cart.find(i => i.id == id);
 
-        const product =
-            getProducts().find(p => p.id == id);
+        if(item){
 
-        if(item && product){
+            html += `
+<div style="border-bottom:1px solid #ddd;padding:10px 0;">
 
-            let specText = "";
+<b>${item.name}</b><br>
 
-            const temp = document.createElement("div");
+Mức cân:<br>
+${item.level || ""}<br>
 
-            temp.innerHTML = product.specs;
+Số lượng: ${item.quantity}
 
-            const firstRow =
-                temp.querySelector("tr");
-
-            if(firstRow){
-
-                const cols =
-                    firstRow.querySelectorAll("td");
-
-                if(cols.length >= 2){
-
-                    specText =
-                        cols[0].innerText.trim()
-                        + " - " +
-                        cols[1].innerText.trim();
-                }
-            }
-
-            orderHTML += `
-
-            <div class="order-item">
-
-                <h4>${product.name}</h4>
-
-                <p>
-                    <b>Mức cân:</b>
-                    ${specText}
-                </p>
-
-                <p>
-                    <b>Số lượng:</b>
-                    ${item.quantity}
-                </p>
-
-            </div>
-            `;
+</div>
+`;
         }
     });
 
-    document.getElementById(
-        "cartOrderList"
-    ).innerHTML = orderHTML;
+    document.getElementById("buyPopup").style.display = "flex";
 
-    document.getElementById(
-        "buyPopup"
-    ).style.display = "flex";
+    document.getElementById("buyProductName").value =
+        "ĐƠN HÀNG TỪ GIỎ HÀNG";
 
-    document.getElementById(
-        "buyQtyBox"
-    ).style.display = "none";
+    document.getElementById("buyCapacity").outerHTML =
+        `
+<div id="buyCapacity"
+style="
+border:1px solid #ddd;
+padding:10px;
+border-radius:8px;
+margin-bottom:10px;
+max-height:200px;
+overflow:auto;
+">
+${html}
+</div>
+`;
+
+    document.getElementById("buyQtyBox").style.display = "none";
 }
-
 /* =========================
    ADD CART POPUP
 ========================= */
@@ -443,13 +422,29 @@ function confirmAddCart() {
         document.getElementById("popupCartQty").value
     );
 
-    cart.push({
-        id: selectedProduct.id,
-        name: selectedProduct.name,
-        category: selectedProduct.category,
-        folder: selectedProduct.folder,
-        quantity: qty
-    });
+    const level =
+        document.getElementById("popupCartCapacity").value;
+
+    const existing = cart.find(item =>
+        item.id == selectedProduct.id &&
+        item.level == level
+    );
+
+    if(existing){
+
+        existing.quantity += qty;
+
+    }else{
+
+        cart.push({
+            id: selectedProduct.id,
+            name: selectedProduct.name,
+            category: selectedProduct.category,
+            folder: selectedProduct.folder,
+            quantity: qty,
+            level: level
+        });
+    }
 
     saveCart();
 
