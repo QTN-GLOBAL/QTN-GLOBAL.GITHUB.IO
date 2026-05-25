@@ -297,9 +297,9 @@ function buySelectedCart(){
         return;
     }
 
-    let text = "";
     let html = "";
     let totalQty = 0;
+    let productNames = [];
 
     checked.forEach(check => {
 
@@ -307,21 +307,17 @@ function buySelectedCart(){
 
         const item = cart.find(i => i.id == id);
 
-        if(item){
+        const product =
+            getProducts().find(p => p.id == id);
+
+        if(item && product){
+
             totalQty += item.quantity;
 
-            text += `
-${item.name}
-Số lượng: ${item.quantity}
------------------
-`;
-        }
-
-        const product = getProducts().find(p => p.id == id);
-
-        if(product){
+            productNames.push(product.name);
 
             const temp = document.createElement("div");
+
             temp.innerHTML = product.specs;
 
             const rows = temp.querySelectorAll("tr");
@@ -342,12 +338,10 @@ ${product.name} - ${cols[0].innerText.trim()} - ${cols[1].innerText.trim()}
         }
     });
 
-    const popup = document.getElementById("buyPopup");
-
-    popup.style.display = "flex";
+    document.getElementById("buyPopup").style.display = "flex";
 
     document.getElementById("buyProductName").value =
-        "ĐƠN HÀNG GIỎ HÀNG (" + totalQty + " sản phẩm)";
+        productNames.join(", ");
 
     document.getElementById("buyCapacity").innerHTML = html;
 
