@@ -338,8 +338,11 @@ ${product.name} - ${cols[0].innerText.trim()} - ${cols[1].innerText.trim()}
         }
     });
 
-    document.getElementById("buyPopup").style.display = "flex";
+    const popup = document.getElementById("buyPopup");
 
+    if(!popup) return;
+
+    popup.style.display = "flex";
     document.getElementById("buyProductName").value =
         productNames.join(", ");
 

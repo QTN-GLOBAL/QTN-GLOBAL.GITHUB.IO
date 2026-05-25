@@ -343,7 +343,89 @@ class="cart-body">
 <!-- =========================
      SCRIPT
 ========================= -->
+<!-- =========================
+     BUY POPUP
+========================= -->
 
+<div id="buyPopup" class="popup-overlay">
+
+    <div class="popup-box">
+
+        <span onclick="closeBuyPopup()">✕</span>
+
+        <h2>MUA NGAY</h2>
+
+        <input
+        type="text"
+        id="customerName"
+        placeholder="Tên khách hàng">
+
+        <input
+        type="text"
+        id="customerPhone"
+        placeholder="Số điện thoại">
+
+        <input
+        type="text"
+        id="customerCompany"
+        placeholder="Tên công ty">
+
+        <input
+        type="text"
+        id="customerTax"
+        placeholder="Mã số thuế">
+
+        <textarea
+        id="customerInvoice"
+        placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+        <textarea
+        id="customerAddress"
+        placeholder="Địa chỉ giao hàng"></textarea>
+
+        <input
+        type="text"
+        id="buyProductName"
+        readonly>
+
+        <select id="buyCapacity"></select>
+
+        <div class="qty-box">
+
+            <button onclick="changeQty('buy',-1)">
+                -
+            </button>
+
+            <input
+            type="number"
+            id="buyQty"
+            value="1">
+
+            <button onclick="changeQty('buy',1)">
+                +
+            </button>
+
+        </div>
+
+        <button
+        class="zalo-btn"
+        onclick="sendOrderZalo()">
+
+            GỬI ĐƠN QUA ZALO
+
+        </button>
+
+        <button
+        class="mess-btn"
+        onclick="sendOrderMessenger()">
+
+            GỬI ĐƠN QUA MESSENGER
+
+        </button>
+
+    </div>
+
+</div>
 <script src="products.js"></script>
 
 <script src="script.js"></script>
