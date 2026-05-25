@@ -297,61 +297,77 @@ function buySelectedCart(){
         return;
     }
 
-    let html = "";
-    let productNames = [];
+    let orderHTML = "";
 
     checked.forEach(check => {
 
         const id = Number(check.value);
 
-        const item = cart.find(i => i.id == id);
+        const item =
+            cart.find(i => i.id == id);
 
         const product =
             getProducts().find(p => p.id == id);
 
         if(item && product){
 
-            
-
-            productNames.push(product.name);
+            let specText = "";
 
             const temp = document.createElement("div");
 
             temp.innerHTML = product.specs;
 
-            const rows = temp.querySelectorAll("tr");
+            const firstRow =
+                temp.querySelector("tr");
 
-            rows.forEach(row => {
+            if(firstRow){
 
-                const cols = row.querySelectorAll("td");
+                const cols =
+                    firstRow.querySelectorAll("td");
 
                 if(cols.length >= 2){
 
-                    html += `
-<option>
-${product.name}
-- ${cols[0].innerText.trim()}
-- ${cols[1].innerText.trim()}
-- SL: ${item.quantity}
-</option>
-`;
+                    specText =
+                        cols[0].innerText.trim()
+                        + " - " +
+                        cols[1].innerText.trim();
                 }
-            });
+            }
+
+            orderHTML += `
+
+            <div class="order-item">
+
+                <h4>${product.name}</h4>
+
+                <p>
+                    <b>Mức cân:</b>
+                    ${specText}
+                </p>
+
+                <p>
+                    <b>Số lượng:</b>
+                    ${item.quantity}
+                </p>
+
+            </div>
+            `;
         }
     });
 
-    const popup = document.getElementById("buyPopup");
+    document.getElementById(
+        "cartOrderList"
+    ).innerHTML = orderHTML;
 
-    if(!popup) return;
+    document.getElementById(
+        "buyPopup"
+    ).style.display = "flex";
 
-    popup.style.display = "flex";
-    document.getElementById("buyProductName").value =
-        productNames.join(", ");
-
-    document.getElementById("buyCapacity").innerHTML = html;
-
-    document.getElementById("buyQty").style.display = "none";
+    document.getElementById(
+        "buyQtyBox"
+    ).style.display = "none";
 }
+
 /* =========================
    ADD CART POPUP
 ========================= */
