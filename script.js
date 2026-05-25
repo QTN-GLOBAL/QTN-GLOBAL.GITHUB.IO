@@ -310,18 +310,16 @@ function buySelectedCart(){
 
         if(item){
 
-            html += `
-<div style="border-bottom:1px solid #ddd;padding:10px 0;">
+        html += `
+<option>
+${item.name}
 
-<b>${item.name}</b><br>
+| ${item.level || ""}
 
-Mức cân:<br>
-${item.level || ""}<br>
-
-Số lượng: ${item.quantity}
-
-</div>
+| SL: ${item.quantity}
+</option>
 `;
+
         }
     });
 
@@ -330,20 +328,12 @@ Số lượng: ${item.quantity}
     document.getElementById("buyProductName").value =
         "ĐƠN HÀNG TỪ GIỎ HÀNG";
 
-    document.getElementById("buyCapacity").outerHTML =
-        `
-<div id="buyCapacity"
-style="
-border:1px solid #ddd;
-padding:10px;
-border-radius:8px;
-margin-bottom:10px;
-max-height:200px;
-overflow:auto;
-">
-${html}
-</div>
-`;
+    const buyCapacity =
+    document.getElementById("buyCapacity");
+
+    buyCapacity.innerHTML = html;
+
+    buyCapacity.style.height = "auto";
 
     document.getElementById("buyQtyBox").style.display = "none";
 }
