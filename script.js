@@ -197,11 +197,11 @@ function renderCart() {
             </p>
             <div class="qty">
 
-                <button onclick="decreaseQty(${item.id})">-</button>
+                <button onclick="decreaseQty(${item.id},'${item.level}')">-</button>
 
                 <span>${item.quantity}</span>
 
-                <button onclick="increaseQty(${item.id})">+</button>
+                <button onclick="increaseQty(${item.id},'${item.level}')">+</button>
 
             </div>
 
@@ -212,13 +212,13 @@ function renderCart() {
                     <input
                     type="checkbox"
                     class="cart-buy-check"
-                    value="${item.id}">
+                    value="${item.id}|||${item.level}"
 
                     Chọn mua
 
                 </label>
 
-                <button onclick="removeCart(${item.id})">
+                <button onclick="removeCart(${item.id},'${item.level}')">
                     Xóa
                 </button>
 
@@ -248,10 +248,13 @@ function renderCart() {
    UPDATE QTY
 ========================= */
 
-function increaseQty(id) {
+function increaseQty(id, level) {
 
     const item =
-        cart.find(i => i.id == id);
+        cart.find(i =>
+            i.id == id &&
+            i.level == level
+        );
 
     if (item) {
         item.quantity++;
@@ -260,10 +263,13 @@ function increaseQty(id) {
     saveCart();
 }
 
-function decreaseQty(id) {
+function decreaseQty(id, level) {
 
     const item =
-        cart.find(i => i.id == id);
+        cart.find(i =>
+            i.id == id &&
+            i.level == level
+        );
 
     if (!item) return;
 
@@ -271,17 +277,18 @@ function decreaseQty(id) {
 
     if (item.quantity <= 0) {
 
-        cart =
-            cart.filter(i => i.id != id);
+        cart = cart.filter(i =>
+            !(i.id == id && i.level == level)
+        );
     }
 
     saveCart();
 }
+function removeCart(id, level) {
 
-function removeCart(id) {
-
-    cart =
-        cart.filter(i => i.id != id);
+    cart = cart.filter(i =>
+        !(i.id == id && i.level == level)
+    );
 
     saveCart();
 }
@@ -304,26 +311,46 @@ function buySelectedCart(){
 
     checked.forEach(check => {
 
-        const id = Number(check.value);
+        const data = check.value.split("|||");
 
-        const item = cart.find(i => i.id == id);
+        const id = Number(data[0]);
 
-        if(item){
+        const level = data[1];
+
+        const cartItem =
+    cart.find(i =>
+        i.id == id &&
+        i.level == level
+    );
+        if(cartItem){
 
             html += `
-<option>
-${item.name} | ${item.level || ""} | SL: ${item.quantity}
-</option>
-`;
+
+            <div class="order-item">
+
+                <h4>${cartItem.name}</h4>
+
+                <p>
+                    <b>Mức cân:</b>
+                    ${cartItem.level || ""}
+                </p>
+
+                <p>
+                    <b>Số lượng:</b>
+                    ${cartItem.quantity}
+                </p>
+
+            </div>
+
+            <hr>
+            `;
         }
     });
 
-    document.getElementById("buyPopup").style.display = "flex";
+    document.getElementById("buyPopup").style.display =
+        "flex";
 
-    document.getElementById("buyProductName").value =
-        "ĐƠN HÀNG TỪ GIỎ HÀNG";
-
-    document.getElementById("buyCapacity").innerHTML =
+    document.getElementById("cartOrderList").innerHTML =
         html;
 
     document.getElementById("buyQtyBox").style.display =
@@ -554,15 +581,8 @@ ${document.getElementById("customerInvoice")?.value || ""}
 Địa chỉ giao hàng:
 ${document.getElementById("customerAddress")?.value || ""}
 
-Sản phẩm:
-${document.getElementById("buyProductName")?.value || ""}
-
-Chi tiết:
-${document.getElementById("buyCapacity")?.innerText || ""}
-
-Số lượng:
-${document.getElementById("buyQty")?.value || ""}
-
+Đơn hàng:
+${document.getElementById("cartOrderList")?.innerText || ""}
 ========================
 `;
 }
