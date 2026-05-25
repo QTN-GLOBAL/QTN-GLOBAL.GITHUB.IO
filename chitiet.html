@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết sản phẩm</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<!-- HEADER (GIỮ NGUYÊN) -->
+<header class="header">
+<div class="top-header">
+
+<div class="logo-area">
+<img src="images/logo.png" alt="QTN GLOBAL">
+<div class="company-info">
+<h2><span style="color:#0d47a1;">QTN</span> <span style="color:#d4a017;">GLOBAL</span></h2>
+<p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+</div>
+</div>
+
+<div class="top-contact">
+
+<a href="tel:0905913636" class="top-btn">📞 0905 913 636</a>
+<a href="tel:0383598603" class="top-btn">📞 0383 598 603</a>
+
+<a href="https://zalo.me/0383598603" target="_blank" class="social-icon zalo">
+<span class="zalo-text">Zalo</span>
+</a>
+
+<a href="https://m.me/QTNSCALE" target="_blank" class="social-icon facebook">
+<i class="fa-brands fa-facebook-messenger"></i>
+</a>
+
+<a class="top-cart-btn" href="javascript:void(0)" onclick="openCart()">
+🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
+</a>
+
+</div>
+</div>
+
+<nav class="navbar">
+<a href="index.html">TRANG CHỦ</a>
+<a href="#">GIỚI THIỆU</a>
+<a href="#">LIÊN HỆ</a>
+</nav>
+</header>
+
+<!-- =========================
+DETAIL PRODUCT (GIỮ NGUYÊN)
+========================= -->
+
+<div class="detail-page-wrap">
+
+<div class="detail-sidebar">
+<h3>DANH MỤC</h3>
+
+<!-- FIX: KHÔNG LINK INDEX NỮA -->
+<a href="#" onclick="filterCategory('can-ban')">Cân bàn</a>
+<a href="#" onclick="filterCategory('can-dem')">Cân đếm</a>
+<a href="#" onclick="filterCategory('can-treo')">Cân treo</a>
+<a href="#" onclick="filterCategory('dau-can-dien-tu')">Đầu cân điện tử</a>
+<a href="#" onclick="filterCategory('can-phan-tich')">Cân phân tích</a>
+<a href="#" onclick="filterCategory('can-chong-nuoc')">Cân chống nước</a>
+<a href="#" onclick="filterCategory('can-in-tem-ma-vach')">Cân in tem mã vạch</a>
+
+</div>
+
+<div class="detail-page fix-layout">
+
+    <div class="detail-left">
+
+        <img id="mainImage">
+        <div id="thumbList"></div>
+
+        <div class="detail-buttons">
+            <button onclick="openAddCartPopup()">🛒 THÊM GIỎ</button>
+            <button onclick="openBuyPopup()">⚡ MUA NGAY</button>
+        </div>
+
+    </div>
+
+    <div class="detail-right">
+
+        <h1 id="productName"></h1>
+        <p><b>Hãng:</b> <span id="productBrand"></span></p>
+        <p><b>Xuất xứ:</b> <span id="productOrigin"></span></p>
+
+        <h3>Mô tả</h3>
+        <p id="productDesc"></p>
+
+        <h3>Thông số</h3>
+        <div id="productSpecs"></div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- =========================
+PRODUCT GRID (GIỐNG INDEX - THÊM MỚI)
+========================= -->
+
+<main id="productGrid" class="product-grid"></main>
+
+<!-- =========================
+POPUPS + CART (GIỮ NGUYÊN)
+========================= -->
+
+<div id="addCartPopup" class="popup-overlay" style="display:none"></div>
+<div id="buyPopup" class="popup-overlay" style="display:none"></div>
+
+<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+
+<div id="cartModal" class="cart-modal">
+    <div class="cart-header">
+        <h2>Giỏ hàng</h2>
+        <button onclick="closeCart()">✕</button>
+    </div>
+    <div id="cartBody" class="cart-body"></div>
+</div>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+
+<!-- =========================
+PAGE LOGIC FIX
+========================= -->
+
+<script>
+
+const id = Number(new URLSearchParams(location.search).get("id"));
+const product = products.find(p => p.id === id);
+
+window.currentProduct = product;
+
+if(product){
+
+    document.getElementById("productName").innerText = product.name;
+    document.getElementById("productBrand").innerText = product.brand;
+    document.getElementById("productOrigin").innerText = product.origin;
+    document.getElementById("productDesc").innerText = product.description;
+
+    document.getElementById("mainImage").src =
+        `images/${product.category}/${product.folder}/main.jpg`;
+
+    let thumbs = "";
+    for(let i=1;i<=5;i++){
+        thumbs += `
+        <img src="images/${product.category}/${product.folder}/${i}.jpg"
+             onclick="document.getElementById('mainImage').src=this.src"
+             onerror="this.remove()">
+        `;
+    }
+
+    document.getElementById("thumbList").innerHTML = thumbs;
+    document.getElementById("productSpecs").innerHTML = product.specs;
+    document.getElementById("buyProductName").value = product.name;
+}
+
+/* =========================
+FIX: FILTER NGAY TRONG CHITET
+========================= */
+
+function filterCategory(cat){
+
+    const list = products.filter(p => p.category === cat);
+    renderProducts(list); // dùng lại hàm index.js
+
+}
+
+</script>
+
+</body>
+</html>
