@@ -624,3 +624,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCartCount();
 });
+
+
+/* =========================
+   FILTER BY BRAND
+========================= */
+
+function filterByBrand(brand) {
+
+    const filtered = getProducts().filter(p => p.brand === brand);
+
+    renderProducts(filtered);
+}

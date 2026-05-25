@@ -918,3 +918,46 @@ body{
     gap:6px;
     font-size:14px;
 }
+.main-layout {
+    display: flex;
+    gap: 15px;
+}
+
+/* giữ sidebar trái */
+.sidebar {
+    width: 20%;
+}
+
+/* sản phẩm */
+.product-grid {
+    width: 60%;
+}
+
+/* sidebar thương hiệu */
+.brand-sidebar {
+    width: 20%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.brand-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.brand-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.brand-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}

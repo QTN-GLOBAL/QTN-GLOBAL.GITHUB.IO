@@ -213,45 +213,55 @@ src="images/can-ban/jwl/main.jpg">
 
 <section class="main-layout">
 
-<!-- SIDEBAR -->
-
+<!-- SIDEBAR TRÁI -->
 <aside class="sidebar">
+    <h2>DANH MỤC</h2>
+    <ul>
+        <li onclick="filterProducts('can-ban')">Cân bàn</li>
+        <li onclick="filterProducts('can-dem')">Cân đếm</li>
+        <li onclick="filterProducts('can-treo')">Cân treo</li>
+        <li onclick="filterProducts('dau-can-dien-tu')">Đầu cân điện tử</li>
+        <li onclick="filterProducts('can-phan-tich')">Cân phân tích</li>
+        <li onclick="filterProducts('can-chong-nuoc')">Cân chống nước</li>
+        <li onclick="filterProducts('can-in-tem-ma-vach')">Cân in tem mã vạch</li>
+    </ul>
+</aside>
 
-<h2>DANH MỤC SẢN PHẨM</h2>
+<!-- MAIN PRODUCT -->
+<main class="product-grid" id="productGrid"></main>
 
-<ul>
+<!-- SIDEBAR PHẢI (MỚI) -->
+<aside class="brand-sidebar">
 
-<li onclick="filterProducts('can-ban')">
-Cân bàn
-</li>
+    <h2>THƯƠNG HIỆU</h2>
 
-<li onclick="filterProducts('can-dem')">
-Cân đếm
-</li>
+    <div class="brand-list">
 
-<li onclick="filterProducts('can-treo')">
-Cân treo
-</li>
+        <div class="brand-item" onclick="filterByBrand('Ohaus')">
+            <img src="images/brands/ohaus.png">
+            <span>Ohaus</span>
+        </div>
 
-<li onclick="filterProducts('dau-can-dien-tu')">
-Đầu cân điện tử
-</li>
+        <div class="brand-item" onclick="filterByBrand('Jadever')">
+            <img src="images/brands/jadever.png">
+            <span>Jadever</span>
+        </div>
 
-<li onclick="filterProducts('can-phan-tich')">
-Cân phân tích
-</li>
+        <div class="brand-item" onclick="filterByBrand('Vibra')">
+            <img src="images/brands/vibra.png">
+            <span>Vibra</span>
+        </div>
 
-<li onclick="filterProducts('can-chong-nuoc')">
-Cân chống nước
-</li>
+        <div class="brand-item" onclick="filterByBrand('Yaohua')">
+            <img src="images/brands/yaohua.png">
+            <span>Yaohua</span>
+        </div>
 
-<li onclick="filterProducts('can-in-tem-ma-vach')">
-Cân in tem mã vạch
-</li>
-
-</ul>
+    </div>
 
 </aside>
+
+</section>
 
 <!-- PRODUCT GRID -->
 
