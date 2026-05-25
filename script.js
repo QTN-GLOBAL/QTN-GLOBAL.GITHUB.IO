@@ -231,11 +231,14 @@ function buySelectedCart() {
 function openAddCartPopup() {
     if (!window.currentProduct) return;
     selectedProduct = window.currentProduct;
-    document.getElementById("addCartPopup").style.display = "flex";
+    const p = document.getElementById("addCartPopup");
+if (p) {
+    p.style.display = "flex";
 }
 
 function closeAddCart() {
-    document.getElementById("addCartPopup").style.display = "none";
+    const p = document.getElementById("addCartPopup");
+    if (p) p.style.display = "none";
 }
 
 function confirmAddCart() {
@@ -259,7 +262,9 @@ function openBuyPopup() {
     if (!window.currentProduct) return;
 
     selectedProduct = window.currentProduct;
-    document.getElementById("buyPopup").style.display = "flex";
+    const p = document.getElementById("buyPopup");
+if (p) {
+    p.style.display = "flex";
 }
 
 /* =========================
@@ -301,3 +306,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+function closeBuyPopup() {
+    const p = document.getElementById("buyPopup");
+    if (p) p.style.display = "none";
+}
+function sendOrderZalo() {
+    const name = document.getElementById("customerName")?.value || "";
+    const phone = document.getElementById("customerPhone")?.value || "";
+    const addr = document.getElementById("customerAddress")?.value || "";
+
+    const text =
+`🛒 ĐƠN HÀNG
+👤 Tên: ${name}
+📞 SĐT: ${phone}
+📍 Địa chỉ: ${addr}`;
+
+    const zaloPhone = "0383598603"; // số shop của bạn
+
+    window.open(
+        `https://zalo.me/${zaloPhone}`,
+        "_blank"
+    );
+
+    alert("Đã mở Zalo — bạn hãy gửi nội dung thủ công");
+}
+
+function sendOrderMessenger() {
+    const name = document.getElementById("customerName")?.value || "";
+    const phone = document.getElementById("customerPhone")?.value || "";
+
+    const text = `Đơn hàng: ${name} - ${phone}`;
+
+    window.open(
+        "https://m.me/QTNSCALE",
+        "_blank"
+    );
+
+    alert("Đã mở Messenger — gửi nội dung thủ công");
+}
