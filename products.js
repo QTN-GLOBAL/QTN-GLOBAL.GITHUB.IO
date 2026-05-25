@@ -783,7 +783,7 @@ window.products = [
 
     folder:"alh4",
 
-    brand:"EXCEL",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -874,7 +874,7 @@ window.products = [
 
     folder:"fj5",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -965,7 +965,7 @@ window.products = [
 
     folder:"gw",
 
-    brand:"Excel",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -1018,7 +1018,7 @@ window.products = [
 
     folder:"kw",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -1085,7 +1085,7 @@ window.products = [
 
     folder:"kc",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -1154,7 +1154,7 @@ window.products = [
 
     folder:"fb530",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -1223,7 +1223,7 @@ window.products = [
 
     folder:"btw",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -1286,7 +1286,7 @@ window.products = [
 
     folder:"btwe",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -1349,7 +1349,7 @@ window.products = [
 
     folder:"ex-2001",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
@@ -1412,7 +1412,7 @@ window.products = [
 
     folder:"kws",
 
-    brand:"Excell",
+    brand:"EXCELL",
 
     origin:"Đài Loan",
 
