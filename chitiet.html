@@ -36,103 +36,48 @@
 <div class="top-contact">
 
 <a href="tel:0905913636" class="top-btn">
-
-<i class="fa-solid fa-phone"></i>
-
-0905 913 636
-
+<i class="fa-solid fa-phone"></i> 0905 913 636
 </a>
 
 <a href="tel:0383598603" class="top-btn">
-
-<i class="fa-solid fa-phone"></i>
-
-0383 598 603
-
+<i class="fa-solid fa-phone"></i> 0383 598 603
 </a>
 
-<a href="https://zalo.me/0383598603"
-target="_blank"
-class="social-icon zalo">
-
-<span class="zalo-text">
-Zalo
-</span>
-
+<a href="https://zalo.me/0383598603" target="_blank" class="social-icon zalo">
+<span class="zalo-text">Zalo</span>
 </a>
 
-<a href="https://m.me/QTNSCALE"
-target="_blank"
-class="social-icon facebook">
-
+<a href="https://m.me/QTNSCALE" target="_blank" class="social-icon facebook">
 <i class="fa-brands fa-facebook-messenger"></i>
-
 </a>
 
-<a class="top-cart-btn"
-href="javascript:void(0)"
-onclick="openCart()">
-
-🛒 GIỎ HÀNG
-(<span id="cartCount">0</span>)
-
+<a class="top-cart-btn" href="javascript:void(0)" onclick="openCart()">
+🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
 </a>
 
 </div>
 
 </div>
 
-<!-- =========================
-     MENU
-========================= -->
-
+<!-- MENU -->
 <nav class="navbar">
 
-<a href="index.html">
-TRANG CHỦ
-</a>
-
-<a href="#">
-GIỚI THIỆU
-</a>
+<a href="index.html">TRANG CHỦ</a>
+<a href="#">GIỚI THIỆU</a>
 
 <div class="dropdown-content">
 
-<a href="index.html?category=can-ban">
-Cân bàn
-</a>
-
-<a href="index.html?category=can-dem">
-Cân đếm
-</a>
-
-<a href="index.html?category=can-treo">
-Cân treo
-</a>
-
-<a href="index.html?category=dau-can-dien-tu">
-Đầu cân điện tử
-</a>
-
-<a href="index.html?category=can-phan-tich">
-Cân phân tích
-</a>
-
-<a href="index.html?category=can-chong-nuoc">
-Cân chống nước
-</a>
-
-<a href="index.html?category=can-in-tem-ma-vach">
-Cân in tem mã vạch
-</a>
+<a href="index.html?category=can-ban">Cân bàn</a>
+<a href="index.html?category=can-dem">Cân đếm</a>
+<a href="index.html?category=can-treo">Cân treo</a>
+<a href="index.html?category=dau-can-dien-tu">Đầu cân điện tử</a>
+<a href="index.html?category=can-phan-tich">Cân phân tích</a>
+<a href="index.html?category=can-chong-nuoc">Cân chống nước</a>
+<a href="index.html?category=can-in-tem-ma-vach">Cân in tem mã vạch</a>
 
 </div>
 
-</div>
-
-<a href="#">
-LIÊN HỆ
-</a>
+<a href="#">LIÊN HỆ</a>
 
 </nav>
 
@@ -145,35 +90,16 @@ LIÊN HỆ
 
 <h3>DANH MỤC</h3>
 
-<a href="index.html?category=can-ban">
-Cân bàn
-</a>
-
-<a href="index.html?category=can-dem">
-Cân đếm
-</a>
-
-<a href="index.html?category=can-treo">
-Cân treo
-</a>
-
-<a href="index.html?category=dau-can-dien-tu">
-Đầu cân điện tử
-</a>
-
-<a href="index.html?category=can-phan-tich">
-Cân phân tích
-</a>
-
-<a href="index.html?category=can-chong-nuoc">
-Cân chống nước
-</a>
-
-<a href="index.html?category=can-in-tem-ma-vach">
-Cân in tem mã vạch
-</a>
+<a href="index.html?category=can-ban">Cân bàn</a>
+<a href="index.html?category=can-dem">Cân đếm</a>
+<a href="index.html?category=can-treo">Cân treo</a>
+<a href="index.html?category=dau-can-dien-tu">Đầu cân điện tử</a>
+<a href="index.html?category=can-phan-tich">Cân phân tích</a>
+<a href="index.html?category=can-chong-nuoc">Cân chống nước</a>
+<a href="index.html?category=can-in-tem-ma-vach">Cân in tem mã vạch</a>
 
 </div>
+
 <div class="detail-page fix-layout">
 
     <div class="detail-left">
@@ -195,6 +121,7 @@ Cân in tem mã vạch
     </div>
 
     <div class="detail-right">
+
         <h1 id="productName"></h1>
 
         <p><b>Hãng:</b> <span id="productBrand"></span></p>
@@ -205,6 +132,7 @@ Cân in tem mã vạch
 
         <h3>Thông số</h3>
         <div id="productSpecs"></div>
+
     </div>
 
 </div>
@@ -225,19 +153,15 @@ Cân in tem mã vạch
         <select id="popupCartCapacity"></select>
 
         <div class="popup-qty">
-    <button onclick="changeQty('cart',-1)">-</button>
+            <button onclick="changeQty('cart',-1)">-</button>
             <input id="popupCartQty" type="number" value="1">
             <button onclick="changeQty('cart',1)">+</button>
         </div>
 
-        <button
-    type="button"
-    id="btnAddCart"
-    class="add-cart-btn">
+        <button type="button" id="btnAddCart" class="add-cart-btn">
+            THÊM
+        </button>
 
-    THÊM
-
-</button>
     </div>
 </div>
 
@@ -250,80 +174,54 @@ Cân in tem mã vạch
         <h2>ĐẶT HÀNG</h2>
 
         <input id="customerName" placeholder="Tên khách hàng">
-
         <input id="customerPhone" placeholder="Số điện thoại">
-
         <input id="customerCompany" placeholder="Tên công ty">
-
         <input id="customerTax" placeholder="Mã số thuế">
 
-        <textarea id="customerInvoice"
-        placeholder="Địa chỉ xuất hóa đơn"></textarea>
-
-        <textarea id="customerAddress"
-        placeholder="Địa chỉ giao hàng"></textarea>
+        <textarea id="customerInvoice" placeholder="Địa chỉ xuất hóa đơn"></textarea>
+        <textarea id="customerAddress" placeholder="Địa chỉ giao hàng"></textarea>
 
         <div id="cartOrderList"></div>
 
-        <input
-        id="buyProductName"
-        readonly>
+        <input id="buyProductName" readonly>
 
         <select id="buyCapacity"></select>
+
         <div class="qty-box" id="buyQtyBox">
 
-    <button type="button"
-    onclick="changeQty('buy',-1)">
-    -
-    </button>
+            <button type="button" onclick="changeQty('buy',-1)">-</button>
 
-    <input id="buyQty"
-    type="number"
-    value="1">
+            <input id="buyQty" type="number" value="1">
 
-    <button type="button"
-    onclick="changeQty('buy',1)">
-    +
-    </button>
+            <button type="button" onclick="changeQty('buy',1)">+</button>
 
-</div>
+        </div>
 
-        <button class="zalo-btn"
-        onclick="sendOrderZalo()">
-        GỬI ZALO
+        <button class="zalo-btn" onclick="sendOrderZalo()">
+            GỬI ZALO
         </button>
 
-       <button class="mess-btn"
-       onclick="sendOrderMessenger()">
-       GỬI MESSENGER
-       </button>
+        <button class="mess-btn" onclick="sendOrderMessenger()">
+            GỬI MESSENGER
+        </button>
 
     </div>
 </div>
-<div id="cartOverlay"
-class="cart-overlay"
-onclick="closeCart()">
-</div>
 
-<div id="cartModal"
-class="cart-modal">
+<!-- CART (FIX: đầy đủ structure, không fragment lỗi) -->
+<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
 
-<div class="cart-header">
+<div id="cartModal" class="cart-modal">
 
-<h2>Giỏ hàng</h2>
+    <div class="cart-header">
+        <h2>Giỏ hàng</h2>
+        <button onclick="closeCart()">✕</button>
+    </div>
 
-<button onclick="closeCart()">
-✕
-</button>
+    <div id="cartBody" class="cart-body"></div>
 
 </div>
 
-<div id="cartBody"
-class="cart-body">
-
-</div>
-
-</div>
 <script src="products.js"></script>
 <script src="script.js"></script>
 
@@ -336,54 +234,38 @@ const product = products.find(p => p.id === id);
 
 window.currentProduct = product;
 
-if(product){
+if (!product) {
+    alert("Không tìm thấy sản phẩm");
+    location.href = "index.html";
+}
 
-    document.getElementById("productName").innerText =
-    product.name;
+if (product) {
 
-    document.getElementById("productBrand").innerText =
-    product.brand;
-
-    document.getElementById("productOrigin").innerText =
-    product.origin;
-
-    document.getElementById("productDesc").innerText =
-    product.description;
-
-    /* MAIN IMAGE */
+    document.getElementById("productName").innerText = product.name;
+    document.getElementById("productBrand").innerText = product.brand;
+    document.getElementById("productOrigin").innerText = product.origin;
+    document.getElementById("productDesc").innerText = product.description;
 
     document.getElementById("mainImage").src =
-    `images/${product.category}/${product.folder}/main.jpg`;
-
-    /* THUMB */
+        `images/${product.category}/${product.folder}/main.jpg`;
 
     let thumbs = "";
 
-    for(let i=1;i<=5;i++){
+    for (let i = 1; i <= 5; i++) {
 
         thumbs += `
-        <img
-            src="images/${product.category}/${product.folder}/${i}.jpg"
-            onclick="document.getElementById('mainImage').src=this.src"
-            onerror="this.remove()"
-        >
+        <img src="images/${product.category}/${product.folder}/${i}.jpg"
+             onclick="document.getElementById('mainImage').src=this.src"
+             onerror="this.remove()">
         `;
     }
 
-    document.getElementById("thumbList").innerHTML =
-    thumbs;
+    document.getElementById("thumbList").innerHTML = thumbs;
 
-    /* SPECS */
+    document.getElementById("productSpecs").innerHTML = product.specs;
 
-document.getElementById("productSpecs").innerHTML =
-product.specs;
-    /* BUY */
-
-    document.getElementById("buyProductName").value =
-    product.name;
-
+    document.getElementById("buyProductName").value = product.name;
 }
-   
 
 </script>
 
