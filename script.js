@@ -187,8 +187,7 @@ function addToCart(id, capacity, qty = 1) {
     capacity: capacity,
 
     // THÊM DÒNG NÀY
-    division: division,
-
+division: getDivisionFromCapacity(product, capacity),
     quantity: qty
 });
     }
@@ -620,22 +619,24 @@ Sản phẩm:
 ${document.getElementById("buyProductName")?.value || ""}
 
 Chi tiết:
-let capacityText = "";
+${Array.from(document.querySelectorAll(".buy-row"))
+    .map(row => {
 
-document.querySelectorAll(".buy-row").forEach(row => {
+        const check = row.querySelector(".buy-check");
+        const input = row.querySelector("input[type='number']");
+        const label = row.dataset.value;
 
-    const check = row.querySelector(".buy-check");
-    const input = row.querySelector("input[type='number']");
-    const label = row.dataset.value;
-
-    if (check && check.checked) {
-        capacityText += `
+        if (check && check.checked) {
+            return `
 ${label}
 Số lượng: ${input.value}
------------------
-`;
-    }
-});
+-----------------`;
+        }
+
+        return "";
+    })
+    .join("")}
+
 Số lượng:
 ${document.getElementById("buyQty")?.value || ""}
 
