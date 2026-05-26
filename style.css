@@ -431,59 +431,107 @@ body{
 }
 
 /* ========================================
-   DETAIL PAGE CLEAN
+   DETAIL PAGE NEW
 ======================================== */
 
-.fix-layout{
-    width:100%;
-    max-width:1150px;
-
-    margin:30px auto;
-    padding:0 20px;
+.detail-page{
 
     display:flex;
+
+    gap:20px;
+
     align-items:flex-start;
 
-    gap:28px;
+    padding:20px;
+
+}
+
+/* SIDEBAR */
+
+.sidebar,
+.brand-sidebar{
+
+    width:220px;
+
+    flex-shrink:0;
+
+}
+
+/* CONTENT GIỮA */
+
+.detail-content{
+
+    flex:1;
+
+    display:flex;
+
+    gap:20px;
+
 }
 
 /* LEFT */
 
 .detail-left{
-    width:400px;
-    flex-shrink:0;
+
+    width:40%;
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:12px;
+
+}
+
+/* RIGHT */
+
+.detail-right{
+
+    width:60%;
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:12px;
+
 }
 
 /* MAIN IMAGE */
 
 #mainImage{
+
     width:100%;
-    height:340px;
+
+    height:400px;
 
     object-fit:contain;
 
     background:#fff;
 
-    border:1px solid #ddd;
     border-radius:12px;
 
-    padding:10px;
 }
 
 /* THUMB */
 
 #thumbList{
+
     display:flex;
+
     flex-wrap:wrap;
 
-    gap:8px;
+    gap:10px;
 
-    margin-top:12px;
+    margin-top:15px;
+
 }
 
 #thumbList img{
-    width:68px;
-    height:68px;
+
+    width:70px;
+
+    height:70px;
 
     object-fit:cover;
 
@@ -492,144 +540,82 @@ body{
     border:2px solid #ddd;
 
     cursor:pointer;
-    transition:0.3s;
-}
 
-#thumbList img:hover{
-    border-color:#d32f2f;
 }
 
 /* BUTTONS */
 
 .detail-buttons{
-    display:flex;
-    gap:12px;
 
-    margin-top:18px;
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
 }
 
 .detail-buttons button{
+
     flex:1;
 
     height:46px;
 
     border:none;
-    border-radius:10px;
+
+    border-radius:8px;
 
     color:#fff;
 
-    font-size:15px;
-    font-weight:700;
+    font-weight:bold;
 
     cursor:pointer;
+
 }
 
 .detail-buttons button:first-child{
+
     background:#1565c0;
+
 }
 
 .detail-buttons button:last-child{
+
     background:#e53935;
-}
 
-/* RIGHT */
-
-.detail-right{
-    flex:1;
-
-    background:#fff;
-
-    padding:22px;
-
-    border-radius:14px;
-
-    box-shadow:0 2px 10px rgba(0,0,0,0.06);
-}
-
-/* TITLE */
-
-.detail-right h1{
-    font-size:26px;
-    line-height:1.4;
-
-    margin-bottom:18px;
-
-    color:#0d47a1;
-}
-
-/* TEXT */
-
-.detail-right p{
-    font-size:15px;
-    line-height:1.7;
-
-    margin-bottom:10px;
-}
-
-/* SECTION */
-
-.detail-right h3{
-    margin-top:22px;
-    margin-bottom:12px;
-
-    font-size:20px;
-
-    color:#d32f2f;
-}
-
-/* TABLE */
-
-.spec-table{
-    width:100%;
-    border-collapse:collapse;
-
-    margin-top:10px;
-}
-
-.spec-table th{
-    background:#0d47a1;
-    color:#fff;
-
-    padding:12px;
-    border:1px solid #ddd;
-
-    font-size:14px;
-}
-
-.spec-table td{
-    padding:12px;
-    border:1px solid #ddd;
-
-    text-align:center;
-    font-size:14px;
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-.fix-layout{
-    flex-direction:column;
-}
+    .detail-page{
 
-.detail-left{
-    width:100%;
-}
+        flex-direction:column;
 
-.detail-right{
-    width:100%;
-}
+    }
 
-#mainImage{
-    height:300px;
-}
+    .sidebar,
+    .brand-sidebar{
 
-.detail-buttons{
-    flex-direction:column;
-}
+        width:100%;
+
+    }
+
+    .detail-content{
+
+        flex-direction:column;
+
+    }
+
+    .detail-left,
+    .detail-right{
+
+        width:100%;
+
+    }
 
 }
-
 /* =========================
    POPUP
 ========================= */
@@ -823,9 +809,6 @@ body{
 
 @media(max-width:768px){
 
-.fix-layout{
-    flex-direction:column;
-}
 
 .detail-left,
 .detail-right{
@@ -918,28 +901,7 @@ body{
     gap:6px;
     font-size:14px;
 }
-.main-layout {
-    display: flex;
-    gap: 15px;
-}
 
-/* giữ sidebar trái */
-.sidebar {
-    width: 20%;
-}
-
-/* sản phẩm */
-.product-grid {
-    width: 60%;
-}
-
-/* sidebar thương hiệu */
-.brand-sidebar {
-    width: 20%;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-}
 
 .brand-list {
     display: flex;
@@ -984,7 +946,17 @@ body{
     transition:0.5s;
 
 }
-.detail-page{
+/* ========================================
+   HOME PAGE 3 COLUMNS
+======================================== */
+
+.main-layout{
+
+    max-width:1400px;
+
+    margin:20px auto;
+
+    padding:0 20px;
 
     display:flex;
 
@@ -994,41 +966,49 @@ body{
 
 }
 
-.detail-left,
-.detail-right{
+/* SIDEBAR TRÁI */
 
-    background:#fff;
-
-    padding:20px;
-
-    border-radius:12px;
-
-}
-.detail-page{
-
-    display:flex;
-
-    gap:20px;
-
-    align-items:flex-start;
-
-}
-
-.detail-content{
-
-    flex:1;
-
-    display:flex;
-
-    gap:20px;
-
-}
-
-.sidebar,
-.brand-sidebar{
+.main-layout .sidebar{
 
     width:220px;
 
     flex-shrink:0;
 
 }
+
+/* GRID GIỮA */
+
+.product-grid{
+
+    flex:1;
+
+}
+
+/* SIDEBAR PHẢI */
+
+.main-layout .brand-sidebar{
+
+    width:220px;
+
+    flex-shrink:0;
+
+    background:#fff;
+
+    padding:15px;
+
+    border-radius:12px;
+
+}
+@media(max-width:768px){
+
+    .main-layout{
+        flex-direction:column;
+    }
+
+    .main-layout .sidebar,
+    .main-layout .brand-sidebar{
+        width:100%;
+    }
+
+}
+
