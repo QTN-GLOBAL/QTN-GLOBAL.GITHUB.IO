@@ -8,7 +8,7 @@ function getExcellImages() {
     let images = [];
 
     window.products.forEach(p => {
-        if (p.brand && p.brand.toLowerCase() === "excell") {
+        if (p.brand && p.brand.toLowerCase().includes("excell")) {
 
             if (p.images && p.images.length > 0) {
                 p.images.forEach(img => {
