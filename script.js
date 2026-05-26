@@ -10,10 +10,19 @@ function getExcellImages() {
 
     window.products.forEach(p => {
 
-        if (p.brand &&
-            p.brand.toLowerCase().includes("excell")) {
+        if (
+            p.brand &&
+            p.brand.toLowerCase().includes("excell")
+        ) {
 
-            images.push(`images/${p.folder}/main.jpg`);
+            if (p.image) {
+                images.push(p.image);
+            }
+
+            else if (p.mainImage) {
+                images.push(p.mainImage);
+            }
+
         }
 
     });
