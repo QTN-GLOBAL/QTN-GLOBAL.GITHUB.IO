@@ -515,38 +515,42 @@ function openBuyPopup() {
     let html = "";
 
     const temp = document.createElement("div");
-
     temp.innerHTML = selectedProduct.specs;
 
     const rows = temp.querySelectorAll("tr");
 
-    rows.forEach(row => {
+    rows.forEach((row, index) => {
 
         const cols = row.querySelectorAll("td");
 
         if (cols.length >= 2) {
 
+            const label =
+                cols[0].innerText.trim() + " - " +
+                cols[1].innerText.trim();
+
             html += `
-            <option>
-                ${cols[0].innerText.trim()}
-                -
-                ${cols[1].innerText.trim()}
-            </option>
+            <div class="buy-row" data-value="${label}">
+
+                <label>
+                    <input type="checkbox" class="buy-check">
+                    ${label}
+                </label>
+
+                <div class="buy-qty">
+                    <button onclick="changeBuyQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1">
+                    <button onclick="changeBuyQty(this,1)">+</button>
+                </div>
+
+            </div>
             `;
         }
     });
 
-    document.getElementById("buyCapacity").innerHTML = html;
-}
+    document.getElementById("buyCapacityList").innerHTML = html;
 
-function closeBuyPopup() {
-
-    const popup =
-        document.getElementById("buyPopup");
-
-    if (popup) {
-        popup.style.display = "none";
-    }
+    document.getElementById("buyQty").value = 1;
 }
 
 /* =========================
@@ -612,8 +616,22 @@ Sản phẩm:
 ${document.getElementById("buyProductName")?.value || ""}
 
 Chi tiết:
-${document.getElementById("buyCapacity")?.innerText || ""}
+let capacityText = "";
 
+document.querySelectorAll(".buy-row").forEach(row => {
+
+    const check = row.querySelector(".buy-check");
+    const input = row.querySelector("input[type='number']");
+    const label = row.dataset.value;
+
+    if (check && check.checked) {
+        capacityText += `
+${label}
+Số lượng: ${input.value}
+-----------------
+`;
+    }
+});
 Số lượng:
 ${document.getElementById("buyQty")?.value || ""}
 
@@ -781,4 +799,17 @@ function goHomeAndCategory(category) {
 function goHomeAndBrand(brand) {
     sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
+}
+function changeBuyQty(btn, value) {
+
+    const input =
+        btn.parentElement.querySelector("input");
+
+    let qty = Number(input.value);
+
+    qty += value;
+
+    if (qty < 1) qty = 1;
+
+    input.value = qty;
 }
