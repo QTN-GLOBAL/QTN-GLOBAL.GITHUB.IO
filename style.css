@@ -1097,9 +1097,11 @@ body{
     display: flex;
     align-items: center;
     gap: 8px;
-    flex: 1;
+
+    flex: 1;          /* QUAN TRỌNG NHẤT */
     min-width: 0;
-    white-space: nowrap;   /* QUAN TRỌNG NHẤT */
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /* checkbox nhỏ lại */
@@ -1111,9 +1113,10 @@ body{
 
 /* phần số lượng */
 .buy-qty {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    flex-shrink: 0;
+    gap: 5px;
 }
 
 /* nút +/- nhỏ lại */
@@ -1139,7 +1142,6 @@ body{
     overflow-x: hidden;
 }
 .buy-row label span {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: inline-block;
     white-space: nowrap;
 }
