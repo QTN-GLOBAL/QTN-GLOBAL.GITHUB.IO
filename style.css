@@ -1089,19 +1089,19 @@ body{
 .buy-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
-    padding: 6px 0;
-    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    min-height: 44px;
+    justify-content: flex-start; /* QUAN TRỌNG */
 }
 
 /* checkbox + text */
 .buy-row label {
+    flex: 1;
     display: flex;
     align-items: center;
     gap: 8px;
-    flex: 1;
-    font-size: 14px;
+    min-width: 0;
 }
 
 /* checkbox nhỏ lại */
@@ -1115,6 +1115,7 @@ body{
     display: flex;
     align-items: center;
     gap: 5px;
+    flex-shrink: 0; /* QUAN TRỌNG */
 }
 
 /* nút +/- nhỏ lại */
@@ -1130,17 +1131,12 @@ body{
 
 /* ô input số lượng */
 .buy-qty input {
-    width: 45px !important;
-    min-width: 45px;
-    height: 30px;
+    width: 50px !important;
+    min-width: 50px;
     text-align: center;
-    font-size: 14px;
-    color: #000;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: inline-block;
 }
-.buy-qty {
-    flex-shrink: 0;
+.popup-box {
+    width: 90%;
+    max-width: 500px;
+    overflow-x: hidden;
 }
