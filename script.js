@@ -221,14 +221,17 @@ function renderCart() {
 
             <h4>${item.name}</h4>
 
-            <div class="qty">
+<p class="cart-capacity">
+    ${item.capacity || ""}
+</p>
 
-                <button onclick="decreaseQty(${item.id})">-</button>
+<div class="qty">
 
-                <span>${item.quantity}</span>
+    <button onclick="decreaseQty(${item.id})">-</button>
 
-                <button onclick="increaseQty(${item.id})">+</button>
+    <span>${item.quantity}</span>
 
+    <button onclick="increaseQty(${item.id})">+</button>
             </div>
 
             <div class="cart-actions">
