@@ -156,7 +156,7 @@ function saveCart() {
    ADD TO CART
 ========================= */
 
-function addToCart(id, qty = 1) {
+function addToCart(id, capacity, qty = 1) {
 
     const product =
         getProducts().find(p => p.id == id);
@@ -164,7 +164,10 @@ function addToCart(id, qty = 1) {
     if (!product) return;
 
     const existing =
-        cart.find(i => i.id == id);
+        cart.find(i =>
+            i.id == id &&
+            i.capacity == capacity
+        );
 
     if (existing) {
 
@@ -177,6 +180,7 @@ function addToCart(id, qty = 1) {
             name: product.name,
             category: product.category,
             folder: product.folder,
+            capacity: capacity,
             quantity: qty
         });
     }
@@ -453,11 +457,19 @@ function confirmAddCart() {
         document.getElementById("popupCartQty").value
     );
 
+    // LẤY MỨC CÂN ĐANG CHỌN
+    const capacity =
+        document.getElementById("popupCartCapacity").value;
+
     cart.push({
         id: selectedProduct.id,
         name: selectedProduct.name,
         category: selectedProduct.category,
         folder: selectedProduct.folder,
+
+        // THÊM DÒNG NÀY
+        capacity: capacity,
+
         quantity: qty
     });
 
@@ -469,7 +481,6 @@ function confirmAddCart() {
 
     alert("Đã thêm vào giỏ");
 }
-
 /* =========================
    BUY POPUP
 ========================= */
