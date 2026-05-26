@@ -15,13 +15,7 @@ function getExcellImages() {
             p.brand.toLowerCase().includes("excell")
         ) {
 
-            if (p.image) {
-                images.push(p.image);
-            }
-
-            else if (p.mainImage) {
-                images.push(p.mainImage);
-            }
+            console.log(p);
 
         }
 
