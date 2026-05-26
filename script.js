@@ -411,12 +411,9 @@ function addToCartDetail() {
 
     selectedProduct = window.currentProduct;
 
-    const popup =
-        document.getElementById("addCartPopup");
+    const popup = document.getElementById("addCartPopup");
 
-    if (popup) {
-        popup.style.display = "flex";
-    }
+    if (popup) popup.style.display = "flex";
 
     document.getElementById("popupCartImg").src =
         `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
@@ -426,45 +423,45 @@ function addToCartDetail() {
 
     let html = "";
 
-const temp = document.createElement("div");
-temp.innerHTML = selectedProduct.specs;
+    const temp = document.createElement("div");
+    temp.innerHTML = selectedProduct.specs;
 
-const rows = temp.querySelectorAll("tr");
+    const rows = temp.querySelectorAll("tr");
 
-rows.forEach(row => {
+    rows.forEach(row => {
 
-    const cols = row.querySelectorAll("td");
+        const cols = row.querySelectorAll("td");
 
-    if (cols.length >= 2) {
+        if (cols.length >= 2) {
 
-        const label =
-            cols[0].innerText.trim() + " - " +
-            cols[1].innerText.trim();
+            const label =
+                cols[0].innerText.trim() + " - " +
+                cols[1].innerText.trim();
 
-        html += `
-        <div class="cart-row" data-value="${label}">
+            html += `
+            <div class="cart-row" data-value="${label}">
 
-            <label class="cart-check-box">
-                <input type="checkbox" class="cart-check">
-            </label>
+                <label class="cart-check-box">
+                    <input type="checkbox" class="cart-check">
+                </label>
 
-            <div class="cart-label">
-                ${label}
+                <div class="cart-label">
+                    ${label}
+                </div>
+
+                <div class="cart-qty">
+                    <button onclick="changeCartQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1">
+                    <button onclick="changeCartQty(this,1)">+</button>
+                </div>
+
             </div>
+            `;
+        }
+    });
 
-            <div class="cart-qty">
-                <button onclick="changeCartQty(this,-1)">-</button>
-                <input type="number" value="1" min="1">
-                <button onclick="changeCartQty(this,1)">+</button>
-            </div>
-
-        </div>
-        `;
-    }
-});
-
-document.getElementById("popupCartCapacity").innerHTML = html;
-
+    document.getElementById("popupCartCapacity").innerHTML = html;
+}
 function closeAddCart() {
 
     const popup =
