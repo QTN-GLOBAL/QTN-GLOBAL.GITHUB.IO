@@ -176,13 +176,17 @@ function addToCart(id, capacity, qty = 1) {
     } else {
 
         cart.push({
-            id: product.id,
-            name: product.name,
-            category: product.category,
-            folder: product.folder,
-            capacity: capacity,
-            quantity: qty
-        });
+    id: product.id,
+    name: product.name,
+    category: product.category,
+    folder: product.folder,
+    capacity: capacity,
+
+    // THÊM DÒNG NÀY
+    division: division,
+
+    quantity: qty
+});
     }
 
     saveCart();
@@ -223,6 +227,10 @@ function renderCart() {
 
 <p class="cart-capacity">
     ${item.capacity || ""}
+</p>
+
+<p class="cart-division">
+    ${item.division || ""}
 </p>
 
 <div class="qty">
@@ -695,4 +703,30 @@ function initExcellSlider() {
 
     showSlide();
     setInterval(showSlide, 3000);
+}
+function getDivisionFromCapacity(product, capacity) {
+
+    if (!product || !product.specs) return "";
+
+    const temp = document.createElement("div");
+    temp.innerHTML = product.specs;
+
+    const rows = temp.querySelectorAll("tr");
+
+    for (let row of rows) {
+
+        const cols = row.querySelectorAll("td");
+
+        if (cols.length >= 2) {
+
+            const cap = cols[0].innerText.trim();
+            const div = cols[1].innerText.trim();
+
+            if (capacity.includes(cap)) {
+                return div;
+            }
+        }
+    }
+
+    return "";
 }
