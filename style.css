@@ -984,3 +984,23 @@ body{
     transition:0.5s;
 
 }
+.detail-page{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:flex-start;
+
+}
+
+.detail-left,
+.detail-right{
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:12px;
+
+}
