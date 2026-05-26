@@ -1141,3 +1141,6 @@ body{
     border-radius: 4px;
     display: inline-block;
 }
+.buy-qty {
+    flex-shrink: 0;
+}
