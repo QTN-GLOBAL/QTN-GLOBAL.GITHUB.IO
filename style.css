@@ -1004,3 +1004,31 @@ body{
     border-radius:12px;
 
 }
+.detail-page{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:flex-start;
+
+}
+
+.detail-content{
+
+    flex:1;
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.sidebar,
+.brand-sidebar{
+
+    width:220px;
+
+    flex-shrink:0;
+
+}
