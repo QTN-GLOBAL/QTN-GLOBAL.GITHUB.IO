@@ -1150,3 +1150,29 @@ body{
     display: inline-block;
     white-space: nowrap;
 }
+.cart-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 0;
+}
+
+.cart-check-box {
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.cart-label {
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cart-qty {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

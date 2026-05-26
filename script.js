@@ -426,32 +426,44 @@ function addToCartDetail() {
 
     let html = "";
 
-    const temp = document.createElement("div");
+const temp = document.createElement("div");
+temp.innerHTML = selectedProduct.specs;
 
-    temp.innerHTML = selectedProduct.specs;
+const rows = temp.querySelectorAll("tr");
 
-    const rows = temp.querySelectorAll("tr");
+rows.forEach(row => {
 
-    rows.forEach(row => {
+    const cols = row.querySelectorAll("td");
 
-        const cols = row.querySelectorAll("td");
+    if (cols.length >= 2) {
 
-        if (cols.length >= 2) {
+        const label =
+            cols[0].innerText.trim() + " - " +
+            cols[1].innerText.trim();
 
-            html += `
-            <option>
-                ${cols[0].innerText.trim()}
-                -
-                ${cols[1].innerText.trim()}
-            </option>
-            `;
-        }
-    });
+        html += `
+        <div class="cart-row" data-value="${label}">
 
-    document.getElementById(
-        "popupCartCapacity"
-    ).innerHTML = html;
-}
+            <label class="cart-check-box">
+                <input type="checkbox" class="cart-check">
+            </label>
+
+            <div class="cart-label">
+                ${label}
+            </div>
+
+            <div class="cart-qty">
+                <button onclick="changeCartQty(this,-1)">-</button>
+                <input type="number" value="1" min="1">
+                <button onclick="changeCartQty(this,1)">+</button>
+            </div>
+
+        </div>
+        `;
+    }
+});
+
+document.getElementById("popupCartCapacity").innerHTML = html;
 
 function closeAddCart() {
 
@@ -465,31 +477,29 @@ function closeAddCart() {
 
 function confirmAddCart() {
 
-    if (!selectedProduct) return;
+    const rows = document.querySelectorAll(".cart-row");
 
-    const qty = Number(
-        document.getElementById("popupCartQty").value
-    );
+    rows.forEach(row => {
 
-    // LẤY MỨC CÂN ĐANG CHỌN
-    const capacity =
-        document.getElementById("popupCartCapacity").value;
+        const check = row.querySelector(".cart-check");
+        const input = row.querySelector("input[type='number']");
+        const label = row.dataset.value;
 
-    cart.push({
-        id: selectedProduct.id,
-        name: selectedProduct.name,
-        category: selectedProduct.category,
-        folder: selectedProduct.folder,
+        if (check && check.checked) {
 
-        // THÊM DÒNG NÀY
-        capacity: capacity,
+            cart.push({
+                id: selectedProduct.id,
+                name: selectedProduct.name,
+                category: selectedProduct.category,
+                folder: selectedProduct.folder,
 
-        quantity: qty
+                capacity: label,
+                quantity: Number(input.value)
+            });
+        }
     });
 
     saveCart();
-
-    document.getElementById("popupCartQty").value = 1;
 
     closeAddCart();
 
@@ -821,4 +831,16 @@ function closeBuyPopup() {
     if (!popup) return;
 
     popup.style.display = "none";
+}
+function changeCartQty(btn, value) {
+
+    const input = btn.parentElement.querySelector("input");
+
+    let qty = Number(input.value);
+
+    qty += value;
+
+    if (qty < 1) qty = 1;
+
+    input.value = qty;
 }
