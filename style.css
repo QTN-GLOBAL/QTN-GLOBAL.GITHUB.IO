@@ -1130,10 +1130,14 @@ body{
 
 /* ô input số lượng */
 .buy-qty input {
-    width: 40px;
-    height: 28px;
+    width: 45px !important;
+    min-width: 45px;
+    height: 30px;
     text-align: center;
     font-size: 14px;
+    color: #000;
+    background: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
+    display: inline-block;
 }
