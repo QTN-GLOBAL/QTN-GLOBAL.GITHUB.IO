@@ -1011,4 +1011,31 @@ body{
     }
 
 }
+/* =========================
+   SPECS TABLE
+========================= */
+
+.specs-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    background:#fff;
+}
+
+.specs-table th,
+.specs-table td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+    font-size:14px;
+}
+
+.specs-table th{
+    background:#0d47a1;
+    color:#fff;
+}
+
+.specs-table tr:nth-child(even){
+    background:#f9f9f9;
+}
 

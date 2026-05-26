@@ -323,18 +323,10 @@ if(product){
 
     document.getElementById("thumbList").innerHTML = thumbs;
 
-    /* SPECS */
+   /* SPECS */
 
-    let specs = "<ul>";
-
-    product.specs.forEach(s=>{
-        specs += `<li>${s}</li>`;
-    });
-
-    specs += "</ul>";
-
-    document.getElementById("productSpecs").innerHTML = specs;
-
+document.getElementById("productSpecs").innerHTML =
+    product.specs;
     /* BUY */
 
     document.getElementById("buyProductName").value = product.name;
