@@ -4,6 +4,26 @@
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+function getExcellImages() {
+    let images = [];
+
+    window.products.forEach(p => {
+        if (p.brand && p.brand.toLowerCase() === "excell") {
+
+            if (p.images && p.images.length > 0) {
+                p.images.forEach(img => {
+                    images.push(`images/${p.folder}/${img}`);
+                });
+            } else {
+                images.push(`images/${p.folder}/main.jpg`);
+            }
+
+        }
+    });
+
+    return images;
+}
+
 if (!Array.isArray(cart)) {
     cart = [];
 }
@@ -34,6 +54,9 @@ function updateCartCount() {
         cartCount.innerText = total;
     }
 }
+let excellSlides = [];
+let indexSlide = 0;
+let sliderImg = document.getElementById("slider-img");
 
 /* =========================
    PRODUCTS HOME
@@ -623,6 +646,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProducts();
 
     updateCartCount();
+    
+    initExcellSlider();
 });
 
 
@@ -635,4 +660,23 @@ function filterByBrand(brand) {
     const filtered = getProducts().filter(p => p.brand === brand);
 
     renderProducts(filtered);
+}
+function initExcellSlider() {
+    excellSlides = getExcellImages();
+
+    if (!sliderImg) return;
+
+    function showSlide() {
+        if (excellSlides.length === 0) return;
+
+        sliderImg.src = excellSlides[indexSlide];
+
+        indexSlide++;
+        if (indexSlide >= excellSlides.length) {
+            indexSlide = 0;
+        }
+    }
+
+    showSlide();
+    setInterval(showSlide, 3000);
 }
