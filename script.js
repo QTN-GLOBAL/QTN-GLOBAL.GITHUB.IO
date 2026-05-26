@@ -532,22 +532,25 @@ function openBuyPopup() {
                 cols[0].innerText.trim() + " - " +
                 cols[1].innerText.trim();
 
-            html += `
-            <div class="buy-row" data-value="${label}">
+           html += `
+    <div class="buy-row" data-value="${label}">
 
-                <label>
-                    <input type="checkbox" class="buy-check">
-                    ${label}
-                </label>
+    <label>
+        <input type="checkbox" class="buy-check">
+    </label>
 
-                <div class="buy-qty">
-                    <button onclick="changeBuyQty(this,-1)">-</button>
-                    <input type="number" value="1" min="1">
-                    <button onclick="changeBuyQty(this,1)">+</button>
-                </div>
+    <div class="label-text">
+        ${label}
+    </div>
 
-            </div>
-            `;
+    <div class="buy-qty">
+        <button onclick="changeBuyQty(this,-1)">-</button>
+        <input type="number" value="1" min="1">
+        <button onclick="changeBuyQty(this,1)">+</button>
+    </div>
+
+</div>
+`;
         }
     });
 
