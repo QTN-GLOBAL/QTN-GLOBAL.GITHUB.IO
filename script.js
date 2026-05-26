@@ -672,6 +672,12 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
     
     initExcellSlider();
+if (sessionStorage.getItem("openCart") === "1") {
+
+    sessionStorage.removeItem("openCart");
+
+    openCart();
+}
 });
 
 
@@ -729,4 +735,10 @@ function getDivisionFromCapacity(product, capacity) {
     }
 
     return "";
+}
+function goHomeOpenCart() {
+
+    sessionStorage.setItem("openCart", "1");
+
+    return true;
 }
