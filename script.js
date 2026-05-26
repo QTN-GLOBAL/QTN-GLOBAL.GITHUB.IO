@@ -409,8 +409,7 @@ function addToCartDetail() {
 
     if (!window.currentProduct) return;
 
-    selectedProduct = window.currentProduct;
-
+    selectedProduct = getProducts().find(p => p.id == window.currentProduct.id);
     const popup = document.getElementById("addCartPopup");
 
     if (popup) popup.style.display = "flex";
