@@ -15,7 +15,9 @@ function getExcellImages() {
             p.brand.toLowerCase().includes("excell")
         ) {
 
-            console.log(p);
+            images.push(
+                `images/${p.category}/${p.folder}/main.jpg`
+            );
 
         }
 
