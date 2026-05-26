@@ -650,33 +650,26 @@ ${document.getElementById("buyQty")?.value || ""}
 /* =========================
    SEND ORDER
 ========================= */
-
 function sendOrderZalo() {
 
-    navigator.clipboard.writeText(
-        buildOrderText()
-    );
-
-    window.open(
-        "https://zalo.me/0383598603",
-        "_blank"
-    );
-
     closeBuyPopup();
+
+    navigator.clipboard.writeText(buildOrderText());
+
+    setTimeout(() => {
+        window.open("https://zalo.me/0383598603", "_blank");
+    }, 100);
 }
 
 function sendOrderMessenger() {
 
-    navigator.clipboard.writeText(
-        buildOrderText()
-    );
-
-    window.open(
-        "https://m.me/QTNSCALE",
-        "_blank"
-    );
-
     closeBuyPopup();
+
+    navigator.clipboard.writeText(buildOrderText());
+
+    setTimeout(() => {
+        window.open("https://m.me/QTNSCALE", "_blank");
+    }, 100);
 }
 
 /* =========================
@@ -820,4 +813,12 @@ function changeBuyQty(btn, value) {
     if (qty < 1) qty = 1;
 
     input.value = qty;
+}
+function closeBuyPopup() {
+
+    const popup = document.getElementById("buyPopup");
+
+    if (!popup) return;
+
+    popup.style.display = "none";
 }
