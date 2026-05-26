@@ -667,19 +667,50 @@ document.addEventListener("click", function(e) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const products = getProducts();
+
     renderProducts();
-
     updateCartCount();
-    
     initExcellSlider();
-if (sessionStorage.getItem("openCart") === "1") {
 
-    sessionStorage.removeItem("openCart");
+    // =========================
+    // GIỎ HÀNG
+    // =========================
+    if (sessionStorage.getItem("openCart") === "1") {
 
-    openCart();
-}
+        sessionStorage.removeItem("openCart");
+
+        openCart();
+    }
+
+    // =========================
+    // CATEGORY FILTER
+    // =========================
+    const category = sessionStorage.getItem("filterCategory");
+
+    if (category) {
+
+        sessionStorage.removeItem("filterCategory");
+
+        renderProducts(
+            products.filter(p => p.category === category)
+        );
+    }
+
+    // =========================
+    // BRAND FILTER
+    // =========================
+    const brand = sessionStorage.getItem("filterBrand");
+
+    if (brand) {
+
+        sessionStorage.removeItem("filterBrand");
+
+        renderProducts(
+            products.filter(p => p.brand === brand)
+        );
+    }
 });
-
 
 /* =========================
    FILTER BY BRAND
@@ -741,4 +772,13 @@ function goHomeOpenCart() {
     sessionStorage.setItem("openCart", "1");
 
     return true;
+}
+function goHomeAndCategory(category) {
+    sessionStorage.setItem("filterCategory", category);
+    window.location.href = "index.html";
+}
+
+function goHomeAndBrand(brand) {
+    sessionStorage.setItem("filterBrand", brand);
+    window.location.href = "index.html";
 }
