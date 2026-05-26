@@ -190,7 +190,7 @@ LIÊN HỆ
 </aside>
 
 </div>
-</div>
+
 
 <!-- ADD CART -->
 <div id="addCartPopup" class="popup-overlay" style="display:none">
@@ -326,7 +326,15 @@ if(product){
    /* SPECS */
 
 document.getElementById("productSpecs").innerHTML =
-    product.specs;
+product.specs.map(spec=>{
+
+    if(spec.includes("<table")){
+        return spec;
+    }
+
+    return `<p>• ${spec}</p>`;
+
+}).join("");
     /* BUY */
 
     document.getElementById("buyProductName").value = product.name;

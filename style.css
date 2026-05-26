@@ -1038,4 +1038,47 @@ body{
 .specs-table tr:nth-child(even){
     background:#f9f9f9;
 }
+/* =========================
+   THÔNG SỐ KỸ THUẬT
+========================= */
 
+#productSpecs{
+    margin-top:15px;
+    line-height:1.8;
+}
+
+#productSpecs p{
+    margin-bottom:10px;
+    font-size:16px;
+    color:#333;
+}
+
+/* TABLE */
+
+.spec-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    margin-bottom:20px;
+    background:#fff;
+}
+
+.spec-table th{
+    background:#0d47a1;
+    color:#fff;
+    padding:12px;
+    border:1px solid #ddd;
+    font-size:15px;
+    text-align:center;
+}
+
+.spec-table td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:center;
+    font-size:15px;
+}
+
+.spec-table tr:nth-child(even){
+    background:#f5f5f5;
+}
