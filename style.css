@@ -1089,25 +1089,24 @@ body{
 .buy-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    width: 100%;
     gap: 10px;
-    padding: 8px 0;
 }
 .buy-row .label-text {
     flex: 1;
-    text-align: left;
+    display: flex;
+    justify-content: center;  /* 🔥 ép vào giữa */
+    align-items: center;
 
+    text-align: center;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 /* checkbox + text */
 .buy-row label {
+    flex: 0 0 40px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
-
-    flex: 0 0 40px; /* cố định bên trái */
 }
 
 /* checkbox nhỏ lại */
