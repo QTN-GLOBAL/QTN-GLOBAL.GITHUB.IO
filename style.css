@@ -1082,3 +1082,58 @@ body{
 .spec-table tr:nth-child(even){
     background:#f5f5f5;
 }
+/* =========================
+   BUY ROW FIX LAYOUT
+========================= */
+
+.buy-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* checkbox + text */
+.buy-row label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    font-size: 14px;
+}
+
+/* checkbox nhỏ lại */
+.buy-row input[type="checkbox"] {
+    transform: scale(1.1);
+    margin: 0;
+}
+
+/* phần số lượng */
+.buy-qty {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* nút +/- nhỏ lại */
+.buy-qty button {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* ô input số lượng */
+.buy-qty input {
+    width: 40px;
+    height: 28px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
