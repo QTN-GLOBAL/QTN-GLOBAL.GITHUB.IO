@@ -441,19 +441,20 @@ function addToCartDetail() {
             html += `
             <div class="cart-row" data-value="${label}">
 
-                <label class="cart-check-box">
-                    <input type="checkbox" class="cart-check">
-                </label>
+                
+                    <div class="cart-left">
+    <input type="checkbox" class="cart-check">
+</div>
 
-                <div class="cart-label">
-                    ${label}
-                </div>
+<div class="cart-center">
+    ${label}
+</div>
 
-                <div class="cart-qty">
-                    <button onclick="changeCartQty(this,-1)">-</button>
-                    <input type="number" value="1" min="1">
-                    <button onclick="changeCartQty(this,1)">+</button>
-                </div>
+<div class="cart-right">
+    <button onclick="changeCartQty(this,-1)">-</button>
+    <input type="number" value="1" min="1">
+    <button onclick="changeCartQty(this,1)">+</button>
+</div>
 
             </div>
             `;
