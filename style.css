@@ -1089,33 +1089,31 @@ body{
 .buy-row {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
-    padding: 10px 0;
-    min-height: 44px;
-    justify-content: flex-start; /* QUAN TRỌNG */
 }
-
 /* checkbox + text */
 .buy-row label {
-    flex: 1;
     display: flex;
     align-items: center;
     gap: 8px;
+    flex: 1;
     min-width: 0;
+    white-space: nowrap;   /* QUAN TRỌNG NHẤT */
 }
 
 /* checkbox nhỏ lại */
-.buy-row input[type="checkbox"] {
-    transform: scale(1.1);
+.buy-check {
+    flex-shrink: 0;
     margin: 0;
+    transform: scale(1.1);
 }
 
 /* phần số lượng */
 .buy-qty {
     display: flex;
     align-items: center;
-    gap: 5px;
-    flex-shrink: 0; /* QUAN TRỌNG */
+    flex-shrink: 0;
 }
 
 /* nút +/- nhỏ lại */
@@ -1139,4 +1137,9 @@ body{
     width: 90%;
     max-width: 500px;
     overflow-x: hidden;
+}
+.buy-row label span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
