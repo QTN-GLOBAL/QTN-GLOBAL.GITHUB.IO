@@ -64,7 +64,11 @@ let sliderImg = document.getElementById("slider-img");
    PRODUCTS HOME
 ========================= */
 
-function renderProducts(productList = getProducts()) {
+function renderProducts(productList) {
+
+    if (!Array.isArray(productList)) {
+        productList = getProducts();
+    }
 
     const productGrid = document.getElementById("productGrid");
 
@@ -687,7 +691,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const products = getProducts();
 
-    renderProducts();
+    renderProducts(getProducts());
     updateCartCount();
     initExcellSlider();
 
