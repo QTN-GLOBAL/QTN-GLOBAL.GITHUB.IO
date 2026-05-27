@@ -427,6 +427,12 @@ function buyNowCart(){
            html += `
 <div class="buy-row" data-value="${label}">
 
+    <label style="display:none">
+        <input type="checkbox"
+               class="buy-check"
+               checked>
+    </label>
+
     <div class="buy-cart-left">
 
         <img
