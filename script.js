@@ -411,11 +411,16 @@ function buyNowCart(){
 
     checked.forEach(check => {
 
-        const id = Number(check.value);
+        const values = check.value.split("_");
 
-        const item =
-            cart.find(i => i.id == id);
+        const id = Number(values[0]);
 
+        const capacity = values[1] || "";
+
+        const item = cart.find(i =>
+            i.id == id &&
+            i.capacity == capacity
+        );
         if(item){
 
             totalQty += item.quantity;
@@ -480,8 +485,7 @@ function buyNowCart(){
     document.getElementById("buyCapacityList").innerHTML =
         html;
 
-    document.getElementById("buyQty").value =
-        totalQty;
+    
 }
 /* =========================
    ADD CART POPUP
@@ -652,8 +656,7 @@ function openBuyPopup() {
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = selectedProduct.specs[0];
-
+    temp.innerHTML = selectedProduct.specs;
     const rows = temp.querySelectorAll("tr");
 
     rows.forEach((row, index) => {
