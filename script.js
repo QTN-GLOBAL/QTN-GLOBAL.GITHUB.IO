@@ -206,57 +206,59 @@ function renderCart() {
     if (!cartBody) return;
 
     if (cart.length === 0) {
-        cartBody.innerHTML = `<p>Giỏ hàng trống</p>`;
+
+        cartBody.innerHTML = `
+        <p>Giỏ hàng trống</p>
+        `;
+
         return;
     }
 
-    let html = "";
+    cartBody.innerHTML = "";
 
-    cart.forEach((item, i) => {
+    cart.forEach(item => {
 
-        html += `
+        container.innerHTML += `
 <div class="cart-row">
 
+    <!-- TRÁI -->
     <div class="cart-left">
-        <input type="checkbox"
-               class="cart-buy-check"
-               value="${item.id}_${item.capacity}">
+        <input type="checkbox" class="cart-buy-check">
     </div>
 
+    <!-- GIỮA -->
     <div class="cart-middle">
-
-    <img src="images/${item.category}/${item.folder}/main.jpg"
-         style="width:45px;height:45px;object-fit:contain">
-
-    <div>
-        <div>${item.name}</div>
-        <div>${item.capacity || ""}</div>
+        <div class="level-text">${s.level}</div>
+        <div class="step-text">${s.step}</div>
     </div>
 
-</div>
-
+    <!-- PHẢI -->
     <div class="cart-right">
-        <button onclick="decreaseQty(${item.id})">-</button>
-
-        <input value="${item.quantity}" readonly>
-
-        <button onclick="increaseQty(${item.id})">+</button>
+        <button onclick="changeQty(${i},-1)">-</button>
+        <input id="qty-${i}" value="1" class="qty-input">
+        <button onclick="changeQty(${i},1)">+</button>
     </div>
 
 </div>
 `;
     });
 
-    html += `
+    cartBody.innerHTML += `
+
     <div class="cart-footer">
-        <button onclick="buyNowCart()" class="btn-buy">
+
+        <button
+        onclick="buyNowCart()"
+        class="btn-buy">
+
             MUA NGAY
+
         </button>
+
     </div>
     `;
-
-    cartBody.innerHTML = html;
 }
+
 /* =========================
    UPDATE QTY
 ========================= */
@@ -319,8 +321,8 @@ function buySelectedCart(){
 
     checked.forEach(check => {
 
-        const values = check.value.split("_");
-        const id = Number(values[0]);
+        const id = Number(check.value);
+
         const item = cart.find(i => i.id == id);
 
         if(item){
@@ -391,9 +393,9 @@ function buyNowCart(){
         const capacity = values[1] || "";
 
         const item = cart.find(i =>
-    i.id == id &&
-    (i.capacity || "") == (capacity || "")
-);
+            i.id == id &&
+            i.capacity == capacity
+        );
         if(item){
 
             totalQty += item.quantity;
@@ -1053,3 +1055,16 @@ function renderAddCart(product){
 }
 
 
+function changeQty(i,val){
+
+    let input = document.getElementById("qty-" + i);
+
+    let current = parseInt(input.value) || 1;
+
+    current += val;
+
+    if(current < 1) current = 1;
+
+    input.value = current;
+
+}
