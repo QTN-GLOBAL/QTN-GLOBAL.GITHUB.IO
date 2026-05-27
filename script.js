@@ -656,7 +656,7 @@ function openBuyPopup() {
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = selectedProduct.specs;
+    temp.innerHTML = selectedProduct.specs[0] || "";
     const rows = temp.querySelectorAll("tr");
 
     rows.forEach((row, index) => {
