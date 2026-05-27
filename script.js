@@ -219,53 +219,36 @@ function renderCart() {
     cart.forEach(item => {
 
         cartBody.innerHTML += `
+<div class="cart-item-row">
 
-        <div class="cart-item">
+    <!-- TRÁI: checkbox -->
+    <div class="col-left">
+        <input type="checkbox"
+               class="cart-buy-check"
+               value="${item.id}_${item.capacity}">
+    </div>
 
-            <img
-            src="images/${item.category}/${item.folder}/main.jpg"
-            width="70">
+    <!-- GIỮA: mức cân + độ chia -->
+    <div class="col-center">
+        <div class="name">${item.name}</div>
+        <div class="cap">${item.capacity || ""}</div>
+        <div class="div">${item.division || ""}</div>
+    </div>
 
-            <h4 class="cart-name">${item.name}</h4>
+    <!-- PHẢI: số lượng -->
+    <div class="col-right">
+        <button onclick="decreaseQty(${item.id})">-</button>
+        <span>${item.quantity}</span>
+        <button onclick="increaseQty(${item.id})">+</button>
+    </div>
 
-<p class="cart-capacity">
-    ${item.capacity || ""}
-</p>
+    <!-- XOÁ -->
+    <div class="col-delete">
+        <button onclick="removeCart(${item.id})">X</button>
+    </div>
 
-<p class="cart-division">
-    ${item.division || ""}
-</p>
-
-<div class="cart-qty">
-
-    <button onclick="decreaseQty(${item.id})">-</button>
-
-    <span>${item.quantity}</span>
-
-    <button onclick="increaseQty(${item.id})">+</button>
-            </div>
-
-            <div class="cart-actions">
-
-                <label class="cart-check">
-
-                    <input
-                    type="checkbox"
-                    class="cart-buy-check"
-                    value="${item.id}_${item.capacity}">
-
-                    Chọn mua
-
-                </label>
-
-                <button onclick="removeCart(${item.id})">
-                    Xóa
-                </button>
-
-            </div>
-
-        </div>
-        `;
+</div>
+`;
     });
 
     cartBody.innerHTML += `

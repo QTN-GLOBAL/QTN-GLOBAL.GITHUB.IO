@@ -1374,3 +1374,37 @@ body{
     width: 50px;
     text-align: center;
 }
+.cart-item-row{
+    display: grid;
+    grid-template-columns: 40px 1fr 120px 40px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* trái */
+.col-left{
+    display:flex;
+    justify-content:flex-start;
+}
+
+/* giữa */
+.col-center{
+    text-align:center;
+    font-size:14px;
+}
+
+/* phải */
+.col-right{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:6px;
+}
+
+/* xoá */
+.col-delete{
+    display:flex;
+    justify-content:center;
+}
