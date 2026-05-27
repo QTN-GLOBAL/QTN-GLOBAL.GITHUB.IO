@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>QTN GLOBAL</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+<div class="top-header">
+
+<div class="logo-area">
+
+<img src="images/logo.png" alt="QTN GLOBAL">
+
+<div class="company-info">
+
+<h2>
+<span style="color:#0d47a1;">QTN</span>
+<span style="color:#d4a017;">GLOBAL</span>
+</h2>
+
+<p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+
+</div>
+
+</div>
+
+<div class="top-contact">
+
+<a href="tel:0905913636" class="top-btn">
+
+<i class="fa-solid fa-phone"></i>
+
+0905 913 636
+
+</a>
+
+<a href="tel:0383598603" class="top-btn">
+
+<i class="fa-solid fa-phone"></i>
+
+0383 598 603
+
+</a>
+
+<a href="https://zalo.me/0383598603"
+target="_blank"
+class="social-icon zalo">
+
+<span class="zalo-text">
+Zalo
+</span>
+
+</a>
+
+<a href="https://m.me/QTNSCALE"
+target="_blank"
+class="social-icon facebook">
+
+<i class="fa-brands fa-facebook-messenger"></i>
+
+</a>
+
+<a class="top-cart-btn"
+href="javascript:void(0)"
+onclick="openCart()">
+
+🛒 GIỎ HÀNG
+(<span id="cartCount">0</span>)
+
+</a>
+
+</div>
+
+</div>
+
+<!-- =========================
+     MENU
+========================= -->
+
+<nav class="navbar">
+
+<a href="index.html">
+TRANG CHỦ
+</a>
+
+<a href="#">
+GIỚI THIỆU
+</a>
+
+
+<a href="#">
+LIÊN HỆ
+</a>
+
+</nav>
+
+</header>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h1>
+
+GIẢI PHÁP
+<br>
+
+<span class="highlight">
+CÂN ĐIỆN TỬ
+</span>
+
+<br>
+
+CHÍNH XÁC CHO
+<br>
+
+DOANH NGHIỆP
+
+</h1>
+
+<ul class="hero-list">
+
+<li>
+
+<i class="fa-solid fa-circle-check"></i>
+
+SẢN PHẨM CHÍNH HÃNG
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-circle-check"></i>
+
+BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-circle-check"></i>
+
+HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP
+
+</li>
+
+</ul>
+
+<div class="hero-contact">
+
+<a href="tel:0905913636"
+class="hero-phone green">
+
+<i class="fa-solid fa-phone"></i>
+
+0905.913.636
+
+</a>
+
+<a href="tel:0383598603"
+class="hero-phone blue">
+
+<i class="fa-solid fa-phone"></i>
+
+0383.598.603
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="banner-slider">
+
+<img id="slider-img"
+src="images/can-dem/alh4/main.jpg">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<section class="main-layout">
+
+<!-- SIDEBAR TRÁI -->
+<aside class="sidebar">
+    <h2>DANH MỤC</h2>
+    <ul>
+        <li onclick="filterProducts('can-ban')">Cân bàn</li>
+        <li onclick="filterProducts('can-dem')">Cân đếm</li>
+        <li onclick="filterProducts('can-treo')">Cân treo</li>
+        <li onclick="filterProducts('dau-can-dien-tu')">Đầu cân điện tử</li>
+        <li onclick="filterProducts('can-phan-tich')">Cân phân tích</li>
+        <li onclick="filterProducts('can-chong-nuoc')">Cân chống nước</li>
+        <li onclick="filterProducts('can-in-tem-ma-vach')">Cân in tem mã vạch</li>
+    </ul>
+</aside>
+
+<!-- MAIN PRODUCT -->
+<main class="product-grid" id="productGrid"></main>
+
+<!-- SIDEBAR PHẢI (MỚI) -->
+<aside class="brand-sidebar">
+
+    <h2>THƯƠNG HIỆU</h2>
+
+    <div class="brand-list">
+
+        <div class="brand-item" onclick="filterByBrand('Ohaus')">
+            <img src="images/can-ban/rc21pe/1.jpg">
+            <span>Ohaus</span>
+        </div>
+
+        <div class="brand-item" onclick="filterByBrand('Jadever')">
+            <img src="images/can-ban/jwl/1.jpg">
+            <span>Jadever</span>
+        </div>
+
+        <div class="brand-item" onclick="filterByBrand('Vibra')">
+            <img src="images/can-ban/vibra-haw/1.jpg">
+            <span>Vibra</span>
+        </div>
+
+        <div class="brand-item" onclick="filterByBrand('Yaohua')">
+            <img src="images/can-dem/xk3190-a15e/1.jpg">
+            <span>Yaohua</span>
+        </div>
+
+        <div class="brand-item" onclick="filterByBrand('EXCELL')">
+            <img src="images/dau-can-dien-tu/ex-2001/1.jpg">
+            <span>EXCELL</span>
+        </div>
+
+    </div>
+
+</aside>
+
+</section>
+
+<!-- PRODUCT GRID -->
+
+<main
+class="product-grid"
+id="productGrid">
+
+</main>
+
+</section>
+
+<!-- =========================
+     CART
+========================= -->
+
+<div id="cartOverlay"
+class="cart-overlay"
+onclick="closeCart()">
+
+</div>
+
+<div id="cartModal"
+class="cart-modal">
+
+<div class="cart-header">
+
+<h2>Giỏ hàng</h2>
+
+<button onclick="closeCart()">
+✕
+</button>
+
+</div>
+
+<div id="cartBody"
+class="cart-body">
+
+</div>
+
+<div class="cart-footer">
+
+
+
+</div>
+
+</div>
+<!-- BUY -->
+<div id="buyPopup" class="popup-overlay" style="display:none">
+    <div class="popup-box">
+
+        <span onclick="closeBuyPopup()">✕</span>
+
+        <h2>ĐẶT HÀNG</h2>
+
+        <input id="customerName" placeholder="Tên khách hàng">
+
+        <input id="customerPhone" placeholder="Số điện thoại">
+
+        <input id="customerCompany" placeholder="Tên công ty">
+
+        <input id="customerTax" placeholder="Mã số thuế">
+
+        <textarea id="customerInvoice"
+        placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+        <textarea id="customerAddress"
+        placeholder="Địa chỉ giao hàng"></textarea>
+
+        <input id="buyProductName" readonly>
+
+        <div id="buyCapacityList"></div>
+
+        <button class="zalo-btn"
+        onclick="sendOrderZalo()">
+        GỬI ZALO
+        </button>
+
+       <button class="mess-btn"
+       onclick="sendOrderMessenger()">
+       GỬI MESSENGER
+       </button>
+
+    </div>
+</div>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <h3>QTN GLOBAL</h3>
+
+        <p>
+            Chuyên cung cấp cân điện tử, đầu cân,
+            thiết bị cân công nghiệp chính hãng.
+        </p>
+
+        <p>
+            📍 Địa chỉ:
+            Số 14 Ngõ 68 Đường Giáp Hải,Xã Bát Tràng, Thành Phố Hà Nội
+        </p>
+
+        <p>
+            ☎ Hotline:
+            Hỗ trợ kinh doanh: 0905913636
+            Hỗ trợ kỹ thuật: 0383598603
+        </p>
+
+        <p>
+            ✉ Email:
+            qtnglobal.com@gmail.com
+        </p>
+
+        <p>
+            🌐 Website:
+            https://qtn-global.github.io
+        </p>
+
+    </div>
+
+</footer>
+<!-- =========================
+     SCRIPT
+========================= -->
+
+<script src="products.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+

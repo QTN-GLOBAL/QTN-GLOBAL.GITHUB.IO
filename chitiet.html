@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết sản phẩm</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+<div class="top-header">
+
+<div class="logo-area">
+
+<img src="images/logo.png" alt="QTN GLOBAL">
+
+<div class="company-info">
+
+<h2>
+<span style="color:#0d47a1;">QTN</span>
+<span style="color:#d4a017;">GLOBAL</span>
+</h2>
+
+<p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+
+</div>
+
+</div>
+
+<div class="top-contact">
+
+<a href="tel:0905913636" class="top-btn">
+
+<i class="fa-solid fa-phone"></i>
+
+0905 913 636
+
+</a>
+
+<a href="tel:0383598603" class="top-btn">
+
+<i class="fa-solid fa-phone"></i>
+
+0383 598 603
+
+</a>
+
+<a href="https://zalo.me/0383598603"
+target="_blank"
+class="social-icon zalo">
+
+<span class="zalo-text">
+Zalo
+</span>
+
+</a>
+
+<a href="https://m.me/QTNSCALE"
+target="_blank"
+class="social-icon facebook">
+
+<i class="fa-brands fa-facebook-messenger"></i>
+
+</a>
+
+<a class="top-cart-btn"
+   href="index.html"
+   onclick="goHomeOpenCart()">
+
+🛒 GIỎ HÀNG
+(<span id="cartCount">0</span>)
+
+</a>
+
+</div>
+
+</div>
+
+<!-- =========================
+     MENU
+========================= -->
+
+<nav class="navbar">
+
+<a href="index.html">
+TRANG CHỦ
+</a>
+
+<a href="#">
+GIỚI THIỆU
+</a>
+
+
+<a href="#">
+LIÊN HỆ
+</a>
+
+</nav>
+
+</header>
+
+<!-- DETAIL -->
+<div class="detail-page fix-layout">
+<!-- SIDEBAR TRÁI -->
+<aside class="sidebar">
+    <h2>DANH MỤC</h2>
+    <ul>
+        <li onclick="goHomeAndCategory('can-ban')">Cân bàn</li>
+        <li onclick="goHomeAndCategory('can-dem')">Cân đếm</li>
+        <li onclick="goHomeAndCategory('can-treo')">Cân treo</li>
+        <li onclick="goHomeAndCategory('dau-can-dien-tu')">Đầu cân điện tử</li>
+        <li onclick="goHomeAndCategory('can-phan-tich')">Cân phân tích</li>
+        <li onclick="goHomeAndCategory('can-chong-nuoc')">Cân chống nước</li>
+        <li onclick="goHomeAndCategory('can-in-tem-ma-vach')">Cân in tem mã vạch</li>
+    </ul>
+</aside>
+    <div class="detail-content">
+    <div class="detail-left">
+
+        <img id="mainImage">
+
+        <div id="thumbList"></div>
+
+        <div class="detail-buttons">
+            <button onclick="openAddCartPopup()">
+                <i class="fa fa-cart-shopping"></i> THÊM GIỎ
+            </button>
+
+            <button onclick="openBuyPopup()">
+                <i class="fa fa-bolt"></i> MUA NGAY
+            </button>
+        </div>
+
+    </div>
+
+    <div class="detail-right">
+        <h1 id="productName"></h1>
+
+        <p><b>Hãng:</b> <span id="productBrand"></span></p>
+        <p><b>Xuất xứ:</b> <span id="productOrigin"></span></p>
+
+        <h3>Mô tả</h3>
+        <p id="productDesc"></p>
+
+        <h3>Thông số</h3>
+        <div id="productSpecs"></div>
+    </div>
+
+</div>
+<!-- SIDEBAR PHẢI (MỚI) -->
+<aside class="brand-sidebar">
+
+    <h2>THƯƠNG HIỆU</h2>
+
+    <div class="brand-list">
+
+        <div class="brand-item" onclick="goHomeAndBrand('Ohaus')">
+            <img src="images/can-ban/rc21pe/1.jpg">
+            <span>Ohaus</span>
+        </div>
+
+        <div class="brand-item" onclick="goHomeAndBrand('Jadever')">
+            <img src="images/can-ban/jwl/1.jpg">
+            <span>Jadever</span>
+        </div>
+
+        <div class="brand-item" onclick="goHomeAndBrand('Vibra')">
+            <img src="images/can-ban/vibra-haw/1.jpg">
+            <span>Vibra</span>
+        </div>
+
+        <div class="brand-item" onclick="goHomeAndBrand('Yaohua')">
+            <img src="images/can-dem/xk3190-a15e/1.jpg">
+            <span>Yaohua</span>
+        </div>
+
+        <div class="brand-item" onclick="goHomeAndBrand('EXCELL')">
+            <img src="images/dau-can-dien-tu/ex-2001/1.jpg">
+            <span>EXCELL</span>
+        </div>
+
+    </div>
+
+</aside>
+
+</div>
+
+
+<!-- ADD CART -->
+<div id="addCartPopup" class="popup-overlay" style="display:none">
+    <div class="popup-box">
+
+        <span onclick="closeAddCart()">✕</span>
+
+        <h2>THÊM GIỎ HÀNG</h2>
+
+        <img id="popupCartImg">
+        <h3 id="popupCartName"></h3>
+
+       <div id="cartSpecList"></div>
+
+        <button
+    type="button"
+    id="btnAddCart"
+    class="add-cart-btn">
+
+    THÊM
+
+</button>
+    </div>
+</div>
+<!-- VIEW CART POPUP -->
+<div id="cartPopup" class="popup-overlay" style="display:none">
+
+    <div class="popup-box">
+
+        <span onclick="closeCart()">✕</span>
+
+        <h2>GIỎ HÀNG</h2>
+
+        <div id="cartList"></div>
+
+    </div>
+
+</div>
+<!-- BUY -->
+<div id="buyPopup" class="popup-overlay" style="display:none">
+    <div class="popup-box">
+
+        <span onclick="closeBuyPopup()">✕</span>
+
+        <h2>ĐẶT HÀNG</h2>
+
+        <input id="customerName" placeholder="Tên khách hàng">
+
+        <input id="customerPhone" placeholder="Số điện thoại">
+
+        <input id="customerCompany" placeholder="Tên công ty">
+
+        <input id="customerTax" placeholder="Mã số thuế">
+
+        <textarea id="customerInvoice"
+        placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+        <textarea id="customerAddress"
+        placeholder="Địa chỉ giao hàng"></textarea>
+
+        <input id="buyProductName" readonly>
+
+        <div id="buyCapacityList"></div>
+
+        <button class="zalo-btn"
+        onclick="sendOrderZalo()">
+        GỬI ZALO
+        </button>
+
+       <button class="mess-btn"
+       onclick="sendOrderMessenger()">
+       GỬI MESSENGER
+       </button>
+
+    </div>
+</div>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+
+<!-- PRODUCT LOAD -->
+<script>
+
+const id = Number(new URLSearchParams(location.search).get("id"));
+
+const product = products.find(p => p.id === id);
+
+window.currentProduct = product;
+
+if(product){
+
+    document.getElementById("productName").innerText = product.name;
+
+    document.getElementById("productBrand").innerText = product.brand;
+
+    document.getElementById("productOrigin").innerText = product.origin;
+
+    document.getElementById("productDesc").innerText = product.description;
+
+    /* MAIN IMAGE */
+
+    document.getElementById("mainImage").src =
+    `images/${product.category}/${product.folder}/main.jpg`;
+
+    /* THUMB */
+
+    let thumbs = "";
+
+    for(let i=1;i<=5;i++){
+
+        thumbs += `
+        <img
+            src="images/${product.category}/${product.folder}/${i}.jpg"
+            onclick="document.getElementById('mainImage').src=this.src"
+            onerror="this.remove()"
+        >
+        `;
+    }
+
+    document.getElementById("thumbList").innerHTML = thumbs;
+
+   /* SPECS */
+
+document.getElementById("productSpecs").innerHTML =
+product.specs.map(spec=>{
+
+    if(spec.includes("<table")){
+        return spec;
+    }
+
+    return `<p>• ${spec}</p>`;
+
+}).join("");
+    /* BUY */
+
+    document.getElementById("buyProductName").value = product.name;
+}
+</script>
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <h3>QTN GLOBAL</h3>
+
+        <p>
+            Chuyên cung cấp cân điện tử, đầu cân,
+            thiết bị cân công nghiệp chính hãng.
+        </p>
+
+        <p>
+            📍 Địa chỉ:
+            Số 14 ngõ 68 đường Giáp Hải, Xã Bát Tràng, Thành Phố Hà Nội
+        </p>
+
+        <p>
+            ☎ Hotline:
+            Hỗ trợ kinh doanh: 0905913636
+            Hỗ trợ kỹ thuật: 0383598603
+        </p>
+
+        <p>
+            ✉ Email:
+            qtnglobal.com@gmail.com
+        </p>
+
+        <p>
+            🌐 Website:
+            https://qtn-global.github.io
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+</body>
+</html>
