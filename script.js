@@ -474,8 +474,8 @@ function buyNowCart(){
 
     popup.style.display = "flex";
 
-    document.getElementById("buyProductName").value =
-        "ĐƠN HÀNG GIỎ HÀNG";
+    document.getElementById("buyProductName").style.display =
+    "none";
 
     document.getElementById("buyCapacityList").innerHTML =
         html;
@@ -630,7 +630,8 @@ function openBuyPopup() {
 
     selectedProduct = window.currentProduct;
 
-    document.getElementById("buyPopup").style.display = "flex";
+    document.getElementById("buyProductName").style.display =
+    "block";
     document.getElementById("buyCapacityList").innerHTML = `
     <div class="buy-product-top">
 
