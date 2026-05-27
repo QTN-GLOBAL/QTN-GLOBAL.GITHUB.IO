@@ -252,7 +252,7 @@ function renderCart() {
                     <input
                     type="checkbox"
                     class="cart-buy-check"
-                    value="${item.id}_${item.capacity}"
+                    value="${item.id}_${item.capacity}">
 
                     Chọn mua
 
