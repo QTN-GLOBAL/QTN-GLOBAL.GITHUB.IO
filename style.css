@@ -1374,39 +1374,3 @@ body{
     width: 50px;
     text-align: center;
 }
-.cart-row{
-    display: grid;
-    grid-template-columns: 40px 1fr 120px;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-
-/* trái - checkbox */
-.col-check{
-    display: flex;
-    justify-content: flex-start;
-}
-
-/* giữa - mức cân */
-.col-info{
-    text-align: center;
-    font-size: 14px;
-}
-
-/* phải - số lượng */
-.col-qty{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 8px;
-}
-
-.col-qty button{
-    width: 28px;
-    height: 28px;
-    background: #0a3aa9;
-    color: white;
-    border: none;
-    border-radius: 6px;
-}
