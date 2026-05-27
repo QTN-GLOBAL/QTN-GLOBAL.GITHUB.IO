@@ -499,38 +499,64 @@ function addToCartDetail() {
 
     rows.forEach(row => {
 
-        const cols = row.querySelectorAll("td");
+    const cols = row.querySelectorAll("td");
 
-        if (cols.length >= 2) {
+    if (cols.length >= 2) {
 
-            const label =
-                cols[0].innerText.trim() + " - " +
-                cols[1].innerText.trim();
+        const label =
+            cols[0].innerText.trim() + " - " +
+            cols[1].innerText.trim();
 
-            html += `
-            <div class="cart-row" data-value="${label}">
+        html += `
+        <div class="cart-row" data-value="${label}">
 
-                
-                    <div class="cart-left">
-    <input type="checkbox" class="cart-check">
-</div>
-
-<div class="cart-center">
-    ${label}
-</div>
-
-<div class="cart-right">
-    <button onclick="changeCartQty(this,-1)">-</button>
-    <input type="number" value="1" min="1">
-    <button onclick="changeCartQty(this,1)">+</button>
-</div>
-
+            <div class="cart-left">
+                <input type="checkbox" class="cart-check">
             </div>
-            `;
-        }
-    });
 
-    document.getElementById("cartSpecList").innerHTML = html;
+            <div class="cart-center">
+                ${label}
+            </div>
+
+            <div class="cart-right">
+                <button onclick="changeCartQty(this,-1)">-</button>
+                <input type="number" value="1" min="1">
+                <button onclick="changeCartQty(this,1)">+</button>
+            </div>
+
+        </div>
+        `;
+    }
+});
+
+/* =========================
+   NẾU KHÔNG CÓ MỨC CÂN
+========================= */
+
+if(html === ""){
+
+    html = `
+    <div class="cart-row" data-value="">
+
+        <div class="cart-left">
+            <input type="checkbox" class="cart-check" checked>
+        </div>
+
+        <div class="cart-center">
+            ${selectedProduct.name}
+        </div>
+
+        <div class="cart-right">
+            <button onclick="changeCartQty(this,-1)">-</button>
+            <input type="number" value="1" min="1">
+            <button onclick="changeCartQty(this,1)">+</button>
+        </div>
+
+    </div>
+    `;
+}
+
+document.getElementById("cartSpecList").innerHTML = html;
 }
 function closeAddCart() {
 
@@ -630,7 +656,30 @@ function openBuyPopup() {
 `;
         }
     });
+    if(html === ""){
 
+    html = `
+    <div class="buy-row" data-value="${selectedProduct.name}">
+
+        <label>
+            <input type="checkbox"
+                   class="buy-check"
+                   checked>
+        </label>
+
+        <div class="label-text">
+            ${selectedProduct.name}
+        </div>
+
+        <div class="buy-qty">
+            <button onclick="changeBuyQty(this,-1)">-</button>
+            <input type="number" value="1" min="1">
+            <button onclick="changeBuyQty(this,1)">+</button>
+        </div>
+
+    </div>
+    `;
+}
     document.getElementById("buyCapacityList").innerHTML = html;
 
     document.getElementById("buyQty").value = 1;
