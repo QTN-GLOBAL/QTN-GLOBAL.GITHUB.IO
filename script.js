@@ -681,7 +681,7 @@ function openBuyPopup() {
                 <label>
                     <input type="checkbox"
                            class="buy-check"
-                           checked>
+                           
                 </label>
 
                 <div class="label-text">
