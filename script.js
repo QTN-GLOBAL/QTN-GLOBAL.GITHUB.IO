@@ -716,7 +716,7 @@ function openBuyPopup() {
 }
     document.getElementById("buyCapacityList").innerHTML += html;
 
-    document.getElementById("buyQty").value = 1;
+    
 }
 
 /* =========================
@@ -800,8 +800,6 @@ Số lượng: ${input.value}
     })
     .join("")}
 
-Số lượng:
-${document.getElementById("buyQty")?.value || ""}
 
 ========================
 `;
