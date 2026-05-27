@@ -224,9 +224,16 @@ function renderCart() {
     </div>
 
     <div class="cart-middle">
+
+    <img src="images/${item.category}/${item.folder}/main.jpg"
+         style="width:45px;height:45px;object-fit:contain">
+
+    <div>
         <div>${item.name}</div>
         <div>${item.capacity || ""}</div>
     </div>
+
+</div>
 
     <div class="cart-right">
         <button onclick="decreaseQty(${item.id})">-</button>
@@ -312,8 +319,8 @@ function buySelectedCart(){
 
     checked.forEach(check => {
 
-        const id = Number(check.value);
-
+        const values = check.value.split("_");
+        const id = Number(values[0]);
         const item = cart.find(i => i.id == id);
 
         if(item){
@@ -384,9 +391,9 @@ function buyNowCart(){
         const capacity = values[1] || "";
 
         const item = cart.find(i =>
-            i.id == id &&
-            i.capacity == capacity
-        );
+    i.id == id &&
+    (i.capacity || "") == (capacity || "")
+);
         if(item){
 
             totalQty += item.quantity;

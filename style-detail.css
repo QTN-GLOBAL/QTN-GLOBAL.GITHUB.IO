@@ -1,0 +1,107 @@
+.detail-page{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+.detail-left{
+    flex:1;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+}
+
+.detail-right{
+    flex:2;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+}
+
+/* ẢNH */
+#mainImage{
+    width:100%;
+    height:400px;
+    object-fit:contain;
+}
+
+/* THUMB */
+#thumbList{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+#thumbList img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+/* NÚT */
+.detail-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.detail-buttons button{
+    flex:1;
+    height:46px;
+    border:none;
+    border-radius:8px;
+    color:#fff;
+}
+
+.detail-buttons button:first-child{
+    background:#1565c0;
+}
+
+.detail-buttons button:last-child{
+    background:#e53935;
+}
+
+/* =========================
+   FIX BUY ROW (QUAN TRỌNG)
+   KHÔNG ĐƯỢC DUPLICATE
+========================= */
+
+.buy-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+.buy-row label{
+    width:40px;
+    display:flex;
+    justify-content:center;
+}
+
+.buy-row .label-text{
+    flex:1;
+    text-align:center;
+    white-space:nowrap;
+}
+
+/* LEVEL + STEP KHÔNG BỊ ĐẨY */
+.buy-qty{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.buy-qty button{
+    width:28px;
+    height:28px;
+    border:1px solid #ccc;
+    background:#f5f5f5;
+}
+
+.buy-qty input{
+    width:50px;
+    text-align:center;
+}
