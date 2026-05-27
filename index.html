@@ -198,8 +198,8 @@ class="hero-phone blue">
 
 <div class="banner-slider">
 
-<img id="bannerImage"
-src="images/can-ban/jwl/main.jpg">
+<img id="slider-img"
+src="images/can-dem/alh4/main.jpg">
 
 </div>
 
@@ -313,7 +313,80 @@ class="cart-body">
 </div>
 
 </div>
+<!-- BUY -->
+<div id="buyPopup" class="popup-overlay" style="display:none">
+    <div class="popup-box">
 
+        <span onclick="closeBuyPopup()">✕</span>
+
+        <h2>ĐẶT HÀNG</h2>
+
+        <input id="customerName" placeholder="Tên khách hàng">
+
+        <input id="customerPhone" placeholder="Số điện thoại">
+
+        <input id="customerCompany" placeholder="Tên công ty">
+
+        <input id="customerTax" placeholder="Mã số thuế">
+
+        <textarea id="customerInvoice"
+        placeholder="Địa chỉ xuất hóa đơn"></textarea>
+
+        <textarea id="customerAddress"
+        placeholder="Địa chỉ giao hàng"></textarea>
+
+        <input id="buyProductName" readonly>
+
+        <div id="buyCapacityList"></div>
+
+        <button class="zalo-btn"
+        onclick="sendOrderZalo()">
+        GỬI ZALO
+        </button>
+
+       <button class="mess-btn"
+       onclick="sendOrderMessenger()">
+       GỬI MESSENGER
+       </button>
+
+    </div>
+</div>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <h3>QTN GLOBAL</h3>
+
+        <p>
+            Chuyên cung cấp cân điện tử, đầu cân,
+            thiết bị cân công nghiệp chính hãng.
+        </p>
+
+        <p>
+            📍 Địa chỉ:
+            Số 14 Ngõ 68 Đường Giáp Hải,Xã Bát Tràng, Thành Phố Hà Nội
+        </p>
+
+        <p>
+            ☎ Hotline:
+            Hỗ trợ kinh doanh: 0905913636
+            Hỗ trợ kỹ thuật: 0383598603
+        </p>
+
+        <p>
+            ✉ Email:
+            qtnglobal.com@gmail.com
+        </p>
+
+        <p>
+            🌐 Website:
+            https://qtn-global.github.io
+        </p>
+
+    </div>
+
+</footer>
 <!-- =========================
      SCRIPT
 ========================= -->
