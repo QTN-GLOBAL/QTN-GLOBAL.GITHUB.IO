@@ -226,7 +226,7 @@ function renderCart() {
             src="images/${item.category}/${item.folder}/main.jpg"
             width="70">
 
-            <h4>${item.name}</h4>
+            <h4 class="cart-name">${item.name}</h4>
 
 <p class="cart-capacity">
     ${item.capacity || ""}
@@ -236,7 +236,7 @@ function renderCart() {
     ${item.division || ""}
 </p>
 
-<div class="qty">
+<div class="cart-qty">
 
     <button onclick="decreaseQty(${item.id})">-</button>
 
@@ -273,7 +273,7 @@ function renderCart() {
     <div class="cart-footer">
 
         <button
-        onclick="buySelectedCart()"
+        onclick="buyNowCart()"
         class="btn-buy">
 
             MUA NGAY
@@ -393,6 +393,68 @@ ${product.name} - ${cols[0].innerText.trim()} - ${cols[1].innerText.trim()}
         "ĐƠN HÀNG GIỎ HÀNG (" + totalQty + " sản phẩm)";
 
     document.getElementById("buyCapacity").innerHTML = html;
+
+    document.getElementById("buyQty").value = totalQty;
+}
+function buyNowCart(){
+
+    const checked =
+        document.querySelectorAll(".cart-buy-check:checked");
+
+    if(checked.length === 0){
+        alert("Vui lòng chọn sản phẩm");
+        return;
+    }
+
+    let html = "";
+    let totalQty = 0;
+
+    checked.forEach(check => {
+
+        const id = Number(check.value);
+
+        const item =
+            cart.find(i => i.id == id);
+
+        if(item){
+
+            totalQty += item.quantity;
+
+            const label =
+                `${item.capacity}`;
+
+            html += `
+            <div class="buy-row" data-value="${label}">
+
+                <label>
+                    <input type="checkbox"
+                           class="buy-check"
+                           checked>
+                </label>
+
+                <div class="label-text">
+                    ${item.name} - ${label}
+                </div>
+
+                <div class="buy-qty">
+
+                    <input type="number"
+                           value="${item.quantity}"
+                           readonly>
+
+                </div>
+
+            </div>
+            `;
+        }
+    });
+
+    document.getElementById("buyPopup").style.display = "flex";
+
+    document.getElementById("buyProductName").value =
+        "ĐƠN HÀNG GIỎ HÀNG";
+
+    document.getElementById("buyCapacityList").innerHTML = html;
 
     document.getElementById("buyQty").value = totalQty;
 }
@@ -885,7 +947,7 @@ function renderAddCart(product){
         <div class="cart-row">
 
             <div class="cart-left">
-                <input type="checkbox">
+                <input type="checkbox" class="cart-buy-check">
             </div>
 
             <div class="cart-middle">
