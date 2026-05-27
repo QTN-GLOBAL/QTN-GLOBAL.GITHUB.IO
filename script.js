@@ -206,59 +206,50 @@ function renderCart() {
     if (!cartBody) return;
 
     if (cart.length === 0) {
-
-        cartBody.innerHTML = `
-        <p>Giỏ hàng trống</p>
-        `;
-
+        cartBody.innerHTML = `<p>Giỏ hàng trống</p>`;
         return;
     }
 
-    cartBody.innerHTML = "";
+    let html = "";
 
-    cart.forEach(item => {
+    cart.forEach((item, i) => {
 
-        container.innerHTML += `
+        html += `
 <div class="cart-row">
 
-    <!-- TRÁI -->
     <div class="cart-left">
-        <input type="checkbox" class="cart-buy-check">
+        <input type="checkbox"
+               class="cart-buy-check"
+               value="${item.id}_${item.capacity}">
     </div>
 
-    <!-- GIỮA -->
     <div class="cart-middle">
-        <div class="level-text">${s.level}</div>
-        <div class="step-text">${s.step}</div>
+        <div>${item.name}</div>
+        <div>${item.capacity || ""}</div>
     </div>
 
-    <!-- PHẢI -->
     <div class="cart-right">
-        <button onclick="changeQty(${i},-1)">-</button>
-        <input id="qty-${i}" value="1" class="qty-input">
-        <button onclick="changeQty(${i},1)">+</button>
+        <button onclick="decreaseQty(${item.id})">-</button>
+
+        <input value="${item.quantity}" readonly>
+
+        <button onclick="increaseQty(${item.id})">+</button>
     </div>
 
 </div>
 `;
     });
 
-    cartBody.innerHTML += `
-
+    html += `
     <div class="cart-footer">
-
-        <button
-        onclick="buyNowCart()"
-        class="btn-buy">
-
+        <button onclick="buyNowCart()" class="btn-buy">
             MUA NGAY
-
         </button>
-
     </div>
     `;
-}
 
+    cartBody.innerHTML = html;
+}
 /* =========================
    UPDATE QTY
 ========================= */
@@ -1055,16 +1046,3 @@ function renderAddCart(product){
 }
 
 
-function changeQty(i,val){
-
-    let input = document.getElementById("qty-" + i);
-
-    let current = parseInt(input.value) || 1;
-
-    current += val;
-
-    if(current < 1) current = 1;
-
-    input.value = current;
-
-}
