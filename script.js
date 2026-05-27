@@ -634,9 +634,17 @@ function openBuyPopup() {
 
     selectedProduct = window.currentProduct;
 
+    const popup = document.getElementById("buyPopup");
+
+    if (!popup) return;
+
+    popup.style.display = "flex";
+
     document.getElementById("buyProductName").style.display =
     "block";
-    document.getElementById("buyCapacityList").innerHTML = `
+
+    let html = `
+
     <div class="buy-product-top">
 
         <img
@@ -648,18 +656,15 @@ function openBuyPopup() {
         </div>
 
     </div>
-`;
-
-    document.getElementById("buyProductName").value =
-        selectedProduct.name;
-
-    let html = "";
+    `;
 
     const temp = document.createElement("div");
+
     temp.innerHTML = selectedProduct.specs[0] || "";
+
     const rows = temp.querySelectorAll("tr");
 
-    rows.forEach((row, index) => {
+    rows.forEach(row => {
 
         const cols = row.querySelectorAll("td");
 
@@ -669,56 +674,72 @@ function openBuyPopup() {
                 cols[0].innerText.trim() + " - " +
                 cols[1].innerText.trim();
 
-           html += `
-    <div class="buy-row" data-value="${label}">
+            html += `
 
-    <label>
-        <input type="checkbox" class="buy-check">
-    </label>
+            <div class="buy-row" data-value="${label}">
 
-    <div class="label-text">
-        ${label}
-    </div>
+                <label>
+                    <input type="checkbox"
+                           class="buy-check"
+                           checked>
+                </label>
 
-    <div class="buy-qty">
-        <button onclick="changeBuyQty(this,-1)">-</button>
-        <input type="number" value="1" min="1">
-        <button onclick="changeBuyQty(this,1)">+</button>
-    </div>
+                <div class="label-text">
+                    ${label}
+                </div>
 
-</div>
-`;
+                <div class="buy-qty">
+
+                    <button onclick="changeBuyQty(this,-1)">-</button>
+
+                    <input type="number"
+                           value="1"
+                           min="1">
+
+                    <button onclick="changeBuyQty(this,1)">+</button>
+
+                </div>
+
+            </div>
+            `;
         }
     });
-    if(html === ""){
 
-    html = `
-    <div class="buy-row" data-value="${selectedProduct.name}">
+    if(rows.length === 0){
 
-        <label>
-            <input type="checkbox"
-                   class="buy-check"
-                   checked>
-        </label>
+        html += `
 
-        <div class="label-text">
-            ${selectedProduct.name}
+        <div class="buy-row"
+             data-value="${selectedProduct.name}">
+
+            <label>
+                <input type="checkbox"
+                       class="buy-check"
+                       checked>
+            </label>
+
+            <div class="label-text">
+                ${selectedProduct.name}
+            </div>
+
+            <div class="buy-qty">
+
+                <button onclick="changeBuyQty(this,-1)">-</button>
+
+                <input type="number"
+                       value="1"
+                       min="1">
+
+                <button onclick="changeBuyQty(this,1)">+</button>
+
+            </div>
+
         </div>
+        `;
+    }
 
-        <div class="buy-qty">
-            <button onclick="changeBuyQty(this,-1)">-</button>
-            <input type="number" value="1" min="1">
-            <button onclick="changeBuyQty(this,1)">+</button>
-        </div>
-
-    </div>
-    `;
+    document.getElementById("buyCapacityList").innerHTML = html;
 }
-    document.getElementById("buyCapacityList").innerHTML += html;
-
-    
-}
-
 /* =========================
    CHANGE QTY
 ========================= */
