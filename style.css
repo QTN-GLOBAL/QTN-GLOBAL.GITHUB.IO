@@ -1375,38 +1375,38 @@ body{
     text-align: center;
 }
 .cart-row{
-    display: flex;
+    display: grid;
+    grid-template-columns: 40px 1fr 120px;
     align-items: center;
-    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
 }
 
-/* TRÁI - checkbox */
-.left-box{
-    width: 50px;
+/* trái - checkbox */
+.col-check{
     display: flex;
     justify-content: flex-start;
-    align-items: center;
 }
 
-/* GIỮA - mức cân + độ chia */
-.center-box{
-    flex: 1;
-    display: flex;
-    justify-content: center; /* QUAN TRỌNG: nằm giữa */
-    align-items: center;
+/* giữa - mức cân */
+.col-info{
+    text-align: center;
+    font-size: 14px;
 }
 
-/* PHẢI - số lượng */
-.right-box{
-    width: 120px;
+/* phải - số lượng */
+.col-qty{
     display: flex;
-    justify-content: flex-end; /* sát phải */
+    justify-content: flex-end;
     align-items: center;
     gap: 8px;
 }
 
-/* nút +/- */
-.right-box button{
+.col-qty button{
     width: 28px;
     height: 28px;
+    background: #0a3aa9;
+    color: white;
+    border: none;
+    border-radius: 6px;
 }
