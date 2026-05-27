@@ -227,7 +227,7 @@ function renderCart() {
     </div>
 
     <!-- GIỮA -->
-    <div class="cart-middle">
+    <div class="cart-center">
         <div class="level-text">${s.level}</div>
         <div class="step-text">${s.step}</div>
     </div>
@@ -1017,54 +1017,5 @@ function parseSpecTable(htmlString){
 }
 
 
-function renderAddCart(product){
-
-    let container = document.getElementById("cartSpecList");
-
-    let specs = parseSpecTable(product.specs[0]);
-
-    container.innerHTML = "";
-
-    specs.forEach((s,i)=>{
-
-        container.innerHTML += `
-<div class="cart-row">
-
-    <div class="cart-left">
-        <input type="checkbox" class="cart-buy-check">
-    </div>
-
-    <div class="cart-middle">
-        <div class="level-text">${s.level}</div>
-        <div class="step-text">${s.step}</div>
-    </div>
-
-    <div class="cart-right qty">
-
-        <button onclick="changeQty(${i},-1)">-</button>
-
-        <input id="qty-${i}" value="1" class="qty-input">
-
-        <button onclick="changeQty(${i},1)">+</button>
-    </div>
-
-</div>
-`;
-    });
-
-}
 
 
-function changeQty(i,val){
-
-    let input = document.getElementById("qty-" + i);
-
-    let current = parseInt(input.value) || 1;
-
-    current += val;
-
-    if(current < 1) current = 1;
-
-    input.value = current;
-
-}
