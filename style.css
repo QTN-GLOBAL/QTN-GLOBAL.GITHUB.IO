@@ -1252,3 +1252,30 @@ body{
     border:1px solid #ccc;
     border-radius:8px;
 }
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    background:#111;
+    color:#fff;
+    margin-top:50px;
+    padding:40px 20px;
+}
+
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    text-align:center;
+}
+
+.footer h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.footer p{
+    margin:8px 0;
+    color:#ddd;
+    line-height:1.6;
+}
