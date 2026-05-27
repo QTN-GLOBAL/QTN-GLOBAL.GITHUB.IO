@@ -203,13 +203,7 @@ LIÊN HỆ
         <img id="popupCartImg">
         <h3 id="popupCartName"></h3>
 
-        <select id="popupCartCapacity"></select>
-
-        <div class="popup-qty">
-    <button onclick="changeQty('cart',-1)">-</button>
-            <input id="popupCartQty" type="number" value="1">
-            <button onclick="changeQty('cart',1)">+</button>
-        </div>
+       <div id="cartSpecList"></div>
 
         <button
     type="button"
@@ -221,7 +215,20 @@ LIÊN HỆ
 </button>
     </div>
 </div>
+<!-- VIEW CART POPUP -->
+<div id="cartPopup" class="popup-overlay" style="display:none">
 
+    <div class="popup-box">
+
+        <span onclick="closeCart()">✕</span>
+
+        <h2>GIỎ HÀNG</h2>
+
+        <div id="cartList"></div>
+
+    </div>
+
+</div>
 <!-- BUY -->
 <div id="buyPopup" class="popup-overlay" style="display:none">
     <div class="popup-box">

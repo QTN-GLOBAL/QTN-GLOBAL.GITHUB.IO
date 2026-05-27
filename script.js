@@ -460,7 +460,7 @@ function addToCartDetail() {
         }
     });
 
-    document.getElementById("popupCartCapacity").innerHTML = html;
+    document.getElementById("cartSpecList").innerHTML = html;
 }
 function closeAddCart() {
 
@@ -525,7 +525,7 @@ function openBuyPopup() {
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = selectedProduct.specs;
+    temp.innerHTML = selectedProduct.specs[0];
 
     const rows = temp.querySelectorAll("tr");
 
@@ -840,4 +840,88 @@ function changeCartQty(btn, value) {
     if (qty < 1) qty = 1;
 
     input.value = qty;
+}
+function parseSpecTable(htmlString){
+
+    let temp = document.createElement("div");
+
+    temp.innerHTML = htmlString;
+
+    let rows = temp.querySelectorAll("tr");
+
+    let data = [];
+
+    rows.forEach((row,index)=>{
+
+        let cols = row.querySelectorAll("th,td");
+
+        if(cols.length >= 2 && index > 0){
+
+            data.push({
+                level: cols[0].innerText.trim(),
+                step: cols[1].innerText.trim()
+            });
+
+        }
+
+    });
+
+    return data;
+}
+
+
+function renderAddCart(product){
+
+    let container = document.getElementById("cartSpecList");
+
+    let specs = parseSpecTable(product.specs[0]);
+
+    container.innerHTML = "";
+
+    specs.forEach((s,i)=>{
+
+        container.innerHTML += `
+
+        <div class="cart-row">
+
+            <div class="cart-left">
+                <input type="checkbox">
+            </div>
+
+            <div class="cart-middle">
+                <div class="level-text">${s.level}</div>
+                <div class="step-text">${s.step}</div>
+            </div>
+
+            <div class="cart-right">
+
+                <button onclick="changeQty(${i},-1)">-</button>
+
+                <input id="qty-${i}" value="1">
+
+                <button onclick="changeQty(${i},1)">+</button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+function changeQty(i,val){
+
+    let input = document.getElementById("qty-" + i);
+
+    let current = parseInt(input.value) || 1;
+
+    current += val;
+
+    if(current < 1) current = 1;
+
+    input.value = current;
+
 }
