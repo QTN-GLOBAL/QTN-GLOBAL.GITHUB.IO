@@ -412,23 +412,22 @@ function buyNowCart(){
     checked.forEach(check => {
 
         const [id, capacity] =
-    check.value.split("_");
+            check.value.split("_");
 
-const item =
-    cart.find(i =>
-        i.id == id &&
-        i.capacity == capacity
-    );
+        const item =
+            cart.find(i =>
+                i.id == id &&
+                i.capacity == capacity
+            );
 
         if(item){
 
             totalQty += item.quantity;
 
-            const label =
-                `${item.capacity}`;
-
             html += `
-            <div class="buy-row" data-value="${label}">
+
+            <div class="buy-row"
+                 data-value="${item.capacity}">
 
                 <label>
                     <input type="checkbox"
@@ -437,7 +436,9 @@ const item =
                 </label>
 
                 <div class="label-text">
-                    ${item.name} - ${label}
+                    ${item.name}
+                    <br>
+                    ${item.capacity}
                 </div>
 
                 <div class="buy-qty">
@@ -449,6 +450,7 @@ const item =
                 </div>
 
             </div>
+
             `;
         }
     });
@@ -458,9 +460,11 @@ const item =
     document.getElementById("buyProductName").value =
         "ĐƠN HÀNG GIỎ HÀNG";
 
-    document.getElementById("buyCapacityList").innerHTML = html;
+    document.getElementById("buyCapacityList").innerHTML =
+        html;
 
-    document.getElementById("buyQty").value = totalQty;
+    document.getElementById("buyQty").value =
+        totalQty;
 }
 /* =========================
    ADD CART POPUP
