@@ -411,62 +411,68 @@ function buyNowCart(){
 
     checked.forEach(check => {
 
-        const [id, capacity] =
-            check.value.split("_");
+        const id = Number(check.value);
 
         const item =
-            cart.find(i =>
-                i.id == id &&
-                i.capacity == capacity
-            );
+            cart.find(i => i.id == id);
 
         if(item){
 
             totalQty += item.quantity;
 
-           html += `
-<div class="buy-row" data-value="${label}">
+            const label =
+                item.capacity || "";
 
-    <label style="display:none">
-        <input type="checkbox"
-               class="buy-check"
-               checked>
-    </label>
+            html += `
 
-    <div class="buy-cart-left">
+            <div class="buy-row" data-value="${label}">
 
-        <img
-        src="images/${item.category}/${item.folder}/main.jpg"
-        class="buy-cart-img">
+                <label style="display:none">
+                    <input type="checkbox"
+                           class="buy-check"
+                           checked>
+                </label>
 
-    </div>
+                <div class="buy-cart-left">
 
-    <div class="buy-cart-center">
+                    <img
+                    src="images/${item.category}/${item.folder}/main.jpg"
+                    class="buy-cart-img">
 
-        <div class="buy-cart-name">
-            ${item.name}
-        </div>
+                </div>
 
-        <div class="buy-cart-capacity">
-            ${label}
-        </div>
+                <div class="buy-cart-center">
 
-    </div>
+                    <div class="buy-cart-name">
+                        ${item.name}
+                    </div>
 
-    <div class="buy-cart-right">
+                    <div class="buy-cart-capacity">
+                        ${label}
+                    </div>
 
-        <input type="number"
-               value="${item.quantity}"
-               readonly>
+                </div>
 
-    </div>
+                <div class="buy-cart-right">
 
-</div>
-`;
+                    <input type="number"
+                           value="${item.quantity}"
+                           readonly>
+
+                </div>
+
+            </div>
+
+            `;
         }
     });
 
-    document.getElementById("buyPopup").style.display = "flex";
+    const popup =
+        document.getElementById("buyPopup");
+
+    if(!popup) return;
+
+    popup.style.display = "flex";
 
     document.getElementById("buyProductName").value =
         "ĐƠN HÀNG GIỎ HÀNG";
