@@ -424,34 +424,39 @@ function buyNowCart(){
 
             totalQty += item.quantity;
 
-            html += `
+           html += `
+<div class="buy-row" data-value="${label}">
 
-            <div class="buy-row"
-                 data-value="${item.capacity}">
+    <div class="buy-cart-left">
 
-                <label>
-                    <input type="checkbox"
-                           class="buy-check"
-                           checked>
-                </label>
+        <img
+        src="images/${item.category}/${item.folder}/main.jpg"
+        class="buy-cart-img">
 
-                <div class="label-text">
-                    ${item.name}
-                    <br>
-                    ${item.capacity}
-                </div>
+    </div>
 
-                <div class="buy-qty">
+    <div class="buy-cart-center">
 
-                    <input type="number"
-                           value="${item.quantity}"
-                           readonly>
+        <div class="buy-cart-name">
+            ${item.name}
+        </div>
 
-                </div>
+        <div class="buy-cart-capacity">
+            ${label}
+        </div>
 
-            </div>
+    </div>
 
-            `;
+    <div class="buy-cart-right">
+
+        <input type="number"
+               value="${item.quantity}"
+               readonly>
+
+    </div>
+
+</div>
+`;
         }
     });
 
@@ -614,6 +619,19 @@ function openBuyPopup() {
     selectedProduct = window.currentProduct;
 
     document.getElementById("buyPopup").style.display = "flex";
+    document.getElementById("buyCapacityList").innerHTML = `
+    <div class="buy-product-top">
+
+        <img
+        src="images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg"
+        class="buy-product-img">
+
+        <div class="buy-product-info">
+            <h3>${selectedProduct.name}</h3>
+        </div>
+
+    </div>
+`;
 
     document.getElementById("buyProductName").value =
         selectedProduct.name;
@@ -680,7 +698,7 @@ function openBuyPopup() {
     </div>
     `;
 }
-    document.getElementById("buyCapacityList").innerHTML = html;
+    document.getElementById("buyCapacityList").innerHTML += html;
 
     document.getElementById("buyQty").value = 1;
 }
