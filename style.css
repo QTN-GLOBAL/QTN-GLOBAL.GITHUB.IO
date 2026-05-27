@@ -1374,3 +1374,39 @@ body{
     width: 50px;
     text-align: center;
 }
+.cart-row{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* TRÁI - checkbox */
+.left-box{
+    width: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* GIỮA - mức cân + độ chia */
+.center-box{
+    flex: 1;
+    display: flex;
+    justify-content: center; /* QUAN TRỌNG: nằm giữa */
+    align-items: center;
+}
+
+/* PHẢI - số lượng */
+.right-box{
+    width: 120px;
+    display: flex;
+    justify-content: flex-end; /* sát phải */
+    align-items: center;
+    gap: 8px;
+}
+
+/* nút +/- */
+.right-box button{
+    width: 28px;
+    height: 28px;
+}
