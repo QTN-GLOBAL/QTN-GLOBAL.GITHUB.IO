@@ -252,7 +252,7 @@ function renderCart() {
                     <input
                     type="checkbox"
                     class="cart-buy-check"
-                    value="${item.id}">
+                    value="${item.id}_${item.capacity}"
 
                     Chọn mua
 
@@ -411,10 +411,14 @@ function buyNowCart(){
 
     checked.forEach(check => {
 
-        const id = Number(check.value);
+        const [id, capacity] =
+    check.value.split("_");
 
-        const item =
-            cart.find(i => i.id == id);
+const item =
+    cart.find(i =>
+        i.id == id &&
+        i.capacity == capacity
+    );
 
         if(item){
 
