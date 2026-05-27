@@ -70,8 +70,8 @@ class="social-icon facebook">
 </a>
 
 <a class="top-cart-btn"
-   href="index.html"
-   onclick="goHomeOpenCart()">
+href="javascript:void(0)"
+onclick="openCart()">
 
 🛒 GIỎ HÀNG
 (<span id="cartCount">0</span>)
@@ -107,20 +107,7 @@ LIÊN HỆ
 
 <!-- DETAIL -->
 <div class="detail-page fix-layout">
-<!-- SIDEBAR TRÁI -->
-<aside class="sidebar">
-    <h2>DANH MỤC</h2>
-    <ul>
-        <li onclick="goHomeAndCategory('can-ban')">Cân bàn</li>
-        <li onclick="goHomeAndCategory('can-dem')">Cân đếm</li>
-        <li onclick="goHomeAndCategory('can-treo')">Cân treo</li>
-        <li onclick="goHomeAndCategory('dau-can-dien-tu')">Đầu cân điện tử</li>
-        <li onclick="goHomeAndCategory('can-phan-tich')">Cân phân tích</li>
-        <li onclick="goHomeAndCategory('can-chong-nuoc')">Cân chống nước</li>
-        <li onclick="goHomeAndCategory('can-in-tem-ma-vach')">Cân in tem mã vạch</li>
-    </ul>
-</aside>
-    <div class="detail-content">
+
     <div class="detail-left">
 
         <img id="mainImage">
@@ -153,43 +140,7 @@ LIÊN HỆ
     </div>
 
 </div>
-<!-- SIDEBAR PHẢI (MỚI) -->
-<aside class="brand-sidebar">
 
-    <h2>THƯƠNG HIỆU</h2>
-
-    <div class="brand-list">
-
-        <div class="brand-item" onclick="goHomeAndBrand('Ohaus')">
-            <img src="images/can-ban/rc21pe/1.jpg">
-            <span>Ohaus</span>
-        </div>
-
-        <div class="brand-item" onclick="goHomeAndBrand('Jadever')">
-            <img src="images/can-ban/jwl/1.jpg">
-            <span>Jadever</span>
-        </div>
-
-        <div class="brand-item" onclick="goHomeAndBrand('Vibra')">
-            <img src="images/can-ban/vibra-haw/1.jpg">
-            <span>Vibra</span>
-        </div>
-
-        <div class="brand-item" onclick="goHomeAndBrand('Yaohua')">
-            <img src="images/can-dem/xk3190-a15e/1.jpg">
-            <span>Yaohua</span>
-        </div>
-
-        <div class="brand-item" onclick="goHomeAndBrand('EXCELL')">
-            <img src="images/dau-can-dien-tu/ex-2001/1.jpg">
-            <span>EXCELL</span>
-        </div>
-
-    </div>
-
-</aside>
-
-</div>
 
 
 <!-- ADD CART -->
@@ -203,7 +154,13 @@ LIÊN HỆ
         <img id="popupCartImg">
         <h3 id="popupCartName"></h3>
 
-       <div id="cartSpecList"></div>
+        <select id="popupCartCapacity"></select>
+
+        <div class="popup-qty">
+    <button onclick="changeQty('cart',-1)">-</button>
+            <input id="popupCartQty" type="number" value="1">
+            <button onclick="changeQty('cart',1)">+</button>
+        </div>
 
         <button
     type="button"
@@ -215,20 +172,7 @@ LIÊN HỆ
 </button>
     </div>
 </div>
-<!-- VIEW CART POPUP -->
-<div id="cartPopup" class="popup-overlay" style="display:none">
 
-    <div class="popup-box">
-
-        <span onclick="closeCart()">✕</span>
-
-        <h2>GIỎ HÀNG</h2>
-
-        <div id="cartList"></div>
-
-    </div>
-
-</div>
 <!-- BUY -->
 <div id="buyPopup" class="popup-overlay" style="display:none">
     <div class="popup-box">
@@ -253,7 +197,25 @@ LIÊN HỆ
 
         <input id="buyProductName" readonly>
 
-        <div id="buyCapacityList"></div>
+        <select id="buyCapacity"></select>
+
+        <div class="qty-box">
+
+    <button type="button"
+    onclick="changeQty('buy',-1)">
+    -
+    </button>
+
+    <input id="buyQty"
+    type="number"
+    value="1">
+
+    <button type="button"
+    onclick="changeQty('buy',1)">
+    +
+    </button>
+
+</div>
 
         <button class="zalo-btn"
         onclick="sendOrderZalo()">
@@ -312,60 +274,24 @@ if(product){
 
     document.getElementById("thumbList").innerHTML = thumbs;
 
-   /* SPECS */
+    /* SPECS */
 
-document.getElementById("productSpecs").innerHTML =
-product.specs.map(spec=>{
+    let specs = "<ul>";
 
-    if(spec.includes("<table")){
-        return spec;
-    }
+    product.specs.forEach(s=>{
+        specs += `<li>${s}</li>`;
+    });
 
-    return `<p>• ${spec}</p>`;
+    specs += "</ul>";
 
-}).join("");
+    document.getElementById("productSpecs").innerHTML = specs;
+
     /* BUY */
 
     document.getElementById("buyProductName").value = product.name;
 }
+
 </script>
-<footer class="footer">
-
-    <div class="footer-container">
-
-        <h3>QTN GLOBAL</h3>
-
-        <p>
-            Chuyên cung cấp cân điện tử, đầu cân,
-            thiết bị cân công nghiệp chính hãng.
-        </p>
-
-        <p>
-            📍 Địa chỉ:
-            Số 14 ngõ 68 đường Giáp Hải, Xã Bát Tràng, Thành Phố Hà Nội
-        </p>
-
-        <p>
-            ☎ Hotline:
-            Hỗ trợ kinh doanh: 0905913636
-            Hỗ trợ kỹ thuật: 0383598603
-        </p>
-
-        <p>
-            ✉ Email:
-            qtnglobal.com@gmail.com
-        </p>
-
-        <p>
-            🌐 Website:
-            https://qtn-global.github.io
-        </p>
-
-    </div>
-
-</footer>
-
-
 
 </body>
 </html>
