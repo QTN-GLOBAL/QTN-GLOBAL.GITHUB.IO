@@ -178,7 +178,7 @@
     display:grid;
 
     grid-template-columns:
-    40px
+    50px
     minmax(0,1fr)
     140px;
 
@@ -227,6 +227,10 @@
 .step-text,
 .buy-label{
 
+    width:100%;
+
+    text-align:center;
+
     font-size:15px;
 
     line-height:1.5;
@@ -238,6 +242,8 @@
 
 .cart-middle{
 
+    width:100%;
+
     display:flex;
 
     align-items:center;
@@ -246,7 +252,7 @@
 
     text-align:center;
 
-    min-width:0;
+    padding:0 10px;
 }
 
 /* =========================
