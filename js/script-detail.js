@@ -1,4 +1,3 @@
-let selectedProduct = null;
 /* =========================
    DETAIL PAGE
 ========================= */
@@ -14,11 +13,6 @@ function openAddCartPopup() {
 
     document.getElementById("popupCartName").innerText =
         selectedProduct.name;
-    const imgEl = document.getElementById("popupCartImg");
-
-if (imgEl && selectedProduct) {
-    imgEl.src = `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
-}
 
     let html = "";
 
@@ -72,17 +66,17 @@ if (imgEl && selectedProduct) {
     document.getElementById("cartSpecList").innerHTML = html;
 }
 
-function confirmAddCart(){
+function confirmAddCart() {
 
     const rows = document.querySelectorAll(".cart-row");
 
     rows.forEach(row => {
 
         const check = row.querySelector(".cart-check");
-        const qty = row.querySelector("input[type='number']");
-        const label = row.getAttribute("data-value") || "";
+        const input = row.querySelector("input[type='number']");
+        const label = row.dataset.value;
 
-        if(check && check.checked){
+        if (check && check.checked) {
 
             cart.push({
                 id: selectedProduct.id,
@@ -90,16 +84,11 @@ function confirmAddCart(){
                 category: selectedProduct.category,
                 folder: selectedProduct.folder,
                 capacity: label,
-                quantity: Number(qty.value)
+                quantity: Number(input.value)
             });
         }
     });
 
     saveCart();
-
-    renderCart();        // GIỎ CHÍNH
-    renderHeaderCart();  // HEADER
-    updateCartUI();      // ICON
-
-    closeAddCart();
+    alert("Đã thêm vào giỏ");
 }

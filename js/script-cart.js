@@ -1,4 +1,3 @@
-let selectedProduct = null;
 /* =========================
    CART FUNCTIONS
 ========================= */
@@ -39,17 +38,14 @@ function addToCart(id, capacity, qty = 1) {
 function renderCart() {
 
     const body = document.getElementById("cartBody");
+
     if (!body) return;
 
-    const firstItem = cart[0];
-    const imgEl = document.getElementById("cartMainImg");
-
-    if (imgEl && firstItem) {
-        imgEl.src = `images/${firstItem.category}/${firstItem.folder}/main.jpg`;
-    }
-
     if (cart.length === 0) {
-        body.innerHTML = "<p>Giỏ hàng trống</p>";
+
+        body.innerHTML =
+        "<p>Giỏ hàng trống</p>";
+
         return;
     }
 
@@ -58,23 +54,52 @@ function renderCart() {
     cart.forEach((item,index) => {
 
         html += `
+
         <div class="cart-row">
 
+            <!-- LEFT -->
+
             <div class="cart-left">
-                <input type="checkbox" class="cart-buy-check">
+
+                <input
+                type="checkbox"
+                class="cart-buy-check">
+
             </div>
+
+            <!-- MIDDLE -->
 
             <div class="cart-middle">
-                <div class="level-text">${item.capacity || ""}</div>
+
+                <div class="level-text">
+                    ${item.capacity || ""}
+                </div>
+
             </div>
+
+            <!-- RIGHT -->
 
             <div class="cart-right">
-                <button onclick="updateCartQty(${index},-1)">-</button>
-                <input value="${item.quantity}" readonly>
-                <button onclick="updateCartQty(${index},1)">+</button>
+
+                <button
+                onclick="updateCartQty(${index},-1)">
+                -
+                </button>
+
+                <input
+                value="${item.quantity}"
+                readonly>
+
+                <button
+                onclick="updateCartQty(${index},1)">
+                +
+                </button>
+
             </div>
 
-        </div>`;
+        </div>
+
+        `;
     });
 
     body.innerHTML = html;
@@ -141,106 +166,43 @@ function closeBuyPopup(){
 
 function confirmAddCart(){
 
-    const rows = document.querySelectorAll("#cartSpecList .cart-row");
+    const rows =
+        document.querySelectorAll("#cartSpecList .cart-row");
 
     rows.forEach(row => {
 
-        const check = row.querySelector(".cart-check");
+        const check =
+            row.querySelector(".cart-check");
 
         if(!check || !check.checked) return;
 
-        const qtyInput = row.querySelector("input[type='number']");
-        const label = row.dataset.value || "";
+        const qtyInput =
+            row.querySelector("input[type='number']");
+
+        const label =
+            row.dataset.value || "";
 
         cart.push({
+
             id: selectedProduct.id,
+
             name: selectedProduct.name,
+
             category: selectedProduct.category,
+
             folder: selectedProduct.folder,
+
             capacity: label,
+
             quantity: Number(qtyInput.value)
+
         });
 
     });
 
     saveCart();
 
-    renderCart();        // 
-    renderHeaderCart();  // 
-    updateCartUI();      // 
-
     closeAddCart();
 
     alert("Đã thêm vào giỏ");
-}
-function renderHeaderCart(){
-
-    const box = document.getElementById("headerCartBox");
-    if(!box) return;
-
-    let html = "";
-
-    cart.forEach((item,index) => {
-
-        html += `
-        <div class="header-cart-row">
-
-            <img src="images/${item.category}/${item.folder}/main.jpg">
-
-            <div class="info">
-                <b>${item.name}</b><br>
-                <small>${item.capacity}</small>
-            </div>
-
-            <div class="qty">
-
-                <button onclick="updateCartQty(${index},-1)">-</button>
-                <span>${item.quantity}</span>
-                <button onclick="updateCartQty(${index},1)">+</button>
-
-            </div>
-
-            <button onclick="removeCartItem(${index})">X</button>
-
-        </div>`;
-    });
-
-    html += `
-    <button class="buy-now-btn" onclick="openBuyPopup()">
-        MUA NGAY
-    </button>`;
-
-    box.innerHTML = html;
-}
-function updateCartUI(){
-
-    const el = document.getElementById("cartCount");
-    if(!el) return;
-
-    let total = 0;
-    cart.forEach(i => total += i.quantity);
-
-    el.innerText = total;
-}
-function removeCartItem(index){
-
-    if(!cart[index]) return;
-
-    cart.splice(index, 1);
-
-    saveCart();
-
-    renderCart();        // cập nhật giỏ chính
-    renderHeaderCart();  // cập nhật giỏ header
-    updateCartUI();      // cập nhật số lượng icon
-}
-function openCart(){
-
-    const cartModal = document.getElementById("cartModal");
-
-    if(cartModal){
-        cartModal.classList.add("active");
-    } else {
-        console.log("Không tìm thấy cartModal");
-    }
 }
