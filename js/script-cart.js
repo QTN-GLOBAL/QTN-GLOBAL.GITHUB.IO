@@ -38,6 +38,13 @@ function addToCart(id, capacity, qty = 1) {
 function renderCart() {
 
     const body = document.getElementById("cartBody");
+    const firstItem = cart[0];
+
+const imgEl = document.getElementById("cartMainImg");
+
+if (imgEl && firstItem) {
+    imgEl.src = `images/${firstItem.category}/${firstItem.folder}/main.jpg`;
+}
 
     if (!body) return;
 
