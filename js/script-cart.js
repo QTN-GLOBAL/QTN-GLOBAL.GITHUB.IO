@@ -213,3 +213,64 @@ function confirmAddCart(){
 
     alert("Đã thêm vào giỏ");
 }
+function renderHeaderCart(){
+
+    const box = document.getElementById("headerCartBox");
+    if(!box) return;
+
+    let html = "";
+
+    cart.forEach((item,index) => {
+
+        html += `
+        <div class="header-cart-row">
+
+            <img src="images/${item.category}/${item.folder}/main.jpg">
+
+            <div class="info">
+                <b>${item.name}</b><br>
+                <small>${item.capacity}</small>
+            </div>
+
+            <div class="qty">
+
+                <button onclick="updateCartQty(${index},-1)">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="updateCartQty(${index},1)">+</button>
+
+            </div>
+
+            <button onclick="removeCartItem(${index})">X</button>
+
+        </div>`;
+    });
+
+    html += `
+    <button class="buy-now-btn" onclick="openBuyPopup()">
+        MUA NGAY
+    </button>`;
+
+    box.innerHTML = html;
+}
+function updateCartUI(){
+
+    const el = document.getElementById("cartCount");
+    if(!el) return;
+
+    let total = 0;
+    cart.forEach(i => total += i.quantity);
+
+    el.innerText = total;
+}
+function removeCartItem(index){
+
+    if(!cart[index]) return;
+
+    cart.splice(index, 1);
+
+    saveCart();
+
+    renderCart();        // cập nhật giỏ chính
+    renderHeaderCart();  // cập nhật giỏ header
+    updateCartUI();      // cập nhật số lượng icon
+}

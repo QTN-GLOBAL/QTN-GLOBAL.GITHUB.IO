@@ -71,17 +71,17 @@ if (imgEl && selectedProduct) {
     document.getElementById("cartSpecList").innerHTML = html;
 }
 
-function confirmAddCart() {
+function confirmAddCart(){
 
     const rows = document.querySelectorAll(".cart-row");
 
     rows.forEach(row => {
 
         const check = row.querySelector(".cart-check");
-        const input = row.querySelector("input[type='number']");
+        const qty = row.querySelector("input[type='number']");
         const label = row.dataset.value;
 
-        if (check && check.checked) {
+        if(check && check.checked){
 
             cart.push({
                 id: selectedProduct.id,
@@ -89,11 +89,14 @@ function confirmAddCart() {
                 category: selectedProduct.category,
                 folder: selectedProduct.folder,
                 capacity: label,
-                quantity: Number(input.value)
+                quantity: Number(qty.value)
             });
         }
     });
 
     saveCart();
-    alert("Đã thêm vào giỏ");
+    closeAddCart();
+    renderCart();
+    renderHeaderCart(); // 
+    updateCartUI();
 }
