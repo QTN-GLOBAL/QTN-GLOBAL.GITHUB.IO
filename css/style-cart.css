@@ -251,3 +251,7 @@
     text-align:center !important;
     display:block;
 }
+.popup-box h2{
+    text-align:center !important;
+    width:100%;
+}
