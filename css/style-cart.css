@@ -425,3 +425,16 @@
         height:30px;
     }
 }
+.cart-middle{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    text-align:center !important;
+    width:100%;
+}
+
+.level-text{
+    width:100%;
+    text-align:center;
+    display:block;
+}
