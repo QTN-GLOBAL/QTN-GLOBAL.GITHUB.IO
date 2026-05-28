@@ -1,0 +1,94 @@
+/* =========================
+   DETAIL PAGE
+========================= */
+
+function openAddCartPopup() {
+
+    if (!window.currentProduct) return;
+
+    selectedProduct = window.currentProduct;
+
+    const popup = document.getElementById("addCartPopup");
+    if (popup) popup.style.display = "flex";
+
+    document.getElementById("popupCartName").innerText =
+        selectedProduct.name;
+
+    let html = "";
+
+    const temp = document.createElement("div");
+    temp.innerHTML = selectedProduct.specs;
+
+    const rows = temp.querySelectorAll("tr");
+
+    rows.forEach(row => {
+
+        const cols = row.querySelectorAll("td");
+
+        if (cols.length >= 2) {
+
+            const label = cols[0].innerText + " - " + cols[1].innerText;
+
+            html += `
+            <div class="cart-row" data-value="${label}">
+                <div class="cart-left">
+                    <input type="checkbox" class="cart-check">
+                </div>
+
+                <div class="cart-center">${label}</div>
+
+                <div class="cart-right">
+                    <button onclick="changeCartQty(this,-1)">-</button>
+                    <input type="number" value="1">
+                    <button onclick="changeCartQty(this,1)">+</button>
+                </div>
+            </div>`;
+        }
+    });
+
+    if (html === "") {
+        html = `
+        <div class="cart-row" data-value="">
+            <div class="cart-left">
+                <input type="checkbox" class="cart-check" checked>
+            </div>
+
+            <div class="cart-center">${selectedProduct.name}</div>
+
+            <div class="cart-right">
+                <button onclick="changeCartQty(this,-1)">-</button>
+                <input type="number" value="1">
+                <button onclick="changeCartQty(this,1)">+</button>
+            </div>
+        </div>`;
+    }
+
+    document.getElementById("cartSpecList").innerHTML = html;
+}
+
+function confirmAddCart() {
+
+    const rows = document.querySelectorAll(".cart-row");
+
+    rows.forEach(row => {
+
+        const check = row.querySelector(".cart-check");
+        const input = row.querySelector("input[type='number']");
+        const label = row.dataset.value;
+
+        if (check && check.checked) {
+
+            cart.push({
+                id: selectedProduct.id,
+                name: selectedProduct.name,
+                category: selectedProduct.category,
+                folder: selectedProduct.folder,
+                capacity: label,
+                quantity: Number(input.value)
+            });
+        }
+    });
+
+    saveCart();
+    alert("Đã thêm vào giỏ");
+}
