@@ -137,3 +137,72 @@ function updateCartQty(index,value){
 
     saveCart();
 }
+/* =========================
+   CLOSE POPUP
+========================= */
+
+function closeAddCart(){
+
+    const popup =
+        document.getElementById("addCartPopup");
+
+    if(popup){
+        popup.style.display = "none";
+    }
+}
+
+function closeBuyPopup(){
+
+    const popup =
+        document.getElementById("buyPopup");
+
+    if(popup){
+        popup.style.display = "none";
+    }
+}
+/* =========================
+   CONFIRM ADD CART
+========================= */
+
+function confirmAddCart(){
+
+    const rows =
+        document.querySelectorAll("#cartSpecList .cart-row");
+
+    rows.forEach(row => {
+
+        const check =
+            row.querySelector(".cart-check");
+
+        if(!check || !check.checked) return;
+
+        const qtyInput =
+            row.querySelector("input[type='number']");
+
+        const label =
+            row.dataset.value || "";
+
+        cart.push({
+
+            id: selectedProduct.id,
+
+            name: selectedProduct.name,
+
+            category: selectedProduct.category,
+
+            folder: selectedProduct.folder,
+
+            capacity: label,
+
+            quantity: Number(qtyInput.value)
+
+        });
+
+    });
+
+    saveCart();
+
+    closeAddCart();
+
+    alert("Đã thêm vào giỏ");
+}
