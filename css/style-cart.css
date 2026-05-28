@@ -135,6 +135,10 @@
 
 #popupCartImg,
 .buy-cart-img{
+     
+    display:block;
+
+    margin:0 auto;
 
     width:90px;
 
@@ -152,6 +156,8 @@
 }
 
 #popupCartName{
+
+    text-align:center;
 
     margin-top:15px;
 
@@ -234,9 +240,13 @@
 
     display:flex;
 
-    flex-direction:column;
+    align-items:center;
 
-    gap:4px;
+    justify-content:center;
+
+    text-align:center;
+
+    min-width:0;
 }
 
 /* =========================
