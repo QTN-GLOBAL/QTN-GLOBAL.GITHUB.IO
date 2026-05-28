@@ -438,3 +438,18 @@
     text-align:center;
     display:block;
 }
+/* ===== FIX CART MIDDLE CENTER ===== */
+
+.cart-row .cart-middle{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    text-align:center !important;
+    width:100% !important;
+}
+
+.cart-middle .level-text{
+    width:100%;
+    text-align:center;
+    display:block;
+}
