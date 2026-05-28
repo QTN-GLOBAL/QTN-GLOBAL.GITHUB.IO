@@ -274,3 +274,13 @@ function removeCartItem(index){
     renderHeaderCart();  // cập nhật giỏ header
     updateCartUI();      // cập nhật số lượng icon
 }
+function openCart(){
+
+    const cartModal = document.getElementById("cartModal");
+
+    if(cartModal){
+        cartModal.classList.add("active");
+    } else {
+        console.log("Không tìm thấy cartModal");
+    }
+}
