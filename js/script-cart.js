@@ -1,4 +1,4 @@
-
+window.selectedProduct = window.selectedProduct || null;
 /* =========================
    CART FUNCTIONS
 ========================= */
@@ -139,7 +139,6 @@ function closeBuyPopup(){
 /* =========================
    CONFIRM ADD CART
 ========================= */
-
 function confirmAddCart(){
 
     const rows = document.querySelectorAll("#cartSpecList .cart-row");
@@ -147,17 +146,16 @@ function confirmAddCart(){
     rows.forEach(row => {
 
         const check = row.querySelector(".cart-check");
-
         if(!check || !check.checked) return;
 
         const qtyInput = row.querySelector("input[type='number']");
         const label = row.dataset.value || "";
 
         cart.push({
-            id: selectedProduct.id,
-            name: selectedProduct.name,
-            category: selectedProduct.category,
-            folder: selectedProduct.folder,
+            id: window.selectedProduct.id,
+            name: window.selectedProduct.name,
+            category: window.selectedProduct.category,
+            folder: window.selectedProduct.folder,
             capacity: label,
             quantity: Number(qtyInput.value)
         });
@@ -166,9 +164,9 @@ function confirmAddCart(){
 
     saveCart();
 
-    renderCart();        // 
-    renderHeaderCart();  // 
-    updateCartUI();      // 
+    renderCart();
+    renderHeaderCart();
+    updateCartUI();
 
     closeAddCart();
 
@@ -245,4 +243,6 @@ function openCart(){
     }
 
     modal.classList.add("active");
+
+    renderCart(); // 🔥 thêm dòng này để đảm bảo luôn có dữ liệu
 }

@@ -1,4 +1,4 @@
-let selectedProduct = null;
+window.selectedProduct = null;
 /* =========================
    DETAIL PAGE
 ========================= */
@@ -7,29 +7,23 @@ function openAddCartPopup() {
 
     if (!window.currentProduct) return;
 
-    selectedProduct = window.currentProduct;
-window.selectedProduct = selectedProduct;
+    window.selectedProduct = window.currentProduct;
 
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.style.display = "flex";
 
     document.getElementById("popupCartName").innerText =
-        selectedProduct.name;
+        window.selectedProduct.name;
 
-    setTimeout(() => {
-
-        const imgEl = document.getElementById("popupCartImg");
-
-        if (imgEl && selectedProduct) {
-            imgEl.src = `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
-        }
-
-    }, 0);
+    const imgEl = document.getElementById("popupCartImg");
+    if (imgEl) {
+        imgEl.src = `images/${window.selectedProduct.category}/${window.selectedProduct.folder}/main.jpg`;
+    }
 
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = selectedProduct.specs;
+    temp.innerHTML = window.selectedProduct.specs;
 
     const rows = temp.querySelectorAll("tr");
 
@@ -65,7 +59,7 @@ window.selectedProduct = selectedProduct;
                 <input type="checkbox" class="cart-check" checked>
             </div>
 
-            <div class="cart-middle">${selectedProduct.name}</div>
+            <div class="cart-middle">${window.selectedProduct.name}</div>
 
             <div class="cart-right">
                 <button onclick="changeCartQty(this,-1)">-</button>
