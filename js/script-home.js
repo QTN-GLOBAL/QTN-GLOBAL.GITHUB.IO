@@ -81,3 +81,26 @@ function initExcellSlider() {
     showSlide();
     setInterval(showSlide, 3000);
 }
+/* =========================
+   GO HOME FILTER
+========================= */
+
+function goHomeAndCategory(category){
+
+    sessionStorage.setItem(
+        "filterCategory",
+        category
+    );
+
+    window.location.href = "index.html";
+}
+
+function goHomeAndBrand(brand){
+
+    sessionStorage.setItem(
+        "filterBrand",
+        brand
+    );
+
+    window.location.href = "index.html";
+}

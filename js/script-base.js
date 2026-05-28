@@ -47,3 +47,25 @@ function saveCart() {
         renderCart();
     }
 }
+function goHomeAndCategory(category){
+
+    sessionStorage.setItem(
+        "filterCategory",
+        category
+    );
+
+    window.location.href = "index.html";
+}
+
+function goHomeAndBrand(brand){
+
+    sessionStorage.setItem(
+        "filterBrand",
+        brand
+    );
+
+    window.location.href = "index.html";
+}
+
+window.goHomeAndCategory = goHomeAndCategory;
+window.goHomeAndBrand = goHomeAndBrand;
