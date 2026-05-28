@@ -13,6 +13,11 @@ function openAddCartPopup() {
 
     document.getElementById("popupCartName").innerText =
         selectedProduct.name;
+    const imgEl = document.getElementById("popupCartImg");
+
+if (imgEl && selectedProduct) {
+    imgEl.src = `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
+}
 
     let html = "";
 
