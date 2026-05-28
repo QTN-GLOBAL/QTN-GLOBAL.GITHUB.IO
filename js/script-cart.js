@@ -1,3 +1,4 @@
+let selectedProduct = null;
 /* =========================
    CART FUNCTIONS
 ========================= */
@@ -38,21 +39,17 @@ function addToCart(id, capacity, qty = 1) {
 function renderCart() {
 
     const body = document.getElementById("cartBody");
-    const firstItem = cart[0];
-
-const imgEl = document.getElementById("cartMainImg");
-
-if (imgEl && firstItem) {
-    imgEl.src = `images/${firstItem.category}/${firstItem.folder}/main.jpg`;
-}
-
     if (!body) return;
 
+    const firstItem = cart[0];
+    const imgEl = document.getElementById("cartMainImg");
+
+    if (imgEl && firstItem) {
+        imgEl.src = `images/${firstItem.category}/${firstItem.folder}/main.jpg`;
+    }
+
     if (cart.length === 0) {
-
-        body.innerHTML =
-        "<p>Giỏ hàng trống</p>";
-
+        body.innerHTML = "<p>Giỏ hàng trống</p>";
         return;
     }
 
@@ -61,52 +58,23 @@ if (imgEl && firstItem) {
     cart.forEach((item,index) => {
 
         html += `
-
         <div class="cart-row">
 
-            <!-- LEFT -->
-
             <div class="cart-left">
-
-                <input
-                type="checkbox"
-                class="cart-buy-check">
-
+                <input type="checkbox" class="cart-buy-check">
             </div>
-
-            <!-- MIDDLE -->
 
             <div class="cart-middle">
-
-                <div class="level-text">
-                    ${item.capacity || ""}
-                </div>
-
+                <div class="level-text">${item.capacity || ""}</div>
             </div>
-
-            <!-- RIGHT -->
 
             <div class="cart-right">
-
-                <button
-                onclick="updateCartQty(${index},-1)">
-                -
-                </button>
-
-                <input
-                value="${item.quantity}"
-                readonly>
-
-                <button
-                onclick="updateCartQty(${index},1)">
-                +
-                </button>
-
+                <button onclick="updateCartQty(${index},-1)">-</button>
+                <input value="${item.quantity}" readonly>
+                <button onclick="updateCartQty(${index},1)">+</button>
             </div>
 
-        </div>
-
-        `;
+        </div>`;
     });
 
     body.innerHTML = html;
@@ -173,41 +141,33 @@ function closeBuyPopup(){
 
 function confirmAddCart(){
 
-    const rows =
-        document.querySelectorAll("#cartSpecList .cart-row");
+    const rows = document.querySelectorAll("#cartSpecList .cart-row");
 
     rows.forEach(row => {
 
-        const check =
-            row.querySelector(".cart-check");
+        const check = row.querySelector(".cart-check");
 
         if(!check || !check.checked) return;
 
-        const qtyInput =
-            row.querySelector("input[type='number']");
-
-        const label =
-            row.dataset.value || "";
+        const qtyInput = row.querySelector("input[type='number']");
+        const label = row.dataset.value || "";
 
         cart.push({
-
             id: selectedProduct.id,
-
             name: selectedProduct.name,
-
             category: selectedProduct.category,
-
             folder: selectedProduct.folder,
-
             capacity: label,
-
             quantity: Number(qtyInput.value)
-
         });
 
     });
 
     saveCart();
+
+    renderCart();        // 
+    renderHeaderCart();  // 
+    updateCartUI();      // 
 
     closeAddCart();
 

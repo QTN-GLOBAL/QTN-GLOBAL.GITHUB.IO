@@ -1,3 +1,4 @@
+let selectedProduct = null;
 /* =========================
    DETAIL PAGE
 ========================= */
@@ -79,7 +80,7 @@ function confirmAddCart(){
 
         const check = row.querySelector(".cart-check");
         const qty = row.querySelector("input[type='number']");
-        const label = row.dataset.value;
+        const label = row.getAttribute("data-value") || "";
 
         if(check && check.checked){
 
@@ -95,8 +96,10 @@ function confirmAddCart(){
     });
 
     saveCart();
+
+    renderCart();        // GIỎ CHÍNH
+    renderHeaderCart();  // HEADER
+    updateCartUI();      // ICON
+
     closeAddCart();
-    renderCart();
-    renderHeaderCart(); // 
-    updateCartUI();
 }
