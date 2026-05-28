@@ -34,20 +34,19 @@
 ========================= */
 
 .detail-page{
-
     display:grid;
 
     grid-template-columns:
-    230px
+    220px
     420px
     1fr
-    230px;
+    220px;
 
     gap:20px;
 
-    padding:20px;
-
     align-items:start;
+
+    padding:20px;
 }
 
 /* =========================
