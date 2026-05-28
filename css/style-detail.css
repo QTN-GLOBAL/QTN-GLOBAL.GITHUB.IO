@@ -1,34 +1,4 @@
-.detail-container{
-    display:flex;
-    gap:20px;
-    padding:20px;
-}
 
-.detail-left{
-    width:40%;
-}
-
-.detail-right{
-    width:60%;
-    background:#fff;
-    padding:15px;
-    border-radius:8px;
-}
-
-#slider-img{
-    width:100%;
-    height:300px;
-    object-fit:contain;
-    background:#fff;
-}
-
-.btn-buy{
-    background:red;
-    color:#fff;
-    padding:10px 15px;
-    border:none;
-    margin-top:10px;
-}
 /* =========================
    DETAIL PAGE
 ========================= */
@@ -39,7 +9,7 @@
     grid-template-columns:
     220px
     420px
-    1fr
+    minmax(0,1fr)
     220px;
 
     gap:20px;
@@ -198,6 +168,8 @@
 ========================= */
 
 .detail-right{
+
+    min-width:0;
 
     background:#fff;
 
