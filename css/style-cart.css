@@ -18,6 +18,7 @@
 
 
 
+
 .cart-left{
     width:30px;
 }
@@ -452,4 +453,9 @@
     width:100%;
     text-align:center;
     display:block;
+}
+.cart-row{
+    display:grid !important;
+    grid-template-columns: 40px 1fr 120px !important;
+    align-items:center !important;
 }
