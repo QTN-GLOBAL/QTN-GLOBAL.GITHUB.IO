@@ -452,11 +452,8 @@
 
         grid-template-columns:
         220px
-        1fr;
-    }
-
-    .brand-sidebar{
-        display:none;
+        1fr
+        220px;
     }
 }
 
@@ -466,9 +463,22 @@
         grid-template-columns:1fr;
     }
 
-    .sidebar,
-    .brand-sidebar{
+   .sidebar,
+.brand-sidebar{
 
-        position:static;
-    }
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    box-shadow:
+    0 2px 10px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:140px;
+
+    min-width:220px;
+}
 }

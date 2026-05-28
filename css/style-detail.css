@@ -258,11 +258,8 @@
         grid-template-columns:
         220px
         360px
-        1fr;
-    }
-
-    .brand-sidebar{
-        display:none;
+        1fr
+        220px;
     }
 }
 
