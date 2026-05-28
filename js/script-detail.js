@@ -1,4 +1,4 @@
-
+let selectedProduct = null;
 /* =========================
    DETAIL PAGE
 ========================= */
@@ -7,8 +7,8 @@ function openAddCartPopup() {
 
     if (!window.currentProduct) return;
 
-    const selectedProduct = window.currentProduct;
-    window.selectedProduct = selectedProduct;
+    selectedProduct = window.currentProduct;
+window.selectedProduct = selectedProduct;
 
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.style.display = "flex";
@@ -79,7 +79,7 @@ function openAddCartPopup() {
 }
 function confirmAddCart(){
 
-    const rows = document.querySelectorAll(".cart-row");
+    const rows = document.querySelectorAll("#cartSpecList .cart-row");
 
     rows.forEach(row => {
 
@@ -102,9 +102,9 @@ function confirmAddCart(){
 
     saveCart();
 
-    renderCart();        // GIỎ CHÍNH
-    renderHeaderCart();  // HEADER
-    updateCartUI();      // ICON
+    renderCart();        // 🔥 bắt buộc
+    renderHeaderCart();  // 🔥 bắt buộc
+    updateCartUI();      // 🔥 bắt buộc
 
     closeAddCart();
 }
