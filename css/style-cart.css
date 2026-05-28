@@ -16,13 +16,7 @@
     transform:translateX(0);
 }
 
-.cart-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px;
-    border-bottom:1px solid #eee;
-}
+
 
 .cart-left{
     width:30px;
@@ -174,20 +168,11 @@
 
 .cart-row,
 .buy-row{
-
     display:grid;
-
-    grid-template-columns:
-    50px
-    minmax(0,1fr)
-    140px;
-
+    grid-template-columns: 50px 1fr 140px;
     align-items:center;
-
     gap:15px;
-
     padding:14px 0;
-
     border-bottom:1px solid #eee;
 }
 
@@ -226,33 +211,19 @@
 .level-text,
 .step-text,
 .buy-label{
-
     width:100%;
-
     text-align:center;
-
-    font-size:15px;
-
-    line-height:1.5;
-
-    word-break:break-word;
+    display:block;
 }
 
 /* CENTER TEXT */
 
 .cart-middle{
-
-    width:100%;
-
     display:flex;
-
-    align-items:center;
-
     justify-content:center;
-
+    align-items:center;
     text-align:center;
-
-    padding:0 10px;
+    width:100%;
 }
 
 /* =========================
