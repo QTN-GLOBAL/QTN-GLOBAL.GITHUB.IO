@@ -1,3 +1,4 @@
+
 /* =========================
    DETAIL PAGE
 ========================= */
@@ -6,13 +7,24 @@ function openAddCartPopup() {
 
     if (!window.currentProduct) return;
 
-    selectedProduct = window.currentProduct;
+    const selectedProduct = window.currentProduct;
+    window.selectedProduct = selectedProduct;
 
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.style.display = "flex";
 
     document.getElementById("popupCartName").innerText =
         selectedProduct.name;
+
+    setTimeout(() => {
+
+        const imgEl = document.getElementById("popupCartImg");
+
+        if (imgEl && selectedProduct) {
+            imgEl.src = `images/${selectedProduct.category}/${selectedProduct.folder}/main.jpg`;
+        }
+
+    }, 0);
 
     let html = "";
 
@@ -35,7 +47,7 @@ function openAddCartPopup() {
                     <input type="checkbox" class="cart-check">
                 </div>
 
-                <div class="cart-center">${label}</div>
+                <div class="cart-middle">${label}</div>
 
                 <div class="cart-right">
                     <button onclick="changeCartQty(this,-1)">-</button>
@@ -53,7 +65,7 @@ function openAddCartPopup() {
                 <input type="checkbox" class="cart-check" checked>
             </div>
 
-            <div class="cart-center">${selectedProduct.name}</div>
+            <div class="cart-middle">${selectedProduct.name}</div>
 
             <div class="cart-right">
                 <button onclick="changeCartQty(this,-1)">-</button>
@@ -65,18 +77,17 @@ function openAddCartPopup() {
 
     document.getElementById("cartSpecList").innerHTML = html;
 }
-
-function confirmAddCart() {
+function confirmAddCart(){
 
     const rows = document.querySelectorAll(".cart-row");
 
     rows.forEach(row => {
 
         const check = row.querySelector(".cart-check");
-        const input = row.querySelector("input[type='number']");
-        const label = row.dataset.value;
+        const qty = row.querySelector("input[type='number']");
+        const label = row.getAttribute("data-value") || "";
 
-        if (check && check.checked) {
+        if(check && check.checked){
 
             cart.push({
                 id: selectedProduct.id,
@@ -84,11 +95,16 @@ function confirmAddCart() {
                 category: selectedProduct.category,
                 folder: selectedProduct.folder,
                 capacity: label,
-                quantity: Number(input.value)
+                quantity: Number(qty.value)
             });
         }
     });
 
     saveCart();
-    alert("Đã thêm vào giỏ");
+
+    renderCart();        // GIỎ CHÍNH
+    renderHeaderCart();  // HEADER
+    updateCartUI();      // ICON
+
+    closeAddCart();
 }
