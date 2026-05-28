@@ -31,56 +31,109 @@ function addToCart(id, capacity, qty = 1) {
    CART RENDER
 ========================= */
 
+/* =========================
+   CART RENDER
+========================= */
+
 function renderCart() {
 
     const body = document.getElementById("cartBody");
+
     if (!body) return;
 
     if (cart.length === 0) {
-        body.innerHTML = "<p>Giỏ hàng trống</p>";
+
+        body.innerHTML =
+        "<p>Giỏ hàng trống</p>";
+
         return;
     }
 
     let html = "";
 
-    cart.forEach(item => {
+    cart.forEach((item,index) => {
 
         html += `
+
         <div class="cart-row">
+
+            <!-- LEFT -->
+
             <div class="cart-left">
-                <input type="checkbox" class="cart-buy-check">
+
+                <input
+                type="checkbox"
+                class="cart-buy-check">
+
             </div>
+
+            <!-- MIDDLE -->
 
             <div class="cart-middle">
-                <img src="images/${item.category}/${item.folder}/main.jpg">
-                <div>
-                    <div>${item.name}</div>
-                    <div>${item.capacity || ""}</div>
+
+                <div class="level-text">
+                    ${item.capacity || ""}
                 </div>
+
             </div>
 
+            <!-- RIGHT -->
+
             <div class="cart-right">
-                <button onclick="changeCartQty(this,-1)">-</button>
-                <input value="${item.quantity}" readonly>
-                <button onclick="changeCartQty(this,1)">+</button>
+
+                <button
+                onclick="updateCartQty(${index},-1)">
+                -
+                </button>
+
+                <input
+                value="${item.quantity}"
+                readonly>
+
+                <button
+                onclick="updateCartQty(${index},1)">
+                +
+                </button>
+
             </div>
-        </div>`;
+
+        </div>
+
+        `;
     });
 
     body.innerHTML = html;
 }
-
 /* =========================
-   QTY
+   CHANGE QTY POPUP
 ========================= */
 
 function changeCartQty(btn, value) {
 
-    const input = btn.parentElement.querySelector("input");
+    const input =
+        btn.parentElement.querySelector("input");
+
     let qty = Number(input.value);
 
     qty += value;
+
     if (qty < 1) qty = 1;
 
     input.value = qty;
+}
+/* =========================
+   UPDATE CART QTY
+========================= */
+
+function updateCartQty(index,value){
+
+    if(!cart[index]) return;
+
+    cart[index].quantity += value;
+
+    if(cart[index].quantity < 1){
+        cart[index].quantity = 1;
+    }
+
+    saveCart();
 }
