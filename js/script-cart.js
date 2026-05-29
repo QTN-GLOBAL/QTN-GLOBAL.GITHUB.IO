@@ -381,3 +381,30 @@ function openBuyPopup(){
         "buyCapacityList"
     ).innerHTML = html;
 }
+function handleBuyNow() {
+    const selectedItems = cart.filter((item, index) => {
+        const cb = document.getElementById(`check-${index}`);
+        return cb && cb.checked;
+    });
+
+    if (selectedItems.length === 0) {
+        alert("Vui lòng chọn sản phẩm cần mua");
+        return;
+    }
+
+    renderBuyNowForm(selectedItems);
+}
+function renderBuyNowForm(items) {
+    const box = document.getElementById("buyProductList");
+
+    box.innerHTML = items.map(item => `
+        <div class="buy-item">
+            <h4>${item.name}</h4>
+            <p>Mức cân: ${item.level || ""}</p>
+            <p>Độ chia: ${item.division || ""}</p>
+            <p>Số lượng: ${item.quantity}</p>
+        </div>
+    `).join("");
+
+    document.getElementById("buyNowModal").style.display = "block";
+}
