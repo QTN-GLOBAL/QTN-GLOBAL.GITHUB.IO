@@ -403,3 +403,14 @@
     -webkit-appearance: none;
     margin: 0;
 }
+#buyProductImg{
+
+    width:40px !important;
+    height:40px !important;
+
+    object-fit:contain;
+
+    display:block;
+    margin:0 auto;
+
+}
