@@ -190,7 +190,7 @@ function confirmAddCart(){
         if(!check || !check.checked) return;
 
         const qtyInput =
-        row.querySelector("input[type='number']");
+row.querySelector(".cart-right input");
 
         const label =
         row.dataset.value || "";
