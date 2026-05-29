@@ -9,7 +9,7 @@ function saveCart(){
 }
 
 /* =========================
-   ADD TO CART
+   ADD TO CART (GIỮ NGUYÊN LOGIC CŨ)
 ========================= */
 
 function addToCart(id, capacity, qty = 1) {
@@ -30,8 +30,7 @@ function addToCart(id, capacity, qty = 1) {
             category: product.category,
             folder: product.folder,
             capacity: capacity,
-            quantity: qty,
-            checked: false
+            quantity: qty
         });
     }
 
@@ -40,20 +39,7 @@ function addToCart(id, capacity, qty = 1) {
 }
 
 /* =========================
-   TOGGLE CHECKBOX
-========================= */
-
-function toggleCartCheck(index, checked){
-
-    if(!cart[index]) return;
-
-    cart[index].checked = checked;
-
-    saveCart();
-}
-
-/* =========================
-   RENDER CART MODAL
+   RENDER CART
 ========================= */
 
 function renderCart(){
@@ -69,14 +55,10 @@ function renderCart(){
     body.innerHTML = cart.map((item,index)=>`
         <div class="cart-row">
 
-            <!-- CHECKBOX -->
             <div class="cart-left">
-                <input type="checkbox"
-                onclick="toggleCartCheck(${index}, this.checked)"
-                ${item.checked ? "checked" : ""}>
+                <input type="checkbox" class="cart-check" data-index="${index}">
             </div>
 
-            <!-- INFO -->
             <div class="cart-middle">
                 <img class="cart-product-img"
                 src="images/${item.category}/${item.folder}/main.jpg">
@@ -87,7 +69,6 @@ function renderCart(){
                 </div>
             </div>
 
-            <!-- QTY -->
             <div class="cart-right">
                 <button onclick="updateCartQty(${index},-1)">-</button>
                 <input value="${item.quantity}" readonly>
@@ -107,7 +88,7 @@ function renderCart(){
 }
 
 /* =========================
-   UPDATE QTY
+   QTY UPDATE
 ========================= */
 
 function updateCartQty(index,value){
@@ -125,6 +106,57 @@ function updateCartQty(index,value){
     renderCart();
     renderHeaderCart();
     updateCartUI();
+}
+
+/* =========================
+   BUY NOW (RESTORE VERSION)
+========================= */
+
+function handleBuyNow() {
+
+    const selectedItems = [];
+
+    document.querySelectorAll(".cart-check").forEach(cb => {
+
+        if(cb.checked){
+
+            const index = cb.getAttribute("data-index");
+
+            if(cart[index]){
+                selectedItems.push(cart[index]);
+            }
+
+        }
+
+    });
+
+    if(selectedItems.length === 0){
+        alert("Vui lòng chọn sản phẩm cần mua");
+        return;
+    }
+
+    renderBuyNowForm(selectedItems);
+}
+
+/* =========================
+   BUY FORM
+========================= */
+
+function renderBuyNowForm(items){
+
+    const box = document.getElementById("buyProductList");
+    if(!box) return;
+
+    box.innerHTML = items.map(item => `
+        <div class="buy-item">
+            <h4>${item.name}</h4>
+            <div>Mức cân: ${item.capacity}</div>
+            <div>Số lượng: ${item.quantity}</div>
+        </div>
+    `).join("");
+
+    const modal = document.getElementById("buyNowModal");
+    if(modal) modal.style.display = "block";
 }
 
 /* =========================
@@ -182,7 +214,7 @@ function removeCartItem(index){
 }
 
 /* =========================
-   CART COUNT UI
+   CART UI COUNT
 ========================= */
 
 function updateCartUI(){
@@ -191,81 +223,21 @@ function updateCartUI(){
     if(!el) return;
 
     let total = 0;
-
     cart.forEach(i => total += i.quantity);
 
     el.innerText = total;
 }
 
 /* =========================
-   OPEN / CLOSE CART
+   OPEN CART
 ========================= */
 
 function openCart(){
 
-    const modal = document.getElementById("cartModal");
-    const overlay = document.getElementById("cartOverlay");
-
-    if(modal) modal.classList.add("active");
-    if(overlay) overlay.classList.add("active");
-
+    document.getElementById("cartModal")?.classList.add("active");
     renderCart();
 }
 
 function closeCart(){
-
-    const modal = document.getElementById("cartModal");
-    const overlay = document.getElementById("cartOverlay");
-
-    if(modal) modal.classList.remove("active");
-    if(overlay) overlay.classList.remove("active");
-}
-
-/* =========================
-   BUY NOW
-========================= */
-
-function handleBuyNow() {
-
-    const selected = cart.filter(i => i.checked);
-
-    if(selected.length === 0){
-        alert("Vui lòng chọn sản phẩm cần mua");
-        return;
-    }
-
-    renderBuyNowForm(selected);
-}
-
-/* =========================
-   BUY FORM
-========================= */
-
-function renderBuyNowForm(items) {
-
-    const box = document.getElementById("buyProductList");
-
-    if(!box) return;
-
-    box.innerHTML = items.map(item => `
-        <div class="buy-item">
-            <h4>${item.name}</h4>
-            <div>Mức cân: ${item.capacity}</div>
-            <div>Số lượng: ${item.quantity}</div>
-        </div>
-    `).join("");
-
-    const modal = document.getElementById("buyNowModal");
-    if(modal) modal.style.display = "block";
-}
-
-/* =========================
-   CLOSE POPUPS
-========================= */
-
-function closeBuyPopup(){
-
-    const modal = document.getElementById("buyNowModal");
-
-    if(modal) modal.style.display = "none";
+    document.getElementById("cartModal")?.classList.remove("active");
 }
