@@ -70,3 +70,14 @@ function goHomeAndBrand(brand){
 
 window.goHomeAndCategory = goHomeAndCategory;
 window.goHomeAndBrand = goHomeAndBrand;
+function goHomeOpenCart(){
+
+    sessionStorage.setItem(
+        "openCart",
+        "1"
+    );
+
+    window.location.href = "index.html";
+}
+
+window.goHomeOpenCart = goHomeOpenCart;
