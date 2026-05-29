@@ -299,13 +299,11 @@ function handleBuyNow() {
 
     const selectedItems = [];
 
-    document.querySelectorAll(".cart-check").forEach(cb => {
+    document.querySelectorAll(".cart-row").forEach((row, index) => {
 
-        if (!cb.checked) return;
+        const cb = row.querySelector(".cart-check");
 
-        const index = cb.dataset.index;
-
-        if (cart[index]) {
+        if (cb && cb.checked && cart[index]) {
             selectedItems.push(cart[index]);
         }
     });
@@ -317,7 +315,6 @@ function handleBuyNow() {
 
     renderBuyNowForm(selectedItems);
 }
-
 /* =========================
    BUY FORM
 ========================= */
