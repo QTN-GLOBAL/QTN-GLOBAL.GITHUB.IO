@@ -195,6 +195,9 @@ function confirmAddCart(){
         const label =
         row.getAttribute("data-value") || "";
 
+        const qty =
+        parseInt(qtyInput.value) || 1;
+
         cart.push({
 
             id: window.selectedProduct.id,
@@ -207,7 +210,7 @@ function confirmAddCart(){
 
             capacity: label,
 
-            quantity: parseInt(qtyInput.value) || 1
+            quantity: qty
 
         });
 
@@ -216,7 +219,9 @@ function confirmAddCart(){
     });
 
     if(!added){
+
         alert("Vui lòng tick sản phẩm");
+
         return;
     }
 
@@ -231,7 +236,6 @@ function confirmAddCart(){
     closeAddCart();
 
     alert("Đã thêm vào giỏ");
-}
 }
 function renderHeaderCart(){
 
