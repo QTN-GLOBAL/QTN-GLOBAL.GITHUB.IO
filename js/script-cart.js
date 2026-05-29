@@ -188,12 +188,8 @@ function confirmAddCart(){
         row.querySelector(".cart-check");
 
         if(!check || !check.checked) return;
-
         const qtyInput =
-row.querySelector(".qty-input");
-        const label =
-        row.dataset.value || "";
-
+        row.querySelector("input[type='number']");
         cart.push({
 
             id: window.selectedProduct.id,
