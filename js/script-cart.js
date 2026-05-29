@@ -190,8 +190,7 @@ function confirmAddCart(){
         if(!check || !check.checked) return;
 
         const qtyInput =
-row.querySelector(".cart-right input");
-
+row.querySelector(".qty-input");
         const label =
         row.dataset.value || "";
 
@@ -207,7 +206,7 @@ row.querySelector(".cart-right input");
 
             capacity: label,
 
-            quantity: Number(qtyInput.value)
+            quantity: parseInt(qtyInput.value) || 1
 
         });
 

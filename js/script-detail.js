@@ -45,10 +45,11 @@ function openAddCartPopup() {
 
                 <div class="cart-right">
                     <button onclick="changeCartQty(this,-1)">-</button>
-                   <input
+                 <input
+class="qty-input"
 type="text"
 value="1"
-readonly
+readonly>
 style="
 width:48px;
 height:34px;
@@ -78,10 +79,11 @@ opacity:1;
 
             <div class="cart-right">
                 <button onclick="changeCartQty(this,-1)">-</button>
-                <input
+               <input
+class="qty-input"
 type="text"
 value="1"
-readonly
+readonly>
 style="
 width:48px;
 height:34px;
