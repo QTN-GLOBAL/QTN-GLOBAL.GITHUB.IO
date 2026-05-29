@@ -150,3 +150,82 @@ function openBuyPopup(){
 
     document.getElementById("buyCapacityList").innerHTML = html;
 }
+function getOrderText(){
+
+    let text = "";
+
+    text += "THÔNG TIN ĐẶT HÀNG\n\n";
+
+    text += "Khách hàng: " +
+    document.getElementById("customerName").value + "\n";
+
+    text += "SĐT: " +
+    document.getElementById("customerPhone").value + "\n";
+
+    text += "Công ty: " +
+    document.getElementById("customerCompany").value + "\n";
+
+    text += "MST: " +
+    document.getElementById("customerTax").value + "\n";
+
+    text += "Địa chỉ hóa đơn: " +
+    document.getElementById("customerInvoice").value + "\n";
+
+    text += "Địa chỉ giao hàng: " +
+    document.getElementById("customerAddress").value + "\n\n";
+
+    const rows =
+    document.querySelectorAll("#buyCapacityList .buy-row");
+
+    rows.forEach(row => {
+
+        const check =
+        row.querySelector("input[type='checkbox']");
+
+        if(!check.checked) return;
+
+        const label =
+        row.querySelector(".buy-middle").innerText;
+
+        const qty =
+        row.querySelector("input[type='number']").value;
+
+        text +=
+        "- " + label +
+        " | SL: " + qty + "\n";
+    });
+
+    return text;
+}
+
+function sendOrderZalo(){
+
+    const text = getOrderText();
+
+    navigator.clipboard.writeText(text);
+
+    closeBuyPopup();
+
+    window.open(
+        "https://zalo.me/0383598603",
+        "_blank"
+    );
+
+    alert("Đã copy đơn hàng");
+}
+
+function sendOrderMessenger(){
+
+    const text = getOrderText();
+
+    navigator.clipboard.writeText(text);
+
+    closeBuyPopup();
+
+    window.open(
+        "https://m.me/QTNSCALE",
+        "_blank"
+    );
+
+    alert("Đã copy đơn hàng");
+}
