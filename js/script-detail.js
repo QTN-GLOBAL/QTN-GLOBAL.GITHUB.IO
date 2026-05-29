@@ -100,4 +100,53 @@ function openBuyPopup(){
         name.innerText =
         window.currentProduct.name;
     }
+
+    let html = "";
+
+    const temp = document.createElement("div");
+
+    temp.innerHTML =
+    window.currentProduct.specs;
+
+    const rows =
+    temp.querySelectorAll("tr");
+
+    rows.forEach(row => {
+
+        const cols =
+        row.querySelectorAll("td");
+
+        if(cols.length >= 2){
+
+            const label =
+            cols[0].innerText +
+            " - " +
+            cols[1].innerText;
+
+            html += `
+            <div class="buy-row">
+
+                <div class="buy-left">
+                    <input type="checkbox">
+                </div>
+
+                <div class="buy-middle">
+                    ${label}
+                </div>
+
+                <div class="buy-qty">
+
+                    <button onclick="changeCartQty(this,-1)">-</button>
+
+                    <input type="number" value="1">
+
+                    <button onclick="changeCartQty(this,1)">+</button>
+
+                </div>
+
+            </div>`;
+        }
+    });
+
+    document.getElementById("buyCapacityList").innerHTML = html;
 }
