@@ -188,8 +188,13 @@ function confirmAddCart(){
         row.querySelector(".cart-check");
 
         if(!check || !check.checked) return;
+
         const qtyInput =
         row.querySelector("input[type='number']");
+
+        const label =
+        row.getAttribute("data-value") || "";
+
         cart.push({
 
             id: window.selectedProduct.id,
@@ -217,13 +222,16 @@ function confirmAddCart(){
 
     saveCart();
 
-renderCart();
+    renderCart();
 
-updateCartUI();
+    renderHeaderCart();
 
-closeAddCart();
+    updateCartUI();
 
-alert("Đã thêm vào giỏ");
+    closeAddCart();
+
+    alert("Đã thêm vào giỏ");
+}
 }
 function renderHeaderCart(){
 

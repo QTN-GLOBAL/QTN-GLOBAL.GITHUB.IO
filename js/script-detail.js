@@ -78,7 +78,8 @@ function confirmAddCart(){
     rows.forEach(row => {
 
         const check = row.querySelector(".cart-check");
-        const qty = row.querySelector("input");
+        const qty =
+        row.querySelector("input[type='number']");
         const label = row.getAttribute("data-value") || "";
 
         if(check && check.checked){
@@ -89,7 +90,7 @@ function confirmAddCart(){
                 category: window.selectedProduct.category,
                 folder: window.selectedProduct.folder,
                 capacity: label,
-                quantity: Number(qty.value)
+                quantity: parseInt(qty.value || 1)
             });
         }
     });
