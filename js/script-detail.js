@@ -45,7 +45,10 @@ function openAddCartPopup() {
 
                 <div class="cart-right">
                     <button onclick="changeCartQty(this,-1)">-</button>
-                    <input type="number" value="1">
+                    <input
+                type="text"
+                value="1"
+                readonly>
                     <button onclick="changeCartQty(this,1)">+</button>
                 </div>
             </div>`;
@@ -63,7 +66,10 @@ function openAddCartPopup() {
 
             <div class="cart-right">
                 <button onclick="changeCartQty(this,-1)">-</button>
-                <input type="number" value="1">
+                <input
+                type="text"
+                value="1"
+                readonly>
                 <button onclick="changeCartQty(this,1)">+</button>
             </div>
         </div>`;
@@ -78,7 +84,7 @@ function confirmAddCart(){
     rows.forEach(row => {
 
         const check = row.querySelector(".cart-check");
-        const qty = row.querySelector("input[type='number']");
+        const qty = row.querySelector("input");
         const label = row.getAttribute("data-value") || "";
 
         if(check && check.checked){
