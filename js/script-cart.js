@@ -382,9 +382,15 @@ function openBuyPopup(){
     ).innerHTML = html;
 }
 function handleBuyNow() {
-    const selectedItems = cart.filter((item, index) => {
-        const cb = document.getElementById(`check-${index}`);
-        return cb && cb.checked;
+
+    const selectedItems = [];
+
+    const checkboxes = document.querySelectorAll("#cartBody input[type='checkbox']");
+
+    checkboxes.forEach((cb, index) => {
+        if (cb.checked && cart[index]) {
+            selectedItems.push(cart[index]);
+        }
     });
 
     if (selectedItems.length === 0) {
@@ -395,14 +401,20 @@ function handleBuyNow() {
     renderBuyNowForm(selectedItems);
 }
 function renderBuyNowForm(items) {
+
     const box = document.getElementById("buyProductList");
+
+    if (!items || items.length === 0) {
+        alert("Không có sản phẩm để hiển thị");
+        return;
+    }
 
     box.innerHTML = items.map(item => `
         <div class="buy-item">
             <h4>${item.name}</h4>
-            <p>Mức cân: ${item.level || ""}</p>
-            <p>Độ chia: ${item.division || ""}</p>
-            <p>Số lượng: ${item.quantity}</p>
+            <div>Mức cân: ${item.level || ""}</div>
+            <div>Độ chia: ${item.division || ""}</div>
+            <div>Số lượng: ${item.quantity}</div>
         </div>
     `).join("");
 
