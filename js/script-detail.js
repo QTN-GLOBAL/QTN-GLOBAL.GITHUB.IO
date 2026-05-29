@@ -104,3 +104,32 @@ function confirmAddCart(){
 
     alert("Đã thêm vào giỏ");
 }
+function openBuyPopup(){
+
+    const popup =
+        document.getElementById("buyPopup");
+
+    if(!popup) return;
+
+    popup.style.display = "flex";
+
+    if(!window.currentProduct) return;
+
+    const img =
+        document.getElementById("buyProductImg");
+
+    if(img){
+
+        img.src =
+        `images/${window.currentProduct.category}/${window.currentProduct.folder}/main.jpg`;
+    }
+
+    const name =
+        document.getElementById("buyProductName");
+
+    if(name){
+
+        name.innerText =
+        window.currentProduct.name;
+    }
+}
