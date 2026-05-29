@@ -71,40 +71,7 @@ function openAddCartPopup() {
 
     document.getElementById("cartSpecList").innerHTML = html;
 }
-function confirmAddCart(){
 
-    const rows = document.querySelectorAll("#cartSpecList .cart-row");
-
-    rows.forEach(row => {
-
-        const check = row.querySelector(".cart-check");
-        const qty =
-        row.querySelector("input[type='number']");
-        const label = row.getAttribute("data-value") || "";
-
-        if(check && check.checked){
-
-            cart.push({
-                id: window.selectedProduct.id,
-                name: window.selectedProduct.name,
-                category: window.selectedProduct.category,
-                folder: window.selectedProduct.folder,
-                capacity: label,
-                quantity: parseInt(qty.value || 1)
-            });
-        }
-    });
-
-    saveCart();
-
-    renderCart();
-    renderHeaderCart();
-    updateCartUI();
-
-    closeAddCart();
-
-    alert("Đã thêm vào giỏ");
-}
 function openBuyPopup(){
 
     const popup =
