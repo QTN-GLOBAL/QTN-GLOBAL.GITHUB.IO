@@ -1,4 +1,4 @@
-window.selectedProduct = window.selectedProduct || null;
+
 /* =========================
    CART FUNCTIONS
 ========================= */
@@ -69,11 +69,19 @@ function renderCart(){
                 <small>${item.capacity}</small>
             </div>
 
-            <div class="cart-right">
-                <button onclick="updateCartQty(${index},-1)">-</button>
-                <input value="${item.quantity}" readonly>
-                <button onclick="updateCartQty(${index},1)">+</button>
-            </div>
+           <div class="cart-right">
+
+    <button onclick="updateCartQty(${index},-1)">-</button>
+
+    <input value="${item.quantity}" readonly>
+
+    <button onclick="updateCartQty(${index},1)">+</button>
+
+    <button onclick="removeCartItem(${index})">
+        ✕
+    </button>
+
+</div>
 
         </div>`;
     });
@@ -112,6 +120,10 @@ function updateCartQty(index,value){
     }
 
     saveCart();
+
+    renderCart();
+    renderHeaderCart();
+    updateCartUI();
 }
 /* =========================
    CLOSE POPUP

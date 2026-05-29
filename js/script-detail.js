@@ -1,4 +1,4 @@
-window.selectedProduct = null;
+
 /* =========================
    DETAIL PAGE
 ========================= */
@@ -84,10 +84,10 @@ function confirmAddCart(){
         if(check && check.checked){
 
             cart.push({
-                id: selectedProduct.id,
-                name: selectedProduct.name,
-                category: selectedProduct.category,
-                folder: selectedProduct.folder,
+                id: window.selectedProduct.id,
+                name: window.selectedProduct.name,
+                category: window.selectedProduct.category,
+                folder: window.selectedProduct.folder,
                 capacity: label,
                 quantity: Number(qty.value)
             });
@@ -96,9 +96,11 @@ function confirmAddCart(){
 
     saveCart();
 
-    renderCart();        // 🔥 bắt buộc
-    renderHeaderCart();  // 🔥 bắt buộc
-    updateCartUI();      // 🔥 bắt buộc
+    renderCart();
+    renderHeaderCart();
+    updateCartUI();
 
     closeAddCart();
+
+    alert("Đã thêm vào giỏ");
 }
