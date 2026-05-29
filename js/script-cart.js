@@ -222,13 +222,9 @@ function confirmAddCart(){
 
     saveCart();
 
-    renderCart();
+renderCart();
 
-    updateCartUI();
-
-   renderCart();
-
-openCart();
+updateCartUI();
 
 closeAddCart();
 
