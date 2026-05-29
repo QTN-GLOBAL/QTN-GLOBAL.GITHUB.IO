@@ -346,21 +346,21 @@ function openBuyPopup(){
 
         <div class="buy-row">
 
-            <div class="buy-left">
-                <input type="checkbox" checked>
-            </div>
-
             <div class="buy-middle">
 
                 <img
-                src="images/${item.category}/${item.folder}/main.jpg"
-                class="buy-cart-img">
+                id="buyProductImg"
+                src="images/${item.category}/${item.folder}/main.jpg">
 
                 <div class="buy-label">
 
-                    <b>${item.name}</b><br>
+                    <div>
+                        <b>${item.name}</b>
+                    </div>
 
-                    ${item.capacity}
+                    <div>
+                        ${item.capacity}
+                    </div>
 
                 </div>
 
@@ -368,14 +368,12 @@ function openBuyPopup(){
 
             <div class="buy-qty">
 
-                <input
-                type="number"
-                value="${item.quantity}"
-                readonly>
+                SL: ${item.quantity}
 
             </div>
 
         </div>
+
         `;
     });
 
