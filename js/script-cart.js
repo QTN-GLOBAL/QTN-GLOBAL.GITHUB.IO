@@ -299,7 +299,9 @@ function handleBuyNow() {
 
     const selectedItems = [];
 
-    document.querySelectorAll(".cart-row").forEach((row, index) => {
+    const rows = document.querySelectorAll("#cartBody .cart-row");
+
+    rows.forEach((row, index) => {
 
         const cb = row.querySelector(".cart-check");
 
