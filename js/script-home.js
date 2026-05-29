@@ -1,5 +1,5 @@
 /* =========================
-   HOME PAGE
+   HOME PAGE (RENDER LAYER)
 ========================= */
 
 function renderProducts(productList) {
@@ -15,9 +15,12 @@ function renderProducts(productList) {
         grid.innerHTML += `
         <div class="product-card">
             <img src="images/${product.category}/${product.folder}/main.jpg">
+
             <div class="product-info">
                 <h3>${product.name}</h3>
-                <a class="detail-btn" href="chitiet.html?id=${product.id}">
+
+                <a class="detail-btn"
+                   href="chitiet.html?id=${product.id}">
                     Chi tiết
                 </a>
             </div>
@@ -26,21 +29,23 @@ function renderProducts(productList) {
 }
 
 /* =========================
-   FILTER
+   FILTER (UI ONLY)
 ========================= */
 
 function filterProducts(category) {
+
     const filtered = getProducts().filter(p => p.category === category);
     renderProducts(filtered);
 }
 
 function filterByBrand(brand) {
+
     const filtered = getProducts().filter(p => p.brand === brand);
     renderProducts(filtered);
 }
 
 /* =========================
-   SLIDER EXCELL
+   SLIDER EXCELL (UI ONLY)
 ========================= */
 
 let excellSlides = [];
@@ -50,7 +55,9 @@ function getExcellImages() {
 
     let images = [];
 
-    window.products.forEach(p => {
+    const products = getProducts();
+
+    products.forEach(p => {
 
         if (p.brand && p.brand.toLowerCase().includes("excell")) {
             images.push(`images/${p.category}/${p.folder}/main.jpg`);
@@ -70,37 +77,33 @@ function initExcellSlider() {
 
     function showSlide() {
 
-        if (excellSlides.length === 0) return;
+        if (!excellSlides.length) return;
 
         sliderImg.src = excellSlides[indexSlide];
 
         indexSlide++;
-        if (indexSlide >= excellSlides.length) indexSlide = 0;
+
+        if (indexSlide >= excellSlides.length) {
+            indexSlide = 0;
+        }
     }
 
     showSlide();
     setInterval(showSlide, 3000);
 }
+
 /* =========================
-   GO HOME FILTER
+   NAVIGATION HELPERS (SESSION LAYER)
 ========================= */
 
-function goHomeAndCategory(category){
+function goHomeAndCategory(category) {
 
-    sessionStorage.setItem(
-        "filterCategory",
-        category
-    );
-
+    sessionStorage.setItem("filterCategory", category);
     window.location.href = "index.html";
 }
 
-function goHomeAndBrand(brand){
+function goHomeAndBrand(brand) {
 
-    sessionStorage.setItem(
-        "filterBrand",
-        brand
-    );
-
+    sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
 }

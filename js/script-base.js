@@ -1,6 +1,5 @@
-
 /* =========================
-   BASE STATE + HELPERS
+   BASE STATE + HELPERS (DATA LAYER)
 ========================= */
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -20,7 +19,7 @@ function getProducts() {
 }
 
 /* =========================
-   CART COUNT
+   CART COUNT (UI sync nhẹ)
 ========================= */
 
 function updateCartCount() {
@@ -36,48 +35,45 @@ function updateCartCount() {
 }
 
 /* =========================
-   SAVE CART
+   SAVE CART (SOURCE OF TRUTH)
 ========================= */
 
 function saveCart() {
 
     localStorage.setItem("cart", JSON.stringify(cart));
+
     updateCartCount();
 
-    if (typeof renderCart === "function") {
-        renderCart();
-    }
+    // 🔒 KHÓA CỨNG: chỉ bắn event, KHÔNG gọi UI trực tiếp
+    document.dispatchEvent(new Event("cartUpdated"));
 }
-function goHomeAndCategory(category){
 
-    sessionStorage.setItem(
-        "filterCategory",
-        category
-    );
+/* =========================
+   NAVIGATION HELPERS
+========================= */
 
+function goHomeAndCategory(category) {
+
+    sessionStorage.setItem("filterCategory", category);
     window.location.href = "index.html";
 }
 
-function goHomeAndBrand(brand){
+function goHomeAndBrand(brand) {
 
-    sessionStorage.setItem(
-        "filterBrand",
-        brand
-    );
-
+    sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
 }
+
+function goHomeOpenCart() {
+
+    sessionStorage.setItem("openCart", "1");
+    window.location.href = "index.html";
+}
+
+/* =========================
+   EXPOSE GLOBAL
+========================= */
 
 window.goHomeAndCategory = goHomeAndCategory;
 window.goHomeAndBrand = goHomeAndBrand;
-function goHomeOpenCart(){
-
-    sessionStorage.setItem(
-        "openCart",
-        "1"
-    );
-
-    window.location.href = "index.html";
-}
-
 window.goHomeOpenCart = goHomeOpenCart;

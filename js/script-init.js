@@ -1,19 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // =========================
+    // INIT: RENDER PRODUCTS
+    // =========================
     renderProducts(getProducts());
 
-    updateCartCount();
+    // 🔒 CART COUNT SAFE INIT
+    setTimeout(() => {
+        updateCartCount();
+    }, 0);
 
+    // =========================
+    // OPTIONAL INIT MODULES
+    // =========================
     if (typeof initExcellSlider === "function") {
         initExcellSlider();
     }
 
-    /* =========================
-       OPEN CART
-    ========================= */
-
-    const openCartFlag =
-        sessionStorage.getItem("openCart");
+    // =========================
+    // OPEN CART FROM SESSION
+    // =========================
+    const openCartFlag = sessionStorage.getItem("openCart");
 
     if (openCartFlag === "1") {
 
@@ -24,39 +31,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    /* =========================
-       FILTER CATEGORY
-    ========================= */
-
-    const category =
-        sessionStorage.getItem("filterCategory");
+    // =========================
+    // FILTER CATEGORY
+    // =========================
+    const category = sessionStorage.getItem("filterCategory");
 
     if (category) {
 
         sessionStorage.removeItem("filterCategory");
 
         renderProducts(
-            getProducts().filter(
-                p => p.category === category
-            )
+            getProducts().filter(p => p.category === category)
         );
     }
 
-    /* =========================
-       FILTER BRAND
-    ========================= */
-
-    const brand =
-        sessionStorage.getItem("filterBrand");
+    // =========================
+    // FILTER BRAND
+    // =========================
+    const brand = sessionStorage.getItem("filterBrand");
 
     if (brand) {
 
         sessionStorage.removeItem("filterBrand");
 
         renderProducts(
-            getProducts().filter(
-                p => p.brand === brand
-            )
+            getProducts().filter(p => p.brand === brand)
         );
     }
 
