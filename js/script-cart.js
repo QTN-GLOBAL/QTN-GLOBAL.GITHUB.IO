@@ -233,6 +233,7 @@ openCart();
 closeAddCart();
 
 alert("Đã thêm vào giỏ");
+}
 function renderHeaderCart(){
 
     const box = document.getElementById("headerCartBox");
