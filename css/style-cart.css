@@ -388,3 +388,10 @@
 
     cursor:pointer;
 }
+.cart-right input[type="number"]{
+
+    opacity:1 !important;
+
+    -webkit-text-fill-color:#000 !important;
+
+}
