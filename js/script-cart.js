@@ -41,12 +41,7 @@ function renderCart(){
     const body = document.getElementById("cartBody");
     if(!body) return;
 
-    const firstItem = cart[0];
-    const imgEl = document.getElementById("cartMainImg");
-
-    if(imgEl && firstItem){
-        imgEl.src = `images/${firstItem.category}/${firstItem.folder}/main.jpg`;
-    }
+    
 
     if(cart.length === 0){
         body.innerHTML = "<p>Giỏ hàng trống</p>";
@@ -64,10 +59,24 @@ function renderCart(){
                 <input type="checkbox">
             </div>
 
-            <div class="cart-middle">
-                ${item.name}<br>
-                <small>${item.capacity}</small>
-            </div>
+           <div class="cart-middle">
+
+    <img class="cart-product-img"
+    src="images/${item.category}/${item.folder}/main.jpg">
+
+    <div class="cart-info">
+
+        <div class="cart-name">
+            ${item.name}
+        </div>
+
+        <div class="cart-capacity">
+            ${item.capacity}
+        </div>
+
+    </div>
+
+</div>
 
            <div class="cart-right">
 
@@ -86,7 +95,22 @@ function renderCart(){
         </div>`;
     });
 
-    body.innerHTML = html;
+   html += `
+
+<div class="cart-bottom">
+
+    <button class="buy-now-btn"
+    onclick="openBuyPopup()">
+
+        MUA NGAY
+
+    </button>
+
+</div>
+
+`;
+
+body.innerHTML = html;
 }
 /* =========================
    CHANGE QTY POPUP
@@ -153,37 +177,62 @@ function closeBuyPopup(){
 ========================= */
 function confirmAddCart(){
 
-    const rows = document.querySelectorAll("#cartSpecList .cart-row");
+    const rows =
+    document.querySelectorAll("#cartSpecList .cart-row");
+
+    let added = false;
 
     rows.forEach(row => {
 
-        const check = row.querySelector(".cart-check");
+        const check =
+        row.querySelector(".cart-check");
+
         if(!check || !check.checked) return;
 
-        const qtyInput = row.querySelector("input[type='number']");
-        const label = row.dataset.value || "";
+        const qtyInput =
+        row.querySelector("input[type='number']");
+
+        const label =
+        row.dataset.value || "";
 
         cart.push({
+
             id: window.selectedProduct.id,
+
             name: window.selectedProduct.name,
+
             category: window.selectedProduct.category,
+
             folder: window.selectedProduct.folder,
+
             capacity: label,
+
             quantity: Number(qtyInput.value)
+
         });
 
+        added = true;
+
     });
+
+    if(!added){
+        alert("Vui lòng tick sản phẩm");
+        return;
+    }
 
     saveCart();
 
     renderCart();
-    renderHeaderCart();
+
     updateCartUI();
 
-    closeAddCart();
+   renderCart();
 
-    alert("Đã thêm vào giỏ");
-}
+openCart();
+
+closeAddCart();
+
+alert("Đã thêm vào giỏ");
 function renderHeaderCart(){
 
     const box = document.getElementById("headerCartBox");
@@ -248,6 +297,7 @@ function removeCartItem(index){
 function openCart(){
 
     const modal = document.getElementById("cartModal");
+    const overlay = document.getElementById("cartOverlay");
 
     if(!modal){
         console.log("cartModal not found");
@@ -256,5 +306,22 @@ function openCart(){
 
     modal.classList.add("active");
 
-    renderCart(); // 🔥 thêm dòng này để đảm bảo luôn có dữ liệu
+    if(overlay){
+        overlay.classList.add("active");
+    }
+
+    renderCart();
+}
+function closeCart(){
+
+    const modal = document.getElementById("cartModal");
+    const overlay = document.getElementById("cartOverlay");
+
+    if(modal){
+        modal.classList.remove("active");
+    }
+
+    if(overlay){
+        overlay.classList.remove("active");
+    }
 }
