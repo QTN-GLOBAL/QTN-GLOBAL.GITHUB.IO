@@ -329,3 +329,57 @@ function closeCart(){
         overlay.classList.remove("active");
     }
 }
+function openBuyPopup(){
+
+    const popup =
+    document.getElementById("buyPopup");
+
+    if(!popup) return;
+
+    popup.style.display = "flex";
+
+    let html = "";
+
+    cart.forEach(item => {
+
+        html += `
+
+        <div class="buy-row">
+
+            <div class="buy-left">
+                <input type="checkbox" checked>
+            </div>
+
+            <div class="buy-middle">
+
+                <img
+                src="images/${item.category}/${item.folder}/main.jpg"
+                class="buy-cart-img">
+
+                <div class="buy-label">
+
+                    <b>${item.name}</b><br>
+
+                    ${item.capacity}
+
+                </div>
+
+            </div>
+
+            <div class="buy-qty">
+
+                <input
+                type="number"
+                value="${item.quantity}"
+                readonly>
+
+            </div>
+
+        </div>
+        `;
+    });
+
+    document.getElementById(
+        "buyCapacityList"
+    ).innerHTML = html;
+}
