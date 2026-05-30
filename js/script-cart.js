@@ -1,58 +1,29 @@
 /* =========================
-   CART STATE
+   CART UI + RENDER SYSTEM
+   (USES CART ENGINE ONLY)
 ========================= */
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function saveCart(){
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
 
 /* =========================
-   ADD TO CART (GIỮ NGUYÊN LOGIC CŨ)
+   RENDER CART MODAL
 ========================= */
 
-function addToCart(id, capacity, qty = 1) {
-
-    const product = getProducts().find(p => p.id == id);
-    if (!product) return;
-
-    const existing = cart.find(i =>
-        i.id == id && i.capacity == capacity
-    );
-
-    if (existing) {
-        existing.quantity += qty;
-    } else {
-        cart.push({
-            id: product.id,
-            name: product.name,
-            category: product.category,
-            folder: product.folder,
-            capacity: capacity,
-            quantity: qty
-        });
-    }
-
-    saveCart();
-    updateCartUI();
-}
-
-/* =========================
-   RENDER CART
-========================= */
-
-function renderCart(){
+function renderCart() {
 
     const body = document.getElementById("cartBody");
-    if(!body) return;
+    if (!body) return;
 
-    if(cart.length === 0){
-        body.innerHTML = "<p style='text-align:center;padding:20px'>Giỏ hàng trống</p>";
+    const cart = Cart.get();
+
+    if (cart.length === 0) {
+        body.innerHTML = "<p>Giỏ hàng trống</p>";
         return;
     }
 
-    body.innerHTML = cart.map((item,index)=>`
+    let html = "";
+
+    cart.forEach((item, index) => {
+
+        html += `
         <div class="cart-row">
 
             <div class="cart-left">
@@ -60,48 +31,57 @@ function renderCart(){
             </div>
 
             <div class="cart-middle">
-                <img class="cart-product-img"
-                src="images/${item.category}/${item.folder}/main.jpg">
+
+                <img src="images/${item.category}/${item.folder}/main.jpg">
 
                 <div class="cart-info">
                     <div class="cart-name">${item.name}</div>
-                    <div class="cart-capacity">${item.capacity}</div>
+                    <div class="cart-capacity">${item.spec || ""}</div>
                 </div>
+
             </div>
 
             <div class="cart-right">
+
                 <button onclick="updateCartQty(${index},-1)">-</button>
                 <input value="${item.quantity}" readonly>
                 <button onclick="updateCartQty(${index},1)">+</button>
+                <button onclick="removeCartItem(${index})">✕</button>
+
             </div>
 
-        </div>
-    `).join("") +
+        </div>`;
+    });
 
-    `
+    html += `
     <div class="cart-bottom">
         <button class="buy-now-btn" onclick="handleBuyNow()">
             MUA NGAY
         </button>
-    </div>
-    `;
+    </div>`;
+
+    body.innerHTML = html;
+
+    updateCartUI();
 }
 
 /* =========================
-   QTY UPDATE
+   UPDATE QTY
 ========================= */
 
-function updateCartQty(index,value){
+function updateCartQty(index, value) {
 
-    if(!cart[index]) return;
+    let cart = Cart.get();
+
+    if (!cart[index]) return;
 
     cart[index].quantity += value;
 
-    if(cart[index].quantity < 1){
+    if (cart[index].quantity < 1) {
         cart[index].quantity = 1;
     }
 
-    saveCart();
+    Cart.set(cart);
 
     renderCart();
     renderHeaderCart();
@@ -109,28 +89,127 @@ function updateCartQty(index,value){
 }
 
 /* =========================
-   BUY NOW (RESTORE VERSION)
+   REMOVE ITEM
+========================= */
+
+function removeCartItem(index) {
+
+    Cart.remove(index);
+
+    renderCart();
+    renderHeaderCart();
+    updateCartUI();
+}
+
+/* =========================
+   HEADER CART
+========================= */
+
+function renderHeaderCart() {
+
+    const box = document.getElementById("headerCartBox");
+    if (!box) return;
+
+    const cart = Cart.get();
+
+    let html = "";
+
+    cart.forEach((item, index) => {
+
+        html += `
+        <div class="header-cart-row">
+
+            <img src="images/${item.category}/${item.folder}/main.jpg">
+
+            <div class="info">
+                <b>${item.name}</b><br>
+                <small>${item.spec || ""}</small>
+            </div>
+
+            <div class="qty">
+                <button onclick="updateCartQty(${index},-1)">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="updateCartQty(${index},1)">+</button>
+            </div>
+
+            <button onclick="removeCartItem(${index})">X</button>
+
+        </div>`;
+    });
+
+    html += `
+    <button class="buy-now-btn" onclick="handleBuyNow()">
+        MUA NGAY
+    </button>`;
+
+    box.innerHTML = html;
+}
+
+/* =========================
+   CART COUNT UI
+========================= */
+
+function updateCartUI() {
+
+    const el = document.getElementById("cartCount");
+    if (!el) return;
+
+    const cart = Cart.get();
+
+    let total = 0;
+    cart.forEach(i => total += i.quantity);
+
+    el.innerText = total;
+}
+
+/* =========================
+   OPEN / CLOSE CART
+========================= */
+
+function openCart() {
+
+    const modal = document.getElementById("cartModal");
+    const overlay = document.getElementById("cartOverlay");
+
+    if (!modal) return;
+
+    modal.classList.add("active");
+    if (overlay) overlay.classList.add("active");
+
+    renderCart();
+}
+
+function closeCart() {
+
+    const modal = document.getElementById("cartModal");
+    const overlay = document.getElementById("cartOverlay");
+
+    if (modal) modal.classList.remove("active");
+    if (overlay) overlay.classList.remove("active");
+}
+
+/* =========================
+   BUY NOW FROM CART
 ========================= */
 
 function handleBuyNow() {
 
+    const cart = Cart.get();
+
     const selectedItems = [];
 
-    document.querySelectorAll(".cart-check").forEach(cb => {
+    const rows = document.querySelectorAll("#cartBody .cart-row");
 
-        if(cb.checked){
+    rows.forEach((row, index) => {
 
-            const index = cb.getAttribute("data-index");
+        const cb = row.querySelector(".cart-check");
 
-            if(cart[index]){
-                selectedItems.push(cart[index]);
-            }
-
+        if (cb && cb.checked && cart[index]) {
+            selectedItems.push(cart[index]);
         }
-
     });
 
-    if(selectedItems.length === 0){
+    if (selectedItems.length === 0) {
         alert("Vui lòng chọn sản phẩm cần mua");
         return;
     }
@@ -142,102 +221,19 @@ function handleBuyNow() {
    BUY FORM
 ========================= */
 
-function renderBuyNowForm(items){
+function renderBuyNowForm(items) {
 
     const box = document.getElementById("buyProductList");
-    if(!box) return;
+
+    if (!box) return;
 
     box.innerHTML = items.map(item => `
         <div class="buy-item">
             <h4>${item.name}</h4>
-            <div>Mức cân: ${item.capacity}</div>
-            <div>Số lượng: ${item.quantity}</div>
+            <div>${item.spec || ""}</div>
+            <div>SL: ${item.quantity}</div>
         </div>
     `).join("");
 
-    const modal = document.getElementById("buyNowModal");
-    if(modal) modal.style.display = "block";
-}
-
-/* =========================
-   HEADER CART
-========================= */
-
-function renderHeaderCart(){
-
-    const box = document.getElementById("headerCartBox");
-    if(!box) return;
-
-    box.innerHTML = cart.map((item,index)=>`
-        <div class="header-cart-row">
-
-            <img src="images/${item.category}/${item.folder}/main.jpg">
-
-            <div class="info">
-                <b>${item.name}</b><br>
-                <small>${item.capacity}</small>
-            </div>
-
-            <div class="qty">
-                <button onclick="updateCartQty(${index},-1)">-</button>
-                <span>${item.quantity}</span>
-                <button onclick="updateCartQty(${index},1)">+</button>
-            </div>
-
-            <button onclick="removeCartItem(${index})">X</button>
-
-        </div>
-    `).join("") +
-
-    `
-    <button class="buy-now-btn" onclick="handleBuyNow()">
-        MUA NGAY
-    </button>
-    `;
-}
-
-/* =========================
-   REMOVE ITEM
-========================= */
-
-function removeCartItem(index){
-
-    if(!cart[index]) return;
-
-    cart.splice(index,1);
-
-    saveCart();
-
-    renderCart();
-    renderHeaderCart();
-    updateCartUI();
-}
-
-/* =========================
-   CART UI COUNT
-========================= */
-
-function updateCartUI(){
-
-    const el = document.getElementById("cartCount");
-    if(!el) return;
-
-    let total = 0;
-    cart.forEach(i => total += i.quantity);
-
-    el.innerText = total;
-}
-
-/* =========================
-   OPEN CART
-========================= */
-
-function openCart(){
-
-    document.getElementById("cartModal")?.classList.add("active");
-    renderCart();
-}
-
-function closeCart(){
-    document.getElementById("cartModal")?.classList.remove("active");
+    document.getElementById("buyNowModal").style.display = "block";
 }

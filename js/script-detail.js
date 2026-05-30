@@ -1,29 +1,35 @@
+/* =========================
+   DETAIL PAGE (CLEAN SYSTEM)
+   USES CART ENGINE ONLY
+========================= */
 
 /* =========================
-   DETAIL PAGE (ISOLATED SYSTEM)
+   OPEN ADD CART POPUP
 ========================= */
 
 function openAddCartPopup() {
 
     if (!window.currentProduct) return;
 
-    window.selectedProduct = window.currentProduct;
+    const product = window.currentProduct;
+
+    window.selectedProduct = product;
 
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.style.display = "flex";
 
-    document.getElementById("popupCartName").innerText =
-        window.selectedProduct.name;
+    const nameEl = document.getElementById("popupCartName");
+    if (nameEl) nameEl.innerText = product.name;
 
     const imgEl = document.getElementById("popupCartImg");
     if (imgEl) {
-        imgEl.src = `images/${window.selectedProduct.category}/${window.selectedProduct.folder}/main.jpg`;
+        imgEl.src = `images/${product.category}/${product.folder}/main.jpg`;
     }
 
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = window.selectedProduct.specs;
+    temp.innerHTML = product.specs;
 
     const rows = temp.querySelectorAll("tr");
 
@@ -47,9 +53,9 @@ function openAddCartPopup() {
                 </div>
 
                 <div class="detail-right">
-                    <button onclick="changeCartQty(this,-1)">-</button>
+                    <button onclick="changeQty(this,-1)">-</button>
                     <input type="number" value="1">
-                    <button onclick="changeCartQty(this,1)">+</button>
+                    <button onclick="changeQty(this,1)">+</button>
                 </div>
 
             </div>`;
@@ -57,21 +63,22 @@ function openAddCartPopup() {
     });
 
     if (html === "") {
+
         html = `
-        <div class="detail-row" data-value="">
+        <div class="detail-row" data-value="${product.name}">
 
             <div class="detail-left">
                 <input type="checkbox" class="detail-check" checked>
             </div>
 
             <div class="detail-middle">
-                ${window.selectedProduct.name}
+                ${product.name}
             </div>
 
             <div class="detail-right">
-                <button onclick="changeCartQty(this,-1)">-</button>
+                <button onclick="changeQty(this,-1)">-</button>
                 <input type="number" value="1">
-                <button onclick="changeCartQty(this,1)">+</button>
+                <button onclick="changeQty(this,1)">+</button>
             </div>
 
         </div>`;
@@ -81,30 +88,79 @@ function openAddCartPopup() {
 }
 
 /* =========================
-   BUY POPUP (DETAIL ONLY)
+   ADD SELECTED TO CART
 ========================= */
 
-function openBuyPopup(){
+function addSelectedToCart() {
+
+    if (!window.currentProduct) return;
+
+    const product = window.currentProduct;
+
+    const popup = document.getElementById("addCartPopup");
+    const rows = popup.querySelectorAll(".detail-row");
+
+    let added = false;
+
+    rows.forEach(row => {
+
+        const check = row.querySelector(".detail-check");
+        if (!check || !check.checked) return;
+
+        const label = row.querySelector(".detail-middle").innerText;
+        const qty = parseInt(row.querySelector("input").value || 1);
+
+        Cart.add({
+            name: product.name,
+            category: product.category,
+            folder: product.folder,
+            spec: label,
+            quantity: qty
+        });
+
+        added = true;
+    });
+
+    if (!added) {
+        alert("Vui lòng chọn sản phẩm");
+        return;
+    }
+
+    popup.style.display = "none";
+
+    alert("Đã thêm vào giỏ");
+
+    if (typeof renderCart === "function") renderCart();
+    if (typeof updateCartUI === "function") updateCartUI();
+}
+
+/* =========================
+   BUY POPUP
+========================= */
+
+function openBuyPopup() {
+
+    if (!window.currentProduct) return;
+
+    const product = window.currentProduct;
 
     const popup = document.getElementById("buyPopup");
-    if(!popup || !window.currentProduct) return;
-
-    popup.style.display = "flex";
+    if (popup) popup.style.display = "flex";
 
     const img = document.getElementById("buyProductImg");
-    if(img){
-        img.src = `images/${window.currentProduct.category}/${window.currentProduct.folder}/main.jpg`;
+    if (img) {
+        img.src = `images/${product.category}/${product.folder}/main.jpg`;
     }
 
     const name = document.getElementById("buyProductName");
-    if(name){
-        name.innerText = window.currentProduct.name;
+    if (name) {
+        name.innerText = product.name;
     }
 
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = window.currentProduct.specs;
+    temp.innerHTML = product.specs;
 
     const rows = temp.querySelectorAll("tr");
 
@@ -112,7 +168,7 @@ function openBuyPopup(){
 
         const cols = row.querySelectorAll("td");
 
-        if(cols.length >= 2){
+        if (cols.length >= 2) {
 
             const label = cols[0].innerText + " - " + cols[1].innerText;
 
@@ -120,7 +176,7 @@ function openBuyPopup(){
             <div class="buy-row">
 
                 <div class="buy-left">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                 </div>
 
                 <div class="buy-middle">
@@ -128,9 +184,9 @@ function openBuyPopup(){
                 </div>
 
                 <div class="buy-right">
-                    <button onclick="changeCartQty(this,-1)">-</button>
+                    <button onclick="changeQty(this,-1)">-</button>
                     <input type="number" value="1">
-                    <button onclick="changeCartQty(this,1)">+</button>
+                    <button onclick="changeQty(this,1)">+</button>
                 </div>
 
             </div>`;
@@ -138,17 +194,36 @@ function openBuyPopup(){
     });
 
     document.getElementById("buyCapacityList").innerHTML = html;
+
+    // auto check all
+    document.querySelectorAll("#buyCapacityList input[type='checkbox']")
+        .forEach(cb => cb.checked = true);
+}
+
+/* =========================
+   CHANGE QTY (DETAIL)
+========================= */
+
+function changeQty(btn, delta) {
+
+    const input = btn.parentElement.querySelector("input");
+
+    let val = parseInt(input.value || 1);
+
+    val += delta;
+
+    if (val < 1) val = 1;
+
+    input.value = val;
 }
 
 /* =========================
    ORDER TEXT
 ========================= */
 
-function getOrderText(){
+function getOrderText() {
 
-    let text = "";
-
-    text += "THÔNG TIN ĐẶT HÀNG\n\n";
+    let text = "THÔNG TIN ĐẶT HÀNG\n\n";
 
     text += "Khách hàng: " + document.getElementById("customerName").value + "\n";
     text += "SĐT: " + document.getElementById("customerPhone").value + "\n";
@@ -162,7 +237,7 @@ function getOrderText(){
     rows.forEach(row => {
 
         const check = row.querySelector("input[type='checkbox']");
-        if(!check.checked) return;
+        if (!check.checked) return;
 
         const label = row.querySelector(".buy-middle").innerText;
         const qty = row.querySelector("input[type='number']").value;
@@ -177,7 +252,7 @@ function getOrderText(){
    SEND ZALO / MESSENGER
 ========================= */
 
-function sendOrderZalo(){
+function sendOrderZalo() {
 
     const text = getOrderText();
 
@@ -190,7 +265,7 @@ function sendOrderZalo(){
     alert("Đã copy đơn hàng");
 }
 
-function sendOrderMessenger(){
+function sendOrderMessenger() {
 
     const text = getOrderText();
 

@@ -1,51 +1,70 @@
 /* =========================
-   HOME PAGE (RENDER LAYER)
+   HOME PAGE (CLEAN RENDER LAYER)
+   - UI ONLY
+   - NO CART LOGIC
 ========================= */
 
-function renderProducts(productList) {
+/* =========================
+   RENDER PRODUCTS
+========================= */
 
-    const list = productList || getProducts();
+function renderProducts(productList = getProducts()) {
+
     const grid = document.getElementById("productGrid");
     if (!grid) return;
 
     grid.innerHTML = "";
 
-    list.forEach(product => {
-
-        grid.innerHTML += `
+    const html = productList.map(product => `
         <div class="product-card">
+
             <img src="images/${product.category}/${product.folder}/main.jpg">
 
             <div class="product-info">
+
                 <h3>${product.name}</h3>
 
                 <a class="detail-btn"
                    href="chitiet.html?id=${product.id}">
                     Chi tiết
                 </a>
+
             </div>
-        </div>`;
-    });
+
+        </div>
+    `).join("");
+
+    grid.innerHTML = html;
 }
 
 /* =========================
-   FILTER (UI ONLY)
+   FILTER SYSTEM (PURE UI)
 ========================= */
 
 function filterProducts(category) {
 
-    const filtered = getProducts().filter(p => p.category === category);
+    const products = getProducts();
+
+    const filtered = category
+        ? products.filter(p => p.category === category)
+        : products;
+
     renderProducts(filtered);
 }
 
 function filterByBrand(brand) {
 
-    const filtered = getProducts().filter(p => p.brand === brand);
+    const products = getProducts();
+
+    const filtered = brand
+        ? products.filter(p => p.brand === brand)
+        : products;
+
     renderProducts(filtered);
 }
 
 /* =========================
-   SLIDER EXCELL (UI ONLY)
+   EXCELL SLIDER (OPTIMIZED)
 ========================= */
 
 let excellSlides = [];
@@ -53,19 +72,14 @@ let indexSlide = 0;
 
 function getExcellImages() {
 
-    let images = [];
-
-    const products = getProducts();
-
-    products.forEach(p => {
-
-        if (p.brand && p.brand.toLowerCase().includes("excell")) {
-            images.push(`images/${p.category}/${p.folder}/main.jpg`);
-        }
-
-    });
-
-    return images;
+    return getProducts()
+        .filter(p =>
+            p.brand &&
+            p.brand.toLowerCase().includes("excell")
+        )
+        .map(p =>
+            `images/${p.category}/${p.folder}/main.jpg`
+        );
 }
 
 function initExcellSlider() {
@@ -74,18 +88,13 @@ function initExcellSlider() {
     if (!sliderImg) return;
 
     excellSlides = getExcellImages();
+    if (!excellSlides.length) return;
 
     function showSlide() {
 
-        if (!excellSlides.length) return;
-
         sliderImg.src = excellSlides[indexSlide];
 
-        indexSlide++;
-
-        if (indexSlide >= excellSlides.length) {
-            indexSlide = 0;
-        }
+        indexSlide = (indexSlide + 1) % excellSlides.length;
     }
 
     showSlide();
@@ -93,17 +102,15 @@ function initExcellSlider() {
 }
 
 /* =========================
-   NAVIGATION HELPERS (SESSION LAYER)
+   SESSION NAVIGATION
 ========================= */
 
 function goHomeAndCategory(category) {
-
     sessionStorage.setItem("filterCategory", category);
     window.location.href = "index.html";
 }
 
 function goHomeAndBrand(brand) {
-
     sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
 }
