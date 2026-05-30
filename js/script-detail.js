@@ -277,3 +277,14 @@ function sendOrderMessenger() {
 
     alert("Đã copy đơn hàng");
 }
+function confirmAddCart() {
+    addSelectedToCart();
+}
+
+function closeAddCart() {
+    document.getElementById("addCartPopup").style.display = "none";
+}
+
+function closeBuyPopup() {
+    document.getElementById("buyPopup").style.display = "none";
+}
