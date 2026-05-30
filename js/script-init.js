@@ -1,62 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // =========================
-    // INIT: RENDER PRODUCTS
-    // =========================
-    renderProducts(getProducts());
+    function boot() {
 
-    // 🔒 CART COUNT SAFE INIT
-    setTimeout(() => {
+        const products = getProducts();
+
+        if (!products || !products.length) {
+            console.warn("Products chưa load, retry...");
+
+            setTimeout(boot, 100);
+            return;
+        }
+
+        // =========================
+        // RENDER DEFAULT
+        // =========================
+        renderProducts(products);
+
+        // =========================
+        // CART INIT SAFE
+        // =========================
         updateCartCount();
-    }, 0);
 
-    // =========================
-    // OPTIONAL INIT MODULES
-    // =========================
-    if (typeof initExcellSlider === "function") {
-        initExcellSlider();
-    }
+        // =========================
+        // SLIDER
+        // =========================
+        if (typeof initExcellSlider === "function") {
+            initExcellSlider();
+        }
 
-    // =========================
-    // OPEN CART FROM SESSION
-    // =========================
-    const openCartFlag = sessionStorage.getItem("openCart");
+        // =========================
+        // FILTER CATEGORY
+        // =========================
+        const category = sessionStorage.getItem("filterCategory");
 
-    if (openCartFlag === "1") {
+        if (category) {
+            sessionStorage.removeItem("filterCategory");
+            renderProducts(products.filter(p => p.category === category));
+        }
 
-        sessionStorage.removeItem("openCart");
+        // =========================
+        // FILTER BRAND
+        // =========================
+        const brand = sessionStorage.getItem("filterBrand");
 
-        if (typeof openCart === "function") {
-            openCart();
+        if (brand) {
+            sessionStorage.removeItem("filterBrand");
+            renderProducts(products.filter(p => p.brand === brand));
+        }
+
+        // =========================
+        // OPEN CART
+        // =========================
+        const openCartFlag = sessionStorage.getItem("openCart");
+
+        if (openCartFlag === "1") {
+            sessionStorage.removeItem("openCart");
+            if (typeof openCart === "function") openCart();
         }
     }
 
-    // =========================
-    // FILTER CATEGORY
-    // =========================
-    const category = sessionStorage.getItem("filterCategory");
-
-    if (category) {
-
-        sessionStorage.removeItem("filterCategory");
-
-        renderProducts(
-            getProducts().filter(p => p.category === category)
-        );
-    }
-
-    // =========================
-    // FILTER BRAND
-    // =========================
-    const brand = sessionStorage.getItem("filterBrand");
-
-    if (brand) {
-
-        sessionStorage.removeItem("filterBrand");
-
-        renderProducts(
-            getProducts().filter(p => p.brand === brand)
-        );
-    }
+    boot();
 
 });
