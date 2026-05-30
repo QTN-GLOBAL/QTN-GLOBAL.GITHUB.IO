@@ -77,4 +77,6 @@ function goHomeAndCategory(category) {
 }
 
 function goHomeAndBrand(brand) {
-    sessionStorage.setItem("filterBrand", brand
+    sessionStorage.setItem("filterBrand", brand);
+    window.location.href = "index.html";
+}
