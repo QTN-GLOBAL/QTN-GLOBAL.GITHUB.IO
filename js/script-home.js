@@ -8,31 +8,37 @@
    RENDER PRODUCTS
 ========================= */
 
-function renderProducts(productList = getProducts()) {
+function renderProducts(productList = []) {
 
     const grid = document.getElementById("productGrid");
     if (!grid) return;
 
     grid.innerHTML = "";
 
-    const html = productList.map(product => `
-        <div class="product-card">
+    const html = productList
+        .filter(p => p && p.id && p.name)
+        .map(product => `
+            <div class="product-card">
 
-            <img src="images/${product.category}/${product.folder}/main.jpg">
+                <img 
+                    src="images/${product.category}/${product.folder}/main.jpg"
+                    alt="${product.name}"
+                    onerror="this.src='images/no-image.jpg'"
+                >
 
-            <div class="product-info">
+                <div class="product-info">
 
-                <h3>${product.name}</h3>
+                    <h3>${product.name}</h3>
 
-                <a class="detail-btn"
-                   href="chitiet.html?id=${product.id}">
-                    Chi tiết
-                </a>
+                    <a class="detail-btn"
+                       href="chitiet.html?id=${product.id}">
+                        Chi tiết
+                    </a>
+
+                </div>
 
             </div>
-
-        </div>
-    `).join("");
+        `).join("");
 
     grid.innerHTML = html;
 }
