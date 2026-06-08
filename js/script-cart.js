@@ -284,8 +284,10 @@ function getOrderText() {
     items.forEach(item => {
 
         const name = item.querySelector("h4")?.innerText || "";
-        const spec = item.querySelectorAll("div")[0]?.innerText || "";
-        const qty = item.querySelectorAll("div")[1]?.innerText || "";
+        const divs = item.querySelectorAll("div");
+
+        const spec = divs[0]?.innerText || "";
+        const qty  = divs[1]?.innerText || "";
 
         text += "- " + name + " | " + spec + " | " + qty + "\n";
     });
@@ -323,4 +325,8 @@ function sendOrderMessenger() {
     closeBuyPopup();
 
     window.open("https://m.me/QTNSCALE", "_blank");
+}
+function closeBuyPopup() {
+    const popup = document.getElementById("buyPopup");
+    if (popup) popup.style.display = "none";
 }
