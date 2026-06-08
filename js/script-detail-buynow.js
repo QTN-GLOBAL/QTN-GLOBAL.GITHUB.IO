@@ -94,16 +94,32 @@ function getOrderText() {
 
 function sendOrderZalo() {
 
-    navigator.clipboard.writeText(getOrderText());
-    alert("Đơn hàng đã được copy.\nNhấn OK để mở Zalo.");
-    window.open("https://zalo.me/0383598603", "_blank");
+    const text = getOrderText();
+
+    navigator.clipboard.writeText(text).catch(() => {});
+
+    const ok = confirm("Đã copy đơn hàng.\nBấm OK để mở Zalo.");
+
+    closeBuyPopup();
+
+    if (ok) {
+        window.open("https://zalo.me/0383598603", "_blank");
+    }
 }
 
 function sendOrderMessenger() {
 
-    navigator.clipboard.writeText(getOrderText());
-    alert("Đơn hàng đã được copy.\nNhấn OK để mở Messenger.");
-    window.open("https://m.me/QTNSCALE", "_blank");
+    const text = getOrderText();
+
+    navigator.clipboard.writeText(text).catch(() => {});
+
+    const ok = confirm("Đã copy đơn hàng.\nBấm OK để mở Messenger.");
+
+    closeBuyPopup();
+
+    if (ok) {
+        window.open("https://m.me/QTNSCALE", "_blank");
+    }
 }
 
 /* =========================
