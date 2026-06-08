@@ -298,13 +298,13 @@ function sendOrderZalo() {
 
     const text = getOrderText();
 
-    try {
-        navigator.clipboard.writeText(text);
-    } catch (e) {
-        console.log("Clipboard blocked");
-    }
+    navigator.clipboard.writeText(text).catch(() => {});
 
     alert("Đã copy đơn hàng. Nhấn OK để mở Zalo.");
+
+    const selected = getSelectedCartItems();
+
+    removeSelectedFromCart(selected);
 
     closeBuyPopup();
 
@@ -314,13 +314,13 @@ function sendOrderMessenger() {
 
     const text = getOrderText();
 
-    try {
-        navigator.clipboard.writeText(text);
-    } catch (e) {
-        console.log("Clipboard blocked");
-    }
+    navigator.clipboard.writeText(text).catch(() => {});
 
     alert("Đã copy đơn hàng. Nhấn OK để mở Messenger.");
+
+    const selected = getSelectedCartItems();
+
+    removeSelectedFromCart(selected);
 
     closeBuyPopup();
 
@@ -329,4 +329,35 @@ function sendOrderMessenger() {
 function closeBuyPopup() {
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "none";
+}
+function getSelectedCartItems() {
+
+    const cart = Cart.get();
+    const selected = [];
+
+    document.querySelectorAll(".cart-check").forEach((cb, index) => {
+
+        if (cb.checked && cart[index]) {
+            selected.push(index);
+        }
+    });
+
+    return selected;
+}
+function removeSelectedFromCart(indexes) {
+
+    let cart = Cart.get();
+
+    // xoá từ cuối lên để không lệch index
+    indexes.sort((a, b) => b - a);
+
+    indexes.forEach(i => {
+        cart.splice(i, 1);
+    });
+
+    Cart.set(cart);
+
+    renderCart();
+    renderHeaderCart();
+    updateCartUI();
 }
