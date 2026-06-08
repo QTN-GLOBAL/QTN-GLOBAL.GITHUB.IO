@@ -108,8 +108,10 @@ function addSelectedToCart() {
         if (!check || !check.checked) return;
 
         const label = row.querySelector(".detail-middle").innerText;
-        const qty = parseInt(row.querySelector("input").value || 1);
-
+        const qty =
+parseInt(
+    row.querySelector("input[type='number']").value
+) || 1;
         Cart.add({
             name: product.name,
             category: product.category,
