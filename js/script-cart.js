@@ -268,3 +268,35 @@ function renderBuyNowForm(items) {
 
     box.innerHTML = html;
 }
+function sendOrderZalo() {
+
+    const text = getOrderText();
+
+    try {
+        navigator.clipboard.writeText(text);
+    } catch (e) {
+        console.log("Clipboard blocked");
+    }
+
+    alert("Đã copy đơn hàng. Nhấn OK để mở Zalo.");
+
+    closeBuyPopup();
+
+    window.open("https://zalo.me/0383598603", "_blank");
+}
+function sendOrderMessenger() {
+
+    const text = getOrderText();
+
+    try {
+        navigator.clipboard.writeText(text);
+    } catch (e) {
+        console.log("Clipboard blocked");
+    }
+
+    alert("Đã copy đơn hàng. Nhấn OK để mở Messenger.");
+
+    closeBuyPopup();
+
+    window.open("https://m.me/QTNSCALE", "_blank");
+}
