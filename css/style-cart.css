@@ -301,3 +301,67 @@
 
     margin-bottom:15px;
 }
+/* =========================
+   ADD CART POPUP
+========================= */
+
+.detail-row{
+    display:grid;
+    grid-template-columns:40px 1fr 120px;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:10px 0;
+
+    border-bottom:1px solid #eee;
+}
+
+.detail-left{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.detail-left input{
+    width:18px;
+    height:18px;
+}
+
+.detail-middle{
+    text-align:center;
+    font-size:14px;
+    line-height:1.4;
+}
+
+.detail-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    gap:6px;
+}
+
+.detail-right button{
+    width:30px;
+    height:30px;
+
+    border:none;
+    border-radius:6px;
+
+    background:#1565c0;
+    color:#fff;
+
+    cursor:pointer;
+}
+
+.detail-right input{
+    width:42px;
+    height:30px;
+
+    text-align:center;
+
+    border:1px solid #ddd;
+    border-radius:6px;
+}
