@@ -248,3 +248,29 @@
     width:40px;
     text-align:center;
 }
+/* FIX BUTTON DEFAULT (KHÔNG CẦN ĐỔI HTML) */
+
+.detail-buttons button:first-child{
+    background:#1565c0;
+    color:#fff;
+}
+
+.detail-buttons button:last-child{
+    background:#e53935;
+    color:#fff;
+}
+
+.detail-buttons button{
+    flex:1;
+    height:48px;
+    border:none;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s;
+}
