@@ -113,15 +113,10 @@
 /* BUTTONS */
 
 .detail-buttons{
-
     display:flex;
-
     gap:12px;
-
     margin-top:20px;
-    
-    flex-wrap:wrap;
-
+    width:100%;
 }
 
 .detail-buttons button:hover{
@@ -255,8 +250,9 @@
     font-weight:700;
     cursor:pointer;
     transition:.2s;
-    background:#1565c0;
-    color:#fff;
+
+    background:#1565c0 !important;
+    color:#fff !important;
 
     display:flex;
     align-items:center;
@@ -264,9 +260,6 @@
     gap:8px;
 }
 
-.btn-addcart:hover{
-    transform:translateY(-2px);
-}
 .btn-buynow{
     flex:1;
     border:none;
@@ -276,8 +269,9 @@
     font-weight:700;
     cursor:pointer;
     transition:.2s;
-    background:#e53935;
-    color:#fff;
+
+    background:#e53935 !important;
+    color:#fff !important;
 
     display:flex;
     align-items:center;
@@ -285,6 +279,7 @@
     gap:8px;
 }
 
+.btn-addcart:hover,
 .btn-buynow:hover{
     transform:translateY(-2px);
 }
