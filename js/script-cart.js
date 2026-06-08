@@ -268,6 +268,30 @@ function renderBuyNowForm(items) {
 
     box.innerHTML = html;
 }
+function getOrderText() {
+
+    let text = "THÔNG TIN ĐẶT HÀNG\n\n";
+
+    text += "Khách hàng: " + document.getElementById("customerName").value + "\n";
+    text += "SĐT: " + document.getElementById("customerPhone").value + "\n";
+    text += "Công ty: " + document.getElementById("customerCompany").value + "\n";
+    text += "MST: " + document.getElementById("customerTax").value + "\n";
+    text += "Địa chỉ hóa đơn: " + document.getElementById("customerInvoice").value + "\n";
+    text += "Địa chỉ giao hàng: " + document.getElementById("customerAddress").value + "\n\n";
+
+    const items = document.querySelectorAll("#buyCapacityList .buy-item");
+
+    items.forEach(item => {
+
+        const name = item.querySelector("h4")?.innerText || "";
+        const spec = item.querySelectorAll("div")[0]?.innerText || "";
+        const qty = item.querySelectorAll("div")[1]?.innerText || "";
+
+        text += "- " + name + " | " + spec + " | " + qty + "\n";
+    });
+
+    return text;
+}
 function sendOrderZalo() {
 
     const text = getOrderText();
