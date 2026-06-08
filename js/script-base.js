@@ -80,3 +80,9 @@ function goHomeAndBrand(brand) {
     sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
 }
+function goHomeOpenCart() {
+
+    sessionStorage.setItem("openCart", "1");
+
+    window.location.href = "index.html";
+}

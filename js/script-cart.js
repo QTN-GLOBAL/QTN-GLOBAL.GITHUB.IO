@@ -53,12 +53,7 @@ function renderCart() {
         </div>`;
     });
 
-    html += `
-    <div class="cart-bottom">
-        <button class="buy-now-btn" onclick="handleBuyNow()">
-            MUA NGAY
-        </button>
-    </div>`;
+   
 
     body.innerHTML = html;
 
@@ -198,42 +193,78 @@ function handleBuyNow() {
 
     const selectedItems = [];
 
-    const rows = document.querySelectorAll("#cartBody .cart-row");
+    document
+    .querySelectorAll(".cart-check")
+    .forEach((cb,index)=>{
 
-    rows.forEach((row, index) => {
+        if(cb.checked && cart[index]){
 
-        const cb = row.querySelector(".cart-check");
-
-        if (cb && cb.checked && cart[index]) {
             selectedItems.push(cart[index]);
         }
     });
 
-    if (selectedItems.length === 0) {
+    if(selectedItems.length === 0){
+
         alert("Vui lòng chọn sản phẩm cần mua");
+
         return;
     }
 
     renderBuyNowForm(selectedItems);
 }
-
 /* =========================
    BUY FORM
 ========================= */
 
 function renderBuyNowForm(items) {
 
-    const box = document.getElementById("buyProductList");
+    const popup =
+        document.getElementById("buyPopup");
+
+    if (!popup) return;
+
+    popup.style.display = "flex";
+
+    const box =
+        document.getElementById("buyCapacityList");
 
     if (!box) return;
 
-    box.innerHTML = items.map(item => `
-        <div class="buy-item">
-            <h4>${item.name}</h4>
-            <div>${item.spec || ""}</div>
-            <div>SL: ${item.quantity}</div>
-        </div>
-    `).join("");
+    let html = "";
 
-    document.getElementById("buyNowModal").style.display = "block";
+    items.forEach(item => {
+
+        html += `
+
+        <div class="buy-item">
+
+            <img
+            src="images/${item.category}/${item.folder}/main.jpg"
+            style="
+            width:60px;
+            height:60px;
+            object-fit:contain;
+            display:block;
+            margin:auto;
+            ">
+
+            <h4 style="text-align:center">
+                ${item.name}
+            </h4>
+
+            <div style="text-align:center">
+                ${item.spec || ""}
+            </div>
+
+            <div style="text-align:center">
+                SL: ${item.quantity}
+            </div>
+
+            <hr>
+
+        </div>
+        `;
+    });
+
+    box.innerHTML = html;
 }

@@ -174,12 +174,12 @@ function openBuyPopup() {
 
             const label = cols[0].innerText + " - " + cols[1].innerText;
 
-            html += `
-            <div class="buy-row">
+           html += `
+<div class="buy-row">
 
-                <div class="buy-left">
-                    <input type="checkbox" checked>
-                </div>
+    <div class="buy-left">
+        <input type="checkbox">
+    </div>
 
                 <div class="buy-middle">
                     ${label}
@@ -198,8 +198,7 @@ function openBuyPopup() {
     document.getElementById("buyCapacityList").innerHTML = html;
 
     // auto check all
-    document.querySelectorAll("#buyCapacityList input[type='checkbox']")
-        .forEach(cb => cb.checked = true);
+    
 }
 
 /* =========================
@@ -260,24 +259,19 @@ function sendOrderZalo() {
 
     navigator.clipboard.writeText(text);
 
-    closeBuyPopup();
+    alert("Đơn hàng đã được copy.\nNhấn OK để mở Zalo.");
 
     window.open("https://zalo.me/0383598603", "_blank");
-
-    alert("Đã copy đơn hàng");
 }
-
 function sendOrderMessenger() {
 
     const text = getOrderText();
 
     navigator.clipboard.writeText(text);
 
-    closeBuyPopup();
+    alert("Đơn hàng đã được copy.\nNhấn OK để mở Messenger.");
 
     window.open("https://m.me/QTNSCALE", "_blank");
-
-    alert("Đã copy đơn hàng");
 }
 function confirmAddCart() {
     addSelectedToCart();
