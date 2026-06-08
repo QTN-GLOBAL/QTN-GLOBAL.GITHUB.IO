@@ -1,21 +1,12 @@
-
 /* =========================
-   DETAIL PAGE
+   DETAIL PAGE (CLEAN FIXED)
 ========================= */
 
 .detail-page{
     display:grid;
-
-    grid-template-columns:
-    220px
-    420px
-    minmax(0,1fr)
-    220px;
-
+    grid-template-columns:220px 420px minmax(0,1fr) 220px;
     gap:20px;
-
     align-items:start;
-
     padding:20px;
 }
 
@@ -25,102 +16,111 @@
 
 .sidebar,
 .brand-sidebar{
-
     background:#fff;
-
     border-radius:12px;
-
     padding:18px;
-
-    box-shadow:
-    0 2px 10px rgba(0,0,0,.08);
-
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
     position:sticky;
-
     top:130px;
 }
 
 /* =========================
-   IMAGE COLUMN
+   IMAGE AREA
 ========================= */
 
 .detail-left{
-
     background:#fff;
-
     border-radius:14px;
-
     padding:20px;
-
-    box-shadow:
-    0 2px 12px rgba(0,0,0,.08);
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
 }
 
-/* MAIN IMAGE */
-
 #mainImage{
-
     width:100%;
-
     height:380px;
-
     object-fit:contain;
-
     border-radius:12px;
-
     background:#fff;
-
     border:1px solid #eee;
 }
 
-/* THUMB */
-
 #thumbList{
-
     display:flex;
-
     gap:10px;
-
     margin-top:15px;
-
     flex-wrap:wrap;
 }
 
 #thumbList img{
-
     width:70px;
-
     height:70px;
-
     object-fit:contain;
-
     border-radius:10px;
-
     border:2px solid #eee;
-
     cursor:pointer;
-
     transition:.2s;
-
     background:#fff;
 }
 
 #thumbList img:hover{
-
     border-color:#1565c0;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTON AREA (FIXED)
+========================= */
 
 .detail-buttons{
     display:flex;
     flex-direction:column;
     gap:12px;
     margin-top:20px;
+    width:100%;
 }
 
-.detail-buttons button:hover{
+/* THÊM GIỎ */
+.btn-addcart{
+    width:100%;
+    height:48px;
+    border:none;
+    border-radius:10px;
+    background:#1565c0;
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s;
+}
 
+.btn-addcart:hover{
+    background:#0d47a1;
+    transform:translateY(-2px);
+}
+
+/* MUA NGAY */
+.btn-buynow{
+    width:100%;
+    height:48px;
+    border:none;
+    border-radius:10px;
+    background:#e53935;
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s;
+}
+
+.btn-buynow:hover{
+    background:#c62828;
     transform:translateY(-2px);
 }
 
@@ -129,82 +129,48 @@
 ========================= */
 
 .detail-right{
-
     min-width:0;
-
     background:#fff;
-
     border-radius:14px;
-
     padding:25px;
-
-    box-shadow:
-    0 2px 12px rgba(0,0,0,.08);
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
 }
 
-/* TITLE */
-
 .detail-right h1{
-
     font-size:32px;
-
     margin-bottom:18px;
-
     line-height:1.4;
-
     color:#111;
 }
 
-/* TEXT */
-
 .detail-right p{
-
     font-size:16px;
-
     line-height:1.8;
-
     margin-bottom:10px;
 }
 
-/* SUBTITLE */
-
 .detail-right h3{
-
     margin-top:25px;
-
     margin-bottom:15px;
-
     color:#1565c0;
 }
 
-/* TABLE */
-
 .detail-right table{
-
     width:100%;
-
     border-collapse:collapse;
-
     margin-top:10px;
-
     font-size:15px;
 }
 
 .detail-right th{
-
     background:#1565c0;
-
     color:#fff;
-
     padding:12px;
-
     border:1px solid #ddd;
 }
 
 .detail-right td{
-
     padding:12px;
-
     border:1px solid #ddd;
 }
 
@@ -213,27 +179,18 @@
 ========================= */
 
 @media(max-width:1400px){
-
     .detail-page{
-
-        grid-template-columns:
-        220px
-        360px
-        1fr
-        220px;
+        grid-template-columns:220px 360px 1fr 220px;
     }
 }
 
 @media(max-width:992px){
-
     .detail-page{
-
         grid-template-columns:1fr;
     }
 
     .sidebar,
     .brand-sidebar{
-
         position:static;
     }
 
@@ -241,61 +198,12 @@
         height:300px;
     }
 }
-.btn-addcart{
-    width:100%;
-    height:48px;
 
-    border:none;
-    border-radius:10px;
+/* =========================
+   ADD CART POPUP (ISOLATED - SAFE)
+========================= */
 
-    background:#1565c0;
-    color:#fff;
-
-    font-size:15px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    transition:0.2s;
-}
-
-.btn-addcart:hover{
-    background:#0d47a1;
-    transform:translateY(-2px);
-}
-.btn-buynow{
-    flex:1;
-    height:48px;
-
-    border:none;
-    border-radius:10px;
-
-    background:#e53935;
-    color:#fff;
-
-    font-size:15px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    transition:0.2s;
-}
-
-.btn-buynow:hover{
-    background:#c62828;
-    transform:translateY(-2px);
-}
-.detail-row{
+.addcart-row{
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -303,22 +211,40 @@
     padding:10px 0;
     border-bottom:1px solid #eee;
 }
-.detail-left{
+
+.addcart-left{
     width:40px;
     flex-shrink:0;
     display:flex;
     justify-content:center;
 }
-.detail-middle{
+
+.addcart-middle{
     flex:1;
     text-align:center;
     font-size:14px;
 }
-.detail-right{
+
+.addcart-right{
     width:120px;
     flex-shrink:0;
     display:flex;
     justify-content:flex-end;
     gap:5px;
     align-items:center;
+}
+
+.addcart-right button{
+    width:28px;
+    height:28px;
+    border:none;
+    background:#1565c0;
+    color:#fff;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+.addcart-right input{
+    width:40px;
+    text-align:center;
 }
