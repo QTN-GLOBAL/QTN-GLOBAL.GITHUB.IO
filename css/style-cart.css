@@ -403,3 +403,28 @@
 .cart-footer button:hover{
     background:#c62828;
 }
+/* =========================
+   CUSTOMER GRID
+========================= */
+
+.customer-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.customer-grid input,
+.customer-grid textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+#customerInvoice,
+#customerAddress{
+    height:70px;
+    resize:none;
+}
