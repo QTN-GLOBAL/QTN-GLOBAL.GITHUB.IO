@@ -2028,7 +2028,161 @@ specs:[
     "Tiêu chuẩn chính xác cấp III theo OIML"
 
     ]
+},
+{
+    id: 26,
+
+    name: "Cân ghế ngồi inox SLH 200",
+
+    category: "can-ghe-ngoi",
+
+    folder: "slh-200",
+
+    brand: "LE HUY SCALE",
+
+    origin: "Việt Nam",
+
+    description: "Cân ghế ngồi inox SLH 200 là dòng cân điện tử thiết kế dạng ghế ngồi chắc chắn, chuyên dùng trong môi trường thủy sản, nông sản, kho hàng và xưởng sản xuất. Cân có khả năng chống nước tốt, độ bền cao, hoạt động ổn định trong môi trường ẩm ướt và công nghiệp.",
+
+    specs: [
+
+        `
+        <table class="spec-table">
+
+            <tr>
+                <th>Mức cân</th>
+                <th>Độ chia</th>
+            </tr>
+
+            <tr>
+                <td>60kg</td>
+                <td>10g</td>
+            </tr>
+
+            <tr>
+                <td>150kg</td>
+                <td>20g</td>
+            </tr>
+
+            <tr>
+                <td>200kg</td>
+                <td>20g</td>
+            </tr>
+
+            <tr>
+                <td>300kg</td>
+                <td>50g</td>
+            </tr>
+
+            <tr>
+                <td>500kg</td>
+                <td>100g</td>
+            </tr>
+
+        </table>
+        `,
+
+        "Model: SLH 200SS",
+
+        "Thiết kế dạng ghế ngồi inox chống gỉ, chịu tải cao",
+
+        "Đầu cân điện tử SLH hiển thị LED rõ nét",
+
+        "Loadcell độ chính xác cao, ổn định",
+
+        "Khả năng chống nước, phù hợp môi trường thủy sản",
+
+        "Pin sạc hoạt động liên tục 60–72 giờ",
+
+        "Chức năng: cân trọng lượng, trừ bì, giữ số liệu",
+
+        "Chế độ tự động tắt tiết kiệm pin",
+
+        "Khung inox chắc chắn, dễ vệ sinh",
+
+        "Ứng dụng: kho hàng, thủy hải sản, nông sản, xưởng sản xuất"
+    ]
+},
+{
+    id: 27,
+
+    name: "Cân ghế ngồi XK3190 A12",
+
+    category: "can-ghe-ngoi",
+
+    folder: "xk3190-a12",
+
+    brand: "YAOHUA",
+
+    origin: "Đài Loan",
+
+    description: "Cân ghế ngồi XK3190 A12 là dòng cân điện tử kiểu ghế ngồi công nghiệp, thiết kế chắc chắn, chuyên dùng trong nông sản, chăn nuôi, kho hàng và môi trường sản xuất. Cân sử dụng đầu hiển thị A12 độ chính xác cao, hoạt động ổn định, dễ sử dụng và có độ bền tốt trong môi trường công nghiệp.",
+
+    specs: [
+
+        `
+        <table class="spec-table">
+
+            <tr>
+                <th>Mức cân</th>
+                <th>Độ chia</th>
+            </tr>
+
+            <tr>
+                <td>60kg</td>
+                <td>10g</td>
+            </tr>
+
+            <tr>
+                <td>100kg</td>
+                <td>10g</td>
+            </tr>
+
+            <tr>
+                <td>150kg</td>
+                <td>20g</td>
+            </tr>
+
+            <tr>
+                <td>200kg</td>
+                <td>20g</td>
+            </tr>
+
+            <tr>
+                <td>300kg</td>
+                <td>50g</td>
+            </tr>
+
+            <tr>
+                <td>500kg</td>
+                <td>100g</td>
+            </tr>
+
+        </table>
+        `,
+
+        "Model: XK3190 A12",
+
+        "Thiết kế dạng ghế ngồi chắc chắn, khung thép sơn tĩnh điện",
+
+        "Đầu cân Yaohua A12 hiển thị LED rõ nét",
+
+        "Độ chính xác cao, ổn định trong môi trường rung lắc",
+
+        "Chức năng: cân, trừ bì, zero, giữ số liệu",
+
+        "Kết nối loadcell 1–4 cảm biến",
+
+        "Nguồn điện: 220V + pin sạc 6V",
+
+        "Khung bàn inox hoặc thép tùy chọn",
+
+        "Ứng dụng: cân heo, gà, nông sản, kho hàng",
+
+        "Tiêu chuẩn OIML C3"
+    ]
 }
+
 
         
 
