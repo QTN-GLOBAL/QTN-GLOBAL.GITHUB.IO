@@ -1,5 +1,5 @@
 /* =========================
-   DETAIL PAGE (CLEAN FIXED)
+   DETAIL PAGE - CLEAN VERSION
 ========================= */
 
 .detail-page{
@@ -58,8 +58,8 @@
     border-radius:10px;
     border:2px solid #eee;
     cursor:pointer;
-    transition:.2s;
     background:#fff;
+    transition:.2s;
 }
 
 #thumbList img:hover{
@@ -67,7 +67,7 @@
 }
 
 /* =========================
-   BUTTON AREA (FIXED)
+   DETAIL BUTTONS (THÊM GIỎ + MUA NGAY)
 ========================= */
 
 .detail-buttons{
@@ -78,49 +78,38 @@
     width:100%;
 }
 
-/* THÊM GIỎ */
-.btn-addcart{
+.detail-buttons button{
     width:100%;
-    height:48px;
+    height:52px;
     border:none;
-    border-radius:10px;
-    background:#1565c0;
-    color:#fff;
-    font-size:15px;
+    border-radius:12px;
+
+    font-size:16px;
     font-weight:700;
+
     cursor:pointer;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:8px;
-    transition:.2s;
+    gap:10px;
+
+    transition:0.2s;
 }
 
-.btn-addcart:hover{
-    background:#0d47a1;
-    transform:translateY(-2px);
+/* THÊM GIỎ */
+.detail-buttons button:first-child{
+    background:#1565c0;
+    color:#fff;
 }
 
 /* MUA NGAY */
-.btn-buynow{
-    width:100%;
-    height:48px;
-    border:none;
-    border-radius:10px;
+.detail-buttons button:last-child{
     background:#e53935;
     color:#fff;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    transition:.2s;
 }
 
-.btn-buynow:hover{
-    background:#c62828;
+.detail-buttons button:hover{
     transform:translateY(-2px);
 }
 
@@ -140,7 +129,6 @@
     font-size:32px;
     margin-bottom:18px;
     line-height:1.4;
-    color:#111;
 }
 
 .detail-right p{
@@ -154,6 +142,10 @@
     margin-bottom:15px;
     color:#1565c0;
 }
+
+/* =========================
+   TABLE
+========================= */
 
 .detail-right table{
     width:100%;
@@ -172,6 +164,96 @@
 .detail-right td{
     padding:12px;
     border:1px solid #ddd;
+}
+
+/* =========================
+   ADD CART ROW (IMPORTANT FIX)
+========================= */
+
+.detail-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+/* checkbox trái */
+.detail-left{
+    width:40px;
+    display:flex;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+/* nội dung giữa */
+.detail-middle{
+    flex:1;
+    text-align:center;
+    font-size:14px;
+    padding:0 10px;
+}
+
+/* qty phải */
+.detail-right{
+    width:120px;
+    display:flex;
+    justify-content:flex-end;
+    gap:5px;
+    align-items:center;
+    flex-shrink:0;
+}
+
+.detail-right button{
+    width:28px;
+    height:28px;
+    border:none;
+    background:#1565c0;
+    color:#fff;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+.detail-right input{
+    width:40px;
+    text-align:center;
+}
+
+/* =========================
+   ADD BUTTON (CENTER FIX)
+========================= */
+
+.addcart-footer{
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
+
+.btn-addcart{
+    width:220px;
+    height:48px;
+
+    background:#1565c0;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:15px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:0.2s;
+}
+
+.btn-addcart:hover{
+    background:#0d47a1;
 }
 
 /* =========================
@@ -197,146 +279,4 @@
     #mainImage{
         height:300px;
     }
-}
-
-/* =========================
-   ADD CART POPUP (ISOLATED - SAFE)
-========================= */
-
-.addcart-row{
-    display:grid;
-    grid-template-columns:40px 1fr 120px;
-    align-items:center;
-    gap:10px;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
-}
-
-.addcart-left{
-    display:flex;
-    justify-content:center;
-}
-
-.addcart-middle{
-    text-align:center;
-    font-size:14px;
-    word-break:break-word;
-}
-
-.addcart-right{
-    display:flex;
-    justify-content:flex-end;
-    gap:6px;
-    align-items:center;
-}
-
-.addcart-right button{
-    width:28px;
-    height:28px;
-    border:none;
-    background:#1565c0;
-    color:#fff;
-    border-radius:4px;
-    cursor:pointer;
-}
-
-.addcart-right input{
-    width:40px;
-    text-align:center;
-}
-/* FIX BUTTON DEFAULT (KHÔNG CẦN ĐỔI HTML) */
-
-.detail-buttons button:first-child{
-    background:#1565c0;
-    color:#fff;
-}
-
-.detail-buttons button:last-child{
-    background:#e53935;
-    color:#fff;
-}
-
-.detail-buttons button{
-    flex:1;
-    height:48px;
-    border:none;
-    border-radius:10px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    transition:.2s;
-}
-.detail-buttons{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:20px;
-    width:100%;
-}
-
-/* CHUẨN LẠI BUTTON */
-.detail-buttons button{
-    width:100%;
-    height:52px;          /* tăng chiều cao */
-    min-height:52px;
-
-    border:none;
-    border-radius:12px;
-
-    font-size:16px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-
-    transition:0.2s;
-}
-
-/* màu giữ nguyên */
-.detail-buttons button:first-child{
-    background:#1565c0;
-    color:#fff;
-}
-
-.detail-buttons button:last-child{
-    background:#e53935;
-    color:#fff;
-}
-
-.detail-buttons button:hover{
-    transform:translateY(-2px);
-}
-.addcart-footer{
-    display:flex;
-    justify-content:center;
-    margin-top:15px;
-}
-.btn-addcart{
-    width:60%;
-    height:48px;
-
-    background:#1565c0;
-    color:#fff;
-
-    border:none;
-    border-radius:10px;
-
-    font-size:15px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    margin:0 auto;
 }
