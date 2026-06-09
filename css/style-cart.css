@@ -32,8 +32,11 @@
 }
 
 .cart-header h2{
+    flex:1;
+    text-align:center;
     margin:0;
-    font-size:18px;
+    font-size:24px;
+    font-weight:700;
 }
 
 .cart-header button{
@@ -49,7 +52,15 @@
    ROW BASE (CART + BUY)
 ========================= */
 
-.cart-row,
+.cart-row{
+    display:grid;
+    grid-template-columns:30px 90px 1fr 110px;
+    align-items:center;
+    gap:10px;
+    padding:12px 10px;
+    border-bottom:1px solid #eee;
+}
+
 .buy-row{
     display:flex;
     align-items:center;
@@ -82,15 +93,18 @@
    MIDDLE (TEXT)
 ========================= */
 
-.cart-middle,
+.cart-middle{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    text-align:left;
+    font-size:14px;
+}
+
 .buy-middle{
     flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     text-align:center;
-    min-width:0;
-    font-size:14px;
 }
 
 /* product info block (cart only) */
@@ -160,13 +174,21 @@
 }
 
 .buy-now-btn{
-    width:100%;
-    height:44px;
+    width:180px;
+    height:46px;
+
+    margin:0 auto;
+    display:block;
+
     border:none;
     border-radius:8px;
-    background:#d32f2f;
+
+    background:#e53935;
     color:#fff;
+
+    font-size:15px;
     font-weight:700;
+
     cursor:pointer;
 }
 
@@ -300,4 +322,29 @@
     text-align:center;
 
     margin-bottom:15px;
+}
+/* =========================
+   CART IMAGE
+========================= */
+
+.cart-row img{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+}
+
+/* =========================
+   CART TITLE
+========================= */
+
+.cart-name{
+    font-size:16px;
+    font-weight:700;
+    line-height:1.4;
+}
+
+.cart-capacity{
+    margin-top:4px;
+    color:#666;
+    font-size:13px;
 }
