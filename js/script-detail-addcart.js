@@ -34,23 +34,23 @@ function openAddCartPopup() {
             const label = cols[0].innerText + " - " + cols[1].innerText;
 
             html += `
-            <div class="detail-row">
+            <div class="addcart-row">
 
-                <div class="detail-left">
-                    <input type="checkbox" class="detail-check">
-                </div>
+    <div class="addcart-left">
+        <input type="checkbox" class="detail-check">
+    </div>
 
-                <div class="detail-middle">
-                    ${label}
-                </div>
+    <div class="addcart-middle">
+        ${label}
+    </div>
 
-                <div class="detail-right">
-                    <button onclick="changeQty(this,-1)">-</button>
-                    <input type="number" value="1">
-                    <button onclick="changeQty(this,1)">+</button>
-                </div>
+    <div class="addcart-right">
+        <button onclick="changeQty(this,-1)">-</button>
+        <input type="number" value="1">
+        <button onclick="changeQty(this,1)">+</button>
+    </div>
 
-            </div>`;
+</div>`;
         }
     });
 
@@ -68,7 +68,7 @@ function addSelectedToCart() {
     const product = window.currentProduct;
     const popup = document.getElementById("addCartPopup");
 
-    const rows = popup.querySelectorAll(".detail-row");
+    const rows = popup.querySelectorAll(".addcart-row");
 
     let added = false;
 
@@ -77,7 +77,7 @@ function addSelectedToCart() {
         const check = row.querySelector(".detail-check");
         if (!check || !check.checked) return;
 
-        const label = row.querySelector(".detail-middle").innerText;
+       const label = row.querySelector(".addcart-middle").innerText;
 
         const qty = parseInt(
             row.querySelector("input[type='number']").value
