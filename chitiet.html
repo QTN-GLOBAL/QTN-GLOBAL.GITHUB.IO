@@ -7,7 +7,9 @@
 
 <link rel="stylesheet" href="css/style-base.css">
 <link rel="stylesheet" href="css/style-home.css">
-<link rel="stylesheet" href="css/style-detail.css">
+<link rel="stylesheet" href="css/style-detail-layout.css">
+<link rel="stylesheet" href="css/style-detail-addcart.css">
+<link rel="stylesheet" href="css/style-detail-buynow.css">
 <link rel="stylesheet" href="css/style-cart.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -130,15 +132,17 @@ LIÊN HỆ
 
         <div id="thumbList"></div>
 
-        <div class="detail-buttons">
-            <button onclick="openAddCartPopup()">
-                <i class="fa fa-cart-shopping"></i> THÊM GIỎ
-            </button>
+       <div class="detail-buttons">
 
-            <button onclick="openBuyPopup()">
-                <i class="fa fa-bolt"></i> MUA NGAY
-            </button>
-        </div>
+    <button class="btn-addcart" onclick="openAddCartPopup()">
+        <i class="fa fa-cart-shopping"></i> THÊM GIỎ
+    </button>
+
+    <button class="btn-buynow" onclick="openBuyPopup()">
+        <i class="fa fa-bolt"></i> MUA NGAY
+    </button>
+
+</div>
 
     </div>
 
