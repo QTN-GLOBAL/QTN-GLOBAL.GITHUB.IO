@@ -428,3 +428,13 @@
     height:70px;
     resize:none;
 }
+/* =========================
+   VALIDATE FORM
+========================= */
+
+.input-error{
+
+    border:2px solid #e53935 !important;
+
+    background:#fff5f5 !important;
+}
