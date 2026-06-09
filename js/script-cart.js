@@ -102,7 +102,7 @@ function removeCartItem(index) {
 
 function renderHeaderCart() {
 
-    const box = document.getElementById("headerCartBox");
+   const box = document.getElementById("cartBody");
     if (!box) return;
 
     const cart = Cart.get();
@@ -132,10 +132,7 @@ function renderHeaderCart() {
         </div>`;
     });
 
-    html += `
-    <button class="buy-now-btn" onclick="handleBuyNow()">
-        MUA NGAY
-    </button>`;
+    
 
     box.innerHTML = html;
 }
