@@ -350,7 +350,7 @@ window.products = [
 
     folder:"vibra-haw",
 
-    brand:"VIBRA",
+    brand:"Vibra",
 
     origin:"Nhật Bản",
 
