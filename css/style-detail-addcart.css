@@ -66,21 +66,24 @@
 }
 .detail-buttons{
     display:flex !important;
-    flex-direction:column !important;
-    align-items:center;
+    flex-direction:row !important;
     width:100%;
     gap:12px;
+    margin-top:15px;
 }
 
 .btn-addcart{
-    width:60% !important;
-    margin:0 auto !important;
+    flex:1;
+    height:48px;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     background:#1565c0;
     color:#fff;
-    height:48px;
+
+    border:none;
     border-radius:10px;
 }
 #cartSpecList .addcart-row{

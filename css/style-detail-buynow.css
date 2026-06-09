@@ -212,3 +212,17 @@
 
     flex:1;
 }
+.btn-buynow{
+    flex:1;
+    height:48px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#e53935;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+}
