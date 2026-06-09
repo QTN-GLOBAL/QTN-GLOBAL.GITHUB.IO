@@ -2,46 +2,7 @@
    ADD CART BUTTONS ONLY
 ========================= */
 
-.detail-buttons{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:20px;
-    width:100%;
-}
 
-/* RESET KHÔNG ÉP FLEX */
-.detail-buttons button{
-    flex:none;
-    width:100%;
-    height:52px;
-
-    border:none;
-    border-radius:12px;
-
-    font-size:16px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    transition:0.2s;
-}
-
-/* THÊM GIỎ */
-.detail-buttons button:first-child{
-    background:#1565c0;
-    color:#fff;
-}
-
-.detail-buttons button:first-child:hover{
-    background:#0d47a1;
-    transform:translateY(-2px);
-}
 /* =========================
    ADD CART ROW FIX
 ========================= */
@@ -121,4 +82,46 @@
     color:#fff;
     height:48px;
     border-radius:10px;
+}
+#cartSpecList .addcart-row{
+    display:grid;
+    grid-template-columns:40px 1fr 120px;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+#cartSpecList .addcart-left{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#cartSpecList .addcart-middle{
+    text-align:center;
+    font-size:14px;
+}
+
+#cartSpecList .addcart-right{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:6px;
+}
+.add-cart-btn{
+    width:60%;
+    margin:15px auto 0 auto;
+    display:block;
+
+    height:48px;
+    background:#1565c0;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
 }
