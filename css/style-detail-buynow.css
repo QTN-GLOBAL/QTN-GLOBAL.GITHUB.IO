@@ -1,0 +1,13 @@
+/* =========================
+   BUY NOW BUTTON
+========================= */
+
+.detail-buttons button:last-child{
+    background:#e53935;
+    color:#fff;
+}
+
+.detail-buttons button:last-child:hover{
+    transform:translateY(-2px);
+    background:#c62828;
+}
