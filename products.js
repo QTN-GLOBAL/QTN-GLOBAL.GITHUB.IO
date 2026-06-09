@@ -2112,7 +2112,7 @@ specs:[
 
     folder: "xk3190-a12",
 
-    brand: "YAOHUA",
+    brand: "Yaohua",
 
     origin: "Đài Loan",
 
