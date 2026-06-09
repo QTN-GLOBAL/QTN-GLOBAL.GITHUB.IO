@@ -149,3 +149,29 @@
 #buyPopup .popup-box{
     text-align:center;
 }
+/* 4 Ô THÔNG TIN */
+
+.buy-form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.buy-form-grid input{
+    width:100%;
+}
+
+/* 2 Ô ĐỊA CHỈ */
+
+.buy-address-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.buy-address-grid textarea{
+    width:100%;
+    min-height:80px;
+}
