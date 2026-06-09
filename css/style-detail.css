@@ -1,5 +1,5 @@
 /* =========================
-   DETAIL PAGE - CLEAN VERSION
+   DETAIL PAGE - SAFE VERSION
 ========================= */
 
 .detail-page{
@@ -10,10 +10,7 @@
     padding:20px;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
-
+/* SIDEBAR */
 .sidebar,
 .brand-sidebar{
     background:#fff;
@@ -25,7 +22,7 @@
 }
 
 /* =========================
-   IMAGE AREA
+   IMAGE SLIDER AREA (CHỈ 1 NHIỆM VỤ)
 ========================= */
 
 .detail-left{
@@ -59,66 +56,13 @@
     border:2px solid #eee;
     cursor:pointer;
     background:#fff;
-    transition:.2s;
-}
-
-#thumbList img:hover{
-    border-color:#1565c0;
 }
 
 /* =========================
-   DETAIL BUTTONS (THÊM GIỎ + MUA NGAY)
-========================= */
-
-.detail-buttons{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:20px;
-    width:100%;
-}
-
-.detail-buttons button{
-    width:100%;
-    height:52px;
-    border:none;
-    border-radius:12px;
-
-    font-size:16px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-
-    transition:0.2s;
-}
-
-/* THÊM GIỎ */
-.detail-buttons button:first-child{
-    background:#1565c0;
-    color:#fff;
-}
-
-/* MUA NGAY */
-.detail-buttons button:last-child{
-    background:#e53935;
-    color:#fff;
-}
-
-.detail-buttons button:hover{
-    transform:translateY(-2px);
-}
-
-/* =========================
-   PRODUCT INFO
+   DETAIL INFO (KHÔNG ĐỤNG POPUP)
 ========================= */
 
 .detail-right{
-    min-width:0;
     background:#fff;
     border-radius:14px;
     padding:25px;
@@ -128,37 +72,29 @@
 .detail-right h1{
     font-size:32px;
     margin-bottom:18px;
-    line-height:1.4;
 }
 
 .detail-right p{
     font-size:16px;
     line-height:1.8;
-    margin-bottom:10px;
 }
 
 .detail-right h3{
     margin-top:25px;
-    margin-bottom:15px;
     color:#1565c0;
 }
 
-/* =========================
-   TABLE
-========================= */
-
+/* TABLE */
 .detail-right table{
     width:100%;
     border-collapse:collapse;
     margin-top:10px;
-    font-size:15px;
 }
 
 .detail-right th{
     background:#1565c0;
     color:#fff;
     padding:12px;
-    border:1px solid #ddd;
 }
 
 .detail-right td{
@@ -167,61 +103,86 @@
 }
 
 /* =========================
-   ADD CART ROW (IMPORTANT FIX)
+   BUTTONS (SAFE FIX - KHÔNG ĐỤNG LAYOUT KHÁC)
 ========================= */
 
-.detail-row{
+.detail-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:20px;
+}
+
+.detail-buttons button{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
     display:flex;
     align-items:center;
-    justify-content:space-between;
+    justify-content:center;
+    gap:10px;
+}
+
+.detail-buttons button:first-child{
+    background:#1565c0;
+    color:#fff;
+}
+
+.detail-buttons button:last-child{
+    background:#e53935;
+    color:#fff;
+}
+
+/* =========================
+   ADD CART ROW - FIX KHÔNG ĐỤNG SLIDER
+========================= */
+
+.addcart-row{
+    display:grid;
+    grid-template-columns:40px 1fr 120px;
+    align-items:center;
     gap:10px;
     padding:10px 0;
     border-bottom:1px solid #eee;
 }
 
-/* checkbox trái */
-.detail-left{
-    width:40px;
+.addcart-left{
     display:flex;
     justify-content:center;
-    flex-shrink:0;
 }
 
-/* nội dung giữa */
-.detail-middle{
-    flex:1;
+.addcart-middle{
     text-align:center;
     font-size:14px;
-    padding:0 10px;
 }
 
-/* qty phải */
-.detail-right{
-    width:120px;
+.addcart-right{
     display:flex;
     justify-content:flex-end;
-    gap:5px;
+    gap:6px;
     align-items:center;
-    flex-shrink:0;
 }
 
-.detail-right button{
+.addcart-right button{
     width:28px;
     height:28px;
     border:none;
     background:#1565c0;
     color:#fff;
     border-radius:4px;
-    cursor:pointer;
 }
 
-.detail-right input{
+.addcart-right input{
     width:40px;
     text-align:center;
 }
 
 /* =========================
-   ADD BUTTON (CENTER FIX)
+   ADD BUTTON CENTER
 ========================= */
 
 .addcart-footer{
@@ -233,50 +194,9 @@
 .btn-addcart{
     width:220px;
     height:48px;
-
     background:#1565c0;
     color:#fff;
-
     border:none;
     border-radius:10px;
-
-    font-size:15px;
     font-weight:700;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    transition:0.2s;
-}
-
-.btn-addcart:hover{
-    background:#0d47a1;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1400px){
-    .detail-page{
-        grid-template-columns:220px 360px 1fr 220px;
-    }
-}
-
-@media(max-width:992px){
-    .detail-page{
-        grid-template-columns:1fr;
-    }
-
-    .sidebar,
-    .brand-sidebar{
-        position:static;
-    }
-
-    #mainImage{
-        height:300px;
-    }
 }
