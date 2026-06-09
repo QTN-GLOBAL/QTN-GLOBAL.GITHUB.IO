@@ -348,3 +348,30 @@
     color:#666;
     font-size:13px;
 }
+/* =========================
+   CART BUY NOW FIX
+========================= */
+
+.buy-now-btn{
+    width:180px !important;
+    height:46px !important;
+
+    display:block !important;
+
+    margin:15px auto !important;
+
+    background:#e53935 !important;
+    color:#fff !important;
+
+    border:none !important;
+    border-radius:8px !important;
+
+    font-size:15px !important;
+    font-weight:700 !important;
+
+    cursor:pointer;
+}
+
+.buy-now-btn:hover{
+    background:#c62828 !important;
+}
