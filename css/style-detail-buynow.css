@@ -176,3 +176,39 @@
     width:100%;
     min-height:80px;
 }
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.buy-product-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:12px;
+    margin:15px 0;
+
+    border:1px solid #eee;
+    border-radius:10px;
+
+    background:#fafafa;
+}
+
+#buyProductImg{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+
+    flex-shrink:0;
+
+    margin:0;
+}
+
+#buyProductName{
+    margin:0;
+    text-align:left;
+    font-size:18px;
+    font-weight:700;
+
+    flex:1;
+}
