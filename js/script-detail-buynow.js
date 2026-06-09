@@ -91,8 +91,48 @@ function getOrderText() {
 /* =========================
    SEND ZALO / MESSENGER
 ========================= */
+/* =========================
+   VALIDATE CUSTOMER
+========================= */
 
+function validateCustomerForm(){
+
+    const fields = [
+
+        document.getElementById("customerName"),
+        document.getElementById("customerPhone"),
+        document.getElementById("customerCompany"),
+        document.getElementById("customerTax"),
+        document.getElementById("customerInvoice"),
+        document.getElementById("customerAddress")
+
+    ];
+
+    let valid = true;
+
+    fields.forEach(field => {
+
+        field.classList.remove("input-error");
+
+        if(!field.value.trim()){
+
+            field.classList.add("input-error");
+
+            valid = false;
+        }
+    });
+
+    if(!valid){
+
+        alert("Vui lòng điền đầy đủ thông tin khách hàng.");
+
+        return false;
+    }
+
+    return true;
+}
 function sendOrderZalo() {
+if(!validateCustomerForm()) return;
 
     const text = getOrderText();
 
@@ -108,6 +148,7 @@ function sendOrderZalo() {
 }
 
 function sendOrderMessenger() {
+if(!validateCustomerForm()) return;
 
     const text = getOrderText();
 
