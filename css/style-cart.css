@@ -375,3 +375,31 @@
 .buy-now-btn:hover{
     background:#c62828 !important;
 }
+/* FOOTER */
+
+.cart-footer{
+    padding:15px;
+    display:flex;
+    justify-content:center;
+    border-top:1px solid #eee;
+}
+
+.cart-footer button{
+    width:180px;
+    height:46px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#e53935;
+    color:#fff;
+
+    font-size:15px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.cart-footer button:hover{
+    background:#c62828;
+}
