@@ -226,3 +226,13 @@
     border:none;
     border-radius:10px;
 }
+/* =========================
+   VALIDATE FORM
+========================= */
+
+.input-error{
+
+    border:2px solid #e53935 !important;
+
+    background:#fff5f5 !important;
+}
