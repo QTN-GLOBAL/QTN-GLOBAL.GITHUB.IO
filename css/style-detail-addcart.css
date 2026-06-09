@@ -72,3 +72,53 @@
     align-items:center;
     gap:6px;
 }
+/* FORCE ROW INLINE */
+.cart-row,
+.addcart-row{
+    display:grid !important;
+    grid-template-columns:40px 1fr 120px !important;
+    align-items:center !important;
+    gap:10px !important;
+}
+
+/* LEFT */
+.cart-left,
+.addcart-left{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+}
+
+/* MIDDLE */
+.cart-middle,
+.addcart-middle{
+    text-align:center !important;
+}
+
+/* RIGHT */
+.cart-right,
+.addcart-right{
+    display:flex !important;
+    justify-content:flex-end !important;
+    align-items:center !important;
+    gap:6px !important;
+}
+.detail-buttons{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center;
+    width:100%;
+    gap:12px;
+}
+
+.btn-addcart{
+    width:60% !important;
+    margin:0 auto !important;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#1565c0;
+    color:#fff;
+    height:48px;
+    border-radius:10px;
+}
