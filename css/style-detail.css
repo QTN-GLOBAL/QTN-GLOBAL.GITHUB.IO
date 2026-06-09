@@ -204,33 +204,29 @@
 ========================= */
 
 .addcart-row{
-    display:flex;
+    display:grid;
+    grid-template-columns:40px 1fr 120px;
     align-items:center;
-    justify-content:space-between;
     gap:10px;
     padding:10px 0;
     border-bottom:1px solid #eee;
 }
 
 .addcart-left{
-    width:40px;
-    flex-shrink:0;
     display:flex;
     justify-content:center;
 }
 
 .addcart-middle{
-    flex:1;
     text-align:center;
     font-size:14px;
+    word-break:break-word;
 }
 
 .addcart-right{
-    width:120px;
-    flex-shrink:0;
     display:flex;
     justify-content:flex-end;
-    gap:5px;
+    gap:6px;
     align-items:center;
 }
 
@@ -317,4 +313,30 @@
 
 .detail-buttons button:hover{
     transform:translateY(-2px);
+}
+.addcart-footer{
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
+.btn-addcart{
+    width:60%;
+    height:48px;
+
+    background:#1565c0;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:15px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0 auto;
 }
