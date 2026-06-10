@@ -273,3 +273,68 @@
     }
 
 }
+/* =========================
+   FIX HEADER OVERLAP MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    /* ===== ROW 1: LOGO + COMPANY + SLOGAN ===== */
+    .header-left,
+    .logo-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        width: 100%;
+    }
+
+    .company,
+    .slogan {
+        font-size: 13px;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .logo {
+        max-width: 120px;
+        height: auto;
+    }
+
+    /* ===== ROW 2: CONTACT + ICONS ===== */
+    .header-right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .phone,
+    .hotline {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .zalo,
+    .messenger,
+    .cart-icon {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* tránh đè nhau */
+    .header-right > * {
+        flex-shrink: 0;
+    }
+}
