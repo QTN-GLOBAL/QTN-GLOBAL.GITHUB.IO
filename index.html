@@ -105,20 +105,20 @@ onclick="openCart()">
      MENU
 ========================= -->
 
-<nav class="navbar">
+<nav class="menu">
 
-<a href="index.html">
-TRANG CHỦ
-</a>
+    <a href="index.html" data-i18n="home">TRANG CHỦ</a>
+    <a href="#" data-i18n="about">GIỚI THIỆU</a>
+    <a href="#" data-i18n="contact">LIÊN HỆ</a>
 
-<a href="#">
-GIỚI THIỆU
-</a>
+    <!-- LANGUAGE SWITCH -->
+    <div class="lang-switch">
+        <span data-i18n="language">NGÔN NGỮ</span>
 
-
-<a href="#">
-LIÊN HỆ
-</a>
+        <button onclick="setLanguage('vi')">VI</button>
+        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('cn')">CN</button>
+    </div>
 
 </nav>
 
@@ -299,7 +299,7 @@ class="cart-modal">
 
 <div class="cart-header">
 
-<h2>Giỏ hàng</h2>
+<h2 data-i18n="cart">Giỏ hàng</h2>
 
 <button onclick="closeCart()">
 ✕
@@ -421,6 +421,7 @@ class="cart-body">
 <script src="js/script-cart.js"></script>
 <script src="js/script-detail.js"></script>
 <script src="js/script-init.js"></script>
+<script src="script-i18n.js"></script>
 
 
 </body>
