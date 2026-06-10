@@ -1917,46 +1917,36 @@ window.products = [
 <table class="spec-table">
 
 <tr>
-<th>Model</th>
-<th>Khối lượng</th>
-<th>Sai số</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 <th>Kích thước đĩa cân</th>
 <th>Kích thước cân</th>
-<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
-<td>HZ-8X</td>
 <td>3kg</td>
 <td>0.5g</td>
 <td>-</td>
 <td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>HZ-8X</td>
 <td>6kg</td>
 <td>1g</td>
 <td>-</td>
 <td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>HZ-8X</td>
 <td>15kg</td>
 <td>2g</td>
 <td>-</td>
 <td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>HZ-8X</td>
 <td>30kg</td>
 <td>5g</td>
-<td>-</td>
 <td>-</td>
 <td>-</td>
 </tr>
@@ -2020,6 +2010,7 @@ window.products = [
 <td>0.5g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
 </tr>
 
 <tr>
@@ -2027,6 +2018,7 @@ window.products = [
 <td>1g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
 </tr>
 
 <tr>
@@ -2034,6 +2026,7 @@ window.products = [
 <td>2g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
 </tr>
 
 <tr>
@@ -2041,6 +2034,7 @@ window.products = [
 <td>5g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
 </tr>
 
 </table>
@@ -2095,71 +2089,48 @@ window.products = [
 <th>Mức cân</th>
 <th>Bước nhảy</th>
 <th>Kích thước bàn cân</th>
-<th>Kích thước cân</th>
-<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
-<td>IND PP</td>
 <td>50kg</td>
 <td>10g</td>
 <td>30 × 40 cm</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>IND PP</td>
 <td>60kg</td>
 <td>10g</td>
 <td>30 × 40 cm</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>IND PP</td>
 <td>100kg</td>
 <td>20g</td>
 <td>40 × 50 cm</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>IND PP</td>
 <td>150kg</td>
 <td>20g</td>
 <td>40 × 50 cm</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>IND PP</td>
 <td>200kg</td>
 <td>20g / 50g</td>
 <td>50 × 60 cm</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>IND PP</td>
 <td>300kg</td>
 <td>50g</td>
 <td>60 × 80 cm</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>IND PP</td>
 <td>500kg</td>
 <td>100g</td>
 <td>60 × 80 cm</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 </table>
@@ -2212,55 +2183,43 @@ window.products = [
 <table class="spec-table">
 
 <tr>
-<th>Model</th>
-<th>Khối lượng</th>
-<th>Sai số</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 <th>Kích thước bàn cân</th>
 <th>Kích thước cân</th>
-<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
-<td>SLH 200SS</td>
 <td>60kg</td>
 <td>10g</td>
 <td>-</td>
 <td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>SLH 200SS</td>
 <td>150kg</td>
 <td>20g</td>
 <td>-</td>
 <td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>SLH 200SS</td>
 <td>200kg</td>
 <td>20g</td>
 <td>-</td>
 <td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>SLH 200SS</td>
 <td>300kg</td>
 <td>50g</td>
 <td>-</td>
 <td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>SLH 200SS</td>
 <td>500kg</td>
 <td>100g</td>
-<td>-</td>
 <td>-</td>
 <td>-</td>
 </tr>
@@ -2311,16 +2270,14 @@ window.products = [
 <table class="spec-table">
 
 <tr>
-<th>Model</th>
-<th>Khối lượng</th>
-<th>Sai số</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 <th>Kích thước bàn cân</th>
 <th>Kích thước cân</th>
 <th>Trọng lượng cân</th>
 </tr>
 
 <tr>
-<td>XK3190 A12</td>
 <td>60kg</td>
 <td>10g</td>
 <td>-</td>
@@ -2329,7 +2286,6 @@ window.products = [
 </tr>
 
 <tr>
-<td>XK3190 A12</td>
 <td>100kg</td>
 <td>10g</td>
 <td>-</td>
@@ -2338,7 +2294,6 @@ window.products = [
 </tr>
 
 <tr>
-<td>XK3190 A12</td>
 <td>150kg</td>
 <td>20g</td>
 <td>-</td>
@@ -2347,7 +2302,6 @@ window.products = [
 </tr>
 
 <tr>
-<td>XK3190 A12</td>
 <td>200kg</td>
 <td>20g</td>
 <td>-</td>
@@ -2356,7 +2310,6 @@ window.products = [
 </tr>
 
 <tr>
-<td>XK3190 A12</td>
 <td>300kg</td>
 <td>50g</td>
 <td>-</td>
@@ -2365,7 +2318,6 @@ window.products = [
 </tr>
 
 <tr>
-<td>XK3190 A12</td>
 <td>500kg</td>
 <td>100g</td>
 <td>-</td>
