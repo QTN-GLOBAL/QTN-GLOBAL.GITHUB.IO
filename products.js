@@ -727,11 +727,18 @@ window.products = [
 <tr>
 <th>Mức cân</th>
 <th>Bước nhảy</th>
+<th>Kích thước bàn cân</th>
 </tr>
 
 <tr>
 <td>30kg</td>
 <td>1g</td>
+<td rowspan="6">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    Kích thước có thể thay đổi theo yêu cầu
+</td>
 </tr>
 
 <tr>
@@ -2094,43 +2101,41 @@ window.products = [
 <tr>
 <td>50kg</td>
 <td>10g</td>
-<td>30 × 40 cm</td>
+<td rowspan="7">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    Kích thước có thể thay đổi theo yêu cầu
 </tr>
 
 <tr>
 <td>60kg</td>
 <td>10g</td>
-<td>30 × 40 cm</td>
 </tr>
 
 <tr>
 <td>100kg</td>
 <td>20g</td>
-<td>40 × 50 cm</td>
 </tr>
 
 <tr>
 <td>150kg</td>
 <td>20g</td>
-<td>40 × 50 cm</td>
 </tr>
 
 <tr>
 <td>200kg</td>
 <td>20g / 50g</td>
-<td>50 × 60 cm</td>
 </tr>
 
 <tr>
 <td>300kg</td>
 <td>50g</td>
-<td>60 × 80 cm</td>
 </tr>
 
 <tr>
 <td>500kg</td>
 <td>100g</td>
-<td>60 × 80 cm</td>
 </tr>
 
 </table>
@@ -2186,42 +2191,36 @@ window.products = [
 <th>Mức cân</th>
 <th>Bước nhảy</th>
 <th>Kích thước bàn cân</th>
-<th>Kích thước cân</th>
 </tr>
 
 <tr>
 <td>60kg</td>
 <td>10g</td>
-<td>-</td>
-<td>-</td>
+<td rowspan="5">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    Kích thước có thể thay đổi theo yêu cầu
 </tr>
 
 <tr>
 <td>150kg</td>
 <td>20g</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
 <td>200kg</td>
 <td>20g</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
 <td>300kg</td>
 <td>50g</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
 <td>500kg</td>
 <td>100g</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 </table>
@@ -2273,56 +2272,42 @@ window.products = [
 <th>Mức cân</th>
 <th>Bước nhảy</th>
 <th>Kích thước bàn cân</th>
-<th>Kích thước cân</th>
-<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
 <td>60kg</td>
 <td>10g</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td rowspan="6">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    Kích thước có thể thay đổi theo yêu cầu
 </tr>
 
 <tr>
 <td>100kg</td>
 <td>10g</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
 <td>150kg</td>
 <td>20g</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
 <td>200kg</td>
 <td>20g</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
 <td>300kg</td>
 <td>50g</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
 </tr>
 
 <tr>
 <td>500kg</td>
 <td>100g</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+
 </tr>
 
 </table>
