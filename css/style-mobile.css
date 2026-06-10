@@ -274,67 +274,69 @@
 
 }
 /* =========================
-   FIX HEADER OVERLAP MOBILE
+   HEADER MOBILE FIX (FORCE RESET)
 ========================= */
 
 @media (max-width: 768px) {
 
+    /* RESET HEADER STRUCTURE */
     header {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        padding: 10px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        padding: 10px !important;
+        height: auto !important;
     }
 
-    /* ===== ROW 1: LOGO + COMPANY + SLOGAN ===== */
-    .header-left,
-    .logo-group {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-        width: 100%;
+    /* RESET TẤT CẢ ITEM TRONG HEADER */
+    header * {
+        position: static !important;
+        transform: none !important;
     }
 
+    /* ===== LINE 1: LOGO + COMPANY ===== */
+    .logo,
     .company,
     .slogan {
-        font-size: 13px;
-        line-height: 1.2;
-        margin: 0;
+        display: block !important;
+        width: 100% !important;
     }
 
     .logo {
-        max-width: 120px;
-        height: auto;
+        max-width: 120px !important;
+        margin-bottom: 5px;
     }
 
-    /* ===== ROW 2: CONTACT + ICONS ===== */
-    .header-right {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 8px;
-        width: 100%;
+    .company {
+        font-size: 14px !important;
+        font-weight: 600;
     }
 
+    .slogan {
+        font-size: 12px !important;
+        opacity: 0.8;
+    }
+
+    /* ===== LINE 2: CONTACT + ICONS ===== */
     .phone,
-    .hotline {
-        font-size: 13px;
-        white-space: nowrap;
-    }
-
+    .hotline,
     .zalo,
     .messenger,
     .cart-icon {
-        font-size: 18px;
-        display: flex;
+        display: inline-flex !important;
         align-items: center;
+        font-size: 13px !important;
+        margin-right: 8px;
+        white-space: nowrap;
     }
 
-    /* tránh đè nhau */
-    .header-right > * {
-        flex-shrink: 0;
+    /* gom icon xuống dòng riêng nếu cần */
+    .header-contact,
+    .header-icons {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px;
+        width: 100% !important;
     }
 }
