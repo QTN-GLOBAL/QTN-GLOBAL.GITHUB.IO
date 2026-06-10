@@ -274,69 +274,81 @@
 
 }
 /* =========================
-   HEADER MOBILE FIX (FORCE RESET)
+   HEADER MOBILE FIX (YOUR STRUCTURE)
 ========================= */
 
 @media (max-width: 768px) {
 
-    /* RESET HEADER STRUCTURE */
-    header {
+    /* ===== RESET HEADER ===== */
+    .top-header {
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 8px !important;
-        padding: 10px !important;
-        height: auto !important;
-    }
-
-    /* RESET TẤT CẢ ITEM TRONG HEADER */
-    header * {
-        position: static !important;
-        transform: none !important;
+        gap: 10px;
     }
 
     /* ===== LINE 1: LOGO + COMPANY ===== */
-    .logo,
-    .company,
-    .slogan {
-        display: block !important;
-        width: 100% !important;
+    .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
     }
 
-    .logo {
-        max-width: 120px !important;
-        margin-bottom: 5px;
+    .logo-area img {
+        width: 60px !important;
+        height: auto;
+        flex-shrink: 0;
     }
 
-    .company {
-        font-size: 14px !important;
-        font-weight: 600;
+    .company-info h2 {
+        font-size: 16px !important;
+        margin: 0;
+        line-height: 1.2;
     }
 
-    .slogan {
-        font-size: 12px !important;
+    .company-info p {
+        font-size: 11px !important;
+        margin: 0;
         opacity: 0.8;
     }
 
     /* ===== LINE 2: CONTACT + ICONS ===== */
-    .phone,
-    .hotline,
-    .zalo,
-    .messenger,
-    .cart-icon {
-        display: inline-flex !important;
-        align-items: center;
-        font-size: 13px !important;
-        margin-right: 8px;
-        white-space: nowrap;
-    }
-
-    /* gom icon xuống dòng riêng nếu cần */
-    .header-contact,
-    .header-icons {
+    .top-contact {
         display: flex !important;
         flex-wrap: wrap !important;
         gap: 8px;
-        width: 100% !important;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .top-btn,
+    .social-icon,
+    .top-cart-btn {
+        font-size: 12px !important;
+        padding: 6px 8px !important;
+        white-space: nowrap;
+    }
+
+    /* phone buttons gọn lại */
+    .top-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* icon nhỏ lại */
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 34px;
+    }
+
+    /* cart xuống dòng nếu quá chật */
+    .top-cart-btn {
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
     }
 }
