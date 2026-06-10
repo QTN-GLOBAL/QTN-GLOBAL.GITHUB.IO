@@ -9,6 +9,7 @@
 ========================= */
 
 const translations = {
+
     vi: {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
@@ -18,10 +19,9 @@ const translations = {
         cart: "Giỏ hàng",
         buyNow: "Mua ngay",
         addCart: "Thêm vào giỏ",
-        hotline: "Hotline",
-        website: "Website",
-        description: "Mô tả sản phẩm",
-        search: "Tìm kiếm"
+
+        // 🔥 THÊM Ở ĐÂY
+        slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ"
     },
 
     en: {
@@ -33,10 +33,9 @@ const translations = {
         cart: "Cart",
         buyNow: "Buy Now",
         addCart: "Add to Cart",
-        hotline: "Hotline",
-        website: "Website",
-        description: "Product Description",
-        search: "Search"
+
+        // 🔥 THÊM Ở ĐÂY
+        slogan: "PRECISION IN EVERY VALUE"
     },
 
     cn: {
@@ -48,10 +47,9 @@ const translations = {
         cart: "购物车",
         buyNow: "立即购买",
         addCart: "加入购物车",
-        hotline: "热线",
-        website: "网站",
-        description: "产品说明",
-        search: "搜索"
+
+        // 🔥 THÊM Ở ĐÂY
+        slogan: "每一个价值都精准"
     }
 };
 
