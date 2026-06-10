@@ -133,3 +133,54 @@ img{
         font-size:15px;
     }
 }
+/* =========================
+   HEADER + MENU FIX
+========================= */
+
+.header {
+    width: 100%;
+}
+
+/* TOP HEADER */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* MENU BAR */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1565c0;
+    padding: 10px 15px;
+    flex-wrap: wrap;
+}
+
+/* MENU LINKS */
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+/* LANGUAGE BLOCK */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+}
+
+.lang-switch span {
+    color: #fff;
+    font-size: 13px;
+}
+
+.lang-switch button {
+    font-size: 12px;
+    padding: 3px 6px;
+    cursor: pointer;
+}
