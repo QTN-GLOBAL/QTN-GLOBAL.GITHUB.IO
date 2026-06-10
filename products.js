@@ -15,12 +15,18 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>1.5kg</td>
 <td>0.1g</td>
+<td rowspan="6">294 × 228 mm</td>
+<td rowspan="6">341 × 249 × 104 mm</td>
+<td rowspan="6">kg / g / lb / oz / pcs</td>
 </tr>
 
 <tr>
@@ -55,12 +61,6 @@ window.products = [
 
 "Màn hình LCD 6 số, đèn nền LED xanh",
 
-"Kích thước đĩa cân: 294 × 228 mm",
-
-"Kích thước cân: 341 × 249 × 104 mm",
-
-"Đơn vị cân: kg / g / lb / oz / pcs",
-
 "Chức năng: cân trọng lượng, trừ bì, đếm số lượng",
 
 "Cổng giao tiếp RS-232 (tùy chọn)",
@@ -90,11 +90,17 @@ window.products = [
 <tr>
 <th>Mức cân</th>
 <th>Bước nhảy</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>1.5kg</td>
 <td>0.05g</td>
+<td rowspan="7">235 × 280 mm</td>
+<td rowspan="7">275 × 310 × 120 mm</td>
+<td rowspan="7">kg / g / lb / oz / pcs</td>
 </tr>
 
 <tr>
@@ -138,15 +144,9 @@ window.products = [
 
 "Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
 
-"Kích thước đĩa cân: 235 × 280 mm",
-
-"Kích thước cân: 275 × 310 × 120 mm",
-
 "Chất liệu vỏ: nhựa ABS",
 
 "Mặt bàn cân: Inox 304 chống gỉ",
-
-"Đơn vị cân: kg / g / lb / oz / pcs",
 
 "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn, về 0",
 
@@ -178,20 +178,25 @@ window.products = [
 
     description:"Cân điện tử Oneko JK-A thiết kế chống bụi, độ chính xác cao, màn hình LCD dễ quan sát, phù hợp cân đếm và kiểm tra trọng lượng trong sản xuất, kho vận và đóng gói.",
 
-   
-   specs:[
+    specs:[
 
 `
 <table class="spec-table">
 
 <tr>
 <th>Mức cân</th>
-<th>Vạch chia</th>
+<th>Bước nhảy</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>1.5kg</td>
 <td>0.1g</td>
+<td rowspan="6">280 × 230 mm</td>
+<td rowspan="6">355 × 335 × 137 mm</td>
+<td rowspan="6">kg / g / lb / pcs</td>
 </tr>
 
 <tr>
@@ -230,13 +235,7 @@ window.products = [
 
 "Chiều cao số hiển thị: 30mm",
 
-"Kích thước đĩa cân: 280 × 230 mm",
-
-"Kích thước cân: 355 × 335 × 137 mm",
-
 "Mặt bàn cân inox chống gỉ",
-
-"Đơn vị cân: kg / g / lb / pcs",
 
 "Chức năng: cân trọng lượng, trừ bì",
 
@@ -279,12 +278,18 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>3kg</td>
 <td>0.1g</td>
+<td rowspan="4">300 × 255 mm</td>
+<td rowspan="4">311 × 327 × 117 mm</td>
+<td rowspan="4">kg / g / lb / oz / pcs</td>
 </tr>
 
 <tr>
@@ -317,10 +322,6 @@ window.products = [
 
 "Đèn LED kiểm tra trọng lượng 3 màu",
 
-"Kích thước đĩa cân: 300 × 255 mm",
-
-"Kích thước cân: 311 × 327 × 117 mm",
-
 "Mặt bàn cân inox chống gỉ",
 
 "Vỏ cân nhựa ABS công nghiệp",
@@ -341,7 +342,7 @@ window.products = [
 
 ]
 },
-    {
+   {
     id:5,
 
     name:"Cân điện tử Nhật Bản VIBRA HAW",
@@ -363,12 +364,18 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Sai số</th>
+<th>Bước nhảy</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>1.5kg</td>
 <td>0.05g</td>
+<td rowspan="6">220 × 295 mm</td>
+<td rowspan="6">230 × 350 × 110 mm</td>
+<td rowspan="6">kg / g / lb / oz / pcs</td>
 </tr>
 
 <tr>
@@ -409,15 +416,9 @@ window.products = [
 
 "Chiều cao số hiển thị: 30mm",
 
-"Kích thước đĩa cân: 220 × 295 mm",
-
-"Kích thước cân: 230 × 350 × 110 mm",
-
 "Mặt bàn cân inox chống gỉ",
 
 "Vỏ cân nhựa ABS công nghiệp",
-
-"Đơn vị cân: kg / g / lb / oz / pcs",
 
 "Chức năng: cân trọng lượng, trừ bì, đếm số lượng, cộng dồn",
 
@@ -454,8 +455,7 @@ window.products = [
 
     description:"Cân đếm Jadever JCL thiết kế chắc chắn, độ chính xác cao, chuyên dùng kiểm đếm linh kiện, phụ tùng, sản xuất và kho vận. Màn hình hiển thị rõ nét, thao tác đơn giản, hoạt động ổn định trong môi trường công nghiệp.",
 
-   
-   specs:[
+    specs:[
 
 `
 <table class="spec-table">
@@ -463,11 +463,17 @@ window.products = [
 <tr>
 <th>Mức cân</th>
 <th>Bước nhảy</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>1.5kg</td>
 <td>0.05g</td>
+<td rowspan="5">294 × 228 mm</td>
+<td rowspan="5">341 × 294 × 104 mm</td>
+<td rowspan="5">kg / g / lb / oz / pcs</td>
 </tr>
 
 <tr>
@@ -501,15 +507,9 @@ window.products = [
 
 "Hiển thị: trọng lượng / đơn trọng lượng / số lượng đếm",
 
-"Kích thước đĩa cân: 294 × 228 mm",
-
-"Kích thước cân: 341 × 294 × 104 mm",
-
 "Mặt bàn cân inox chống gỉ",
 
 "Vỏ cân nhựa ABS công nghiệp",
-
-"Đơn vị cân: kg / g / lb / oz / pcs",
 
 "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
 
@@ -536,21 +536,22 @@ window.products = [
 
     category:"can-dem",
 
-    folder:"oneko-jk-a+",
+    folder:"oneko-jk-a-plus",
 
     brand:"Oneko",
 
     origin:"Nhật Bản",
 
     description:"Cân điện tử đếm Oneko JK-A+ thiết kế chắc chắn, độ chính xác cao, màn hình LCD đèn nền dễ quan sát, chuyên dùng cân đếm linh kiện, kho vận, sản xuất và kiểm kê hàng hóa.",
-   specs:[
+
+    specs:[
 
 `
 <table class="spec-table">
 
 <tr>
 <th>Mức cân</th>
-<th>Bước nhảy</th>
+<th>Độ chia</th>
 </tr>
 
 <tr>
@@ -591,13 +592,11 @@ window.products = [
 
 "Chiều cao số hiển thị: 25mm",
 
-"Kích thước đĩa cân: 230 × 280 mm",
+"Đĩa cân inox 230 × 280 mm",
 
-"Kích thước cân: 300 × 330 × 120 mm",
+"Kích thước cân 300 × 330 × 120 mm",
 
-"Mặt bàn cân inox chống gỉ",
-
-"Vỏ cân nhựa ABS công nghiệp",
+"Vỏ nhựa ABS công nghiệp",
 
 "Đơn vị cân: kg / g / lb / oz / pcs",
 
@@ -605,23 +604,23 @@ window.products = [
 
 "Tự động về zero khi khởi động",
 
-"Chức năng cảnh báo quá tải",
+"Cảnh báo quá tải",
 
 "Tự động tắt nguồn tiết kiệm pin",
 
-"Cổng giao tiếp RS232 (tùy chọn)",
+"RS232 (tùy chọn)",
 
-"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Nguồn AC 220V hoặc pin sạc 6V/4Ah",
 
-"Thời gian sử dụng pin: khoảng 70 giờ",
+"Thời gian sử dụng pin khoảng 70 giờ",
 
-"Nhiệt độ hoạt động: -5°C ~ 40°C",
+"Nhiệt độ làm việc: -5°C ~ 40°C",
 
-"Thiết kế chống bụi và chống ảnh hưởng môi trường công nghiệp"
+"Thiết kế chống bụi phù hợp môi trường công nghiệp"
 
 ]
 },
-    {
+   {
     id:8,
 
     name:"Cân đếm mẫu Ohaus RC21P",
@@ -643,7 +642,7 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Bước nhảy</th>
+<th>Độ chia</th>
 </tr>
 
 <tr>
@@ -669,11 +668,11 @@ window.products = [
 </table>
 `,
 
-"Độ phân giải nội: lên đến 1/600.000",
+"Độ phân giải nội lên đến 1/600.000",
 
 "Tiêu chuẩn chính xác cấp III theo OIML",
 
-"Thời gian ổn định: khoảng 1 giây",
+"Thời gian ổn định khoảng 1 giây",
 
 "Màn hình LCD 3 cửa sổ đèn nền trắng",
 
@@ -681,13 +680,11 @@ window.products = [
 
 "Đèn LED kiểm tra trọng lượng 3 màu",
 
-"Kích thước đĩa cân: 300 × 225 mm",
+"Đĩa cân inox 300 × 225 mm",
 
-"Kích thước cân: 311 × 327 × 117 mm",
+"Kích thước cân 311 × 327 × 117 mm",
 
-"Mặt bàn cân inox chống gỉ",
-
-"Vỏ cân nhựa ABS công nghiệp",
+"Vỏ nhựa ABS công nghiệp",
 
 "Đơn vị cân: kg / g / lb / oz / pcs",
 
@@ -695,19 +692,19 @@ window.products = [
 
 "Tự động tối ưu hóa lấy mẫu đếm",
 
-"Cổng giao tiếp RS232 tiêu chuẩn",
+"RS232 tiêu chuẩn",
 
-"Nguồn điện: AC Adapter hoặc pin sạc",
+"Nguồn AC Adapter hoặc pin sạc",
 
-"Thời gian sử dụng pin: khoảng 110 giờ",
+"Thời gian sử dụng pin khoảng 110 giờ",
 
-"Nhiệt độ hoạt động: -10°C ~ 40°C",
+"Nhiệt độ làm việc: -10°C ~ 40°C",
 
-"Thiết kế chống bụi, phù hợp môi trường công nghiệp"
+"Thiết kế chống bụi phù hợp môi trường công nghiệp"
 
 ]
 },
-    {
+   {
     id:9,
 
     name:"Cân điện tử đếm Yaohua XK3190 A15E",
@@ -722,31 +719,56 @@ window.products = [
 
     description:"Cân điện tử đếm Yaohua XK3190 A15E sử dụng đầu cân điện tử Yaohua nổi tiếng với độ ổn định cao, màn hình LED sáng rõ, phù hợp cân bàn, cân sàn, kiểm đếm hàng hóa và ứng dụng công nghiệp.",
 
-   specs:[
+    specs:[
 
 `
 <table class="spec-table">
 
 <tr>
-<th>Model đầu cân</th>
-<th>Mức tải hỗ trợ</th>
-<th>Độ phân giải</th>
+<th>Mức cân</th>
+<th>Độ chia</th>
 </tr>
 
 <tr>
-<td>XK3190-A15E</td>
-<td>30kg / 60kg / 100kg / 150kg / 300kg / 500kg</td>
-<td>1/30.000</td>
+<td>30kg</td>
+<td>1g</td>
+</tr>
+
+<tr>
+<td>60kg</td>
+<td>2g</td>
+</tr>
+
+<tr>
+<td>100kg</td>
+<td>5g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>5g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>500kg</td>
+<td>20g</td>
 </tr>
 
 </table>
 `,
 
-"Thương hiệu: Yaohua",
+"Đầu cân Yaohua XK3190-A15E",
 
-"Màn hình LED đỏ độ sáng cao",
+"Độ phân giải 1/30.000",
 
 "Tiêu chuẩn chính xác cấp III theo OIML",
+
+"Màn hình LED đỏ độ sáng cao",
 
 "Tốc độ xử lý nhanh và ổn định",
 
@@ -754,23 +776,23 @@ window.products = [
 
 "Tự động về zero khi khởi động",
 
-"Chức năng cảnh báo quá tải",
+"Cảnh báo quá tải",
 
 "Kết nối loadcell 4 dây hoặc 6 dây",
 
-"Cổng giao tiếp RS232",
+"RS232",
 
-"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Nguồn AC 220V hoặc pin sạc 6V/4Ah",
 
-"Thời gian sử dụng pin: khoảng 60 ~ 80 giờ",
+"Thời gian sử dụng pin khoảng 60 ~ 80 giờ",
 
 "Bàn phím chống bụi và chống nước nhẹ",
 
-"Vỏ đầu cân bằng nhựa ABS công nghiệp",
+"Vỏ nhựa ABS công nghiệp",
 
-"Nhiệt độ hoạt động: -10°C ~ 40°C",
+"Nhiệt độ làm việc: -10°C ~ 40°C",
 
-"Thiết kế phù hợp môi trường công nghiệp và kho vận"
+"Phù hợp môi trường công nghiệp và kho vận"
 
 ]
 },
@@ -796,7 +818,7 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Bước nhảy</th>
+<th>Độ chia</th>
 </tr>
 
 <tr>
@@ -827,7 +849,7 @@ window.products = [
 </table>
 `,
 
-"Độ phân giải nội: 1/30.000",
+"Độ phân giải nội 1/30.000",
 
 "Tiêu chuẩn chính xác cấp III theo OIML",
 
@@ -835,13 +857,11 @@ window.products = [
 
 "Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
 
-"Kích thước đĩa cân: 230 × 280 mm",
+"Đĩa cân inox 230 × 280 mm",
 
-"Kích thước cân: 300 × 330 × 120 mm",
+"Kích thước cân 300 × 330 × 120 mm",
 
-"Mặt bàn cân inox chống gỉ",
-
-"Vỏ cân nhựa ABS công nghiệp",
+"Vỏ nhựa ABS công nghiệp",
 
 "Đơn vị cân: kg / g / lb / pcs",
 
@@ -849,23 +869,23 @@ window.products = [
 
 "Tự động về zero khi khởi động",
 
-"Chức năng cảnh báo quá tải",
+"Cảnh báo quá tải",
 
 "Tự động tắt nguồn tiết kiệm pin",
 
-"Cổng giao tiếp RS232 (tùy chọn)",
+"RS232 (tùy chọn)",
 
-"Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Nguồn AC 220V hoặc pin sạc 6V/4Ah",
 
-"Thời gian sử dụng pin: khoảng 70 giờ",
+"Thời gian sử dụng pin khoảng 70 giờ",
 
-"Nhiệt độ hoạt động: -5°C ~ 40°C",
+"Nhiệt độ làm việc: -5°C ~ 40°C",
 
-"Thiết kế chống bụi và phù hợp môi trường công nghiệp"
+"Thiết kế chống bụi phù hợp môi trường công nghiệp"
 
 ]
 },
-    {
+   {
     id:11,
 
     name:"Cân treo điện tử FJ5",
@@ -918,15 +938,15 @@ window.products = [
 </table>
 `,
 
-"Độ chính xác: 1/2.500 ~ 1/3.000",
+"Độ chính xác 1/2.500 ~ 1/3.000",
 
 "Tiêu chuẩn chính xác cấp III theo OIML",
 
 "Màn hình LED đỏ 5 số, chiều cao số 25.4mm",
 
-"Vỏ cân hợp kim nhôm sơn tĩnh điện chống nước",
+"Vỏ hợp kim nhôm sơn tĩnh điện chống nước",
 
-"Móc treo xoay 360 độ",
+"Móc treo xoay 360°",
 
 "Giới hạn quá tải lên đến 600%",
 
@@ -934,29 +954,29 @@ window.products = [
 
 "Đơn vị cân: kg / lb / t",
 
-"Remote điều khiển từ xa khoảng cách 24 mét",
+"Remote điều khiển từ xa khoảng cách 24m",
 
 "Tự động theo dõi điểm zero",
 
-"Tự động cảnh báo pin yếu",
+"Cảnh báo pin yếu",
 
-"Thiết kế chống bụi và chống nước IP65",
+"Tiêu chuẩn chống bụi và chống nước IP65",
 
-"Nguồn điện: Adapter AC 110V/220V + pin sạc 6V/10Ah",
+"Nguồn AC 110V/220V và pin sạc 6V/10Ah",
 
-"Thời gian sử dụng pin: khoảng 100 ~ 120 giờ",
+"Thời gian sử dụng pin khoảng 100 ~ 120 giờ",
 
-"Nhiệt độ hoạt động: 0°C ~ 40°C",
+"Nhiệt độ làm việc: 0°C ~ 40°C",
 
-"Kích thước cân 1~5T: 210 × 216 × 460 ~ 665 mm",
+"Kích thước dòng 1~5 tấn: 210 × 216 × 460 ~ 665 mm",
 
-"Kích thước cân 10~15T: 210 × 278 × 770 ~ 885 mm",
+"Kích thước dòng 10~15 tấn: 210 × 278 × 770 ~ 885 mm",
 
 "Thiết kế chuyên dụng cho môi trường công nghiệp nặng"
 
 ]
 },
-    {
+   {
     id:12,
 
     name:"Đầu Cân Điện Tử Chống Nước GW",
@@ -973,39 +993,53 @@ window.products = [
 
     specs:[
 
-    "Model: GW-IP68",
+`
+<table class="spec-table">
 
-    "Tiêu chuẩn chống nước: IP68",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Đơn vị cân</th>
+<th>Nguồn điện</th>
+</tr>
 
-    "Màn hình LED đỏ siêu sáng",
+<tr>
+<td>GW-IP68</td>
+<td>1/30.000</td>
+<td>kg</td>
+<td>AC 220V hoặc pin sạc 6V/4Ah</td>
+</tr>
 
-    "Độ phân giải hiển thị: 1/30.000",
+</table>
+`,
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Tiêu chuẩn chống nước: IP68",
 
-    "Kết nối loadcell 4 dây hoặc 6 dây",
+"Màn hình LED đỏ siêu sáng",
 
-    "Hỗ trợ nhiều mức tải: 30kg / 60kg / 100kg / 150kg / 300kg / 500kg / 1 tấn",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Chức năng: cân trọng lượng, trừ bì, cộng dồn, kiểm tra trọng lượng",
+"Kết nối loadcell 4 dây hoặc 6 dây",
 
-    "Tự động về zero khi khởi động",
+"Hỗ trợ nhiều mức tải: 30kg / 60kg / 100kg / 150kg / 300kg / 500kg / 1 tấn",
 
-    "Chức năng cảnh báo quá tải",
+"Chức năng: cân trọng lượng, trừ bì, cộng dồn, kiểm tra trọng lượng",
 
-    "Bàn phím chống nước và chống bụi",
+"Tự động về zero khi khởi động",
 
-    "Vỏ đầu cân inox 304 chống gỉ",
+"Chức năng cảnh báo quá tải",
 
-    "Cổng giao tiếp RS232",
+"Bàn phím chống nước và chống bụi",
 
-    "Nguồn điện: AC 220V hoặc pin sạc 6V/4Ah",
+"Vỏ đầu cân inox 304 chống gỉ",
 
-    "Thời gian sử dụng pin: khoảng 60 ~ 80 giờ",
+"Cổng giao tiếp RS232",
 
-    "Nhiệt độ hoạt động: -10°C ~ 40°C",
+"Thời gian sử dụng pin: khoảng 60 ~ 80 giờ",
 
-    "Thiết kế chuyên dụng cho môi trường thủy sản và thực phẩm"
+"Nhiệt độ hoạt động: -10°C ~ 40°C",
+
+"Thiết kế chuyên dụng cho môi trường thủy sản và thực phẩm"
 
 ]
 },
@@ -1026,55 +1060,65 @@ window.products = [
 
     specs:[
 
-    "Model: KW",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Excell",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Đơn vị cân</th>
+<th>Nguồn điện</th>
+</tr>
 
-    "Xuất xứ: Đài Loan",
+<tr>
+<td>KW</td>
+<td>1/15.000</td>
+<td>kg / lb</td>
+<td>AC 110V/220V hoặc pin sạc DC 6V/4Ah</td>
+</tr>
 
-    "Độ phân giải hiển thị: 1/15.000",
+</table>
+`,
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Thương hiệu: Excell",
 
-    "Màn hình LCD 6 số, đèn nền LED",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Chiều cao số hiển thị: 25mm",
+"Màn hình LCD 6 số, đèn nền LED",
 
-    "Kích thước màn hình: 132 x 49mm",
+"Chiều cao số hiển thị: 25mm",
 
-    "Kích thước đầu cân: 245 x 170 x 153 mm",
+"Kích thước màn hình: 132 × 49mm",
 
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+"Kích thước đầu cân: 245 × 170 × 153mm",
 
-    "Nguồn điện: AC 110V/220V hoặc pin sạc DC 6V/4Ah",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
 
-    "Kết nối loadcell 4 dây hoặc 6 dây",
+"Kết nối loadcell 4 dây hoặc 6 dây",
 
-    "Đơn vị cân: kg / lb",
+"Chức năng: cân trọng lượng, đếm số lượng, tính phần trăm",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, tính phần trăm",
+"Chức năng kiểm tra trọng lượng CHECK WEIGH (HI / OK / LO)",
 
-    "Chức năng kiểm tra trọng lượng CHECK WEIGH (HI / OK / LO)",
+"Tự động hiệu chỉnh trọng lượng và theo dõi điểm zero",
 
-    "Tự động hiệu chỉnh trọng lượng và theo dõi điểm zero",
+"Trừ bì toàn phần và trừ bì định trước",
 
-    "Trừ bì toàn phần và trừ bì định trước",
+"Bảo vệ quá tải 2 cấp",
 
-    "Bảo vệ quá tải 2 cấp",
+"Thiết lập 15 mức lọc chống nhiễu",
 
-    "Thiết lập 15 mức lọc chống nhiễu",
+"3 chế độ HOLD lưu trọng lượng",
 
-    "3 chế độ HOLD lưu trọng lượng",
+"Cổng giao tiếp RS232",
 
-    "Cổng giao tiếp RS232",
+"Có thể đặt bàn hoặc treo tường",
 
-    "Có thể đặt bàn hoặc treo tường",
+"Bàn phím chống nước bằng keo 3M",
 
-    "Bàn phím chống nước bằng keo 3M",
+"Thiết kế phù hợp môi trường công nghiệp"
 
-    "Thiết kế phù hợp môi trường công nghiệp"
-
-    ]
+]
 },
     {
     id:14,
@@ -1093,57 +1137,67 @@ window.products = [
 
     specs:[
 
-    "Model: KC",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Excell",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Đơn vị cân</th>
+<th>Nguồn điện</th>
+</tr>
 
-    "Xuất xứ: Đài Loan",
+<tr>
+<td>KC</td>
+<td>1/15.000</td>
+<td>kg / lb</td>
+<td>AC 110V/220V hoặc pin sạc DC 6V/4.5Ah</td>
+</tr>
 
-    "Độ chính xác hiển thị: 1/15.000",
+</table>
+`,
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Thương hiệu: Excell",
 
-    "Màn hình LCD 3 cửa sổ, đèn nền LED",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
+"Màn hình LCD 3 cửa sổ, đèn nền LED",
 
-    "Kích thước màn hình: 132 x 49 mm",
+"Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
 
-    "Chiều cao số hiển thị: 25 mm",
+"Kích thước màn hình: 132 × 49mm",
 
-    "Kích thước đầu cân: 175 x 56 x 226 mm",
+"Chiều cao số hiển thị: 25mm",
 
-    "Đơn vị cân: kg / lb",
+"Kích thước đầu cân: 175 × 56 × 226mm",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, cộng dồn",
+"Chức năng: cân trọng lượng, đếm số lượng, cộng dồn",
 
-    "Chức năng tự động chia đều trọng lượng từng mẫu",
+"Chức năng tự động chia đều trọng lượng từng mẫu",
 
-    "Chức năng xác định số lượng và lấy mẫu tự động",
+"Chức năng xác định số lượng và lấy mẫu tự động",
 
-    "Tự động hiệu chỉnh trọng lượng và theo dõi điểm zero",
+"Tự động hiệu chỉnh trọng lượng và theo dõi điểm zero",
 
-    "Trừ bì toàn phần và trừ bì định trước",
+"Trừ bì toàn phần và trừ bì định trước",
 
-    "Cài đặt trước 10 trọng lượng đơn",
+"Cài đặt trước 10 trọng lượng đơn",
 
-    "Bảo vệ quá tải 2 cấp",
+"Bảo vệ quá tải 2 cấp",
 
-    "Bàn phím nhạy chống nước bằng keo 3M",
+"Bàn phím nhạy chống nước bằng keo 3M",
 
-    "Có thể đặt bàn hoặc treo tường",
+"Có thể đặt bàn hoặc treo tường",
 
-    "Nguồn điện: AC 110V/220V hoặc pin sạc DC 6V/4.5Ah",
+"Đèn LED báo sạc và tự động ngắt điện",
 
-    "Đèn LED báo sạc và tự động ngắt điện",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
 
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+"Cổng giao tiếp RS232 (tùy chọn)",
 
-    "Cổng giao tiếp RS232 (tùy chọn)",
+"Thiết kế phù hợp môi trường công nghiệp và kho vận"
 
-    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
-
-    ]
+]
 },
     {
     id:15,
@@ -1162,57 +1216,65 @@ window.products = [
 
     specs:[
 
-    "Model: FB530",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Excell",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Độ phân giải nội</th>
+<th>Đơn vị cân</th>
+<th>Kết nối Loadcell</th>
+</tr>
 
-    "Xuất xứ: Đài Loan",
+<tr>
+<td>FB530</td>
+<td>1/30.000</td>
+<td>1/600.000</td>
+<td>kg / g / lb</td>
+<td>4 loadcell 350Ω</td>
+</tr>
 
-    "Độ phân giải hiển thị: 1/30.000",
+</table>
+`,
 
-    "Độ phân giải nội: 1/600.000",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Màn hình LCD 6 số, đèn nền LED",
 
-    "Màn hình LCD 6 số, đèn nền LED",
+"Chiều cao số hiển thị: 25mm",
 
-    "Chiều cao số hiển thị: 25mm",
+"Kích thước đầu cân: 276 × 172 × 153 mm",
 
-    "Kích thước đầu cân: 276 x 172 x 153 mm",
+"Chức năng: cân trọng lượng, đếm số lượng, cộng dồn, trừ bì",
 
-    "Kết nối tối đa: 4 loadcell 350Ω",
+"Chức năng kiểm tra trọng lượng HI / OK / LO",
 
-    "Đơn vị cân: kg / g / lb",
+"Chức năng HOLD giữ số cân",
 
-    "Chức năng: cân trọng lượng, đếm số lượng, cộng dồn, trừ bì",
+"Chức năng cân động vật",
 
-    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+"Tự động về zero khi khởi động",
 
-    "Chức năng HOLD giữ số cân",
+"Tự động hiệu chỉnh trọng lượng",
 
-    "Chức năng cân động vật",
+"Lưu dữ liệu khi mất nguồn",
 
-    "Tự động về zero khi khởi động",
+"Máy in nhiệt mini tích hợp",
 
-    "Tự động hiệu chỉnh trọng lượng",
+"Hỗ trợ in ngày giờ, số phiếu, tổng trọng lượng",
 
-    "Lưu dữ liệu khi mất nguồn",
+"Cổng giao tiếp RS232",
 
-    "Máy in nhiệt mini tích hợp",
+"Nguồn điện: AC 110V/220V ±10% + pin sạc DC 6V/4Ah",
 
-    "Hỗ trợ in ngày giờ, số phiếu, tổng trọng lượng",
+"Thời gian sử dụng pin: khoảng 48 ~ 72 giờ",
 
-    "Cổng giao tiếp RS232",
+"Nhiệt độ hoạt động: -10°C ~ 40°C",
 
-    "Nguồn điện: AC 110V/220V ±10% + pin sạc DC 6V/4Ah",
+"Thiết kế chống bụi, phù hợp môi trường công nghiệp"
 
-    "Thời gian sử dụng pin: khoảng 48 ~ 72 giờ",
-
-    "Nhiệt độ hoạt động: -10°C ~ 40°C",
-
-    "Thiết kế chống bụi, phù hợp môi trường công nghiệp"
-
-    ]
+]
 },
     {
     id:16,
@@ -1231,51 +1293,59 @@ window.products = [
 
     specs:[
 
-    "Model: BTW",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Excell",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Độ phân giải nội</th>
+<th>Đơn vị cân</th>
+<th>Kết nối Loadcell</th>
+</tr>
 
-    "Xuất xứ: Đài Loan",
+<tr>
+<td>BTW</td>
+<td>1/15.000</td>
+<td>1/30.000</td>
+<td>kg / lb</td>
+<td>4 dây hoặc 6 dây</td>
+</tr>
 
-    "Độ phân giải hiển thị: 1/15.000",
+</table>
+`,
 
-    "Độ phân giải nội: 1/30.000",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Màn hình LCD 6 số đèn nền xanh hoặc LED đỏ",
 
-    "Màn hình LCD 6 số đèn nền xanh hoặc LED đỏ",
+"Chiều cao số hiển thị: 25mm",
 
-    "Chiều cao số hiển thị: 25mm",
+"Kích thước đầu cân: 235 × 165 × 127 mm",
 
-    "Kích thước đầu cân: 235 x 165 x 127 mm",
+"Chức năng: cân trọng lượng, đếm đơn giản, trừ bì, cộng dồn",
 
-    "Kết nối loadcell 4 dây hoặc 6 dây",
+"Chức năng kiểm tra trọng lượng HI / OK / LO",
 
-    "Đơn vị cân: kg / lb",
+"Tự động về zero khi khởi động",
 
-    "Chức năng: cân trọng lượng, đếm đơn giản, trừ bì, cộng dồn",
+"Tự động hiệu chỉnh trọng lượng",
 
-    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+"Bộ lọc chống nhiễu môi trường",
 
-    "Tự động về zero khi khởi động",
+"Board mạch phủ keo chống ẩm và chống nhiễm từ",
 
-    "Tự động hiệu chỉnh trọng lượng",
+"Cổng giao tiếp RS232",
 
-    "Bộ lọc chống nhiễu môi trường",
+"Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4.4Ah",
 
-    "Board mạch phủ keo chống ẩm và chống nhiễm từ",
+"Thời gian sử dụng pin: khoảng 72 giờ",
 
-    "Cổng giao tiếp RS232",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
 
-    "Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4.4Ah",
+"Thiết kế phù hợp môi trường công nghiệp và kho vận"
 
-    "Thời gian sử dụng pin: khoảng 72 giờ",
-
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
-
-    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
-
-    ]
+]
 },
     {
     id:17,
@@ -1294,53 +1364,61 @@ window.products = [
 
     specs:[
 
-    "Model: BTW-E",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Excell",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Bộ chuyển đổi AD</th>
+<th>Đơn vị cân</th>
+<th>Kết nối Loadcell</th>
+</tr>
 
-    "Xuất xứ: Đài Loan",
+<tr>
+<td>BTW-E</td>
+<td>1/15.000</td>
+<td>24 bits</td>
+<td>kg / lb</td>
+<td>4 dây hoặc 6 dây</td>
+</tr>
 
-    "Độ phân giải hiển thị: 1/15.000",
+</table>
+`,
 
-    "AD tốc độ cao 24 bits",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Màn hình LCD 6 số đèn nền xanh hoặc LED đỏ",
 
-    "Màn hình LCD 6 số đèn nền xanh hoặc LED đỏ",
+"Chiều cao số hiển thị: 25mm",
 
-    "Chiều cao số hiển thị: 25mm",
+"Kích thước đầu cân: 235 × 165 × 127 mm",
 
-    "Kích thước đầu cân: 235 x 165 x 127 mm",
+"Chức năng: cân trọng lượng, đếm đơn giản, cộng dồn, trừ bì",
 
-    "Đơn vị cân: kg / lb",
+"Chức năng kiểm tra trọng lượng HI / OK / LO",
 
-    "Kết nối loadcell 4 dây hoặc 6 dây",
+"Tự động về zero khi khởi động",
 
-    "Chức năng: cân trọng lượng, đếm đơn giản, cộng dồn, trừ bì",
+"Chức năng HOLD giữ số cân",
 
-    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+"Board mạch phủ keo chống ẩm và chống nhiễm từ",
 
-    "Tự động về zero khi khởi động",
+"Bàn phím chống bụi và chống nước nhẹ",
 
-    "Chức năng HOLD giữ số cân",
+"Cổng giao tiếp RS232",
 
-    "Board mạch phủ keo chống ẩm và chống nhiễm từ",
+"Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4Ah",
 
-    "Bàn phím chống bụi và chống nước nhẹ",
+"Thời gian sử dụng pin: khoảng 72 giờ",
 
-    "Cổng giao tiếp RS232",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
 
-    "Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4Ah",
+"Thiết kế phù hợp môi trường công nghiệp và kho vận"
 
-    "Thời gian sử dụng pin: khoảng 72 giờ",
-
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
-
-    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
-
-    ]
+]
 },
-    {
+   {
     id:18,
 
     name:"Đầu Cân Ô Tô EX-2001",
@@ -1357,53 +1435,63 @@ window.products = [
 
     specs:[
 
-    "Model: EX-2001",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Excell",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Tốc độ A/D</th>
+<th>Kết nối Loadcell</th>
+<th>Ngõ ra</th>
+</tr>
 
-    "Xuất xứ: Đài Loan",
+<tr>
+<td>EX-2001</td>
+<td>1/30.000</td>
+<td>120 lần/giây</td>
+<td>8~16 loadcell 350Ω / 700Ω</td>
+<td>RS232 / Analog / Relay / BCD</td>
+</tr>
 
-    "Tiêu chuẩn chính xác: OIML Class III",
+</table>
+`,
 
-    "Màn hình LED đỏ 7 số, chiều cao số 20mm",
+"Tiêu chuẩn chính xác OIML Class III",
 
-    "Độ phân giải hiển thị: 1/30.000",
+"Màn hình LED đỏ 7 số, chiều cao số 20mm",
 
-    "Độ nhạy đầu vào: 0.3 μV/d",
+"Độ nhạy đầu vào: 0.3 μV/d",
 
-    "Tốc độ chuyển đổi A/D: tối đa 120 lần/giây",
+"Dải tín hiệu loadcell: 1 ~ 20mV/V",
 
-    "Dải tín hiệu loadcell: 1 ~ 20mV/V",
+"Hiệu chuẩn tuyến tính 5 điểm",
 
-    "Kết nối: 8 ~ 16 loadcell 350Ω hoặc 700Ω",
+"Bộ lọc kỹ thuật số chống rung và chống nhiễu",
 
-    "Hiệu chuẩn tuyến tính 5 điểm",
+"Chức năng cân động vật",
 
-    "Bộ lọc kỹ thuật số chống rung và chống nhiễu",
+"Chức năng kiểm tra HI / OK / LO",
 
-    "Chức năng cân động vật",
+"Chức năng cộng dồn và lưu dữ liệu",
 
-    "Chức năng kiểm tra HI / OK / LO",
+"Tự động về zero khi khởi động",
 
-    "Chức năng cộng dồn và lưu dữ liệu",
+"Cổng giao tiếp RS232",
 
-    "Tự động về zero khi khởi động",
+"Hỗ trợ ngõ ra Analog / Relay / BCD (Option)",
 
-    "Cổng giao tiếp RS232",
+"Nguồn điện: AC 100V ~ 240V",
 
-    "Hỗ trợ ngõ ra Analog / Relay / BCD (Option)",
+"Kích thước đầu cân: 210 × 108 × 207 mm",
 
-    "Nguồn điện: AC 100V ~ 240V",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
 
-    "Kích thước đầu cân: 210 x 108 x 207 mm",
+"Thiết kế chuyên dụng cho cân ô tô và hệ thống cân công nghiệp"
 
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
-
-    "Thiết kế chuyên dụng cho cân ô tô và hệ thống cân công nghiệp"
-
-    ]
+]
 },
-      {
+     {
     id:19,
 
     name:"Đầu Cân Điện Tử KWS",
@@ -1420,51 +1508,59 @@ window.products = [
 
     specs:[
 
-    "Model: KWS",
+`
+<table class="spec-table">
 
-    "Thương hiệu: Excell",
+<tr>
+<th>Model</th>
+<th>Độ phân giải</th>
+<th>Độ phân giải nội</th>
+<th>Đơn vị cân</th>
+<th>Kết nối Loadcell</th>
+</tr>
 
-    "Xuất xứ: Đài Loan",
+<tr>
+<td>KWS</td>
+<td>1/15.000</td>
+<td>1/30.000</td>
+<td>kg / lb</td>
+<td>4 dây hoặc 6 dây</td>
+</tr>
 
-    "Độ chính xác hiển thị: 1/15.000",
+</table>
+`,
 
-    "Độ phân giải nội: 1/30.000",
+"Tiêu chuẩn chính xác cấp III theo OIML",
 
-    "Tiêu chuẩn chính xác cấp III theo OIML",
+"Màn hình LCD 6 số đèn nền LED",
 
-    "Màn hình LCD 6 số đèn nền LED",
+"Kích thước màn hình: 113 × 45 mm",
 
-    "Kích thước màn hình: 113 x 45 mm",
+"Chiều cao số hiển thị: 25 mm",
 
-    "Chiều cao số hiển thị: 25 mm",
+"Kích thước đầu cân: 245 × 170 × 153 mm",
 
-    "Kích thước đầu cân: 245 x 170 x 153 mm",
+"Chức năng: cân trọng lượng, trừ bì, theo dõi điểm zero",
 
-    "Đơn vị cân: kg / lb",
+"Chức năng kiểm tra trọng lượng HI / OK / LO",
 
-    "Kết nối loadcell 4 dây hoặc 6 dây",
+"Tự động hiệu chỉnh trọng lượng",
 
-    "Chức năng: cân trọng lượng, trừ bì, theo dõi điểm zero",
+"Bảo vệ quá tải 2 tầng",
 
-    "Tự động hiệu chỉnh trọng lượng",
+"Bộ lọc chống nhiễu môi trường công nghiệp",
 
-    "Chức năng kiểm tra trọng lượng HI / OK / LO",
+"Bàn phím chống nước bằng keo 3M",
 
-    "Bảo vệ quá tải 2 tầng",
+"Có thể đặt bàn hoặc treo tường",
 
-    "Bộ lọc chống nhiễu môi trường công nghiệp",
+"Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4Ah",
 
-    "Bàn phím chống nước bằng keo 3M",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
 
-    "Có thể đặt bàn hoặc treo tường",
+"Thiết kế phù hợp môi trường công nghiệp và kho vận"
 
-    "Nguồn điện: AC 110V/220V ±10% hoặc pin sạc DC 6V/4Ah",
-
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
-
-    "Thiết kế phù hợp môi trường công nghiệp và kho vận"
-
-    ]
+]
 },
     {
     id:20,
@@ -1473,7 +1569,7 @@ window.products = [
 
     category:"can-phan-tich",
 
-    folder:"FA10035XN",
+    folder:"fa10035xn",
 
     brand:"FAITHFUL",
 
@@ -1487,53 +1583,41 @@ window.products = [
 <table class="spec-table">
 
 <tr>
-<th>Model</th>
 <th>Mức cân</th>
-<th>Độ đọc</th>
+<th>Độ chia</th>
 </tr>
 
 <tr>
-<td>FA10035X / FA10035XN</td>
-<td>0-100g / 0-30g</td>
+<td>30g</td>
 <td>0.01mg / 0.1mg</td>
 </tr>
 
 <tr>
-<td>FA10055X / FA10055XN</td>
-<td>0-100g / 50g</td>
+<td>50g</td>
 <td>0.01mg / 0.1mg</td>
 </tr>
 
 <tr>
-<td>FA10085X / FA10085XN</td>
-<td>0-100g / 80g</td>
+<td>80g</td>
 <td>0.01mg / 0.1mg</td>
 </tr>
 
 <tr>
-<td>FA20035X / FA20035XN</td>
-<td>0-200g / 0-30g</td>
+<td>100g</td>
 <td>0.01mg / 0.1mg</td>
 </tr>
 
 <tr>
-<td>FA20055X / FA20055XN</td>
-<td>0-200g / 50g</td>
-<td>0.01mg / 0.1mg</td>
-</tr>
-
-<tr>
-<td>FA20085X / FA20085XN</td>
-<td>0-200g / 80g</td>
+<td>200g</td>
 <td>0.01mg / 0.1mg</td>
 </tr>
 
 </table>
 `,
 
-"Độ lặp lại: ±0.02mg",
+"Độ lặp lại ±0.02mg",
 
-"Độ tuyến tính: ±0.03mg",
+"Độ tuyến tính ±0.03mg",
 
 "Đĩa cân inox Ø90mm",
 
@@ -1541,7 +1625,7 @@ window.products = [
 
 "Màn hình LCD nền sáng dễ quan sát",
 
-"Thời gian ổn định: ≤ 3 giây",
+"Thời gian ổn định ≤ 3 giây",
 
 "Hiệu chuẩn nội tự động",
 
@@ -1549,11 +1633,11 @@ window.products = [
 
 "Đơn vị cân: g / mg / ct / oz",
 
-"Cổng giao tiếp RS232 kết nối máy tính và máy in",
+"RS232 kết nối máy tính và máy in",
 
-"Nguồn điện: Adapter AC 220V",
+"Nguồn Adapter AC 220V",
 
-"Nhiệt độ hoạt động: 5°C ~ 25°C",
+"Nhiệt độ làm việc: 5°C ~ 25°C",
 
 "Ứng dụng: phòng thí nghiệm, nghiên cứu, kiểm nghiệm, vàng bạc"
 
@@ -1574,100 +1658,132 @@ window.products = [
 
     description:"Cân điện tử Shinko GS là dòng cân bàn điện tử độ chính xác cao, thiết kế chắc chắn, hoạt động ổn định và phù hợp cho nhiều lĩnh vực như sản xuất, đóng gói, kiểm tra trọng lượng và thương mại. Cân sử dụng màn hình LCD sắc nét, bàn cân inox chống gỉ và tích hợp pin sạc tiện lợi.",
 
-   
-specs:[
+    specs:[
 
 `
 <table class="spec-table">
 
 <tr>
 <th>Model</th>
-<th>Mức cân</th>
+<th>Khối lượng</th>
 <th>Sai số</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
 <td>GS223</td>
 <td>220g</td>
 <td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+<td>1.3kg</td>
 </tr>
 
 <tr>
 <td>GS323</td>
 <td>320g</td>
 <td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+<td>1.3kg</td>
 </tr>
 
 <tr>
 <td>GS423</td>
 <td>420g</td>
 <td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+<td>1.3kg</td>
 </tr>
 
 <tr>
 <td>GS623</td>
 <td>620g</td>
 <td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+<td>1.3kg</td>
 </tr>
 
 <tr>
 <td>GS620</td>
 <td>620g</td>
 <td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
 <td>GS1202</td>
 <td>1200g</td>
 <td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
 <td>GS2202</td>
 <td>2200g</td>
 <td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
 <td>GS3202</td>
 <td>3200g</td>
 <td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
 <td>GS4202</td>
 <td>4200g</td>
 <td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
 <td>GS6202</td>
 <td>6200g</td>
 <td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
 <td>GS8201</td>
 <td>8200g</td>
 <td>0.1g</td>
+<td>180 × 160mm</td>
+<td>265 × 192 × 87mm</td>
+<td>2.8kg</td>
 </tr>
 
 <tr>
 <td>GS12001</td>
 <td>12000g</td>
 <td>0.1g</td>
+<td>180 × 160mm</td>
+<td>265 × 192 × 87mm</td>
+<td>2.8kg</td>
 </tr>
 
 </table>
 `,
 
-"Kích thước đĩa cân: φ118mm / 170 × 142mm / 180 × 160mm",
-
-"Kích thước cân: 235 × 182 × 165mm / 235 × 182 × 75mm / 265 × 192 × 87mm",
-
-"Trọng lượng cân: khoảng 1.3kg ~ 2.8kg",
-
-"Màn hình LCD nền sáng dễ quan sát",
+"Hiển thị LCD nền sáng dễ quan sát",
 
 "Cảm biến độ chính xác cao",
 
@@ -1684,7 +1800,6 @@ specs:[
 "Thiết kế nhỏ gọn phù hợp phòng thí nghiệm, cửa hàng và sản xuất"
 
 ]
-    
 
 },
 {
@@ -1711,24 +1826,27 @@ specs:[
 <th>Model</th>
 <th>Khối lượng</th>
 <th>Sai số</th>
-<th>Đĩa cân</th>
+<th>Kích thước đĩa cân</th>
 <th>Kích thước cân</th>
+<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
 <td>OKS-DJ 320A</td>
 <td>320g</td>
 <td>0.01g</td>
-<td>φ118mm</td>
+<td>Ø118mm</td>
 <td>270 × 178 × 165mm</td>
+<td>1.5kg</td>
 </tr>
 
 <tr>
 <td>OKS-DJ 502A</td>
 <td>500g</td>
 <td>0.01g</td>
-<td>φ118mm</td>
+<td>Ø118mm</td>
 <td>270 × 178 × 165mm</td>
+<td>1.5kg</td>
 </tr>
 
 <tr>
@@ -1737,6 +1855,7 @@ specs:[
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1745,6 +1864,7 @@ specs:[
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1753,6 +1873,7 @@ specs:[
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1761,6 +1882,7 @@ specs:[
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1769,6 +1891,7 @@ specs:[
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
+<td>2.0kg</td>
 </tr>
 
 </table>
@@ -1791,6 +1914,7 @@ specs:[
 "Thiết kế nhỏ gọn phù hợp phòng thí nghiệm và sản xuất"
 
 ]
+
 },
 {
     id:23,
@@ -1809,58 +1933,79 @@ specs:[
 
     specs:[
 
-    `
-    <table class="spec-table">
+`
+<table class="spec-table">
 
-    <tr>
-    <th>Mức cân</th>
-    <th>Độ chia</th>
-    </tr>
+<tr>
+<th>Model</th>
+<th>Khối lượng</th>
+<th>Sai số</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Trọng lượng cân</th>
+</tr>
 
-    <tr>
-    <td>3kg</td>
-    <td>0.5g</td>
-    </tr>
+<tr>
+<td>HZ-8X</td>
+<td>3kg</td>
+<td>0.5g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>6kg</td>
-    <td>1g</td>
-    </tr>
+<tr>
+<td>HZ-8X</td>
+<td>6kg</td>
+<td>1g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>15kg</td>
-    <td>2g</td>
-    </tr>
+<tr>
+<td>HZ-8X</td>
+<td>15kg</td>
+<td>2g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>30kg</td>
-    <td>5g</td>
-    </tr>
+<tr>
+<td>HZ-8X</td>
+<td>30kg</td>
+<td>5g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    </table>
-    `,
+</table>
+`,
 
-    "Thiết kế chống nước chuyên dụng cho môi trường ẩm ướt",
+"Thiết kế chống nước chuyên dụng cho môi trường ẩm ướt",
 
-    "Màn hình LED/LCD hiển thị sáng rõ dễ quan sát",
+"Màn hình LED/LCD hiển thị sáng rõ dễ quan sát",
 
-    "Khung cân chắc chắn, đĩa inox chống gỉ",
+"Khung cân chắc chắn, đĩa inox chống gỉ",
 
-    "Chức năng cân trọng lượng và trừ bì",
+"Chức năng cân trọng lượng và trừ bì",
 
-    "Hoạt động ổn định trong môi trường hải sản, thực phẩm",
+"Hoạt động ổn định trong môi trường hải sản, thực phẩm",
 
-    "Nguồn điện: AC 220V hoặc pin sạc",
+"Nguồn điện: AC 220V hoặc pin sạc",
 
-    "Thời gian sử dụng pin dài",
+"Thời gian sử dụng pin dài",
 
-    "Độ chính xác cao, phản hồi nhanh",
+"Độ chính xác cao, phản hồi nhanh",
 
-    "Nhiệt độ hoạt động: 0°C ~ 40°C",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
 
-    "Tiêu chuẩn chính xác cấp III theo OIML"
+"Tiêu chuẩn chính xác cấp III theo OIML"
 
-    ]
+]
+
 },
 {
     id:24,
@@ -1879,64 +2024,81 @@ specs:[
 
     specs:[
 
-    `
-    <table class="spec-table">
+`
+<table class="spec-table">
 
-    <tr>
-    <th>Mức cân</th>
-    <th>Độ chia</th>
-    </tr>
+<tr>
+<th>Model</th>
+<th>Khối lượng</th>
+<th>Sai số</th>
+<th>Kích thước đĩa cân</th>
+<th>Kích thước cân</th>
+<th>Trọng lượng cân</th>
+</tr>
 
-    <tr>
-    <td>3kg</td>
-    <td>0.5g</td>
-    </tr>
+<tr>
+<td>SUPER SS</td>
+<td>3kg</td>
+<td>0.5g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>6kg</td>
-    <td>1g</td>
-    </tr>
+<tr>
+<td>SUPER SS</td>
+<td>6kg</td>
+<td>1g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>15kg</td>
-    <td>2g</td>
-    </tr>
+<tr>
+<td>SUPER SS</td>
+<td>15kg</td>
+<td>2g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>30kg</td>
-    <td>5g</td>
-    </tr>
+<tr>
+<td>SUPER SS</td>
+<td>30kg</td>
+<td>5g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>-</td>
+</tr>
 
-    </table>
-    `,
+</table>
+`,
 
-    "Tiêu chuẩn chống nước IP68 chống nước mặn hiệu quả",
+"Tiêu chuẩn chống nước IP68 chống nước mặn hiệu quả",
 
-    "Khung và vỏ cân làm bằng inox 304 chống gỉ",
+"Khung và vỏ cân làm bằng inox 304 chống gỉ",
 
-    "02 màn hình LED số đỏ hiển thị rõ nét",
+"02 màn hình LED số đỏ hiển thị rõ nét",
 
-    "Kích thước đĩa cân: 230 × 190 mm",
+"Đơn vị cân: kg / g / lb / oz",
 
-    "Kích thước cân: 235 × 220 × 65 mm",
+"Chức năng: cân trọng lượng, trừ bì, về zero",
 
-    "Đơn vị cân: kg / g / lb / oz",
+"Thời gian ổn định nhanh khoảng 3 giây",
 
-    "Chức năng: cân trọng lượng, trừ bì, về zero",
+"Nguồn điện: AC 220V và pin sạc 6V/4Ah",
 
-    "Thời gian ổn định nhanh khoảng 3 giây",
+"Thời gian sử dụng pin lên đến 80 giờ",
 
-    "Nguồn điện: AC 220V và pin sạc 6V/4Ah",
+"Hoạt động tốt trong môi trường ẩm ướt, kho lạnh",
 
-    "Thời gian sử dụng pin lên đến 80 giờ",
+"Nhiệt độ hoạt động: 10°C ~ 60°C",
 
-    "Hoạt động tốt trong môi trường ẩm ướt, kho lạnh",
+"Tiêu chuẩn chính xác cấp III theo OIML"
 
-    "Nhiệt độ hoạt động: 10°C ~ 60°C",
+]
 
-    "Tiêu chuẩn chính xác cấp III theo OIML"
-
-    ]
 },
 {
     id:25,
@@ -1951,236 +2113,320 @@ specs:[
 
     origin:"Đài Loan",
 
-    description:"Cân điện tử in tem IND – PP  là dòng cân bàn tính tiền tích hợp máy in tem chuyên dụng cho kho hàng, nông sản, thực phẩm và hệ thống bán lẻ. Cân hỗ trợ lưu trữ thông tin hàng hóa, in tem mã sản phẩm nhanh chóng và hoạt động ổn định với độ chính xác cao. Thiết kế chắc chắn, thao tác đơn giản phù hợp cho môi trường công nghiệp và thương mại.",
+    description:"Cân điện tử in tem IND – PP là dòng cân bàn tính tiền tích hợp máy in tem chuyên dụng cho kho hàng, nông sản, thực phẩm và hệ thống bán lẻ. Cân hỗ trợ lưu trữ thông tin hàng hóa, in tem mã sản phẩm nhanh chóng và hoạt động ổn định với độ chính xác cao.",
 
     specs:[
 
-    `
-    <table class="spec-table">
+`
+<table class="spec-table">
 
-    <tr>
-    <th>Mức cân</th>
-    <th>Độ chia</th>
-    </tr>
+<tr>
+<th>Model</th>
+<th>Khối lượng</th>
+<th>Sai số</th>
+<th>Kích thước bàn cân</th>
+<th>Kích thước cân</th>
+<th>Trọng lượng cân</th>
+</tr>
 
-    <tr>
-    <td>50kg</td>
-    <td>10g</td>
-    </tr>
+<tr>
+<td>IND PP</td>
+<td>50kg</td>
+<td>10g</td>
+<td>30 × 40 cm</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>60kg</td>
-    <td>10g</td>
-    </tr>
+<tr>
+<td>IND PP</td>
+<td>60kg</td>
+<td>10g</td>
+<td>30 × 40 cm</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>100kg</td>
-    <td>20g</td>
-    </tr>
+<tr>
+<td>IND PP</td>
+<td>100kg</td>
+<td>20g</td>
+<td>40 × 50 cm</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>150kg</td>
-    <td>20g</td>
-    </tr>
+<tr>
+<td>IND PP</td>
+<td>150kg</td>
+<td>20g</td>
+<td>40 × 50 cm</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>200kg</td>
-    <td>20g / 50g</td>
-    </tr>
+<tr>
+<td>IND PP</td>
+<td>200kg</td>
+<td>20g / 50g</td>
+<td>50 × 60 cm</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>300kg</td>
-    <td>50g</td>
-    </tr>
+<tr>
+<td>IND PP</td>
+<td>300kg</td>
+<td>50g</td>
+<td>60 × 80 cm</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    <tr>
-    <td>500kg</td>
-    <td>100g</td>
-    </tr>
+<tr>
+<td>IND PP</td>
+<td>500kg</td>
+<td>100g</td>
+<td>60 × 80 cm</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-    </table>
-    `,
+</table>
+`,
 
-    "Model: IND PP",
+"Model: IND PP",
 
-    "Tích hợp máy in tem mini trực tiếp trên đầu cân",
+"Tích hợp máy in tem mini trực tiếp trên đầu cân",
 
-    "Lưu trữ lên đến 2000 PLU hàng hóa",
+"Lưu trữ lên đến 2000 PLU hàng hóa",
 
-    "In thông tin sản phẩm, ngày giờ, khối lượng, đơn giá, thành tiền",
+"In thông tin sản phẩm, ngày giờ, khối lượng, đơn giá, thành tiền",
 
-    "Thiết kế 3 màn hình hiển thị tiện dụng",
+"Thiết kế 3 màn hình hiển thị tiện dụng",
 
-    "Cổng giao tiếp RS232 hỗ trợ truyền dữ liệu",
+"Cổng giao tiếp RS232 hỗ trợ truyền dữ liệu",
 
-    "Tùy chọn cổng USB xuất dữ liệu Excel",
+"Tùy chọn cổng USB xuất dữ liệu Excel",
 
-    "Kích thước bàn cân: 30x40cm, 40x50cm, 50x60cm, 60x80cm",
+"Thời gian ổn định nhanh dưới 2 giây",
 
-    "Thời gian ổn định nhanh dưới 2 giây",
+"Nguồn điện: Adapter 12V/3A và pin sạc 6V/4.5Ah",
 
-    "Nguồn điện: Adapter 12V/3A và pin sạc 6V/4.5Ah",
+"Chức năng: cân trọng lượng, tính tiền, in tem, lưu dữ liệu",
 
-    "Chức năng: cân trọng lượng, tính tiền, in tem, lưu dữ liệu",
+"Thao tác đơn giản dễ sử dụng",
 
-    "Thao tác đơn giản dễ sử dụng",
+"Tiêu chuẩn chính xác cấp III theo OIML"
 
-    "Tiêu chuẩn chính xác cấp III theo OIML"
-
-    ]
+]
 },
 {
-    id: 26,
+    id:26,
 
-    name: "Cân ghế ngồi inox SLH 200",
+    name:"Cân ghế ngồi inox SLH 200",
 
-    category: "can-ghe-ngoi",
+    category:"can-ghe-ngoi",
 
-    folder: "slh-200",
+    folder:"slh-200",
 
-    brand: "LE HUY SCALE",
+    brand:"LE HUY SCALE",
 
-    origin: "Việt Nam",
+    origin:"Việt Nam",
 
-    description: "Cân ghế ngồi inox SLH 200 là dòng cân điện tử thiết kế dạng ghế ngồi chắc chắn, chuyên dùng trong môi trường thủy sản, nông sản, kho hàng và xưởng sản xuất. Cân có khả năng chống nước tốt, độ bền cao, hoạt động ổn định trong môi trường ẩm ướt và công nghiệp.",
+    description:"Cân ghế ngồi inox SLH 200 là dòng cân điện tử thiết kế dạng ghế ngồi chắc chắn, chuyên dùng trong môi trường thủy sản, nông sản, kho hàng và xưởng sản xuất. Cân có khả năng chống nước tốt, độ bền cao, hoạt động ổn định trong môi trường ẩm ướt và công nghiệp.",
 
-    specs: [
+    specs:[
 
-        `
-        <table class="spec-table">
+`
+<table class="spec-table">
 
-            <tr>
-                <th>Mức cân</th>
-                <th>Độ chia</th>
-            </tr>
+<tr>
+<th>Model</th>
+<th>Khối lượng</th>
+<th>Sai số</th>
+<th>Kích thước bàn cân</th>
+<th>Kích thước cân</th>
+<th>Trọng lượng cân</th>
+</tr>
 
-            <tr>
-                <td>60kg</td>
-                <td>10g</td>
-            </tr>
+<tr>
+<td>SLH 200SS</td>
+<td>60kg</td>
+<td>10g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>150kg</td>
-                <td>20g</td>
-            </tr>
+<tr>
+<td>SLH 200SS</td>
+<td>150kg</td>
+<td>20g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>200kg</td>
-                <td>20g</td>
-            </tr>
+<tr>
+<td>SLH 200SS</td>
+<td>200kg</td>
+<td>20g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>300kg</td>
-                <td>50g</td>
-            </tr>
+<tr>
+<td>SLH 200SS</td>
+<td>300kg</td>
+<td>50g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>500kg</td>
-                <td>100g</td>
-            </tr>
+<tr>
+<td>SLH 200SS</td>
+<td>500kg</td>
+<td>100g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-        </table>
-        `,
+</table>
+`,
 
-        "Model: SLH 200SS",
+"Model: SLH 200SS",
 
-        "Thiết kế dạng ghế ngồi inox chống gỉ, chịu tải cao",
+"Thiết kế dạng ghế ngồi inox chống gỉ, chịu tải cao",
 
-        "Đầu cân điện tử SLH hiển thị LED rõ nét",
+"Đầu cân điện tử SLH hiển thị LED rõ nét",
 
-        "Loadcell độ chính xác cao, ổn định",
+"Loadcell độ chính xác cao, ổn định",
 
-        "Khả năng chống nước, phù hợp môi trường thủy sản",
+"Khả năng chống nước, phù hợp môi trường thủy sản",
 
-        "Pin sạc hoạt động liên tục 60–72 giờ",
+"Pin sạc hoạt động liên tục 60–72 giờ",
 
-        "Chức năng: cân trọng lượng, trừ bì, giữ số liệu",
+"Chức năng: cân trọng lượng, trừ bì, giữ số liệu",
 
-        "Chế độ tự động tắt tiết kiệm pin",
+"Chế độ tự động tắt tiết kiệm pin",
 
-        "Khung inox chắc chắn, dễ vệ sinh",
+"Khung inox chắc chắn, dễ vệ sinh",
 
-        "Ứng dụng: kho hàng, thủy hải sản, nông sản, xưởng sản xuất"
-    ]
+"Ứng dụng: kho hàng, thủy hải sản, nông sản, xưởng sản xuất"
+
+]
 },
 {
-    id: 27,
+    id:27,
 
-    name: "Cân ghế ngồi XK3190 A12",
+    name:"Cân ghế ngồi XK3190 A12",
 
-    category: "can-ghe-ngoi",
+    category:"can-ghe-ngoi",
 
-    folder: "xk3190-a12",
+    folder:"xk3190-a12",
 
-    brand: "Yaohua",
+    brand:"Yaohua",
 
-    origin: "Đài Loan",
+    origin:"Đài Loan",
 
-    description: "Cân ghế ngồi XK3190 A12 là dòng cân điện tử kiểu ghế ngồi công nghiệp, thiết kế chắc chắn, chuyên dùng trong nông sản, chăn nuôi, kho hàng và môi trường sản xuất. Cân sử dụng đầu hiển thị A12 độ chính xác cao, hoạt động ổn định, dễ sử dụng và có độ bền tốt trong môi trường công nghiệp.",
+    description:"Cân ghế ngồi XK3190 A12 là dòng cân điện tử kiểu ghế ngồi công nghiệp, thiết kế chắc chắn, chuyên dùng trong nông sản, chăn nuôi, kho hàng và môi trường sản xuất. Cân sử dụng đầu hiển thị A12 độ chính xác cao, hoạt động ổn định, dễ sử dụng và có độ bền tốt trong môi trường công nghiệp.",
 
-    specs: [
+    specs:[
 
-        `
-        <table class="spec-table">
+`
+<table class="spec-table">
 
-            <tr>
-                <th>Mức cân</th>
-                <th>Độ chia</th>
-            </tr>
+<tr>
+<th>Model</th>
+<th>Khối lượng</th>
+<th>Sai số</th>
+<th>Kích thước bàn cân</th>
+<th>Kích thước cân</th>
+<th>Trọng lượng cân</th>
+</tr>
 
-            <tr>
-                <td>60kg</td>
-                <td>10g</td>
-            </tr>
+<tr>
+<td>XK3190 A12</td>
+<td>60kg</td>
+<td>10g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>100kg</td>
-                <td>10g</td>
-            </tr>
+<tr>
+<td>XK3190 A12</td>
+<td>100kg</td>
+<td>10g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>150kg</td>
-                <td>20g</td>
-            </tr>
+<tr>
+<td>XK3190 A12</td>
+<td>150kg</td>
+<td>20g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>200kg</td>
-                <td>20g</td>
-            </tr>
+<tr>
+<td>XK3190 A12</td>
+<td>200kg</td>
+<td>20g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>300kg</td>
-                <td>50g</td>
-            </tr>
+<tr>
+<td>XK3190 A12</td>
+<td>300kg</td>
+<td>50g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-            <tr>
-                <td>500kg</td>
-                <td>100g</td>
-            </tr>
+<tr>
+<td>XK3190 A12</td>
+<td>500kg</td>
+<td>100g</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
 
-        </table>
-        `,
+</table>
+`,
 
-        "Model: XK3190 A12",
+"Model: XK3190 A12",
 
-        "Thiết kế dạng ghế ngồi chắc chắn, khung thép sơn tĩnh điện",
+"Thiết kế dạng ghế ngồi chắc chắn, khung thép sơn tĩnh điện",
 
-        "Đầu cân Yaohua A12 hiển thị LED rõ nét",
+"Đầu cân Yaohua A12 hiển thị LED rõ nét",
 
-        "Độ chính xác cao, ổn định trong môi trường rung lắc",
+"Độ chính xác cao, ổn định trong môi trường rung lắc",
 
-        "Chức năng: cân, trừ bì, zero, giữ số liệu",
+"Chức năng: cân, trừ bì, zero, giữ số liệu",
 
-        "Kết nối loadcell 1–4 cảm biến",
+"Kết nối loadcell 1–4 cảm biến",
 
-        "Nguồn điện: 220V + pin sạc 6V",
+"Nguồn điện: 220V + pin sạc 6V",
 
-        "Khung bàn inox hoặc thép tùy chọn",
+"Khung bàn inox hoặc thép tùy chọn",
 
-        "Ứng dụng: cân heo, gà, nông sản, kho hàng",
+"Ứng dụng: cân heo, gà, nông sản, kho hàng",
 
-        "Tiêu chuẩn OIML C3"
-    ]
+"Tiêu chuẩn OIML C3"
+
+]
 }
 
 
