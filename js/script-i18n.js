@@ -130,6 +130,9 @@ function translateSpec(lang) {
 
     document.querySelectorAll("td, th, li, span, p").forEach(el => {
 
+        // 🔥 CHỐT: BỎ QUA ELEMENT ĐÃ CÓ I18N
+        if (el.hasAttribute("data-i18n")) return;
+
         let text = el.innerText;
 
         if (!text) return;
