@@ -536,7 +536,7 @@ window.products = [
 
     category:"can-dem",
 
-    folder:"oneko-jk-a-plus",
+    folder:"oneko-jk-a+",
 
     brand:"Oneko",
 
@@ -551,12 +551,18 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
+<th>Đĩa cân inox</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>1.5kg</td>
 <td>0.05g</td>
+<td rowspan="5">230 × 280 mm</td>
+<td rowspan="5">300 × 330 × 120 mm</td>
+<td rowspan="5">kg / g / lb / oz / pcs</td>
 </tr>
 
 <tr>
@@ -592,13 +598,7 @@ window.products = [
 
 "Chiều cao số hiển thị: 25mm",
 
-"Đĩa cân inox 230 × 280 mm",
-
-"Kích thước cân 300 × 330 × 120 mm",
-
 "Vỏ nhựa ABS công nghiệp",
-
-"Đơn vị cân: kg / g / lb / oz / pcs",
 
 "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
 
@@ -642,12 +642,18 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
+<th>Đĩa cân inox</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>3kg</td>
 <td>0.1g</td>
+<td rowspan="4">300 × 225 mm</td>
+<td rowspan="4">311 × 327 × 117 mm</td>
+<td rowspan="4">kg / g / lb / oz / pcs</td>
 </tr>
 
 <tr>
@@ -680,13 +686,7 @@ window.products = [
 
 "Đèn LED kiểm tra trọng lượng 3 màu",
 
-"Đĩa cân inox 300 × 225 mm",
-
-"Kích thước cân 311 × 327 × 117 mm",
-
 "Vỏ nhựa ABS công nghiệp",
-
-"Đơn vị cân: kg / g / lb / oz / pcs",
 
 "Chức năng: cân trọng lượng, đếm số lượng, kiểm tra trọng lượng, cộng dồn",
 
@@ -726,7 +726,7 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
 </tr>
 
 <tr>
@@ -819,11 +819,18 @@ window.products = [
 <tr>
 <th>Mức cân</th>
 <th>Độ chia</th>
+<th>Đĩa cân inox</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
+
 </tr>
 
 <tr>
 <td>1.5kg</td>
 <td>0.05g</td>
+<td rowspan="5">230 × 280 mm</td>
+<td rowspan="5">300 × 330 × 120 mm</td>
+<td rowspan="5">kg / g / lb / pcs</td>
 </tr>
 
 <tr>
@@ -857,13 +864,7 @@ window.products = [
 
 "Hiển thị: trọng lượng / trọng lượng mẫu / số lượng đếm",
 
-"Đĩa cân inox 230 × 280 mm",
-
-"Kích thước cân 300 × 330 × 120 mm",
-
 "Vỏ nhựa ABS công nghiệp",
-
-"Đơn vị cân: kg / g / lb / pcs",
 
 "Chức năng: cân trọng lượng, đếm số lượng, trừ bì, cộng dồn",
 
@@ -907,12 +908,17 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
+<th>Kích thước cân</th>
+<th>Đơn vị cân</th>
+
 </tr>
 
 <tr>
 <td>1.5 tấn</td>
 <td>0.5kg</td>
+<td rowspan="3">210 × 216 × 460 ~ 665 mm</td>
+<td rowspan="5">kg / lb / t</td>
 </tr>
 
 <tr>
@@ -928,6 +934,7 @@ window.products = [
 <tr>
 <td>10 tấn</td>
 <td>5kg</td>
+<td rowspan="2">210 × 278 × 770 ~ 885 mm</td>
 </tr>
 
 <tr>
@@ -952,8 +959,6 @@ window.products = [
 
 "Chức năng: cân trọng lượng, giữ số HOLD, trừ bì, về zero",
 
-"Đơn vị cân: kg / lb / t",
-
 "Remote điều khiển từ xa khoảng cách 24m",
 
 "Tự động theo dõi điểm zero",
@@ -967,10 +972,6 @@ window.products = [
 "Thời gian sử dụng pin khoảng 100 ~ 120 giờ",
 
 "Nhiệt độ làm việc: 0°C ~ 40°C",
-
-"Kích thước dòng 1~5 tấn: 210 × 216 × 460 ~ 665 mm",
-
-"Kích thước dòng 10~15 tấn: 210 × 278 × 770 ~ 885 mm",
 
 "Thiết kế chuyên dụng cho môi trường công nghiệp nặng"
 
@@ -1584,12 +1585,16 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
+<th>Đĩa cân inox</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
 <td>30g</td>
 <td>0.01mg / 0.1mg</td>
+<td rowspan="5">Ø90mm</td>
+<td rowspan="5">g / mg / ct / oz</td>
 </tr>
 
 <tr>
@@ -1619,8 +1624,6 @@ window.products = [
 
 "Độ tuyến tính ±0.03mg",
 
-"Đĩa cân inox Ø90mm",
-
 "Buồng kính chắn gió 3 cửa",
 
 "Màn hình LCD nền sáng dễ quan sát",
@@ -1630,8 +1633,6 @@ window.products = [
 "Hiệu chuẩn nội tự động",
 
 "Chức năng: cân %, trừ bì, đếm mẫu, chuyển đổi đơn vị",
-
-"Đơn vị cân: g / mg / ct / oz",
 
 "RS232 kết nối máy tính và máy in",
 
@@ -1665,11 +1666,10 @@ window.products = [
 
 <tr>
 <th>Model</th>
-<th>Khối lượng</th>
-<th>Sai số</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 <th>Kích thước đĩa cân</th>
 <th>Kích thước cân</th>
-<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
@@ -1678,7 +1678,6 @@ window.products = [
 <td>0.001g</td>
 <td>Ø118mm</td>
 <td>235 × 182 × 165mm</td>
-<td>1.3kg</td>
 </tr>
 
 <tr>
@@ -1687,7 +1686,6 @@ window.products = [
 <td>0.001g</td>
 <td>Ø118mm</td>
 <td>235 × 182 × 165mm</td>
-<td>1.3kg</td>
 </tr>
 
 <tr>
@@ -1696,7 +1694,6 @@ window.products = [
 <td>0.001g</td>
 <td>Ø118mm</td>
 <td>235 × 182 × 165mm</td>
-<td>1.3kg</td>
 </tr>
 
 <tr>
@@ -1705,7 +1702,6 @@ window.products = [
 <td>0.001g</td>
 <td>Ø118mm</td>
 <td>235 × 182 × 165mm</td>
-<td>1.3kg</td>
 </tr>
 
 <tr>
@@ -1714,7 +1710,6 @@ window.products = [
 <td>0.01g</td>
 <td>170 × 142mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1723,7 +1718,6 @@ window.products = [
 <td>0.01g</td>
 <td>170 × 142mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1732,7 +1726,6 @@ window.products = [
 <td>0.01g</td>
 <td>170 × 142mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1741,7 +1734,6 @@ window.products = [
 <td>0.01g</td>
 <td>170 × 142mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1750,7 +1742,6 @@ window.products = [
 <td>0.01g</td>
 <td>170 × 142mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1759,7 +1750,6 @@ window.products = [
 <td>0.01g</td>
 <td>170 × 142mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1768,7 +1758,6 @@ window.products = [
 <td>0.1g</td>
 <td>180 × 160mm</td>
 <td>265 × 192 × 87mm</td>
-<td>2.8kg</td>
 </tr>
 
 <tr>
@@ -1777,7 +1766,6 @@ window.products = [
 <td>0.1g</td>
 <td>180 × 160mm</td>
 <td>265 × 192 × 87mm</td>
-<td>2.8kg</td>
 </tr>
 
 </table>
@@ -1824,11 +1812,10 @@ window.products = [
 
 <tr>
 <th>Model</th>
-<th>Khối lượng</th>
-<th>Sai số</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 <th>Kích thước đĩa cân</th>
 <th>Kích thước cân</th>
-<th>Trọng lượng cân</th>
 </tr>
 
 <tr>
@@ -1837,7 +1824,6 @@ window.products = [
 <td>0.01g</td>
 <td>Ø118mm</td>
 <td>270 × 178 × 165mm</td>
-<td>1.5kg</td>
 </tr>
 
 <tr>
@@ -1846,7 +1832,6 @@ window.products = [
 <td>0.01g</td>
 <td>Ø118mm</td>
 <td>270 × 178 × 165mm</td>
-<td>1.5kg</td>
 </tr>
 
 <tr>
@@ -1855,7 +1840,6 @@ window.products = [
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1864,7 +1848,6 @@ window.products = [
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1873,7 +1856,6 @@ window.products = [
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1882,7 +1864,6 @@ window.products = [
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 <tr>
@@ -1891,7 +1872,6 @@ window.products = [
 <td>0.01g</td>
 <td>157 × 148mm</td>
 <td>235 × 182 × 75mm</td>
-<td>2.0kg</td>
 </tr>
 
 </table>
@@ -2028,48 +2008,39 @@ window.products = [
 <table class="spec-table">
 
 <tr>
-<th>Model</th>
-<th>Khối lượng</th>
-<th>Sai số</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 <th>Kích thước đĩa cân</th>
 <th>Kích thước cân</th>
-<th>Trọng lượng cân</th>
+<th>Đơn vị cân</th>
 </tr>
 
 <tr>
-<td>SUPER SS</td>
 <td>3kg</td>
 <td>0.5g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>SUPER SS</td>
 <td>6kg</td>
 <td>1g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>SUPER SS</td>
 <td>15kg</td>
 <td>2g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
-<td>-</td>
 </tr>
 
 <tr>
-<td>SUPER SS</td>
 <td>30kg</td>
 <td>5g</td>
 <td>230 × 190mm</td>
 <td>235 × 220 × 65mm</td>
-<td>-</td>
 </tr>
 
 </table>
@@ -2121,9 +2092,8 @@ window.products = [
 <table class="spec-table">
 
 <tr>
-<th>Model</th>
-<th>Khối lượng</th>
-<th>Sai số</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 <th>Kích thước bàn cân</th>
 <th>Kích thước cân</th>
 <th>Trọng lượng cân</th>
