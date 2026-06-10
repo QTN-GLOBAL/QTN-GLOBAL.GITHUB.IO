@@ -204,3 +204,72 @@
     }
 
 }
+/* =========================
+   HERO BANNER MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    .hero{
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        padding:20px 15px !important;
+        gap:20px !important;
+    }
+
+    .hero-left,
+    .hero-right{
+        width:100% !important;
+        max-width:100% !important;
+    }
+
+    .hero-left{
+        text-align:center !important;
+    }
+
+    .hero-left h1{
+        font-size:34px !important;
+        line-height:1.15 !important;
+        margin-bottom:15px !important;
+    }
+
+    .hero-list{
+        padding:0 !important;
+        margin:15px 0 !important;
+    }
+
+    .hero-list li{
+        display:flex !important;
+        justify-content:center !important;
+        margin-bottom:10px !important;
+        text-align:center !important;
+    }
+
+    .hero-contact{
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        gap:10px !important;
+    }
+
+    .hero-phone{
+        width:280px !important;
+        max-width:100% !important;
+    }
+
+    .banner-slider{
+        width:100% !important;
+        display:flex !important;
+        justify-content:center !important;
+    }
+
+    .banner-slider img{
+        width:90% !important;
+        max-width:320px !important;
+        height:auto !important;
+        display:block;
+        margin:auto;
+    }
+
+}
