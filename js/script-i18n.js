@@ -211,7 +211,7 @@ function translateSpec(lang) {
     document.querySelectorAll("td, th, li, span, p").forEach(el => {
 
     // 🔥 FIX: KHÔNG ĐỤNG HERO LIST
-    if (el.closest(".hero-list")) return;
+    if (el.closest(".hero-list") || el.closest("#productSpecs")) return;
         // 🔥 CHỐT: BỎ QUA ELEMENT ĐÃ CÓ I18N
         if (el.hasAttribute("data-i18n")) return;
 
