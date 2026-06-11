@@ -196,7 +196,7 @@ function setLanguage(lang) {
    APPLY LANGUAGE (UI + SPEC)
 ========================= */
 
-function applyLanguage(lang) {
+ffunction applyLanguage(lang) {
 
     /* ===== UI TEXT ===== */
     document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -207,8 +207,11 @@ function applyLanguage(lang) {
         }
     });
 
-    /* ===== SPEC TRANSLATION ===== */
+    /* ===== SPEC ===== */
     translateSpec(lang);
+
+    /* ===== FOOTER (🔥 THÊM DÒNG NÀY) ===== */
+    applyFooterTranslation();
 }
 
 /* =========================
