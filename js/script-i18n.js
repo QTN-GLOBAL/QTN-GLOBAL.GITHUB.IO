@@ -176,14 +176,11 @@ window.reApplyI18n = function () {
 /* =========================
    SET LANGUAGE
 ========================= */
-
 function setLanguage(lang) {
     localStorage.setItem("lang", lang);
-
     applyLanguage(lang);
 
-    setTimeout(() => applyLanguage(lang), 50);
-    setTimeout(() => applyLanguage(lang), 300);
+    setTimeout(() => applyLanguage(lang), 150);
 }
 
 /* =========================
@@ -211,13 +208,18 @@ function applyLanguage(lang) {
 
 function translateSpec(lang) {
 
-    document.querySelectorAll("td, th, li, span, p").forEach(el => {
+   document.querySelectorAll("td, th, li, span, p").forEach(el => {
 
-    // 🔥 FIX: KHÔNG ĐỤNG HERO LIST
-    if (el.closest(".hero-list") || el.closest("#productSpecs")) return;
-        // 🔥 CHỐT: BỎ QUA ELEMENT ĐÃ CÓ I18N
-        if (el.hasAttribute("data-i18n")) return;
-
+    // 🔥 KHÔNG ĐỤNG HERO + PRODUCT DETAIL + SIDEBAR
+    if (
+    el.closest(".hero") ||
+    el.closest(".hero-list") ||
+    el.closest("#productSpecs") ||
+    el.closest(".sidebar") ||
+    el.closest(".brand-sidebar") ||
+    el.closest(".detail-right") ||
+    el.closest(".detail-left")
+) return;
         let text = el.innerText;
 
         if (!text) return;
@@ -240,14 +242,16 @@ function translateSpec(lang) {
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    const runI18n = () => {
+    const lang = localStorage.getItem("lang") || "vi";
+    applyLanguage(lang);
+});
+const safeReapply = () => {
+    const lang = localStorage.getItem("lang") || "vi";
+    applyLanguage(lang);
+};
+window.addEventListener("load", () => {
+    setTimeout(() => {
         const lang = localStorage.getItem("lang") || "vi";
         applyLanguage(lang);
-    };
-
-    runI18n();
-
-    setTimeout(runI18n, 100);
-    setTimeout(runI18n, 500);
+    }, 200);
 });
