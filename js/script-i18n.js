@@ -169,12 +169,7 @@ const specTranslations = {
 
 window.reApplyI18n = function () {
     const lang = localStorage.getItem("lang") || "vi";
-
     applyLanguage(lang);
-
-    setTimeout(() => {
-        applyFooterTranslation();
-    }, 50);
 };
 
 /* =========================
