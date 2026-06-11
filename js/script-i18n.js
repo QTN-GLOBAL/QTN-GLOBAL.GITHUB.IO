@@ -21,7 +21,14 @@ const translations = {
         addCart: "Thêm vào giỏ",
 
         // 🔥 THÊM Ở ĐÂY
-        slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ"
+        slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
+        hero_line1: "GIẢI PHÁP",
+hero_line2: "CÂN ĐIỆN TỬ",
+hero_line3: "CHÍNH XÁC CHO DOANH NGHIỆP",
+
+hero_item1: "SẢN PHẨM CHÍNH HÃNG",
+hero_item2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
+hero_item3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
     },
 
     en: {
@@ -35,7 +42,14 @@ const translations = {
         addCart: "Add to Cart",
 
         // 🔥 THÊM Ở ĐÂY
-        slogan: "PRECISION IN EVERY VALUE"
+        slogan: "PRECISION IN EVERY VALUE",
+hero_line1: "WEIGHING SOLUTIONS",
+hero_line2: "ELECTRONIC SCALES",
+hero_line3: "FOR BUSINESS PRECISION",
+
+hero_item1: "AUTHENTIC PRODUCTS",
+hero_item2: "FAST QUOTE - NATIONWIDE DELIVERY",
+hero_item3: "PROFESSIONAL TECHNICAL SUPPORT",
     },
 
     cn: {
@@ -49,7 +63,14 @@ const translations = {
         addCart: "加入购物车",
 
         // 🔥 THÊM Ở ĐÂY
-        slogan: "每一个价值都精准"
+        slogan: "每一个价值都精准",
+hero_line1: "称重解决方案",
+hero_line2: "电子秤",
+hero_line3: "企业精准计量",
+
+hero_item1: "正品产品",
+hero_item2: "快速报价 - 全国配送",
+hero_item3: "专业技术支持",
     }
 };
 
