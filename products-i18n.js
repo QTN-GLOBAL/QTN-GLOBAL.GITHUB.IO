@@ -2,7 +2,7 @@
    PRODUCT TRANSLATIONS
 ========================= */
 
-const productTranslations = {
+window.productTranslations = { 
 1: {
 
     en: {
