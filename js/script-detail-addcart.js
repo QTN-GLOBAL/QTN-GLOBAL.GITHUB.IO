@@ -8,8 +8,7 @@ function openAddCartPopup() {
     if (!window.currentProduct) return;
 
     const product = getTranslatedProduct(window.currentProduct);
-window.currentProduct = product;
-
+window.selectedProduct = product;
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.style.display = "flex";
 
