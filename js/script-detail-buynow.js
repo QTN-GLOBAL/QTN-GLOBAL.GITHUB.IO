@@ -4,10 +4,9 @@
 ========================= */
 
 function openBuyPopup() {
+if (!window.currentProduct) return;
 
-    if (!window.currentProduct) return;
-
-    const product = window.currentProduct;
+const product = getTranslatedProduct(window.currentProduct);
 
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "flex";
