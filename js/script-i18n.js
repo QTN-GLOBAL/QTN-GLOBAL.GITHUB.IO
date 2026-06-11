@@ -178,9 +178,12 @@ window.reApplyI18n = function () {
 ========================= */
 function setLanguage(lang) {
     localStorage.setItem("lang", lang);
+
     applyLanguage(lang);
 
-    setTimeout(() => applyLanguage(lang), 150);
+    // QUAN TRỌNG: delay để DOM kịp render
+    setTimeout(() => applyLanguage(lang), 100);
+    setTimeout(() => applyLanguage(lang), 400);
 }
 
 /* =========================
@@ -208,28 +211,30 @@ function applyLanguage(lang) {
 
 function translateSpec(lang) {
 
-   document.querySelectorAll("td, th, li, span, p").forEach(el => {
+    document.querySelectorAll("td, th, li, span, p").forEach(el => {
 
-    // 🔥 KHÔNG ĐỤNG HERO + PRODUCT DETAIL + SIDEBAR
-    if (
-    el.closest(".hero") ||
-    el.closest(".hero-list") ||
-    el.closest("#productSpecs") ||
-    el.closest(".sidebar") ||
-    el.closest(".brand-sidebar") ||
-    el.closest(".detail-right") ||
-    el.closest(".detail-left")
-) return;
+        // ❌ KHÔNG DỊCH CÁC KHU VỰC UI CHÍNH
+        if (
+            el.closest(".hero") ||
+            el.closest(".hero-list") ||
+            el.closest(".sidebar") ||
+            el.closest(".brand-sidebar") ||
+            el.closest(".detail-right") ||
+            el.closest(".detail-left")
+        ) return;
+
+        if (el.hasAttribute("data-i18n")) return;
+
         let text = el.innerText;
-
         if (!text) return;
 
         for (let key in specTranslations.vi) {
 
-            const regex = new RegExp(key, "g");
-
             if (specTranslations[lang] && specTranslations[lang][key]) {
-                text = text.replace(regex, specTranslations[lang][key]);
+                text = text.replace(
+                    new RegExp(key, "g"),
+                    specTranslations[lang][key]
+                );
             }
         }
 
