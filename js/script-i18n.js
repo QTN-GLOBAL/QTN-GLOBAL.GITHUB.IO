@@ -169,7 +169,9 @@ const specTranslations = {
 
 window.reApplyI18n = function () {
     const lang = localStorage.getItem("lang") || "vi";
+
     applyLanguage(lang);
+    applyFooterTranslation(); // 👈 THÊM DÒNG NÀY
 };
 
 
@@ -260,3 +262,35 @@ window.addEventListener("load", () => {
         applyLanguage(lang);
     }, 200);
 });
+const footerTranslations = {
+    en: {
+        footer_title: "QTN GLOBAL",
+        footer_intro: "We provide electronic scales, indicators and industrial weighing equipment.",
+        footer_address_label: "Address:",
+        footer_address: "No. 14 Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City",
+        footer_support: "Technical support:"
+    },
+
+    cn: {
+        footer_title: "QTN GLOBAL",
+        footer_intro: "专业提供电子秤、称重仪表及工业称重设备。",
+        footer_address_label: "地址：",
+        footer_address: "越南河内市巴特庄乡 Giap Hai 街 68 巷14号",
+        footer_support: "技术支持："
+    }
+};
+function applyFooterTranslation() {
+
+    const lang = localStorage.getItem("lang") || "vi";
+    const map = footerTranslations?.[lang];
+    if (!map) return;
+
+    document.querySelectorAll(".footer [data-i18n]").forEach(el => {
+
+        const key = el.getAttribute("data-i18n");
+
+        if (map[key]) {
+            el.innerText = map[key];
+        }
+    });
+}
