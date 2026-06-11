@@ -119,7 +119,17 @@ const specTranslations = {
 
 function setLanguage(lang) {
     localStorage.setItem("lang", lang);
+
     applyLanguage(lang);
+
+    // 🔥 FIX HERO LIST + SCRIPT OVERWRITE ISSUE
+    setTimeout(() => {
+        applyLanguage(lang);
+    }, 50);
+
+    setTimeout(() => {
+        applyLanguage(lang);
+    }, 300);
 }
 
 /* =========================
@@ -149,6 +159,8 @@ function translateSpec(lang) {
 
     document.querySelectorAll("td, th, li, span, p").forEach(el => {
 
+    // 🔥 FIX: KHÔNG ĐỤNG HERO LIST
+    if (el.closest(".hero-list")) return;
         // 🔥 CHỐT: BỎ QUA ELEMENT ĐÃ CÓ I18N
         if (el.hasAttribute("data-i18n")) return;
 
