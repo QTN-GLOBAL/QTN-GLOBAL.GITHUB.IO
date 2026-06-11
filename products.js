@@ -734,9 +734,9 @@ window.products = [
 <td>30kg</td>
 <td>1g</td>
 <td rowspan="6">
-    30 × 40 mm<br>
-    40 × 50 mm<br>
-    42 × 52 mm<br>
+    30 × 40 cm<br>
+    40 × 50 cm<br>
+    42 × 52 cm<br>
     Kích thước có thể thay đổi theo yêu cầu
 </td>
 </tr>
@@ -825,7 +825,7 @@ window.products = [
 
 <tr>
 <th>Mức cân</th>
-<th>Độ chia</th>
+<th>Bước nhảy</th>
 <th>Đĩa cân inox</th>
 <th>Kích thước cân</th>
 <th>Đơn vị cân</th>
