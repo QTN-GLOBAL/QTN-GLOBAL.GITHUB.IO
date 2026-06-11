@@ -7,32 +7,22 @@ function openAddCartPopup() {
 
     if (!window.currentProduct) return;
 
-    // 🔥 tách 2 layer
-    const baseProduct = window.currentProduct;
-    const product = getTranslatedProduct(baseProduct);
+    const product = getTranslatedProduct(window.currentProduct);
 
-    // ⚠️ cart phải dùng bản gốc
-    window.selectedProduct = baseProduct;
+    window.selectedProduct = product;
 
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.style.display = "flex";
 
-    // UI dùng bản dịch
-    document.getElementById("popupCartName").innerText =
-        product.name;
+    document.getElementById("popupCartName").innerText = product.name;
 
-    // ảnh luôn dùng bản gốc
     document.getElementById("popupCartImg").src =
-        `images/${baseProduct.category}/${baseProduct.folder}/main.jpg`;
+        `images/${product.category}/${product.folder}/main.jpg`;
 
     let html = "";
 
     const temp = document.createElement("div");
-
-    // 🔥 FIX QUAN TRỌNG: specs là array
-    temp.innerHTML = Array.isArray(product.specs)
-        ? product.specs.join("")
-        : product.specs;
+    temp.innerHTML = product.specs;
 
     const rows = temp.querySelectorAll("tr");
 
@@ -67,7 +57,7 @@ function openAddCartPopup() {
 
     document.getElementById("cartSpecList").innerHTML = html;
 
-    window.reApplyI18n();
+    if (window.reApplyI18n) window.reApplyI18n();
 }
 
 /* =========================

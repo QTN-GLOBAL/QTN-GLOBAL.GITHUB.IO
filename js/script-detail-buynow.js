@@ -2,33 +2,25 @@
 /* =========================
    BUY POPUP
 ========================= */
-
 function openBuyPopup() {
 
     if (!window.currentProduct) return;
 
-    // 🔥 tách 2 layer
-    const baseProduct = window.currentProduct;
-    const product = getTranslatedProduct(baseProduct);
+    const product = getTranslatedProduct(window.currentProduct);
 
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "flex";
 
-    // UI dùng bản dịch
     document.getElementById("buyProductImg").src =
-        `images/${baseProduct.category}/${baseProduct.folder}/main.jpg`;
+        `images/${product.category}/${product.folder}/main.jpg`;
 
     document.getElementById("buyProductName").innerText =
-        product.name;
+        product.name || "";
 
     let html = "";
 
     const temp = document.createElement("div");
-
-    // 🔥 FIX: specs có thể là array hoặc string
-    temp.innerHTML = Array.isArray(product.specs)
-        ? product.specs.join("")
-        : product.specs;
+    temp.innerHTML = product.specs;
 
     const rows = temp.querySelectorAll("tr");
 
@@ -63,7 +55,7 @@ function openBuyPopup() {
 
     document.getElementById("buyCapacityList").innerHTML = html;
 
-    window.reApplyI18n();
+    if (window.reApplyI18n) window.reApplyI18n();
 }
 /* =========================
    ORDER TEXT
