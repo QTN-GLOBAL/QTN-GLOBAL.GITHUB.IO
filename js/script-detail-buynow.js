@@ -55,6 +55,7 @@ function openBuyPopup() {
     });
 
     document.getElementById("buyCapacityList").innerHTML = html;
+    window.reApplyI18n();
 }
 
 /* =========================

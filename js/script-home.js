@@ -41,6 +41,7 @@ function renderProducts(productList = []) {
         `).join("");
 
     grid.innerHTML = html;
+    window.reApplyI18n();
 }
 
 /* =========================

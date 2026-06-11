@@ -55,7 +55,9 @@ function openAddCartPopup() {
     });
 
     document.getElementById("cartSpecList").innerHTML = html;
+    window.reApplyI18n();
 }
+
 
 /* =========================
    ADD TO CART

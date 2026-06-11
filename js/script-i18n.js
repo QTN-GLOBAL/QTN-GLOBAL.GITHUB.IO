@@ -163,6 +163,15 @@ const specTranslations = {
         "Nguồn điện": "电源"
     }
 };
+/* =========================
+   GLOBAL I18N HOOK
+========================= */
+
+window.reApplyI18n = function () {
+    const lang = localStorage.getItem("lang") || "vi";
+    applyLanguage(lang);
+};
+
 
 /* =========================
    SET LANGUAGE
@@ -173,14 +182,8 @@ function setLanguage(lang) {
 
     applyLanguage(lang);
 
-    // 🔥 FIX HERO LIST + SCRIPT OVERWRITE ISSUE
-    setTimeout(() => {
-        applyLanguage(lang);
-    }, 50);
-
-    setTimeout(() => {
-        applyLanguage(lang);
-    }, 300);
+    setTimeout(() => applyLanguage(lang), 50);
+    setTimeout(() => applyLanguage(lang), 300);
 }
 
 /* =========================
@@ -238,7 +241,13 @@ function translateSpec(lang) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const lang = localStorage.getItem("lang") || "vi";
-    applyLanguage(lang);
+    const runI18n = () => {
+        const lang = localStorage.getItem("lang") || "vi";
+        applyLanguage(lang);
+    };
 
+    runI18n();
+
+    setTimeout(runI18n, 100);
+    setTimeout(runI18n, 500);
 });
