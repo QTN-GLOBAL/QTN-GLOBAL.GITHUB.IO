@@ -171,9 +171,11 @@ window.reApplyI18n = function () {
     const lang = localStorage.getItem("lang") || "vi";
 
     applyLanguage(lang);
-    applyFooterTranslation(); // 👈 THÊM DÒNG NÀY
-};
 
+    setTimeout(() => {
+        applyFooterTranslation();
+    }, 50);
+};
 
 /* =========================
    SET LANGUAGE
@@ -183,11 +185,13 @@ function setLanguage(lang) {
 
     applyLanguage(lang);
 
-    // QUAN TRỌNG: delay để DOM kịp render
     setTimeout(() => applyLanguage(lang), 100);
     setTimeout(() => applyLanguage(lang), 400);
-}
 
+    setTimeout(() => {
+        applyFooterTranslation();
+    }, 50);
+}
 /* =========================
    APPLY LANGUAGE (UI + SPEC)
 ========================= */
