@@ -7,20 +7,32 @@ function openAddCartPopup() {
 
     if (!window.currentProduct) return;
 
-    const product = getTranslatedProduct(window.currentProduct);
-window.selectedProduct = product;
+    // 🔥 tách 2 layer
+    const baseProduct = window.currentProduct;
+    const product = getTranslatedProduct(baseProduct);
+
+    // ⚠️ cart phải dùng bản gốc
+    window.selectedProduct = baseProduct;
+
     const popup = document.getElementById("addCartPopup");
     if (popup) popup.style.display = "flex";
 
-    document.getElementById("popupCartName").innerText = product.name;
+    // UI dùng bản dịch
+    document.getElementById("popupCartName").innerText =
+        product.name;
 
+    // ảnh luôn dùng bản gốc
     document.getElementById("popupCartImg").src =
-        `images/${product.category}/${product.folder}/main.jpg`;
+        `images/${baseProduct.category}/${baseProduct.folder}/main.jpg`;
 
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = product.specs;
+
+    // 🔥 FIX QUAN TRỌNG: specs là array
+    temp.innerHTML = Array.isArray(product.specs)
+        ? product.specs.join("")
+        : product.specs;
 
     const rows = temp.querySelectorAll("tr");
 
@@ -35,28 +47,28 @@ window.selectedProduct = product;
             html += `
             <div class="addcart-row">
 
-    <div class="addcart-left">
-        <input type="checkbox" class="detail-check">
-    </div>
+                <div class="addcart-left">
+                    <input type="checkbox" class="detail-check">
+                </div>
 
-    <div class="addcart-middle">
-        ${label}
-    </div>
+                <div class="addcart-middle">
+                    ${label}
+                </div>
 
-    <div class="addcart-right">
-        <button onclick="changeQty(this,-1)">-</button>
-        <input type="number" value="1">
-        <button onclick="changeQty(this,1)">+</button>
-    </div>
+                <div class="addcart-right">
+                    <button onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1">
+                    <button onclick="changeQty(this,1)">+</button>
+                </div>
 
-</div>`;
+            </div>`;
         }
     });
 
     document.getElementById("cartSpecList").innerHTML = html;
+
     window.reApplyI18n();
 }
-
 
 /* =========================
    ADD TO CART

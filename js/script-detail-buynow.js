@@ -4,15 +4,19 @@
 ========================= */
 
 function openBuyPopup() {
-if (!window.currentProduct) return;
 
-const product = getTranslatedProduct(window.currentProduct);
+    if (!window.currentProduct) return;
+
+    // 🔥 tách 2 layer
+    const baseProduct = window.currentProduct;
+    const product = getTranslatedProduct(baseProduct);
 
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "flex";
 
+    // UI dùng bản dịch
     document.getElementById("buyProductImg").src =
-        `images/${product.category}/${product.folder}/main.jpg`;
+        `images/${baseProduct.category}/${baseProduct.folder}/main.jpg`;
 
     document.getElementById("buyProductName").innerText =
         product.name;
@@ -20,7 +24,11 @@ const product = getTranslatedProduct(window.currentProduct);
     let html = "";
 
     const temp = document.createElement("div");
-    temp.innerHTML = product.specs;
+
+    // 🔥 FIX: specs có thể là array hoặc string
+    temp.innerHTML = Array.isArray(product.specs)
+        ? product.specs.join("")
+        : product.specs;
 
     const rows = temp.querySelectorAll("tr");
 
@@ -54,9 +62,9 @@ const product = getTranslatedProduct(window.currentProduct);
     });
 
     document.getElementById("buyCapacityList").innerHTML = html;
+
     window.reApplyI18n();
 }
-
 /* =========================
    ORDER TEXT
 ========================= */
