@@ -1525,27 +1525,23 @@ function getTranslatedProduct(product) {
 
     const lang = localStorage.getItem("lang") || "vi";
 
-    if (lang === "vi")
-        return product;
+    if (lang === "vi") return product;
 
     const trans = productTranslations?.[product.id]?.[lang];
 
-    if (!trans)
-        return product;
+    if (!trans) return product;
 
     return {
         ...product,
 
-        name:
-            trans.name || product.name,
+        name: trans.name || product.name,
+        origin: trans.origin || product.origin,
+        description: trans.description || product.description,
+        specs: trans.specs || product.specs,
 
-        origin:
-            trans.origin || product.origin,
-
-        description:
-            trans.description || product.description,
-
-        specs:
-            trans.specs || product.specs
+        // 🔥 BẮT BUỘC GIỮ NGUYÊN
+        folder: product.folder,
+        category: product.category,
+        images: product.images
     };
 }
