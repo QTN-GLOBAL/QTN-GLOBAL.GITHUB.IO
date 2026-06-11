@@ -210,8 +210,6 @@ ffunction applyLanguage(lang) {
     /* ===== SPEC ===== */
     translateSpec(lang);
 
-    /* ===== FOOTER (🔥 THÊM DÒNG NÀY) ===== */
-    applyFooterTranslation();
 }
 
 /* =========================
