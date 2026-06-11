@@ -24,25 +24,20 @@ function openAddCartPopup() {
     const temp = document.createElement("div");
     temp.innerHTML = product.specs;
 
-    const rows = temp.querySelectorAll("tr");
-
-    rows.forEach(row => {
+    temp.querySelectorAll("tr").forEach(row => {
 
         const cols = row.querySelectorAll("td");
 
         if (cols.length >= 2) {
 
-            const label = cols[0].innerText + " - " + cols[1].innerText;
-
             html += `
             <div class="addcart-row">
-
                 <div class="addcart-left">
-                    <input type="checkbox" class="detail-check">
+                    <input type="checkbox">
                 </div>
 
                 <div class="addcart-middle">
-                    ${label}
+                    ${cols[0].innerText} - ${cols[1].innerText}
                 </div>
 
                 <div class="addcart-right">
@@ -50,16 +45,12 @@ function openAddCartPopup() {
                     <input type="number" value="1">
                     <button onclick="changeQty(this,1)">+</button>
                 </div>
-
             </div>`;
         }
     });
 
     document.getElementById("cartSpecList").innerHTML = html;
-
-    if (window.reApplyI18n) window.reApplyI18n();
 }
-
 /* =========================
    ADD TO CART
 ========================= */

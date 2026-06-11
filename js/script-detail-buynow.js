@@ -15,32 +15,27 @@ function openBuyPopup() {
         `images/${product.category}/${product.folder}/main.jpg`;
 
     document.getElementById("buyProductName").innerText =
-        product.name || "";
+        product.name;
 
     let html = "";
 
     const temp = document.createElement("div");
     temp.innerHTML = product.specs;
 
-    const rows = temp.querySelectorAll("tr");
-
-    rows.forEach(row => {
+    temp.querySelectorAll("tr").forEach(row => {
 
         const cols = row.querySelectorAll("td");
 
         if (cols.length >= 2) {
 
-            const label = cols[0].innerText + " - " + cols[1].innerText;
-
             html += `
             <div class="buy-row">
-
                 <div class="buy-left">
                     <input type="checkbox">
                 </div>
 
                 <div class="buy-middle">
-                    ${label}
+                    ${cols[0].innerText} - ${cols[1].innerText}
                 </div>
 
                 <div class="buy-right">
@@ -48,14 +43,11 @@ function openBuyPopup() {
                     <input type="number" value="1">
                     <button onclick="changeQty(this,1)">+</button>
                 </div>
-
             </div>`;
         }
     });
 
     document.getElementById("buyCapacityList").innerHTML = html;
-
-    if (window.reApplyI18n) window.reApplyI18n();
 }
 /* =========================
    ORDER TEXT
