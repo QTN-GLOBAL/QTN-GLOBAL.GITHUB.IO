@@ -1,6 +1,5 @@
-
 /* =========================
-   ADD CART POPUP
+   ADD CART POPUP (FIXED VERSION)
 ========================= */
 
 function openAddCartPopup() {
@@ -25,7 +24,7 @@ function openAddCartPopup() {
 
     const rows = temp.querySelectorAll("tr");
 
-    rows.forEach(row => {
+    rows.forEach((row, index) => {
 
         const cols = row.querySelectorAll("td");
 
@@ -34,23 +33,24 @@ function openAddCartPopup() {
             const label = cols[0].innerText + " - " + cols[1].innerText;
 
             html += `
-            <div class="addcart-row">
+            <div class="addcart-row"
+                 data-index="${index}">
 
-    <div class="addcart-left">
-        <input type="checkbox" class="detail-check">
-    </div>
+                <div class="addcart-left">
+                    <input type="checkbox" class="detail-check" checked>
+                </div>
 
-    <div class="addcart-middle">
-        ${label}
-    </div>
+                <div class="addcart-middle">
+                    ${label}
+                </div>
 
-    <div class="addcart-right">
-        <button onclick="changeQty(this,-1)">-</button>
-        <input type="number" value="1">
-        <button onclick="changeQty(this,1)">+</button>
-    </div>
+                <div class="addcart-right">
+                    <button onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1">
+                    <button onclick="changeQty(this,1)">+</button>
+                </div>
 
-</div>`;
+            </div>`;
         }
     });
 
@@ -58,7 +58,7 @@ function openAddCartPopup() {
 }
 
 /* =========================
-   ADD TO CART
+   ADD TO CART (FIXED)
 ========================= */
 
 function addSelectedToCart() {
@@ -77,18 +77,21 @@ function addSelectedToCart() {
         const check = row.querySelector(".detail-check");
         if (!check || !check.checked) return;
 
-       const label = row.querySelector(".addcart-middle").innerText;
+        const label = row.querySelector(".addcart-middle").innerText;
 
         const qty = parseInt(
             row.querySelector("input[type='number']").value
         ) || 1;
 
+        // 🔥 FIX QUAN TRỌNG: luôn có id
         Cart.add({
+            id: Date.now() + Math.random(), // unique id
             name: product.name,
             category: product.category,
             folder: product.folder,
             spec: label,
-            quantity: qty
+            quantity: qty,
+            selected: false
         });
 
         added = true;
@@ -105,14 +108,16 @@ function addSelectedToCart() {
 
     if (typeof renderCart === "function") renderCart();
     if (typeof updateCartUI === "function") updateCartUI();
+    if (typeof renderHeaderCart === "function") renderHeaderCart();
 }
 
 /* =========================
-   CLOSE ADD CART
+   CLOSE POPUP
 ========================= */
 
 function closeAddCart() {
-    document.getElementById("addCartPopup").style.display = "none";
+    const popup = document.getElementById("addCartPopup");
+    if (popup) popup.style.display = "none";
 }
 
 function confirmAddCart() {
@@ -120,7 +125,7 @@ function confirmAddCart() {
 }
 
 /* =========================
-   QTY
+   QTY CHANGE
 ========================= */
 
 function changeQty(btn, delta) {

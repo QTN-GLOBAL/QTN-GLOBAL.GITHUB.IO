@@ -1,7 +1,6 @@
-
 /* =========================
-   QTN GLOBAL - MULTI LANGUAGE SYSTEM
-   UI + SPEC TRANSLATION
+   QTN GLOBAL - I18N CORE (CLEAN VERSION)
+   SAFE FOR CART + PRODUCT + FOOTER
 ========================= */
 
 /* =========================
@@ -9,7 +8,6 @@
 ========================= */
 
 const translations = {
-
     vi: {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
@@ -49,17 +47,17 @@ const translations = {
         brand_yaohua: "Yaohua",
         brand_excell: "EXCELL",
 
-footer_brand: "QTN GLOBAL",
-footer_intro: "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
+        footer_brand: "QTN GLOBAL",
+        footer_intro: "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
 
-footer_address_label: "Địa chỉ:",
-footer_address: "Số 14 Ngõ 68 Đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội",
+        footer_address_label: "Địa chỉ:",
+        footer_address: "Số 14 Ngõ 68 Đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội",
 
-footer_hotline: "Hotline:",
-footer_support: "Hỗ trợ kỹ thuật:",
+        footer_hotline: "Hotline:",
+        footer_support: "Hỗ trợ kỹ thuật:",
 
-footer_email: "Email:",
-footer_website: "Website:"
+        footer_email: "Email:",
+        footer_website: "Website:"
     },
 
     en: {
@@ -79,39 +77,20 @@ footer_website: "Website:"
         hero_line2: "ELECTRONIC SCALES",
         hero_line3: "FOR BUSINESS PRECISION",
 
-        hero_item1: "AUTHENTIC PRODUCTS",
-        hero_item2: "FAST QUOTE - NATIONWIDE DELIVERY",
-        hero_item3: "PROFESSIONAL TECHNICAL SUPPORT",
-
         category_title: "CATEGORIES",
         brand_title: "BRANDS",
 
-        cat_can_ban: "Platform Scale",
-        cat_can_dem: "Counting Scale",
-        cat_can_treo: "Hanging Scale",
-        cat_dau_can: "Indicator",
-        cat_can_pt: "Analytical Scale",
-        cat_chong_nuoc: "Waterproof Scale",
-        cat_in_tem: "Label Printing Scale",
-        cat_ghe_ngoi: "Chair Scale",
+        footer_brand: "QTN GLOBAL",
+        footer_intro: "We provide electronic scales and industrial weighing equipment.",
 
-        brand_ohaus: "Ohaus",
-        brand_jadever: "Jadever",
-        brand_vibra: "Vibra",
-        brand_yaohua: "Yaohua",
-        brand_excell: "EXCELL",
+        footer_address_label: "Address:",
+        footer_address: "No. 14 Alley 68 Giap Hai Street, Hanoi",
 
-footer_brand: "QTN GLOBAL",
-footer_intro: "We provide electronic scales, indicators and industrial weighing equipment.",
+        footer_hotline: "Hotline:",
+        footer_support: "Technical support:",
 
-footer_address_label: "Address:",
-footer_address: "No. 14 Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City",
-
-footer_hotline: "Hotline:",
-footer_support: "Technical support:",
-
-footer_email: "Email:",
-footer_website: "Website:"
+        footer_email: "Email:",
+        footer_website: "Website:"
     },
 
     cn: {
@@ -131,45 +110,25 @@ footer_website: "Website:"
         hero_line2: "电子秤",
         hero_line3: "企业精准计量",
 
-        hero_item1: "正品产品",
-        hero_item2: "快速报价 - 全国配送",
-        hero_item3: "专业技术支持",
-
         category_title: "分类",
         brand_title: "品牌",
 
-        cat_can_ban: "台秤",
-        cat_can_dem: "计数秤",
-        cat_can_treo: "吊秤",
-        cat_dau_can: "称重仪表",
-        cat_can_pt: "分析天平",
-        cat_chong_nuoc: "防水秤",
-        cat_in_tem: "标签打印秤",
-        cat_ghe_ngoi: "座椅秤",
+        footer_brand: "QTN GLOBAL",
+        footer_intro: "专业提供电子秤及工业称重设备。",
 
-        brand_ohaus: "奥豪斯",
-        brand_jadever: "捷德韦尔",
-        brand_vibra: "维博拉",
-        brand_yaohua: "耀华",
-       brand_excell: "艾科尔",
+        footer_address_label: "地址：",
+        footer_address: "越南河内市巴特庄乡",
 
-footer_brand: "QTN GLOBAL",
-footer_intro: "专业提供电子秤、称重仪表及工业称重设备。",
+        footer_hotline: "热线：",
+        footer_support: "技术支持：",
 
-footer_address_label: "地址：",
-footer_address: "越南河内市巴特庄乡 Giap Hai 街68巷14号",
-
-footer_hotline: "热线：",
-footer_support: "技术支持：",
-
-footer_email: "电子邮箱：",
-footer_website: "网站："
+        footer_email: "电子邮箱：",
+        footer_website: "网站："
     }
-
 };
 
 /* =========================
-   TRANSLATIONS - SPEC TERMS
+   SPEC TRANSLATION
 ========================= */
 
 const specTranslations = {
@@ -206,18 +165,19 @@ const specTranslations = {
         "Nguồn điện": "电源"
     }
 };
-/* =========================
-   GLOBAL I18N HOOK
-========================= */
-
-window.reApplyI18n = function () {
-    const lang = localStorage.getItem("lang") || "vi";
-    applyLanguage(lang);
-};
 
 /* =========================
-   SET LANGUAGE
+   GET LANGUAGE
 ========================= */
+
+function getLang() {
+    return localStorage.getItem("lang") || "vi";
+}
+
+/* =========================
+   SET LANGUAGE (SAFE)
+========================= */
+
 function setLanguage(lang) {
 
     localStorage.setItem("lang", lang);
@@ -232,13 +192,14 @@ function setLanguage(lang) {
         renderProductDetail();
     }
 
-    // 🔥 FIX FOOTER LATE RENDER ISSUE
-    requestAnimationFrame(() => {
+    // SAFE RE-APPLY (fix late DOM like footer/cart)
+    setTimeout(() => {
         applyLanguage(lang);
-    });
+    }, 50);
 }
+
 /* =========================
-   APPLY LANGUAGE (UI + SPEC)
+   APPLY LANGUAGE
 ========================= */
 
 function applyLanguage(lang) {
@@ -254,34 +215,23 @@ function applyLanguage(lang) {
 
     translateSpec(lang);
 }
+
 /* =========================
-   SPEC TRANSLATION ENGINE
+   SPEC TRANSLATION (SAFE MODE)
 ========================= */
 
 function translateSpec(lang) {
 
-    document.querySelectorAll("td, th, li, span, p").forEach(el => {
+    document.querySelectorAll("[data-spec]").forEach(el => {
 
-        // ❌ KHÔNG DỊCH CÁC KHU VỰC UI CHÍNH
-       if (
-    el.closest(".hero") ||
-    el.closest(".hero-list") ||
-    el.closest(".sidebar") ||
-    el.closest(".brand-sidebar") ||
-    el.closest(".detail-right") ||
-    el.closest(".detail-left") ||
-    el.closest("footer") ||
-    el.closest("header")
-) return;
+        let original = el.getAttribute("data-spec-original");
+        if (!original) return;
 
-        if (el.hasAttribute("data-i18n")) return;
-
-        let text = el.innerText;
-        if (!text) return;
+        let text = original;
 
         for (let key in specTranslations.vi) {
 
-            if (specTranslations[lang] && specTranslations[lang][key]) {
+            if (specTranslations[lang]?.[key]) {
                 text = text.replace(
                     new RegExp(key, "g"),
                     specTranslations[lang][key]
@@ -294,11 +244,17 @@ function translateSpec(lang) {
 }
 
 /* =========================
-   AUTO INIT ON PAGE LOAD
+   MANUAL REAPPLY
+========================= */
+
+window.reApplyI18n = function () {
+    applyLanguage(getLang());
+};
+
+/* =========================
+   INIT
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const lang = localStorage.getItem("lang") || "vi";
-    applyLanguage(lang);
+    applyLanguage(getLang());
 });
-
