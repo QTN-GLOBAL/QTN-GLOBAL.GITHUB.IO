@@ -105,7 +105,9 @@ function applyLanguage(lang) {
 
     requestAnimationFrame(() => {
 
-        // UI TEXT
+        // =========================
+        // UI TEXT (data-i18n)
+        // =========================
         document.querySelectorAll("[data-i18n]").forEach(el => {
             const key = el.getAttribute("data-i18n");
             if (translations[lang]?.[key]) {
@@ -113,15 +115,46 @@ function applyLanguage(lang) {
             }
         });
 
-        // SPEC
+        // =========================
+        // SPEC TRANSLATION
+        // =========================
         setTimeout(() => {
-            translateSpec(lang);
+            if (typeof translateSpec === "function") {
+                translateSpec(lang);
+            }
         }, 0);
 
+        // =========================
         // FOOTER
+        // =========================
         setTimeout(() => {
-            applyFooterTranslation();
+            if (typeof applyFooterTranslation === "function") {
+                applyFooterTranslation();
+            }
         }, 0);
+
+        // =========================
+        // 🔥 BƯỚC 3 - FIX RENDER OVERRIDE (QUAN TRỌNG)
+        // =========================
+        setTimeout(() => {
+
+            const currentLang = localStorage.getItem("lang") || "vi";
+
+            // re-apply lần cuối để override renderProducts / DOM động
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[currentLang]?.[key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+
+            // re-run spec sau khi DOM ổn định
+            if (typeof translateSpec === "function") {
+                translateSpec(currentLang);
+            }
+
+        }, 100);
+
     });
 }
 

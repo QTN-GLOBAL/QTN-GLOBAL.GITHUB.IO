@@ -16,10 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // =========================
 renderProducts(products);
 
-// 🔥 FIX i18n sau khi render xong
 setTimeout(() => {
     const lang = localStorage.getItem("lang") || "vi";
-    applyLanguage(lang);
+    if (window.applyLanguage) applyLanguage(lang);
 }, 50);
 
         // =========================
