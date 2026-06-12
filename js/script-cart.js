@@ -1,6 +1,5 @@
 /* =========================
    CART UI + RENDER SYSTEM
-   (USES CART ENGINE ONLY)
 ========================= */
 
 /* =========================
@@ -19,45 +18,63 @@ function renderCart() {
         return;
     }
 
-    let html = "";
-
-    cart.forEach((item, index) => {
-
-        html += `
+    body.innerHTML = cart.map((item, index) => `
         <div class="cart-row">
 
             <div class="cart-left">
-                <input type="checkbox" class="cart-check" data-index="${index}">
+                <input type="checkbox"
+                       class="cart-check"
+                       data-id="${item.id}"
+                       ${item.selected ? "checked" : ""}>
             </div>
 
             <div class="cart-middle">
-
                 <img src="images/${item.category}/${item.folder}/main.jpg">
 
                 <div class="cart-info">
                     <div class="cart-name">${item.name}</div>
                     <div class="cart-capacity">${item.spec || ""}</div>
                 </div>
-
             </div>
 
             <div class="cart-right">
-
                 <button onclick="updateCartQty(${index},-1)">-</button>
                 <input value="${item.quantity}" readonly>
                 <button onclick="updateCartQty(${index},1)">+</button>
                 <button onclick="removeCartItem(${index})">✕</button>
-
             </div>
 
-        </div>`;
-    });
-
-   
-
-    body.innerHTML = html;
+        </div>
+    `).join("");
 
     updateCartUI();
+}
+
+/* =========================
+   GLOBAL EVENT (FIX CHÍNH)
+   CHỈ GẮN 1 LẦN
+========================= */
+
+if (!window.__cartEventBound) {
+    window.__cartEventBound = true;
+
+    document.addEventListener("change", function (e) {
+
+        if (!e.target.classList.contains("cart-check")) return;
+
+        const id = e.target.dataset.id;
+        const checked = e.target.checked;
+
+        let cart = Cart.get();
+
+        cart.forEach(item => {
+            if (item.id == id) {
+                item.selected = checked;
+            }
+        });
+
+        Cart.set(cart);
+    });
 }
 
 /* =========================
@@ -102,16 +119,12 @@ function removeCartItem(index) {
 
 function renderHeaderCart() {
 
-   const box = document.getElementById("cartBody");
+    const box = document.getElementById("headerCartBody");
     if (!box) return;
 
     const cart = Cart.get();
 
-    let html = "";
-
-    cart.forEach((item, index) => {
-
-        html += `
+    box.innerHTML = cart.map((item, index) => `
         <div class="header-cart-row">
 
             <img src="images/${item.category}/${item.folder}/main.jpg">
@@ -129,12 +142,8 @@ function renderHeaderCart() {
 
             <button onclick="removeCartItem(${index})">X</button>
 
-        </div>`;
-    });
-
-    
-
-    box.innerHTML = html;
+        </div>
+    `).join("");
 }
 
 /* =========================
@@ -148,10 +157,7 @@ function updateCartUI() {
 
     const cart = Cart.get();
 
-    let total = 0;
-    cart.forEach(i => total += i.quantity);
-
-    el.innerText = total;
+    el.innerText = cart.reduce((sum, i) => sum + i.quantity, 0);
 }
 
 /* =========================
@@ -186,85 +192,52 @@ function closeCart() {
 
 function handleBuyNow() {
 
-    const cart = Cart.get();
+    const selectedItems = Cart.get().filter(i => i.selected);
 
-    const selectedItems = [];
-
-    document
-    .querySelectorAll(".cart-check")
-    .forEach((cb,index)=>{
-
-        if(cb.checked && cart[index]){
-
-            selectedItems.push(cart[index]);
-        }
-    });
-
-    if(selectedItems.length === 0){
-
+    if (selectedItems.length === 0) {
         alert("Vui lòng chọn sản phẩm cần mua");
-
         return;
     }
 
     renderBuyNowForm(selectedItems);
 }
+
 /* =========================
    BUY FORM
 ========================= */
 
 function renderBuyNowForm(items) {
 
-    const popup =
-        document.getElementById("buyPopup");
-
+    const popup = document.getElementById("buyPopup");
     if (!popup) return;
 
     popup.style.display = "flex";
 
-    const box =
-        document.getElementById("buyCapacityList");
-
+    const box = document.getElementById("buyCapacityList");
     if (!box) return;
 
-    let html = "";
-
-    items.forEach(item => {
-
-        html += `
-
+    box.innerHTML = items.map(item => `
         <div class="buy-item">
 
-            <img
-            src="images/${item.category}/${item.folder}/main.jpg"
-            style="
-            width:60px;
-            height:60px;
-            object-fit:contain;
-            display:block;
-            margin:auto;
-            ">
+            <img src="images/${item.category}/${item.folder}/main.jpg"
+                 style="width:60px;height:60px;object-fit:contain;display:block;margin:auto;">
 
-            <h4 style="text-align:center">
-                ${item.name}
-            </h4>
+            <h4 style="text-align:center">${item.name}</h4>
 
-            <div style="text-align:center">
-                ${item.spec || ""}
-            </div>
+            <div style="text-align:center">${item.spec || ""}</div>
 
-            <div style="text-align:center">
-                SL: ${item.quantity}
-            </div>
+            <div style="text-align:center">SL: ${item.quantity}</div>
 
             <hr>
 
         </div>
-        `;
-    });
-
-    box.innerHTML = html;
+    `).join("");
 }
+
+/* =========================
+   ORDER TEXT
+========================= */
+
 function getOrderText() {
 
     let text = "THÔNG TIN ĐẶT HÀNG\n\n";
@@ -291,6 +264,7 @@ function getOrderText() {
 
     return text;
 }
+
 /* =========================
    VALIDATE CUSTOMER
 ========================= */
@@ -298,103 +272,93 @@ function getOrderText() {
 function validateCustomerForm() {
 
     const fields = [
-
-        document.getElementById("customerName"),
-        document.getElementById("customerPhone"),
-        document.getElementById("customerCompany"),
-        document.getElementById("customerTax"),
-        document.getElementById("customerInvoice"),
-        document.getElementById("customerAddress")
-
+        "customerName",
+        "customerPhone",
+        "customerCompany",
+        "customerTax",
+        "customerInvoice",
+        "customerAddress"
     ];
 
     let valid = true;
 
-    fields.forEach(field => {
+    fields.forEach(id => {
 
+        const field = document.getElementById(id);
         if (!field) return;
 
         field.classList.remove("input-error");
 
         if (field.value.trim() === "") {
-
             field.classList.add("input-error");
-
             valid = false;
         }
     });
 
     if (!valid) {
-
         alert("Vui lòng điền đầy đủ thông tin khách hàng");
-
         return false;
     }
 
     return true;
 }
+
+/* =========================
+   SEND ORDER
+========================= */
+
 function sendOrderZalo() {
-if(!validateCustomerForm()) return;
+
+    if (!validateCustomerForm()) return;
 
     const text = getOrderText();
-
     navigator.clipboard.writeText(text).catch(() => {});
 
-    alert("Đã copy đơn hàng. Nhấn OK để mở Zalo.");
-
-    const selected = getSelectedCartItems();
+    const selected = Cart.get()
+        .filter(i => i.selected)
+        .map(i => i.id);
 
     removeSelectedFromCart(selected);
-
     closeBuyPopup();
 
     window.open("https://zalo.me/0383598603", "_blank");
 }
+
 function sendOrderMessenger() {
-if(!validateCustomerForm()) return;
+
+    if (!validateCustomerForm()) return;
 
     const text = getOrderText();
-
     navigator.clipboard.writeText(text).catch(() => {});
 
-    alert("Đã copy đơn hàng. Nhấn OK để mở Messenger.");
-
-    const selected = getSelectedCartItems();
+    const selected = Cart.get()
+        .filter(i => i.selected)
+        .map(i => i.id);
 
     removeSelectedFromCart(selected);
-
     closeBuyPopup();
 
     window.open("https://m.me/QTNSCALE", "_blank");
 }
+
+/* =========================
+   CLOSE POPUP
+========================= */
+
 function closeBuyPopup() {
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "none";
 }
-function getSelectedCartItems() {
 
-    const cart = Cart.get();
-    const selected = [];
+/* =========================
+   REMOVE SELECTED
+========================= */
 
-    document.querySelectorAll(".cart-check").forEach((cb, index) => {
-
-        if (cb.checked && cart[index]) {
-            selected.push(index);
-        }
-    });
-
-    return selected;
-}
-function removeSelectedFromCart(indexes) {
+function removeSelectedFromCart(ids) {
 
     let cart = Cart.get();
 
-    // xoá từ cuối lên để không lệch index
-    indexes.sort((a, b) => b - a);
-
-    indexes.forEach(i => {
-        cart.splice(i, 1);
-    });
+    cart = cart.filter(item => !ids.includes(item.id));
 
     Cart.set(cart);
 
