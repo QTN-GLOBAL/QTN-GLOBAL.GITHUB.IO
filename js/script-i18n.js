@@ -105,12 +105,18 @@ function applyLanguage(lang) {
 
     // UI TEXT
     document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
 
-        if (translations[lang] && translations[lang][key]) {
-            el.innerText = translations[lang][key];
-        }
-    });
+    const key = el.getAttribute("data-i18n");
+
+    if (lang === "vi") {
+        el.innerText = el.dataset.origin || el.innerText;
+        return;
+    }
+
+    if (translations[lang]?.[key]) {
+        el.innerText = translations[lang][key];
+    }
+});
 
     // SPEC
     translateSpec(lang);
@@ -134,6 +140,12 @@ function translateSpec(lang) {
             el.closest(".detail-left")) return;
 
         if (el.hasAttribute("data-i18n")) return;
+
+        // 🔥 THÊM ĐOẠN NÀY NGAY SAU 2 LỆNH SKIP
+        if (lang === "vi") {
+            el.innerText = el.dataset.origin || el.innerText;
+            return;
+        }
 
         let text = el.innerText;
         if (!text) return;
@@ -176,15 +188,18 @@ const footerTranslations = {
 function applyFooterTranslation() {
 
     const lang = localStorage.getItem("lang") || "vi";
-    const map = footerTranslations[lang];
-    if (!map) return;
 
     document.querySelectorAll(".footer [data-i18n]").forEach(el => {
 
         const key = el.getAttribute("data-i18n");
 
-        if (map[key]) {
-            el.innerText = map[key];
+        if (lang === "vi") {
+            el.innerText = el.dataset.origin || el.innerText;
+            return;
+        }
+
+        if (footerTranslations[lang]?.[key]) {
+            el.innerText = footerTranslations[lang][key];
         }
     });
 }
@@ -208,6 +223,16 @@ function setLanguage(lang) {
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // 🔥 LƯU TEXT GỐC 1 LẦN DUY NHẤT
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        if (!el.dataset.origin) {
+            el.dataset.origin = el.innerText;
+        }
+    });
+
+    // chạy i18n ban đầu
     const lang = localStorage.getItem("lang") || "vi";
     applyLanguage(lang);
+
 });
