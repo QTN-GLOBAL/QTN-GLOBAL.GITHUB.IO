@@ -7,8 +7,7 @@ function openAddCartPopup() {
 
     if (!window.currentProduct) return;
 
-    const product = getTranslatedProduct(window.currentProduct);
-
+    const product = window.currentProduct;
     window.selectedProduct = product;
 
     const popup = document.getElementById("addCartPopup");
@@ -24,33 +23,40 @@ function openAddCartPopup() {
     const temp = document.createElement("div");
     temp.innerHTML = product.specs;
 
-    temp.querySelectorAll("tr").forEach(row => {
+    const rows = temp.querySelectorAll("tr");
+
+    rows.forEach(row => {
 
         const cols = row.querySelectorAll("td");
 
         if (cols.length >= 2) {
 
+            const label = cols[0].innerText + " - " + cols[1].innerText;
+
             html += `
             <div class="addcart-row">
-                <div class="addcart-left">
-                    <input type="checkbox">
-                </div>
 
-                <div class="addcart-middle">
-                    ${cols[0].innerText} - ${cols[1].innerText}
-                </div>
+    <div class="addcart-left">
+        <input type="checkbox" class="detail-check">
+    </div>
 
-                <div class="addcart-right">
-                    <button onclick="changeQty(this,-1)">-</button>
-                    <input type="number" value="1">
-                    <button onclick="changeQty(this,1)">+</button>
-                </div>
-            </div>`;
+    <div class="addcart-middle">
+        ${label}
+    </div>
+
+    <div class="addcart-right">
+        <button onclick="changeQty(this,-1)">-</button>
+        <input type="number" value="1">
+        <button onclick="changeQty(this,1)">+</button>
+    </div>
+
+</div>`;
         }
     });
 
     document.getElementById("cartSpecList").innerHTML = html;
 }
+
 /* =========================
    ADD TO CART
 ========================= */

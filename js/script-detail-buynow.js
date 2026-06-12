@@ -2,11 +2,12 @@
 /* =========================
    BUY POPUP
 ========================= */
+
 function openBuyPopup() {
 
     if (!window.currentProduct) return;
 
-    const product = getTranslatedProduct(window.currentProduct);
+    const product = window.currentProduct;
 
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "flex";
@@ -22,20 +23,25 @@ function openBuyPopup() {
     const temp = document.createElement("div");
     temp.innerHTML = product.specs;
 
-    temp.querySelectorAll("tr").forEach(row => {
+    const rows = temp.querySelectorAll("tr");
+
+    rows.forEach(row => {
 
         const cols = row.querySelectorAll("td");
 
         if (cols.length >= 2) {
 
+            const label = cols[0].innerText + " - " + cols[1].innerText;
+
             html += `
             <div class="buy-row">
+
                 <div class="buy-left">
                     <input type="checkbox">
                 </div>
 
                 <div class="buy-middle">
-                    ${cols[0].innerText} - ${cols[1].innerText}
+                    ${label}
                 </div>
 
                 <div class="buy-right">
@@ -43,12 +49,14 @@ function openBuyPopup() {
                     <input type="number" value="1">
                     <button onclick="changeQty(this,1)">+</button>
                 </div>
+
             </div>`;
         }
     });
 
     document.getElementById("buyCapacityList").innerHTML = html;
 }
+
 /* =========================
    ORDER TEXT
 ========================= */

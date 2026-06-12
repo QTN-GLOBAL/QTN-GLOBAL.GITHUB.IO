@@ -13,44 +13,36 @@ function renderProducts(productList = []) {
     const grid = document.getElementById("productGrid");
     if (!grid) return;
 
-    const lang = localStorage.getItem("lang") || "vi";
-
     grid.innerHTML = "";
 
     const html = productList
-        .filter(product => product && product.id && product.name)
-        .map(product => {
+        .filter(p => p && p.id && p.name)
+        .map(product => `
+            <div class="product-card">
 
-            const p = getTranslatedProduct(product);
+                <img 
+                    src="images/${product.category}/${product.folder}/main.jpg"
+                    alt="${product.name}"
+                    onerror="this.src='images/no-image.jpg'"
+                >
 
-            return `
-                <div class="product-card">
+                <div class="product-info">
 
-                    <img 
-                        src="images/${product.category}/${product.folder}/main.jpg"
-                        alt="${p.name}"
-                        onerror="this.src='images/no-image.jpg'"
-                    >
+                    <h3>${product.name}</h3>
 
-                    <div class="product-info">
-
-                        <h3>${p.name}</h3>
-
-                       <a class="detail-btn"
-   href="chitiet.html?id=${product.id}">
-   ${translations[lang]?.detail || "Chi tiết"}
-</a>
-
-                    </div>
+                    <a class="detail-btn"
+                       href="chitiet.html?id=${product.id}">
+                        Chi tiết
+                    </a>
 
                 </div>
-            `;
-        }).join("");
+
+            </div>
+        `).join("");
 
     grid.innerHTML = html;
-
-    window.reApplyI18n();
 }
+
 /* =========================
    FILTER SYSTEM (PURE UI)
 ========================= */
