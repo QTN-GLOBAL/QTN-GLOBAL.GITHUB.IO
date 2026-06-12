@@ -189,10 +189,21 @@ function closeCart() {
 /* =========================
    BUY NOW FROM CART
 ========================= */
-
 function handleBuyNow() {
 
-    const selectedItems = Cart.get().filter(i => i.selected);
+    const selectedItems = [];
+
+    document.querySelectorAll(".cart-check").forEach(cb => {
+
+        if (cb.checked) {
+
+            const id = cb.dataset.id;
+
+            const item = Cart.get().find(i => i.id == id);
+
+            if (item) selectedItems.push(item);
+        }
+    });
 
     if (selectedItems.length === 0) {
         alert("Vui lòng chọn sản phẩm cần mua");
