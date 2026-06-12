@@ -11,10 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // =========================
-        // RENDER DEFAULT
-        // =========================
-        renderProducts(products);
+       // =========================
+// RENDER DEFAULT
+// =========================
+renderProducts(products);
+
+// 🔥 FIX i18n sau khi render xong
+setTimeout(() => {
+    const lang = localStorage.getItem("lang") || "vi";
+    applyLanguage(lang);
+}, 50);
 
         // =========================
         // CART INIT SAFE

@@ -103,26 +103,26 @@ const specTranslations = {
 
 function applyLanguage(lang) {
 
-    // UI TEXT
-    document.querySelectorAll("[data-i18n]").forEach(el => {
+    requestAnimationFrame(() => {
 
-    const key = el.getAttribute("data-i18n");
+        // UI TEXT
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (translations[lang]?.[key]) {
+                el.innerText = translations[lang][key];
+            }
+        });
 
-    if (lang === "vi") {
-        el.innerText = el.dataset.origin || el.innerText;
-        return;
-    }
+        // SPEC
+        setTimeout(() => {
+            translateSpec(lang);
+        }, 0);
 
-    if (translations[lang]?.[key]) {
-        el.innerText = translations[lang][key];
-    }
-});
-
-    // SPEC
-    translateSpec(lang);
-
-    // FOOTER
-    applyFooterTranslation();
+        // FOOTER
+        setTimeout(() => {
+            applyFooterTranslation();
+        }, 0);
+    });
 }
 
 /* =========================
@@ -130,7 +130,7 @@ function applyLanguage(lang) {
 ========================= */
 function translateSpec(lang) {
 
-    document.querySelectorAll("td, th, li, p").forEach(el => {
+   document.querySelectorAll("td, th, li").forEach(el => {
 
         // ❌ KHÔNG động vào khu vực UI chính
         if (el.closest(".hero") ||
