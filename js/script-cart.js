@@ -342,29 +342,34 @@ function sendOrderZalo() {
 
     alert("Đã copy đơn hàng. Nhấn OK để mở Zalo.");
 
-    const cart = Cart.get();
+    let cart = Cart.get();
 
-    // 🔥 lấy đúng item đang chọn từ DATA (không dùng DOM)
     const selectedIds = cart
         .filter(i => i.selected)
-        .map(i => i.id);
+        .map(i => String(i.id));
 
     if (selectedIds.length === 0) {
         alert("Không có sản phẩm được chọn");
         return;
     }
 
-    // 🔥 xóa đúng từ Cart data
-    const newCart = cart.filter(i => !selectedIds.includes(i.id));
+    // 🔥 XÓA TRỰC TIẾP TRONG CART
+    cart = cart.filter(i => !selectedIds.includes(String(i.id)));
 
-    Cart.set(newCart);
+    // 🔥 LƯU LẠI NGAY
+    Cart.set(cart);
 
+    // 🔥 FORCE UI REFRESH (QUAN TRỌNG)
     renderCart();
     renderHeaderCart();
     updateCartUI();
+
     closeBuyPopup();
 
-    window.open("https://zalo.me/0383598606", "_blank");
+    // delay để chắc chắn UI update trước khi mở tab
+    setTimeout(() => {
+        window.open("https://zalo.me/0383598603", "_blank");
+    }, 300);
 }
 function sendOrderMessenger() {
 
@@ -375,27 +380,33 @@ function sendOrderMessenger() {
 
     alert("Đã copy đơn hàng. Nhấn OK để mở Messenger.");
 
-    const cart = Cart.get();
+    let cart = Cart.get();
 
     const selectedIds = cart
         .filter(i => i.selected)
-        .map(i => i.id);
+        .map(i => String(i.id));
 
     if (selectedIds.length === 0) {
         alert("Không có sản phẩm được chọn");
         return;
     }
 
-    const newCart = cart.filter(i => !selectedIds.includes(i.id));
+    // xóa đúng trong cart
+    cart = cart.filter(i => !selectedIds.includes(String(i.id)));
 
-    Cart.set(newCart);
+    Cart.set(cart);
 
+    // cập nhật UI ngay
     renderCart();
     renderHeaderCart();
     updateCartUI();
+
     closeBuyPopup();
 
-    window.open("https://m.me/QTNSCALE", "_blank");
+    // mở messenger sau khi sync xong
+    setTimeout(() => {
+        window.open("https://m.me/QTNSCALE", "_blank");
+    }, 300);
 }
 function closeBuyPopup() {
     const popup = document.getElementById("buyPopup");
