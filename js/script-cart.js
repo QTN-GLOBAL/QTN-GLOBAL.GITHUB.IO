@@ -344,33 +344,44 @@ function sendOrderZalo() {
 
     let cart = Cart.get();
 
+    console.log("BEFORE REMOVE:", cart);
+
     const selectedIds = cart
         .filter(i => i.selected)
         .map(i => String(i.id));
+
+    console.log("SELECTED IDS:", selectedIds);
 
     if (selectedIds.length === 0) {
         alert("Không có sản phẩm được chọn");
         return;
     }
 
-    // 🔥 XÓA TRỰC TIẾP TRONG CART
+    // 🔥 XOÁ TRỰC TIẾP
     cart = cart.filter(i => !selectedIds.includes(String(i.id)));
 
-    // 🔥 LƯU LẠI NGAY
-    Cart.set(cart);
+    console.log("AFTER REMOVE:", cart);
 
-    // 🔥 FORCE UI REFRESH (QUAN TRỌNG)
+    // 🔥 GHI ĐÈ CỨNG
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // 🔥 update Cart engine luôn
+    if (typeof Cart.set === "function") {
+        Cart.set(cart);
+    }
+
     renderCart();
     renderHeaderCart();
     updateCartUI();
 
     closeBuyPopup();
 
-    // delay để chắc chắn UI update trước khi mở tab
     setTimeout(() => {
         window.open("https://zalo.me/0383598603", "_blank");
     }, 300);
 }
+
+    
 function sendOrderMessenger() {
 
     if (!validateCustomerForm()) return;
@@ -391,19 +402,20 @@ function sendOrderMessenger() {
         return;
     }
 
-    // xóa đúng trong cart
     cart = cart.filter(i => !selectedIds.includes(String(i.id)));
 
-    Cart.set(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-    // cập nhật UI ngay
+    if (typeof Cart.set === "function") {
+        Cart.set(cart);
+    }
+
     renderCart();
     renderHeaderCart();
     updateCartUI();
 
     closeBuyPopup();
 
-    // mở messenger sau khi sync xong
     setTimeout(() => {
         window.open("https://m.me/QTNSCALE", "_blank");
     }, 300);
