@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="vi" id="htmlRoot">
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
 <title>QTN GLOBAL</title>
 
 <link rel="stylesheet" href="css/style-base.css">
@@ -85,9 +80,10 @@ class="social-icon facebook">
 
 </a>
 
-<a class="top-cart-btn"
-   href="javascript:void(0)"
-   onclick="openCart()">
+if (sessionStorage.getItem("openCart") === "1") {
+    openCart();
+    sessionStorage.removeItem("openCart");
+}
 
     🛒 <span data-i18n="cart">GIỎ HÀNG</span>
     (<span id="cartCount">0</span>)
@@ -405,16 +401,22 @@ class="cart-body">
 <script src="products-i18n.js"></script>
 
 <script src="js/script-base.js"></script>
-
+<script src="js/script-cart.js"></script>
 <script src="js/script-i18n.js"></script>
 
 <script src="js/script-home.js"></script>
-<script src="js/script-cart.js"></script>
+
 <script src="js/script-detail-addcart.js"></script>
 <script src="js/script-detail-buynow.js"></script>
 <script src="js/script-init.js"></script>
 
-
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof initLanguage === "function") {
+        initLanguage();
+    }
+});
+</script>
 </body>
 
 </html>
