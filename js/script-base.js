@@ -80,8 +80,7 @@ function goHomeAndBrand(brand) {
     sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
 }
-function goHomeOpenCart(event) {
-    event.preventDefault(); // chặn load 2 lần
+function goHomeOpenCart() {
 
     sessionStorage.setItem("openCart", "1");
 
