@@ -1,24 +1,51 @@
+
 /* =========================
    QTN GLOBAL - MULTI LANGUAGE SYSTEM
+   UI + SPEC TRANSLATION
+========================= */
+
+/* =========================
+   TRANSLATIONS - UI TEXT
 ========================= */
 
 const translations = {
+
     vi: {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         contact: "LIÊN HỆ",
         language: "NGÔN NGỮ",
+
         cart: "Giỏ hàng",
         buyNow: "Mua ngay",
         addCart: "Thêm vào giỏ",
 
+        // 🔥 THÊM Ở ĐÂY
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
         hero_line1: "GIẢI PHÁP",
-        hero_line2: "CÂN ĐIỆN TỬ",
-        hero_line3: "CHÍNH XÁC CHO DOANH NGHIỆP",
+hero_line2: "CÂN ĐIỆN TỬ",
+hero_line3: "CHÍNH XÁC CHO DOANH NGHIỆP",
 
-        category_title: "DANH MỤC",
-        brand_title: "THƯƠNG HIỆU"
+hero_item1: "SẢN PHẨM CHÍNH HÃNG",
+hero_item2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
+hero_item3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
+category_title: "DANH MỤC",
+brand_title: "THƯƠNG HIỆU",
+
+cat_can_ban: "Cân bàn",
+cat_can_dem: "Cân đếm",
+cat_can_treo: "Cân treo",
+cat_dau_can: "Đầu cân điện tử",
+cat_can_pt: "Cân phân tích",
+cat_chong_nuoc: "Cân chống nước",
+cat_in_tem: "Cân in tem mã vạch",
+cat_ghe_ngoi: "Cân ghế ngồi",
+
+brand_ohaus: "Ohaus",
+brand_jadever: "Jadever",
+brand_vibra: "Vibra",
+brand_yaohua: "Yaohua",
+brand_excell: "EXCELL",
     },
 
     en: {
@@ -26,17 +53,37 @@ const translations = {
         about: "ABOUT",
         contact: "CONTACT",
         language: "LANGUAGE",
+
         cart: "Cart",
         buyNow: "Buy Now",
         addCart: "Add to Cart",
 
+        // 🔥 THÊM Ở ĐÂY
         slogan: "PRECISION IN EVERY VALUE",
-        hero_line1: "WEIGHING SOLUTIONS",
-        hero_line2: "ELECTRONIC SCALES",
-        hero_line3: "FOR BUSINESS PRECISION",
+hero_line1: "WEIGHING SOLUTIONS",
+hero_line2: "ELECTRONIC SCALES",
+hero_line3: "FOR BUSINESS PRECISION",
 
-        category_title: "CATEGORIES",
-        brand_title: "BRANDS"
+hero_item1: "AUTHENTIC PRODUCTS",
+hero_item2: "FAST QUOTE - NATIONWIDE DELIVERY",
+hero_item3: "PROFESSIONAL TECHNICAL SUPPORT",
+category_title: "CATEGORIES",
+brand_title: "BRANDS",
+
+cat_can_ban: "Platform Scale",
+cat_can_dem: "Counting Scale",
+cat_can_treo: "Hanging Scale",
+cat_dau_can: "Indicator",
+cat_can_pt: "Analytical Scale",
+cat_chong_nuoc: "Waterproof Scale",
+cat_in_tem: "Label Printing Scale",
+cat_ghe_ngoi: "Chair Scale",
+
+brand_ohaus: "Ohaus",
+brand_jadever: "Jadever",
+brand_vibra: "Vibra",
+brand_yaohua: "Yaohua",
+brand_excell: "EXCELL",
     },
 
     cn: {
@@ -44,22 +91,42 @@ const translations = {
         about: "介绍",
         contact: "联系",
         language: "语言",
+
         cart: "购物车",
         buyNow: "立即购买",
         addCart: "加入购物车",
 
+        // 🔥 THÊM Ở ĐÂY
         slogan: "每一个价值都精准",
-        hero_line1: "称重解决方案",
-        hero_line2: "电子秤",
-        hero_line3: "企业精准计量",
+hero_line1: "称重解决方案",
+hero_line2: "电子秤",
+hero_line3: "企业精准计量",
 
-        category_title: "分类",
-        brand_title: "品牌"
+hero_item1: "正品产品",
+hero_item2: "快速报价 - 全国配送",
+hero_item3: "专业技术支持",
+category_title: "分类",
+brand_title: "品牌",
+
+cat_can_ban: "台秤",
+cat_can_dem: "计数秤",
+cat_can_treo: "吊秤",
+cat_dau_can: "称重仪表",
+cat_can_pt: "分析天平",
+cat_chong_nuoc: "防水秤",
+cat_in_tem: "标签打印秤",
+cat_ghe_ngoi: "座椅秤",
+
+brand_ohaus: "奥豪斯",
+brand_jadever: "捷德韦尔",
+brand_vibra: "维博拉",
+brand_yaohua: "耀华",
+brand_excell: "艾科尔",
     }
 };
 
 /* =========================
-   SPEC TRANSLATION
+   TRANSLATIONS - SPEC TERMS
 ========================= */
 
 const specTranslations = {
@@ -96,114 +163,76 @@ const specTranslations = {
         "Nguồn điện": "电源"
     }
 };
-
 /* =========================
-   CORE APPLY LANGUAGE
+   GLOBAL I18N HOOK
 ========================= */
 
-function applyLanguage(lang) {
+window.reApplyI18n = function () {
+    const lang = localStorage.getItem("lang") || "vi";
+    applyLanguage(lang);
+};
 
-    requestAnimationFrame(() => {
+/* =========================
+   SET LANGUAGE
+========================= */
+function setLanguage(lang) {
+    localStorage.setItem("lang", lang);
 
-        // =========================
-        // UI TEXT (data-i18n)
-        // =========================
-        document.querySelectorAll("[data-i18n]").forEach(el => {
-            const key = el.getAttribute("data-i18n");
-            if (translations[lang]?.[key]) {
-                el.innerText = translations[lang][key];
-            }
-        });
+    applyLanguage(lang);
 
-        // =========================
-        // SPEC TRANSLATION
-        // =========================
-        setTimeout(() => {
-            if (typeof translateSpec === "function") {
-                translateSpec(lang);
-            }
-        }, 0);
+    setTimeout(() => applyLanguage(lang), 100);
+    setTimeout(() => applyLanguage(lang), 400);
 
-        // =========================
-        // FOOTER
-        // =========================
-        setTimeout(() => {
-            if (typeof applyFooterTranslation === "function") {
-                applyFooterTranslation();
-            }
-        }, 0);
+    setTimeout(() => {
+        applyFooterTranslation();
+    }, 50);
+}
+/* =========================
+   APPLY LANGUAGE (UI + SPEC)
+========================= */
 
-        // =========================
-        // 🔥 BƯỚC 3 - FIX RENDER OVERRIDE (QUAN TRỌNG)
-        // =========================
-        setTimeout(() => {
+ffunction applyLanguage(lang) {
 
-            const currentLang = localStorage.getItem("lang") || "vi";
+    /* ===== UI TEXT ===== */
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
 
-            // re-apply lần cuối để override renderProducts / DOM động
-            document.querySelectorAll("[data-i18n]").forEach(el => {
-                const key = el.getAttribute("data-i18n");
-                if (translations[currentLang]?.[key]) {
-                    el.innerText = translations[currentLang][key];
-                }
-            });
-
-            // re-run spec sau khi DOM ổn định
-            if (typeof translateSpec === "function") {
-                translateSpec(currentLang);
-            }
-
-        }, 100);
-
+        if (translations[lang] && translations[lang][key]) {
+            el.innerText = translations[lang][key];
+        }
     });
+
+    /* ===== SPEC ===== */
+    translateSpec(lang);
+
 }
 
 /* =========================
-   SPEC ENGINE
+   SPEC TRANSLATION ENGINE
 ========================= */
+
 function translateSpec(lang) {
 
-   document.querySelectorAll("td, th, li").forEach(el => {
+    document.querySelectorAll("td, th, li, span, p").forEach(el => {
 
-        // ❌ KHÔNG động vào khu vực UI chính
-        if (el.closest(".hero") ||
+        // ❌ KHÔNG DỊCH CÁC KHU VỰC UI CHÍNH
+        if (
+            el.closest(".hero") ||
+            el.closest(".hero-list") ||
             el.closest(".sidebar") ||
             el.closest(".brand-sidebar") ||
             el.closest(".detail-right") ||
-            el.closest(".detail-left")) return;
+            el.closest(".detail-left")
+        ) return;
 
-        // ❌ KHÔNG động vào element i18n
         if (el.hasAttribute("data-i18n")) return;
 
-        // ❌ CHẶN luôn element con của i18n (rất quan trọng)
-        if (el.closest("[data-i18n]")) return;
-
-        // =========================
-        // 🔥 RESET VỀ VI
-        // =========================
-        if (lang === "vi") {
-            if (el.dataset.origin) {
-                el.innerText = el.dataset.origin;
-            }
-            return;
-        }
-
-        // =========================
-        // 🔥 LƯU TEXT GỐC 1 LẦN
-        // =========================
-        if (!el.dataset.origin) {
-            el.dataset.origin = el.innerText;
-        }
-
-        let text = el.dataset.origin;
+        let text = el.innerText;
         if (!text) return;
 
-        // =========================
-        // 🔥 TRANSLATE
-        // =========================
         for (let key in specTranslations.vi) {
 
-            if (specTranslations[lang]?.[key]) {
+            if (specTranslations[lang] && specTranslations[lang][key]) {
                 text = text.replace(
                     new RegExp(key, "g"),
                     specTranslations[lang][key]
@@ -214,76 +243,54 @@ function translateSpec(lang) {
         el.innerText = text;
     });
 }
+
 /* =========================
-   FOOTER
+   AUTO INIT ON PAGE LOAD
 ========================= */
 
+document.addEventListener("DOMContentLoaded", () => {
+    const lang = localStorage.getItem("lang") || "vi";
+    applyLanguage(lang);
+});
+const safeReapply = () => {
+    const lang = localStorage.getItem("lang") || "vi";
+    applyLanguage(lang);
+};
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        const lang = localStorage.getItem("lang") || "vi";
+        applyLanguage(lang);
+    }, 200);
+});
 const footerTranslations = {
     en: {
-        footer_brand: "QTN GLOBAL",
-        footer_intro: "We provide electronic scales and industrial equipment.",
+        footer_title: "QTN GLOBAL",
+        footer_intro: "We provide electronic scales, indicators and industrial weighing equipment.",
         footer_address_label: "Address:",
-        footer_address: "No. 14 Alley 68 Giap Hai Street, Hanoi",
+        footer_address: "No. 14 Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City",
         footer_support: "Technical support:"
     },
 
     cn: {
-        footer_brand: "QTN GLOBAL",
-        footer_intro: "专业提供电子秤及工业设备。",
+        footer_title: "QTN GLOBAL",
+        footer_intro: "专业提供电子秤、称重仪表及工业称重设备。",
         footer_address_label: "地址：",
-        footer_address: "越南河内市 Giap Hai 街 68 巷14号",
+        footer_address: "越南河内市巴特庄乡 Giap Hai 街 68 巷14号",
         footer_support: "技术支持："
     }
 };
-
 function applyFooterTranslation() {
 
     const lang = localStorage.getItem("lang") || "vi";
+    const map = footerTranslations?.[lang];
+    if (!map) return;
 
     document.querySelectorAll(".footer [data-i18n]").forEach(el => {
 
         const key = el.getAttribute("data-i18n");
 
-        if (lang === "vi") {
-            el.innerText = el.dataset.origin || el.innerText;
-            return;
-        }
-
-        if (footerTranslations[lang]?.[key]) {
-            el.innerText = footerTranslations[lang][key];
+        if (map[key]) {
+            el.innerText = map[key];
         }
     });
 }
-
-/* =========================
-   LANGUAGE CONTROL
-========================= */
-
-window.reApplyI18n = function () {
-    const lang = localStorage.getItem("lang") || "vi";
-    applyLanguage(lang);
-};
-
-function setLanguage(lang) {
-    localStorage.setItem("lang", lang);
-    applyLanguage(lang);
-}
-
-/* =========================
-   INIT
-========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    // 🔥 LƯU TEXT GỐC 1 LẦN DUY NHẤT
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        if (!el.dataset.origin) {
-            el.dataset.origin = el.innerText;
-        }
-    });
-
-    // chạy i18n ban đầu
-    const lang = localStorage.getItem("lang") || "vi";
-    applyLanguage(lang);
-
-});
