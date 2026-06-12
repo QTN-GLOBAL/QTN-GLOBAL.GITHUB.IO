@@ -19,33 +19,35 @@ const translations = {
         cart: "Giỏ hàng",
         buyNow: "Mua ngay",
         addCart: "Thêm vào giỏ",
+        detail: "Chi tiết",
 
-        // 🔥 THÊM Ở ĐÂY
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
+
         hero_line1: "GIẢI PHÁP",
-hero_line2: "CÂN ĐIỆN TỬ",
-hero_line3: "CHÍNH XÁC CHO DOANH NGHIỆP",
+        hero_line2: "CÂN ĐIỆN TỬ",
+        hero_line3: "CHÍNH XÁC CHO DOANH NGHIỆP",
 
-hero_item1: "SẢN PHẨM CHÍNH HÃNG",
-hero_item2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
-hero_item3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
-category_title: "DANH MỤC",
-brand_title: "THƯƠNG HIỆU",
+        hero_item1: "SẢN PHẨM CHÍNH HÃNG",
+        hero_item2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
+        hero_item3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
 
-cat_can_ban: "Cân bàn",
-cat_can_dem: "Cân đếm",
-cat_can_treo: "Cân treo",
-cat_dau_can: "Đầu cân điện tử",
-cat_can_pt: "Cân phân tích",
-cat_chong_nuoc: "Cân chống nước",
-cat_in_tem: "Cân in tem mã vạch",
-cat_ghe_ngoi: "Cân ghế ngồi",
+        category_title: "DANH MỤC",
+        brand_title: "THƯƠNG HIỆU",
 
-brand_ohaus: "Ohaus",
-brand_jadever: "Jadever",
-brand_vibra: "Vibra",
-brand_yaohua: "Yaohua",
-brand_excell: "EXCELL",
+        cat_can_ban: "Cân bàn",
+        cat_can_dem: "Cân đếm",
+        cat_can_treo: "Cân treo",
+        cat_dau_can: "Đầu cân điện tử",
+        cat_can_pt: "Cân phân tích",
+        cat_chong_nuoc: "Cân chống nước",
+        cat_in_tem: "Cân in tem mã vạch",
+        cat_ghe_ngoi: "Cân ghế ngồi",
+
+        brand_ohaus: "Ohaus",
+        brand_jadever: "Jadever",
+        brand_vibra: "Vibra",
+        brand_yaohua: "Yaohua",
+        brand_excell: "EXCELL"
     },
 
     en: {
@@ -57,33 +59,35 @@ brand_excell: "EXCELL",
         cart: "Cart",
         buyNow: "Buy Now",
         addCart: "Add to Cart",
+        detail: "Details",
 
-        // 🔥 THÊM Ở ĐÂY
         slogan: "PRECISION IN EVERY VALUE",
-hero_line1: "WEIGHING SOLUTIONS",
-hero_line2: "ELECTRONIC SCALES",
-hero_line3: "FOR BUSINESS PRECISION",
 
-hero_item1: "AUTHENTIC PRODUCTS",
-hero_item2: "FAST QUOTE - NATIONWIDE DELIVERY",
-hero_item3: "PROFESSIONAL TECHNICAL SUPPORT",
-category_title: "CATEGORIES",
-brand_title: "BRANDS",
+        hero_line1: "WEIGHING SOLUTIONS",
+        hero_line2: "ELECTRONIC SCALES",
+        hero_line3: "FOR BUSINESS PRECISION",
 
-cat_can_ban: "Platform Scale",
-cat_can_dem: "Counting Scale",
-cat_can_treo: "Hanging Scale",
-cat_dau_can: "Indicator",
-cat_can_pt: "Analytical Scale",
-cat_chong_nuoc: "Waterproof Scale",
-cat_in_tem: "Label Printing Scale",
-cat_ghe_ngoi: "Chair Scale",
+        hero_item1: "AUTHENTIC PRODUCTS",
+        hero_item2: "FAST QUOTE - NATIONWIDE DELIVERY",
+        hero_item3: "PROFESSIONAL TECHNICAL SUPPORT",
 
-brand_ohaus: "Ohaus",
-brand_jadever: "Jadever",
-brand_vibra: "Vibra",
-brand_yaohua: "Yaohua",
-brand_excell: "EXCELL",
+        category_title: "CATEGORIES",
+        brand_title: "BRANDS",
+
+        cat_can_ban: "Platform Scale",
+        cat_can_dem: "Counting Scale",
+        cat_can_treo: "Hanging Scale",
+        cat_dau_can: "Indicator",
+        cat_can_pt: "Analytical Scale",
+        cat_chong_nuoc: "Waterproof Scale",
+        cat_in_tem: "Label Printing Scale",
+        cat_ghe_ngoi: "Chair Scale",
+
+        brand_ohaus: "Ohaus",
+        brand_jadever: "Jadever",
+        brand_vibra: "Vibra",
+        brand_yaohua: "Yaohua",
+        brand_excell: "EXCELL"
     },
 
     cn: {
@@ -95,34 +99,37 @@ brand_excell: "EXCELL",
         cart: "购物车",
         buyNow: "立即购买",
         addCart: "加入购物车",
+        detail: "详情",
 
-        // 🔥 THÊM Ở ĐÂY
         slogan: "每一个价值都精准",
-hero_line1: "称重解决方案",
-hero_line2: "电子秤",
-hero_line3: "企业精准计量",
 
-hero_item1: "正品产品",
-hero_item2: "快速报价 - 全国配送",
-hero_item3: "专业技术支持",
-category_title: "分类",
-brand_title: "品牌",
+        hero_line1: "称重解决方案",
+        hero_line2: "电子秤",
+        hero_line3: "企业精准计量",
 
-cat_can_ban: "台秤",
-cat_can_dem: "计数秤",
-cat_can_treo: "吊秤",
-cat_dau_can: "称重仪表",
-cat_can_pt: "分析天平",
-cat_chong_nuoc: "防水秤",
-cat_in_tem: "标签打印秤",
-cat_ghe_ngoi: "座椅秤",
+        hero_item1: "正品产品",
+        hero_item2: "快速报价 - 全国配送",
+        hero_item3: "专业技术支持",
 
-brand_ohaus: "奥豪斯",
-brand_jadever: "捷德韦尔",
-brand_vibra: "维博拉",
-brand_yaohua: "耀华",
-brand_excell: "艾科尔",
+        category_title: "分类",
+        brand_title: "品牌",
+
+        cat_can_ban: "台秤",
+        cat_can_dem: "计数秤",
+        cat_can_treo: "吊秤",
+        cat_dau_can: "称重仪表",
+        cat_can_pt: "分析天平",
+        cat_chong_nuoc: "防水秤",
+        cat_in_tem: "标签打印秤",
+        cat_ghe_ngoi: "座椅秤",
+
+        brand_ohaus: "奥豪斯",
+        brand_jadever: "捷德韦尔",
+        brand_vibra: "维博拉",
+        brand_yaohua: "耀华",
+        brand_excell: "艾科尔"
     }
+
 };
 
 /* =========================
@@ -183,8 +190,11 @@ function setLanguage(lang) {
 
     applyFooterTranslation();
 
-    if (typeof renderProducts === "function") {
-        renderProducts();
+    if (
+        typeof renderProducts === "function" &&
+        typeof getProducts === "function"
+    ) {
+        renderProducts(getProducts());
     }
 
     if (typeof renderProductDetail === "function") {
@@ -258,23 +268,42 @@ document.addEventListener("DOMContentLoaded", () => {
     applyLanguage(lang);
 });
 
-
 const footerTranslations = {
+
     en: {
-        footer_title: "QTN GLOBAL",
-        footer_intro: "We provide electronic scales, indicators and industrial weighing equipment.",
+        footer_brand: "QTN GLOBAL",
+
+        footer_intro:
+            "We provide electronic scales, indicators and industrial weighing equipment.",
+
         footer_address_label: "Address:",
-        footer_address: "No. 14 Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City",
-        footer_support: "Technical support:"
+        footer_address:
+            "No. 14 Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City",
+
+        footer_hotline: "Hotline:",
+        footer_support: "Technical Support:",
+
+        footer_email: "Email:",
+        footer_website: "Website:"
     },
 
     cn: {
-        footer_title: "QTN GLOBAL",
-        footer_intro: "专业提供电子秤、称重仪表及工业称重设备。",
+        footer_brand: "QTN GLOBAL",
+
+        footer_intro:
+            "专业提供电子秤、称重仪表及工业称重设备。",
+
         footer_address_label: "地址：",
-        footer_address: "越南河内市巴特庄乡 Giap Hai 街 68 巷14号",
-        footer_support: "技术支持："
+        footer_address:
+            "越南河内市巴特庄乡 Giap Hai 街68巷14号",
+
+        footer_hotline: "热线：",
+        footer_support: "技术支持：",
+
+        footer_email: "电子邮箱：",
+        footer_website: "网站："
     }
+
 };
 function applyFooterTranslation() {
 
