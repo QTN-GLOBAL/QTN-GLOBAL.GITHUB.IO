@@ -231,6 +231,11 @@ function setLanguage(lang) {
     if (typeof renderProductDetail === "function") {
         renderProductDetail();
     }
+
+    // 🔥 FIX FOOTER LATE RENDER ISSUE
+    requestAnimationFrame(() => {
+        applyLanguage(lang);
+    });
 }
 /* =========================
    APPLY LANGUAGE (UI + SPEC)
@@ -258,14 +263,16 @@ function translateSpec(lang) {
     document.querySelectorAll("td, th, li, span, p").forEach(el => {
 
         // ❌ KHÔNG DỊCH CÁC KHU VỰC UI CHÍNH
-        if (
-            el.closest(".hero") ||
-            el.closest(".hero-list") ||
-            el.closest(".sidebar") ||
-            el.closest(".brand-sidebar") ||
-            el.closest(".detail-right") ||
-            el.closest(".detail-left")
-        ) return;
+       if (
+    el.closest(".hero") ||
+    el.closest(".hero-list") ||
+    el.closest(".sidebar") ||
+    el.closest(".brand-sidebar") ||
+    el.closest(".detail-right") ||
+    el.closest(".detail-left") ||
+    el.closest("footer") ||
+    el.closest("header")
+) return;
 
         if (el.hasAttribute("data-i18n")) return;
 
