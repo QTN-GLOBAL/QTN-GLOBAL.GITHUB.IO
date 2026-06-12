@@ -176,35 +176,40 @@ window.reApplyI18n = function () {
    SET LANGUAGE
 ========================= */
 function setLanguage(lang) {
+
     localStorage.setItem("lang", lang);
 
     applyLanguage(lang);
 
-    setTimeout(() => applyLanguage(lang), 100);
-    setTimeout(() => applyLanguage(lang), 400);
+    applyFooterTranslation();
 
-    setTimeout(() => {
-        applyFooterTranslation();
-    }, 50);
+    if (typeof renderProducts === "function") {
+        renderProducts();
+    }
+
+    if (typeof renderProductDetail === "function") {
+        renderProductDetail();
+    }
 }
 /* =========================
    APPLY LANGUAGE (UI + SPEC)
 ========================= */
 
-ffunction applyLanguage(lang) {
+function applyLanguage(lang) {
 
-    /* ===== UI TEXT ===== */
     document.querySelectorAll("[data-i18n]").forEach(el => {
+
         const key = el.getAttribute("data-i18n");
 
-        if (translations[lang] && translations[lang][key]) {
-            el.innerText = translations[lang][key];
+        if (translations[lang]?.[key]) {
+            el.textContent = translations[lang][key];
         }
+
     });
 
-    /* ===== SPEC ===== */
     translateSpec(lang);
 
+    applyFooterTranslation();
 }
 
 /* =========================
@@ -252,16 +257,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const lang = localStorage.getItem("lang") || "vi";
     applyLanguage(lang);
 });
-const safeReapply = () => {
-    const lang = localStorage.getItem("lang") || "vi";
-    applyLanguage(lang);
-};
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        const lang = localStorage.getItem("lang") || "vi";
-        applyLanguage(lang);
-    }, 200);
-});
+
+
 const footerTranslations = {
     en: {
         footer_title: "QTN GLOBAL",
