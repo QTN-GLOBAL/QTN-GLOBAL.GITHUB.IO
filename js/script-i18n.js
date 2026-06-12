@@ -128,30 +128,49 @@ function applyLanguage(lang) {
 /* =========================
    SPEC ENGINE
 ========================= */
-
 function translateSpec(lang) {
 
-    document.querySelectorAll("td, th, li, span, p").forEach(el => {
+    document.querySelectorAll("td, th, li, p").forEach(el => {
 
+        // ❌ KHÔNG động vào khu vực UI chính
         if (el.closest(".hero") ||
             el.closest(".sidebar") ||
             el.closest(".brand-sidebar") ||
             el.closest(".detail-right") ||
             el.closest(".detail-left")) return;
 
+        // ❌ KHÔNG động vào element i18n
         if (el.hasAttribute("data-i18n")) return;
 
-        // 🔥 THÊM ĐOẠN NÀY NGAY SAU 2 LỆNH SKIP
+        // ❌ CHẶN luôn element con của i18n (rất quan trọng)
+        if (el.closest("[data-i18n]")) return;
+
+        // =========================
+        // 🔥 RESET VỀ VI
+        // =========================
         if (lang === "vi") {
-            el.innerText = el.dataset.origin || el.innerText;
+            if (el.dataset.origin) {
+                el.innerText = el.dataset.origin;
+            }
             return;
         }
 
-        let text = el.innerText;
+        // =========================
+        // 🔥 LƯU TEXT GỐC 1 LẦN
+        // =========================
+        if (!el.dataset.origin) {
+            el.dataset.origin = el.innerText;
+        }
+
+        let text = el.dataset.origin;
         if (!text) return;
 
+        // =========================
+        // 🔥 TRANSLATE
+        // =========================
         for (let key in specTranslations.vi) {
-            if (specTranslations[lang] && specTranslations[lang][key]) {
+
+            if (specTranslations[lang]?.[key]) {
                 text = text.replace(
                     new RegExp(key, "g"),
                     specTranslations[lang][key]
@@ -162,7 +181,6 @@ function translateSpec(lang) {
         el.innerText = text;
     });
 }
-
 /* =========================
    FOOTER
 ========================= */
