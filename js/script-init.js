@@ -11,15 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-       // =========================
-// RENDER DEFAULT
-// =========================
-renderProducts(products);
-
-setTimeout(() => {
-    const lang = localStorage.getItem("lang") || "vi";
-    if (window.applyLanguage) applyLanguage(lang);
-}, 50);
+        // =========================
+        // RENDER DEFAULT
+        // =========================
+        renderProducts(products);
 
         // =========================
         // CART INIT SAFE
