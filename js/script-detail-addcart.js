@@ -54,7 +54,15 @@ function openAddCartPopup() {
         }
     });
 
-    document.getElementById("cartSpecList").innerHTML = html;
+  document.getElementById("cartSpecList").innerHTML = html;
+
+// 👉 DÁN Ở ĐÂY
+document.querySelectorAll(".detail-check").forEach(cb => {
+    cb.checked = false;
+});
+
+document.querySelectorAll(".addcart-row input[type='number']")
+.forEach(input => input.value = 1);
 }
 
 /* =========================
@@ -74,9 +82,9 @@ function addSelectedToCart() {
 
     rows.forEach(row => {
 
-        const check = row.querySelector(".detail-check");
-        if (!check || !check.checked) return;
+       const check = row.querySelector(".detail-check");
 
+if (!check || check.checked !== true) return;
         const label = row.querySelector(".addcart-middle").innerText;
 
         const qty = parseInt(
@@ -109,6 +117,8 @@ function addSelectedToCart() {
     if (typeof renderCart === "function") renderCart();
     if (typeof updateCartUI === "function") updateCartUI();
     if (typeof renderHeaderCart === "function") renderHeaderCart();
+document.querySelectorAll(".detail-check").forEach(cb => cb.checked = false);
+document.querySelectorAll(".addcart-row input[type='number']").forEach(i => i.value = 1);
 }
 
 /* =========================
