@@ -56,6 +56,11 @@ function openBuyPopup() {
     });
 
     document.getElementById("buyCapacityList").innerHTML = html;
+document.querySelectorAll("#buyCapacityList input[type='checkbox']")
+.forEach(cb => cb.checked = false);
+
+document.querySelectorAll("#buyCapacityList input[type='number']")
+.forEach(i => i.value = 1);
 }
 
 /* =========================
@@ -80,19 +85,20 @@ function getOrderText() {
     text += "Địa chỉ hóa đơn: " + invoice + "\n";
     text += "Địa chỉ giao hàng: " + address + "\n\n";
 
-    const rows = document.querySelectorAll("#buyCapacityList .buy-row");
+    const selectedRows = Array.from(
+    document.querySelectorAll("#buyCapacityList .buy-row")
+).filter(row => {
+    const cb = row.querySelector("input[type='checkbox']");
+    return cb && cb.checked;
+});
 
-    rows.forEach(row => {
+selectedRows.forEach(row => {
 
-        const check = row.querySelector(".buy-check");
-        if (!check || !check.checked) return;
+    const label = row.querySelector(".buy-middle").innerText;
+    const qty = row.querySelector("input[type='number']").value;
 
-        const label = row.querySelector(".buy-middle")?.innerText || "";
-        const qty = row.querySelector("input[type='number']")?.value || 1;
-
-        text += "- " + label + " | SL: " + qty + "\n";
-    });
-
+    text += "- " + label + " | SL: " + qty + "\n";
+});
     return text;
 }
 
