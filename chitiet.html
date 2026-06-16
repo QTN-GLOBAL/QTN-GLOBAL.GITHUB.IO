@@ -33,7 +33,7 @@
 <span style="color:#d4a017;">GLOBAL</span>
 </h2>
 
-<p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+<p data-i18n="slogan">CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
 
 </div>
 
@@ -42,365 +42,320 @@
 <div class="top-contact">
 
 <a href="tel:0905913636" class="top-btn">
-
-<i class="fa-solid fa-phone"></i>
-
-0905 913 636
-
+<i class="fa-solid fa-phone"></i> 0905 913 636
 </a>
 
 <a href="tel:0383598603" class="top-btn">
-
-<i class="fa-solid fa-phone"></i>
-
-0383 598 603
-
+<i class="fa-solid fa-phone"></i> 0383 598 603
 </a>
 
-<a href="https://zalo.me/0383598603"
-target="_blank"
-class="social-icon zalo">
-
-<span class="zalo-text">
-Zalo
-</span>
-
+<a href="https://zalo.me/0383598603" target="_blank" class="social-icon zalo">
+<span class="zalo-text">Zalo</span>
 </a>
 
-<a href="https://m.me/QTNSCALE"
-target="_blank"
-class="social-icon facebook">
-
+<a href="https://m.me/QTNSCALE" target="_blank" class="social-icon facebook">
 <i class="fa-brands fa-facebook-messenger"></i>
-
 </a>
 
-<a class="top-cart-btn"
-   href="index.html"
-   onclick="goHomeOpenCart()">
-
-🛒 GIỎ HÀNG
-(<span id="cartCount">0</span>)
-
+<a class="top-cart-btn" href="index.html" onclick="goHomeOpenCart()">
+🛒 GIỎ HÀNG (<span id="cartCount">0</span>)
 </a>
 
 </div>
 
 </div>
 
-<!-- =========================
-     MENU
-========================= -->
-
+<!-- MENU -->
 <nav class="navbar">
 
-<a href="index.html">
-TRANG CHỦ
-</a>
+<a href="index.html" data-i18n="home">TRANG CHỦ</a>
+<a href="#" data-i18n="about">GIỚI THIỆU</a>
+<a href="#" data-i18n="contact">LIÊN HỆ</a>
 
-<a href="#">
-GIỚI THIỆU
-</a>
-
-
-<a href="#">
-LIÊN HỆ
-</a>
+<div class="language-switcher">
+<select id="languageSelect">
+<option value="vi">🇻🇳 Tiếng Việt</option>
+<option value="en">🇺🇸 English</option>
+<option value="zh">🇨🇳 中文</option>
+</select>
+</div>
 
 </nav>
-
 </header>
 
 <!-- DETAIL -->
 <div class="detail-page fix-layout">
+
 <!-- SIDEBAR TRÁI -->
 <aside class="sidebar">
-    <h2>DANH MỤC</h2>
-    <ul>
-        <li onclick="goHomeAndCategory('can-ban')">Cân bàn</li>
-        <li onclick="goHomeAndCategory('can-dem')">Cân đếm</li>
-        <li onclick="goHomeAndCategory('can-treo')">Cân treo</li>
-        <li onclick="goHomeAndCategory('dau-can-dien-tu')">Đầu cân điện tử</li>
-        <li onclick="goHomeAndCategory('can-phan-tich')">Cân phân tích</li>
-        <li onclick="goHomeAndCategory('can-chong-nuoc')">Cân chống nước</li>
-        <li onclick="goHomeAndCategory('can-in-tem-ma-vach')">Cân in tem mã vạch</li>
-        <li onclick="goHomeAndCategory('can-ghe-ngoi')">Cân ghế ngồi</li>
-    </ul>
+<h2 data-i18n="categoryTitle"></h2>
+
+<ul>
+<li onclick="goHomeAndCategory('can-ban')" data-i18n="canBan"></li>
+<li onclick="goHomeAndCategory('can-dem')" data-i18n="canDem"></li>
+<li onclick="goHomeAndCategory('can-treo')" data-i18n="canTreo"></li>
+<li onclick="goHomeAndCategory('dau-can-dien-tu')" data-i18n="dauCan"></li>
+<li onclick="goHomeAndCategory('can-phan-tich')" data-i18n="canPhanTich"></li>
+<li onclick="goHomeAndCategory('can-chong-nuoc')" data-i18n="canChongNuoc"></li>
+<li onclick="goHomeAndCategory('can-in-tem-ma-vach')" data-i18n="canInTem"></li>
+<li onclick="goHomeAndCategory('can-ghe-ngoi')" data-i18n="canGhe"></li>
+</ul>
 </aside>
-    
-    <div class="detail-left">
 
-        <img id="mainImage">
+<!-- LEFT -->
+<div class="detail-left">
 
-        <div id="thumbList"></div>
+<img id="mainImage">
 
-       <div class="detail-buttons">
+<div id="thumbList"></div>
 
-    <button class="btn-addcart" onclick="openAddCartPopup()">
-        <i class="fa fa-cart-shopping"></i> THÊM GIỎ
-    </button>
+<div class="detail-buttons">
 
-    <button class="btn-buynow" onclick="openBuyPopup()">
-        <i class="fa fa-bolt"></i> MUA NGAY
-    </button>
+<button class="btn-addcart" onclick="openAddCartPopup()">
+<i class="fa fa-cart-shopping"></i>
+<span data-i18n="addCartBtn"></span>
+</button>
+
+<button class="btn-buynow" onclick="openBuyPopup()">
+<i class="fa fa-bolt"></i>
+<span data-i18n="buyNowBtn"></span>
+</button>
 
 </div>
 
-    </div>
+</div>
 
-    <div class="detail-right">
-        <h1 id="productName"></h1>
+<!-- RIGHT -->
+<div class="detail-right">
 
-        <p><b>Hãng:</b> <span id="productBrand"></span></p>
-        <p><b>Xuất xứ:</b> <span id="productOrigin"></span></p>
+<h1 id="productName"></h1>
 
-        <h3>Mô tả</h3>
-        <p id="productDesc"></p>
+<p><b data-i18n="brandLabel">Hãng:</b> <span id="productBrand"></span></p>
+<p><b data-i18n="originLabel">Xuất xứ:</b> <span id="productOrigin"></span></p>
 
-        <h3>Thông số</h3>
-        <div id="productSpecs"></div>
-    </div>
+<h3 data-i18n="descTitle">Mô tả</h3>
+<p id="productDesc"></p>
 
-<!-- SIDEBAR PHẢI (MỚI) -->
+<h3 data-i18n="specTitle">Thông số</h3>
+<div id="productSpecs"></div>
+
+</div>
+
+<!-- BRAND SIDEBAR -->
 <aside class="brand-sidebar">
 
-    <h2>THƯƠNG HIỆU</h2>
+<h2 data-i18n="brandTitle"></h2>
 
-    <div class="brand-list">
+<div class="brand-list">
 
-        <div class="brand-item" onclick="goHomeAndBrand('Ohaus')">
-            <img src="images/can-ban/rc21pe/1.jpg">
-            <span>Ohaus</span>
-        </div>
+<div class="brand-item" onclick="goHomeAndBrand('Ohaus')">
+<img src="images/can-ban/rc21pe/1.jpg">
+<span data-i18n="brandOhaus"></span>
+</div>
 
-        <div class="brand-item" onclick="goHomeAndBrand('Jadever')">
-            <img src="images/can-ban/jwl/1.jpg">
-            <span>Jadever</span>
-        </div>
+<div class="brand-item" onclick="goHomeAndBrand('Jadever')">
+<img src="images/can-ban/jwl/1.jpg">
+<span data-i18n="brandJadever"></span>
+</div>
 
-        <div class="brand-item" onclick="goHomeAndBrand('Vibra')">
-            <img src="images/can-ban/vibra-haw/1.jpg">
-            <span>Vibra</span>
-        </div>
+<div class="brand-item" onclick="goHomeAndBrand('Vibra')">
+<img src="images/can-ban/vibra-haw/1.jpg">
+<span data-i18n="brandVibra"></span>
+</div>
 
-        <div class="brand-item" onclick="goHomeAndBrand('Yaohua')">
-            <img src="images/can-dem/xk3190-a15e/1.jpg">
-            <span>Yaohua</span>
-        </div>
+<div class="brand-item" onclick="goHomeAndBrand('Yaohua')">
+<img src="images/can-dem/xk3190-a15e/1.jpg">
+<span data-i18n="brandYaohua"></span>
+</div>
 
-        <div class="brand-item" onclick="goHomeAndBrand('EXCELL')">
-            <img src="images/dau-can-dien-tu/ex-2001/1.jpg">
-            <span>EXCELL</span>
-        </div>
+<div class="brand-item" onclick="goHomeAndBrand('EXCELL')">
+<img src="images/dau-can-dien-tu/ex-2001/1.jpg">
+<span data-i18n="brandExcell"></span>
+</div>
 
-    </div>
+</div>
 
 </aside>
 
 </div>
 
-
-<!-- ADD CART -->
+<!-- POPUP ADD CART -->
 <div id="addCartPopup" class="popup-overlay" style="display:none">
-    <div class="popup-box">
+<div class="popup-box">
+<span onclick="closeAddCart()">✕</span>
 
-        <span onclick="closeAddCart()">✕</span>
+<h2 data-i18n="addCartTitle"></h2>
 
-        <h2>THÊM GIỎ HÀNG</h2>
+<img id="popupCartImg">
+<h3 id="popupCartName"></h3>
 
-        <img id="popupCartImg">
-        <h3 id="popupCartName"></h3>
+<div id="cartSpecList"></div>
 
-       <div id="cartSpecList"></div>
-
-        <button
-    type="button"
-    id="btnAddCart"
-    class="add-cart-btn"
-    onclick="addSelectedToCart()">
-
-    THÊM
-
+<button class="add-cart-btn" onclick="addSelectedToCart()">
+<span data-i18n="addBtn"></span>
 </button>
-    </div>
+
 </div>
-<!-- VIEW CART POPUP -->
+</div>
+
+<!-- POPUP CART -->
 <div id="cartPopup" class="popup-overlay" style="display:none">
+<div class="popup-box">
+<span onclick="closeCart()">✕</span>
 
-    <div class="popup-box">
-
-        <span onclick="closeCart()">✕</span>
-
-        <h2>GIỎ HÀNG</h2>
-
-        <div id="cartList"></div>
-
-    </div>
+<h2 data-i18n="cartTitle"></h2>
+<div id="cartList"></div>
 
 </div>
-<!-- BUY -->
+</div>
+
+<!-- POPUP BUY -->
 <div id="buyPopup" class="popup-overlay" style="display:none">
-    <div class="popup-box">
+<div class="popup-box">
 
-        <span onclick="closeBuyPopup()">✕</span>
+<span onclick="closeBuyPopup()">✕</span>
 
-        <h2>ĐẶT HÀNG</h2>
+<h2 data-i18n="orderTitle"></h2>
 
 <div class="buy-form-grid">
 
-    <input id="customerName" placeholder="Tên khách hàng">
-
-    <input id="customerPhone" placeholder="Số điện thoại">
-
-    <input id="customerCompany" placeholder="Tên công ty">
-
-    <input id="customerTax" placeholder="Mã số thuế">
+<input id="customerName" data-i18n-placeholder="customerName">
+<input id="customerPhone" data-i18n-placeholder="customerPhone">
+<input id="customerCompany" data-i18n-placeholder="customerCompany">
+<input id="customerTax" data-i18n-placeholder="customerTax">
 
 </div>
 
 <div class="buy-address-grid">
 
-    <textarea id="customerInvoice"
-    placeholder="Địa chỉ xuất hóa đơn"></textarea>
-
-    <textarea id="customerAddress"
-    placeholder="Địa chỉ giao hàng"></textarea>
-
-</div>
-        <div class="buy-product-info">
-
-    <img id="buyProductImg">
-
-    <h3 id="buyProductName"></h3>
+<textarea id="customerInvoice" data-i18n-placeholder="invoiceAddress"></textarea>
+<textarea id="customerAddress" data-i18n-placeholder="shippingAddress"></textarea>
 
 </div>
 
-        <div id="buyCapacityList"></div>
+<div class="buy-product-info">
 
-        <button class="zalo-btn"
-        onclick="sendOrderZalo()">
-        GỬI ZALO
-        </button>
+<img id="buyProductImg">
+<h3 id="buyProductName"></h3>
 
-       <button class="mess-btn"
-       onclick="sendOrderMessenger()">
-       GỬI MESSENGER
-       </button>
-
-    </div>
 </div>
 
+<div id="buyCapacityList"></div>
+
+<button class="zalo-btn" onclick="sendOrderZalo()">
+<span data-i18n="sendZalo"></span>
+</button>
+
+<button class="mess-btn" onclick="sendOrderMessenger()">
+<span data-i18n="sendMessenger"></span>
+</button>
+
+</div>
+</div>
+
+<!-- SCRIPT -->
 <script src="products.js"></script>
 <script src="js/script-base.js"></script>
 <script src="js/script-home.js"></script>
 <script src="js/script-cart.js"></script>
 <script src="js/script-detail-addcart.js"></script>
 <script src="js/script-detail-buynow.js"></script>
+<script src="js/script-i18n.js"></script>
 <script src="js/script-init.js"></script>
-<!-- PRODUCT LOAD -->
+
+<!-- LOAD PRODUCT -->
 <script>
 
 const id = Number(new URLSearchParams(location.search).get("id"));
-
 const product = products.find(p => p.id === id);
 
 window.currentProduct = product;
 
+function applyI18nDetail(){
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (t(key)) el.innerText = t(key);
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (t(key)) el.placeholder = t(key);
+    });
+}
+
 if(product){
 
     document.getElementById("productName").innerText = product.name;
-
     document.getElementById("productBrand").innerText = product.brand;
-
     document.getElementById("productOrigin").innerText = product.origin;
-
     document.getElementById("productDesc").innerText = product.description;
 
-    /* MAIN IMAGE */
-
     document.getElementById("mainImage").src =
-    `images/${product.category}/${product.folder}/main.jpg`;
-
-    /* THUMB */
+        `images/${product.category}/${product.folder}/main.jpg`;
 
     let thumbs = "";
-
     for(let i=1;i<=5;i++){
-
         thumbs += `
-        <img
-            src="images/${product.category}/${product.folder}/${i}.jpg"
-            onclick="document.getElementById('mainImage').src=this.src"
-            onerror="this.remove()"
-        >
+        <img src="images/${product.category}/${product.folder}/${i}.jpg"
+             onclick="document.getElementById('mainImage').src=this.src"
+             onerror="this.remove()">
         `;
     }
-
     document.getElementById("thumbList").innerHTML = thumbs;
 
-   /* SPECS */
+    document.getElementById("productSpecs").innerHTML =
+        product.specs.map(spec =>
+            spec.includes("<table") ? spec : `<p>• ${spec}</p>`
+        ).join("");
 
-document.getElementById("productSpecs").innerHTML =
-product.specs.map(spec=>{
+    // FIX BUY NAME
+    document.getElementById("buyProductName").innerText = product.name;
 
-    if(spec.includes("<table")){
-        return spec;
-    }
-
-    return `<p>• ${spec}</p>`;
-
-}).join("");
-    /* BUY */
-
-    document.getElementById("buyProductName").value = product.name;
+    setTimeout(applyI18nDetail, 0);
 }
+
+// CHANGE LANGUAGE
+document.getElementById("languageSelect").addEventListener("change", (e) => {
+    setLanguage(e.target.value);
+    setTimeout(applyI18nDetail, 0);
+});
+
 </script>
+
+<!-- FOOTER (GIỮ NGUYÊN) -->
 <footer class="footer">
 
-    <div class="footer-container">
+<div class="footer-container">
 
-        <h3>QTN GLOBAL</h3>
+<h3 data-i18n="companyName"></h3>
 
-        <p>
-            Chuyên cung cấp cân điện tử,
-            đầu cân và thiết bị cân công nghiệp chính hãng.
-        </p>
+<p data-i18n="footerDesc"></p>
 
-        <p>
-            📍 Địa chỉ:
-            Số 14 Ngõ 68 Đường Giáp Hải,
-            Xã Bát Tràng,
-            Thành phố Hà Nội
-        </p>
+<p>
+<span data-i18n="addressLabel"></span>
+Số 14 Ngõ 68 Đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội
+</p>
 
-        <p>
-            ☎ Hotline:
-            <a href="tel:0905913636">0905913636</a>
-            —
-            Hỗ trợ kỹ thuật:
-            <a href="tel:0383598603">0383598603</a>
-        </p>
+<p>
+<span data-i18n="hotline"></span>
+<a href="tel:0905913636">0905913636</a> —
+<span data-i18n="support"></span>
+<a href="tel:0383598603">0383598603</a>
+</p>
 
-        <p>
-            ✉ Email:
-            <a href="mailto:qtnglobal.com@gmail.com">
-                qtnglobal.com@gmail.com
-            </a>
-        </p>
+<p>
+<span data-i18n="emailLabel"></span>
+<a href="mailto:qtnglobal.com@gmail.com">qtnglobal.com@gmail.com</a>
+</p>
 
-        <p>
-            🌐 Website:
-            <a href="https://qtn-global.github.io"
-               target="_blank">
-               qtn-global.github.io
-            </a>
-        </p>
+<p>
+<span data-i18n="websiteLabel"></span>
+<a href="https://qtn-global.github.io" target="_blank">qtn-global.github.io</a>
+</p>
 
-    </div>
+</div>
 
 </footer>
-
-
 
 </body>
 </html>
