@@ -291,3 +291,36 @@ function removeSelectedFromCart(ids) {
     renderHeaderCart();
     updateCartUI();
 }
+function sendCartOrderZalo() {
+
+    if (!validateCustomerForm()) return;
+
+    const text = getOrderText();
+
+    navigator.clipboard.writeText(text).catch(() => {});
+
+    const selectedIds = getSelectedIds();
+
+    removeSelectedFromCart(selectedIds);
+
+    closeBuyPopup();
+
+    window.open("https://zalo.me/0383598603", "_blank");
+}
+
+function sendCartOrderMessenger() {
+
+    if (!validateCustomerForm()) return;
+
+    const text = getOrderText();
+
+    navigator.clipboard.writeText(text).catch(() => {});
+
+    const selectedIds = getSelectedIds();
+
+    removeSelectedFromCart(selectedIds);
+
+    closeBuyPopup();
+
+    window.open("https://m.me/QTNSCALE", "_blank");
+}
