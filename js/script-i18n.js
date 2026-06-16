@@ -180,6 +180,15 @@ const translations = {
         websiteLabel: "网站："
     }
 };
+function applyTranslations() {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        el.textContent = t(key);
+    });
+}
+document.addEventListener("DOMContentLoaded", () => {
+    applyTranslations();
+});
 
 /* =========================
    APPLY LANGUAGE
@@ -226,6 +235,7 @@ function applyLanguage(lang) {
 function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
+    applyTranslations();
 
     applyLanguage(lang);
 
