@@ -5,7 +5,6 @@
 const translations = {
 
     vi: {
-
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         contact: "LIÊN HỆ",
@@ -64,7 +63,6 @@ const translations = {
     },
 
     en: {
-
         home: "HOME",
         about: "ABOUT",
         contact: "CONTACT",
@@ -122,7 +120,6 @@ const translations = {
     },
 
     zh: {
-
         home: "首页",
         about: "关于我们",
         contact: "联系我们",
@@ -180,18 +177,9 @@ const translations = {
         websiteLabel: "网站："
     }
 };
-function applyTranslations() {
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        el.textContent = t(key);
-    });
-}
-document.addEventListener("DOMContentLoaded", () => {
-    applyTranslations();
-});
 
 /* =========================
-   APPLY LANGUAGE
+   GET TEXT
 ========================= */
 function t(key) {
 
@@ -202,70 +190,67 @@ function t(key) {
         || translations.vi[key]
         || key;
 }
+
+/* =========================
+   APPLY LANGUAGE (MAIN ENGINE)
+========================= */
 function applyLanguage(lang) {
 
-    const dict = translations[lang];
+    const currentLang = lang || localStorage.getItem("language") || "vi";
+    const dict = translations[currentLang];
 
     if (!dict) return;
 
-    document.documentElement.lang = lang;
+    document.documentElement.lang = currentLang;
 
+    // TEXT
     document.querySelectorAll("[data-i18n]").forEach(el => {
-
         const key = el.dataset.i18n;
-
-        if (dict[key]) {
-            el.innerHTML = dict[key];
-        }
+        if (dict[key]) el.innerHTML = dict[key];
     });
 
+    // PLACEHOLDER
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-
         const key = el.dataset.i18nPlaceholder;
-
-        if (dict[key]) {
-            el.placeholder = dict[key];
-        }
+        if (dict[key]) el.placeholder = dict[key];
     });
+
+    // sync dropdown
+    const select = document.getElementById("languageSelect");
+    if (select) select.value = currentLang;
 }
 
+    
 /* =========================
    SET LANGUAGE
 ========================= */
 function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
-    applyTranslations();
 
     applyLanguage(lang);
 
-    // render lại sản phẩm
+    const select = document.getElementById("languageSelect");
+    if (select) select.value = lang;
+
     if (typeof renderProducts === "function") {
         renderProducts(getProducts());
     }
 }
-
 /* =========================
    INIT
 ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    const select = document.getElementById("languageSelect");
-
-    const savedLang =
-        localStorage.getItem("language") || "vi";
+    const savedLang = localStorage.getItem("language") || "vi";
 
     applyLanguage(savedLang);
 
+    const select = document.getElementById("languageSelect");
+
     if (select) {
-
-        select.value = savedLang;
-
-        select.addEventListener("change", function () {
-
-            setLanguage(this.value);
-
+        select.addEventListener("change", (e) => {
+            setLanguage(e.target.value);
         });
     }
 });
