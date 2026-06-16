@@ -1,18 +1,15 @@
 /* =========================
-   QTN GLOBAL I18N
+   QTN GLOBAL I18N (CLEAN VERSION)
 ========================= */
 
 const translations = {
 
     vi: {
-
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         contact: "LIÊN HỆ",
         detailBtn: "Chi tiết",
-
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
-
         cart: "🛒 GIỎ HÀNG",
 
         heroLine1: "GIẢI PHÁP",
@@ -37,7 +34,24 @@ const translations = {
 
         brands: "THƯƠNG HIỆU",
 
-        buyNow: "MUA NGAY",
+        brandTitle: "THƯƠNG HIỆU",
+
+        brandOhaus: "Ohaus",
+        brandJadever: "Jadever",
+        brandVibra: "Vibra",
+        brandYaohua: "Yaohua",
+        brandExcell: "EXCELL",
+
+        addCartBtn: "Thêm giỏ hàng",
+        buyNowBtn: "Mua ngay",
+
+        descTitle: "Mô tả",
+        specTitle: "Thông số kỹ thuật",
+        brandLabel: "Hãng:",
+        originLabel: "Xuất xứ:",
+
+        addCartTitle: "THÊM VÀO GIỎ HÀNG",
+        cartTitle: "GIỎ HÀNG",
         orderTitle: "ĐẶT HÀNG",
 
         customerName: "Tên khách hàng",
@@ -54,9 +68,6 @@ const translations = {
             "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
 
         addressLabel: "Địa chỉ:",
-        addressValue:
-            "Số 14 Ngõ 68 Đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội",
-
         hotlineLabel: "Hotline:",
         techSupport: "Hỗ trợ kỹ thuật:",
         emailLabel: "Email:",
@@ -64,13 +75,11 @@ const translations = {
     },
 
     en: {
-
         home: "HOME",
         about: "ABOUT",
         contact: "CONTACT",
         detailBtn: "Detail",
         slogan: "ACCURACY IN EVERY VALUE",
-
         cart: "🛒 CART",
 
         heroLine1: "SOLUTIONS",
@@ -95,26 +104,40 @@ const translations = {
 
         brands: "BRANDS",
 
-        buyNow: "BUY NOW",
+        brandTitle: "BRANDS",
+
+        brandOhaus: "Ohaus",
+        brandJadever: "Jadever",
+        brandVibra: "Vibra",
+        brandYaohua: "Yaohua",
+        brandExcell: "EXCELL",
+
+        addCartBtn: "Add to cart",
+        buyNowBtn: "Buy now",
+
+        descTitle: "Description",
+        specTitle: "Specifications",
+        brandLabel: "Brand:",
+        originLabel: "Origin:",
+
+        addCartTitle: "ADD TO CART",
+        cartTitle: "CART",
         orderTitle: "ORDER FORM",
 
         customerName: "Customer Name",
         customerPhone: "Phone Number",
-        customerCompany: "Company Name",
+        customerCompany: "Company",
         customerTax: "Tax Code",
         customerInvoice: "Invoice Address",
-        customerAddress: "Delivery Address",
+        customerAddress: "Shipping Address",
 
-        sendZalo: "SEND VIA ZALO",
-        sendMessenger: "SEND VIA MESSENGER",
+        sendZalo: "SEND ZALO",
+        sendMessenger: "SEND MESSENGER",
 
         footerDesc:
-            "Supplier of electronic scales, weighing indicators and industrial weighing equipment.",
+            "Supplier of electronic scales and industrial weighing equipment.",
 
         addressLabel: "Address:",
-        addressValue:
-            "No.14, Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City, Vietnam",
-
         hotlineLabel: "Hotline:",
         techSupport: "Technical Support:",
         emailLabel: "Email:",
@@ -122,14 +145,11 @@ const translations = {
     },
 
     zh: {
-
         home: "首页",
         about: "关于我们",
         contact: "联系我们",
         detailBtn: "详情",
-
         slogan: "精准体现每一个价值",
-
         cart: "🛒 购物车",
 
         heroLine1: "电子衡器",
@@ -146,83 +166,90 @@ const translations = {
         catPlatformScale: "台秤",
         catCountingScale: "计数秤",
         catCraneScale: "吊秤",
-        catIndicator: "称重显示器",
+        catIndicator: "称重仪表",
         catAnalyticalScale: "分析天平",
         catWaterproofScale: "防水秤",
-        catLabelPrintingScale: "条码标签秤",
+        catLabelPrintingScale: "条码秤",
         catChairScale: "座椅秤",
 
         brands: "品牌",
 
-        buyNow: "立即购买",
-        orderTitle: "订购信息",
+        brandTitle: "品牌",
+
+        brandOhaus: "奥豪斯",
+        brandJadever: "钰恒",
+        brandVibra: "维博",
+        brandYaohua: "耀华",
+        brandExcell: "艾科",
+
+        addCartBtn: "加入购物车",
+        buyNowBtn: "立即购买",
+
+        descTitle: "描述",
+        specTitle: "规格参数",
+        brandLabel: "品牌：",
+        originLabel: "产地：",
+
+        addCartTitle: "加入购物车",
+        cartTitle: "购物车",
+        orderTitle: "订单信息",
 
         customerName: "客户姓名",
-        customerPhone: "联系电话",
+        customerPhone: "电话",
         customerCompany: "公司名称",
         customerTax: "税号",
         customerInvoice: "发票地址",
         customerAddress: "收货地址",
 
-        sendZalo: "发送到 ZALO",
-        sendMessenger: "发送到 Messenger",
+        sendZalo: "发送 ZALO",
+        sendMessenger: "发送 Messenger",
 
         footerDesc:
-            "专业提供电子秤、称重仪表及工业称重设备。",
+            "专业提供电子秤及工业称重设备。",
 
         addressLabel: "地址：",
-        addressValue:
-            "越南河内市八场社甲海路68巷14号",
-
         hotlineLabel: "热线：",
         techSupport: "技术支持：",
-        emailLabel: "电子邮箱：",
+        emailLabel: "邮箱：",
         websiteLabel: "网站："
     }
 };
-function applyTranslations() {
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        el.textContent = t(key);
-    });
-}
-document.addEventListener("DOMContentLoaded", () => {
-    applyTranslations();
-});
 
 /* =========================
-   APPLY LANGUAGE
+   CORE FUNCTION
 ========================= */
+
 function t(key) {
 
-    const lang =
-        localStorage.getItem("language") || "vi";
+    const lang = localStorage.getItem("language") || "vi";
 
-    return translations[lang]?.[key]
-        || translations.vi[key]
+    return translations?.[lang]?.[key]
+        || translations?.vi?.[key]
         || key;
 }
+
+/* =========================
+   APPLY LANGUAGE TO PAGE
+========================= */
+
 function applyLanguage(lang) {
 
     const dict = translations[lang];
-
     if (!dict) return;
 
     document.documentElement.lang = lang;
 
+    // TEXT
     document.querySelectorAll("[data-i18n]").forEach(el => {
-
-        const key = el.dataset.i18n;
-
+        const key = el.getAttribute("data-i18n");
         if (dict[key]) {
-            el.innerHTML = dict[key];
+            el.textContent = dict[key];
         }
     });
 
+    // PLACEHOLDER
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-
-        const key = el.dataset.i18nPlaceholder;
-
+        const key = el.getAttribute("data-i18n-placeholder");
         if (dict[key]) {
             el.placeholder = dict[key];
         }
@@ -232,14 +259,29 @@ function applyLanguage(lang) {
 /* =========================
    SET LANGUAGE
 ========================= */
+
 function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
-    applyTranslations();
 
     applyLanguage(lang);
 
-    // render lại sản phẩm
+    // FORCE REFRESH (important for detail page + popup)
+    setTimeout(() => {
+
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (t(key)) el.textContent = t(key);
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+            const key = el.getAttribute("data-i18n-placeholder");
+            if (t(key)) el.placeholder = t(key);
+        });
+
+    }, 0);
+
+    // optional re-render product list
     if (typeof renderProducts === "function") {
         renderProducts(getProducts());
     }
@@ -251,21 +293,17 @@ function setLanguage(lang) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const lang = localStorage.getItem("language") || "vi";
+
+    applyLanguage(lang);
+
     const select = document.getElementById("languageSelect");
 
-    const savedLang =
-        localStorage.getItem("language") || "vi";
-
-    applyLanguage(savedLang);
-
     if (select) {
+        select.value = lang;
 
-        select.value = savedLang;
-
-        select.addEventListener("change", function () {
-
-            setLanguage(this.value);
-
+        select.addEventListener("change", (e) => {
+            setLanguage(e.target.value);
         });
     }
 });
