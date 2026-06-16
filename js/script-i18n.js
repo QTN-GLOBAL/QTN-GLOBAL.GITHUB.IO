@@ -9,6 +9,7 @@ const translations = {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         contact: "LIÊN HỆ",
+        detail: "Chi tiết",
 
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
 
@@ -67,6 +68,7 @@ const translations = {
         home: "HOME",
         about: "ABOUT",
         contact: "CONTACT",
+        detail: "Details",
 
         slogan: "ACCURACY IN EVERY VALUE",
 
@@ -125,6 +127,7 @@ const translations = {
         home: "首页",
         about: "关于我们",
         contact: "联系我们",
+        detail: "详情",
 
         slogan: "精准体现每一个价值",
 
@@ -182,7 +185,15 @@ const translations = {
 /* =========================
    APPLY LANGUAGE
 ========================= */
+function t(key) {
 
+    const lang =
+        localStorage.getItem("language") || "vi";
+
+    return translations[lang]?.[key]
+        || translations.vi[key]
+        || key;
+}
 function applyLanguage(lang) {
 
     const dict = translations[lang];
