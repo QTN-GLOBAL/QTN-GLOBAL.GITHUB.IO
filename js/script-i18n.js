@@ -9,7 +9,7 @@ const translations = {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         contact: "LIÊN HỆ",
-        detailBtn: "Chi tiết"
+        detailBtn: "Chi tiết",
 
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
 
@@ -68,7 +68,7 @@ const translations = {
         home: "HOME",
         about: "ABOUT",
         contact: "CONTACT",
-        detailBtn: "Detail"
+        detailBtn: "Detail",
         slogan: "ACCURACY IN EVERY VALUE",
 
         cart: "🛒 CART",
@@ -126,7 +126,7 @@ const translations = {
         home: "首页",
         about: "关于我们",
         contact: "联系我们",
-        detailBtn: "详情"
+        detailBtn: "详情",
 
         slogan: "精准体现每一个价值",
 
@@ -255,17 +255,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-function getText(key) {
-
-    const lang =
-        localStorage.getItem("lang") || "vi";
-
-    if (
-        translations[lang] &&
-        translations[lang][key]
-    ) {
-        return translations[lang][key];
-    }
-
-    return key;
-}

@@ -20,7 +20,7 @@ function renderProducts(productList = []) {
         .map(product => `
             <div class="product-card">
 
-                <img 
+                <img
                     src="images/${product.category}/${product.folder}/main.jpg"
                     alt="${product.name}"
                     onerror="this.src='images/no-image.jpg'"
@@ -31,8 +31,9 @@ function renderProducts(productList = []) {
                     <h3>${product.name}</h3>
 
                     <a class="detail-btn"
-   href="chitiet.html?id=${product.id}">
-   ${getText("detailBtn")}
+                       href="chitiet.html?id=${product.id}">
+                        ${t("detailBtn")}
+                    </a>
 
                 </div>
 
