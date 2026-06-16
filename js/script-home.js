@@ -31,9 +31,9 @@ function renderProducts(productList = []) {
                     <h3>${product.name}</h3>
 
                     <a class="detail-btn"
-                       href="chitiet.html?id=${product.id}">
-                        Chi tiết
-                    </a>
+   href="chitiet.html?id=${product.id}">
+    ${t("detailBtn")}
+</a>
 
                 </div>
 

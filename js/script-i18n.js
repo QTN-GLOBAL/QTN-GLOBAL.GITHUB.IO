@@ -1,202 +1,183 @@
 /* =========================
-   QTN GLOBAL - I18N CORE (CLEAN VERSION)
-   SAFE FOR CART + PRODUCT + FOOTER
-========================= */
-
-/* =========================
-   TRANSLATIONS - UI TEXT
+   QTN GLOBAL I18N
 ========================= */
 
 const translations = {
+
     vi: {
+
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         contact: "LIÊN HỆ",
-        language: "NGÔN NGỮ",
-
-        cart: "Giỏ hàng",
-        buyNow: "Mua ngay",
-        addCart: "Thêm vào giỏ",
-        detail: "Chi tiết",
 
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
 
-        hero_line1: "GIẢI PHÁP",
-        hero_line2: "CÂN ĐIỆN TỬ",
-        hero_line3: "CHÍNH XÁC CHO DOANH NGHIỆP",
+        cart: "🛒 GIỎ HÀNG",
 
-        hero_item1: "SẢN PHẨM CHÍNH HÃNG",
-        hero_item2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
-        hero_item3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
+        heroLine1: "GIẢI PHÁP",
+        heroLine2: "CÂN ĐIỆN TỬ",
+        heroLine3: "CHÍNH XÁC CHO",
+        heroLine4: "DOANH NGHIỆP",
 
-        category_title: "DANH MỤC",
-        brand_title: "THƯƠNG HIỆU",
+        heroFeature1: "SẢN PHẨM CHÍNH HÃNG",
+        heroFeature2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
+        heroFeature3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
 
-        cat_can_ban: "Cân bàn",
-        cat_can_dem: "Cân đếm",
-        cat_can_treo: "Cân treo",
-        cat_dau_can: "Đầu cân điện tử",
-        cat_can_pt: "Cân phân tích",
-        cat_chong_nuoc: "Cân chống nước",
-        cat_in_tem: "Cân in tem mã vạch",
-        cat_ghe_ngoi: "Cân ghế ngồi",
+        categories: "DANH MỤC",
 
-        brand_ohaus: "Ohaus",
-        brand_jadever: "Jadever",
-        brand_vibra: "Vibra",
-        brand_yaohua: "Yaohua",
-        brand_excell: "EXCELL",
+        catPlatformScale: "Cân bàn",
+        catCountingScale: "Cân đếm",
+        catCraneScale: "Cân treo",
+        catIndicator: "Đầu cân điện tử",
+        catAnalyticalScale: "Cân phân tích",
+        catWaterproofScale: "Cân chống nước",
+        catLabelPrintingScale: "Cân in tem mã vạch",
+        catChairScale: "Cân ghế ngồi",
 
-        footer_brand: "QTN GLOBAL",
-        footer_intro: "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
+        brands: "THƯƠNG HIỆU",
 
-        footer_address_label: "Địa chỉ:",
-        footer_address: "Số 14 Ngõ 68 Đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội",
+        buyNow: "MUA NGAY",
+        orderTitle: "ĐẶT HÀNG",
 
-        footer_hotline: "Hotline:",
-        footer_support: "Hỗ trợ kỹ thuật:",
+        customerName: "Tên khách hàng",
+        customerPhone: "Số điện thoại",
+        customerCompany: "Tên công ty",
+        customerTax: "Mã số thuế",
+        customerInvoice: "Địa chỉ xuất hóa đơn",
+        customerAddress: "Địa chỉ giao hàng",
 
-        footer_email: "Email:",
-        footer_website: "Website:"
+        sendZalo: "GỬI ZALO",
+        sendMessenger: "GỬI MESSENGER",
+
+        footerDesc:
+            "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
+
+        addressLabel: "Địa chỉ:",
+        addressValue:
+            "Số 14 Ngõ 68 Đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội",
+
+        hotlineLabel: "Hotline:",
+        techSupport: "Hỗ trợ kỹ thuật:",
+        emailLabel: "Email:",
+        websiteLabel: "Website:"
     },
 
     en: {
+
         home: "HOME",
         about: "ABOUT",
         contact: "CONTACT",
-        language: "LANGUAGE",
 
-        cart: "Cart",
-        buyNow: "Buy Now",
-        addCart: "Add to Cart",
-        detail: "Details",
+        slogan: "ACCURACY IN EVERY VALUE",
 
-        slogan: "PRECISION IN EVERY VALUE",
+        cart: "🛒 CART",
 
-        hero_line1: "WEIGHING SOLUTIONS",
-        hero_line2: "ELECTRONIC SCALES",
-        hero_line3: "FOR BUSINESS PRECISION",
+        heroLine1: "SOLUTIONS",
+        heroLine2: "ELECTRONIC SCALES",
+        heroLine3: "PRECISION FOR",
+        heroLine4: "BUSINESSES",
 
-        category_title: "CATEGORIES",
-        brand_title: "BRANDS",
+        heroFeature1: "GENUINE PRODUCTS",
+        heroFeature2: "FAST QUOTATION - NATIONWIDE DELIVERY",
+        heroFeature3: "PROFESSIONAL TECHNICAL SUPPORT",
 
-        footer_brand: "QTN GLOBAL",
-        footer_intro: "We provide electronic scales and industrial weighing equipment.",
+        categories: "CATEGORIES",
 
-        footer_address_label: "Address:",
-        footer_address: "No. 14 Alley 68 Giap Hai Street, Hanoi",
+        catPlatformScale: "Platform Scales",
+        catCountingScale: "Counting Scales",
+        catCraneScale: "Crane Scales",
+        catIndicator: "Weight Indicators",
+        catAnalyticalScale: "Analytical Balances",
+        catWaterproofScale: "Waterproof Scales",
+        catLabelPrintingScale: "Label Printing Scales",
+        catChairScale: "Chair Scales",
 
-        footer_hotline: "Hotline:",
-        footer_support: "Technical support:",
+        brands: "BRANDS",
 
-        footer_email: "Email:",
-        footer_website: "Website:"
+        buyNow: "BUY NOW",
+        orderTitle: "ORDER FORM",
+
+        customerName: "Customer Name",
+        customerPhone: "Phone Number",
+        customerCompany: "Company Name",
+        customerTax: "Tax Code",
+        customerInvoice: "Invoice Address",
+        customerAddress: "Delivery Address",
+
+        sendZalo: "SEND VIA ZALO",
+        sendMessenger: "SEND VIA MESSENGER",
+
+        footerDesc:
+            "Supplier of electronic scales, weighing indicators and industrial weighing equipment.",
+
+        addressLabel: "Address:",
+        addressValue:
+            "No.14, Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City, Vietnam",
+
+        hotlineLabel: "Hotline:",
+        techSupport: "Technical Support:",
+        emailLabel: "Email:",
+        websiteLabel: "Website:"
     },
 
-    cn: {
+    zh: {
+
         home: "首页",
-        about: "介绍",
-        contact: "联系",
-        language: "语言",
+        about: "关于我们",
+        contact: "联系我们",
 
-        cart: "购物车",
+        slogan: "精准体现每一个价值",
+
+        cart: "🛒 购物车",
+
+        heroLine1: "电子衡器",
+        heroLine2: "解决方案",
+        heroLine3: "精准服务",
+        heroLine4: "企业客户",
+
+        heroFeature1: "原装正品",
+        heroFeature2: "快速报价 - 全国配送",
+        heroFeature3: "专业技术支持",
+
+        categories: "产品分类",
+
+        catPlatformScale: "台秤",
+        catCountingScale: "计数秤",
+        catCraneScale: "吊秤",
+        catIndicator: "称重显示器",
+        catAnalyticalScale: "分析天平",
+        catWaterproofScale: "防水秤",
+        catLabelPrintingScale: "条码标签秤",
+        catChairScale: "座椅秤",
+
+        brands: "品牌",
+
         buyNow: "立即购买",
-        addCart: "加入购物车",
-        detail: "详情",
+        orderTitle: "订购信息",
 
-        slogan: "每一个价值都精准",
+        customerName: "客户姓名",
+        customerPhone: "联系电话",
+        customerCompany: "公司名称",
+        customerTax: "税号",
+        customerInvoice: "发票地址",
+        customerAddress: "收货地址",
 
-        hero_line1: "称重解决方案",
-        hero_line2: "电子秤",
-        hero_line3: "企业精准计量",
+        sendZalo: "发送到 ZALO",
+        sendMessenger: "发送到 Messenger",
 
-        category_title: "分类",
-        brand_title: "品牌",
+        footerDesc:
+            "专业提供电子秤、称重仪表及工业称重设备。",
 
-        footer_brand: "QTN GLOBAL",
-        footer_intro: "专业提供电子秤及工业称重设备。",
+        addressLabel: "地址：",
+        addressValue:
+            "越南河内市八场社甲海路68巷14号",
 
-        footer_address_label: "地址：",
-        footer_address: "越南河内市巴特庄乡",
-
-        footer_hotline: "热线：",
-        footer_support: "技术支持：",
-
-        footer_email: "电子邮箱：",
-        footer_website: "网站："
+        hotlineLabel: "热线：",
+        techSupport: "技术支持：",
+        emailLabel: "电子邮箱：",
+        websiteLabel: "网站："
     }
 };
-
-/* =========================
-   SPEC TRANSLATION
-========================= */
-
-const specTranslations = {
-    vi: {
-        "Khối lượng": "Khối lượng",
-        "Tải trọng": "Tải trọng",
-        "Sai số": "Sai số",
-        "Kích thước": "Kích thước",
-        "Chất liệu": "Chất liệu",
-        "Độ chia": "Độ chia",
-        "Màn hình": "Màn hình",
-        "Nguồn điện": "Nguồn điện"
-    },
-
-    en: {
-        "Khối lượng": "Capacity",
-        "Tải trọng": "Load capacity",
-        "Sai số": "Accuracy",
-        "Kích thước": "Dimensions",
-        "Chất liệu": "Material",
-        "Độ chia": "Division",
-        "Màn hình": "Display",
-        "Nguồn điện": "Power supply"
-    },
-
-    cn: {
-        "Khối lượng": "容量",
-        "Tải trọng": "负载",
-        "Sai số": "精度",
-        "Kích thước": "尺寸",
-        "Chất liệu": "材料",
-        "Độ chia": "分度值",
-        "Màn hình": "显示屏",
-        "Nguồn điện": "电源"
-    }
-};
-
-/* =========================
-   GET LANGUAGE
-========================= */
-
-function getLang() {
-    return localStorage.getItem("lang") || "vi";
-}
-
-/* =========================
-   SET LANGUAGE (SAFE)
-========================= */
-
-function setLanguage(lang) {
-
-    localStorage.setItem("lang", lang);
-
-    applyLanguage(lang);
-
-    if (typeof renderProducts === "function") {
-        renderProducts(getProducts());
-    }
-
-    if (typeof renderProductDetail === "function") {
-        renderProductDetail();
-    }
-
-    // SAFE RE-APPLY (fix late DOM like footer/cart)
-    setTimeout(() => {
-        applyLanguage(lang);
-    }, 50);
-}
 
 /* =========================
    APPLY LANGUAGE
@@ -204,57 +185,63 @@ function setLanguage(lang) {
 
 function applyLanguage(lang) {
 
+    const dict = translations[lang];
+
+    if (!dict) return;
+
+    document.documentElement.lang = lang;
+
     document.querySelectorAll("[data-i18n]").forEach(el => {
 
-        const key = el.getAttribute("data-i18n");
+        const key = el.dataset.i18n;
 
-        if (translations[lang]?.[key]) {
-            el.textContent = translations[lang][key];
+        if (dict[key]) {
+            el.innerHTML = dict[key];
         }
     });
 
-    translateSpec(lang);
-}
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
 
-/* =========================
-   SPEC TRANSLATION (SAFE MODE)
-========================= */
+        const key = el.dataset.i18nPlaceholder;
 
-function translateSpec(lang) {
-
-    document.querySelectorAll("[data-spec]").forEach(el => {
-
-        let original = el.getAttribute("data-spec-original");
-        if (!original) return;
-
-        let text = original;
-
-        for (let key in specTranslations.vi) {
-
-            if (specTranslations[lang]?.[key]) {
-                text = text.replace(
-                    new RegExp(key, "g"),
-                    specTranslations[lang][key]
-                );
-            }
+        if (dict[key]) {
+            el.placeholder = dict[key];
         }
-
-        el.innerText = text;
     });
 }
 
 /* =========================
-   MANUAL REAPPLY
+   SET LANGUAGE
 ========================= */
 
-window.reApplyI18n = function () {
-    applyLanguage(getLang());
-};
+function setLanguage(lang) {
+
+    localStorage.setItem("language", lang);
+
+    applyLanguage(lang);
+}
 
 /* =========================
    INIT
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-    applyLanguage(getLang());
+
+    const select = document.getElementById("languageSelect");
+
+    const savedLang =
+        localStorage.getItem("language") || "vi";
+
+    applyLanguage(savedLang);
+
+    if (select) {
+
+        select.value = savedLang;
+
+        select.addEventListener("change", function () {
+
+            setLanguage(this.value);
+
+        });
+    }
 });
