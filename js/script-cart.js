@@ -243,7 +243,8 @@ function renderBuyNowForm(items) {
     popup.style.display = "flex";
 
     box.innerHTML = items.map(item => `
-        <div class="buy-item">
+        <div class="buy-item"
+     data-id="${item.id}">
 
             <img src="images/${item.category}/${item.folder}/main.jpg"
                  style="width:60px;height:60px;object-fit:contain;display:block;margin:auto;">
@@ -290,6 +291,12 @@ function removeSelectedFromCart(ids) {
     renderCart();
     renderHeaderCart();
     updateCartUI();
+function getBuyPopupIds() {
+
+    return Array.from(
+        document.querySelectorAll("#buyCapacityList .buy-item")
+    ).map(item => String(item.dataset.id));
+
 }
 function sendCartOrderZalo() {
 
@@ -299,7 +306,7 @@ function sendCartOrderZalo() {
 
     navigator.clipboard.writeText(text).catch(() => {});
 
-    const selectedIds = getSelectedIds();
+    const selectedIds = getBuyPopupIds();
 
     removeSelectedFromCart(selectedIds);
 
@@ -316,8 +323,7 @@ function sendCartOrderMessenger() {
 
     navigator.clipboard.writeText(text).catch(() => {});
 
-    const selectedIds = getSelectedIds();
-
+    const selectedIds = getBuyPopupIds();
     removeSelectedFromCart(selectedIds);
 
     closeBuyPopup();
