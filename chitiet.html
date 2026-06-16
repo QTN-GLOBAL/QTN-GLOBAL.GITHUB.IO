@@ -33,8 +33,9 @@
 <span style="color:#d4a017;">GLOBAL</span>
 </h2>
 
-<p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
-
+<p data-i18n="slogan">
+    CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
+</p>
 </div>
 
 </div>
@@ -79,7 +80,9 @@ class="social-icon facebook">
    href="index.html"
    onclick="goHomeOpenCart()">
 
-🛒 GIỎ HÀNG
+<span data-i18n="cart">
+    🛒 GIỎ HÀNG
+</span>
 (<span id="cartCount">0</span>)
 
 </a>
@@ -362,7 +365,7 @@ product.specs.map(spec=>{
 }).join("");
     /* BUY */
 
-    document.getElementById("buyProductName").value = product.name;
+    document.getElementById("buyProductName").innerText = product.name;
 }
 </script>
 <footer class="footer">
