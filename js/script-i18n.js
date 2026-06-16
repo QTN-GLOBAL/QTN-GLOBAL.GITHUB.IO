@@ -206,7 +206,7 @@ function applyLanguage(lang) {
     // TEXT
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        if (dict[key]) el.innerHTML = dict[key];
+        el.innerHTML = dict[key] ?? translations.vi[key] ?? key;
     });
 
     // PLACEHOLDER
@@ -215,9 +215,10 @@ function applyLanguage(lang) {
         if (dict[key]) el.placeholder = dict[key];
     });
 
-    // sync dropdown
+   setTimeout(() => {
     const select = document.getElementById("languageSelect");
     if (select) select.value = currentLang;
+}, 0);
 }
 
     
@@ -237,20 +238,3 @@ function setLanguage(lang) {
         renderProducts(getProducts());
     }
 }
-/* =========================
-   INIT
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-
-    const savedLang = localStorage.getItem("language") || "vi";
-
-    applyLanguage(savedLang);
-
-    const select = document.getElementById("languageSelect");
-
-    if (select) {
-        select.addEventListener("change", (e) => {
-            setLanguage(e.target.value);
-        });
-    }
-});
