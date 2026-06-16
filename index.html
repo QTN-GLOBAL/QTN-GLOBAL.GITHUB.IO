@@ -44,7 +44,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <span style="color:#d4a017;">GLOBAL</span>
 </h2>
 
-<p data-i18n="slogan">CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+<p>CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+
 </div>
 
 </div>
@@ -86,11 +87,11 @@ class="social-icon facebook">
 </a>
 
 <a class="top-cart-btn"
-   href="javascript:void(0)"
-   onclick="openCart()">
+href="javascript:void(0)"
+onclick="openCart()">
 
-    🛒 <span data-i18n="cart">GIỎ HÀNG</span>
-    (<span id="cartCount">0</span>)
+🛒 GIỎ HÀNG
+(<span id="cartCount">0</span>)
 
 </a>
 
@@ -104,20 +105,20 @@ class="social-icon facebook">
      MENU
 ========================= -->
 
-<nav class="menu">
+<nav class="navbar">
 
-    <a href="index.html" data-i18n="home">TRANG CHỦ</a>
-    <a href="#" data-i18n="about">GIỚI THIỆU</a>
-    <a href="#" data-i18n="contact">LIÊN HỆ</a>
+<a href="index.html">
+TRANG CHỦ
+</a>
 
-    <!-- LANGUAGE SWITCH -->
-    <div class="lang-switch">
-        <span data-i18n="language">NGÔN NGỮ</span>
+<a href="#">
+GIỚI THIỆU
+</a>
 
-        <button onclick="setLanguage('vi')">VI</button>
-        <button onclick="setLanguage('en')">EN</button>
-        <button onclick="setLanguage('cn')">CN</button>
-    </div>
+
+<a href="#">
+LIÊN HỆ
+</a>
 
 </nav>
 
@@ -133,41 +134,51 @@ class="social-icon facebook">
 
     <div class="hero-left">
 
-       <h1>
+        <h1>
 
-    <span data-i18n="hero_line1">GIẢI PHÁP</span>
-    <br>
+            GIẢI PHÁP
+            <br>
 
-    <span class="highlight" data-i18n="hero_line2">
-        CÂN ĐIỆN TỬ
-    </span>
+            <span class="highlight">
+                CÂN ĐIỆN TỬ
+            </span>
 
-    <br>
+            <br>
 
-    <span data-i18n="hero_line3">
-        CHÍNH XÁC CHO DOANH NGHIỆP
-    </span>
+            CHÍNH XÁC CHO
+            <br>
 
-</h1>
+            DOANH NGHIỆP
+
+        </h1>
 
         <ul class="hero-list">
 
-    <li>
-        <i class="fa-solid fa-circle-check"></i>
-        <span data-i18n="hero_item1">SẢN PHẨM CHÍNH HÃNG</span>
-    </li>
+            <li>
 
-    <li>
-        <i class="fa-solid fa-circle-check"></i>
-        <span data-i18n="hero_item2">BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC</span>
-    </li>
+                <i class="fa-solid fa-circle-check"></i>
 
-    <li>
-        <i class="fa-solid fa-circle-check"></i>
-        <span data-i18n="hero_item3">HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP</span>
-    </li>
+                <span>SẢN PHẨM CHÍNH HÃNG</span>
 
-</ul>
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC</span>
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP</span>
+
+            </li>
+
+        </ul>
 
         <div class="hero-contact">
 
@@ -216,16 +227,16 @@ class="social-icon facebook">
 
 <!-- SIDEBAR TRÁI -->
 <aside class="sidebar">
-   <h2 data-i18n="category_title">DANH MỤC SẢN PHẨM</h2>
+    <h2>DANH MỤC</h2>
     <ul>
-        <li data-i18n="cat_can_ban" onclick="filterProducts('can-ban')">Cân bàn</li>
-<li data-i18n="cat_can_dem" onclick="filterProducts('can-dem')">Cân đếm</li>
-<li data-i18n="cat_can_treo" onclick="filterProducts('can-treo')">Cân treo</li>
-<li data-i18n="cat_dau_can" onclick="filterProducts('dau-can-dien-tu')">Đầu cân điện tử</li>
-<li data-i18n="cat_can_pt" onclick="filterProducts('can-phan-tich')">Cân phân tích</li>
-<li data-i18n="cat_chong_nuoc" onclick="filterProducts('can-chong-nuoc')">Cân chống nước</li>
-<li data-i18n="cat_in_tem" onclick="filterProducts('can-in-tem-ma-vach')">Cân in tem mã vạch</li>
-<li data-i18n="cat_ghe_ngoi" onclick="filterProducts('can-ghe-ngoi')">Cân ghế ngồi</li>
+        <li onclick="filterProducts('can-ban')">Cân bàn</li>
+        <li onclick="filterProducts('can-dem')">Cân đếm</li>
+        <li onclick="filterProducts('can-treo')">Cân treo</li>
+        <li onclick="filterProducts('dau-can-dien-tu')">Đầu cân điện tử</li>
+        <li onclick="filterProducts('can-phan-tich')">Cân phân tích</li>
+        <li onclick="filterProducts('can-chong-nuoc')">Cân chống nước</li>
+        <li onclick="filterProducts('can-in-tem-ma-vach')">Cân in tem mã vạch</li>
+        <li onclick="filterProducts('can-ghe-ngoi')">Cân ghế ngồi</li>
     </ul>
 </aside>
 
@@ -235,33 +246,33 @@ class="social-icon facebook">
 <!-- SIDEBAR PHẢI (MỚI) -->
 <aside class="brand-sidebar">
 
-    <h2 data-i18n="brand_title">THƯƠNG HIỆU</h2>
+    <h2>THƯƠNG HIỆU</h2>
 
     <div class="brand-list">
 
         <div class="brand-item" onclick="filterByBrand('Ohaus')">
             <img src="images/can-ban/rc21pe/1.jpg">
-            <span data-i18n="brand_ohaus">Ohaus</span>
+            <span>Ohaus</span>
         </div>
 
         <div class="brand-item" onclick="filterByBrand('Jadever')">
             <img src="images/can-ban/jwl/1.jpg">
-            <span data-i18n="brand_jadever">Jadever</span>
+            <span>Jadever</span>
         </div>
 
         <div class="brand-item" onclick="filterByBrand('Vibra')">
             <img src="images/can-ban/vibra-haw/1.jpg">
-            <span data-i18n="brand_vibra">Vibra</span>
+            <span>Vibra</span>
         </div>
 
         <div class="brand-item" onclick="filterByBrand('Yaohua')">
             <img src="images/can-dem/xk3190-a15e/1.jpg">
-            <span data-i18n="brand_yaohua">Yaohua</span>
+            <span>Yaohua</span>
         </div>
 
         <div class="brand-item" onclick="filterByBrand('EXCELL')">
             <img src="images/dau-can-dien-tu/ex-2001/1.jpg">
-            <span data-i18n="brand_excell">EXCELL</span>
+            <span>EXCELL</span>
         </div>
 
     </div>
@@ -288,7 +299,7 @@ class="cart-modal">
 
 <div class="cart-header">
 
-<h2 data-i18n="cart">Giỏ hàng</h2>
+<h2>Giỏ hàng</h2>
 
 <button onclick="closeCart()">
 ✕
@@ -343,12 +354,12 @@ class="cart-body">
         <div id="buyCapacityList"></div>
 
         <button class="zalo-btn"
-        onclick="sendOrderZalo()">
+        onclick="sendCartOrderZalo()">
         GỬI ZALO
         </button>
 
        <button class="mess-btn"
-       onclick="sendOrderMessenger()">
+       onclick="sendCartOrderMessenger()">
        GỬI MESSENGER
        </button>
 
@@ -359,32 +370,40 @@ class="cart-body">
 
     <div class="footer-container">
 
-        <h3 data-i18n="footer_brand"></h3>
-
-        <p data-i18n="footer_intro"></p>
+        <h3>QTN GLOBAL</h3>
 
         <p>
-            📍 <span data-i18n="footer_address_label"></span>
-            <span data-i18n="footer_address"></span>
+            Chuyên cung cấp cân điện tử,
+            đầu cân và thiết bị cân công nghiệp chính hãng.
         </p>
 
         <p>
-            ☎ <span data-i18n="footer_hotline"></span>
+            📍 Địa chỉ:
+            Số 14 Ngõ 68 Đường Giáp Hải,
+            Xã Bát Tràng,
+            Thành phố Hà Nội
+        </p>
+
+        <p>
+            ☎ Hotline:
             <a href="tel:0905913636">0905913636</a>
             —
-            <span data-i18n="footer_support"></span>
+            Hỗ trợ kỹ thuật:
             <a href="tel:0383598603">0383598603</a>
         </p>
 
         <p>
-            ✉ <span data-i18n="footer_email"></span>
-            <a href="mailto:qtnglobal.com@gmail.com">qtnglobal.com@gmail.com</a>
+            ✉ Email:
+            <a href="mailto:qtnglobal.com@gmail.com">
+                qtnglobal.com@gmail.com
+            </a>
         </p>
 
         <p>
-            🌐 <span data-i18n="footer_website"></span>
-            <a href="https://qtn-global.github.io" target="_blank">
-                qtn-global.github.io
+            🌐 Website:
+            <a href="https://qtn-global.github.io"
+               target="_blank">
+               qtn-global.github.io
             </a>
         </p>
 
@@ -396,14 +415,11 @@ class="cart-body">
 ========================= -->
 
 <script src="products.js"></script>
-<script src="products-i18n.js"></script>
-<script src="js/script-i18n.js"></script>
 
 <script src="js/script-base.js"></script>
 <script src="js/script-home.js"></script>
 <script src="js/script-cart.js"></script>
-<script src="js/script-detail-addcart.js"></script>
-<script src="js/script-detail-buynow.js"></script>
+<script src="js/script-detail.js"></script>
 <script src="js/script-init.js"></script>
 
 
