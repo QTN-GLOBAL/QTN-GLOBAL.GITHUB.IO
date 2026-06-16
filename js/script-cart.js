@@ -291,6 +291,7 @@ function removeSelectedFromCart(ids) {
     renderCart();
     renderHeaderCart();
     updateCartUI();
+}
 function getBuyPopupIds() {
 
     return Array.from(
