@@ -32,8 +32,7 @@ function renderProducts(productList = []) {
 
                     <a class="detail-btn"
    href="chitiet.html?id=${product.id}">
-    ${t("detailBtn")}
-</a>
+   ${getText("detailBtn")}
 
                 </div>
 
