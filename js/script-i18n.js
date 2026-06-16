@@ -223,12 +223,16 @@ function applyLanguage(lang) {
 /* =========================
    SET LANGUAGE
 ========================= */
-
 function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
 
     applyLanguage(lang);
+
+    // render lại sản phẩm
+    if (typeof renderProducts === "function") {
+        renderProducts(getProducts());
+    }
 }
 
 /* =========================
