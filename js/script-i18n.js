@@ -12,8 +12,17 @@ const translations = {
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
         cart: "🛒 GIỎ HÀNG",
         cartEmpty: "Giỏ hàng trống",
-        addBtn: "Thêm",pleaseSelectProduct: "Vui lòng chọn sản phẩm",
+        addBtn: "Thêm",
+        pleaseSelectProduct: "Vui lòng chọn sản phẩm",
         addedToCart: "Đã thêm vào giỏ",
+        invoiceAddress: "Địa chỉ xuất hóa đơn",
+        shippingAddress: "Địa chỉ giao hàng",
+
+        pleaseFillCustomerInfo:
+        "Vui lòng điền đầy đủ thông tin khách hàng",
+
+        copiedOrderOpenMessenger:
+        "Đã copy đơn hàng.\nBấm OK để mở Messenger.",
 
         heroLine1: "GIẢI PHÁP",
         heroLine2: "CÂN ĐIỆN TỬ",
@@ -92,6 +101,14 @@ const translations = {
         addBtn: "Add",
         pleaseSelectProduct: "Please select a product",
         addedToCart: "Added to cart",
+        invoiceAddress: "Invoice Address",
+        shippingAddress: "Shipping Address",
+
+        pleaseFillCustomerInfo:
+        "Please fill in all customer information",
+
+        copiedOrderOpenMessenger:
+        "Order copied.\nPress OK to open Messenger.",
 
         heroLine1: "SOLUTIONS",
         heroLine2: "ELECTRONIC SCALES",
@@ -170,6 +187,15 @@ const translations = {
         addBtn: "添加",
         pleaseSelectProduct: "请选择产品",
         addedToCart: "已加入购物车",
+        invoiceAddress: "发票地址",
+        shippingAddress: "收货地址",
+        pleaseFillCustomerInfo:
+        "请填写完整客户信息",
+
+       copiedOrderOpenMessenger:
+       "订单已复制。\n点击确定打开 Messenger。",
+
+        
         heroLine1: "电子衡器",
         heroLine2: "解决方案",
         heroLine3: "精准服务",

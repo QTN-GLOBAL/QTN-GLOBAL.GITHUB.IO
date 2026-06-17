@@ -151,17 +151,38 @@ function validateCustomerForm() {
 
 function sendOrderZalo() {
 
-    if (!validateCustomerForm()) return;
+    // Kiểm tra thông tin khách hàng
+    if (!validateCustomerForm()) {
+        alert(t("pleaseFillCustomerInfo"));
+        return;
+    }
+
+    // Kiểm tra đã chọn sản phẩm chưa
+    const checkedItems =
+        document.querySelectorAll(
+            "#buyCapacityList .buy-check:checked"
+        );
+
+    if (checkedItems.length === 0) {
+        alert(t("pleaseSelectProduct"));
+        return;
+    }
 
     const text = getOrderText();
+
     navigator.clipboard.writeText(text).catch(() => {});
 
-    const ok = confirm("Đã copy đơn hàng.\nBấm OK để mở Zalo.");
+    const ok = confirm(
+        t("copiedOrderOpenZalo")
+    );
 
     closeBuyPopup();
 
     if (ok) {
-        window.open("https://zalo.me/0383598603", "_blank");
+        window.open(
+            "https://zalo.me/0383598603",
+            "_blank"
+        );
     }
 }
 
@@ -171,17 +192,38 @@ function sendOrderZalo() {
 
 function sendOrderMessenger() {
 
-    if (!validateCustomerForm()) return;
+    // Kiểm tra thông tin khách hàng
+    if (!validateCustomerForm()) {
+        alert(t("pleaseFillCustomerInfo"));
+        return;
+    }
+
+    // Kiểm tra đã chọn sản phẩm chưa
+    const checkedItems =
+        document.querySelectorAll(
+            "#buyCapacityList .buy-check:checked"
+        );
+
+    if (checkedItems.length === 0) {
+        alert(t("pleaseSelectProduct"));
+        return;
+    }
 
     const text = getOrderText();
+
     navigator.clipboard.writeText(text).catch(() => {});
 
-    const ok = confirm("Đã copy đơn hàng.\nBấm OK để mở Messenger.");
+    const ok = confirm(
+        t("copiedOrderOpenMessenger")
+    );
 
     closeBuyPopup();
 
     if (ok) {
-        window.open("https://m.me/QTNSCALE", "_blank");
+        window.open(
+            "https://m.me/QTNSCALE",
+            "_blank"
+        );
     }
 }
 
