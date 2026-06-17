@@ -17,6 +17,7 @@ const translations = {
         addedToCart: "Đã thêm vào giỏ",
         invoiceAddress: "Địa chỉ xuất hóa đơn",
         shippingAddress: "Địa chỉ giao hàng",
+        
 
        pleaseFillCustomerInfo:
     "Vui lòng điền đầy đủ thông tin khách hàng",
@@ -87,6 +88,8 @@ copiedOrderOpenMessenger:
             "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
 
         addressLabel: "Địa chỉ:",
+    addressText:
+    "Số 14 ngõ 68 đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội, Việt Nam"
         hotlineLabel: "Hotline:",
         techSupport: "Hỗ trợ kỹ thuật:",
         emailLabel: "Email:",
@@ -174,7 +177,9 @@ copiedOrderOpenMessenger:
         footerDesc:
             "Supplier of electronic scales and industrial weighing equipment.",
 
-        addressLabel: "Address:",
+         addressLabel: "Address:",
+    addressText:
+    "No. 14, Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City, Vietnam"
         hotlineLabel: "Hotline:",
         techSupport: "Technical Support:",
         emailLabel: "Email:",
@@ -259,7 +264,8 @@ copiedOrderOpenMessenger:
         footerDesc:
             "专业提供电子秤及工业称重设备。",
 
-        addressLabel: "地址:",
+        addressLabel: "地址：",
+    addressText: "14号，68巷，Giáp Hải路，Bát Tràng社，河内市，越南"
         hotlineLabel: "热线:",
         techSupport: "技术支持:",
         emailLabel: "邮箱:",
