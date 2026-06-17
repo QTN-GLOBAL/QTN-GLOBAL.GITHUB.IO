@@ -89,7 +89,7 @@ copiedOrderOpenMessenger:
 
         addressLabel: "Địa chỉ:",
     addressText:
-    "Số 14 ngõ 68 đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội, Việt Nam"
+    "Số 14 ngõ 68 đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội, Việt Nam",
         hotlineLabel: "Hotline:",
         techSupport: "Hỗ trợ kỹ thuật:",
         emailLabel: "Email:",
@@ -179,7 +179,7 @@ copiedOrderOpenMessenger:
 
          addressLabel: "Address:",
     addressText:
-    "No. 14, Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City, Vietnam"
+    "No. 14, Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City, Vietnam",
         hotlineLabel: "Hotline:",
         techSupport: "Technical Support:",
         emailLabel: "Email:",
@@ -265,7 +265,7 @@ copiedOrderOpenMessenger:
             "专业提供电子秤及工业称重设备。",
 
         addressLabel: "地址：",
-    addressText: "14号，68巷，Giáp Hải路，Bát Tràng社，河内市，越南"
+        addressText: "14号，68巷，Giáp Hải路，Bát Tràng社，Hà Nội市，Việt Nam",
         hotlineLabel: "热线:",
         techSupport: "技术支持:",
         emailLabel: "邮箱:",
@@ -311,9 +311,9 @@ function applyLanguage(lang) {
 
     // FOOTER + DYNAMIC VALUE FIX
     const footerAddress = document.getElementById("footerAddress");
-    if (footerAddress && dict.addressValue) {
-        footerAddress.innerText = dict.addressValue;
-    }
+    if (footerAddress && dict.addressText) {
+    footerAddress.innerText = dict.addressText;
+}
 }
 
 /* =========================
