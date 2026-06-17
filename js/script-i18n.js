@@ -13,7 +13,7 @@ const translations = {
         cart: "🛒 GIỎ HÀNG",
         cartEmpty: "Giỏ hàng trống",
         addBtn: "Thêm",
-        addedToCart: "Đã thêm vào giỏ hàng",
+        addedToCart: "Đã thêm vào giỏ ",
 
         heroLine1: "GIẢI PHÁP",
         heroLine2: "CÂN ĐIỆN TỬ",
@@ -167,7 +167,7 @@ const translations = {
         cart: "🛒 购物车",
         cartEmpty: "购物车为空",
         addBtn: "添加",
-        addedToCart: "已加入购物车",
+       addedToCart: "已加入购物车",
 
         heroLine1: "电子衡器",
         heroLine2: "解决方案",
