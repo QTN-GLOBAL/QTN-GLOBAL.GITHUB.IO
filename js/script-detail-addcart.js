@@ -112,7 +112,7 @@ if (!check || check.checked !== true) return;
     });
 
     if (!added) {
-        alert("Vui lòng chọn sản phẩm");
+        alert(t("addedToCart"));
         return;
     }
 
