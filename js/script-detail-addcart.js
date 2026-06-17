@@ -54,15 +54,21 @@ function openAddCartPopup() {
         }
     });
 
-  document.getElementById("cartSpecList").innerHTML = html;
+    document.getElementById("cartSpecList").innerHTML = html;
 
-// 👉 DÁN Ở ĐÂY
-document.querySelectorAll(".detail-check").forEach(cb => {
-    cb.checked = false;
-});
+    // reset checkbox
+    document.querySelectorAll(".detail-check").forEach(cb => {
+        cb.checked = false;
+    });
 
-document.querySelectorAll(".addcart-row input[type='number']")
-.forEach(input => input.value = 1);
+    // reset qty
+    document.querySelectorAll(".addcart-row input[type='number']")
+        .forEach(input => input.value = 1);
+
+    // ✅ FIX I18N - THÊM ĐOẠN NÀY
+    setTimeout(() => {
+        applyLanguage(localStorage.getItem("language") || "vi");
+    }, 0);
 }
 
 /* =========================

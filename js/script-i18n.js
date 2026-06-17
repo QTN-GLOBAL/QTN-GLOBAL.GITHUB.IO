@@ -61,6 +61,10 @@ const translations = {
         customerInvoice: "Địa chỉ xuất hóa đơn",
         customerAddress: "Địa chỉ giao hàng",
 
+        // ✅ FIX THÊM
+        invoiceAddress: "Địa chỉ xuất hóa đơn",
+        shippingAddress: "Địa chỉ giao hàng",
+
         sendZalo: "GỬI ZALO",
         sendMessenger: "GỬI MESSENGER",
 
@@ -130,6 +134,10 @@ const translations = {
         customerTax: "Tax Code",
         customerInvoice: "Invoice Address",
         customerAddress: "Shipping Address",
+
+        // ✅ FIX THÊM
+        invoiceAddress: "Invoice Address",
+        shippingAddress: "Shipping Address",
 
         sendZalo: "SEND ZALO",
         sendMessenger: "SEND MESSENGER",
@@ -207,11 +215,11 @@ const translations = {
         footerDesc:
             "专业提供电子秤及工业称重设备。",
 
-        addressLabel: "地址：",
-        hotlineLabel: "热线：",
-        techSupport: "技术支持：",
-        emailLabel: "邮箱：",
-        websiteLabel: "网站："
+        addressLabel: "地址:",
+        hotlineLabel: "热线:",
+        techSupport: "技术支持:",
+        emailLabel: "邮箱:",
+        websiteLabel: "网站:"
     }
 };
 
@@ -241,19 +249,21 @@ function applyLanguage(lang) {
 
     // TEXT
     document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (dict[key]) {
-            el.textContent = dict[key];
-        }
+        const key = el.dataset.i18n;
+        if (dict[key]) el.innerHTML = dict[key];
     });
 
     // PLACEHOLDER
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-        const key = el.getAttribute("data-i18n-placeholder");
-        if (dict[key]) {
-            el.placeholder = dict[key];
-        }
+        const key = el.dataset.i18nPlaceholder;
+        if (dict[key]) el.placeholder = dict[key];
     });
+
+    // FOOTER + DYNAMIC VALUE FIX
+    const footerAddress = document.getElementById("footerAddress");
+    if (footerAddress && dict.addressValue) {
+        footerAddress.innerText = dict.addressValue;
+    }
 }
 
 /* =========================
@@ -293,17 +303,18 @@ function setLanguage(lang) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const select = document.getElementById("languageSelect");
+
     const lang = localStorage.getItem("language") || "vi";
 
-    applyLanguage(lang);
-
-    const select = document.getElementById("languageSelect");
+    // QUAN TRỌNG: dùng setLanguage thay vì applyLanguage
+    setLanguage(lang);
 
     if (select) {
         select.value = lang;
 
-        select.addEventListener("change", (e) => {
-            setLanguage(e.target.value);
+        select.addEventListener("change", function () {
+            setLanguage(this.value);
         });
     }
 });

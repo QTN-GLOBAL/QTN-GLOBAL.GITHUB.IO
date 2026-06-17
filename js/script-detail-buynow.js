@@ -56,13 +56,18 @@ function openBuyPopup() {
     });
 
     document.getElementById("buyCapacityList").innerHTML = html;
-document.querySelectorAll("#buyCapacityList input[type='checkbox']")
-.forEach(cb => cb.checked = false);
 
-document.querySelectorAll("#buyCapacityList input[type='number']")
-.forEach(i => i.value = 1);
+    document.querySelectorAll("#buyCapacityList input[type='checkbox']")
+        .forEach(cb => cb.checked = false);
+
+    document.querySelectorAll("#buyCapacityList input[type='number']")
+        .forEach(i => i.value = 1);
+
+    // ✅ FIX I18N (THÊM ĐOẠN NÀY)
+    setTimeout(() => {
+        applyLanguage(localStorage.getItem("language") || "vi");
+    }, 0);
 }
-
 /* =========================
    GET ORDER TEXT (FIXED - NO DOM DEPENDENCY)
 ========================= */
