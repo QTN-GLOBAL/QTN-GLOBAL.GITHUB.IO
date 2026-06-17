@@ -112,13 +112,13 @@ if (!check || check.checked !== true) return;
     });
 
     if (!added) {
-        alert(t("addedToCart"));
-        return;
-    }
+    alert(t("pleaseSelectProduct"));
+    return;
+}
 
-    popup.style.display = "none";
+popup.style.display = "none";
 
-    alert("Đã thêm vào giỏ");
+alert(t("addedToCart"));
 
     if (typeof renderCart === "function") renderCart();
     if (typeof updateCartUI === "function") updateCartUI();
