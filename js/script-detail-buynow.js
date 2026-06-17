@@ -137,12 +137,7 @@ function validateCustomerForm() {
         }
     });
 
-    if (!valid) {
-        alert("Vui lòng điền đầy đủ thông tin khách hàng.");
-        return false;
-    }
-
-    return true;
+    return valid;
 }
 
 /* =========================

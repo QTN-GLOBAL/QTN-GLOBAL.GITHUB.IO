@@ -18,11 +18,14 @@ const translations = {
         invoiceAddress: "Địa chỉ xuất hóa đơn",
         shippingAddress: "Địa chỉ giao hàng",
 
-        pleaseFillCustomerInfo:
-        "Vui lòng điền đầy đủ thông tin khách hàng",
+       pleaseFillCustomerInfo:
+    "Vui lòng điền đầy đủ thông tin khách hàng",
 
-        copiedOrderOpenMessenger:
-        "Đã copy đơn hàng.\nBấm OK để mở Messenger.",
+copiedOrderOpenZalo:
+    "Đã copy đơn hàng.\nBấm OK để mở Zalo.",
+
+copiedOrderOpenMessenger:
+    "Đã copy đơn hàng.\nBấm OK để mở Messenger.",
 
         heroLine1: "GIẢI PHÁP",
         heroLine2: "CÂN ĐIỆN TỬ",
@@ -104,12 +107,14 @@ const translations = {
         invoiceAddress: "Invoice Address",
         shippingAddress: "Shipping Address",
 
-        pleaseFillCustomerInfo:
-        "Please fill in all customer information",
+       pleaseFillCustomerInfo:
+    "Please fill in all customer information",
 
-        copiedOrderOpenMessenger:
-        "Order copied.\nPress OK to open Messenger.",
+copiedOrderOpenZalo:
+    "Order copied.\nPress OK to open Zalo.",
 
+copiedOrderOpenMessenger:
+    "Order copied.\nPress OK to open Messenger.",
         heroLine1: "SOLUTIONS",
         heroLine2: "ELECTRONIC SCALES",
         heroLine3: "PRECISION FOR",
@@ -189,11 +194,14 @@ const translations = {
         addedToCart: "已加入购物车",
         invoiceAddress: "发票地址",
         shippingAddress: "收货地址",
-        pleaseFillCustomerInfo:
-        "请填写完整客户信息",
+       pleaseFillCustomerInfo:
+    "请填写完整客户信息",
 
-       copiedOrderOpenMessenger:
-       "订单已复制。\n点击确定打开 Messenger。",
+copiedOrderOpenZalo:
+    "订单已复制。\n点击确定打开 Zalo。",
+
+copiedOrderOpenMessenger:
+    "订单已复制。\n点击确定打开 Messenger。",
 
         
         heroLine1: "电子衡器",
