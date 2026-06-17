@@ -303,65 +303,92 @@
 <script src="js/script-detail-buynow.js"></script>
 <script src="js/script-init.js"></script>
 
-<!-- LOAD PRODUCT -->
 <script>
 
 const id = Number(new URLSearchParams(location.search).get("id"));
-const product = products.find(p => p.id === id);
+
+const rawProduct = products.find(p => p.id === id);
+
+const product = rawProduct
+    ? getTranslatedProduct(rawProduct)
+    : null;
 
 window.currentProduct = product;
 
-function applyI18nDetail(){
+function applyI18nDetail() {
+
     document.querySelectorAll("[data-i18n]").forEach(el => {
+
         const key = el.getAttribute("data-i18n");
-        if (t(key)) el.innerText = t(key);
+
+        if (t(key)) {
+            el.innerText = t(key);
+        }
     });
 
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+
         const key = el.getAttribute("data-i18n-placeholder");
-        if (t(key)) el.placeholder = t(key);
+
+        if (t(key)) {
+            el.placeholder = t(key);
+        }
     });
 }
 
-if(product){
+if (product) {
 
-    document.getElementById("productName").innerText = product.name;
-    document.getElementById("productBrand").innerText = product.brand;
-    document.getElementById("productOrigin").innerText = product.origin;
-    document.getElementById("productDesc").innerText = product.description;
+    document.getElementById("productName").innerText =
+        product.name;
+
+    document.getElementById("productBrand").innerText =
+        product.brand;
+
+    document.getElementById("productOrigin").innerText =
+        product.origin;
+
+    document.getElementById("productDesc").innerText =
+        product.description;
 
     document.getElementById("mainImage").src =
         `images/${product.category}/${product.folder}/main.jpg`;
 
     let thumbs = "";
-    for(let i=1;i<=5;i++){
+
+    for (let i = 1; i <= 5; i++) {
+
         thumbs += `
         <img src="images/${product.category}/${product.folder}/${i}.jpg"
              onclick="document.getElementById('mainImage').src=this.src"
              onerror="this.remove()">
         `;
     }
-    document.getElementById("thumbList").innerHTML = thumbs;
+
+    document.getElementById("thumbList").innerHTML =
+        thumbs;
 
     document.getElementById("productSpecs").innerHTML =
         product.specs.map(spec =>
-            spec.includes("<table") ? spec : `<p>• ${spec}</p>`
+            spec.includes("<table")
+                ? spec
+                : `<p>• ${spec}</p>`
         ).join("");
 
-    // FIX BUY NAME
-    document.getElementById("buyProductName").innerText = product.name;
+    document.getElementById("buyProductName").innerText =
+        product.name;
 
     setTimeout(applyI18nDetail, 0);
 }
 
-// CHANGE LANGUAGE
 document.getElementById("languageSelect").addEventListener("change", (e) => {
+
     setLanguage(e.target.value);
-    setTimeout(applyI18nDetail, 0);
+
+    location.reload();
+
 });
 
 </script>
-
 <footer class="footer">
 
     <div class="footer-container">
