@@ -77,7 +77,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Jadever JWL电子秤",
 
@@ -239,7 +239,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Vibra ALC计数秤",
 
@@ -413,7 +413,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Oneko JK-A电子秤",
 
@@ -578,7 +578,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Ohaus RC21PE电子计数秤",
 
@@ -749,7 +749,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "VIBRA HAW电子秤",
 
@@ -923,7 +923,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Jadever JCL计数秤",
 
@@ -1090,7 +1090,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Oneko JK-A+计数秤",
 
@@ -1252,7 +1252,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Ohaus RC21P计数秤",
 
@@ -1422,7 +1422,7 @@ window.productTranslations = {
         ]
     },
 
-    cn: {
+    zh: {
 
         name: "Yaohua XK3190 A15E计数秤",
 
