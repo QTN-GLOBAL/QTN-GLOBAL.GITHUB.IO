@@ -11,6 +11,7 @@ const translations = {
         detailBtn: "Chi tiết",
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
         cart: "🛒 GIỎ HÀNG",
+        cartEmpty: "Giỏ hàng trống",
 
         heroLine1: "GIẢI PHÁP",
         heroLine2: "CÂN ĐIỆN TỬ",
@@ -85,6 +86,7 @@ const translations = {
         detailBtn: "Detail",
         slogan: "ACCURACY IN EVERY VALUE",
         cart: "🛒 CART",
+        cartEmpty: "Cart is empty",
 
         heroLine1: "SOLUTIONS",
         heroLine2: "ELECTRONIC SCALES",
@@ -159,6 +161,7 @@ const translations = {
         detailBtn: "详情",
         slogan: "精准体现每一个价值",
         cart: "🛒 购物车",
+        cartEmpty: "购物车为空",
 
         heroLine1: "电子衡器",
         heroLine2: "解决方案",

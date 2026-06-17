@@ -15,7 +15,7 @@ function renderCart() {
     const cart = Cart.get();
 
     if (!cart.length) {
-        body.innerHTML = "<p>Giỏ hàng trống</p>";
+       body.innerHTML = `<p>${t("cartEmpty")}</p>`;
         updateCartUI();
         return;
     }
