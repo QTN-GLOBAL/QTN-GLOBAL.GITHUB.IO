@@ -1523,11 +1523,13 @@ window.productTranslations = {
 
 function getTranslatedProduct(product) {
 
-    const lang = localStorage.getItem("lang") || "vi";
+    const lang =
+        localStorage.getItem("language") || "vi";
 
     if (lang === "vi") return product;
 
-   const trans = productTranslations?.[String(product.id)]?.[lang];
+    const trans =
+        window.productTranslations?.[String(product.id)]?.[lang];
 
     if (!trans) return product;
 
@@ -1539,7 +1541,6 @@ function getTranslatedProduct(product) {
         description: trans.description || product.description,
         specs: trans.specs || product.specs,
 
-        // 🔥 BẮT BUỘC GIỮ NGUYÊN
         folder: product.folder,
         category: product.category,
         images: product.images
