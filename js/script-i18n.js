@@ -297,23 +297,15 @@ function applyLanguage(lang) {
 
     document.documentElement.lang = lang;
 
-    // TEXT
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        if (dict[key]) el.innerHTML = dict[key];
+        el.innerHTML = dict[key] ?? "";
     });
 
-    // PLACEHOLDER
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
         const key = el.dataset.i18nPlaceholder;
-        if (dict[key]) el.placeholder = dict[key];
+        el.placeholder = dict[key] ?? "";
     });
-
-    // FOOTER + DYNAMIC VALUE FIX
-    const footerAddress = document.getElementById("footerAddress");
-    if (footerAddress && dict.addressText) {
-    footerAddress.innerText = dict.addressText;
-}
 }
 
 /* =========================
