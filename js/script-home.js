@@ -17,28 +17,36 @@ function renderProducts(productList = []) {
 
     const html = productList
         .filter(p => p && p.id && p.name)
-        .map(product => `
-            <div class="product-card">
 
-                <img
-                    src="images/${product.category}/${product.folder}/main.jpg"
-                    alt="${product.name}"
-                    onerror="this.src='images/no-image.jpg'"
-                >
+        .map(product => {
 
-                <div class="product-info">
+            product = getTranslatedProduct(product);
 
-                    <h3>${product.name}</h3>
+            return `
+                <div class="product-card">
 
-                    <a class="detail-btn"
-                       href="chitiet.html?id=${product.id}">
-                        ${t("detailBtn")}
-                    </a>
+                    <img
+                        src="images/${product.category}/${product.folder}/main.jpg"
+                        alt="${product.name}"
+                        onerror="this.src='images/no-image.jpg'"
+                    >
+
+                    <div class="product-info">
+
+                        <h3>${product.name}</h3>
+
+                        <a class="detail-btn"
+                           href="chitiet.html?id=${product.id}">
+                            ${t("detailBtn")}
+                        </a>
+
+                    </div>
 
                 </div>
+            `;
+        })
 
-            </div>
-        `).join("");
+        .join("");
 
     grid.innerHTML = html;
 }
