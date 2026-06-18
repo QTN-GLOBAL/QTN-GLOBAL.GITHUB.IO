@@ -869,16 +869,18 @@ function getTranslatedProduct(product) {
 
     if (!trans) return product;
 
-    return {
-        ...product,
+return {
+    ...product,
+    name: trans.name || product.name,
+    origin: trans.origin || product.origin,
+    description: trans.description || product.description,
 
-        name: trans.name || product.name,
-        origin: trans.origin || product.origin,
-        description: trans.description || product.description,
-        specs: trans.specs || product.specs,
+    specs: Array.isArray(trans.specs) && trans.specs.length
+        ? trans.specs
+        : product.specs,
 
-        folder: product.folder,
-        category: product.category,
-        images: product.images
-    };
+    folder: product.folder,
+    category: product.category,
+    images: product.images
+};
 }
