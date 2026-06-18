@@ -16,24 +16,24 @@ function renderProducts(productList = []) {
     grid.innerHTML = "";
 
     const html = productList
-        .filter(p => p && p.id && p.nameKey)
+        .filter(p => p && p.id && p.name)
 
         .map(product => {
 
-            
+            product = getTranslatedProduct(product);
 
             return `
                 <div class="product-card">
 
                     <img
                         src="images/${product.category}/${product.folder}/main.jpg"
-                        alt="${t(product.nameKey)}"
+                        alt="${product.name}"
                         onerror="this.src='images/no-image.jpg'"
                     >
 
                     <div class="product-info">
 
-                        <h3>${t(product.nameKey)}</h3>
+                        <h3>${product.name}</h3>
 
                         <a class="detail-btn"
                            href="chitiet.html?id=${product.id}">
