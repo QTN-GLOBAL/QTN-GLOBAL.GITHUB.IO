@@ -37,7 +37,7 @@ function renderCart() {
                 <img src="images/${item.category}/${item.folder}/main.jpg">
 
                 <div class="cart-info">
-                    <div class="cart-name">${item.name}</div>
+                    <div class="cart-name">${getTranslatedProduct(item).name}</div>
                     <div class="cart-capacity">${item.spec || ""}</div>
                 </div>
 
@@ -158,7 +158,7 @@ function renderHeaderCart() {
             <img src="images/${item.category}/${item.folder}/main.jpg">
 
             <div class="info">
-                <b>${item.name}</b><br>
+                <b>${getTranslatedProduct(item).name}</b><br>
                 <small>${item.spec || ""}</small>
             </div>
 
@@ -301,7 +301,11 @@ function getBuyPopupIds() {
 }
 function sendCartOrderZalo() {
 
-    if (!validateCustomerForm()) return;
+    if (!validateCustomerForm()) {
+
+        alert(t("fillCustomerInfo"));
+        return;
+    }
 
     const text = getOrderText();
 
@@ -315,16 +319,20 @@ function sendCartOrderZalo() {
 
     window.open("https://zalo.me/0383598603", "_blank");
 }
-
 function sendCartOrderMessenger() {
 
-    if (!validateCustomerForm()) return;
+    if (!validateCustomerForm()) {
+
+        alert(t("fillCustomerInfo"));
+        return;
+    }
 
     const text = getOrderText();
 
     navigator.clipboard.writeText(text).catch(() => {});
 
     const selectedIds = getBuyPopupIds();
+
     removeSelectedFromCart(selectedIds);
 
     closeBuyPopup();
