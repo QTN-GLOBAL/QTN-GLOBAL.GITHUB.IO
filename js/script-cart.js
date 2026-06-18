@@ -37,7 +37,7 @@ function renderCart() {
                 <img src="images/${item.category}/${item.folder}/main.jpg">
 
                 <div class="cart-info">
-                    <div class="cart-name">${getCartProductName(item)}</div>
+                    <div class="cart-name">${resolveProductName(item)}</div>
                     <div class="cart-capacity">${item.spec || ""}</div>
                 </div>
 
@@ -158,7 +158,7 @@ function renderHeaderCart() {
             <img src="images/${item.category}/${item.folder}/main.jpg">
 
             <div class="info">
-                <b>${item.name}</b><br>
+                <b>${resolveProductName(item)}</b><br>
                 <small>${item.spec || ""}</small>
             </div>
 
@@ -353,4 +353,16 @@ function getCartProductName(item) {
 
     // luôn lấy name (quan trọng)
     return data.name || item.name;
+}
+function resolveProductName(item) {
+
+    const lang = localStorage.getItem("language") || "vi";
+
+    const p = window.productTranslations?.[item.id];
+
+    if (p?.[lang]?.name) return p[lang].name;
+
+    if (p?.[lang] && typeof p[lang] === "string") return p[lang];
+
+    return item.name;
 }
