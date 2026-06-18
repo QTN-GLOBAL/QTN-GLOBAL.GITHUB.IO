@@ -20,7 +20,7 @@ function renderProducts(productList = []) {
 
         .map(product => {
 
-            product = getTranslatedProduct(product);
+            
 
             return `
                 <div class="product-card">
