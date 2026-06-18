@@ -289,9 +289,7 @@ function t(key) {
 /* =========================
    APPLY LANGUAGE TO PAGE
 ========================= */
-
 function applyLanguage(lang) {
-
     const dict = translations[lang];
     if (!dict) return;
 
@@ -299,12 +297,16 @@ function applyLanguage(lang) {
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        el.innerHTML = dict[key] ?? "";
+        if (dict[key]) {
+            el.textContent = dict[key]; // ❗ KHÔNG dùng innerHTML
+        }
     });
 
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
         const key = el.dataset.i18nPlaceholder;
-        el.placeholder = dict[key] ?? "";
+        if (dict[key]) {
+            el.placeholder = dict[key];
+        }
     });
 }
 
@@ -334,9 +336,7 @@ function setLanguage(lang) {
     }, 0);
 
     // optional re-render product list
-    if (typeof renderProducts === "function") {
-        renderProducts(getProducts());
-    }
+    window.dispatchEvent(new Event("languageChanged"));
 }
 
 /* =========================
@@ -358,5 +358,10 @@ document.addEventListener("DOMContentLoaded", () => {
         select.addEventListener("change", function () {
             setLanguage(this.value);
         });
+    }
+});
+window.addEventListener("languageChanged", () => {
+    if (typeof renderProducts === "function") {
+        renderProducts(getProducts());
     }
 });
