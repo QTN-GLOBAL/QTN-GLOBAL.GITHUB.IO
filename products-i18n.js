@@ -4,7 +4,7 @@
 
 window.productTranslations = { 
 
-{
+
     "1": {
         "en": {
             "name": "Jadever JWL Electronic Scale",
@@ -847,7 +847,7 @@ window.productTranslations = {
             "specs": []
         }
     }
-}};
+};
 
 
 
