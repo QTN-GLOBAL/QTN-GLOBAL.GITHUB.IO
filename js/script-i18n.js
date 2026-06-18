@@ -281,8 +281,8 @@ function t(key) {
 
     const lang = localStorage.getItem("language") || "vi";
 
-    return translations?.[lang]?.[key]
-        || translations?.vi?.[key]
+    return productTranslations?.[lang]?.[key]
+        || productTranslations?.vi?.[key]
         || key;
 }
 
