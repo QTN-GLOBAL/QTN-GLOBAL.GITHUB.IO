@@ -2246,8 +2246,1890 @@ window.productTranslations = {
 
         ]
     }
-}
+},
+15: {
+
+    en: {
+
+        name: "EXCELL FB530 Printing Weight Indicator",
+
+        origin: "Taiwan",
+
+        description: "The EXCELL FB530 printing weight indicator is a high-end industrial display unit integrated with a thermal printer. It is designed for floor scales, bench scales, animal weighing systems, and industrial applications. It supports receipt printing, weight checking, counting, and fast data storage.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Resolution</th>
+<th>Internal Resolution</th>
+<th>Units</th>
+<th>Loadcell Connection</th>
+</tr>
+
+<tr>
+<td>FB530</td>
+<td>1/30,000</td>
+<td>1/600,000</td>
+<td>kg / g / lb</td>
+<td>4 × 350Ω loadcells</td>
+</tr>
+
+</table>`,
+
+"OIML Class III accuracy standard",
+
+"6-digit LCD display with LED backlight",
+
+"Digit height: 25mm",
+
+"Indicator size: 276 × 172 × 153 mm",
+
+"Functions: weighing, counting, accumulation, tare",
+
+"HI / OK / LO check weighing function",
+
+"HOLD function for weight retention",
+
+"Animal weighing function",
+
+"Auto zero tracking at startup",
+
+"Automatic calibration function",
+
+"Data retention during power failure",
+
+"Built-in mini thermal printer",
+
+"Prints date/time, ticket number, total weight",
+
+"RS232 communication port",
+
+"Power supply: AC 110V/220V ±10% + DC 6V/4Ah rechargeable battery",
+
+"Battery operating time: approximately 48 ~ 72 hours",
+
+"Operating temperature: -10°C ~ 40°C",
+
+"Anti-dust design suitable for industrial environments"
+
+        ]
+    },
+
+    zh: {
+
+        name: "EXCELL FB530打印称重仪表",
+
+        origin: "台湾",
+
+        description: "EXCELL FB530打印称重仪表是一款高端工业称重显示设备，内置热敏打印机，适用于地磅、台秤、动物称重及工业称重系统。支持小票打印、重量检测、计数及数据快速存储。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>型号</th>
+<th>分辨率</th>
+<th>内部分辨率</th>
+<th>单位</th>
+<th>传感器连接</th>
+</tr>
+
+<tr>
+<td>FB530</td>
+<td>1/30,000</td>
+<td>1/600,000</td>
+<td>kg / g / lb</td>
+<td>4 × 350Ω 传感器</td>
+</tr>
+
+</table>`,
+
+"符合OIML III级精度标准",
+
+"6位LCD显示，LED背光",
+
+"数字高度：25mm",
+
+"仪表尺寸：276 × 172 × 153 mm",
+
+"功能：称重、计数、累计、去皮",
+
+"重量分级检测功能（HI / OK / LO）",
+
+"保持（HOLD）功能",
+
+"动物称重功能",
+
+"开机自动置零",
+
+"自动校准功能",
+
+"断电数据保存",
+
+"内置微型热敏打印机",
+
+"支持打印日期时间、票号、总重量",
+
+"RS232通讯接口",
+
+"电源：AC 110V/220V ±10% + DC 6V/4Ah充电电池",
+
+"电池续航时间约48~72小时",
+
+"工作温度：-10°C ~ 40°C",
+
+"防尘设计，适用于工业环境"
+
+    ]
+    }
+},
+16: {
+
+    en: {
+
+        name: "EXCELL BTW Industrial Weight Indicator",
+
+        origin: "Taiwan",
+
+        description: "The EXCELL BTW weight indicator is a robust industrial design suitable for bench scales, floor scales, and industrial weighing systems. It features a clear LCD/LED display and supports multiple weighing and check functions for stable performance in demanding environments.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Resolution</th>
+<th>Internal Resolution</th>
+<th>Units</th>
+<th>Loadcell Connection</th>
+</tr>
+
+<tr>
+<td>BTW</td>
+<td>1/15,000</td>
+<td>1/30,000</td>
+<td>kg / lb</td>
+<td>4-wire or 6-wire loadcell</td>
+</tr>
+
+</table>`,
+
+"OIML Class III accuracy standard",
+
+"6-digit LCD display with green backlight or red LED",
+
+"Digit height: 25mm",
+
+"Indicator size: 235 × 165 × 127 mm",
+
+"Functions: weighing, simple counting, tare, accumulation",
+
+"HI / OK / LO check weighing function",
+
+"Auto zero tracking at startup",
+
+"Automatic calibration function",
+
+"Digital filtering for noise reduction",
+
+"PCB coated for moisture and anti-interference protection",
+
+"RS232 communication port",
+
+"Power supply: AC 110V/220V ±10% or DC 6V/4.4Ah rechargeable battery",
+
+"Battery operating time: approximately 72 hours",
+
+"Operating temperature: 0°C ~ 40°C",
+
+"Designed for industrial and warehouse environments"
+
+        ]
+    },
+
+    zh: {
+
+        name: "EXCELL BTW工业称重仪表",
+
+        origin: "台湾",
+
+        description: "EXCELL BTW称重仪表采用坚固工业设计，适用于台秤、地磅及工业称重系统。配备清晰LCD/LED显示屏，支持多种称重及检重功能，适用于复杂工业环境。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>型号</th>
+<th>分辨率</th>
+<th>内部分辨率</th>
+<th>单位</th>
+<th>传感器连接</th>
+</tr>
+
+<tr>
+<td>BTW</td>
+<td>1/15,000</td>
+<td>1/30,000</td>
+<td>kg / lb</td>
+<td>4线或6线传感器</td>
+</tr>
+
+</table>`,
+
+"符合OIML III级精度标准",
+
+"6位LCD显示，绿色背光或红色LED",
+
+"数字高度：25mm",
+
+"仪表尺寸：235 × 165 × 127 mm",
+
+"功能：称重、简单计数、去皮、累计",
+
+"重量检测功能（HI / OK / LO）",
+
+"开机自动置零",
+
+"自动校准功能",
+
+"数字滤波抗干扰设计",
+
+"电路板防潮防干扰涂层处理",
+
+"RS232通讯接口",
+
+"电源：AC 110V/220V ±10%或DC 6V/4.4Ah充电电池",
+
+"电池续航时间约72小时",
+
+"工作温度：0°C ~ 40°C",
+
+"适用于工业及仓储环境"
+
+    ]
+    }
+},
+17: {
+
+    en: {
+
+        name: "EXCELL BTW-E Industrial Weight Indicator",
+
+        origin: "Taiwan",
+
+        description: "The EXCELL BTW-E weight indicator is a durable industrial display unit designed for bench scales, floor scales, and industrial weighing systems. It features fast processing speed, high stability, and supports multiple check weighing functions.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Resolution</th>
+<th>AD Converter</th>
+<th>Units</th>
+<th>Loadcell Connection</th>
+</tr>
+
+<tr>
+<td>BTW-E</td>
+<td>1/15,000</td>
+<td>24-bit</td>
+<td>kg / lb</td>
+<td>4-wire or 6-wire loadcell</td>
+</tr>
+
+</table>`,
+
+"OIML Class III accuracy standard",
+
+"6-digit LCD display with green backlight or red LED",
+
+"Digit height: 25mm",
+
+"Indicator size: 235 × 165 × 127 mm",
+
+"Functions: weighing, simple counting, accumulation, tare",
+
+"HI / OK / LO check weighing function",
+
+"Auto zero tracking at startup",
+
+"HOLD function for weight retention",
+
+"PCB coated for moisture and anti-interference protection",
+
+"Dust and light water-resistant keypad design",
+
+"RS232 communication port",
+
+"Power supply: AC 110V/220V ±10% or DC 6V/4Ah rechargeable battery",
+
+"Battery operating time: approximately 72 hours",
+
+"Operating temperature: 0°C ~ 40°C",
+
+"Designed for industrial and warehouse environments"
+
+        ]
+    },
+
+    zh: {
+
+        name: "EXCELL BTW-E工业称重仪表",
+
+        origin: "台湾",
+
+        description: "EXCELL BTW-E称重仪表是一款坚固耐用的工业显示设备，适用于台秤、地磅及工业称重系统。具有快速处理能力、高稳定性，并支持多种检重功能。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>型号</th>
+<th>分辨率</th>
+<th>AD转换器</th>
+<th>单位</th>
+<th>传感器连接</th>
+</tr>
+
+<tr>
+<td>BTW-E</td>
+<td>1/15,000</td>
+<td>24位</td>
+<td>kg / lb</td>
+<td>4线或6线传感器</td>
+</tr>
+
+</table>`,
+
+"符合OIML III级精度标准",
+
+"6位LCD显示，绿色背光或红色LED",
+
+"数字高度：25mm",
+
+"仪表尺寸：235 × 165 × 127 mm",
+
+"功能：称重、简单计数、累计、去皮",
+
+"重量检测功能（HI / OK / LO）",
+
+"开机自动置零",
+
+"保持（HOLD）功能",
+
+"电路板防潮防干扰涂层",
+
+"按键防尘防轻微水溅设计",
+
+"RS232通讯接口",
+
+"电源：AC 110V/220V ±10%或DC 6V/4Ah充电电池",
+
+"电池续航时间约72小时",
+
+"工作温度：0°C ~ 40°C",
+
+"适用于工业及仓储环境"
+
+    ]
+    }
+},
+18: {
+
+    en: {
+
+        name: "EXCELL EX-2001 Truck Scale Indicator",
+
+        origin: "Taiwan",
+
+        description: "The EXCELL EX-2001 truck scale indicator is designed for vehicle scales, tank scales, batching systems, and industrial weighing applications. It offers high stability, strong anti-interference performance, fast processing speed, and supports multiple automatic control functions.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Resolution</th>
+<th>A/D Speed</th>
+<th>Loadcell Connection</th>
+<th>Output</th>
+</tr>
+
+<tr>
+<td>EX-2001</td>
+<td>1/30,000</td>
+<td>120 times/sec</td>
+<td>8~16 × 350Ω / 700Ω loadcells</td>
+<td>RS232 / Analog / Relay / BCD</td>
+</tr>
+
+</table>`,
+
+"OIML Class III accuracy standard",
+
+"7-digit red LED display, 20mm digit height",
+
+"Input sensitivity: 0.3 μV/d",
+
+"Loadcell signal range: 1 ~ 20mV/V",
+
+"5-point linear calibration",
+
+"Digital filter for vibration and noise reduction",
+
+"Animal weighing function",
+
+"HI / OK / LO check weighing function",
+
+"Accumulation and data storage function",
+
+"Auto zero tracking at startup",
+
+"RS232 communication port",
+
+"Optional outputs: Analog / Relay / BCD",
+
+"Power supply: AC 100V ~ 240V",
+
+"Indicator size: 210 × 108 × 207 mm",
+
+"Operating temperature: 0°C ~ 40°C",
+
+"Designed for truck scales and industrial weighing systems"
+
+    ]
+    },
+
+    zh: {
+
+        name: "EXCELL EX-2001汽车衡称重仪表",
+
+        origin: "台湾",
+
+        description: "EXCELL EX-2001汽车衡称重仪表专为汽车衡、料罐秤、配料系统及工业称重应用设计。具有高稳定性、强抗干扰能力、快速处理速度，并支持多种自动控制功能。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>型号</th>
+<th>分辨率</th>
+<th>A/D速度</th>
+<th>传感器连接</th>
+<th>输出</th>
+</tr>
+
+<tr>
+<td>EX-2001</td>
+<td>1/30,000</td>
+<td>120次/秒</td>
+<td>8~16个350Ω / 700Ω传感器</td>
+<td>RS232 / 模拟 / 继电器 / BCD</td>
+</tr>
+
+</table>`,
+
+"符合OIML III级精度标准",
+
+"7位红色LED显示，数字高度20mm",
+
+"输入灵敏度：0.3 μV/d",
+
+"传感器信号范围：1 ~ 20mV/V",
+
+"5点线性校准",
+
+"数字滤波抗震抗干扰设计",
+
+"动物称重功能",
+
+"重量检测功能（HI / OK / LO）",
+
+"累计与数据存储功能",
+
+"开机自动置零",
+
+"RS232通讯接口",
+
+"可选输出：模拟 / 继电器 / BCD",
+
+"电源：AC 100V ~ 240V",
+
+"仪表尺寸：210 × 108 × 207 mm",
+
+"工作温度：0°C ~ 40°C",
+
+"适用于汽车衡及工业称重系统"
+
+    ]
+    }
+},
+19: {
+
+    en: {
+
+        name: "EXCELL KWS Industrial Weight Indicator",
+
+        origin: "Taiwan",
+
+        description: "The EXCELL KWS weight indicator is a durable industrial device designed for bench scales, floor scales, and industrial weighing systems. It features a large LCD display for easy reading and supports multiple weighing and check functions with high stability.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Resolution</th>
+<th>Internal Resolution</th>
+<th>Units</th>
+<th>Loadcell Connection</th>
+</tr>
+
+<tr>
+<td>KWS</td>
+<td>1/15,000</td>
+<td>1/30,000</td>
+<td>kg / lb</td>
+<td>4-wire or 6-wire loadcell</td>
+</tr>
+
+</table>`,
+
+"OIML Class III accuracy standard",
+
+"6-digit LCD display with LED backlight",
+
+"Display size: 113 × 45 mm",
+
+"Digit height: 25 mm",
+
+"Indicator size: 245 × 170 × 153 mm",
+
+"Functions: weighing, tare, zero tracking",
+
+"HI / OK / LO check weighing function",
+
+"Automatic calibration function",
+
+"Dual overload protection system",
+
+"Industrial-grade anti-interference filtering system",
+
+"Waterproof keypad with 3M adhesive sealing",
+
+"Desktop or wall-mount installation",
+
+"Power supply: AC 110V/220V ±10% or DC 6V/4Ah rechargeable battery",
+
+"Operating temperature: 0°C ~ 40°C",
+
+"Designed for industrial and warehouse environments"
+
+    ]
+    },
+
+    zh: {
+
+        name: "EXCELL KWS工业称重仪表",
+
+        origin: "台湾",
+
+        description: "EXCELL KWS称重仪表是一款坚固耐用的工业设备，适用于台秤、地磅及工业称重系统。配备大尺寸LCD显示屏，读数清晰，并支持多种称重与检重功能，稳定性高。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>型号</th>
+<th>分辨率</th>
+<th>内部分辨率</th>
+<th>单位</th>
+<th>传感器连接</th>
+</tr>
+
+<tr>
+<td>KWS</td>
+<td>1/15,000</td>
+<td>1/30,000</td>
+<td>kg / lb</td>
+<td>4线或6线传感器</td>
+</tr>
+
+</table>`,
+
+"符合OIML III级精度标准",
+
+"6位LCD显示，LED背光",
+
+"显示尺寸：113 × 45 mm",
+
+"数字高度：25mm",
+
+"仪表尺寸：245 × 170 × 153 mm",
+
+"功能：称重、去皮、零点追踪",
+
+"重量检测功能（HI / OK / LO）",
+
+"自动校准功能",
+
+"双重过载保护系统",
+
+"工业级抗干扰滤波系统",
+
+"3M密封防水按键设计",
+
+"可桌面或壁挂安装",
+
+"电源：AC 110V/220V ±10%或DC 6V/4Ah充电电池",
+
+"工作温度：0°C ~ 40°C",
+
+"适用于工业及仓储环境"
+
+    ]
+    }
+},
+20: {
+
+    en: {
+
+        name: "FAITHFUL FA10035XN Analytical Balance (5-digit precision)",
+
+        origin: "China",
+
+        description: "The FAITHFUL FA10035XN analytical balance is an ultra-high precision laboratory scale designed for scientific research, quality control, and precious metal applications. It features a wind-protected glass chamber for stable readings and offers up to 0.01mg readability for extremely accurate measurements.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Stainless Steel Pan</th>
+<th>Units</th>
+</tr>
+
+<tr>
+<td>30g</td>
+<td>0.01mg / 0.1mg</td>
+<td rowspan="5">Ø90mm</td>
+<td rowspan="5">g / mg / ct / oz</td>
+</tr>
+
+<tr>
+<td>50g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+<tr>
+<td>80g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+<tr>
+<td>100g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+<tr>
+<td>200g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+</table>`,
+
+"Repeatability: ±0.02mg",
+
+"Linearity: ±0.03mg",
+
+"Windshield chamber with 3 sliding doors",
+
+"High-contrast LCD display",
+
+"Stabilization time ≤ 3 seconds",
+
+"Internal automatic calibration",
+
+"Weighing functions: percent, tare, sample counting, unit conversion",
+
+"RS232 interface for PC and printer connection",
+
+"Power supply: AC 220V adapter",
+
+"Operating temperature: 5°C ~ 25°C",
+
+"Applications: laboratory, research, quality control, precious metals"
+
+    ]
+    },
+
+    zh: {
+
+        name: "FAITHFUL FA10035XN五位分析天平",
+
+        origin: "中国",
+
+        description: "FAITHFUL FA10035XN分析天平是一款超高精度实验室电子天平，适用于科研、质量检测及贵金属行业。配备防风玻璃罩，稳定性高，分辨率可达0.01mg，测量极其精确。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>量程</th>
+<th>分辨率</th>
+<th>不锈钢秤盘</th>
+<th>单位</th>
+</tr>
+
+<tr>
+<td>30g</td>
+<td>0.01mg / 0.1mg</td>
+<td rowspan="5">Ø90mm</td>
+<td rowspan="5">g / mg / ct / oz</td>
+</tr>
+
+<tr>
+<td>50g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+<tr>
+<td>80g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+<tr>
+<td>100g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+<tr>
+<td>200g</td>
+<td>0.01mg / 0.1mg</td>
+</tr>
+
+</table>`,
+
+"重复性：±0.02mg",
+
+"线性误差：±0.03mg",
+
+"三面防风玻璃罩设计",
+
+"高对比LCD显示屏",
+
+"稳定时间≤3秒",
+
+"内置自动校准功能",
+
+"功能：百分比称重、去皮、计数、单位转换",
+
+"RS232接口支持电脑和打印机连接",
+
+"电源：AC 220V适配器",
+
+"工作温度：5°C ~ 25°C",
+
+"应用：实验室、科研、检测及贵金属行业"
+
+    ]
+    }
+},
+21: {
+
+    en: {
+
+        name: "Shinko GS Electronic Precision Balance",
+
+        origin: "Taiwan",
+
+        description: "The Shinko GS electronic balance is a high-precision tabletop scale designed for laboratory, production, packaging, and commercial use. It features a clear LCD display, stable operation, and stainless steel weighing platform.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Pan Size</th>
+<th>Dimensions</th>
+</tr>
+
+<tr>
+<td>GS223</td>
+<td>220g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS323</td>
+<td>320g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS423</td>
+<td>420g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS623</td>
+<td>620g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS620</td>
+<td>620g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS1202</td>
+<td>1200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS2202</td>
+<td>2200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS3202</td>
+<td>3200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS4202</td>
+<td>4200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS6202</td>
+<td>6200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS8201</td>
+<td>8200g</td>
+<td>0.1g</td>
+<td>180 × 160mm</td>
+<td>265 × 192 × 87mm</td>
+</tr>
+
+<tr>
+<td>GS12001</td>
+<td>12000g</td>
+<td>0.1g</td>
+<td>180 × 160mm</td>
+<td>265 × 192 × 87mm</td>
+</tr>
+
+</table>`,
+
+"High-precision load cell sensor",
+"Fast stabilization time",
+"Backlit LCD display",
+"Tare and weighing functions",
+"Auto zero tracking",
+"Units: g / kg / oz",
+"AC adapter or rechargeable battery"
+
+        ]
+    },
+
+    zh: {
+
+        name: "Shinko GS电子精密天平",
+
+        origin: "台湾",
+
+        description: "Shinko GS电子天平是一款高精度台式电子秤，适用于实验室、生产、包装及商业用途。配备清晰LCD显示屏，运行稳定，并采用不锈钢秤盘。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>型号</th>
+<th>量程</th>
+<th>精度</th>
+<th>秤盘尺寸</th>
+<th>外形尺寸</th>
+</tr>
+
+<tr>
+<td>GS223</td>
+<td>220g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS323</td>
+<td>320g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS423</td>
+<td>420g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS623</td>
+<td>620g</td>
+<td>0.001g</td>
+<td>Ø118mm</td>
+<td>235 × 182 × 165mm</td>
+</tr>
+
+<tr>
+<td>GS620</td>
+<td>620g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS1202</td>
+<td>1200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS2202</td>
+<td>2200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS3202</td>
+<td>3200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS4202</td>
+<td>4200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS6202</td>
+<td>6200g</td>
+<td>0.01g</td>
+<td>170 × 142mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>GS8201</td>
+<td>8200g</td>
+<td>0.1g</td>
+<td>180 × 160mm</td>
+<td>265 × 192 × 87mm</td>
+</tr>
+
+<tr>
+<td>GS12001</td>
+<td>12000g</td>
+<td>0.1g</td>
+<td>180 × 160mm</td>
+<td>265 × 192 × 87mm</td>
+</tr>
+
+</table>`,
+
+"高精度称重传感器",
+"快速稳定时间",
+"背光LCD显示屏",
+"去皮与称重功能",
+"自动归零追踪",
+"单位：g / kg / oz",
+"交流适配器或充电电池"
+
+        ]
+    }
+
+},
+22: {
+
+    en: {
+
+        name: "OKS-DJ Precision Laboratory Balance",
+
+        origin: "Taiwan",
+
+        description: "OKS-DJ series precision balance is designed for laboratory, jewelry, and industrial applications with high accuracy and stable performance.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Model</th>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Pan Size</th>
+<th>Dimensions</th>
+</tr>
+
+<tr>
+<td>OKS-DJ 320A</td>
+<td>320g</td>
+<td>0.01g</td>
+<td>Ø118mm</td>
+<td>270 × 178 × 165mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 502A</td>
+<td>500g</td>
+<td>0.01g</td>
+<td>Ø118mm</td>
+<td>270 × 178 × 165mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 602A</td>
+<td>600g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 1202A</td>
+<td>1200g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+</table>`,
+
+"Stable load cell sensor",
+"Fast response time",
+"LCD display",
+"Tare and counting functions",
+"Weighing units g / oz / ct"
+
+        ]
+    },
+
+    zh: {
+
+        name: "OKS-DJ精密电子天平",
+
+        origin: "台湾",
+
+        description: "OKS-DJ系列电子天平适用于实验室、珠宝及工业领域，具有高精度与稳定性能。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>型号</th>
+<th>量程</th>
+<th>精度</th>
+<th>秤盘</th>
+<th>尺寸</th>
+</tr>
+
+<tr>
+<td>OKS-DJ 320A</td>
+<td>320g</td>
+<td>0.01g</td>
+<td>Ø118mm</td>
+<td>270 × 178 × 165mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 502A</td>
+<td>500g</td>
+<td>0.01g</td>
+<td>Ø118mm</td>
+<td>270 × 178 × 165mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 602A</td>
+<td>600g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+<tr>
+<td>OKS-DJ 1202A</td>
+<td>1200g</td>
+<td>0.01g</td>
+<td>157 × 148mm</td>
+<td>235 × 182 × 75mm</td>
+</tr>
+
+</table>`,
+
+"高精度传感器",
+"快速稳定",
+"LCD显示屏",
+"去皮与计数功能",
+"单位 g / oz / ct"
+
+        ]
+    }
+
+},
+23: {
+
+    en: {
+
+        name: "HZ-8X Waterproof Seafood Scale",
+
+        origin: "Taiwan",
+
+        description: "The HZ-8X waterproof scale is designed for seafood, fresh food, and wet environments. It features strong waterproof protection, clear display, and stable high-accuracy performance for markets, cold storage, and food processing.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Platform Size</th>
+<th>Scale Size</th>
+</tr>
+
+<tr>
+<td>3kg</td>
+<td>0.5g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>6kg</td>
+<td>1g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>15kg</td>
+<td>2g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>5g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+</table>`,
+
+            "Designed for wet seafood environments",
+            "Bright LED/LCD display",
+            "Stainless steel platform",
+            "Weighing and tare functions",
+            "Stable performance in humid conditions",
+            "AC 220V or rechargeable battery",
+            "Long battery life",
+            "Fast response and high accuracy",
+            "Operating temperature: 0°C ~ 40°C",
+            "OIML Class III accuracy standard"
+        ]
+    },
+
+    zh: {
+
+        name: "HZ-8X防水海鲜电子秤",
+
+        origin: "台湾",
+
+        description: "HZ-8X防水电子秤专为海鲜、水产及潮湿环境设计，具有防水性能强、显示清晰、精度高的特点，适用于市场、冷库及食品加工行业。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>量程</th>
+<th>分度值</th>
+<th>秤盘尺寸</th>
+<th>秤体尺寸</th>
+</tr>
+
+<tr>
+<td>3kg</td>
+<td>0.5g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>6kg</td>
+<td>1g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>15kg</td>
+<td>2g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>5g</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+</table>`,
+
+            "专为水产及潮湿环境设计",
+            "LED/LCD清晰显示",
+            "不锈钢秤盘",
+            "称重与去皮功能",
+            "适用于潮湿环境稳定运行",
+            "AC 220V或充电电池供电",
+            "电池续航时间长",
+            "高精度快速响应",
+            "工作温度：0°C ~ 40°C",
+            "符合OIML III级标准"
+        ]
+    }
+},
+24: {
+
+    en: {
+
+        name: "SUPER SS Waterproof Saltwater Scale",
+
+        origin: "Taiwan",
+
+        description: "The SUPER SS waterproof saltwater scale is designed for seafood applications with IP68 waterproof protection, resistance to saltwater corrosion, and stable operation in wet environments. Built with durable 304 stainless steel, a bright red LED display, and high accuracy, it is ideal for seafood markets, cold storage, food processing plants, and seafood factories.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Platform Size</th>
+<th>Scale Size</th>
+<th>Units</th>
+</tr>
+
+<tr>
+<td>3kg</td>
+<td>0.5g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+<tr>
+<td>6kg</td>
+<td>1g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+<tr>
+<td>15kg</td>
+<td>2g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>5g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+</table>`,
+
+            "IP68 waterproof protection with excellent saltwater resistance",
+            "304 stainless steel frame and housing",
+            "Dual bright red LED displays",
+            "Weighing, tare, and zero functions",
+            "Fast stabilization within 3 seconds",
+            "AC 220V or rechargeable 6V/4Ah battery",
+            "Battery life up to 80 hours",
+            "Stable operation in wet and cold environments",
+            "Operating temperature: 10°C ~ 60°C",
+            "OIML Class III accuracy standard"
+        ]
+    },
+
+    zh: {
+
+        name: "SUPER SS防海水电子秤",
+
+        origin: "台湾",
+
+        description: "SUPER SS防水电子秤专为水产行业设计，具备IP68防水等级、防海水腐蚀能力，可在潮湿环境中稳定运行。采用304不锈钢材质与红色LED显示屏，适用于海鲜市场、冷库及食品加工行业。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>量程</th>
+<th>分度值</th>
+<th>秤盘尺寸</th>
+<th>秤体尺寸</th>
+<th>单位</th>
+</tr>
+
+<tr>
+<td>3kg</td>
+<td>0.5g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+<tr>
+<td>6kg</td>
+<td>1g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+<tr>
+<td>15kg</td>
+<td>2g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>5g</td>
+<td>230 × 190mm</td>
+<td>235 × 220 × 65mm</td>
+<td>kg / g / lb / oz</td>
+</tr>
+
+</table>`,
+
+            "IP68防水等级，耐海水腐蚀",
+            "304不锈钢结构",
+            "双红色LED显示屏",
+            "称重、去皮、归零功能",
+            "3秒快速稳定",
+            "AC 220V或充电电池供电",
+            "电池续航最长80小时",
+            "适用于潮湿与冷库环境",
+            "工作温度：10°C ~ 60°C",
+            "符合OIML III级标准"
+        ]
+    }
+},
+25: {
+
+    en: {
+
+        name: "IND-PP Label Printing Scale",
+
+        origin: "Taiwan",
+
+        description: "The IND-PP label printing scale is a price-computing bench scale with built-in label printer designed for warehouses, agricultural products, food processing, and retail systems. It supports product storage, fast label printing, and stable high-accuracy operation.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Platform Size</th>
+</tr>
+
+<tr>
+<td>50kg</td>
+<td>10g</td>
+<td rowspan="7">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    Custom sizes available upon request
+</td>
+</tr>
+
+<tr>
+<td>60kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>100kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>200kg</td>
+<td>20g / 50g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>50g</td>
+</tr>
+
+<tr>
+<td>500kg</td>
+<td>100g</td>
+</tr>
+
+</table>`,
+
+            "Model: IND PP",
+            "Built-in mini label printer",
+            "Stores up to 2000 PLU items",
+            "Prints product info, date/time, weight, unit price, and total amount",
+            "Triple display design",
+            "RS232 communication port",
+            "Optional USB Excel export",
+            "Fast stabilization under 2 seconds",
+            "12V/3A adapter and 6V/4.5Ah rechargeable battery",
+            "Weighing, pricing, printing, and data storage functions",
+            "Simple and user-friendly operation",
+            "OIML Class III accuracy standard"
+        ]
+    },
+
+    zh: {
+
+        name: "IND-PP标签打印电子秤",
+
+        origin: "台湾",
+
+        description: "IND-PP标签打印电子秤是一款带内置打印机的计价电子秤，适用于仓库、农产品、食品加工及零售系统，支持商品信息存储、快速打印标签及稳定高精度称重。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>量程</th>
+<th>分度值</th>
+<th>台面尺寸</th>
+</tr>
+
+<tr>
+<td>50kg</td>
+<td>10g</td>
+<td rowspan="7">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    可按需求定制
+</td>
+</tr>
+
+<tr>
+<td>60kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>100kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>200kg</td>
+<td>20g / 50g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>50g</td>
+</tr>
+
+<tr>
+<td>500kg</td>
+<td>100g</td>
+</tr>
+
+</table>`,
+
+            "内置标签打印机",
+            "最多存储2000个PLU商品",
+            "可打印商品信息、时间、重量、单价和金额",
+            "三屏显示设计",
+            "RS232通讯接口",
+            "可选USB导出Excel",
+            "2秒内快速稳定",
+            "12V/3A电源及6V/4.5Ah充电电池",
+            "称重、计价、打印、数据存储功能",
+            "操作简单易用",
+            "符合OIML III级标准"
+        ]
+    }
+},
+26: {
+
+    en: {
+
+        name: "SLH 200 Stainless Steel Chair Scale",
+
+        origin: "Vietnam",
+
+        description: "The SLH 200 stainless steel chair scale is a durable seated-type electronic scale designed for seafood, agricultural products, warehouses, and industrial environments. It offers high durability, water resistance, and stable performance in humid and heavy-duty conditions.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Platform Size</th>
+</tr>
+
+<tr>
+<td>60kg</td>
+<td>10g</td>
+<td rowspan="5">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    Custom size available
+</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>200kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>50g</td>
+</tr>
+
+<tr>
+<td>500kg</td>
+<td>100g</td>
+</tr>
+
+</table>`,
+
+            "Model: SLH 200SS",
+            "Stainless steel chair-type structure with high load capacity",
+            "Clear LED display indicator",
+            "High-precision and stable load cell system",
+            "Water-resistant design suitable for seafood environments",
+            "Rechargeable battery works 60–72 hours",
+            "Weighing, tare, and hold functions",
+            "Auto power-off for battery saving",
+            "Strong stainless steel frame, easy to clean",
+            "Applications: warehouses, seafood, agriculture, industrial production"
+        ]
+    },
+
+    zh: {
+
+        name: "SLH 200不锈钢座椅电子秤",
+
+        origin: "越南",
+
+        description: "SLH 200不锈钢座椅电子秤采用坚固座椅式设计，适用于水产、农产品、仓库及工业环境，具有良好的防水性、耐用性和稳定性。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>量程</th>
+<th>分度值</th>
+<th>台面尺寸</th>
+</tr>
+
+<tr>
+<td>60kg</td>
+<td>10g</td>
+<td rowspan="5">
+    30 × 40 mm<br>
+    40 × 50 mm<br>
+    42 × 52 mm<br>
+    可定制尺寸
+</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>200kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>50g</td>
+</tr>
+
+<tr>
+<td>500kg</td>
+<td>100g</td>
+</tr>
+
+</table>`,
+
+            "型号：SLH 200SS",
+            "不锈钢座椅式结构，高承载能力",
+            "LED清晰显示屏",
+            "高精度稳定传感器",
+            "防水设计适用于水产环境",
+            "充电电池可使用60–72小时",
+            "称重、去皮、保持功能",
+            "自动关机节能",
+            "不锈钢结构，易清洁",
+            "适用于仓库、水产、农业及工业"
+        ]
+    }
+},
+27: {
+
+    en: {
+
+        name: "XK3190 A12 Bench Chair Scale",
+
+        origin: "Taiwan",
+
+        description: "XK3190 A12 bench chair scale is an industrial weighing scale designed for livestock, agriculture, warehouse, and production environments. It uses the high-precision Yaohua A12 indicator with stable performance, easy operation, and durable structure.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Capacity</th>
+<th>Readability</th>
+<th>Platform Size</th>
+</tr>
+
+<tr>
+<td>60kg</td>
+<td>10g</td>
+<td rowspan="6">
+30 × 40 mm<br>
+40 × 50 mm<br>
+42 × 52 mm<br>
+(Custom sizes available)
+</td>
+</tr>
+
+<tr>
+<td>100kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>200kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>50g</td>
+</tr>
+
+<tr>
+<td>500kg</td>
+<td>100g</td>
+</tr>
+
+</table>`,
+
+"Model: XK3190 A12",
+"Sturdy chair-type design with powder-coated steel frame",
+"Yaohua A12 LED display indicator",
+"High accuracy and stable performance in vibration environments",
+"Functions: weighing, tare, zero, data hold",
+"Supports 1–4 loadcells",
+"Power supply: 220V + 6V rechargeable battery",
+"Optional stainless steel or steel platform",
+"Applications: livestock, agriculture, warehouse use",
+"OIML C3 standard"
+
+        ]
+    },
+
+    zh: {
+
+        name: "XK3190 A12坐式电子秤",
+
+        origin: "台湾",
+
+        description: "XK3190 A12坐式电子秤适用于畜牧、农业、仓储及工业生产环境，采用高精度Yaohua A12仪表，结构坚固，操作简单，运行稳定。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>量程</th>
+<th>精度</th>
+<th>台面尺寸</th>
+</tr>
+
+<tr>
+<td>60kg</td>
+<td>10g</td>
+<td rowspan="6">
+30 × 40 mm<br>
+40 × 50 mm<br>
+42 × 52 mm<br>
+（可定制尺寸）
+</td>
+</tr>
+
+<tr>
+<td>100kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>200kg</td>
+<td>20g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>50g</td>
+</tr>
+
+<tr>
+<td>500kg</td>
+<td>100g</td>
+</tr>
+
+</table>`,
+
+"型号：XK3190 A12",
+"坚固座式结构，碳钢烤漆框架",
+"Yaohua A12 LED显示仪表",
+"高精度，抗震性能稳定",
+"功能：称重、去皮、清零、数据保持",
+"支持1–4个传感器",
+"电源：220V + 6V充电电池",
+"可选不锈钢或钢制台面",
+"适用于畜牧、农业及仓储行业",
+"符合OIML C3标准"
+
+        ]
+    }
+},
 };
+
 
 
 
