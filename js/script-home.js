@@ -16,7 +16,7 @@ function renderProducts(productList = []) {
     grid.innerHTML = "";
 
     const html = productList
-        .filter(p => p && p.id && p.name)
+        .filter(p => p && p.id && p.nameKey)
 
         .map(product => {
 
@@ -27,13 +27,13 @@ function renderProducts(productList = []) {
 
                     <img
                         src="images/${product.category}/${product.folder}/main.jpg"
-                        alt="${product.name}"
+                        alt="${t(product.nameKey)}"
                         onerror="this.src='images/no-image.jpg'"
                     >
 
                     <div class="product-info">
 
-                        <h3>${product.name}</h3>
+                        <h3>${t(product.nameKey)}</h3>
 
                         <a class="detail-btn"
                            href="chitiet.html?id=${product.id}">
