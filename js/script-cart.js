@@ -37,7 +37,7 @@ function renderCart() {
                 <img src="images/${item.category}/${item.folder}/main.jpg">
 
                 <div class="cart-info">
-                    <div class="cart-name">${getTranslatedProduct(item).name}</div>
+                    <div class="cart-name">${item.name}</div>
                     <div class="cart-capacity">${item.spec || ""}</div>
                 </div>
 
@@ -158,7 +158,7 @@ function renderHeaderCart() {
             <img src="images/${item.category}/${item.folder}/main.jpg">
 
             <div class="info">
-                <b>${getTranslatedProduct(item).name}</b><br>
+                <b>${item.name}</b><br>
                 <small>${item.spec || ""}</small>
             </div>
 
