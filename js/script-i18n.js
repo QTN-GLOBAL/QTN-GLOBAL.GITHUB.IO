@@ -281,11 +281,10 @@ function t(key) {
 
     const lang = localStorage.getItem("language") || "vi";
 
-    return productTranslations?.[lang]?.[key]
-        || productTranslations?.vi?.[key]
+    return window.productTranslations?.[lang]?.[key]
+        || window.productTranslations?.vi?.[key]
         || key;
 }
-
 /* =========================
    APPLY LANGUAGE TO PAGE
 ========================= */
