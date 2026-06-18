@@ -37,7 +37,7 @@ function renderCart() {
                 <img src="images/${item.category}/${item.folder}/main.jpg">
 
                 <div class="cart-info">
-                    <div class="cart-name">${item.name}</div>
+                    <div class="cart-name">${getCartProductName(item)}</div>
                     <div class="cart-capacity">${item.spec || ""}</div>
                 </div>
 
@@ -338,4 +338,14 @@ function sendCartOrderMessenger() {
     closeBuyPopup();
 
     window.open("https://m.me/QTNSCALE", "_blank");
+}
+function getCartProductName(item) {
+
+    const lang = localStorage.getItem("language") || "vi";
+
+    if (lang === "vi") return item.name;
+    if (lang === "en") return item.name_en || item.name;
+    if (lang === "zh") return item.name_zh || item.name;
+
+    return item.name;
 }
