@@ -343,9 +343,11 @@ function getCartProductName(item) {
 
     const lang = localStorage.getItem("language") || "vi";
 
-    if (lang === "vi") return item.name;
-    if (lang === "en") return item.name_en || item.name;
-    if (lang === "zh") return item.name_zh || item.name;
+    const p = window.productTranslations?.[item.id];
+
+    if (p && p[lang]?.name) {
+        return p[lang].name;
+    }
 
     return item.name;
 }
