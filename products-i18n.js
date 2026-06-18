@@ -841,7 +841,6 @@ zh:[
 ]
 
 },
-window.productTranslations = {
 
 vi: {
 
