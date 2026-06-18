@@ -345,16 +345,12 @@ function getCartProductName(item) {
 
     const p = window.productTranslations?.[item.id];
 
-    if (p && p[lang]) {
+    if (!p) return item.name;
 
-        // nếu là object có name
-        if (typeof p[lang] === "object" && p[lang].name) {
-            return p[lang].name;
-        }
+    const data = p[lang] || p.vi;
 
-        // nếu là string
-        return p[lang];
-    }
+    if (!data) return item.name;
 
-    return item.name;
+    // luôn lấy name (quan trọng)
+    return data.name || item.name;
 }
