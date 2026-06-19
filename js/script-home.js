@@ -172,38 +172,3 @@ function handleSearch() {
 
     renderProducts(filtered);
 }
-
-function runSearch() {
-
-    const input = document.getElementById("searchInput");
-    if (!input) return;
-
-    const keyword = input.value.trim().toLowerCase();
-
-    const products = getProducts();
-
-    const result = !keyword
-        ? products
-        : products.filter(p =>
-            (p.name || "").toLowerCase().includes(keyword) ||
-            (p.description || "").toLowerCase().includes(keyword) ||
-            (p.brand || "").toLowerCase().includes(keyword)
-        );
-
-    renderProducts(result);
-}
-document.addEventListener("DOMContentLoaded", () => {
-
-    const input = document.getElementById("searchInput");
-
-    if (!input) return;
-
-    input.addEventListener("keydown", (e) => {
-
-        if (e.key === "Enter") {
-            e.preventDefault();
-            runSearch();
-        }
-    });
-
-});
