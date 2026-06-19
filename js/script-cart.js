@@ -358,8 +358,7 @@ function resolveProductName(item) {
 
     const lang = localStorage.getItem("language") || "vi";
 
-    const p = window.productTranslations?.[item.id];
-
+   const p = window.productTranslations?.[item.productId];
     if (p?.[lang]?.name) return p[lang].name;
 
     if (p?.[lang] && typeof p[lang] === "string") return p[lang];

@@ -98,8 +98,9 @@ if (!check || check.checked !== true) return;
         ) || 1;
 
         // 🔥 FIX QUAN TRỌNG: luôn có id
-        Cart.add({
-            id: Date.now() + Math.random(), // unique id
+       Cart.add({
+            id: Date.now() + Math.random(), // id dòng giỏ hàng
+            productId: product.id,          // id sản phẩm thật
             name: product.name,
             category: product.category,
             folder: product.folder,
