@@ -318,27 +318,17 @@ function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
 
-    applyLanguage(lang);
+    // ❌ KHÔNG dùng applyLanguage nữa
+    // applyLanguage(lang);
 
-    requestAnimationFrame(() => {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        el.textContent = t(key);
+    });
 
-        document.querySelectorAll("[data-i18n]").forEach(el => {
-            const key = el.getAttribute("data-i18n");
-            el.textContent = t(key);
-        });
-
-        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-            const key = el.getAttribute("data-i18n-placeholder");
-            el.placeholder = t(key);
-        });
-
-        if (typeof renderCart === "function") {
-            renderCart();
-        }
-
-        if (typeof renderProducts === "function") {
-            renderProducts(getProducts());
-        }
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        el.placeholder = t(key);
     });
 }
 /* =========================
