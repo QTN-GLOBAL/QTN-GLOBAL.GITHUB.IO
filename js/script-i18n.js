@@ -280,11 +280,10 @@ copiedOrderOpenMessenger:
    CORE FUNCTION
 ========================= */
 
+let currentLang = localStorage.getItem("language") || "vi";
+
 function t(key) {
-
-    const lang = localStorage.getItem("language") || "vi";
-
-    return translations?.[lang]?.[key]
+    return translations?.[currentLang]?.[key]
         || translations?.vi?.[key]
         || key;
 }
@@ -318,8 +317,7 @@ function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
 
-    // ❌ KHÔNG dùng applyLanguage nữa
-    // applyLanguage(lang);
+    currentLang = lang; // 🔥 THÊM DÒNG NÀY
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
