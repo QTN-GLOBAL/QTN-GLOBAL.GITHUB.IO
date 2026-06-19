@@ -11,25 +11,18 @@ function runSearch() {
     window.location.href = "index.html";
 }
 
-/* =========================
-   ENTER EVENT (FIXED)
-========================= */
 document.addEventListener("DOMContentLoaded", () => {
 
     const input = document.getElementById("searchInput");
     if (!input) return;
 
-    input.addEventListener("keydown", function (e) {
-
+    input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
             runSearch();
         }
     });
 
-    // 👇 optional: click icon kính lúp nếu có
     const btn = document.querySelector(".search-btn, .search-icon");
-    if (btn) {
-        btn.addEventListener("click", runSearch);
-    }
+    if (btn) btn.addEventListener("click", runSearch);
 });

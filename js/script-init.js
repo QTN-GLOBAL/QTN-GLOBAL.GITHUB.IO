@@ -38,18 +38,16 @@ function boot() {
 
     // =========================
     // SEARCH FILTER (TỪ DETAIL PAGE)
-    // =========================
    const keyword = sessionStorage.getItem("searchKeyword");
 
 if (keyword) {
 
-    const k = keyword.toLowerCase().trim();
-
     sessionStorage.removeItem("searchKeyword");
+
+    const k = keyword.toLowerCase().trim();
 
     result = result.filter(p => {
 
-        // gom toàn bộ dữ liệu sản phẩm thành 1 chuỗi an toàn
         const text = [
             p.name,
             p.description,

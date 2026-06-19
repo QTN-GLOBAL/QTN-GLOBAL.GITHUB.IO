@@ -9,40 +9,25 @@ let allProductsCache = [];
 /* =========================
    RENDER PRODUCTS
 ========================= */
-
 function renderProducts(productList = []) {
-
-    allProductsCache = productList; // 👈 THÊM DÒNG NÀY
 
     const grid = document.getElementById("productGrid");
     if (!grid) return;
 
     grid.innerHTML = productList
         .filter(p => p && p.id && p.name)
-        .map(product => {
-
-            product = getTranslatedProduct(product);
+        .map(p => {
+            p = getTranslatedProduct(p);
 
             return `
                 <div class="product-card">
-
-                    <img
-                        src="images/${product.category}/${product.folder}/main.jpg"
-                        alt="${product.name}"
-                        onerror="this.src='images/no-image.jpg'"
-                    >
-
+                    <img src="images/${p.category}/${p.folder}/main.jpg">
                     <div class="product-info">
-
-                        <h3>${product.name}</h3>
-
-                        <a class="detail-btn"
-                           href="chitiet.html?id=${product.id}">
+                        <h3>${p.name}</h3>
+                        <a href="chitiet.html?id=${p.id}">
                             ${t("detailBtn")}
                         </a>
-
                     </div>
-
                 </div>
             `;
         })
