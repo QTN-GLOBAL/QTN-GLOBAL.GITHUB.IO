@@ -15,27 +15,8 @@ function renderProducts(productList = []) {
     const grid = document.getElementById("productGrid");
     if (!grid) return;
 
-    grid.innerHTML = "";
-
-    // 🔍 LẤY KEYWORD TỪ Ô SEARCH
-    const input = document.getElementById("searchInput");
-    const keyword = input ? input.value.trim().toLowerCase() : "";
-
-    const html = productList
+    grid.innerHTML = productList
         .filter(p => p && p.id && p.name)
-
-        // 🔍 FILTER SEARCH NGAY TRONG RENDER
-        .filter(product => {
-
-            if (!keyword) return true;
-
-            return (
-                (product.name || "").toLowerCase().includes(keyword) ||
-                (product.description || "").toLowerCase().includes(keyword) ||
-                (product.brand || "").toLowerCase().includes(keyword)
-            );
-        })
-
         .map(product => {
 
             product = getTranslatedProduct(product);
@@ -63,12 +44,8 @@ function renderProducts(productList = []) {
                 </div>
             `;
         })
-
         .join("");
-
-    grid.innerHTML = html;
 }
-
 /* =========================
    FILTER SYSTEM (PURE UI)
 ========================= */
