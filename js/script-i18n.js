@@ -319,8 +319,6 @@ function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
 
-    currentLang = lang;
-
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         el.textContent = t(key);
@@ -330,6 +328,9 @@ function setLanguage(lang) {
         const key = el.getAttribute("data-i18n-placeholder");
         el.placeholder = t(key);
     });
+
+    // 👇 THÊM DÒNG NÀY
+    refreshUIAfterLanguageChange();
 }
 /* =========================
    INIT
@@ -352,3 +353,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+function refreshUIAfterLanguageChange() {
+
+    if (typeof renderProducts === "function") {
+
+        const products = getProducts();
+
+        renderProducts(products);
+    }
+
+    if (typeof renderProductDetail === "function") {
+        renderProductDetail();
+    }
+}
