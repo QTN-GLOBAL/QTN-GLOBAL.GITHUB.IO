@@ -19,22 +19,25 @@ function boot() {
     let result = [...products];
 
     // =========================
-    // SEARCH (từ detail page)
-    // =========================
-    const keyword = sessionStorage.getItem("searchKeyword");
+// SEARCH (FIXED SAFE FLOW)
+// =========================
+const keyword = sessionStorage.getItem("searchKeyword");
 
-    if (keyword) {
+if (keyword) {
 
-        sessionStorage.removeItem("searchKeyword");
+    sessionStorage.removeItem("searchKeyword");
 
-        const k = keyword.toLowerCase();
+    const k = keyword.toLowerCase().trim();
 
-        result = result.filter(p =>
-            (p.name || "").toLowerCase().includes(k) ||
-            (p.description || "").toLowerCase().includes(k) ||
-            (p.brand || "").toLowerCase().includes(k)
-        );
-    }
+    result = result.filter(p => {
+
+        const name = (p.name || "").toLowerCase();
+        const desc = (p.description || "").toLowerCase();
+        const brand = (p.brand || "").toLowerCase();
+
+        return name.includes(k) || desc.includes(k) || brand.includes(k);
+    });
+}
 
     // =========================
     // CATEGORY FILTER
