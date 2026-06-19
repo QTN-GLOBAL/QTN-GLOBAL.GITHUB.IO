@@ -37,7 +37,7 @@ copiedOrderOpenMessenger:
         heroFeature2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
         heroFeature3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
 
-        product_categories: "DANH MỤC SẢN PHẨM",
+        categories: "DANH MỤC SẢN PHẨM",
 
         catPlatformScale: "Cân bàn",
         catCountingScale: "Cân đếm",
@@ -127,7 +127,7 @@ copiedOrderOpenMessenger:
         heroFeature2: "FAST QUOTATION - NATIONWIDE DELIVERY",
         heroFeature3: "PROFESSIONAL TECHNICAL SUPPORT",
 
-        product_categories: "PRODUCT CATEGORIES",
+        categories: "PRODUCT CATEGORIES",
 
         catPlatformScale: "Platform Scales",
         catCountingScale: "Counting Scales",
@@ -218,7 +218,7 @@ copiedOrderOpenMessenger:
         heroFeature2: "快速报价 - 全国配送",
         heroFeature3: "专业技术支持",
 
-        product_categories: "产品分类",
+        categories: "产品分类",
 
         catPlatformScale: "台秤",
         catCountingScale: "计数秤",
