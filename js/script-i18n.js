@@ -282,9 +282,14 @@ const translations = {
 /* =========================
    CORE FUNCTION
 ========================= */
+/* =========================
+   CORE FUNCTION
+========================= */
+
 let currentLang = localStorage.getItem("language") || "vi";
 
 function t(key) {
+
     return translations[currentLang]?.[key]
         || translations.vi?.[key]
         || key;
@@ -302,36 +307,56 @@ function applyLanguage(lang) {
     document.documentElement.lang = lang;
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
+
         const key = el.dataset.i18n;
-        el.innerHTML = dict[key] ?? "";
+
+        if (dict[key]) {
+            el.innerHTML = dict[key];
+        }
     });
 
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+
         const key = el.dataset.i18nPlaceholder;
-        el.placeholder = dict[key] ?? "";
+
+        if (dict[key]) {
+            el.placeholder = dict[key];
+        }
     });
+}
+
+/* =========================
+   REFRESH DYNAMIC UI
+========================= */
+
+function refreshUIAfterLanguageChange() {
+
+    if (typeof renderProducts === "function") {
+
+        renderProducts(getProducts());
+    }
+
+    if (typeof renderProductDetail === "function") {
+
+        renderProductDetail();
+    }
 }
 
 /* =========================
    SET LANGUAGE
 ========================= */
+
 function setLanguage(lang) {
+
+    currentLang = lang;
 
     localStorage.setItem("language", lang);
 
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        el.textContent = t(key);
-    });
+    applyLanguage(lang);
 
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-        const key = el.getAttribute("data-i18n-placeholder");
-        el.placeholder = t(key);
-    });
-
-    // 👇 THÊM DÒNG NÀY
     refreshUIAfterLanguageChange();
 }
+
 /* =========================
    INIT
 ========================= */
@@ -340,29 +365,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const select = document.getElementById("languageSelect");
 
-    const lang = localStorage.getItem("language") || "vi";
+    const lang =
+        localStorage.getItem("language") || "vi";
 
-    // QUAN TRỌNG: dùng setLanguage thay vì applyLanguage
     setLanguage(lang);
 
     if (select) {
+
         select.value = lang;
 
         select.addEventListener("change", function () {
+
             setLanguage(this.value);
         });
     }
 });
-function refreshUIAfterLanguageChange() {
-
-    if (typeof renderProducts === "function") {
-
-        const products = getProducts();
-
-        renderProducts(products);
-    }
-
-    if (typeof renderProductDetail === "function") {
-        renderProductDetail();
-    }
-}
