@@ -329,9 +329,9 @@ function setLanguage(lang) {
         });
 
         document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-            const key = el.getAttribute("data-i18n-placeholder");
-            if (t(key)) el.placeholder = t(key);
-        });
+    const key = el.getAttribute("data-i18n-placeholder");
+    el.placeholder = t(key);
+});
 
         // THÊM ĐOẠN NÀY
         if (typeof renderCart === "function") {
