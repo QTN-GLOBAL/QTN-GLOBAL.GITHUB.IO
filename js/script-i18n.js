@@ -8,7 +8,10 @@ const translations = {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         contact: "LIÊN HỆ",
+
         search: "Tìm kiếm",
+        searchPlaceholder: "Tìm kiếm sản phẩm...",
+
         detailBtn: "Chi tiết",
         slogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
         cart: "🛒 GIỎ HÀNG",
@@ -18,16 +21,15 @@ const translations = {
         addedToCart: "Đã thêm vào giỏ",
         invoiceAddress: "Địa chỉ xuất hóa đơn",
         shippingAddress: "Địa chỉ giao hàng",
-        
 
-       pleaseFillCustomerInfo:
-    "Vui lòng điền đầy đủ thông tin khách hàng",
+        pleaseFillCustomerInfo:
+            "Vui lòng điền đầy đủ thông tin khách hàng",
 
-copiedOrderOpenZalo:
-    "Đã copy đơn hàng.\nBấm OK để mở Zalo.",
+        copiedOrderOpenZalo:
+            "Đã copy đơn hàng.\nBấm OK để mở Zalo.",
 
-copiedOrderOpenMessenger:
-    "Đã copy đơn hàng.\nBấm OK để mở Messenger.",
+        copiedOrderOpenMessenger:
+            "Đã copy đơn hàng.\nBấm OK để mở Messenger.",
 
         heroLine1: "GIẢI PHÁP",
         heroLine2: "CÂN ĐIỆN TỬ",
@@ -78,7 +80,6 @@ copiedOrderOpenMessenger:
         customerInvoice: "Địa chỉ xuất hóa đơn",
         customerAddress: "Địa chỉ giao hàng",
 
-        // ✅ FIX THÊM
         invoiceAddress: "Địa chỉ xuất hóa đơn",
         shippingAddress: "Địa chỉ giao hàng",
 
@@ -89,8 +90,8 @@ copiedOrderOpenMessenger:
             "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
 
         addressLabel: "Địa chỉ:",
-    addressText:
-    "Số 14 ngõ 68 đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội, Việt Nam",
+        addressText:
+            "Số 14 ngõ 68 đường Giáp Hải, Xã Bát Tràng, Thành phố Hà Nội, Việt Nam",
         hotlineLabel: "Hotline:",
         techSupport: "Hỗ trợ kỹ thuật:",
         emailLabel: "Email:",
@@ -101,7 +102,10 @@ copiedOrderOpenMessenger:
         home: "HOME",
         about: "ABOUT",
         contact: "CONTACT",
+
         search: "Search",
+        searchPlaceholder: "Search products...",
+
         detailBtn: "Detail",
         slogan: "ACCURACY IN EVERY VALUE",
         cart: "🛒 CART",
@@ -112,14 +116,15 @@ copiedOrderOpenMessenger:
         invoiceAddress: "Invoice Address",
         shippingAddress: "Shipping Address",
 
-       pleaseFillCustomerInfo:
-    "Please fill in all customer information",
+        pleaseFillCustomerInfo:
+            "Please fill in all customer information",
 
-copiedOrderOpenZalo:
-    "Order copied.\nPress OK to open Zalo.",
+        copiedOrderOpenZalo:
+            "Order copied.\nPress OK to open Zalo.",
 
-copiedOrderOpenMessenger:
-    "Order copied.\nPress OK to open Messenger.",
+        copiedOrderOpenMessenger:
+            "Order copied.\nPress OK to open Messenger.",
+
         heroLine1: "SOLUTIONS",
         heroLine2: "ELECTRONIC SCALES",
         heroLine3: "PRECISION FOR",
@@ -141,7 +146,6 @@ copiedOrderOpenMessenger:
         catChairScale: "Chair Scales",
 
         brands: "BRANDS",
-
         brandTitle: "BRANDS",
 
         brandOhaus: "Ohaus",
@@ -169,19 +173,15 @@ copiedOrderOpenMessenger:
         customerInvoice: "Invoice Address",
         customerAddress: "Shipping Address",
 
-        // ✅ FIX THÊM
-        invoiceAddress: "Invoice Address",
-        shippingAddress: "Shipping Address",
-
         sendZalo: "SEND ZALO",
         sendMessenger: "SEND MESSENGER",
 
         footerDesc:
             "Supplier of electronic scales and industrial weighing equipment.",
 
-         addressLabel: "Address:",
-    addressText:
-    "No. 14, Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City, Vietnam",
+        addressLabel: "Address:",
+        addressText:
+            "No. 14, Alley 68 Giap Hai Street, Bat Trang Commune, Hanoi City, Vietnam",
         hotlineLabel: "Hotline:",
         techSupport: "Technical Support:",
         emailLabel: "Email:",
@@ -192,7 +192,10 @@ copiedOrderOpenMessenger:
         home: "首页",
         about: "关于我们",
         contact: "联系我们",
+
         search: "搜索",
+        searchPlaceholder: "搜索产品...",
+
         detailBtn: "详情",
         slogan: "精准体现每一个价值",
         cart: "🛒 购物车",
@@ -202,16 +205,16 @@ copiedOrderOpenMessenger:
         addedToCart: "已加入购物车",
         invoiceAddress: "发票地址",
         shippingAddress: "收货地址",
-       pleaseFillCustomerInfo:
-    "请填写完整客户信息",
 
-copiedOrderOpenZalo:
-    "订单已复制。\n点击确定打开 Zalo。",
+        pleaseFillCustomerInfo:
+            "请填写完整客户信息",
 
-copiedOrderOpenMessenger:
-    "订单已复制。\n点击确定打开 Messenger。",
+        copiedOrderOpenZalo:
+            "订单已复制。\n点击确定打开 Zalo。",
 
-        
+        copiedOrderOpenMessenger:
+            "订单已复制。\n点击确定打开 Messenger。",
+
         heroLine1: "电子衡器",
         heroLine2: "解决方案",
         heroLine3: "精准服务",
@@ -233,7 +236,6 @@ copiedOrderOpenMessenger:
         catChairScale: "座椅秤",
 
         brands: "品牌",
-
         brandTitle: "品牌",
 
         brandOhaus: "奥豪斯",
@@ -268,7 +270,8 @@ copiedOrderOpenMessenger:
             "专业提供电子秤及工业称重设备。",
 
         addressLabel: "地址：",
-        addressText: "14号，68巷，Giáp Hải路，Bát Tràng社，Hà Nội市，Việt Nam",
+        addressText:
+            "14号，68巷，Giáp Hải路，Bát Tràng社，Hà Nội市，Việt Nam",
         hotlineLabel: "热线:",
         techSupport: "技术支持:",
         emailLabel: "邮箱:",
