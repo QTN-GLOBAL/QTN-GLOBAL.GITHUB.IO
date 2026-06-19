@@ -314,33 +314,32 @@ function applyLanguage(lang) {
 /* =========================
    SET LANGUAGE
 ========================= */
-
 function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
 
     applyLanguage(lang);
 
-    // 🔥 ĐỔI NGÔN NGỮ NGAY LẬP TỨC (KHÔNG setTimeout)
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        el.textContent = t(key);
+    requestAnimationFrame(() => {
+
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            el.textContent = t(key);
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+            const key = el.getAttribute("data-i18n-placeholder");
+            el.placeholder = t(key);
+        });
+
+        if (typeof renderCart === "function") {
+            renderCart();
+        }
+
+        if (typeof renderProducts === "function") {
+            renderProducts(getProducts());
+        }
     });
-
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-        const key = el.getAttribute("data-i18n-placeholder");
-        el.placeholder = t(key);
-    });
-
-    // CART (nếu có)
-    if (typeof renderCart === "function") {
-        renderCart();
-    }
-
-    // PRODUCTS (nếu có)
-    if (typeof renderProducts === "function") {
-        renderProducts(getProducts());
-    }
 }
 /* =========================
    INIT
