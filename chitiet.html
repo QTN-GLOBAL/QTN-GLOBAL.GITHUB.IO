@@ -71,17 +71,28 @@
 <!-- MENU -->
 <nav class="navbar">
 
-<a href="index.html" data-i18n="home">TRANG CHỦ</a>
-<a href="#" data-i18n="about">GIỚI THIỆU</a>
-<a href="#" data-i18n="contact">LIÊN HỆ</a>
+    <a href="index.html" data-i18n="home">TRANG CHỦ</a>
 
-<div class="language-switcher">
-<select id="languageSelect">
-<option value="vi">🇻🇳 Tiếng Việt</option>
-<option value="en">🇺🇸 English</option>
-<option value="zh">🇨🇳 中文</option>
-</select>
-</div>
+    <a href="#" data-i18n="about">GIỚI THIỆU</a>
+
+    <a href="#" data-i18n="contact">LIÊN HỆ</a>
+
+    <!-- 🔍 Ô TÌM KIẾM (THÊM Ở ĐÂY) -->
+    <div class="search-box">
+        <input type="text" id="searchInput"
+               data-i18n-placeholder="searchPlaceholder"
+               placeholder="Tìm kiếm sản phẩm...">
+
+        <button onclick="handleSearch()">🔍</button>
+    </div>
+
+    <div class="language-switcher">
+        <select id="languageSelect">
+            <option value="vi">🇻🇳 Tiếng Việt</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="zh">🇨🇳 中文</option>
+        </select>
+    </div>
 
 </nav>
 </header>
