@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // =========================
         // RENDER DEFAULT
         // =========================
-        renderProducts(products);
-
+       renderProducts(products);
+setLanguage(localStorage.getItem("language") || "vi");
         // =========================
         // CART INIT SAFE
         // =========================

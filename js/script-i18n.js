@@ -279,12 +279,11 @@ copiedOrderOpenMessenger:
 /* =========================
    CORE FUNCTION
 ========================= */
-
 let currentLang = localStorage.getItem("language") || "vi";
 
 function t(key) {
-    return translations?.[currentLang]?.[key]
-        || translations?.vi?.[key]
+    return translations[currentLang]?.[key]
+        || translations.vi?.[key]
         || key;
 }
 
@@ -317,7 +316,7 @@ function setLanguage(lang) {
 
     localStorage.setItem("language", lang);
 
-    currentLang = lang; // 🔥 THÊM DÒNG NÀY
+    currentLang = lang;
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
