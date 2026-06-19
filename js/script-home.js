@@ -4,6 +4,8 @@
    - NO CART LOGIC
 ========================= */
 
+let allProductsCache = [];   
+
 /* =========================
    RENDER PRODUCTS
 ========================= */
@@ -15,8 +17,24 @@ function renderProducts(productList = []) {
 
     grid.innerHTML = "";
 
+    // 🔍 LẤY KEYWORD TỪ Ô SEARCH
+    const input = document.getElementById("searchInput");
+    const keyword = input ? input.value.trim().toLowerCase() : "";
+
     const html = productList
         .filter(p => p && p.id && p.name)
+
+        // 🔍 FILTER SEARCH NGAY TRONG RENDER
+        .filter(product => {
+
+            if (!keyword) return true;
+
+            return (
+                (product.name || "").toLowerCase().includes(keyword) ||
+                (product.description || "").toLowerCase().includes(keyword) ||
+                (product.brand || "").toLowerCase().includes(keyword)
+            );
+        })
 
         .map(product => {
 
@@ -128,3 +146,43 @@ function goHomeAndBrand(brand) {
     sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
 }
+function handleSearch() {
+
+    const input = document.getElementById("searchInput");
+    if (!input) return;
+
+    const keyword = input.value.trim().toLowerCase();
+
+    // reset
+    if (!keyword) {
+        renderProducts(allProductsCache);
+        return;
+    }
+
+    const filtered = allProductsCache.filter(p => {
+
+        const name = (p.name || "").toLowerCase();
+        const desc = (p.description || "").toLowerCase();
+        const brand = (p.brand || "").toLowerCase();
+
+        return name.includes(keyword) ||
+               desc.includes(keyword) ||
+               brand.includes(keyword);
+    });
+
+    renderProducts(filtered);
+}
+document.addEventListener("DOMContentLoaded", () => {
+
+    const input = document.getElementById("searchInput");
+    if (!input) return;
+
+    input.addEventListener("keydown", (e) => {
+
+        if (e.key === "Enter") {
+            e.preventDefault(); // tránh reload form
+            renderProducts(getProducts()); // gọi lại render (vì bạn đang filter trong render)
+        }
+    });
+
+});
