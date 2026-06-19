@@ -222,7 +222,7 @@ function handleBuyNow() {
     const selectedItems = Cart.get().filter(i => i.selected === true);
 
     if (!selectedItems.length) {
-        alert("Vui lòng chọn sản phẩm cần mua");
+        alert(t("pleaseSelectProduct"));
         return;
     }
 
