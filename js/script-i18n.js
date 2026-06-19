@@ -318,7 +318,6 @@ function setLanguage(lang) {
 
     applyLanguage(lang);
 
-    // FORCE REFRESH (important for detail page + popup)
     setTimeout(() => {
 
         document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -331,9 +330,13 @@ function setLanguage(lang) {
             if (t(key)) el.placeholder = t(key);
         });
 
+        // THÊM ĐOẠN NÀY
+        if (typeof renderCart === "function") {
+            renderCart();
+        }
+
     }, 0);
 
-    // optional re-render product list
     if (typeof renderProducts === "function") {
         renderProducts(getProducts());
     }
