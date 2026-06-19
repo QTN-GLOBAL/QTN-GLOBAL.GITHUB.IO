@@ -15,7 +15,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // RENDER DEFAULT
         // =========================
         setLanguage(localStorage.getItem("language") || "vi");
+
         renderProducts(products);
+
+        // =========================
+        // 🔍 SEARCH (THÊM MỚI)
+        // =========================
+        const keyword = sessionStorage.getItem("searchKeyword");
+
+        if (keyword) {
+
+            sessionStorage.removeItem("searchKeyword");
+
+            const filtered = products.filter(p =>
+                (p.name || "").toLowerCase().includes(keyword.toLowerCase())
+            );
+
+            renderProducts(filtered);
+        }
+
         // =========================
         // CART INIT SAFE
         // =========================
