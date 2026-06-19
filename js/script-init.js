@@ -39,25 +39,29 @@ function boot() {
     // =========================
     // SEARCH FILTER (TỪ DETAIL PAGE)
     // =========================
-    const keyword = sessionStorage.getItem("searchKeyword");
+   const keyword = sessionStorage.getItem("searchKeyword");
 
-    if (keyword) {
+if (keyword) {
 
-        sessionStorage.removeItem("searchKeyword");
+    const k = keyword.toLowerCase().trim();
 
-        const k = keyword.toLowerCase().trim();
+    sessionStorage.removeItem("searchKeyword");
 
-        result = result.filter(p => {
+    result = result.filter(p => {
 
-            const name = (p.name || "").toLowerCase();
-            const desc = (p.description || "").toLowerCase();
-            const brand = (p.brand || "").toLowerCase();
+        // gom toàn bộ dữ liệu sản phẩm thành 1 chuỗi an toàn
+        const text = [
+            p.name,
+            p.description,
+            p.brand
+        ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
-            return name.includes(k) ||
-                   desc.includes(k) ||
-                   brand.includes(k);
-        });
-    }
+        return text.includes(k);
+    });
+}
 
     // =========================
     // FINAL RENDER (CHỈ 1 LẦN DUY NHẤT)

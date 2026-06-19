@@ -12,6 +12,8 @@ let allProductsCache = [];
 
 function renderProducts(productList = []) {
 
+    allProductsCache = productList; // 👈 THÊM DÒNG NÀY
+
     const grid = document.getElementById("productGrid");
     if (!grid) return;
 
@@ -122,30 +124,4 @@ function goHomeAndCategory(category) {
 function goHomeAndBrand(brand) {
     sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
-}
-function handleSearch() {
-
-    const input = document.getElementById("searchInput");
-    if (!input) return;
-
-    const keyword = input.value.trim().toLowerCase();
-
-    // reset
-    if (!keyword) {
-        renderProducts(allProductsCache);
-        return;
-    }
-
-    const filtered = allProductsCache.filter(p => {
-
-        const name = (p.name || "").toLowerCase();
-        const desc = (p.description || "").toLowerCase();
-        const brand = (p.brand || "").toLowerCase();
-
-        return name.includes(keyword) ||
-               desc.includes(keyword) ||
-               brand.includes(keyword);
-    });
-
-    renderProducts(filtered);
 }
