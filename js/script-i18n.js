@@ -321,30 +321,27 @@ function setLanguage(lang) {
 
     applyLanguage(lang);
 
-    setTimeout(() => {
+    // 🔥 ĐỔI NGÔN NGỮ NGAY LẬP TỨC (KHÔNG setTimeout)
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        el.textContent = t(key);
+    });
 
-        document.querySelectorAll("[data-i18n]").forEach(el => {
-            const key = el.getAttribute("data-i18n");
-            if (t(key)) el.textContent = t(key);
-        });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        el.placeholder = t(key);
+    });
 
-        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-    const key = el.getAttribute("data-i18n-placeholder");
-    el.placeholder = t(key);
-});
+    // CART (nếu có)
+    if (typeof renderCart === "function") {
+        renderCart();
+    }
 
-        // THÊM ĐOẠN NÀY
-        if (typeof renderCart === "function") {
-            renderCart();
-        }
-
-    }, 0);
-
+    // PRODUCTS (nếu có)
     if (typeof renderProducts === "function") {
         renderProducts(getProducts());
     }
 }
-
 /* =========================
    INIT
 ========================= */
