@@ -303,7 +303,7 @@ function sendCartOrderZalo() {
 
     if (!validateCustomerForm()) {
 
-        alert(t("fillCustomerInfo"));
+        alert(t("pleaseFillCustomerInfo"));
         return;
     }
 
@@ -316,6 +316,8 @@ function sendCartOrderZalo() {
     removeSelectedFromCart(selectedIds);
 
     closeBuyPopup();
+
+    alert(t("copiedOrderOpenZalo"));
 
     window.open("https://zalo.me/0383598603", "_blank");
 }
@@ -323,7 +325,7 @@ function sendCartOrderMessenger() {
 
     if (!validateCustomerForm()) {
 
-        alert(t("fillCustomerInfo"));
+        alert(t("pleaseFillCustomerInfo"));
         return;
     }
 
@@ -337,7 +339,9 @@ function sendCartOrderMessenger() {
 
     closeBuyPopup();
 
-    window.open("https://m.me/QTNSCALE", "_blank");
+    alert(t("copiedOrderOpenMessenger"));
+
+    window.open("https://m.me/yourpage", "_blank");
 }
 function getCartProductName(item) {
 
