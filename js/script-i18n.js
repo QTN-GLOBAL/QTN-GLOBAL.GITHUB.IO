@@ -328,24 +328,10 @@ function applyLanguage(lang) {
 /* =========================
    REFRESH DYNAMIC UI
 ========================= */
-
 function refreshUIAfterLanguageChange() {
 
-    // Nếu đang ở trang chủ
-    if (typeof renderProducts === "function") {
-
-        const keyword = sessionStorage.getItem("searchKeyword");
-
-        // Nếu đang có search thì không render lại toàn bộ
-        if (!keyword) {
-
-            renderProducts(getProducts());
-        }
-    }
-
-    // Nếu đang ở trang chi tiết
+    // Chỉ cập nhật trang chi tiết
     if (typeof renderProductDetail === "function") {
-
         renderProductDetail();
     }
 }
