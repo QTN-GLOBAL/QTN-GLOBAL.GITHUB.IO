@@ -49,30 +49,35 @@ if (keyword) {
 
     const k = keyword.toLowerCase().trim();
 
+const categoryMap = {
+    "cân bàn": "can-ban",
+    "cân đếm": "can-dem",
+    "cân treo": "can-treo",
+    "đầu cân": "dau-can-dien-tu",
+    "cân phân tích": "can-phan-tich",
+    "cân chống nước": "can-chong-nuoc",
+    "cân in tem": "can-in-tem-ma-vach",
+    "cân ghế": "can-ghe-ngoi"
+};
+
+// Nếu người dùng tìm tên danh mục
+if (categoryMap[k]) {
+
+    result = result.filter(
+        p => p.category === categoryMap[k]
+    );
+
+}
+// Tìm sản phẩm hoặc hãng
+else {
+
     result = result.filter(p => {
 
-        const categoryName = {
-            "can-ban": "cân bàn",
-            "can-dem": "cân đếm",
-            "can-treo": "cân treo",
-            "dau-can-dien-tu": "đầu cân",
-            "can-phan-tich": "cân phân tích",
-            "can-chong-nuoc": "cân chống nước",
-            "can-in-tem-ma-vach": "cân in tem",
-            "can-ghe-ngoi": "cân ghế"
-        };
-
-        const text = [
-            p.name,
-            p.description,
-            p.brand,
-            categoryName[p.category]
-        ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-
-        return text.includes(k);
+        return (
+            (p.name || "").toLowerCase().includes(k) ||
+            (p.description || "").toLowerCase().includes(k) ||
+            (p.brand || "").toLowerCase().includes(k)
+        );
     });
 }
     allProductsCache = [...result];
