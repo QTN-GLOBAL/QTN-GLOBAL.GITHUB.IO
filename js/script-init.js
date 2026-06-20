@@ -39,13 +39,14 @@ function boot() {
     // =========================
     // SEARCH FILTER (TỪ DETAIL PAGE)
    const keyword = sessionStorage.getItem("searchKeyword");
+   console.log("SEARCH =", keyword);
 
 if (keyword) {
 
     sessionStorage.removeItem("searchKeyword");
 
     const k = keyword.toLowerCase().trim();
-
+    console.log("RESULT =", result.length);
     result = products.filter(p =>
         JSON.stringify(p).toLowerCase().includes(k)
     );
