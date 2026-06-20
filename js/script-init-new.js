@@ -40,24 +40,40 @@ function boot() {
     }
 
     // Tìm kiếm
-    const keyword =
-        sessionStorage.getItem("searchKeyword");
+    const keyword = sessionStorage.getItem("searchKeyword");
 
-    if (keyword) {
+if (keyword) {
 
-        sessionStorage.removeItem("searchKeyword");
+    sessionStorage.removeItem("searchKeyword");
 
-        const k = keyword.toLowerCase().trim();
+    const k = keyword.toLowerCase().trim();
 
-result = result.filter(p => {
+    result = result.filter(p => {
 
-    return (
-        (p.name || "").toLowerCase().includes(k) ||
-        (p.description || "").toLowerCase().includes(k) ||
-        (p.brand || "").toLowerCase().includes(k)
-    );
-});
-    }
+        const categoryName = {
+            "can-ban": "cân bàn",
+            "can-dem": "cân đếm",
+            "can-treo": "cân treo",
+            "dau-can-dien-tu": "đầu cân",
+            "can-phan-tich": "cân phân tích",
+            "can-chong-nuoc": "cân chống nước",
+            "can-in-tem-ma-vach": "cân in tem",
+            "can-ghe-ngoi": "cân ghế"
+        };
+
+        const text = [
+            p.name,
+            p.description,
+            p.brand,
+            categoryName[p.category]
+        ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+        return text.includes(k);
+    });
+}
     allProductsCache = [...result];
     renderProducts(result);
 
