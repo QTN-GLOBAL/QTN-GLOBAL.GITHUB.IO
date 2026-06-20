@@ -38,7 +38,7 @@ function boot() {
 
     // =========================
     // SEARCH FILTER (TỪ DETAIL PAGE)
-   const keyword = sessionStorage.getItem("searchKeyword");
+   cconst keyword = sessionStorage.getItem("searchKeyword");
 
 if (keyword) {
 
@@ -46,19 +46,9 @@ if (keyword) {
 
     const k = keyword.toLowerCase().trim();
 
-    result = result.filter(p => {
-
-        const text = [
-            p.name,
-            p.description,
-            p.brand
-        ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-
-        return text.includes(k);
-    });
+    result = products.filter(p =>
+        JSON.stringify(p).toLowerCase().includes(k)
+    );
 }
 
     // =========================
