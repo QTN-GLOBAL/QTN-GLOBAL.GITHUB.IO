@@ -330,7 +330,10 @@ function applyLanguage(lang) {
 ========================= */
 function refreshUIAfterLanguageChange() {
 
-    // Chỉ cập nhật trang chi tiết
+    if (typeof renderProducts === "function") {
+        renderProducts(getProducts());
+    }
+
     if (typeof renderProductDetail === "function") {
         renderProductDetail();
     }
