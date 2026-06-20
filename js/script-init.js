@@ -38,7 +38,7 @@ function boot() {
 
     // =========================
     // SEARCH FILTER (TỪ DETAIL PAGE)
-   cconst keyword = sessionStorage.getItem("searchKeyword");
+   const keyword = sessionStorage.getItem("searchKeyword");
 
 if (keyword) {
 
