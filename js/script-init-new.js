@@ -48,9 +48,9 @@ function boot() {
     }
 
     // Search
-    const keyword =
-        sessionStorage.getItem("searchKeyword");
+    const keyword = sessionStorage.getItem("searchKeyword");
 
+console.log("KEYWORD =", keyword);
     if (keyword) {
 
         sessionStorage.removeItem(
@@ -70,7 +70,8 @@ function boot() {
             "cân in tem": "can-in-tem-ma-vach",
             "cân ghế": "can-ghe-ngoi"
         };
-
+        console.log("k =", JSON.stringify(k));
+        console.log("map =", categoryMap[k]);
         if (categoryMap[k]) {
 
             result = result.filter(
