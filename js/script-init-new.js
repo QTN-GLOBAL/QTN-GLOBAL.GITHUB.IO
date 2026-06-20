@@ -1,3 +1,4 @@
+window.currentProducts = [];
 function boot() {
 
     const products = getProducts();
@@ -75,7 +76,8 @@ if (keyword) {
     });
 }
     allProductsCache = [...result];
-    renderProducts(result);
+    window.currentProducts = result;
+renderProducts(result);
 
     if (typeof updateCartCount === "function") {
         updateCartCount();

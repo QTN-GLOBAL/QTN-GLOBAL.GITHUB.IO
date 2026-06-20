@@ -331,10 +331,14 @@ function applyLanguage(lang) {
 function refreshUIAfterLanguageChange() {
 
     if (typeof renderProducts === "function") {
-        renderProducts(getProducts());
+
+        renderProducts(
+            window.currentProducts || getProducts()
+        );
     }
 
     if (typeof renderProductDetail === "function") {
+
         renderProductDetail();
     }
 }
