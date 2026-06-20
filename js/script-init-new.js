@@ -1,4 +1,5 @@
 window.currentProducts = [];
+
 function boot() {
 
     const products = getProducts();
@@ -9,11 +10,11 @@ function boot() {
     }
 
     // Ngôn ngữ
-    currentLang =
-        localStorage.getItem("language") || "vi";
+    setLanguage(
+        localStorage.getItem("language") || "vi"
+    );
 
-   
-    // Dữ liệu
+    // Dữ liệu gốc
     let result = [...products];
 
     // Danh mục
@@ -21,7 +22,10 @@ function boot() {
         sessionStorage.getItem("filterCategory");
 
     if (category) {
-        sessionStorage.removeItem("filterCategory");
+
+        sessionStorage.removeItem(
+            "filterCategory"
+        );
 
         result = result.filter(
             p => p.category === category
@@ -33,71 +37,93 @@ function boot() {
         sessionStorage.getItem("filterBrand");
 
     if (brand) {
-        sessionStorage.removeItem("filterBrand");
+
+        sessionStorage.removeItem(
+            "filterBrand"
+        );
 
         result = result.filter(
             p => p.brand === brand
         );
     }
 
-    // Tìm kiếm
-    const keyword = sessionStorage.getItem("searchKeyword");
+    // Search
+    const keyword =
+        sessionStorage.getItem("searchKeyword");
 
-if (keyword) {
+    if (keyword) {
 
-    sessionStorage.removeItem("searchKeyword");
-
-    const k = keyword.toLowerCase().trim();
-
-const categoryMap = {
-    "cân bàn": "can-ban",
-    "cân đếm": "can-dem",
-    "cân treo": "can-treo",
-    "đầu cân": "dau-can-dien-tu",
-    "cân phân tích": "can-phan-tich",
-    "cân chống nước": "can-chong-nuoc",
-    "cân in tem": "can-in-tem-ma-vach",
-    "cân ghế": "can-ghe-ngoi"
-};
-
-// Nếu người dùng tìm tên danh mục
-if (categoryMap[k]) {
-
-    result = result.filter(
-        p => p.category === categoryMap[k]
-    );
-
-}
-// Tìm sản phẩm hoặc hãng
-else {
-
-    result = result.filter(p => {
-
-        return (
-            (p.name || "").toLowerCase().includes(k) ||
-            (p.description || "").toLowerCase().includes(k) ||
-            (p.brand || "").toLowerCase().includes(k)
+        sessionStorage.removeItem(
+            "searchKeyword"
         );
-    });
-}
-    allProductsCache = [...result];
-    window.currentProducts = result;
-renderProducts(result);
 
+        const k =
+            keyword.toLowerCase().trim();
+
+        const categoryMap = {
+            "cân bàn": "can-ban",
+            "cân đếm": "can-dem",
+            "cân treo": "can-treo",
+            "đầu cân": "dau-can-dien-tu",
+            "cân phân tích": "can-phan-tich",
+            "cân chống nước": "can-chong-nuoc",
+            "cân in tem": "can-in-tem-ma-vach",
+            "cân ghế": "can-ghe-ngoi"
+        };
+
+        if (categoryMap[k]) {
+
+            result = result.filter(
+                p => p.category === categoryMap[k]
+            );
+
+        } else {
+
+            result = result.filter(p => {
+
+                return (
+                    (p.name || "")
+                        .toLowerCase()
+                        .includes(k) ||
+
+                    (p.description || "")
+                        .toLowerCase()
+                        .includes(k) ||
+
+                    (p.brand || "")
+                        .toLowerCase()
+                        .includes(k)
+                );
+            });
+        }
+    }
+
+    // Cache
+    allProductsCache = [...result];
+    window.currentProducts = [...result];
+
+    // Render
+    renderProducts(result);
+
+    // Cart
     if (typeof updateCartCount === "function") {
         updateCartCount();
     }
 
+    // Slider
     if (typeof initExcellSlider === "function") {
         initExcellSlider();
     }
 
+    // Open cart
     const openCartFlag =
         sessionStorage.getItem("openCart");
 
     if (openCartFlag === "1") {
 
-        sessionStorage.removeItem("openCart");
+        sessionStorage.removeItem(
+            "openCart"
+        );
 
         if (typeof openCart === "function") {
             openCart();
@@ -105,6 +131,7 @@ renderProducts(result);
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    boot();
-});
+document.addEventListener(
+    "DOMContentLoaded",
+    boot
+);
