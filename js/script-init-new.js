@@ -11,8 +11,7 @@ function boot() {
     currentLang =
         localStorage.getItem("language") || "vi";
 
-    applyLanguage(currentLang);
-
+   
     // Dữ liệu
     let result = [...products];
 
@@ -59,7 +58,7 @@ function boot() {
             return text.includes(k);
         });
     }
-
+    allProductsCache = [...result];
     renderProducts(result);
 
     if (typeof updateCartCount === "function") {
