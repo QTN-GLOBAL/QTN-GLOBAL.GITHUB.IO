@@ -49,14 +49,14 @@ function boot() {
 
         const k = keyword.toLowerCase().trim();
 
-        result = result.filter(p => {
+result = result.filter(p => {
 
-            const text = Object.values(p)
-                .join(" ")
-                .toLowerCase();
-
-            return text.includes(k);
-        });
+    return (
+        (p.name || "").toLowerCase().includes(k) ||
+        (p.description || "").toLowerCase().includes(k) ||
+        (p.brand || "").toLowerCase().includes(k)
+    );
+});
     }
     allProductsCache = [...result];
     renderProducts(result);
