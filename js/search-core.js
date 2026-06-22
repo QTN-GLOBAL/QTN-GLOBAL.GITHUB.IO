@@ -1,7 +1,3 @@
-/* =========================
-   SEARCH CORE (SAFE VERSION)
-========================= */
-
 window.SearchCore = {
 
     normalize(str) {
@@ -10,7 +6,8 @@ window.SearchCore = {
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replace(/đ/g, "d")
-            .trim();
+            .trim()
+            .replace(/\s+/g, " "); // 🔥 FIX quan trọng
     },
 
     categoryMap: {
@@ -30,14 +27,16 @@ window.SearchCore = {
 
         const k = this.normalize(keyword);
 
-        // 1. category search
-        if (this.categoryMap[k]) {
+        // 🔥 FIX: match category bằng contains thay vì exact key
+        const matchedCategory = Object.keys(this.categoryMap)
+            .find(key => k.includes(key));
+
+        if (matchedCategory) {
             return products.filter(
-                p => p.category === this.categoryMap[k]
+                p => p.category === this.categoryMap[matchedCategory]
             );
         }
 
-        // 2. product/brand search
         return products.filter(p => {
 
             const text = this.normalize(
