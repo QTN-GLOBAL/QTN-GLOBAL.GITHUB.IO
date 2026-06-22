@@ -1,47 +1,51 @@
-/* =========================
-   SEARCH ROUTER (SAFE MODE)
-   - ONLY HANDLE SEARCH FROM DETAIL
-   - NO IMPACT SYSTEM
-========================= */
-
 function goSearch(keyword) {
 
-    if (!keyword) return;
+    const k = (keyword || "").trim();
 
-    sessionStorage.setItem("searchKeyword", keyword);
+    if (!k) return;
+
+    sessionStorage.setItem("searchKeyword", k);
 
     window.location.href = "index.html";
 }
 
 /* =========================
-   RUN SEARCH FROM INPUT
+   RUN SEARCH
 ========================= */
 function runSearch() {
 
     const input = document.getElementById("searchInput");
-    if (!input) return;
 
-    const keyword = input.value.trim();
-
-    if (!keyword) return;
+    const keyword = input ? input.value : "";
 
     goSearch(keyword);
 }
 
 /* =========================
-   ENTER KEY SUPPORT
+   INIT EVENTS SAFE
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
 
     const input = document.getElementById("searchInput");
 
-    if (!input) return;
+    if (input) {
 
-    input.addEventListener("keydown", (e) => {
+        // Enter key
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                runSearch();
+            }
+        });
+    }
 
-        if (e.key === "Enter") {
+    // 🔥 FIX QUAN TRỌNG: hỗ trợ button search
+    const btn = document.getElementById("searchBtn");
+
+    if (btn) {
+        btn.addEventListener("click", (e) => {
             e.preventDefault();
             runSearch();
-        }
-    });
+        });
+    }
 });
