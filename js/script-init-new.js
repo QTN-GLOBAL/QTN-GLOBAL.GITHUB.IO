@@ -2,7 +2,7 @@ window.currentProducts = [];
 window.allProductsCache = [];
 
 /* =========================
-   TEXT NORMALIZE
+   TEXT NORMALIZE (SAFE)
 ========================= */
 function normalizeText(str) {
     return (str || "")
@@ -10,12 +10,12 @@ function normalizeText(str) {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/đ/g, "d")
-        .trim()
-        .replace(/\s+/g, " ");
+        .replace(/\s+/g, " ")
+        .trim();
 }
 
 /* =========================
-   SAFE SEARCH
+   SAFE SEARCH (NO CONFLICT)
 ========================= */
 function runSearch(result, keyword) {
 
@@ -23,10 +23,12 @@ function runSearch(result, keyword) {
 
     const k = normalizeText(keyword);
 
-    if (window.SearchCore && typeof SearchCore.filter === "function") {
-        return SearchCore.filter(result, keyword);
+    // ưu tiên SearchSystem mới (nếu có)
+    if (window.SearchSystem && typeof SearchSystem.filter === "function") {
+        return SearchSystem.filter(result, keyword);
     }
 
+    // fallback category map
     const categoryMap = {
         "can ban": "can-ban",
         "can dem": "can-dem",
@@ -38,8 +40,11 @@ function runSearch(result, keyword) {
         "can ghe": "can-ghe-ngoi"
     };
 
-    if (categoryMap[k]) {
-        return result.filter(p => p.category === categoryMap[k]);
+    const matchedCategory = Object.keys(categoryMap)
+        .find(key => k.includes(normalizeText(key)));
+
+    if (matchedCategory) {
+        return result.filter(p => p.category === categoryMap[matchedCategory]);
     }
 
     return result.filter(p => {
@@ -55,7 +60,7 @@ function runSearch(result, keyword) {
 }
 
 /* =========================
-   BOOT
+   BOOT (SAFE + NO BREAK DOM)
 ========================= */
 function boot() {
 
@@ -71,7 +76,7 @@ function boot() {
     let result = [...products];
 
     /* =========================
-       CATEGORY
+       CATEGORY FILTER
     ========================= */
     const category = sessionStorage.getItem("filterCategory");
 
@@ -81,7 +86,7 @@ function boot() {
     }
 
     /* =========================
-       BRAND
+       BRAND FILTER
     ========================= */
     const brand = sessionStorage.getItem("filterBrand");
 
@@ -91,21 +96,21 @@ function boot() {
     }
 
     /* =========================
-       SEARCH (FIX QUAN TRỌNG)
+       SEARCH (SAFE FLOW FIXED)
     ========================= */
     const keyword = sessionStorage.getItem("searchKeyword");
 
     if (keyword) {
 
-        // ⚠️ QUAN TRỌNG: KHÔNG xóa trước khi filter
         result = runSearch(result, keyword);
 
-        // chỉ xóa SAU khi đã dùng
+        // clear sau khi dùng
         sessionStorage.removeItem("searchKeyword");
     }
 
     /* =========================
        FINAL SAFETY FILTER
+       (FIX MẤT ẢNH + MẤT NAME)
     ========================= */
     result = result.filter(p =>
         p &&
@@ -116,10 +121,10 @@ function boot() {
     );
 
     /* =========================
-       CACHE
+       CACHE STATE
     ========================= */
-    window.allProductsCache = [...result];
-    window.currentProducts = [...result];
+    window.allProductsCache = result.slice();
+    window.currentProducts = result.slice();
 
     /* =========================
        RENDER
