@@ -30,15 +30,22 @@ const translations = {
 
         copiedOrderOpenMessenger:
             "Đã copy đơn hàng.\nBấm OK để mở Messenger.",
+heroLine1: "GIẢI PHÁP",
+heroLine2: "THIẾT BỊ & CÔNG NGHỆ",
+heroLine3: "CHO DOANH NGHIỆP",
+heroLine4: "VÀ GIA ĐÌNH",
 
-        heroLine1: "GIẢI PHÁP",
-        heroLine2: "CÂN ĐIỆN TỬ",
-        heroLine3: "CHÍNH XÁC CHO",
-        heroLine4: "DOANH NGHIỆP",
+heroFeature1: "THIẾT BỊ CHÍNH HÃNG - CHẤT LƯỢNG CAO",
+heroFeature2: "GIẢI PHÁP TOÀN DIỆN CHO DOANH NGHIỆP",
+heroFeature3: "DỊCH VỤ KỸ THUẬT VÀ HỖ TRỢ CHUYÊN NGHIỆP",
 
-        heroFeature1: "SẢN PHẨM CHÍNH HÃNG",
-        heroFeature2: "BÁO GIÁ NHANH - GIAO HÀNG TOÀN QUỐC",
-        heroFeature3: "HỖ TRỢ KỸ THUẬT CHUYÊN NGHIỆP",
+businessTitle: "GIẢI PHÁP THEO LĨNH VỰC",
+
+fieldMeasure: "THIẾT BỊ ĐO LƯỜNG",
+fieldIndustry: "THIẾT BỊ CÔNG NGHIỆP",
+fieldService: "DỊCH VỤ KỸ THUẬT",
+fieldHome: "THIẾT BỊ GIA ĐÌNH",
+fieldTrade: "THƯƠNG MẠI & PHÂN PHỐI",
 
         categories: "DANH MỤC SẢN PHẨM",
 
@@ -126,13 +133,21 @@ const translations = {
             "Order copied.\nPress OK to open Messenger.",
 
         heroLine1: "SOLUTIONS",
-        heroLine2: "ELECTRONIC SCALES",
-        heroLine3: "PRECISION FOR",
-        heroLine4: "BUSINESSES",
+heroLine2: "EQUIPMENT & TECHNOLOGY",
+heroLine3: "FOR BUSINESS",
+heroLine4: "AND HOME",
 
-        heroFeature1: "GENUINE PRODUCTS",
-        heroFeature2: "FAST QUOTATION - NATIONWIDE DELIVERY",
-        heroFeature3: "PROFESSIONAL TECHNICAL SUPPORT",
+heroFeature1: "GENUINE HIGH-QUALITY PRODUCTS",
+heroFeature2: "TOTAL BUSINESS SOLUTIONS",
+heroFeature3: "PROFESSIONAL TECHNICAL SUPPORT",
+
+businessTitle: "BUSINESS SOLUTIONS",
+
+fieldMeasure: "MEASURING EQUIPMENT",
+fieldIndustry: "INDUSTRIAL EQUIPMENT",
+fieldService: "TECHNICAL SERVICES",
+fieldHome: "HOME EQUIPMENT",
+fieldTrade: "TRADING & DISTRIBUTION",
 
         categories: "PRODUCT CATEGORIES",
 
@@ -214,15 +229,22 @@ const translations = {
 
         copiedOrderOpenMessenger:
             "订单已复制。\n点击确定打开 Messenger。",
+heroLine1: "解决方案",
+heroLine2: "设备与技术",
+heroLine3: "服务企业",
+heroLine4: "与家庭",
 
-        heroLine1: "电子衡器",
-        heroLine2: "解决方案",
-        heroLine3: "精准服务",
-        heroLine4: "企业客户",
+heroFeature1: "正品优质设备",
+heroFeature2: "企业整体解决方案",
+heroFeature3: "专业技术支持",
 
-        heroFeature1: "原装正品",
-        heroFeature2: "快速报价 - 全国配送",
-        heroFeature3: "专业技术支持",
+businessTitle: "行业解决方案",
+
+fieldMeasure: "测量设备",
+fieldIndustry: "工业设备",
+fieldService: "技术服务",
+fieldHome: "家用设备",
+fieldTrade: "贸易与分销",
 
         categories: "产品分类",
 
