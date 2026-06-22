@@ -1,4 +1,4 @@
-```javascript
+
 window.currentProducts = [];
 let allProductsCache = [];
 
