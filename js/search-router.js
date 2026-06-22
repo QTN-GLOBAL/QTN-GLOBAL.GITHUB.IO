@@ -9,58 +9,36 @@ function goSearch(keyword) {
     window.location.href = "index.html";
 }
 
-/* =========================
-   RUN SEARCH
-========================= */
 function runSearch() {
 
     const input = document.getElementById("searchInput");
+    if (!input) return;
 
-    const keyword = input ? input.value : "";
-
-    goSearch(keyword);
+    goSearch(input.value);
 }
 
 /* =========================
-   SAFE BIND (FIXED)
+   🔥 EVENT DELEGATION (FIX CHẾT NGƯỜI)
 ========================= */
-function bindSearchEvents() {
+document.addEventListener("click", function (e) {
+
+    // nút search (KHÔNG phụ thuộc DOM load)
+    if (e.target.closest("#searchBtn")) {
+        e.preventDefault();
+        runSearch();
+    }
+});
+
+document.addEventListener("keydown", function (e) {
+
+    if (e.key !== "Enter") return;
 
     const input = document.getElementById("searchInput");
-    const btn = document.getElementById("searchBtn");
 
-    // ENTER
-    if (input && !input.dataset.bound) {
+    if (!input) return;
 
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                runSearch();
-            }
-        });
-
-        input.dataset.bound = "1";
+    if (document.activeElement === input) {
+        e.preventDefault();
+        runSearch();
     }
-
-    // CLICK
-    if (btn && !btn.dataset.bound) {
-
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            runSearch();
-        });
-
-        btn.dataset.bound = "1";
-    }
-}
-
-/* =========================
-   INIT
-========================= */
-document.addEventListener("DOMContentLoaded", bindSearchEvents);
-
-/* =========================
-   🔥 GLOBAL SAFETY (QUAN TRỌNG)
-   FIX TRƯỜNG HỢP HEADER LOAD LATE
-========================= */
-setInterval(bindSearchEvents, 1000);
+});
