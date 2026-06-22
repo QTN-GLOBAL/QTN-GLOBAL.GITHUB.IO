@@ -22,30 +22,45 @@ function runSearch() {
 }
 
 /* =========================
-   INIT EVENTS SAFE
+   SAFE BIND (FIXED)
 ========================= */
-document.addEventListener("DOMContentLoaded", () => {
+function bindSearchEvents() {
 
     const input = document.getElementById("searchInput");
+    const btn = document.getElementById("searchBtn");
 
-    if (input) {
+    // ENTER
+    if (input && !input.dataset.bound) {
 
-        // Enter key
         input.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 e.preventDefault();
                 runSearch();
             }
         });
+
+        input.dataset.bound = "1";
     }
 
-    // 🔥 FIX QUAN TRỌNG: hỗ trợ button search
-    const btn = document.getElementById("searchBtn");
+    // CLICK
+    if (btn && !btn.dataset.bound) {
 
-    if (btn) {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
             runSearch();
         });
+
+        btn.dataset.bound = "1";
     }
-});
+}
+
+/* =========================
+   INIT
+========================= */
+document.addEventListener("DOMContentLoaded", bindSearchEvents);
+
+/* =========================
+   🔥 GLOBAL SAFETY (QUAN TRỌNG)
+   FIX TRƯỜNG HỢP HEADER LOAD LATE
+========================= */
+setInterval(bindSearchEvents, 1000);

@@ -10,11 +10,12 @@ function normalizeText(str) {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/đ/g, "d")
-        .trim();
+        .trim()
+        .replace(/\s+/g, " ");
 }
 
 /* =========================
-   SAFE SEARCH WRAPPER
+   SAFE SEARCH
 ========================= */
 function runSearch(result, keyword) {
 
@@ -22,12 +23,10 @@ function runSearch(result, keyword) {
 
     const k = normalizeText(keyword);
 
-    // nếu SearchCore tồn tại thì dùng
     if (window.SearchCore && typeof SearchCore.filter === "function") {
         return SearchCore.filter(result, keyword);
     }
 
-    // fallback nếu chưa load SearchCore
     const categoryMap = {
         "can ban": "can-ban",
         "can dem": "can-dem",
@@ -62,7 +61,6 @@ function boot() {
 
     const products = getProducts();
 
-    // guard cực quan trọng (fix mất ảnh)
     if (!Array.isArray(products) || products.length === 0) {
         setTimeout(boot, 100);
         return;
@@ -73,7 +71,7 @@ function boot() {
     let result = [...products];
 
     /* =========================
-       CATEGORY FILTER
+       CATEGORY
     ========================= */
     const category = sessionStorage.getItem("filterCategory");
 
@@ -83,7 +81,7 @@ function boot() {
     }
 
     /* =========================
-       BRAND FILTER
+       BRAND
     ========================= */
     const brand = sessionStorage.getItem("filterBrand");
 
@@ -93,18 +91,21 @@ function boot() {
     }
 
     /* =========================
-       SEARCH
+       SEARCH (FIX QUAN TRỌNG)
     ========================= */
     const keyword = sessionStorage.getItem("searchKeyword");
 
     if (keyword) {
-        sessionStorage.removeItem("searchKeyword");
+
+        // ⚠️ QUAN TRỌNG: KHÔNG xóa trước khi filter
         result = runSearch(result, keyword);
+
+        // chỉ xóa SAU khi đã dùng
+        sessionStorage.removeItem("searchKeyword");
     }
 
     /* =========================
        FINAL SAFETY FILTER
-       (FIX MẤT ẢNH + MẤT NAME)
     ========================= */
     result = result.filter(p =>
         p &&
@@ -115,7 +116,7 @@ function boot() {
     );
 
     /* =========================
-       CACHE STATE
+       CACHE
     ========================= */
     window.allProductsCache = [...result];
     window.currentProducts = [...result];

@@ -6,8 +6,8 @@ window.SearchCore = {
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replace(/đ/g, "d")
-            .trim()
-            .replace(/\s+/g, " "); // 🔥 FIX quan trọng
+            .replace(/\s+/g, " ")
+            .trim();
     },
 
     categoryMap: {
@@ -27,16 +27,17 @@ window.SearchCore = {
 
         const k = this.normalize(keyword);
 
-        // 🔥 FIX: match category bằng contains thay vì exact key
-        const matchedCategory = Object.keys(this.categoryMap)
-            .find(key => k.includes(key));
+        // 🔥 FIX 1: tìm key chính xác hơn (không dùng includes sai lệch)
+        const matchedCategoryKey = Object.keys(this.categoryMap)
+            .find(key => this.normalize(key) === k);
 
-        if (matchedCategory) {
+        if (matchedCategoryKey) {
             return products.filter(
-                p => p.category === this.categoryMap[matchedCategory]
+                p => p.category === this.categoryMap[matchedCategoryKey]
             );
         }
 
+        // 🔥 FIX 2: fallback search an toàn
         return products.filter(p => {
 
             const text = this.normalize(
