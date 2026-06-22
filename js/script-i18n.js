@@ -38,14 +38,22 @@ heroLine4: "VÀ GIA ĐÌNH",
 heroFeature1: "THIẾT BỊ CHÍNH HÃNG - CHẤT LƯỢNG CAO",
 heroFeature2: "GIẢI PHÁP TOÀN DIỆN CHO DOANH NGHIỆP",
 heroFeature3: "DỊCH VỤ KỸ THUẬT VÀ HỖ TRỢ CHUYÊN NGHIỆP",
-
 businessTitle: "GIẢI PHÁP THEO LĨNH VỰC",
 
-fieldMeasure: "THIẾT BỊ ĐO LƯỜNG",
-fieldIndustry: "THIẾT BỊ CÔNG NGHIỆP",
-fieldService: "DỊCH VỤ KỸ THUẬT",
-fieldHome: "THIẾT BỊ GIA ĐÌNH",
-fieldTrade: "THƯƠNG MẠI & PHÂN PHỐI",
+field1: "THIẾT BỊ ĐO LƯỜNG",
+field1Desc: "Cân điện tử và thiết bị đo lường",
+
+field2: "THIẾT BỊ CÔNG NGHIỆP",
+field2Desc: "Máy móc và thiết bị sản xuất",
+
+field3: "DỊCH VỤ KỸ THUẬT",
+field3Desc: "Lắp đặt, sửa chữa và bảo trì",
+
+field4: "THIẾT BỊ GIA ĐÌNH",
+field4Desc: "Điện gia dụng và thiết bị dân dụng",
+
+field5: "THƯƠNG MẠI & PHÂN PHỐI",
+field5Desc: "Cung ứng và phân phối toàn quốc",
 
         categories: "DANH MỤC SẢN PHẨM",
 
@@ -141,13 +149,22 @@ heroFeature1: "GENUINE HIGH-QUALITY PRODUCTS",
 heroFeature2: "TOTAL BUSINESS SOLUTIONS",
 heroFeature3: "PROFESSIONAL TECHNICAL SUPPORT",
 
-businessTitle: "BUSINESS SOLUTIONS",
+businessTitle: "SOLUTIONS BY INDUSTRY",
 
-fieldMeasure: "MEASURING EQUIPMENT",
-fieldIndustry: "INDUSTRIAL EQUIPMENT",
-fieldService: "TECHNICAL SERVICES",
-fieldHome: "HOME EQUIPMENT",
-fieldTrade: "TRADING & DISTRIBUTION",
+field1: "MEASURING EQUIPMENT",
+field1Desc: "Electronic scales and measuring devices",
+
+field2: "INDUSTRIAL EQUIPMENT",
+field2Desc: "Machinery and industrial equipment",
+
+field3: "TECHNICAL SERVICES",
+field3Desc: "Installation, repair and maintenance",
+
+field4: "HOME APPLIANCES",
+field4Desc: "Household and consumer products",
+
+field5: "TRADING & DISTRIBUTION",
+field5Desc: "Nationwide supply and distribution",
 
         categories: "PRODUCT CATEGORIES",
 
@@ -240,11 +257,20 @@ heroFeature3: "专业技术支持",
 
 businessTitle: "行业解决方案",
 
-fieldMeasure: "测量设备",
-fieldIndustry: "工业设备",
-fieldService: "技术服务",
-fieldHome: "家用设备",
-fieldTrade: "贸易与分销",
+field1: "测量设备",
+field1Desc: "电子秤及测量设备",
+
+field2: "工业设备",
+field2Desc: "机械设备与工业设备",
+
+field3: "技术服务",
+field3Desc: "安装、维修和保养",
+
+field4: "家用设备",
+field4Desc: "家电及民用设备",
+
+field5: "贸易与分销",
+field5Desc: "全国供应与分销",
 
         categories: "产品分类",
 
