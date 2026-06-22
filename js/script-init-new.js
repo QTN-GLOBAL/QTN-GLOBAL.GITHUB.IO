@@ -1,5 +1,23 @@
+```javascript
 window.currentProducts = [];
+let allProductsCache = [];
 
+/* =========================
+   TEXT NORMALIZE
+========================= */
+function normalizeText(str) {
+
+    return (str || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .trim();
+}
+
+/* =========================
+   BOOT
+========================= */
 function boot() {
 
     const products = getProducts();
@@ -9,15 +27,21 @@ function boot() {
         return;
     }
 
-    // Ngôn ngữ
+    /* =========================
+       LANGUAGE
+    ========================= */
     setLanguage(
         localStorage.getItem("language") || "vi"
     );
 
-    // Dữ liệu gốc
+    /* =========================
+       ORIGINAL DATA
+    ========================= */
     let result = [...products];
 
-    // Danh mục
+    /* =========================
+       CATEGORY FILTER
+    ========================= */
     const category =
         sessionStorage.getItem("filterCategory");
 
@@ -32,7 +56,9 @@ function boot() {
         );
     }
 
-    // Thương hiệu
+    /* =========================
+       BRAND FILTER
+    ========================= */
     const brand =
         sessionStorage.getItem("filterBrand");
 
@@ -47,10 +73,12 @@ function boot() {
         );
     }
 
-    // Search
-    const keyword = sessionStorage.getItem("searchKeyword");
+    /* =========================
+       SEARCH
+    ========================= */
+    const keyword =
+        sessionStorage.getItem("searchKeyword");
 
-console.log("KEYWORD =", keyword);
     if (keyword) {
 
         sessionStorage.removeItem(
@@ -58,67 +86,97 @@ console.log("KEYWORD =", keyword);
         );
 
         const k =
-            keyword.toLowerCase().trim();
+            normalizeText(keyword);
 
         const categoryMap = {
-            "cân bàn": "can-ban",
-            "cân đếm": "can-dem",
-            "cân treo": "can-treo",
-            "đầu cân": "dau-can-dien-tu",
-            "cân phân tích": "can-phan-tich",
-            "cân chống nước": "can-chong-nuoc",
-            "cân in tem": "can-in-tem-ma-vach",
-            "cân ghế": "can-ghe-ngoi"
+
+            "can ban": "can-ban",
+            "can dem": "can-dem",
+            "can treo": "can-treo",
+            "dau can": "dau-can-dien-tu",
+            "can phan tich": "can-phan-tich",
+            "can chong nuoc": "can-chong-nuoc",
+            "can in tem": "can-in-tem-ma-vach",
+            "can ghe": "can-ghe-ngoi"
+
         };
-        console.log("k =", JSON.stringify(k));
-        console.log("map =", categoryMap[k]);
+
+        // Search by category
         if (categoryMap[k]) {
 
             result = result.filter(
-                p => p.category === categoryMap[k]
+                p =>
+                    p.category ===
+                    categoryMap[k]
             );
 
-        } else {
+        }
+
+        // Search by product name,
+        // description or brand
+        else {
 
             result = result.filter(p => {
 
-                return (
-                    (p.name || "")
-                        .toLowerCase()
-                        .includes(k) ||
+                const text =
+                    normalizeText(
 
-                    (p.description || "")
-                        .toLowerCase()
-                        .includes(k) ||
+                        [
+                            p.name,
+                            p.description,
+                            p.brand
+                        ]
+                        .filter(Boolean)
+                        .join(" ")
 
-                    (p.brand || "")
-                        .toLowerCase()
-                        .includes(k)
-                );
+                    );
+
+                return text.includes(k);
+
             });
         }
     }
 
-    // Cache
+    /* =========================
+       CACHE
+    ========================= */
     allProductsCache = [...result];
-    window.currentProducts = [...result];
 
-    // Render
+    window.currentProducts =
+        [...result];
+
+    /* =========================
+       RENDER
+    ========================= */
     renderProducts(result);
 
-    // Cart
-    if (typeof updateCartCount === "function") {
+    /* =========================
+       CART
+    ========================= */
+    if (
+        typeof updateCartCount ===
+        "function"
+    ) {
         updateCartCount();
     }
 
-    // Slider
-    if (typeof initExcellSlider === "function") {
+    /* =========================
+       SLIDER
+    ========================= */
+    if (
+        typeof initExcellSlider ===
+        "function"
+    ) {
         initExcellSlider();
     }
 
-    // Open cart
+    /* =========================
+       OPEN CART
+    ========================= */
     const openCartFlag =
-        sessionStorage.getItem("openCart");
+        sessionStorage.getItem(
+            "openCart"
+        );
 
     if (openCartFlag === "1") {
 
@@ -126,13 +184,20 @@ console.log("KEYWORD =", keyword);
             "openCart"
         );
 
-        if (typeof openCart === "function") {
+        if (
+            typeof openCart ===
+            "function"
+        ) {
             openCart();
         }
     }
 }
 
+/* =========================
+   START
+========================= */
 document.addEventListener(
     "DOMContentLoaded",
     boot
 );
+
