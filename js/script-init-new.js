@@ -76,67 +76,14 @@ function boot() {
     /* =========================
        SEARCH
     ========================= */
-    const keyword =
-        sessionStorage.getItem("searchKeyword");
+    const keyword = sessionStorage.getItem("searchKeyword");
 
-    if (keyword) {
+if (keyword) {
 
-        sessionStorage.removeItem(
-            "searchKeyword"
-        );
+    sessionStorage.removeItem("searchKeyword");
 
-        const k =
-            normalizeText(keyword);
-
-        const categoryMap = {
-
-            "can ban": "can-ban",
-            "can dem": "can-dem",
-            "can treo": "can-treo",
-            "dau can": "dau-can-dien-tu",
-            "can phan tich": "can-phan-tich",
-            "can chong nuoc": "can-chong-nuoc",
-            "can in tem": "can-in-tem-ma-vach",
-            "can ghe": "can-ghe-ngoi"
-
-        };
-
-        // Search by category
-        if (categoryMap[k]) {
-
-            result = result.filter(
-                p =>
-                    p.category ===
-                    categoryMap[k]
-            );
-
-        }
-
-        // Search by product name,
-        // description or brand
-        else {
-
-            result = result.filter(p => {
-
-                const text =
-                    normalizeText(
-
-                        [
-                            p.name,
-                            p.description,
-                            p.brand
-                        ]
-                        .filter(Boolean)
-                        .join(" ")
-
-                    );
-
-                return text.includes(k);
-
-            });
-        }
-    }
-
+    result = SearchCore.filter(result, keyword);
+}
     /* =========================
        CACHE
     ========================= */
