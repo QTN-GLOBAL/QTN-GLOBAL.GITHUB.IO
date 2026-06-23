@@ -4128,6 +4128,33 @@ window.productTranslations = {
         ]
     }
 },
+28: {
+
+    en: {
+
+        name: "ATMOSPHERE MINI™ Air Purifier",
+
+        description:
+            "ATMOSPHERE MINI™ Air Purifier is a premium air treatment system designed for bedrooms, apartments and small offices. Its 3-in-1 filtration system effectively removes airborne contaminants, odors and allergens.",
+
+        specification:
+            "Coverage area: up to 18.6 m² | 3-in-1 filtration system | Removes 99.99% of airborne particles | Captures particles as small as 0.0024 microns | CADR over 220 m³/h | Power consumption 38W | Voltage 100-240V | Weight 5.2 kg"
+
+    },
+
+    zh: {
+
+        name: "ATMOSPHERE MINI™ 空气净化器",
+
+        description:
+            "ATMOSPHERE MINI™ 空气净化器适用于卧室、小型公寓和办公室。三合一过滤系统可有效去除空气污染物、异味和过敏原。",
+
+        specification:
+            "适用面积：18.6平方米以内｜三合一过滤系统｜过滤99.99%的空气污染颗粒｜可过滤小至0.0024微米颗粒｜CADR超过220立方米/小时｜功率38W｜电压100-240V｜重量5.2公斤"
+
+    }
+
+},
 };
 
 

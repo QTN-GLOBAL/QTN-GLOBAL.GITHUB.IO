@@ -2361,6 +2361,45 @@ business:"measure",
 "Tiêu chuẩn OIML C3"
 
 ]
+},
+{
+    business: "home",
+
+    id: 28,
+
+    name: "Máy lọc không khí ATMOSPHERE MINI™",
+
+    category: "air-purifier",
+
+    folder: "atmosphere-mini",
+
+    brand: "ATMOSPHERE",
+
+    origin: "Hoa Kỳ",
+
+    description: "Máy lọc không khí ATMOSPHERE MINI™ là giải pháp lọc không khí cao cấp dành cho gia đình, phòng ngủ và văn phòng nhỏ. Sản phẩm sử dụng hệ thống lọc 3 trong 1 giúp loại bỏ bụi mịn, vi khuẩn, chất gây dị ứng và các mùi khó chịu trong không khí.",
+
+    specification: `
+- Diện tích sử dụng: đến 18,6 m²
+- Hệ thống lọc: 3 trong 1
+- Bộ lọc HEPA hiệu suất cao
+- Lọc hạt bụi nhỏ đến 0,0024 micron
+- Loại bỏ 99,99% hạt ô nhiễm trong không khí
+- CADR: trên 220 m³/h
+- Điện áp: 100–240V
+- Công suất: 38W
+- Kích thước: 357 × 480 × 260 mm
+- Trọng lượng: 5,2 kg
+`,
+
+    features: [
+        "Hệ thống lọc 3 trong 1",
+        "Loại bỏ đến 99,99% hạt ô nhiễm",
+        "Khử mùi và giảm chất gây dị ứng",
+        "Phù hợp phòng ngủ và căn hộ nhỏ",
+        "Vận hành êm ái",
+        "Chứng nhận Allergy UK và AHAM"
+    ]
 }
 
 
