@@ -2400,6 +2400,46 @@ business:"measure",
         "Vận hành êm ái",
         "Chứng nhận Allergy UK và AHAM"
     ]
+},
+{
+    business: "home",
+
+    id: 29,
+
+    name: "Bộ lọc thay thế cho máy lọc không khí ATMOSPHERE MINI™",
+
+    category: "air-filter",
+
+    folder: "atmosphere-mini-filter",
+
+    brand: "ATMOSPHERE",
+
+    origin: "Hoa Kỳ",
+
+    description:
+        "Bộ lọc thay thế ATMOSPHERE MINI™ là bộ lọc 3 trong 1 chính hãng dành riêng cho máy lọc không khí ATMOSPHERE MINI™. Bộ lọc tích hợp màng lọc sơ cấp, màng lọc HEPA hiệu suất cao và màng than hoạt tính giúp loại bỏ bụi mịn, chất gây dị ứng, mùi khó chịu và các chất ô nhiễm trong không khí.",
+
+    specification: `
+- Tương thích: ATMOSPHERE MINI™
+- Hệ thống lọc: 3 trong 1
+- Màng lọc sơ cấp
+- Màng lọc HEPA hiệu suất cao
+- Màng lọc than hoạt tính
+- Loại bỏ hạt bụi đến 0,0024 micron
+- Hiệu suất lọc 99,99%
+- Khử hơn 300 chất ô nhiễm trong không khí
+- Tuổi thọ bộ lọc: 6–10 tháng
+- Thay thế dễ dàng
+`,
+
+    features: [
+        "Bộ lọc 3 trong 1",
+        "Lọc bụi siêu mịn PM2.5",
+        "Khử mùi và khí độc",
+        "Loại bỏ chất gây dị ứng",
+        "Thay thế nhanh chóng",
+        "Chính hãng ATMOSPHERE"
+    ]
 }
 
 

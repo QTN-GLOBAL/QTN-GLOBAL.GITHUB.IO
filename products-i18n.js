@@ -4155,6 +4155,29 @@ window.productTranslations = {
     }
 
 },
+29: {
+
+    en: {
+
+        name:
+            "ATMOSPHERE MINI™ Replacement Filter",
+
+        description:
+            "The ATMOSPHERE MINI™ Replacement Filter is a genuine 3-in-1 filter specifically designed for the ATMOSPHERE MINI™ Air Purifier. It combines a pre-filter, HEPA filter and activated carbon filter in one convenient cartridge."
+
+    },
+
+    zh: {
+
+        name:
+            "ATMOSPHERE MINI™ 替换滤芯",
+
+        description:
+            "ATMOSPHERE MINI™ 原装三合一滤芯，集初效过滤、HEPA过滤和活性炭过滤于一体，可有效去除空气中的污染物和异味。"
+
+    }
+
+},
 };
 
 
