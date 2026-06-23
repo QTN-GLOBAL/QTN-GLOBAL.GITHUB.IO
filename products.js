@@ -1,6 +1,7 @@
 window.products = [
 
 {
+    business:"measure",
     id:1,
     name:"Cân điện tử Jadever JWL",
     category:"can-ban",
@@ -75,6 +76,7 @@ window.products = [
 },
 
 {
+    business:"measure",
     id:2,
     name:"Cân điện tử đếm Vibra ALC",
     category:"can-dem",
@@ -164,6 +166,7 @@ window.products = [
 },
 
 {
+    business:"measure",
     id:3,
 
     name:"Cân điện tử Oneko JK-A",
@@ -257,6 +260,7 @@ window.products = [
 },
     
 {
+    business:"measure",
     id:4,
 
     name:"Cân điện tử Ohaus RC21PE",
@@ -343,6 +347,7 @@ window.products = [
 ]
 },
    {
+    business:"measure",
     id:5,
 
     name:"Cân điện tử Nhật Bản VIBRA HAW",
@@ -441,6 +446,7 @@ window.products = [
 ]
 },
 {
+    business:"measure",
     id:6,
 
     name:"Cân đếm Jadever JCL",
@@ -530,6 +536,7 @@ window.products = [
 ]
 },
     {
+    business:"measure",
     id:7,
 
     name:"Cân điện tử đếm Oneko JK-A+",
@@ -621,6 +628,7 @@ window.products = [
 ]
 },
    {
+    business:"measure",
     id:8,
 
     name:"Cân đếm mẫu Ohaus RC21P",
@@ -705,6 +713,7 @@ window.products = [
 ]
 },
    {
+    business:"measure",
     id:9,
 
     name:"Cân điện tử đếm Yaohua XK3190 A15E",
@@ -804,6 +813,7 @@ window.products = [
 ]
 },
     {
+    business:"measure",
     id:10,
 
     name:"Cân điện tử đếm ALH4",
@@ -894,6 +904,7 @@ window.products = [
 ]
 },
    {
+    business:"measure",
     id:11,
 
     name:"Cân treo điện tử FJ5",
@@ -985,6 +996,7 @@ window.products = [
 ]
 },
    {
+    business:"measure",
     id:12,
 
     name:"Đầu Cân Điện Tử Chống Nước GW",
@@ -1052,6 +1064,7 @@ window.products = [
 ]
 },
     {
+    business:"measure",
     id:13,
 
     name:"Đầu Cân Điện Tử KW",
@@ -1129,6 +1142,7 @@ window.products = [
 ]
 },
     {
+    business:"measure",
     id:14,
 
     name:"Đầu Cân Đếm Số Lượng KC",
@@ -1208,6 +1222,7 @@ window.products = [
 ]
 },
     {
+    business:"measure",
     id:15,
 
     name:"Đầu Cân Điện Tử In Biểu FB530",
@@ -1285,6 +1300,7 @@ window.products = [
 ]
 },
     {
+business:"measure",
     id:16,
 
     name:"Đầu Cân Điện Tử BTW",
@@ -1356,6 +1372,7 @@ window.products = [
 ]
 },
     {
+business:"measure",
     id:17,
 
     name:"Đầu Hiển Thị BTW-E",
@@ -1427,6 +1444,7 @@ window.products = [
 ]
 },
    {
+business:"measure",
     id:18,
 
     name:"Đầu Cân Ô Tô EX-2001",
@@ -1500,6 +1518,7 @@ window.products = [
 ]
 },
      {
+business:"measure",
     id:19,
 
     name:"Đầu Cân Điện Tử KWS",
@@ -1571,6 +1590,7 @@ window.products = [
 ]
 },
     {
+business:"measure",
     id:20,
 
     name:"Cân điện tử 5 số FA10035XN",
@@ -1652,6 +1672,7 @@ window.products = [
 ]
 },
    {
+business:"measure",
     id:21,
 
     name:"Cân điện tử Shinko GS",
@@ -1798,6 +1819,7 @@ window.products = [
 
 },
 {
+business:"measure",
     id:22,
 
     name:"Cân kỹ thuật OKS – DJ",
@@ -1904,6 +1926,7 @@ window.products = [
 
 },
 {
+business:"measure",
     id:23,
 
     name:"Cân điện tử chống nước cân hải sản HZ-8X",
@@ -1985,6 +2008,7 @@ window.products = [
 
 },
 {
+business:"measure",
     id:24,
 
     name:"Cân điện tử chống nước mặn SUPER SS",
@@ -2073,6 +2097,7 @@ window.products = [
 
 },
 {
+business:"measure",
     id:25,
 
     name:"Cân điện tử in tem IND – PP",
@@ -2168,6 +2193,7 @@ window.products = [
 ]
 },
 {
+business:"measure",
     id:26,
 
     name:"Cân ghế ngồi inox SLH 200",
@@ -2249,6 +2275,7 @@ window.products = [
 ]
 },
 {
+business:"measure",
     id:27,
 
     name:"Cân ghế ngồi XK3190 A12",
