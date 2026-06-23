@@ -4178,6 +4178,29 @@ window.productTranslations = {
     }
 
 },
+30: {
+
+    en: {
+
+        name:
+            "ATMOSPHERE MINI™ Front Panel",
+
+        description:
+            "Genuine front panel replacement for the ATMOSPHERE MINI™ Air Purifier. Designed to protect the internal filtration system while maintaining the original appearance of the unit."
+
+    },
+
+    zh: {
+
+        name:
+            "ATMOSPHERE MINI™ 前面板",
+
+        description:
+            "适用于 ATMOSPHERE MINI™ 空气净化器的原装前面板，可保护内部过滤系统并保持设备外观完整。"
+
+    }
+
+},
 };
 
 

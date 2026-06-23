@@ -2440,6 +2440,46 @@ business:"measure",
         "Thay thế nhanh chóng",
         "Chính hãng ATMOSPHERE"
     ]
+},
+{
+    business: "home",
+
+    id: 30,
+
+    name: "Tấm chắn phía trước của máy lọc không khí ATMOSPHERE MINI™",
+
+    category: "air-filter",
+
+    folder: "atmosphere-mini-front-panel",
+
+    brand: "ATMOSPHERE",
+
+    origin: "Hoa Kỳ",
+
+    parent: 28,
+
+    compatible: [28],
+
+    description:
+        "Tấm chắn phía trước chính hãng dành cho máy lọc không khí ATMOSPHERE MINI™. Sản phẩm giúp bảo vệ bộ lọc bên trong, đảm bảo tính thẩm mỹ và duy trì hoạt động ổn định của thiết bị.",
+
+    specification: `
+- Tương thích: Máy lọc không khí ATMOSPHERE MINI™
+- Loại sản phẩm: Tấm chắn phía trước
+- Vật liệu: Nhựa kỹ thuật cao cấp
+- Lắp đặt: Thay thế trực tiếp
+- Phụ kiện chính hãng ATMOSPHERE™
+- Tháo lắp dễ dàng
+`,
+
+    features: [
+        "Phụ kiện chính hãng ATMOSPHERE™",
+        "Thiết kế đồng bộ với thiết bị",
+        "Thay thế trực tiếp",
+        "Lắp đặt đơn giản",
+        "Độ bền cao",
+        "Tương thích hoàn toàn với ATMOSPHERE MINI™"
+    ]
 }
 
 
