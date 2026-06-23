@@ -317,56 +317,140 @@ onclick="openCart()">
 
 <section class="main-layout">
 
-<!-- SIDEBAR TRÁI -->
+<!-- SIDEBAR -->
 <aside class="sidebar">
 
-    <h2 data-i18n="categories">
-        DANH MỤC SẢN PHẨM
+    <h2 data-i18n="businessCategories">
+        LĨNH VỰC KINH DOANH
     </h2>
 
-    <ul>
+    <!-- ĐO LƯỜNG -->
 
-        <li onclick="filterProducts('can-ban')"
-            data-i18n="catPlatformScale">
-            Cân bàn
-        </li>
+    <div class="business-group">
 
-        <li onclick="filterProducts('can-dem')"
-            data-i18n="catCountingScale">
-            Cân đếm
-        </li>
+        <div class="business-title"
+             onclick="filterBusiness('measure')">
 
-        <li onclick="filterProducts('can-treo')"
-            data-i18n="catCraneScale">
-            Cân treo
-        </li>
+            ⚖️
+            <span data-i18n="fieldMeasure">
+                THIẾT BỊ ĐO LƯỜNG
+            </span>
 
-        <li onclick="filterProducts('dau-can-dien-tu')"
-            data-i18n="catIndicator">
-            Đầu cân điện tử
-        </li>
+        </div>
 
-        <li onclick="filterProducts('can-phan-tich')"
-            data-i18n="catAnalyticalScale">
-            Cân phân tích
-        </li>
+        <ul>
 
-        <li onclick="filterProducts('can-chong-nuoc')"
-            data-i18n="catWaterproofScale">
-            Cân chống nước
-        </li>
+            <li onclick="filterProducts('can-ban')"
+                data-i18n="catPlatformScale">
+                Cân bàn
+            </li>
 
-        <li onclick="filterProducts('can-in-tem-ma-vach')"
-            data-i18n="catLabelPrintingScale">
-            Cân in tem mã vạch
-        </li>
+            <li onclick="filterProducts('can-dem')"
+                data-i18n="catCountingScale">
+                Cân đếm
+            </li>
 
-        <li onclick="filterProducts('can-ghe-ngoi')"
-            data-i18n="catChairScale">
-            Cân ghế ngồi
-        </li>
+            <li onclick="filterProducts('can-treo')"
+                data-i18n="catCraneScale">
+                Cân treo
+            </li>
 
-    </ul>
+            <li onclick="filterProducts('dau-can-dien-tu')"
+                data-i18n="catIndicator">
+                Đầu cân điện tử
+            </li>
+
+            <li onclick="filterProducts('can-phan-tich')"
+                data-i18n="catAnalyticalScale">
+                Cân phân tích
+            </li>
+
+            <li onclick="filterProducts('can-chong-nuoc')"
+                data-i18n="catWaterproofScale">
+                Cân chống nước
+            </li>
+
+            <li onclick="filterProducts('can-in-tem-ma-vach')"
+                data-i18n="catLabelPrintingScale">
+                Cân in tem mã vạch
+            </li>
+
+            <li onclick="filterProducts('can-ghe-ngoi')"
+                data-i18n="catChairScale">
+                Cân ghế ngồi
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- CÔNG NGHIỆP -->
+
+    <div class="business-group">
+
+        <div class="business-title"
+             onclick="filterBusiness('industry')">
+
+            🏭
+
+            <span data-i18n="fieldIndustry">
+                THIẾT BỊ CÔNG NGHIỆP
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- DỊCH VỤ -->
+
+    <div class="business-group">
+
+        <div class="business-title"
+             onclick="filterBusiness('service')">
+
+            🔧
+
+            <span data-i18n="fieldService">
+                DỊCH VỤ KỸ THUẬT
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- GIA ĐÌNH -->
+
+    <div class="business-group">
+
+        <div class="business-title"
+             onclick="filterBusiness('home')">
+
+            🏠
+
+            <span data-i18n="fieldHome">
+                THIẾT BỊ GIA ĐÌNH
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- THƯƠNG MẠI -->
+
+    <div class="business-group">
+
+        <div class="business-title"
+             onclick="filterBusiness('trade')">
+
+            🌎
+
+            <span data-i18n="fieldTrade">
+                THƯƠNG MẠI & PHÂN PHỐI
+            </span>
+
+        </div>
+
+    </div>
 
 </aside>
 <!-- MAIN PRODUCT -->
