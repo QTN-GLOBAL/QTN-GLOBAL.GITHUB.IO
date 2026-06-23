@@ -94,6 +94,24 @@ function boot() {
         sessionStorage.removeItem("filterBrand");
         result = result.filter(p => p && p.brand === brand);
     }
+/***************************
+   BUSINESS FILTER
+***************************/
+const business =
+    sessionStorage.getItem(
+        "filterBusiness"
+    );
+
+if (business) {
+
+    sessionStorage.removeItem(
+        "filterBusiness"
+    );
+
+    result = result.filter(
+        p => p.business === business
+    );
+}
 
     /* =========================
        SEARCH (SAFE FLOW FIXED)

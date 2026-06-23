@@ -86,3 +86,16 @@ function goHomeOpenCart() {
 
     window.location.href = "index.html";
 }
+/***************************
+   BUSINESS NAVIGATION
+***************************/
+function goHomeAndBusiness(business) {
+
+    sessionStorage.setItem(
+        "filterBusiness",
+        business
+    );
+
+    window.location.href =
+        "index.html";
+}

@@ -101,12 +101,34 @@ function initExcellSlider() {
    SESSION NAVIGATION
 ========================= */
 
+function goHomeAndFilter(key, value) {
+
+    sessionStorage.setItem(
+        key,
+        value
+    );
+
+    window.location.href =
+        "index.html";
+}
+
 function goHomeAndCategory(category) {
-    sessionStorage.setItem("filterCategory", category);
-    window.location.href = "index.html";
+    goHomeAndFilter(
+        "filterCategory",
+        category
+    );
 }
 
 function goHomeAndBrand(brand) {
-    sessionStorage.setItem("filterBrand", brand);
-    window.location.href = "index.html";
+    goHomeAndFilter(
+        "filterBrand",
+        brand
+    );
+}
+
+function goHomeAndBusiness(business) {
+    goHomeAndFilter(
+        "filterBusiness",
+        business
+    );
 }
