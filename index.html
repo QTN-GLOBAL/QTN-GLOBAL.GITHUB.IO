@@ -418,23 +418,46 @@ onclick="openCart()">
 
     </div>
 
-    <!-- GIA ĐÌNH -->
+   <!-- THIẾT BỊ GIA ĐÌNH -->
 
-    <div class="business-group">
+<div class="business-group">
 
-        <div class="business-title"
-             onclick="filterBusiness('home')">
+    <div class="business-title"
+         onclick="goHomeAndBusiness('home')">
 
-            🏠
+        🏠
 
-            <span data-i18n="fieldHome">
-                THIẾT BỊ GIA ĐÌNH
-            </span>
-
-        </div>
+        <span data-i18n="fieldHome">
+            THIẾT BỊ GIA ĐÌNH
+        </span>
 
     </div>
 
+    <ul>
+
+        <li onclick="goHomeAndCategory('air-purifier')"
+            data-i18n="catAirPurifier">
+            Máy lọc không khí
+        </li>
+
+        <li onclick="goHomeAndCategory('air-filter')"
+            data-i18n="catAirFilter">
+            Phụ kiện máy lọc không khí
+        </li>
+
+        <li onclick="goHomeAndCategory('water-purifier')"
+            data-i18n="catWaterPurifier">
+            Máy lọc nước
+        </li>
+
+        <li onclick="goHomeAndCategory('water-filter')"
+            data-i18n="catWaterFilter">
+            Lõi lọc & phụ kiện
+        </li>
+
+    </ul>
+
+</div>
     <!-- THƯƠNG MẠI -->
 
     <div class="business-group">
