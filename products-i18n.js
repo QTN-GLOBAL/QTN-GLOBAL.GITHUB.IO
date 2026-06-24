@@ -4270,6 +4270,29 @@ window.productTranslations = {
     }
 
 },
+34: {
+
+    en: {
+
+        name:
+            "eSpring Carbon e3 Filter",
+
+        description:
+            "The genuine eSpring Carbon e3 Filter is designed for the New eSpring Water Purifier and provides advanced filtration performance together with the UV-C LED system."
+
+    },
+
+    zh: {
+
+        name:
+            "eSpring Carbon e3 滤芯",
+
+        description:
+            "eSpring Carbon e3 原装滤芯适用于 New eSpring 净水器，可提供高效过滤并配合 UV-C LED 技术使用。"
+
+    }
+
+},
 };
 
 

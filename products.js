@@ -2597,6 +2597,45 @@ business:"measure",
         "Theo dõi tuổi thọ lõi lọc",
         "Thiết kế vòi nước riêng biệt"
     ]
+},
+{
+    business: "home",
+
+    id: 34,
+
+    name: "Bộ Lọc eSpring Carbon e3",
+
+    category: "water-filter",
+
+    folder: "espring-carbon-e3",
+
+    brand: "eSpring",
+
+    origin: "Hoa Kỳ",
+
+    compatible: [32, 33],
+
+    description:
+        "Bộ lọc eSpring Carbon e3 là lõi lọc chính hãng dành cho máy lọc nước New eSpring. Sản phẩm sử dụng công nghệ Carbon e3 kết hợp hệ thống UV-C LED của máy nhằm loại bỏ tạp chất, cải thiện mùi vị nước và cung cấp nguồn nước sạch cho gia đình.",
+
+    specification: `
+- Tương thích: New eSpring
+- Công nghệ: Carbon e3
+- Công suất lọc: khoảng 5.000 lít
+- Tuổi thọ: khoảng 1 năm sử dụng
+- Thay thế không cần dụng cụ
+- Tích hợp chip theo dõi tuổi thọ
+- Phụ kiện chính hãng eSpring™
+`,
+
+    features: [
+        "Lõi lọc chính hãng eSpring™",
+        "Công nghệ Carbon e3",
+        "Thời gian sử dụng khoảng 1 năm",
+        "Thay lõi đơn giản",
+        "Cải thiện mùi vị nước",
+        "Tương thích New eSpring"
+    ]
 }
 
 
