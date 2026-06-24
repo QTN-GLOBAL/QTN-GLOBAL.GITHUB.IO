@@ -4316,6 +4316,29 @@ window.productTranslations = {
     }
 
 },
+36: {
+
+    en: {
+
+        name:
+            "New eSpring Faucet Connector",
+
+        description:
+            "Genuine faucet connector replacement designed for the New eSpring Water Purifier. Provides a secure and reliable water connection."
+
+    },
+
+    zh: {
+
+        name:
+            "New eSpring 水龙头连接头",
+
+        description:
+            "适用于 New eSpring 净水器的原装水龙头连接头，可提供稳定可靠的供水连接。"
+
+    }
+
+},
 };
 
 

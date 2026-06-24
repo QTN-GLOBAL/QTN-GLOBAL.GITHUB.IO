@@ -2674,6 +2674,44 @@ business:"measure",
         "Thay thế trực tiếp",
         "An toàn khi sử dụng"
     ]
+},
+{
+    business: "home",
+
+    id: 36,
+
+    name: "Đầu Nối Vòi Của Máy Lọc Nước New eSpring",
+
+    category: "water-filter",
+
+    folder: "espring-faucet-connector",
+
+    brand: "Amway",
+
+    origin: "Hoa Kỳ",
+
+    compatible: [32, 33],
+
+    description:
+        "Đầu nối vòi chính hãng dành cho máy lọc nước New eSpring. Phụ kiện giúp kết nối hệ thống cấp nước với thiết bị, đảm bảo lưu lượng nước ổn định và an toàn trong quá trình sử dụng.",
+
+    specification: `
+- Tương thích: New eSpring
+- Loại sản phẩm: Đầu nối vòi
+- Lắp đặt: Thay thế trực tiếp
+- Kết nối nguồn nước
+- Phụ kiện chính hãng eSpring™
+- Tháo lắp đơn giản
+`,
+
+    features: [
+        "Phụ kiện chính hãng eSpring™",
+        "Tương thích New eSpring",
+        "Kết nối ổn định",
+        "Thay thế dễ dàng",
+        "Lắp đặt nhanh chóng",
+        "Độ bền cao"
+    ]
 }
 
 
