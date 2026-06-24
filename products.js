@@ -2558,6 +2558,45 @@ business:"measure",
         "Theo dõi tuổi thọ lõi lọc",
         "Thiết kế hiện đại"
     ]
+},
+{
+    business: "home",
+
+    id: 33,
+
+    name: "Máy Lọc Nước New eSpring Kèm Vòi",
+
+    category: "water-purifier",
+
+    folder: "espring-faucet",
+
+    brand: "eSpring",
+
+    origin: "Hoa Kỳ",
+
+    description:
+        "Máy lọc nước New eSpring kèm vòi là hệ thống lọc nước cao cấp lắp đặt dưới chậu rửa với vòi nước chuyên dụng riêng biệt. Sản phẩm sử dụng công nghệ UV-C LED kết hợp bộ lọc Carbon e3 giúp cung cấp nguồn nước sạch, an toàn và giữ lại các khoáng chất có lợi.",
+
+    specification: `
+- Công nghệ UV-C LED
+- Bộ lọc Carbon e3
+- Lưu lượng nước: 2,6 lít/phút
+- Công suất bộ lọc: 5.000 lít hoặc khoảng 1 năm sử dụng
+- Điện áp đầu vào: 24V DC
+- Áp suất nước: 103 – 689 kPa
+- Nhiệt độ nước: 4,4 – 30°C
+- Kích thước: 346 × 254 × 140 mm
+- Lắp đặt dưới chậu rửa với vòi riêng
+`,
+
+    features: [
+        "Công nghệ UV-C LED",
+        "Lọc và khử khuẩn nước",
+        "Giữ lại khoáng chất có lợi",
+        "Bộ lọc Carbon e3",
+        "Theo dõi tuổi thọ lõi lọc",
+        "Thiết kế vòi nước riêng biệt"
+    ]
 }
 
 

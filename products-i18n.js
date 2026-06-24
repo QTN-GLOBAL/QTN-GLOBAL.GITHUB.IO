@@ -4247,6 +4247,29 @@ window.productTranslations = {
     }
 
 },
+33: {
+
+    en: {
+
+        name:
+            "New eSpring Water Purifier with Auxiliary Faucet",
+
+        description:
+            "The New eSpring Water Purifier with auxiliary faucet combines Carbon e3 filtration and UV-C LED technology to provide clean, safe and better-tasting drinking water."
+
+    },
+
+    zh: {
+
+        name:
+            "新款 eSpring 净水器（独立水龙头）",
+
+        description:
+            "新款 eSpring 净水器采用 Carbon e3 滤芯与 UV-C LED 技术，可提供洁净、安全且口感更好的饮用水。"
+
+    }
+
+},
 };
 
 
