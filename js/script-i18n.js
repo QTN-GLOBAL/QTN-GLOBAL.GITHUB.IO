@@ -49,7 +49,7 @@ field2Desc: "Máy móc và thiết bị sản xuất",
 field3: "DỊCH VỤ KỸ THUẬT",
 field3Desc: "Lắp đặt, sửa chữa và bảo trì",
 
-field4: "THIẾT BỊ GIA ĐÌNH",
+field4: "THIẾT BỊ GIA DỤNG",
 field4Desc: "Điện gia dụng và thiết bị dân dụng",
 
 field5: "THƯƠNG MẠI & PHÂN PHỐI",
@@ -60,7 +60,7 @@ field5Desc: "Cung ứng và phân phối toàn quốc",
 fieldMeasure: "THIẾT BỊ ĐO LƯỜNG",
 fieldIndustry: "THIẾT BỊ CÔNG NGHIỆP",
 fieldService: "DỊCH VỤ KỸ THUẬT",
-fieldHome: "THIẾT BỊ GIA ĐÌNH",
+fieldHome: "THIẾT BỊ GIA DỤNG",
 
 catAirPurifier: "Máy lọc không khí",
 catAirFilter: "Phụ kiện máy lọc không khí",
