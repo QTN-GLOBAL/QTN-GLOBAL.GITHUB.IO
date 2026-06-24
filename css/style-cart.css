@@ -453,6 +453,11 @@
     cursor:pointer;
     font-weight:600;
     color:#0b3f91;
+    white-space:nowrap;
+}
+
+.request-type span{
+    white-space:nowrap;
 }
 
 .request-type input[type="radio"]{

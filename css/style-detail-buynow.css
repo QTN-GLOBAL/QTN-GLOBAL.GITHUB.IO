@@ -238,9 +238,9 @@
 }
 .request-type{
     display:flex;
+    justify-content:center;
     gap:25px;
     margin:15px 0 20px;
-    justify-content:center;
     flex-wrap:wrap;
 }
 
@@ -251,8 +251,13 @@
     cursor:pointer;
     font-weight:600;
     color:#0b3f91;
+    white-space:nowrap;
+}
+
+.request-type span{
+    white-space:nowrap;
 }
 
 .request-type input[type="radio"]{
-    transform:scale(1.2);
+    transform:scale(1.15);
 }
