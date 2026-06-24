@@ -2712,6 +2712,44 @@ business:"measure",
         "Lắp đặt nhanh chóng",
         "Độ bền cao"
     ]
+},
+{
+    business: "home",
+
+    id: 37,
+
+    name: "Màng Lọc Sơ Cấp Thay Thế Của Máy Lọc Nước New eSpring",
+
+    category: "water-filter",
+
+    folder: "espring-prefilter",
+
+    brand: "eSpring",
+
+    origin: "Trung Quốc",
+
+    compatible: [32, 33],
+
+    description:
+        "Màng lọc sơ cấp thay thế dành cho máy lọc nước New eSpring giúp ngăn chặn cặn bẩn, tạp chất có kích thước lớn trước khi nước đi vào hệ thống lọc chính. Sản phẩm là phụ kiện chính hãng dành riêng cho New eSpring.",
+
+    specification: `
+- Tương thích: Máy lọc nước New eSpring
+- Loại sản phẩm: Màng lọc sơ cấp
+- Chức năng: Lọc cặn thô và tạp chất lớn
+- Thay thế trực tiếp
+- Phụ kiện chính hãng eSpring™
+- Tháo lắp đơn giản
+`,
+
+    features: [
+        "Phụ kiện chính hãng eSpring™",
+        "Lọc cặn thô hiệu quả",
+        "Bảo vệ hệ thống lọc chính",
+        "Lắp đặt dễ dàng",
+        "Thay thế trực tiếp",
+        "Tương thích New eSpring"
+    ]
 }
 
 

@@ -4339,6 +4339,29 @@ window.productTranslations = {
     }
 
 },
+37: {
+
+    en: {
+
+        name:
+            "New eSpring Replacement Pre-Filter",
+
+        description:
+            "Genuine replacement pre-filter designed for the New eSpring Water Purifier. Helps remove larger particles and protect the main filtration system."
+
+    },
+
+    zh: {
+
+        name:
+            "New eSpring 前置滤网",
+
+        description:
+            "适用于 New eSpring 净水器的原装前置滤网，可过滤较大的杂质并保护主过滤系统。"
+
+    }
+
+},
 };
 
 
