@@ -4201,6 +4201,29 @@ window.productTranslations = {
     }
 
 },
+31: {
+
+    en: {
+
+        name:
+            "ATMOSPHERE MINI™ Power Cord",
+
+        description:
+            "Genuine replacement power cord designed specifically for the ATMOSPHERE MINI™ Air Purifier. Provides reliable and safe power supply for the unit."
+
+    },
+
+    zh: {
+
+        name:
+            "ATMOSPHERE MINI™ 电源线",
+
+        description:
+            "适用于 ATMOSPHERE MINI™ 空气净化器的原装电源线，可提供稳定可靠的供电。"
+
+    }
+
+},
 };
 
 

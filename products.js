@@ -2373,7 +2373,7 @@ business:"measure",
 
     folder: "atmosphere-mini",
 
-    brand: "ATMOSPHERE",
+    brand: "Amway",
 
     origin: "Hoa Kỳ",
 
@@ -2412,7 +2412,7 @@ business:"measure",
 
     folder: "atmosphere-mini-filter",
 
-    brand: "ATMOSPHERE",
+    brand: "Amway",
 
     origin: "Hoa Kỳ",
 
@@ -2452,7 +2452,7 @@ business:"measure",
 
     folder: "atmosphere-mini-front-panel",
 
-    brand: "ATMOSPHERE",
+    brand: "Amway",
 
     origin: "Hoa Kỳ",
 
@@ -2479,6 +2479,46 @@ business:"measure",
         "Lắp đặt đơn giản",
         "Độ bền cao",
         "Tương thích hoàn toàn với ATMOSPHERE MINI™"
+    ]
+},
+{
+    business: "home",
+
+    id: 31,
+
+    name: "Dây nguồn của máy lọc không khí ATMOSPHERE MINI™",
+
+    category: "air-filter",
+
+    folder: "atmosphere-mini-power-cord",
+
+    brand: "Amway",
+
+    origin: "Hoa Kỳ",
+
+    parent: 28,
+
+    compatible: [28],
+
+    description:
+        "Dây nguồn chính hãng dành cho máy lọc không khí ATMOSPHERE MINI™. Sản phẩm được thiết kế đồng bộ với thiết bị, đảm bảo khả năng cấp nguồn ổn định và an toàn trong quá trình sử dụng.",
+
+    specification: `
+- Tương thích: Máy lọc không khí ATMOSPHERE MINI™
+- Loại sản phẩm: Dây nguồn
+- Điện áp sử dụng: 100–240V
+- Kết nối tiêu chuẩn chính hãng
+- Thay thế trực tiếp
+- Phụ kiện chính hãng ATMOSPHERE™
+`,
+
+    features: [
+        "Phụ kiện chính hãng ATMOSPHERE™",
+        "Tương thích hoàn toàn với ATMOSPHERE MINI™",
+        "Đảm bảo cấp nguồn ổn định",
+        "Thay thế trực tiếp",
+        "Lắp đặt đơn giản",
+        "An toàn khi sử dụng"
     ]
 }
 
