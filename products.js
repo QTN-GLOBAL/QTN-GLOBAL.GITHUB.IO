@@ -2788,6 +2788,44 @@ business:"measure",
         "Thay thế trực tiếp",
         "Độ bền cao"
     ]
+},
+{
+    business: "home",
+
+    id: 39,
+
+    name: "Van Chia Thay Thế Của Máy Lọc Nước New eSpring",
+
+    category: "water-filter",
+
+    folder: "espring-diverter",
+
+    brand: "eSpring",
+
+    origin: "Hoa Kỳ",
+
+    compatible: [32, 33],
+
+    description:
+        "Van chia thay thế chính hãng dành cho máy lọc nước New eSpring. Sản phẩm giúp chuyển đổi giữa nước máy và nước lọc một cách thuận tiện, đảm bảo khả năng cấp nước ổn định cho thiết bị.",
+
+    specification: `
+- Tương thích: Máy lọc nước New eSpring
+- Loại sản phẩm: Van chia nước
+- Chức năng: Chuyển đổi nước máy và nước lọc
+- Công nghệ van gốm
+- Thay thế trực tiếp
+- Phụ kiện chính hãng eSpring™
+`,
+
+    features: [
+        "Phụ kiện chính hãng eSpring™",
+        "Công nghệ van gốm",
+        "Đóng mở nhanh",
+        "Giảm rò rỉ nước",
+        "Lắp đặt đơn giản",
+        "Tương thích New eSpring"
+    ]
 }
 
 

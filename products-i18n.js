@@ -4385,6 +4385,29 @@ window.productTranslations = {
     }
 
 },
+39: {
+
+    en: {
+
+        name:
+            "New eSpring Replacement Diverter",
+
+        description:
+            "Genuine replacement diverter designed for the New eSpring Water Purifier. Features ceramic valve technology for reliable operation and reduced dripping."
+
+    },
+
+    zh: {
+
+        name:
+            "New eSpring 替换分流阀",
+
+        description:
+            "适用于 New eSpring 净水器的原装分流阀，采用陶瓷阀芯技术，开关快速并减少漏水。"
+
+    }
+
+},
 };
 
 
