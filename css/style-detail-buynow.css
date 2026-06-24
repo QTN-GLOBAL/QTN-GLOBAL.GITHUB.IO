@@ -32,7 +32,7 @@
 
 /* NÚT ĐÓNG */
 
-#buyPopup span{
+#buyPopup .popup-close{
     float:right;
     cursor:pointer;
     font-size:22px;
