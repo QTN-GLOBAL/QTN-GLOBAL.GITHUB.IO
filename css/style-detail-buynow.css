@@ -236,3 +236,23 @@
 
     background:#fff5f5 !important;
 }
+.request-type{
+    display:flex;
+    gap:25px;
+    margin:15px 0 20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.request-type label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-weight:600;
+    color:#0b3f91;
+}
+
+.request-type input[type="radio"]{
+    transform:scale(1.2);
+}
