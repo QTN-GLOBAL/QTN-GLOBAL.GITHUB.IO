@@ -2532,7 +2532,7 @@ business:"measure",
 
     folder: "espring-diverter-kit",
 
-    brand: "eSpring",
+    brand: "Amway",
 
     origin: "Hoa Kỳ",
 
@@ -2570,7 +2570,7 @@ business:"measure",
 
     folder: "espring-faucet",
 
-    brand: "eSpring",
+    brand: "Amway",
 
     origin: "Hoa Kỳ",
 
@@ -2609,7 +2609,7 @@ business:"measure",
 
     folder: "espring-carbon-e3",
 
-    brand: "eSpring",
+    brand: "Amway",
 
     origin: "Hoa Kỳ",
 
@@ -2635,6 +2635,44 @@ business:"measure",
         "Thay lõi đơn giản",
         "Cải thiện mùi vị nước",
         "Tương thích New eSpring"
+    ]
+},
+{
+    business: "home",
+
+    id: 35,
+
+    name: "Dây Nguồn Thay Thế Của Máy Lọc Nước New eSpring",
+
+    category: "water-filter",
+
+    folder: "espring-power-cord",
+
+    brand: "Amway",
+
+    origin: "Hoa Kỳ",
+
+    compatible: [32, 33],
+
+    description:
+        "Dây nguồn thay thế chính hãng dành cho máy lọc nước New eSpring. Sản phẩm giúp cung cấp nguồn điện ổn định và an toàn cho thiết bị trong quá trình vận hành.",
+
+    specification: `
+- Tương thích: New eSpring
+- Loại sản phẩm: Dây nguồn thay thế
+- Điện áp đầu vào: 100–240V
+- Nguồn điện ổn định
+- Thay thế trực tiếp
+- Phụ kiện chính hãng eSpring™
+`,
+
+    features: [
+        "Phụ kiện chính hãng eSpring™",
+        "Tương thích New eSpring",
+        "Nguồn điện ổn định",
+        "Lắp đặt dễ dàng",
+        "Thay thế trực tiếp",
+        "An toàn khi sử dụng"
     ]
 }
 

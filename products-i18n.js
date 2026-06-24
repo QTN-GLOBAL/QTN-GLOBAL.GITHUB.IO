@@ -4293,6 +4293,29 @@ window.productTranslations = {
     }
 
 },
+35: {
+
+    en: {
+
+        name:
+            "New eSpring Replacement Power Cord",
+
+        description:
+            "Genuine replacement power cord designed for the New eSpring Water Purifier. Provides reliable and safe power supply for the system."
+
+    },
+
+    zh: {
+
+        name:
+            "New eSpring 替换电源线",
+
+        description:
+            "适用于 New eSpring 净水器的原装替换电源线，可提供稳定可靠的供电。"
+
+    }
+
+},
 };
 
 
