@@ -563,59 +563,95 @@ class="cart-body">
 </div>
 <!-- BUY -->
 <div id="buyPopup" class="popup-overlay" style="display:none">
+
     <div class="popup-box">
 
         <span onclick="closeBuyPopup()">✕</span>
 
         <h2 data-i18n="orderTitle">
-    ĐẶT HÀNG
-</h2>
+            THÔNG TIN KHÁCH HÀNG
+        </h2>
+
+        <!-- LOẠI YÊU CẦU -->
+
+        <div class="request-type">
+
+            <label>
+
+                <input type="radio"
+                       name="requestType"
+                       value="order"
+                       checked>
+
+                <span data-i18n="requestOrder">
+                    Đặt hàng
+                </span>
+
+            </label>
+
+            <label>
+
+                <input type="radio"
+                       name="requestType"
+                       value="quote">
+
+                <span data-i18n="requestQuote">
+                    Yêu cầu báo giá
+                </span>
+
+            </label>
+
+        </div>
 
         <div class="customer-grid">
 
-           <input id="customerName"
-           data-i18n-placeholder="customerName"
-           placeholder="Tên khách hàng">
+            <input id="customerName"
+                   data-i18n-placeholder="customerName"
+                   placeholder="Tên khách hàng">
 
             <input id="customerPhone"
-       data-i18n-placeholder="customerPhone"
-       placeholder="Số điện thoại">
+                   data-i18n-placeholder="customerPhone"
+                   placeholder="Số điện thoại">
 
-<input id="customerCompany"
-       data-i18n-placeholder="customerCompany"
-       placeholder="Tên công ty">
+            <input id="customerCompany"
+                   data-i18n-placeholder="customerCompany"
+                   placeholder="Tên công ty">
 
-<input id="customerTax"
-       data-i18n-placeholder="customerTax"
-       placeholder="Mã số thuế">
+            <input id="customerTax"
+                   data-i18n-placeholder="customerTax"
+                   placeholder="Mã số thuế">
 
-<textarea id="customerInvoice"
-          data-i18n-placeholder="customerInvoice"
-          placeholder="Địa chỉ xuất hóa đơn"></textarea>
+            <textarea id="customerInvoice"
+                      data-i18n-placeholder="customerInvoice"
+                      placeholder="Địa chỉ xuất hóa đơn"></textarea>
 
-<textarea id="customerAddress"
-          data-i18n-placeholder="customerAddress"
-          placeholder="Địa chỉ giao hàng"></textarea>
+            <textarea id="customerAddress"
+                      data-i18n-placeholder="customerAddress"
+                      placeholder="Địa chỉ giao hàng"></textarea>
 
         </div>
 
         <div id="buyCapacityList"></div>
 
         <button class="zalo-btn"
-        onclick="sendCartOrderZalo()"
-        data-i18n="sendZalo">
-    GỬI ZALO
-</button>
+                onclick="sendCartOrderZalo()"
+                data-i18n="sendZalo">
 
-<button class="mess-btn"
-        onclick="sendCartOrderMessenger()"
-        data-i18n="sendMessenger">
-    GỬI MESSENGER
-</button>
+            GỬI ZALO
+
+        </button>
+
+        <button class="mess-btn"
+                onclick="sendCartOrderMessenger()"
+                data-i18n="sendMessenger">
+
+            GỬI MESSENGER
+
+        </button>
 
     </div>
-</div>
 
+</div>
 <footer class="footer">
 
     <div class="footer-container">
