@@ -2520,6 +2520,44 @@ business:"measure",
         "Lắp đặt đơn giản",
         "An toàn khi sử dụng"
     ]
+},
+{
+    business: "home",
+
+    id: 32,
+
+    name: "Máy Lọc Nước New eSpring Kèm Van Chia",
+
+    category: "water-purifier",
+
+    folder: "espring-diverter-kit",
+
+    brand: "eSpring",
+
+    origin: "Hoa Kỳ",
+
+    description:
+        "Máy lọc nước New eSpring kèm van chia là hệ thống lọc nước cao cấp sử dụng công nghệ màng lọc kết hợp tia UV giúp loại bỏ tạp chất, các chất ô nhiễm và vi sinh vật trong nước uống hằng ngày.",
+
+    specification: `
+- Công nghệ lọc: Màng lọc kết hợp tia UV
+- Lưu lượng nước: khoảng 3,4 lít/phút
+- Tuổi thọ bộ lọc: khoảng 5.000 lít hoặc 1 năm
+- Kết nối: Van chia tại vòi
+- Điện áp: 220V
+- Bộ điều khiển điện tử thông minh
+- Đèn UV tích hợp
+- Dành cho nước máy đạt tiêu chuẩn sinh hoạt
+`,
+
+    features: [
+        "Công nghệ lọc kết hợp UV",
+        "Loại bỏ nhiều chất ô nhiễm",
+        "Diệt khuẩn bằng tia UV",
+        "Van chia tiện lợi",
+        "Theo dõi tuổi thọ lõi lọc",
+        "Thiết kế hiện đại"
+    ]
 }
 
 

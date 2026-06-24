@@ -4224,6 +4224,29 @@ window.productTranslations = {
     }
 
 },
+32: {
+
+    en: {
+
+        name:
+            "New eSpring Water Purifier with Diverter Valve",
+
+        description:
+            "The New eSpring Water Purifier with Diverter Valve combines advanced carbon filtration and UV technology to provide clean and safe drinking water."
+
+    },
+
+    zh: {
+
+        name:
+            "新款 eSpring 净水器（含分流阀）",
+
+        description:
+            "新款 eSpring 净水器采用滤芯与紫外线技术相结合，可提供洁净安全的饮用水。"
+
+    }
+
+},
 };
 
 
