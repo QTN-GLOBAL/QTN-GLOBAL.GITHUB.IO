@@ -261,3 +261,19 @@
 .request-type input[type="radio"]{
     transform:scale(1.15);
 }
+.buy-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    margin-top:20px;
+    width:100%;
+}
+@media (max-width:768px){
+
+    .buy-buttons{
+        flex-direction:column;
+        gap:12px;
+    }
+
+}
