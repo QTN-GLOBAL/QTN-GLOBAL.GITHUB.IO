@@ -357,13 +357,14 @@
 
 </div>
 </div>
-
 <!-- POPUP CART -->
 <div id="cartPopup" class="popup-overlay" style="display:none">
 <div class="popup-box">
+
 <span onclick="closeCart()">✕</span>
 
 <h2 data-i18n="cartTitle"></h2>
+
 <div id="cartList"></div>
 
 </div>
@@ -377,37 +378,81 @@
 
 <h2 data-i18n="orderTitle"></h2>
 
+<!-- LOẠI YÊU CẦU -->
+
+<div class="request-type">
+
+    <label>
+        <input type="radio"
+               name="requestType"
+               value="order"
+               checked>
+
+        <span data-i18n="requestOrder">
+            Đặt hàng
+        </span>
+    </label>
+
+    <label>
+        <input type="radio"
+               name="requestType"
+               value="quote">
+
+        <span data-i18n="requestQuote">
+            Yêu cầu báo giá
+        </span>
+    </label>
+
+</div>
+
 <div class="buy-form-grid">
 
-<input id="customerName" data-i18n-placeholder="customerName">
-<input id="customerPhone" data-i18n-placeholder="customerPhone">
-<input id="customerCompany" data-i18n-placeholder="customerCompany">
-<input id="customerTax" data-i18n-placeholder="customerTax">
+    <input id="customerName"
+           data-i18n-placeholder="customerName">
+
+    <input id="customerPhone"
+           data-i18n-placeholder="customerPhone">
+
+    <input id="customerCompany"
+           data-i18n-placeholder="customerCompany">
+
+    <input id="customerTax"
+           data-i18n-placeholder="customerTax">
 
 </div>
 
 <div class="buy-address-grid">
 
-<textarea id="customerInvoice" data-i18n-placeholder="invoiceAddress"></textarea>
-<textarea id="customerAddress" data-i18n-placeholder="shippingAddress"></textarea>
+    <textarea id="customerInvoice"
+              data-i18n-placeholder="invoiceAddress"></textarea>
+
+    <textarea id="customerAddress"
+              data-i18n-placeholder="shippingAddress"></textarea>
 
 </div>
 
 <div class="buy-product-info">
 
-<img id="buyProductImg">
-<h3 id="buyProductName"></h3>
+    <img id="buyProductImg">
+
+    <h3 id="buyProductName"></h3>
 
 </div>
 
 <div id="buyCapacityList"></div>
 
-<button class="zalo-btn" onclick="sendOrderZalo()">
-<span data-i18n="sendZalo"></span>
+<button class="zalo-btn"
+        onclick="sendOrderZalo()">
+
+    <span data-i18n="sendZalo"></span>
+
 </button>
 
-<button class="mess-btn" onclick="sendOrderMessenger()">
-<span data-i18n="sendMessenger"></span>
+<button class="mess-btn"
+        onclick="sendOrderMessenger()">
+
+    <span data-i18n="sendMessenger"></span>
+
 </button>
 
 </div>
