@@ -249,8 +249,9 @@ function renderBuyNowForm(items) {
             <img src="images/${item.category}/${item.folder}/main.jpg"
                  style="width:60px;height:60px;object-fit:contain;display:block;margin:auto;">
 
-            <h4 style="text-align:center">${item.name}</h4>
-
+            <h4 style="text-align:center">
+    ${resolveProductName(item)}
+</h4>
             <div style="text-align:center">${item.spec || ""}</div>
 
             <div style="text-align:center">SL: ${item.quantity}</div>
@@ -398,12 +399,23 @@ function getCartProductName(item) {
 }
 function resolveProductName(item) {
 
-    const lang = localStorage.getItem("language") || "vi";
+    const lang =
+        localStorage.getItem("language") || "vi";
 
-   const p = window.productTranslations?.[item.productId];
-    if (p?.[lang]?.name) return p[lang].name;
+    const id =
+        item.productId || item.id;
 
-    if (p?.[lang] && typeof p[lang] === "string") return p[lang];
+    const p =
+        window.productTranslations?.[id];
+
+    if (p?.[lang]?.name)
+        return p[lang].name;
+
+    if (
+        p?.[lang] &&
+        typeof p[lang] === "string"
+    )
+        return p[lang];
 
     return item.name;
 }
