@@ -2724,7 +2724,7 @@ business:"measure",
 
     folder: "espring-prefilter",
 
-    brand: "eSpring",
+    brand: "Amway",
 
     origin: "Trung Quốc",
 
@@ -2749,6 +2749,44 @@ business:"measure",
         "Lắp đặt dễ dàng",
         "Thay thế trực tiếp",
         "Tương thích New eSpring"
+    ]
+},
+{
+    business: "home",
+
+    id: 38,
+
+    name: "Bộ Ống Nước Thay Thế Của Máy Lọc Nước New eSpring",
+
+    category: "water-filter",
+
+    folder: "espring-water-tubing",
+
+    brand: "Amway",
+
+    origin: "Hoa Kỳ",
+
+    compatible: [32, 33],
+
+    description:
+        "Bộ ống nước thay thế chính hãng dành cho máy lọc nước New eSpring. Sản phẩm giúp kết nối hệ thống cấp nước với thiết bị, đảm bảo lưu lượng nước ổn định và duy trì hiệu quả hoạt động của máy.",
+
+    specification: `
+- Tương thích: Máy lọc nước New eSpring
+- Loại sản phẩm: Bộ ống nước thay thế
+- Vật liệu: Ống dẫn thực phẩm chuyên dụng
+- Thay thế trực tiếp
+- Phụ kiện chính hãng eSpring™
+- Khuyến nghị kiểm tra và thay thế định kỳ
+`,
+
+    features: [
+        "Phụ kiện chính hãng eSpring™",
+        "Đảm bảo lưu lượng nước ổn định",
+        "Tương thích New eSpring",
+        "Lắp đặt đơn giản",
+        "Thay thế trực tiếp",
+        "Độ bền cao"
     ]
 }
 

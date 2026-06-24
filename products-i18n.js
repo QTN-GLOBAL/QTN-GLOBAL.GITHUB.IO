@@ -4362,6 +4362,29 @@ window.productTranslations = {
     }
 
 },
+38: {
+
+    en: {
+
+        name:
+            "New eSpring Replacement Water Tubing Kit",
+
+        description:
+            "Genuine replacement water tubing kit designed for the New eSpring Water Purifier. Provides reliable water flow and maintains system performance."
+
+    },
+
+    zh: {
+
+        name:
+            "New eSpring 替换水管套件",
+
+        description:
+            "适用于 New eSpring 净水器的原装替换水管套件，可提供稳定供水并保持设备性能。"
+
+    }
+
+},
 };
 
 
