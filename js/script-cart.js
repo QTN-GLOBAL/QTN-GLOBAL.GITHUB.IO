@@ -307,6 +307,11 @@ function sendCartOrderZalo() {
         return;
     }
 
+    const requestType =
+        document.querySelector(
+            "input[name='requestType']:checked"
+        )?.value || "order";
+
     const text = getOrderText();
 
     navigator.clipboard.writeText(text).catch(() => {});
@@ -317,9 +322,23 @@ function sendCartOrderZalo() {
 
     closeBuyPopup();
 
-    alert(t("copiedOrderOpenZalo"));
+    if (requestType === "quote") {
 
-    window.open("https://zalo.me/0383598603", "_blank");
+        alert(
+            t("copiedQuoteOpenZalo")
+        );
+
+    } else {
+
+        alert(
+            t("copiedOrderOpenZalo")
+        );
+    }
+
+    window.open(
+        "https://zalo.me/0383598603",
+        "_blank"
+    );
 }
 function sendCartOrderMessenger() {
 
@@ -329,6 +348,11 @@ function sendCartOrderMessenger() {
         return;
     }
 
+    const requestType =
+        document.querySelector(
+            "input[name='requestType']:checked"
+        )?.value || "order";
+
     const text = getOrderText();
 
     navigator.clipboard.writeText(text).catch(() => {});
@@ -339,9 +363,23 @@ function sendCartOrderMessenger() {
 
     closeBuyPopup();
 
-    alert(t("copiedOrderOpenMessenger"));
+    if (requestType === "quote") {
 
-    window.open("https://m.me/yourpage", "_blank");
+        alert(
+            t("copiedQuoteOpenMessenger")
+        );
+
+    } else {
+
+        alert(
+            t("copiedOrderOpenMessenger")
+        );
+    }
+
+    window.open(
+        "https://m.me/yourpage",
+        "_blank"
+    );
 }
 function getCartProductName(item) {
 

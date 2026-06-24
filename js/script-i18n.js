@@ -30,6 +30,11 @@ const translations = {
 
         copiedOrderOpenMessenger:
             "Đã copy đơn hàng.\nBấm OK để mở Messenger.",
+copiedQuoteOpenZalo:
+    "Đã sao chép yêu cầu báo giá. Mở Zalo?",
+
+copiedQuoteOpenMessenger:
+    "Đã sao chép yêu cầu báo giá. Mở Messenger?",
 heroLine1: "GIẢI PHÁP",
 heroLine2: "THIẾT BỊ & CÔNG NGHỆ",
 heroLine3: "CHO DOANH NGHIỆP",
@@ -88,29 +93,32 @@ catChairScale: "Cân ghế ngồi",
         brandExcell: "EXCELL",
 
         addCartBtn: "Thêm giỏ hàng",
-        buyNowBtn: "Mua ngay",
+       buyNowBtn: "Mua hàng / Báo giá",
 
-        descTitle: "Mô tả",
-        specTitle: "Thông số kỹ thuật",
-        brandLabel: "Hãng:",
-        originLabel: "Xuất xứ:",
+descTitle: "Mô tả",
+specTitle: "Thông số kỹ thuật",
+brandLabel: "Hãng:",
+originLabel: "Xuất xứ:",
 
-        addCartTitle: "THÊM VÀO GIỎ HÀNG",
-        cartTitle: "GIỎ HÀNG",
-        orderTitle: "ĐẶT HÀNG",
+addCartTitle: "THÊM VÀO GIỎ HÀNG",
+cartTitle: "GIỎ HÀNG",
+orderTitle: "THÔNG TIN KHÁCH HÀNG",
 
-        customerName: "Tên khách hàng",
-        customerPhone: "Số điện thoại",
-        customerCompany: "Tên công ty",
-        customerTax: "Mã số thuế",
-        customerInvoice: "Địa chỉ xuất hóa đơn",
-        customerAddress: "Địa chỉ giao hàng",
+requestOrder: "Đặt hàng",
+requestQuote: "Yêu cầu báo giá",
 
-        invoiceAddress: "Địa chỉ xuất hóa đơn",
-        shippingAddress: "Địa chỉ giao hàng",
+customerName: "Tên khách hàng",
+customerPhone: "Số điện thoại",
+customerCompany: "Tên công ty",
+customerTax: "Mã số thuế",
+customerInvoice: "Địa chỉ xuất hóa đơn",
+customerAddress: "Địa chỉ giao hàng",
 
-        sendZalo: "GỬI ZALO",
-        sendMessenger: "GỬI MESSENGER",
+invoiceAddress: "Địa chỉ xuất hóa đơn",
+shippingAddress: "Địa chỉ giao hàng",
+
+sendZalo: "GỬI ZALO",
+sendMessenger: "GỬI MESSENGER",
 
         footerDesc:
             "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
@@ -150,6 +158,11 @@ catChairScale: "Cân ghế ngồi",
 
         copiedOrderOpenMessenger:
             "Order copied.\nPress OK to open Messenger.",
+copiedQuoteOpenZalo:
+    "Quote request copied. Open Zalo?",
+
+copiedQuoteOpenMessenger:
+    "Quote request copied. Open Messenger?",
 
         heroLine1: "SOLUTIONS",
 heroLine2: "EQUIPMENT & TECHNOLOGY",
@@ -208,26 +221,32 @@ catChairScale: "Chair Scales",
         brandExcell: "EXCELL",
 
         addCartBtn: "Add to cart",
-        buyNowBtn: "Buy now",
+        buyNowBtn: "Order / Quote",
 
-        descTitle: "Description",
-        specTitle: "Specifications",
-        brandLabel: "Brand:",
-        originLabel: "Origin:",
+descTitle: "Description",
+specTitle: "Specifications",
+brandLabel: "Brand:",
+originLabel: "Origin:",
 
-        addCartTitle: "ADD TO CART",
-        cartTitle: "CART",
-        orderTitle: "ORDER FORM",
+addCartTitle: "ADD TO CART",
+cartTitle: "CART",
+orderTitle: "CUSTOMER INFORMATION",
 
-        customerName: "Customer Name",
-        customerPhone: "Phone Number",
-        customerCompany: "Company",
-        customerTax: "Tax Code",
-        customerInvoice: "Invoice Address",
-        customerAddress: "Shipping Address",
+requestOrder: "Place Order",
+requestQuote: "Request Quote",
 
-        sendZalo: "SEND ZALO",
-        sendMessenger: "SEND MESSENGER",
+customerName: "Customer Name",
+customerPhone: "Phone Number",
+customerCompany: "Company Name",
+customerTax: "Tax Code",
+customerInvoice: "Invoice Address",
+customerAddress: "Shipping Address",
+
+invoiceAddress: "Invoice Address",
+shippingAddress: "Shipping Address",
+
+sendZalo: "SEND ZALO",
+sendMessenger: "SEND MESSENGER",
 
         footerDesc:
             "Supplier of electronic scales and industrial weighing equipment.",
@@ -267,6 +286,11 @@ catChairScale: "Chair Scales",
 
         copiedOrderOpenMessenger:
             "订单已复制。\n点击确定打开 Messenger。",
+copiedQuoteOpenZalo:
+    "询价信息已复制。打开 Zalo？",
+
+copiedQuoteOpenMessenger:
+    "询价信息已复制。打开 Messenger？",
 heroLine1: "解决方案",
 heroLine2: "设备与技术",
 heroLine3: "服务企业",
@@ -325,26 +349,32 @@ catChairScale: "座椅秤",
         brandExcell: "艾科",
 
         addCartBtn: "加入购物车",
-        buyNowBtn: "立即购买",
+        buyNowBtn: "购买 / 询价",
 
-        descTitle: "描述",
-        specTitle: "规格参数",
-        brandLabel: "品牌：",
-        originLabel: "产地：",
+descTitle: "产品描述",
+specTitle: "技术参数",
+brandLabel: "品牌：",
+originLabel: "产地：",
 
-        addCartTitle: "加入购物车",
-        cartTitle: "购物车",
-        orderTitle: "订单信息",
+addCartTitle: "加入购物车",
+cartTitle: "购物车",
+orderTitle: "客户信息",
 
-        customerName: "客户姓名",
-        customerPhone: "电话",
-        customerCompany: "公司名称",
-        customerTax: "税号",
-        customerInvoice: "发票地址",
-        customerAddress: "收货地址",
+requestOrder: "订购",
+requestQuote: "询价",
 
-        sendZalo: "发送 ZALO",
-        sendMessenger: "发送 Messenger",
+customerName: "客户姓名",
+customerPhone: "联系电话",
+customerCompany: "公司名称",
+customerTax: "税号",
+customerInvoice: "发票地址",
+customerAddress: "收货地址",
+
+invoiceAddress: "发票地址",
+shippingAddress: "收货地址",
+
+sendZalo: "发送 ZALO",
+sendMessenger: "发送 MESSENGER",
 
         footerDesc:
             "专业提供电子秤及工业称重设备。",

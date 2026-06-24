@@ -71,10 +71,23 @@ function openBuyPopup() {
 /* =========================
    GET ORDER TEXT (FIXED - NO DOM DEPENDENCY)
 ========================= */
-
 function getOrderText() {
 
-    let text = "THÔNG TIN ĐẶT HÀNG\n\n";
+    const requestType = document.querySelector(
+        "input[name='requestType']:checked"
+    )?.value || "order";
+
+    let text = "";
+
+    if (requestType === "quote") {
+
+        text = "YÊU CẦU BÁO GIÁ\n\n";
+
+    } else {
+
+        text = "THÔNG TIN ĐẶT HÀNG\n\n";
+
+    }
 
     const name = document.getElementById("customerName")?.value || "";
     const phone = document.getElementById("customerPhone")?.value || "";
@@ -91,22 +104,38 @@ function getOrderText() {
     text += "Địa chỉ giao hàng: " + address + "\n\n";
 
     const selectedRows = Array.from(
-    document.querySelectorAll("#buyCapacityList .buy-row")
-).filter(row => {
-    const cb = row.querySelector("input[type='checkbox']");
-    return cb && cb.checked;
-});
+        document.querySelectorAll(
+            "#buyCapacityList .buy-row"
+        )
+    ).filter(row => {
 
-selectedRows.forEach(row => {
+        const cb = row.querySelector(
+            "input[type='checkbox']"
+        );
 
-    const label = row.querySelector(".buy-middle").innerText;
-    const qty = row.querySelector("input[type='number']").value;
+        return cb && cb.checked;
+    });
 
-    text += "- " + label + " | SL: " + qty + "\n";
-});
+    selectedRows.forEach(row => {
+
+        const label =
+            row.querySelector(".buy-middle")
+               .innerText;
+
+        const qty =
+            row.querySelector(
+                "input[type='number']"
+            ).value;
+
+        text += "- " +
+                label +
+                " | SL: " +
+                qty +
+                "\n";
+    });
+
     return text;
 }
-
 /* =========================
    VALIDATE CUSTOMER (FIXED SAFE)
 ========================= */
@@ -163,12 +192,19 @@ function sendOrderZalo() {
         return;
     }
 
+    const requestType =
+        document.querySelector(
+            "input[name='requestType']:checked"
+        )?.value || "order";
+
     const text = getOrderText();
 
     navigator.clipboard.writeText(text).catch(() => {});
 
     const ok = confirm(
-        t("copiedOrderOpenZalo")
+        requestType === "quote"
+            ? t("copiedQuoteOpenZalo")
+            : t("copiedOrderOpenZalo")
     );
 
     closeBuyPopup();
@@ -204,12 +240,19 @@ function sendOrderMessenger() {
         return;
     }
 
+    const requestType =
+        document.querySelector(
+            "input[name='requestType']:checked"
+        )?.value || "order";
+
     const text = getOrderText();
 
     navigator.clipboard.writeText(text).catch(() => {});
 
     const ok = confirm(
-        t("copiedOrderOpenMessenger")
+        requestType === "quote"
+            ? t("copiedQuoteOpenMessenger")
+            : t("copiedOrderOpenMessenger")
     );
 
     closeBuyPopup();
@@ -221,7 +264,6 @@ function sendOrderMessenger() {
         );
     }
 }
-
 /* =========================
    CLOSE POPUP
 ========================= */
