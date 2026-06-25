@@ -12,12 +12,12 @@ let allProductsCache = [];
 ========================= */
 
 const brandOrder = [
-    "Excell",
-    "Ohaus",
-    "Yaohua",
-    "Vibra",
-    "Jadever",
-    "Amway"
+    "EXCELL",
+    "OHAUS",
+    "YAOHUA",
+    "VIBRA",
+    "JADEVER",
+    "AMWAY"
 ];
 
 /* =========================
@@ -177,20 +177,18 @@ function renderHomeByBrand() {
     products.forEach(p => {
         if (!p.brand) return;
 
-        const brand = p.brand.trim();
-
-        if (!brands[brand]) {
-            brands[brand] = [];
-        }
-
-        brands[brand].push(p);
+        const brandKey = p.brand.trim().toUpperCase();
+if (!brands[brandKey]) {
+    brands[brandKey] = [];
+}
+brands[brandKey].push(p);
     });
 
     let html = "";
 
-    brandOrder.forEach(brand => {
+    brandOrder.forEach(brandKey => {
 
-        const items = brands[brand];
+    const items = brands[brandKey];
 
         if (!items || items.length === 0) return;
 
@@ -207,7 +205,7 @@ function createBrandSection(brand, items) {
         <section class="brand-section">
 
             <div class="brand-header">
-                <h2>${brand}</h2>
+                <h2>${formatBrandName(brand)}</h2>
             </div>
 
             <div class="slider-wrapper">
@@ -244,6 +242,14 @@ function scrollBrand(id, direction) {
         behavior: "smooth"
     });
 }
+function formatBrandName(name) {
+    return name
+        .toLowerCase()
+        .split(" ")
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     renderHomeByBrand();
 });
