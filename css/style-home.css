@@ -868,6 +868,40 @@
 
     z-index: 1;
 }
+.brand-wrapper {
+    position: relative;
+}
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: rgba(0,0,0,0.4);
+    color: white;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+}
+.slider-btn.left {
+    left: 5px;
+}
+
+.slider-btn.right {
+    right: 5px;
+}
+
 
 
 
