@@ -160,15 +160,15 @@ function goHomeAndBusiness(business) {
 }
 function showQuote(id){
     alert("Chức năng nhận báo giá đang được cập nhật.");
-}
-function showQuote(id){
-    console.log("Quote product:", id);
-    alert("Chức năng nhận báo giá đang được cập nhật.");
+
 }
 function renderHomeByBrand() {
 
     const container = document.getElementById("homeContainer");
-    if (!container) return;
+    if (!container) {
+        console.error("homeContainer not found");
+        return;
+    }
 
     const products = getProducts();
 
@@ -177,21 +177,27 @@ function renderHomeByBrand() {
     products.forEach(p => {
         if (!p.brand) return;
 
-        if (!brands[p.brand]) {
-            brands[p.brand] = [];
+        const brand = p.brand.trim();
+
+        if (!brands[brand]) {
+            brands[brand] = [];
         }
 
-        brands[p.brand].push(p);
+        brands[brand].push(p);
     });
 
-    container.innerHTML = "";
+    let html = "";
 
     brandOrder.forEach(brand => {
 
-        if (!brands[brand] || brands[brand].length === 0) return;
+        const items = brands[brand];
 
-        container.innerHTML += createBrandSection(brand, brands[brand]);
+        if (!items || items.length === 0) return;
+
+        html += createBrandSection(brand, items);
     });
+
+    container.innerHTML = html;
 }
 function createBrandSection(brand, items) {
 
