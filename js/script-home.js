@@ -196,7 +196,7 @@ brands[brandKey].push(p);
 }
 function createBrandSection(brandKey, items) {
 
-    const id = brandKey.toLowerCase() + "-slider";
+    const id = brandKey.toLowerCase();
 
     return `
     <section class="brand-section">
@@ -205,43 +205,17 @@ function createBrandSection(brandKey, items) {
             ${formatBrandName(brandKey)}
         </h2>
 
-        <div class="brand-slider-wrapper">
+        <div class="brand-wrapper">
 
             <button class="slider-btn left"
                     onclick="moveSlider('${id}',-1)">
                 ❮
             </button>
 
-            <div class="brand-slider" id="${id}">
-
-                ${items.map(p => `
-                    <div class="product-card">
-
-                        <img src="images/${p.category}/${p.folder}/main.jpg">
-
-                        <div class="product-info">
-
-                            <h3>${p.name}</h3>
-
-                            <div class="product-buttons">
-
-                                <a class="detail-btn"
-                                   href="chitiet.html?id=${p.id}">
-                                    Chi tiết
-                                </a>
-
-                                <button class="quote-btn"
-                                        onclick="showQuote(${p.id})">
-                                    Báo giá
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                `).join("")}
-
+            <div class="brand-track"
+                 id="${id}"
+                 data-index="0"
+                 data-items='${JSON.stringify(items)}'>
             </div>
 
             <button class="slider-btn right"
@@ -271,44 +245,106 @@ function formatBrandName(name) {
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(" ");
 }
-function moveSlider(id, direction){
 
-    const slider = document.getElementById(id);
+function renderSliderPage(id){
 
-    if(!slider) return;
+    const slider =
+        document.getElementById(id);
 
-    const width = slider.offsetWidth;
+    const items =
+        JSON.parse(slider.dataset.items);
 
-    slider.scrollBy({
-        left: direction * width,
-        behavior: "smooth"
+    let index =
+        Number(slider.dataset.index);
+
+    let html = "";
+
+    for(let i=0;i<3;i++){
+
+        const p =
+            items[(index+i)%items.length];
+
+        html += `
+        <div class="product-card">
+
+            <img src="images/${p.category}/${p.folder}/main.jpg">
+
+            <div class="product-info">
+
+                <h3>${p.name}</h3>
+
+                <div class="product-buttons">
+
+                    <a class="detail-btn"
+                       href="chitiet.html?id=${p.id}">
+                        Chi tiết
+                    </a>
+
+                    <button class="quote-btn"
+                            onclick="showQuote(${p.id})">
+                        Báo giá
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+        `;
+    }
+
+    slider.innerHTML = html;
+}
+function moveSlider(id,direction){
+
+    const slider =
+        document.getElementById(id);
+
+    const items =
+        JSON.parse(slider.dataset.items);
+
+    let index =
+        Number(slider.dataset.index);
+
+    index += direction * 3;
+
+    if(index >= items.length)
+        index = 0;
+
+    if(index < 0)
+        index = Math.max(items.length - 3,0);
+
+    slider.dataset.index = index;
+
+    renderSliderPage(id);
+}
+function startBrandSlider(){
+
+    document
+    .querySelectorAll(".brand-track")
+    .forEach(slider=>{
+
+        renderSliderPage(slider.id);
+
+        setInterval(()=>{
+
+            moveSlider(
+                slider.id,
+                1
+            );
+
+        },5000);
+
     });
 }
-setInterval(() => {
 
-    document.querySelectorAll(".brand-slider")
-    .forEach(slider => {
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
 
-        slider.scrollBy({
-            left: slider.offsetWidth,
-            behavior:"smooth"
-        });
+        renderHomeByBrand();
 
-        if(
-            slider.scrollLeft +
-            slider.offsetWidth >=
-            slider.scrollWidth - 10
-        ){
-            slider.scrollTo({
-                left:0,
-                behavior:"smooth"
-            });
-        }
+        startBrandSlider();
 
-    });
-
-},5000);
-
-document.addEventListener("DOMContentLoaded", function () {
-    renderHomeByBrand();
-});
+    }
+);
