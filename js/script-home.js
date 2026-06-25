@@ -47,7 +47,7 @@ function renderProducts(productList = []) {
             </a>
 
             <button class="quote-btn" onclick="showQuote(${p.id})">
-                Báo giá
+                Nhận báo giá
             </button>
         </div>
     </div>
@@ -406,7 +406,7 @@ function renderProductList(products, title){
 
                             <button class="quote-btn"
                                     onclick="showQuote(${p.id})">
-                                Báo giá
+                                Nhận báo giá
                             </button>
 
                         </div>
