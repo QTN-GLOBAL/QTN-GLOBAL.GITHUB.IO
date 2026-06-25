@@ -709,5 +709,56 @@
     }
 
 }
+.brand-section{
+    margin-bottom:40px;
+}
+
+.brand-title{
+    font-size:32px;
+    color:#1565c0;
+    margin-bottom:15px;
+}
+.brand-slider-wrapper{
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+.brand-slider{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+
+    width:100%;
+
+    overflow:hidden;
+}
+.brand-slider .product-card{
+    width:100%;
+}
+.slider-btn{
+    width:45px;
+    height:45px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#1565c0;
+    color:#fff;
+
+    font-size:26px;
+    cursor:pointer;
+
+    position:absolute;
+    z-index:5;
+}
+
+.slider-btn.left{
+    left:-20px;
+}
+
+.slider-btn.right{
+    right:-20px;
+}
+
 
 
