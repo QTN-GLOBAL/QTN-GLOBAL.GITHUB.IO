@@ -19,27 +19,27 @@ function renderProducts(productList = []) {
         .map(p => {
             p = getTranslatedProduct(p);
 
-            return `
-                <div class="product-info">
-    <h3>${p.name}</h3>
+           return `
+    <div class="product-card">
+        <img src="images/${p.category}/${p.folder}/main.jpg" alt="${p.name}">
 
-    <div class="product-buttons">
-        <a class="detail-btn"
-           href="chitiet.html?id=${p.id}">
-            ${t("detailBtn")}
-        </a>
+        <div class="product-info">
+            <h3>${p.name}</h3>
 
-        <button class="quote-btn"
-                onclick="showQuote(${p.id})">
-            ${t("quoteBtn")}
-        </button>
+            <div class="product-buttons">
+                <a class="detail-btn"
+                   href="chitiet.html?id=${p.id}">
+                    ${t("detailBtn")}
+                </a>
+
+                <button class="quote-btn"
+                        onclick="showQuote(${p.id})">
+                    ${t("quoteBtn")}
+                </button>
+            </div>
+        </div>
     </div>
-</div>
-                </div>
-            `;
-        })
-        .join("");
-}
+`;
 /* =========================
    FILTER SYSTEM (PURE UI)
 ========================= */
