@@ -355,14 +355,104 @@ function startBrandSlider(){
 
     });
 }
+function renderProductGrid(products,title){
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+    const container =
+        document.getElementById(
+            "homeContainer"
+        );
 
-        renderHomeByBrand();
+    container.innerHTML = `
 
-        startBrandSlider();
+        <div class="list-title">
+            ${formatBrandName(title)}
+        </div>
 
+        <div class="product-grid">
+
+            ${products.map(p => `
+
+                <div class="product-card">
+
+                    <img src="images/${p.category}/${p.folder}/main.jpg">
+
+                    <div class="product-info">
+
+                        <h3>${p.name}</h3>
+
+                        <div class="product-buttons">
+
+                            <a class="detail-btn"
+                               href="chitiet.html?id=${p.id}">
+                                Chi tiết
+                            </a>
+
+                            <button class="quote-btn"
+                                    onclick="showQuote(${p.id})">
+                                Báo giá
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+    `;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const category =
+        sessionStorage.getItem("filterCategory");
+
+    const brand =
+        sessionStorage.getItem("filterBrand");
+
+    if(category){
+
+        const products =
+            getProducts().filter(
+                p => p.category === category
+            );
+
+        renderProductGrid(
+            products,
+            category
+        );
+
+        sessionStorage.removeItem(
+            "filterCategory"
+        );
+
+        return;
     }
-);
+
+    if(brand){
+
+        const products =
+            getProducts().filter(
+                p =>
+                p.brand &&
+                p.brand.toUpperCase() ===
+                brand.toUpperCase()
+            );
+
+        renderProductGrid(
+            products,
+            brand
+        );
+
+        sessionStorage.removeItem(
+            "filterBrand"
+        );
+
+        return;
+    }
+
+    renderHomeByBrand();
+
+});
