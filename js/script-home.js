@@ -139,18 +139,16 @@ function goHomeAndFilter(key, value) {
         "index.html";
 }
 
-function goHomeAndCategory(category) {
-    goHomeAndFilter(
-        "filterCategory",
-        category
-    );
+function goHomeAndCategory(category){
+
+    filterProducts(category);
+
 }
 
-function goHomeAndBrand(brand) {
-    goHomeAndFilter(
-        "filterBrand",
-        brand
-    );
+function goHomeAndBrand(brand){
+
+    filterByBrand(brand);
+
 }
 
 function goHomeAndBusiness(business) {
@@ -158,6 +156,12 @@ function goHomeAndBusiness(business) {
         "filterBusiness",
         business
     );
+}
+function goHomePage(){
+
+    renderHomeByBrand();
+
+    startBrandSlider();
 }
 function showQuote(id){
     alert("Chức năng nhận báo giá đang được cập nhật.");
@@ -197,6 +201,7 @@ brands[brandKey].push(p);
     });
 
     container.innerHTML = html;
+startBrandSlider();
 }
 function createBrandSection(brandKey, items) {
 
@@ -370,7 +375,7 @@ function renderProductList(products, title){
 
         <div class="list-header">
 
-            <button onclick="renderHomeByBrand()">
+            <button onclick="goHomePage()">
                 ← Trang chủ
             </button>
 
