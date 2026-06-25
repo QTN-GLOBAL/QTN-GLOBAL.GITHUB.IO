@@ -259,10 +259,13 @@ function renderSliderPage(id){
 
     let html = "";
 
-    for(let i=0;i<3;i++){
+    const count = Math.min(3, items.length);
 
-        const p =
-            items[(index+i)%items.length];
+for(let i=0; i<count; i++){
+
+    const p = items[index + i];
+
+    if(!p) break;
 
         html += `
         <div class="product-card">
@@ -306,7 +309,11 @@ function moveSlider(id,direction){
     let index =
         Number(slider.dataset.index);
 
-    index += direction * 3;
+    if(items.length <= 3){
+    return;
+}
+
+index += 3 * direction;
 
     if(index >= items.length)
         index = 0;
@@ -324,6 +331,17 @@ function startBrandSlider(){
     .querySelectorAll(".brand-track")
     .forEach(slider=>{
 
+        const items = JSON.parse(
+            slider.dataset.items
+        );
+
+        // Nếu chỉ có 1-3 sản phẩm thì không tự chạy
+        if(items.length <= 3){
+            renderSliderPage(slider.id);
+            return;
+        }
+
+        // Từ 4 sản phẩm trở lên mới chạy slider
         renderSliderPage(slider.id);
 
         setInterval(()=>{
