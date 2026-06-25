@@ -35,26 +35,23 @@ function renderProducts(productList = []) {
             const product = getTranslatedProduct(p) || p;
 
             return `
-                <div class="product-card">
-                    <img src="images/${product.category}/${product.folder}/main.jpg"
-                         alt="${product.name}">
+               <div class="product-card">
+    <img src="images/${p.category}/${p.folder}/main.jpg">
 
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
+    <div class="product-info">
+        <h3>${p.name}</h3>
 
-                        <div class="product-buttons">
-                            <a class="detail-btn"
-                               href="chitiet.html?id=${product.id}">
-                                ${t("detailBtn") || "Chi tiết"}
-                            </a>
+        <div class="product-buttons">
+            <a class="detail-btn" href="chitiet.html?id=${p.id}">
+                Chi tiết
+            </a>
 
-                            <button class="quote-btn"
-                                    onclick="showQuote(${product.id})">
-                                ${t("quoteBtn") || "Nhận báo giá"}
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <button class="quote-btn" onclick="showQuote(${p.id})">
+                Báo giá
+            </button>
+        </div>
+    </div>
+</div>
             `;
         })
         .join("");
