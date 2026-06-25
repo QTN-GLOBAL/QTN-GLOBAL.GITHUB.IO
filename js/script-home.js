@@ -79,7 +79,7 @@ function filterByBrand(brand) {
     const products = getProducts();
 
     const filtered = brand
-        ? products.filter(p => p.brand === brand)
+        ? products.filter(p => p.brand?.trim().toUpperCase() === brand.toUpperCase())
         : products;
 
     renderProducts(filtered);
@@ -192,20 +192,20 @@ brands[brandKey].push(p);
 
         if (!items || items.length === 0) return;
 
-        html += createBrandSection(brand, items);
+       html += createBrandSection(brandKey, items);
     });
 
     container.innerHTML = html;
 }
-function createBrandSection(brand, items) {
+function createBrandSection(brandKey, items) {
 
-    const id = brand.toLowerCase() + "-slider";
+   const id = brandKey.toLowerCase() + "-slider";
 
     return `
-        <section class="brand-section">
+        <section class="brandKey-section">
 
-            <div class="brand-header">
-                <h2>${formatBrandName(brand)}</h2>
+            <div class="brandKey-header">
+                <h2>${formatBrandName(brandKey)}</h2>
             </div>
 
             <div class="slider-wrapper">
