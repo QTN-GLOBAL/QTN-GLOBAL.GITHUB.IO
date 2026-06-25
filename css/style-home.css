@@ -777,6 +777,16 @@
         grid-template-columns:1fr;
     }
 }
+.list-title{
+
+    font-size:32px;
+
+    color:#1565c0;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+}
 
 
 
