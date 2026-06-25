@@ -6,6 +6,20 @@
 
 let allProductsCache = [];   
 
+
+/* =========================
+   BRAND ORDER (HOME PAGE)
+========================= */
+
+const brandOrder = [
+    "Excell",
+    "Ohaus",
+    "Yaohua",
+    "Vibra",
+    "Jadever",
+    "Amway"
+];
+
 /* =========================
    RENDER PRODUCTS
 ========================= */
@@ -151,3 +165,79 @@ function showQuote(id){
     console.log("Quote product:", id);
     alert("Chức năng nhận báo giá đang được cập nhật.");
 }
+function renderHomeByBrand() {
+
+    const container = document.getElementById("homeContainer");
+    if (!container) return;
+
+    const products = getProducts();
+
+    const brands = {};
+
+    products.forEach(p => {
+        if (!p.brand) return;
+
+        if (!brands[p.brand]) {
+            brands[p.brand] = [];
+        }
+
+        brands[p.brand].push(p);
+    });
+
+    container.innerHTML = "";
+
+    brandOrder.forEach(brand => {
+
+        if (!brands[brand] || brands[brand].length === 0) return;
+
+        container.innerHTML += createBrandSection(brand, brands[brand]);
+    });
+}
+function createBrandSection(brand, items) {
+
+    const id = brand.toLowerCase() + "-slider";
+
+    return `
+        <section class="brand-section">
+
+            <div class="brand-header">
+                <h2>${brand}</h2>
+            </div>
+
+            <div class="slider-wrapper">
+
+                <button class="nav left" onclick="scrollBrand('${id}', -1)">‹</button>
+
+                <div class="product-slider" id="${id}">
+                    ${items.map(p => `
+                        <div class="product-card">
+                            <img src="images/${p.category}/${p.folder}/main.jpg">
+                            <h3>${p.name}</h3>
+
+                            <a href="chitiet.html?id=${p.id}">
+                                Chi tiết
+                            </a>
+                        </div>
+                    `).join("")}
+                </div>
+
+                <button class="nav right" onclick="scrollBrand('${id}', 1)">›</button>
+
+            </div>
+
+        </section>
+    `;
+}
+function scrollBrand(id, direction) {
+
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.scrollBy({
+        left: direction * 260,
+        behavior: "smooth"
+    });
+}
+document.addEventListener("DOMContentLoaded", function () {
+    renderHomeByBrand();
+});
