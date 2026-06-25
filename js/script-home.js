@@ -39,17 +39,21 @@ function renderProducts(productList = []) {
     <img src="images/${p.category}/${p.folder}/main.jpg">
 
     <div class="product-info">
-        <h3>${p.name}</h3>
+
+        <h3>${product.name}</h3>
 
         <div class="product-buttons">
+
             <a class="detail-btn" href="chitiet.html?id=${p.id}">
-                Chi tiết
+                ${t("detail")}
             </a>
 
             <button class="quote-btn" onclick="showQuote(${p.id})">
-                Nhận báo giá
+                ${t("quote")}
             </button>
+
         </div>
+
     </div>
 </div>
             `;
@@ -167,6 +171,8 @@ function showQuote(id){
     alert("Chức năng nhận báo giá đang được cập nhật.");
 
 }
+let brandSliderIntervals = [];
+
 function renderHomeByBrand() {
 
     const container = document.getElementById("homeContainer");
@@ -174,6 +180,10 @@ function renderHomeByBrand() {
         console.error("homeContainer not found");
         return;
     }
+
+    // ❗ clear old intervals để tránh chạy chồng khi đổi ngôn ngữ
+    brandSliderIntervals.forEach(clearInterval);
+    brandSliderIntervals = [];
 
     const products = getProducts();
 
@@ -183,29 +193,36 @@ function renderHomeByBrand() {
         if (!p.brand) return;
 
         const brandKey = p.brand.trim().toUpperCase();
-if (!brands[brandKey]) {
-    brands[brandKey] = [];
-}
-brands[brandKey].push(p);
+
+        if (!brands[brandKey]) {
+            brands[brandKey] = [];
+        }
+
+        brands[brandKey].push(p);
     });
 
     let html = "";
 
     brandOrder.forEach(brandKey => {
 
-    const items = brands[brandKey];
+        const items = brands[brandKey];
 
         if (!items || items.length === 0) return;
 
-       html += createBrandSection(brandKey, items);
+        html += createBrandSection(brandKey, items);
     });
 
     container.innerHTML = html;
-startBrandSlider();
+
+    // re-init slider sau khi render
+    startBrandSlider();
 }
 function createBrandSection(brandKey, items) {
 
     const id = brandKey.toLowerCase();
+
+    // 🔥 translate toàn bộ sản phẩm trước khi đưa vào slider
+    const translatedItems = items.map(p => getTranslatedProduct(p) || p);
 
     return `
     <section class="brand-section">
@@ -224,7 +241,7 @@ function createBrandSection(brandKey, items) {
             <div class="brand-track"
                  id="${id}"
                  data-index="0"
-                 data-items='${JSON.stringify(items)}'>
+                 data-items='${JSON.stringify(translatedItems)}'>
             </div>
 
             <button class="slider-btn right"
@@ -257,24 +274,23 @@ function formatBrandName(name) {
 
 function renderSliderPage(id){
 
-    const slider =
-        document.getElementById(id);
+    const slider = document.getElementById(id);
+    if (!slider) return;
 
-    const items =
-        JSON.parse(slider.dataset.items);
+    const items = JSON.parse(slider.dataset.items || "[]");
 
-    let index =
-        Number(slider.dataset.index);
+    let index = Number(slider.dataset.index || 0);
 
     let html = "";
 
     const count = Math.min(3, items.length);
 
-for(let i=0; i<count; i++){
+    for(let i = 0; i < count; i++){
 
-    const p = items[index + i];
+        const p = items[index + i];
+        if(!p) break;
 
-    if(!p) break;
+        const product = getTranslatedProduct(p) || p;
 
         html += `
         <div class="product-card">
@@ -283,18 +299,18 @@ for(let i=0; i<count; i++){
 
             <div class="product-info">
 
-                <h3>${p.name}</h3>
+                <h3>${product.name}</h3>
 
                 <div class="product-buttons">
 
                     <a class="detail-btn"
                        href="chitiet.html?id=${p.id}">
-                        Chi tiết
+                        ${t("detail")}
                     </a>
 
                     <button class="quote-btn"
                             onclick="showQuote(${p.id})">
-                        Báo giá
+                        ${t("quote")}
                     </button>
 
                 </div>
@@ -366,17 +382,15 @@ function startBrandSlider(){
 }
 function renderProductList(products, title){
 
-    const container =
-        document.getElementById(
-            "homeContainer"
-        );
+    const container = document.getElementById("homeContainer");
+    if (!container) return;
 
     container.innerHTML = `
 
         <div class="list-header">
 
             <button onclick="goHomePage()">
-                ← Trang chủ
+                ${t("home")}
             </button>
 
             <h2>
@@ -387,26 +401,29 @@ function renderProductList(products, title){
 
         <div class="product-grid">
 
-            ${products.map(p => `
+            ${products.map(p => {
 
+                const product = getTranslatedProduct(p) || p;
+
+                return `
                 <div class="product-card">
 
                     <img src="images/${p.category}/${p.folder}/main.jpg">
 
                     <div class="product-info">
 
-                        <h3>${p.name}</h3>
+                        <h3>${product.name}</h3>
 
                         <div class="product-buttons">
 
                             <a class="detail-btn"
                                href="chitiet.html?id=${p.id}">
-                                Chi tiết
+                                ${t("detail")}
                             </a>
 
                             <button class="quote-btn"
                                     onclick="showQuote(${p.id})">
-                                Nhận báo giá
+                                ${t("quote")}
                             </button>
 
                         </div>
@@ -414,13 +431,12 @@ function renderProductList(products, title){
                     </div>
 
                 </div>
-
-            `).join("")}
+                `;
+            }).join("")}
 
         </div>
     `;
 }
-
 document.addEventListener("DOMContentLoaded", function () {
 
     const category =
