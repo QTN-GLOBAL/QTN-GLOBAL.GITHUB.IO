@@ -196,37 +196,62 @@ brands[brandKey].push(p);
 }
 function createBrandSection(brandKey, items) {
 
-   const id = brandKey.toLowerCase() + "-slider";
+    const id = brandKey.toLowerCase() + "-slider";
 
     return `
-        <section class="brandKey-section">
+    <section class="brand-section">
 
-            <div class="brandKey-header">
-                <h2>${formatBrandName(brandKey)}</h2>
-            </div>
+        <h2 class="brand-title">
+            ${formatBrandName(brandKey)}
+        </h2>
 
-            <div class="slider-wrapper">
+        <div class="brand-slider-wrapper">
 
-                <button class="nav left" onclick="scrollBrand('${id}', -1)">‹</button>
+            <button class="slider-btn left"
+                    onclick="moveSlider('${id}',-1)">
+                ❮
+            </button>
 
-                <div class="product-slider" id="${id}">
-                    ${items.map(p => `
-                        <div class="product-card">
-                            <img src="images/${p.category}/${p.folder}/main.jpg">
+            <div class="brand-slider" id="${id}">
+
+                ${items.map(p => `
+                    <div class="product-card">
+
+                        <img src="images/${p.category}/${p.folder}/main.jpg">
+
+                        <div class="product-info">
+
                             <h3>${p.name}</h3>
 
-                            <a href="chitiet.html?id=${p.id}">
-                                Chi tiết
-                            </a>
-                        </div>
-                    `).join("")}
-                </div>
+                            <div class="product-buttons">
 
-                <button class="nav right" onclick="scrollBrand('${id}', 1)">›</button>
+                                <a class="detail-btn"
+                                   href="chitiet.html?id=${p.id}">
+                                    Chi tiết
+                                </a>
+
+                                <button class="quote-btn"
+                                        onclick="showQuote(${p.id})">
+                                    Báo giá
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                `).join("")}
 
             </div>
 
-        </section>
+            <button class="slider-btn right"
+                    onclick="moveSlider('${id}',1)">
+                ❯
+            </button>
+
+        </div>
+
+    </section>
     `;
 }
 function scrollBrand(id, direction) {
@@ -246,6 +271,43 @@ function formatBrandName(name) {
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(" ");
 }
+function moveSlider(id, direction){
+
+    const slider = document.getElementById(id);
+
+    if(!slider) return;
+
+    const width = slider.offsetWidth;
+
+    slider.scrollBy({
+        left: direction * width,
+        behavior: "smooth"
+    });
+}
+setInterval(() => {
+
+    document.querySelectorAll(".brand-slider")
+    .forEach(slider => {
+
+        slider.scrollBy({
+            left: slider.offsetWidth,
+            behavior:"smooth"
+        });
+
+        if(
+            slider.scrollLeft +
+            slider.offsetWidth >=
+            slider.scrollWidth - 10
+        ){
+            slider.scrollTo({
+                left:0,
+                behavior:"smooth"
+            });
+        }
+
+    });
+
+},5000);
 
 document.addEventListener("DOMContentLoaded", function () {
     renderHomeByBrand();
