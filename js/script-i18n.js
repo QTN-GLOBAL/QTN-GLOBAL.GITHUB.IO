@@ -443,15 +443,25 @@ function applyLanguage(lang) {
 ========================= */
 function refreshUIAfterLanguageChange() {
 
-    if (typeof renderProducts === "function") {
-
-        renderProducts(
-            window.currentProducts || getProducts()
-        );
+    // Home page brand slider
+    if (typeof renderHomeByBrand === "function") {
+        renderHomeByBrand();
     }
 
-    if (typeof renderProductDetail === "function") {
+    // Product grid / filter view
+    if (typeof renderProducts === "function") {
+        renderProducts(window.currentProducts || getProducts());
+    }
 
+    // Product list page
+    if (typeof renderProductList === "function") {
+        if (window.lastProducts && window.lastTitle) {
+            renderProductList(window.lastProducts, window.lastTitle);
+        }
+    }
+
+    // Product detail page
+    if (typeof renderProductDetail === "function") {
         renderProductDetail();
     }
 }
