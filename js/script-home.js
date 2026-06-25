@@ -299,33 +299,37 @@ function renderSliderPage(id){
 
         const product = getTranslatedProduct(p) || p;
 
-        html += `
-        <div class="product-card">
+       html += `
+<div class="product-card">
 
-            <img src="images/${p.category}/${p.folder}/main.jpg">
+    <div class="brand-overlay">
+        ${formatBrandName(p.brand)}
+    </div>
 
-            <div class="product-info">
+    <img src="images/${p.category}/${p.folder}/main.jpg">
 
-                <h3>${product.name}</h3>
+    <div class="product-info">
 
-                <div class="product-buttons">
+        <h3>${product.name}</h3>
 
-                    <a class="detail-btn"
-                       href="chitiet.html?id=${p.id}">
-                        ${t("detail")}
-                    </a>
+        <div class="product-buttons">
 
-                    <button class="quote-btn"
-                            onclick="showQuote(${p.id})">
-                        ${t("quote")}
-                    </button>
+            <a class="detail-btn"
+               href="chitiet.html?id=${p.id}">
+                ${t("detail")}
+            </a>
 
-                </div>
-
-            </div>
+            <button class="quote-btn"
+                    onclick="showQuote(${p.id})">
+                ${t("quote")}
+            </button>
 
         </div>
-        `;
+
+    </div>
+
+</div>
+`;
     }
 
     slider.innerHTML = html;
