@@ -32,6 +32,31 @@
     text-decoration:none;
     border-radius:4px;
 }
+.product-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:8px;
+}
+
+.product-buttons a,
+.product-buttons button{
+    flex:1;
+}
+
+.quote-btn{
+    border:none;
+    padding:6px 10px;
+    background:#ff9800;
+    color:#fff;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+}
+
+.quote-btn:hover{
+    background:#f57c00;
+}
 /* =========================
    TOP HEADER
 ========================= */
