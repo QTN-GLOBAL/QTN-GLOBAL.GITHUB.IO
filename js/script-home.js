@@ -387,7 +387,7 @@ function startBrandSlider(){
                 1
             );
 
-        },5000);
+        },7000);
 
     });
 }
