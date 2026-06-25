@@ -68,18 +68,22 @@ function filterProducts(category) {
         ? products.filter(p => p.category === category)
         : products;
 
-    renderProducts(filtered);
+    renderProductList(filtered, category);
 }
-
 function filterByBrand(brand) {
 
     const products = getProducts();
 
     const filtered = brand
-        ? products.filter(p => p.brand?.trim().toUpperCase() === brand.toUpperCase())
+        ? products.filter(
+            p =>
+            p.brand?.trim().toUpperCase()
+            ===
+            brand.toUpperCase()
+        )
         : products;
 
-    renderProducts(filtered);
+    renderProductList(filtered, brand);
 }
 
 /* =========================
@@ -355,7 +359,7 @@ function startBrandSlider(){
 
     });
 }
-function renderProductGrid(products,title){
+function renderProductList(products, title){
 
     const container =
         document.getElementById(
@@ -364,8 +368,16 @@ function renderProductGrid(products,title){
 
     container.innerHTML = `
 
-        <div class="list-title">
-            ${formatBrandName(title)}
+        <div class="list-header">
+
+            <button onclick="renderHomeByBrand()">
+                ← Trang chủ
+            </button>
+
+            <h2>
+                ${formatBrandName(title)}
+            </h2>
+
         </div>
 
         <div class="product-grid">
