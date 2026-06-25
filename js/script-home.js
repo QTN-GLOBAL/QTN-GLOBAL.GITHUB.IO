@@ -227,9 +227,16 @@ function createBrandSection(brandKey, items) {
     return `
     <section class="brand-section">
 
-        <h2 class="brand-title">
-            ${formatBrandName(brandKey)}
-        </h2>
+        <div class="brand-track"
+     id="${id}"
+     data-index="0"
+     data-items='${JSON.stringify(items)}'>
+
+    <div class="brand-overlay-title">
+        ${formatBrandName(brandKey)}
+    </div>
+
+</div>
 
         <div class="brand-wrapper">
 
