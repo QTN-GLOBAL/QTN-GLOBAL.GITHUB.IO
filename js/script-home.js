@@ -17,29 +17,34 @@ function renderProducts(productList = []) {
     grid.innerHTML = productList
         .filter(p => p && p.id && p.name)
         .map(p => {
-            p = getTranslatedProduct(p);
 
-           return `
-    <div class="product-card">
-        <img src="images/${p.category}/${p.folder}/main.jpg" alt="${p.name}">
+            const product = getTranslatedProduct(p) || p;
 
-        <div class="product-info">
-            <h3>${p.name}</h3>
+            return `
+                <div class="product-card">
+                    <img src="images/${product.category}/${product.folder}/main.jpg"
+                         alt="${product.name}">
 
-            <div class="product-buttons">
-                <a class="detail-btn"
-                   href="chitiet.html?id=${p.id}">
-                    ${t("detailBtn")}
-                </a>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
 
-                <button class="quote-btn"
-                        onclick="showQuote(${p.id})">
-                    ${t("quoteBtn")}
-                </button>
-            </div>
-        </div>
-    </div>
-`;
+                        <div class="product-buttons">
+                            <a class="detail-btn"
+                               href="chitiet.html?id=${product.id}">
+                                ${t("detailBtn") || "Chi tiết"}
+                            </a>
+
+                            <button class="quote-btn"
+                                    onclick="showQuote(${product.id})">
+                                ${t("quoteBtn") || "Nhận báo giá"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        })
+        .join("");
+}
 /* =========================
    FILTER SYSTEM (PURE UI)
 ========================= */
@@ -140,5 +145,9 @@ function goHomeAndBusiness(business) {
     );
 }
 function showQuote(id){
+    alert("Chức năng nhận báo giá đang được cập nhật.");
+}
+function showQuote(id){
+    console.log("Quote product:", id);
     alert("Chức năng nhận báo giá đang được cập nhật.");
 }
