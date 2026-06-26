@@ -236,11 +236,21 @@ function goHomeAndFilter(key, value) {
 }
 
 function goHomeAndCategory(category) {
-    filterProducts(category);
-}
 
+    const products = getProducts().filter(p =>
+        p.category === category
+    );
+
+    renderGridWithBrand(products, category);
+}
 function goHomeAndBrand(brand) {
-    filterByBrand(brand);
+
+    const products = getProducts().filter(p =>
+        p.brand &&
+        p.brand.toUpperCase() === brand.toUpperCase()
+    );
+
+    renderGridWithBrand(products, brand);
 }
 
 function goHomeAndBusiness(business) {
@@ -253,6 +263,64 @@ function goHomeAndBusiness(business) {
 
 function showQuote(id) {
     alert("Chức năng nhận báo giá đang được cập nhật.");
+}
+function renderGridWithBrand(products, title) {
+
+    const container = document.getElementById("homeContainer");
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="list-header">
+
+            <button onclick="goHomePage()">
+                ${t("home")}
+            </button>
+
+            <h2>${formatBrandName(title)}</h2>
+
+        </div>
+
+        <div class="product-grid">
+
+            ${products.map(p => {
+
+                const product = getTranslatedProduct(p) || p;
+
+                return `
+                <div class="product-card">
+
+                    <div class="brand-overlay">
+                        ${formatBrandName(p.brand)}
+                    </div>
+
+                    <img src="images/${p.category}/${p.folder}/main.jpg">
+
+                    <div class="product-info">
+
+                        <h3>${product.name}</h3>
+
+                        <div class="product-buttons">
+
+                            <a class="detail-btn"
+                               href="chitiet.html?id=${p.id}">
+                                ${t("detailBtn")}
+                            </a>
+
+                            <button class="quote-btn"
+                                    onclick="showQuote(${p.id})">
+                                ${t("quoteBtn")}
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                `;
+            }).join("")}
+
+        </div>
+    `;
 }
 
 /* =========================
