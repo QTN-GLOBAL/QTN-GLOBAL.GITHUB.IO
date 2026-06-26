@@ -1,16 +1,44 @@
+
 /* =========================
-   BRAND SLIDER MODULE (CLEAN)
-   - FIX FULL ITEM LOSS
-   - SAFE LOOP
-   - NO HERO CONFLICT
+   BRAND SLIDER MODULE (FINAL FIX)
+   MATCH YOUR script-home.js
 ========================= */
 
 let brandIntervals = [];
 
+const VISIBLE = 3;
+
+/* =========================
+   MAIN INIT
+========================= */
+function initBrandSliders() {
+
+    // clear old intervals
+    brandIntervals.forEach(clearInterval);
+    brandIntervals = [];
+
+    document.querySelectorAll(".brand-track").forEach(track => {
+
+        const items = JSON.parse(track.dataset.items || "[]");
+
+        if (!items.length) return;
+
+        renderBrand(track.id);
+
+        if (items.length <= VISIBLE) return;
+
+        const timer = setInterval(() => {
+            moveBrand(track.id, 1);
+        }, 7000);
+
+        brandIntervals.push(timer);
+    });
+}
+
 /* =========================
    RENDER SLIDER
 ========================= */
-function renderBrandSlider(id) {
+function renderBrand(id) {
 
     const el = document.getElementById(id);
     if (!el) return;
@@ -22,16 +50,13 @@ function renderBrandSlider(id) {
 
     if (total === 0) return;
 
-    const visible = 3;
-
-    // đảm bảo index luôn hợp lệ
-    if (index > total - visible) {
-        index = Math.max(total - visible, 0);
+    if (index > total - VISIBLE) {
+        index = Math.max(total - VISIBLE, 0);
     }
 
     let html = "";
 
-    for (let i = 0; i < visible; i++) {
+    for (let i = 0; i < Math.min(VISIBLE, total); i++) {
 
         const realIndex = (index + i) % total;
         const p = items[realIndex];
@@ -40,6 +65,10 @@ function renderBrandSlider(id) {
 
         html += `
         <div class="product-card">
+
+            <div class="brand-overlay">
+                ${formatBrandName(p.brand)}
+            </div>
 
             <img src="images/${p.category}/${p.folder}/main.jpg">
 
@@ -72,67 +101,40 @@ function renderBrandSlider(id) {
 /* =========================
    MOVE SLIDER
 ========================= */
-function moveBrandSlider(id, dir) {
+function moveBrand(id, dir) {
 
     const el = document.getElementById(id);
     if (!el) return;
 
     const items = JSON.parse(el.dataset.items || "[]");
+
     const total = items.length;
 
     let index = Number(el.dataset.index || 0);
 
-    const visible = 3;
+    index += VISIBLE * dir;
 
-    index += visible * dir;
-
-    // LOOP an toàn (không bị mất item cuối)
-    if (index > total - visible) {
+    if (index > total - VISIBLE) {
         index = 0;
     }
 
     if (index < 0) {
-        index = Math.max(total - visible, 0);
+        index = Math.max(total - VISIBLE, 0);
     }
 
     el.dataset.index = index;
 
-    renderBrandSlider(id);
+    renderBrand(id);
 }
 
 /* =========================
-   AUTO START SLIDER
+   FORMAT BRAND NAME
 ========================= */
-function startBrandSliders() {
+function formatBrandName(name) {
 
-    // clear interval cũ (TRÁNH CHẠY CHỒNG)
-    brandIntervals.forEach(clearInterval);
-    brandIntervals = [];
-
-    document.querySelectorAll(".brand-track").forEach(el => {
-
-        const items = JSON.parse(el.dataset.items || "[]");
-
-        if (!items.length) return;
-
-        // render lần đầu
-        renderBrandSlider(el.id);
-
-        // nếu <= 3 thì không auto chạy
-        if (items.length <= 3) return;
-
-        const timer = setInterval(() => {
-            moveBrandSlider(el.id, 1);
-        }, 7000);
-
-        brandIntervals.push(timer);
-    });
-}
-
-/* =========================
-   RESET (OPTIONAL SAFE CALL)
-========================= */
-function stopBrandSliders() {
-    brandIntervals.forEach(clearInterval);
-    brandIntervals = [];
+    return (name || "")
+        .toLowerCase()
+        .split(" ")
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
 }
