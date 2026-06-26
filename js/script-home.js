@@ -333,111 +333,79 @@ function renderSliderPage(id){
     const slider = document.getElementById(id);
     if (!slider) return;
 
-    const items =
-        JSON.parse(slider.dataset.items || "[]");
+    const items = JSON.parse(slider.dataset.items || "[]");
 
-    if(items.length === 0){
-        slider.innerHTML = "";
-        return;
-    }
+    let index = Number(slider.dataset.index || 0);
 
-    const index =
-        Number(slider.dataset.index || 0);
+    const total = items.length;
 
-    const count =
-        Math.min(3, items.length);
+    if(total === 0) return;
 
     let html = "";
 
-    for(let i = 0; i < count; i++){
+    // luôn render tối đa 3 item
+    const end = Math.min(index + 3, total);
 
-        // chạy vòng tròn hết danh sách
-        const p =
-            items[(index + i) % items.length];
+    for(let i = index; i < end; i++){
 
-        if(!p) continue;
+        const p = items[i];
 
-        const product =
-            getTranslatedProduct(p) || p;
+        const product = getTranslatedProduct(p) || p;
 
         html += `
-        <div class="product-card">
+<div class="product-card">
 
-            <div class="brand-overlay">
-                ${p.brand
-                    ? formatBrandName(p.brand)
-                    : ""}
-            </div>
+    <div class="brand-overlay">
+        ${formatBrandName(p.brand)}
+    </div>
 
-            <img src="images/${p.category}/${p.folder}/main.jpg"
-                 alt="${product.name}">
+    <img src="images/${p.category}/${p.folder}/main.jpg">
 
-            <div class="product-info">
+    <div class="product-info">
 
-                <h3>${product.name}</h3>
+        <h3>${product.name}</h3>
 
-                <div class="product-buttons">
+        <div class="product-buttons">
 
-                    <a class="detail-btn"
-                       href="chitiet.html?id=${p.id}">
-                        ${t("detailBtn")}
-                    </a>
+            <a class="detail-btn"
+               href="chitiet.html?id=${p.id}">
+                ${t("detail")}
+            </a>
 
-                    <button class="quote-btn"
-                            onclick="showQuote(${p.id})">
-                        ${t("quoteBtn")}
-                    </button>
-
-                </div>
-
-            </div>
+            <button class="quote-btn"
+                    onclick="showQuote(${p.id})">
+                ${t("quote")}
+            </button>
 
         </div>
-        `;
+
+    </div>
+
+</div>
+`;
     }
 
     slider.innerHTML = html;
 }
-function moveSlider(id, direction){
+function moveSlider(id,direction){
 
-    const slider =
-        document.getElementById(id);
-
+    const slider = document.getElementById(id);
     if (!slider) return;
 
-    const items =
-        JSON.parse(
-            slider.dataset.items || "[]"
-        );
+    const items = JSON.parse(slider.dataset.items || "[]");
 
-    if(items.length <= 3){
-        return;
-    }
+    let index = Number(slider.dataset.index || 0);
 
-    let index =
-        Number(
-            slider.dataset.index || 0
-        );
+    const maxStart = Math.max(items.length - 3, 0);
 
-    // Di chuyển từng nhóm 3 sản phẩm
     index += 3 * direction;
 
-    // Chạy vòng tròn
-    if(index >= items.length){
+    if(index > maxStart){
         index = 0;
     }
 
     if(index < 0){
-
-        if(items.length % 3 === 0){
-            index = items.length - 3;
-        } else {
-            index = items.length - (items.length % 3);
-        }
-
-        if(index >= items.length){
-            index = Math.max(items.length - 3, 0);
-        }
+        index = maxStart;
     }
 
     slider.dataset.index = index;
