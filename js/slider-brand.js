@@ -1,8 +1,5 @@
 /* =========================
-   BRAND SLIDER MODULE (FINAL FIX - STABLE PRODUCTION)
-   - circular infinite
-   - no missing items
-   - safe index handling
+   BRAND SLIDER - FINAL FIX (NO MISSING ITEM)
 ========================= */
 
 let brandIntervals = [];
@@ -14,20 +11,23 @@ const VISIBLE = 3;
 ========================= */
 function initBrandSliders() {
 
-    // clear old intervals
     brandIntervals.forEach(clearInterval);
     brandIntervals = [];
 
     document.querySelectorAll(".brand-track").forEach(track => {
 
-        const items = JSON.parse(track.dataset.items || "[]");
+        let items = [];
 
-        if (!items.length) return;
-
-        // init index
-        if (!track.dataset.index) {
-            track.dataset.index = 0;
+        try {
+            items = JSON.parse(track.dataset.items || "[]");
+        } catch (e) {
+            items = [];
         }
+
+        if (!Array.isArray(items) || items.length === 0) return;
+
+        // reset index
+        track.dataset.index = "0";
 
         renderBrand(track.id);
 
@@ -35,7 +35,7 @@ function initBrandSliders() {
 
         const timer = setInterval(() => {
             moveBrand(track.id, 1);
-        }, 7000);
+        }, 6000);
 
         brandIntervals.push(timer);
     });
@@ -49,24 +49,31 @@ function renderBrand(id) {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const items = JSON.parse(el.dataset.items || "[]");
-    const total = items.length;
+    let items = [];
 
-    if (!total) return;
+    try {
+        items = JSON.parse(el.dataset.items || "[]");
+    } catch (e) {
+        items = [];
+    }
+
+    const total = items.length;
+    if (total === 0) return;
 
     let index = Number(el.dataset.index || 0);
 
-    // normalize index
-    if (index < 0) index = 0;
+    // FIX INDEX SAFE
     if (index >= total) index = 0;
+    if (index < 0) index = 0;
 
     let html = "";
 
-    // always show VISIBLE items in circular mode
     for (let i = 0; i < Math.min(VISIBLE, total); i++) {
 
         const realIndex = (index + i) % total;
         const p = items[realIndex];
+
+        if (!p) continue;
 
         const product = getTranslatedProduct(p) || p;
 
@@ -74,7 +81,7 @@ function renderBrand(id) {
         <div class="product-card">
 
             <div class="brand-overlay">
-                ${formatBrandName(p.brand)}
+                ${formatBrandName(p.brand || "")}
             </div>
 
             <img src="images/${p.category}/${p.folder}/main.jpg">
@@ -97,39 +104,39 @@ function renderBrand(id) {
 
             </div>
 
-        </div>`;
+        </div>
+        `;
     }
 
     el.innerHTML = html;
-    el.dataset.index = index;
 }
 
 /* =========================
-   MOVE (CIRCULAR FIX)
+   MOVE (WRAP SAFE)
 ========================= */
 function moveBrand(id, dir) {
 
     const el = document.getElementById(id);
     if (!el) return;
 
-    const items = JSON.parse(el.dataset.items || "[]");
-    const total = items.length;
+    let items = [];
 
-    if (!total) return;
+    try {
+        items = JSON.parse(el.dataset.items || "[]");
+    } catch (e) {
+        items = [];
+    }
+
+    const total = items.length;
+    if (total === 0) return;
 
     let index = Number(el.dataset.index || 0);
 
-    index += VISIBLE * dir;
+    index = index + dir;
 
-    // circular logic (SAFE)
-    if (index < 0) {
-        index = total - VISIBLE;
-        if (index < 0) index = 0;
-    }
-
-    if (index >= total) {
-        index = 0;
-    }
+    // WRAP FULL CIRCLE (KHÔNG MẤT ITEM)
+    if (index >= total) index = 0;
+    if (index < 0) index = total - 1;
 
     el.dataset.index = index;
 
@@ -137,10 +144,9 @@ function moveBrand(id, dir) {
 }
 
 /* =========================
-   FORMAT BRAND NAME
+   FORMAT
 ========================= */
 function formatBrandName(name) {
-
     return (name || "")
         .toLowerCase()
         .split(" ")
