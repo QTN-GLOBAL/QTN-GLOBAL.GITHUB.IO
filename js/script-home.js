@@ -290,7 +290,7 @@ function renderGridWithBrand(products, title) {
                 <div class="product-card">
 
                     <div class="brand-overlay">
-                        ${formatBrandName(p.brand)}
+                        ${formatBrandName(p.brand || "")}
                     </div>
 
                     <img src="images/${p.category}/${p.folder}/main.jpg">
@@ -326,7 +326,6 @@ function renderGridWithBrand(products, title) {
 /* =========================
    INIT
 ========================= */
-
 document.addEventListener("DOMContentLoaded", function () {
 
     const category = sessionStorage.getItem("filterCategory");
@@ -336,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const products = getProducts().filter(p => p.category === category);
 
-        renderProductList(products, category);
+        renderGridWithBrand(products, category);
 
         sessionStorage.removeItem("filterCategory");
         return;
@@ -349,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
             p.brand.toUpperCase() === brand.toUpperCase()
         );
 
-        renderProductList(products, brand);
+        renderGridWithBrand(products, brand);
 
         sessionStorage.removeItem("filterBrand");
         return;
@@ -357,7 +356,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderHomeByBrand();
 
-    // 👉 CHỈ GỌI SLIDER EXTERNAL
+    // HERO SLIDER (giữ nguyên)
     initHeroSlider();
+
+    // BRAND SLIDER (giữ nguyên)
     initBrandSliders();
 });
