@@ -63,6 +63,13 @@ function runSearch(result, keyword) {
    BOOT (SAFE + NO BREAK DOM)
 ========================= */
 function boot() {
+if (
+    sessionStorage.getItem("searchKeyword") ||
+    sessionStorage.getItem("filterCategory") ||
+    sessionStorage.getItem("filterBrand")
+) {
+    return;
+}
 
     const products = getProducts();
 
