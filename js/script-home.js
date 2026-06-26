@@ -187,7 +187,7 @@ function renderProductList(products, title) {
         ${t("home")}
     </button>
 
-    <h2>${title}</h2>
+    <h2>${formatBrandName(title)}</h2>
 
 </div>
 
@@ -197,8 +197,15 @@ ${products.map(p => {
 
     const product = getTranslatedProduct(p) || p;
 
+    const brand = (p.brand || "").trim();
+
     return `
 <div class="product-card">
+
+    ${brand ? `
+    <div class="brand-overlay">
+        ${formatBrandName(brand)}
+    </div>` : ""}
 
     <img src="images/${p.category}/${p.folder}/main.jpg">
 
@@ -225,7 +232,6 @@ ${products.map(p => {
 
 </div>`;
 }
-
 /* =========================
    SESSION NAV
 ========================= */
