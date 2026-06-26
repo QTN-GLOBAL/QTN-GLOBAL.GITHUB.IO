@@ -221,38 +221,25 @@ function createBrandSection(brandKey, items) {
 
     const id = brandKey.toLowerCase();
 
-    // 🔥 translate toàn bộ sản phẩm trước khi đưa vào slider
-    const translatedItems = items.map(p => getTranslatedProduct(p) || p);
-
     return `
     <section class="brand-section">
-
-        <div class="brand-track"
-     id="${id}"
-     data-index="0"
-     data-items='${JSON.stringify(items)}'>
-
-    <div class="brand-overlay-title">
-        ${formatBrandName(brandKey)}
-    </div>
-
-</div>
 
         <div class="brand-wrapper">
 
             <button class="slider-btn left"
-                    onclick="moveSlider('${id}',-1)">
+                    onclick="moveSlider('${id}', -1)">
                 ❮
             </button>
 
             <div class="brand-track"
                  id="${id}"
                  data-index="0"
-                 data-items='${JSON.stringify(translatedItems)}'>
+                 data-items='${JSON.stringify(items)}'>
+
             </div>
 
             <button class="slider-btn right"
-                    onclick="moveSlider('${id}',1)">
+                    onclick="moveSlider('${id}', 1)">
                 ❯
             </button>
 
@@ -284,78 +271,112 @@ function renderSliderPage(id){
     const slider = document.getElementById(id);
     if (!slider) return;
 
-    const items = JSON.parse(slider.dataset.items || "[]");
+    const items =
+        JSON.parse(slider.dataset.items || "[]");
 
-    let index = Number(slider.dataset.index || 0);
+    if(items.length === 0){
+        slider.innerHTML = "";
+        return;
+    }
+
+    const index =
+        Number(slider.dataset.index || 0);
+
+    const count =
+        Math.min(3, items.length);
 
     let html = "";
 
-    const count = Math.min(3, items.length);
-
     for(let i = 0; i < count; i++){
 
-        const p = items[index + i];
-        if(!p) break;
+        // chạy vòng tròn hết danh sách
+        const p =
+            items[(index + i) % items.length];
 
-        const product = getTranslatedProduct(p) || p;
+        if(!p) continue;
 
-       html += `
-<div class="product-card">
+        const product =
+            getTranslatedProduct(p) || p;
 
-    <div class="brand-overlay">
-        ${formatBrandName(p.brand)}
-    </div>
+        html += `
+        <div class="product-card">
 
-    <img src="images/${p.category}/${p.folder}/main.jpg">
+            <div class="brand-overlay">
+                ${p.brand
+                    ? formatBrandName(p.brand)
+                    : ""}
+            </div>
 
-    <div class="product-info">
+            <img src="images/${p.category}/${p.folder}/main.jpg"
+                 alt="${product.name}">
 
-        <h3>${product.name}</h3>
+            <div class="product-info">
 
-        <div class="product-buttons">
+                <h3>${product.name}</h3>
 
-            <a class="detail-btn"
-               href="chitiet.html?id=${p.id}">
-                ${t("detail")}
-            </a>
+                <div class="product-buttons">
 
-            <button class="quote-btn"
-                    onclick="showQuote(${p.id})">
-                ${t("quote")}
-            </button>
+                    <a class="detail-btn"
+                       href="chitiet.html?id=${p.id}">
+                        ${t("detail")}
+                    </a>
+
+                    <button class="quote-btn"
+                            onclick="showQuote(${p.id})">
+                        ${t("quote")}
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
-
-    </div>
-
-</div>
-`;
+        `;
     }
 
     slider.innerHTML = html;
 }
-function moveSlider(id,direction){
+function moveSlider(id, direction){
 
     const slider =
         document.getElementById(id);
 
-    const items =
-        JSON.parse(slider.dataset.items);
+    if (!slider) return;
 
-    let index =
-        Number(slider.dataset.index);
+    const items =
+        JSON.parse(
+            slider.dataset.items || "[]"
+        );
 
     if(items.length <= 3){
-    return;
-}
+        return;
+    }
 
-index += 3 * direction;
+    let index =
+        Number(
+            slider.dataset.index || 0
+        );
 
-    if(index >= items.length)
+    // Di chuyển từng nhóm 3 sản phẩm
+    index += 3 * direction;
+
+    // Chạy vòng tròn
+    if(index >= items.length){
         index = 0;
+    }
 
-    if(index < 0)
-        index = Math.max(items.length - 3,0);
+    if(index < 0){
+
+        if(items.length % 3 === 0){
+            index = items.length - 3;
+        } else {
+            index = items.length - (items.length % 3);
+        }
+
+        if(index >= items.length){
+            index = Math.max(items.length - 3, 0);
+        }
+    }
 
     slider.dataset.index = index;
 
@@ -365,29 +386,37 @@ function startBrandSlider(){
 
     document
     .querySelectorAll(".brand-track")
-    .forEach(slider=>{
+    .forEach(slider => {
 
         const items = JSON.parse(
-            slider.dataset.items
+            slider.dataset.items || "[]"
         );
 
-        // Nếu chỉ có 1-3 sản phẩm thì không tự chạy
-        if(items.length <= 3){
-            renderSliderPage(slider.id);
+        // Không có sản phẩm
+        if(items.length === 0){
             return;
         }
 
-        // Từ 4 sản phẩm trở lên mới chạy slider
+        // Render lần đầu
         renderSliderPage(slider.id);
 
-        setInterval(()=>{
+        // 1-3 sản phẩm thì không auto chạy
+        if(items.length <= 3){
+            return;
+        }
+
+        // Auto slider
+        const interval = setInterval(() => {
 
             moveSlider(
                 slider.id,
                 1
             );
 
-        },7000);
+        }, 7000);
+
+        // Lưu interval để clear khi render lại
+        brandSliderIntervals.push(interval);
 
     });
 }
