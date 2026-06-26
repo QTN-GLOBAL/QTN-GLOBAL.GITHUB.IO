@@ -1,21 +1,41 @@
+/* =========================
+   BRAND SLIDER MODULE (CLEAN)
+   - FIX FULL ITEM LOSS
+   - SAFE LOOP
+   - NO HERO CONFLICT
+========================= */
+
 let brandIntervals = [];
 
-function renderBrandSlider(id){
+/* =========================
+   RENDER SLIDER
+========================= */
+function renderBrandSlider(id) {
 
     const el = document.getElementById(id);
-    if(!el) return;
+    if (!el) return;
 
     const items = JSON.parse(el.dataset.items || "[]");
-    let index = Number(el.dataset.index || 0);
 
+    let index = Number(el.dataset.index || 0);
     const total = items.length;
-    if(total === 0) return;
+
+    if (total === 0) return;
+
+    const visible = 3;
+
+    // đảm bảo index luôn hợp lệ
+    if (index > total - visible) {
+        index = Math.max(total - visible, 0);
+    }
 
     let html = "";
 
-    for(let i = 0; i < Math.min(3, total); i++){
+    for (let i = 0; i < visible; i++) {
 
-        const p = items[(index + i) % total];
+        const realIndex = (index + i) % total;
+        const p = items[realIndex];
+
         const product = getTranslatedProduct(p) || p;
 
         html += `
@@ -41,42 +61,65 @@ function renderBrandSlider(id){
 
             </div>
 
-        </div>`;
+        </div>
+        `;
     }
 
     el.innerHTML = html;
+    el.dataset.index = index;
 }
 
-function moveBrandSlider(id, dir){
+/* =========================
+   MOVE SLIDER
+========================= */
+function moveBrandSlider(id, dir) {
 
     const el = document.getElementById(id);
-    if(!el) return;
+    if (!el) return;
 
     const items = JSON.parse(el.dataset.items || "[]");
+    const total = items.length;
 
     let index = Number(el.dataset.index || 0);
 
-    index += 3 * dir;
+    const visible = 3;
 
-    if(index >= items.length) index = 0;
-    if(index < 0) index = Math.max(items.length - 3, 0);
+    index += visible * dir;
+
+    // LOOP an toàn (không bị mất item cuối)
+    if (index > total - visible) {
+        index = 0;
+    }
+
+    if (index < 0) {
+        index = Math.max(total - visible, 0);
+    }
 
     el.dataset.index = index;
 
     renderBrandSlider(id);
 }
 
-function startBrandSliders(){
+/* =========================
+   AUTO START SLIDER
+========================= */
+function startBrandSliders() {
+
+    // clear interval cũ (TRÁNH CHẠY CHỒNG)
+    brandIntervals.forEach(clearInterval);
+    brandIntervals = [];
 
     document.querySelectorAll(".brand-track").forEach(el => {
 
         const items = JSON.parse(el.dataset.items || "[]");
 
-        if(items.length === 0) return;
+        if (!items.length) return;
 
+        // render lần đầu
         renderBrandSlider(el.id);
 
-        if(items.length <= 3) return;
+        // nếu <= 3 thì không auto chạy
+        if (items.length <= 3) return;
 
         const timer = setInterval(() => {
             moveBrandSlider(el.id, 1);
@@ -84,4 +127,12 @@ function startBrandSliders(){
 
         brandIntervals.push(timer);
     });
+}
+
+/* =========================
+   RESET (OPTIONAL SAFE CALL)
+========================= */
+function stopBrandSliders() {
+    brandIntervals.forEach(clearInterval);
+    brandIntervals = [];
 }
