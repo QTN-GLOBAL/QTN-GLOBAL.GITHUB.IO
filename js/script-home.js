@@ -109,25 +109,87 @@ function getExcellImages() {
         );
 }
 
-function initExcellSlider() {
+let sliderIndex = 0;
+let sliderTimer = null;
 
-    const sliderImg = document.getElementById("slider-img");
-    if (!sliderImg) return;
+function initExcellSlider(){
+
+    const track =
+        document.getElementById("slider-track");
+
+    const dots =
+        document.getElementById("slider-dots");
+
+    if(!track || !dots) return;
 
     excellSlides = getExcellImages();
-    if (!excellSlides.length) return;
 
-    function showSlide() {
+    track.innerHTML = "";
+    dots.innerHTML = "";
 
-        sliderImg.src = excellSlides[indexSlide];
+    excellSlides.forEach((src,index)=>{
 
-        indexSlide = (indexSlide + 1) % excellSlides.length;
+        const img =
+            document.createElement("img");
+
+        img.src = src;
+
+        if(index === 0){
+            img.classList.add("active");
+        }
+
+        track.appendChild(img);
+
+        const dot =
+            document.createElement("div");
+
+        dot.className = "slider-dot";
+
+        if(index === 0){
+            dot.classList.add("active");
+        }
+
+        dot.onclick = () => {
+            showSlide(index);
+        };
+
+        dots.appendChild(dot);
+    });
+
+    function showSlide(index){
+
+        const images =
+            track.querySelectorAll("img");
+
+        const dotList =
+            dots.querySelectorAll(".slider-dot");
+
+        images.forEach(img =>
+            img.classList.remove("active")
+        );
+
+        dotList.forEach(dot =>
+            dot.classList.remove("active")
+        );
+
+        images[index].classList.add("active");
+        dotList[index].classList.add("active");
+
+        sliderIndex = index;
     }
 
-    showSlide();
-    setInterval(showSlide, 3000);
-}
+    sliderTimer = setInterval(() => {
 
+        sliderIndex++;
+
+        if(sliderIndex >= excellSlides.length){
+            sliderIndex = 0;
+        }
+
+        showSlide(sliderIndex);
+
+    },5000);
+}
 /* =========================
    SESSION NAVIGATION
 ========================= */
@@ -527,5 +589,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     renderHomeByBrand();
+initExcellSlider();
 
 });
