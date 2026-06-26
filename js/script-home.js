@@ -290,7 +290,7 @@ function renderGridWithBrand(products, title) {
                 <div class="product-card">
 
                     <div class="brand-overlay">
-                        ${formatBrandName(p.brand || "")}
+                        ${p.brand ? formatBrandName(p.brand) : ""}
                     </div>
 
                     <img src="images/${p.category}/${p.folder}/main.jpg">
@@ -356,9 +356,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderHomeByBrand();
 
-    // HERO SLIDER (giữ nguyên)
     initHeroSlider();
-
-    // BRAND SLIDER (giữ nguyên)
     initBrandSliders();
 });
