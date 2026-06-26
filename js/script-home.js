@@ -336,17 +336,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const category = sessionStorage.getItem("filterCategory");
     const brand = sessionStorage.getItem("filterBrand");
+    const search = sessionStorage.getItem("searchKeyword");
 
+    // =========================
+    // SEARCH MODE (ƯU TIÊN CAO NHẤT)
+    // =========================
+    if (search) {
+
+        const products = SearchSystem.filter(getProducts(), search);
+
+        renderProductList(products, search);
+
+        sessionStorage.removeItem("searchKeyword");
+        sessionStorage.removeItem("filterCategory");
+        sessionStorage.removeItem("filterBrand");
+
+        return;
+    }
+
+    // =========================
+    // CATEGORY MODE
+    // =========================
     if (category) {
 
         const products = getProducts().filter(p => p.category === category);
 
-        renderGridWithBrand(products, category);
+        renderProductList(products, category);
 
         sessionStorage.removeItem("filterCategory");
         return;
     }
 
+    // =========================
+    // BRAND MODE
+    // =========================
     if (brand) {
 
         const products = getProducts().filter(p =>
@@ -354,27 +377,17 @@ document.addEventListener("DOMContentLoaded", function () {
             p.brand.toUpperCase() === brand.toUpperCase()
         );
 
-        renderGridWithBrand(products, brand);
+        renderProductList(products, brand);
 
         sessionStorage.removeItem("filterBrand");
         return;
     }
 
-   const isSearch = sessionStorage.getItem("searchKeyword");
-
-if (isSearch) {
-
-    const products = SearchSystem.filter(getProducts(), isSearch);
-
-    renderProductList(products, isSearch);
-
-    sessionStorage.removeItem("searchKeyword");
-    sessionStorage.removeItem("isSearchMode");
-
-} else {
-
+    // =========================
+    // HOME MODE (CHỈ KHI KHÔNG CÓ FILTER)
+    // =========================
     renderHomeByBrand();
+
     initHeroSlider();
     initBrandSliders();
-}
 });
