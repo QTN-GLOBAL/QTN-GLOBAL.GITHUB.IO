@@ -45,11 +45,11 @@ function renderProducts(productList = []) {
         <div class="product-buttons">
 
             <a class="detail-btn" href="chitiet.html?id=${p.id}">
-                ${t("detail")}
+                ${t("detailBtn")}
             </a>
 
             <button class="quote-btn" onclick="showQuote(${p.id})">
-                ${t("quote")}
+                ${t("quoteBtn")}
             </button>
 
         </div>
@@ -318,12 +318,12 @@ function renderSliderPage(id){
 
                     <a class="detail-btn"
                        href="chitiet.html?id=${p.id}">
-                        ${t("detail")}
+                        ${t("detailBtn")}
                     </a>
 
                     <button class="quote-btn"
                             onclick="showQuote(${p.id})">
-                        ${t("quote")}
+                        ${t("quoteBtn")}
                     </button>
 
                 </div>
@@ -458,12 +458,12 @@ function renderProductList(products, title){
 
                             <a class="detail-btn"
                                href="chitiet.html?id=${p.id}">
-                                ${t("detail")}
+                                ${t("detailBtn")}
                             </a>
 
                             <button class="quote-btn"
                                     onclick="showQuote(${p.id})">
-                                ${t("quote")}
+                                ${t("quoteBtn")}
                             </button>
 
                         </div>
