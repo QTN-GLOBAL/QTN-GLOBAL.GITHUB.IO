@@ -991,30 +991,27 @@
     gap: 14px;
 }
 .brand-section{
-    margin-bottom: 18px; /* giảm khoảng cách giữa các block */
+    margin-bottom: 10px;
 }
 
 .brand-wrapper{
-    gap: 8px;
+    gap: 2px;
 }
 
 .brand-track{
-    gap: 12px;
+    gap: 4px;
 }
+
 /* =========================
    BRAND SECTION SPACING FIX
 ========================= */
 
 .brand-section{
-    margin: 18px 0;   /* giảm khoảng cách giữa các khối brand */
+    margin: 10px 0;
 }
 
 #homeContainer{
     display: flex;
     flex-direction: column;
-    gap: 18px; /* đồng bộ khoảng cách giữa các block */
+    gap: 10px;
 }
-
-
-
-
