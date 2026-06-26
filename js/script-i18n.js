@@ -443,27 +443,36 @@ function applyLanguage(lang) {
 ========================= */
 function refreshUIAfterLanguageChange() {
 
-    // Home page brand slider
     if (typeof renderHomeByBrand === "function") {
         renderHomeByBrand();
     }
 
-    // Product grid / filter view
     if (typeof renderProducts === "function") {
         renderProducts(window.currentProducts || getProducts());
     }
 
-    // Product list page
     if (typeof renderProductList === "function") {
         if (window.lastProducts && window.lastTitle) {
             renderProductList(window.lastProducts, window.lastTitle);
         }
     }
 
-    // Product detail page
     if (typeof renderProductDetail === "function") {
         renderProductDetail();
     }
+
+    // 🔥 IMPORTANT: RESTART SLIDERS AFTER DOM REBUILD
+    setTimeout(() => {
+
+        if (typeof initHeroSlider === "function") {
+            initHeroSlider();
+        }
+
+        if (typeof initBrandSliders === "function") {
+            initBrandSliders();
+        }
+
+    }, 0);
 }
 /* =========================
    SET LANGUAGE
