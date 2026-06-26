@@ -360,8 +360,21 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    renderHomeByBrand();
+   const isSearch = sessionStorage.getItem("searchKeyword");
 
+if (isSearch) {
+
+    const products = SearchSystem.filter(getProducts(), isSearch);
+
+    renderProductList(products, isSearch);
+
+    sessionStorage.removeItem("searchKeyword");
+    sessionStorage.removeItem("isSearchMode");
+
+} else {
+
+    renderHomeByBrand();
     initHeroSlider();
     initBrandSliders();
+}
 });

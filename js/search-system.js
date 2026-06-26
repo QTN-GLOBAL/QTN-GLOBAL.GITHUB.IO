@@ -1,16 +1,9 @@
 /* =========================
-   SEARCH SYSTEM (SINGLE SOURCE OF TRUTH)
-   - handle search
-   - handle category search
-   - handle brand search
-   - safe normalize
+   SEARCH SYSTEM (FINAL FIX)
 ========================= */
 
 (function () {
 
-    /* =========================
-       NORMALIZE TEXT
-    ========================= */
     function normalize(str) {
         return (str || "")
             .toLowerCase()
@@ -21,9 +14,6 @@
             .trim();
     }
 
-    /* =========================
-       CATEGORY MAP
-    ========================= */
     const categoryMap = {
         "can ban": "can-ban",
         "can dem": "can-dem",
@@ -35,16 +25,12 @@
         "can ghe": "can-ghe-ngoi"
     };
 
-    /* =========================
-       CORE FILTER ENGINE
-    ========================= */
     function filterProducts(products, keyword) {
 
         if (!keyword) return products;
 
         const k = normalize(keyword);
 
-        // 1. category search (exact match)
         const categoryKey = Object.keys(categoryMap)
             .find(key => normalize(key) === k);
 
@@ -54,11 +40,10 @@
             );
         }
 
-        // 2. fallback search (name + brand + description)
         return products.filter(p => {
 
             const text = normalize(
-                [p.name, p.description, p.brand]
+                [p.name, p.brand, p.description]
                     .filter(Boolean)
                     .join(" ")
             );
@@ -67,9 +52,6 @@
         });
     }
 
-    /* =========================
-       PUBLIC API
-    ========================= */
     window.SearchSystem = {
 
         filter: filterProducts,
@@ -80,13 +62,13 @@
             if (!k) return;
 
             sessionStorage.setItem("searchKeyword", k);
+
+            // 👉 quan trọng: set flag để index biết KHÔNG render slider
+            sessionStorage.setItem("isSearchMode", "1");
+
             window.location.href = "index.html";
         }
     };
-
-    /* =========================
-       GLOBAL SEARCH EVENTS (NO DEAD CLICK)
-    ========================= */
 
     document.addEventListener("click", function (e) {
 
@@ -94,9 +76,7 @@
         if (!btn) return;
 
         const input = document.getElementById("searchInput");
-        const keyword = input ? input.value : "";
-
-        window.SearchSystem.go(keyword);
+        window.SearchSystem.go(input ? input.value : "");
     });
 
     document.addEventListener("keydown", function (e) {
