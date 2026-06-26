@@ -1,7 +1,8 @@
-
 /* =========================
-   BRAND SLIDER MODULE (FINAL FIX)
-   MATCH YOUR script-home.js
+   BRAND SLIDER MODULE (FINAL FIX - STABLE PRODUCTION)
+   - circular infinite
+   - no missing items
+   - safe index handling
 ========================= */
 
 let brandIntervals = [];
@@ -9,7 +10,7 @@ let brandIntervals = [];
 const VISIBLE = 3;
 
 /* =========================
-   MAIN INIT
+   INIT
 ========================= */
 function initBrandSliders() {
 
@@ -22,6 +23,11 @@ function initBrandSliders() {
         const items = JSON.parse(track.dataset.items || "[]");
 
         if (!items.length) return;
+
+        // init index
+        if (!track.dataset.index) {
+            track.dataset.index = 0;
+        }
 
         renderBrand(track.id);
 
@@ -36,7 +42,7 @@ function initBrandSliders() {
 }
 
 /* =========================
-   RENDER SLIDER
+   RENDER
 ========================= */
 function renderBrand(id) {
 
@@ -44,18 +50,19 @@ function renderBrand(id) {
     if (!el) return;
 
     const items = JSON.parse(el.dataset.items || "[]");
-
-    let index = Number(el.dataset.index || 0);
     const total = items.length;
 
-    if (total === 0) return;
+    if (!total) return;
 
-    if (index > total - VISIBLE) {
-        index = Math.max(total - VISIBLE, 0);
-    }
+    let index = Number(el.dataset.index || 0);
+
+    // normalize index
+    if (index < 0) index = 0;
+    if (index >= total) index = 0;
 
     let html = "";
 
+    // always show VISIBLE items in circular mode
     for (let i = 0; i < Math.min(VISIBLE, total); i++) {
 
         const realIndex = (index + i) % total;
@@ -90,8 +97,7 @@ function renderBrand(id) {
 
             </div>
 
-        </div>
-        `;
+        </div>`;
     }
 
     el.innerHTML = html;
@@ -99,7 +105,7 @@ function renderBrand(id) {
 }
 
 /* =========================
-   MOVE SLIDER
+   MOVE (CIRCULAR FIX)
 ========================= */
 function moveBrand(id, dir) {
 
@@ -107,19 +113,22 @@ function moveBrand(id, dir) {
     if (!el) return;
 
     const items = JSON.parse(el.dataset.items || "[]");
-
     const total = items.length;
+
+    if (!total) return;
 
     let index = Number(el.dataset.index || 0);
 
     index += VISIBLE * dir;
 
-    if (index > total - VISIBLE) {
-        index = 0;
+    // circular logic (SAFE)
+    if (index < 0) {
+        index = total - VISIBLE;
+        if (index < 0) index = 0;
     }
 
-    if (index < 0) {
-        index = Math.max(total - VISIBLE, 0);
+    if (index >= total) {
+        index = 0;
     }
 
     el.dataset.index = index;
