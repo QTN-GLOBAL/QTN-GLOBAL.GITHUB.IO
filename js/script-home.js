@@ -334,60 +334,94 @@ function renderGridWithBrand(products, title) {
 ========================= */
 document.addEventListener("DOMContentLoaded", function () {
 
+    const search = sessionStorage.getItem("searchKeyword");
     const category = sessionStorage.getItem("filterCategory");
     const brand = sessionStorage.getItem("filterBrand");
-    const search = sessionStorage.getItem("searchKeyword");
 
-    // =========================
-    // SEARCH MODE (ƯU TIÊN CAO NHẤT)
-    // =========================
+    /* =========================
+       SEARCH MODE
+    ========================= */
     if (search) {
 
-        const products = SearchSystem.filter(getProducts(), search);
+        window.APP_MODE.mode = "search";
 
-        renderProductList(products, search);
+        const products =
+            SearchSystem.filter(
+                getProducts(),
+                search
+            );
 
-        sessionStorage.removeItem("searchKeyword");
-        sessionStorage.removeItem("filterCategory");
-        sessionStorage.removeItem("filterBrand");
-
-        return;
-    }
-
-    // =========================
-    // CATEGORY MODE
-    // =========================
-    if (category) {
-
-        const products = getProducts().filter(p => p.category === category);
-
-        renderProductList(products, category);
-
-        sessionStorage.removeItem("filterCategory");
-        return;
-    }
-
-    // =========================
-    // BRAND MODE
-    // =========================
-    if (brand) {
-
-        const products = getProducts().filter(p =>
-            p.brand &&
-            p.brand.toUpperCase() === brand.toUpperCase()
+        renderGridWithBrand(
+            products,
+            search
         );
 
-        renderProductList(products, brand);
+        sessionStorage.removeItem(
+            "searchKeyword"
+        );
 
-        sessionStorage.removeItem("filterBrand");
         return;
     }
 
-    // =========================
-    // HOME MODE (CHỈ KHI KHÔNG CÓ FILTER)
-    // =========================
+    /* =========================
+       CATEGORY MODE
+    ========================= */
+    if (category) {
+
+        window.APP_MODE.mode = "category";
+
+        const products =
+            getProducts().filter(
+                p => p.category === category
+            );
+
+        renderGridWithBrand(
+            products,
+            category
+        );
+
+        sessionStorage.removeItem(
+            "filterCategory"
+        );
+
+        return;
+    }
+
+    /* =========================
+       BRAND MODE
+    ========================= */
+    if (brand) {
+
+        window.APP_MODE.mode = "brand";
+
+        const products =
+            getProducts().filter(
+                p =>
+                p.brand &&
+                p.brand.toUpperCase() ===
+                brand.toUpperCase()
+            );
+
+        renderGridWithBrand(
+            products,
+            brand
+        );
+
+        sessionStorage.removeItem(
+            "filterBrand"
+        );
+
+        return;
+    }
+
+    /* =========================
+       HOME MODE
+    ========================= */
+    window.APP_MODE.mode = "home";
+
     renderHomeByBrand();
 
     initHeroSlider();
+
     initBrandSliders();
 });

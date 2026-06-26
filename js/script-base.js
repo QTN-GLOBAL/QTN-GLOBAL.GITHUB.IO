@@ -51,6 +51,13 @@ const Cart = {
 function getProducts() {
     return window.products || [];
 }
+/* =========================
+   APP MODE (GLOBAL STATE)
+========================= */
+
+window.APP_MODE = {
+    mode: "home" // home | search | category | brand
+};
 
 /* =========================
    CART COUNT

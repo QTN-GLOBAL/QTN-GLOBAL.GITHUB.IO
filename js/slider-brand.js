@@ -10,6 +10,10 @@ const VISIBLE = 3;
    INIT
 ========================= */
 function initBrandSliders() {
+ if (window.APP_MODE &&
+        window.APP_MODE.mode !== "home") {
+        return;
+    }
 
     brandIntervals.forEach(clearInterval);
     brandIntervals = [];

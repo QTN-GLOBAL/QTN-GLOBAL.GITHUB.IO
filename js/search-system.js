@@ -58,16 +58,16 @@
 
         go(keyword) {
 
-            const k = (keyword || "").trim();
-            if (!k) return;
+    const k = (keyword || "").trim();
+    if (!k) return;
 
-            sessionStorage.setItem("searchKeyword", k);
+    sessionStorage.setItem("searchKeyword", k);
 
-            // 👉 quan trọng: set flag để index biết KHÔNG render slider
-            sessionStorage.setItem("isSearchMode", "1");
+    // khóa chế độ trang
+    window.APP_MODE.mode = "search";
 
-            window.location.href = "index.html";
-        }
+    window.location.href = "index.html";
+}
     };
 
     document.addEventListener("click", function (e) {

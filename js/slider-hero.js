@@ -3,6 +3,12 @@ let heroSlides = [];
 let heroTimer = null;
 
 function initHeroSlider(){
+if (
+        window.APP_MODE &&
+        window.APP_MODE.mode !== "home"
+    ) {
+        return;
+    }
 
     const track = document.getElementById("slider-track");
     const dots = document.getElementById("slider-dots");
