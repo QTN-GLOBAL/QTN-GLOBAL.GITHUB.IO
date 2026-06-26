@@ -985,6 +985,17 @@
 .product-grid{
     gap: 14px;
 }
+.brand-section{
+    margin-bottom: 18px; /* giảm khoảng cách giữa các block */
+}
+
+.brand-wrapper{
+    gap: 8px;
+}
+
+.brand-track{
+    gap: 12px;
+}
 
 
 
