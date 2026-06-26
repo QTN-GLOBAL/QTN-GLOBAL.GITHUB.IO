@@ -4,7 +4,7 @@
 
 let brandIntervals = [];
 
-const VISIBLE = 3;
+const VISIBLE = 5;
 
 /* =========================
    INIT
