@@ -998,8 +998,8 @@
 }
 
 .brand-track{
-    grid-template-columns:repeat(4,1fr) !important;
-    gap:8px !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    gap:6px !important;
 }
 
 /* =========================
@@ -1014,4 +1014,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.brand-track{
+    display:grid !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    gap:6px !important;
+}
+
+.brand-track .product-card{
+    min-width:0 !important;
+    width:auto !important;
 }
