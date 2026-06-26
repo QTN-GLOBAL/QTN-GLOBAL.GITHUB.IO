@@ -957,6 +957,34 @@
 .slider-btn.right {
     right: 5px;
 }
+.product-card{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-info{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-info h3{
+    min-height: 48px; /* giữ dòng tiêu đề đều nhau */
+}
+
+.product-buttons{
+    margin-top: auto; /* đẩy nút xuống đáy */
+    display: flex;
+    gap: 8px;
+}
+#homeContainer{
+    padding: 10px 12px;
+}
+
+.product-grid{
+    gap: 14px;
+}
 
 
 
