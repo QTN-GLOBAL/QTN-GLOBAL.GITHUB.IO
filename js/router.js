@@ -41,6 +41,7 @@ function initRouter() {
         }
 
         renderHomeByBrandFiltered(products);
+initBrandSliders();
         return;
     }
 
