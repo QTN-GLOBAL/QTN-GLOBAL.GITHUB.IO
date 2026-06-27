@@ -5,6 +5,13 @@
 ========================= */
 
 let allProductsCache = [];
+function normalize(str) {
+    return (str || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "_");
+}
 
 /* =========================
    BRAND ORDER
@@ -63,13 +70,14 @@ function renderProducts(productList = []) {
 /* =========================
    FILTER
 ========================= */
-
 function filterProducts(category) {
 
     const products = getProducts();
 
     const filtered = category
-        ? products.filter(p => p.category === category)
+        ? products.filter(p =>
+            normalize(p.category) === normalize(category)
+        )
         : products;
 
     renderProductList(filtered, category);
@@ -81,7 +89,7 @@ function filterByBrand(brand) {
 
     const filtered = brand
         ? products.filter(p =>
-            p.brand?.trim().toUpperCase() === brand.toUpperCase()
+            p => normalize(p.brand) === normalize(brand)
         )
         : products;
 
@@ -114,7 +122,9 @@ function renderHomeByBrand() {
     const container = document.getElementById("homeContainer");
     if (!container) return;
 
-    let products = getProducts();
+    let products = getProducts().filter(p =>
+    p.category && p.brand
+);
 
     /* =========================
        BUSINESS FILTER
@@ -464,25 +474,18 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================= */
     if (category) {
 
-        window.APP_MODE.mode = "category";
+    window.APP_MODE.mode = "category";
 
-        const products =
-            getProducts().filter(
-                p => p.category === category
-            );
+    const products = getProducts().filter(
+        p => normalize(p.category) === normalize(category)
+    );
 
-        renderGridWithBrand(
-            products,
-            category
-        );
+    renderGridWithBrand(products, category);
 
-        sessionStorage.removeItem(
-            "filterCategory"
-        );
+    sessionStorage.removeItem("filterCategory");
 
-        return;
-    }
-
+    return;
+}
     /* =========================
        BRAND MODE
     ========================= */
@@ -515,11 +518,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 if (business) {
 
-    window.APP_MODE.mode = "home";
+    window.APP_MODE.mode = "business";
 
-    renderHomeByBrand();
+    const products = getProducts().filter(
+        p => normalize(p.business) === normalize(business)
+    );
 
-    initBrandSliders();
+    renderGridWithBrand(products, business);
+
+    sessionStorage.removeItem("filterBusiness");
 
     return;
 }
