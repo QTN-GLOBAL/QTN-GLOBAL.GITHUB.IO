@@ -7,7 +7,11 @@
 function getParam(name) {
     return new URLSearchParams(window.location.search).get(name);
 }
+console.log("=== ROUTER RUN ===");
 
+console.log("BUSINESS:", sessionStorage.getItem("filterBusiness"));
+console.log("CATEGORY:", sessionStorage.getItem("filterCategory"));
+console.log("SEARCH:", sessionStorage.getItem("searchKeyword"));
 function initRouter() {
 
     const business = getParam("business");
