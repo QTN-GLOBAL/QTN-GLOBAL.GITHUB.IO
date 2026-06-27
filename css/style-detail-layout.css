@@ -145,9 +145,13 @@
 
 /* RESPONSIVE */
 @media(max-width:1400px){
+
     .detail-page{
-        grid-template-columns:220px 360px 1fr 220px;
+        grid-template-columns:
+        220px
+        1fr;
     }
+
 }
 
 @media(max-width:992px){
