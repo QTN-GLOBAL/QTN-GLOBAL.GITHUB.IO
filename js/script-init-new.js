@@ -154,7 +154,9 @@ if (business) {
     /* =========================
        RENDER
     ========================= */
+    if (typeof renderProducts === "function") {
     renderProducts(result);
+}
 
     /* =========================
        CART

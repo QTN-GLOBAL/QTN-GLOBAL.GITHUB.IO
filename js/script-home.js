@@ -152,7 +152,14 @@ function renderProductListPage(products, title) {
 ========================= */
 
 function goHomeAndBusiness(business) {
+
     sessionStorage.setItem("filterBusiness", business);
+
+    // QUAN TRỌNG: reset trạng thái cũ để tránh fallback HOME sai
+    sessionStorage.removeItem("searchKeyword");
+    sessionStorage.removeItem("filterCategory");
+    sessionStorage.removeItem("filterBrand");
+
     window.location.href = "index.html";
 }
 

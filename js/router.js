@@ -33,29 +33,27 @@ function initRouter() {
     const all = getProducts();
 
     const products = all.filter(p =>
-        String(p.business || "")
-            .trim()
-            .toLowerCase()
-            .includes(business.toLowerCase())
+        (p.business || "").trim().toLowerCase() === business.trim().toLowerCase()
     );
 
-    console.log("BUSINESS INPUT:", business);
-    console.log("MATCHED:", products.length);
+    window.APP_MODE.mode = "business";
 
     if (!products.length) {
-
         document.getElementById("homeContainer").innerHTML = `
             <div class="empty-products">
                 <h2>SẢN PHẨM ĐANG CẬP NHẬT</h2>
-                <p>Vui lòng quay lại sau.</p>
             </div>
         `;
-
         return;
     }
 
+    // QUAN TRỌNG: CHỈ render HOME FILTERED, KHÔNG gọi init lung tung khác
     renderHomeByBrandFiltered(products);
-    initBrandSliders();
+
+    // đảm bảo slider chạy lại
+    setTimeout(() => {
+        initBrandSliders();
+    }, 0);
 
     return;
 }
