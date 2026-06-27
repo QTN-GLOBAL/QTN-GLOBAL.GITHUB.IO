@@ -114,16 +114,34 @@ function renderHomeByBrand() {
     const container = document.getElementById("homeContainer");
     if (!container) return;
 
-    const products = getProducts();
+    let products = getProducts();
+
+    /* =========================
+       BUSINESS FILTER
+    ========================= */
+
+    const business =
+        sessionStorage.getItem("filterBusiness");
+
+    if (business) {
+
+        products = products.filter(
+            p => p.business === business
+        );
+    }
 
     const brands = {};
 
     products.forEach(p => {
+
         if (!p.brand) return;
 
-        const key = p.brand.trim().toUpperCase();
+        const key =
+            p.brand.trim().toUpperCase();
 
-        if (!brands[key]) brands[key] = [];
+        if (!brands[key]) {
+            brands[key] = [];
+        }
 
         brands[key].push(p);
     });
@@ -134,12 +152,20 @@ function renderHomeByBrand() {
 
         const items = brands[key];
 
-        if (!items || items.length === 0) return;
+        if (!items || items.length === 0)
+            return;
 
-        html += createBrandSection(key, items);
+        html += createBrandSection(
+            key,
+            items
+        );
     });
 
     container.innerHTML = html;
+
+    sessionStorage.removeItem(
+        "filterBusiness"
+    );
 }
 
 /* =========================
@@ -287,7 +313,9 @@ function goHomeAndBusiness(business) {
         business === "trade"
     ) {
 
-        alert("Sản phẩm đang cập nhật.\nVui lòng quay lại sau.");
+        alert(
+            "Sản phẩm đang cập nhật.\nVui lòng quay lại sau."
+        );
 
         goHomePage();
 
@@ -301,7 +329,6 @@ function goHomeAndBusiness(business) {
 
     window.location.href = "index.html";
 }
-
 /* =========================
    SHOW QUOTE
 ========================= */
@@ -488,44 +515,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 if (business) {
 
-    /* THIẾT BỊ ĐO LƯỜNG + GIA DỤNG */
+    window.APP_MODE.mode = "home";
 
-    if (
-        business === "measure" ||
-        business === "home"
-    ) {
+    renderHomeByBrand();
 
-        window.APP_MODE.mode = "home";
-
-        sessionStorage.removeItem(
-            "filterBusiness"
-        );
-
-        return;
-    }
-
-    /* CÁC LĨNH VỰC KHÁC */
-
-    window.APP_MODE.mode = "business";
-
-    renderGridWithBrand(
-        [],
-        business
-    );
-
-    sessionStorage.removeItem(
-        "filterBusiness"
-    );
-
-    setTimeout(() => {
-
-        alert(
-            "Sản phẩm đang cập nhật.\nVui lòng quay lại sau."
-        );
-
-        goHomePage();
-
-    }, 100);
+    initBrandSliders();
 
     return;
 }
