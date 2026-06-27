@@ -447,19 +447,45 @@ function renderRelatedProducts() {
 
     if (!rawProduct) return;
 
-    const related = products
-        .filter(p =>
-            p.category === rawProduct.category &&
-            p.id !== rawProduct.id
-        )
-        .slice(0,4);
+    window.relatedProducts = products.filter(p =>
+        p.category === rawProduct.category &&
+        p.id !== rawProduct.id
+    );
+
+    window.relatedIndex = 0;
+
+    renderRelatedSlider();
+}
+function renderRelatedSlider() {
 
     const container =
         document.getElementById("relatedProducts");
 
     if (!container) return;
 
-    container.innerHTML = related.map(p => `
+    if (!window.relatedProducts ||
+        window.relatedProducts.length === 0) {
+
+        container.innerHTML =
+            "<p>Không có sản phẩm cùng loại</p>";
+
+        return;
+    }
+
+    const total =
+        window.relatedProducts.length;
+
+    let html = "";
+
+    for(let i = 0; i < Math.min(4,total); i++){
+
+        const index =
+            (window.relatedIndex + i) % total;
+
+        const p =
+            window.relatedProducts[index];
+
+        html += `
 
         <div class="related-card"
              onclick="location.href='chitiet.html?id=${p.id}'">
@@ -470,7 +496,24 @@ function renderRelatedProducts() {
 
         </div>
 
-    `).join("");
+        `;
+    }
+
+    container.innerHTML = html;
+}
+function moveRelated(step){
+
+    if(!window.relatedProducts) return;
+
+    const total =
+        window.relatedProducts.length;
+
+    if(total <= 4) return;
+
+    window.relatedIndex =
+        (window.relatedIndex + step + total) % total;
+
+    renderRelatedSlider();
 }
 
 function applyI18nDetail() {
@@ -606,7 +649,24 @@ if (product) {
 
     renderRelatedProducts();
 
-    setTimeout(applyI18nDetail, 0);
+setTimeout(applyI18nDetail, 0);
+
+setTimeout(() => {
+
+    if(
+        !window.relatedProducts ||
+        window.relatedProducts.length <= 4
+    ){
+        return;
+    }
+
+    window.relatedTimer = setInterval(() => {
+
+        moveRelated(1);
+
+    },3000);
+
+},500);
 }
 
 document.getElementById("languageSelect").addEventListener("change", (e) => {
