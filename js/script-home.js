@@ -337,6 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const search = sessionStorage.getItem("searchKeyword");
     const category = sessionStorage.getItem("filterCategory");
     const brand = sessionStorage.getItem("filterBrand");
+    const business = sessionStorage.getItem("filterBusiness");
 
     /* =========================
        SEARCH MODE
@@ -413,6 +414,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return;
     }
+    /* =========================
+   BUSINESS MODE
+========================= */
+
+if (business) {
+
+    window.APP_MODE.mode = "business";
+
+    const products =
+        getProducts().filter(
+            p => p.business === business
+        );
+
+    renderGridWithBrand(
+        products,
+        business
+    );
+
+    sessionStorage.removeItem(
+        "filterBusiness"
+    );
+
+    return;
+}
 
     /* =========================
        HOME MODE
