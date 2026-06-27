@@ -194,6 +194,19 @@ function createBrandSection(brandKey, items) {
 
 </section>`;
 }
+function renderProducts(productList = []) {
+
+    const grid = document.getElementById("productGrid");
+    if (!grid) return;
+
+    grid.innerHTML = productList
+        .map(p => `
+            <div class="product-card">
+                <img src="images/${p.category}/${p.folder}/main.jpg">
+                <h3>${p.name}</h3>
+            </div>
+        `).join("");
+}
 
 /* =========================
    INIT ROUTER (FIXED FLOW)
