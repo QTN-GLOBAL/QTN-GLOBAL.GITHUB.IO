@@ -243,20 +243,23 @@ function goHomeAndFilter(key, value) {
 
 function goHomeAndCategory(category) {
 
-    const products = getProducts().filter(p =>
-        p.category === category
+    sessionStorage.setItem(
+        "filterCategory",
+        category
     );
 
-    renderGridWithBrand(products, category);
+    window.location.href =
+        "index.html";
 }
 function goHomeAndBrand(brand) {
 
-    const products = getProducts().filter(p =>
-        p.brand &&
-        p.brand.toUpperCase() === brand.toUpperCase()
+    sessionStorage.setItem(
+        "filterBrand",
+        brand
     );
 
-    renderGridWithBrand(products, brand);
+    window.location.href =
+        "index.html";
 }
 
 function goHomeAndBusiness(business) {
