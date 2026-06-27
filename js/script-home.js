@@ -434,6 +434,69 @@ function renderGridWithBrand(products, title) {
         </div>
     `;
 }
+function renderProductListPage(products, title) {
+
+    const container = document.getElementById("homeContainer");
+    if (!container) return;
+
+    if (!products.length) {
+
+        container.innerHTML = `
+            <div class="list-header">
+                <button onclick="goHomePage()">${t("home")}</button>
+                <h2>${formatBrandName(title)}</h2>
+            </div>
+
+            <div class="empty-products">
+                <h2>SẢN PHẨM ĐANG CẬP NHẬT</h2>
+                <p>Vui lòng quay lại sau.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="list-header">
+            <button onclick="goHomePage()">${t("home")}</button>
+            <h2>${formatBrandName(title)}</h2>
+        </div>
+
+        <div class="product-grid">
+            ${products.map(p => {
+
+                const product = getTranslatedProduct(p) || p;
+                const brand = p.brand ? formatBrandName(p.brand) : "";
+
+                return `
+                <div class="product-card">
+
+                    ${brand ? `<div class="brand-overlay">${brand}</div>` : ""}
+
+                    <img src="images/${p.category}/${p.folder}/main.jpg">
+
+                    <div class="product-info">
+
+                        <h3>${product.name}</h3>
+
+                        <div class="product-buttons">
+
+                            <a class="detail-btn" href="chitiet.html?id=${p.id}">
+                                ${t("detailBtn")}
+                            </a>
+
+                            <button class="quote-btn" onclick="showQuote(${p.id})">
+                                ${t("quoteBtn")}
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>`;
+            }).join("")}
+        </div>
+    `;
+}
 /* =========================
    INIT
 ========================= */
@@ -449,25 +512,15 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================= */
     if (search) {
 
-        window.APP_MODE.mode = "search";
+    window.APP_MODE.mode = "search";
 
-        const products =
-            SearchSystem.filter(
-                getProducts(),
-                search
-            );
+    const products = SearchSystem.filter(getProducts(), search);
 
-        renderGridWithBrand(
-            products,
-            search
-        );
+    renderProductListPage(products, search);
 
-        sessionStorage.removeItem(
-            "searchKeyword"
-        );
-
-        return;
-    }
+    sessionStorage.removeItem("searchKeyword");
+    return;
+}
 
     /* =========================
        CATEGORY MODE
@@ -480,10 +533,9 @@ document.addEventListener("DOMContentLoaded", function () {
         p => normalize(p.category) === normalize(category)
     );
 
-    renderGridWithBrand(products, category);
+    renderProductListPage(products, category);
 
     sessionStorage.removeItem("filterCategory");
-
     return;
 }
     /* =========================
@@ -491,27 +543,17 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================= */
     if (brand) {
 
-        window.APP_MODE.mode = "brand";
+    window.APP_MODE.mode = "brand";
 
-        const products =
-            getProducts().filter(
-                p =>
-                p.brand &&
-                p.brand.toUpperCase() ===
-                brand.toUpperCase()
-            );
+    const products = getProducts().filter(
+        p => normalize(p.brand) === normalize(brand)
+    );
 
-        renderGridWithBrand(
-            products,
-            brand
-        );
+    renderProductListPage(products, brand);
 
-        sessionStorage.removeItem(
-            "filterBrand"
-        );
-
-        return;
-    }
+    sessionStorage.removeItem("filterBrand");
+    return;
+}
   /* =========================
    BUSINESS MODE
 ========================= */
