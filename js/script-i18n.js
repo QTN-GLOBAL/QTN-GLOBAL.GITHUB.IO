@@ -120,6 +120,7 @@ shippingAddress: "Địa chỉ giao hàng",
 
 sendZalo: "GỬI ZALO",
 sendMessenger: "GỬI MESSENGER",
+relatedProductsTitle: "Sản phẩm cùng loại",
 
         footerDesc:
             "Chuyên cung cấp cân điện tử, đầu cân và thiết bị cân công nghiệp chính hãng.",
@@ -249,6 +250,7 @@ shippingAddress: "Shipping Address",
 
 sendZalo: "SEND ZALO",
 sendMessenger: "SEND MESSENGER",
+relatedProductsTitle: "Related Products",
 
         footerDesc:
             "Supplier of electronic scales and industrial weighing equipment.",
@@ -378,6 +380,7 @@ shippingAddress: "收货地址",
 
 sendZalo: "发送 ZALO",
 sendMessenger: "发送 MESSENGER",
+relatedProductsTitle: "相关产品",
 
         footerDesc:
             "专业提供电子秤及工业称重设备。",
