@@ -29,21 +29,36 @@ function initRouter() {
 
     // ================= BUSINESS =================
     if (business) {
-        window.APP_MODE.mode = "business";
 
-        const products = getProducts().filter(
-            p => p.business === business
-        );
+    const all = getProducts();
 
-        if (!products.length) {
-            renderEmpty();
-            return;
-        }
+    const products = all.filter(p =>
+        String(p.business || "")
+            .trim()
+            .toLowerCase()
+            .includes(business.toLowerCase())
+    );
 
-        renderHomeByBrandFiltered(products);
-initBrandSliders();
+    console.log("BUSINESS INPUT:", business);
+    console.log("MATCHED:", products.length);
+
+    if (!products.length) {
+
+        document.getElementById("homeContainer").innerHTML = `
+            <div class="empty-products">
+                <h2>SẢN PHẨM ĐANG CẬP NHẬT</h2>
+                <p>Vui lòng quay lại sau.</p>
+            </div>
+        `;
+
         return;
     }
+
+    renderHomeByBrandFiltered(products);
+    initBrandSliders();
+
+    return;
+}
 
     // ================= CATEGORY =================
     if (category) {
