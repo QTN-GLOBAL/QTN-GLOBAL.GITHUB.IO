@@ -471,22 +471,56 @@ if (product) {
     document.getElementById("productDesc").innerText =
         product.description;
 
+    const imageList = [];
+
+for(let i = 1; i <= 5; i++){
+    imageList.push(
+        `images/${product.category}/${product.folder}/${i}.jpg`
+    );
+}
+
+document.getElementById("mainImage").src =
+    imageList[0];
+
+let thumbs = "";
+
+imageList.forEach((img,index)=>{
+
+    thumbs += `
+    <img src="${img}"
+         data-index="${index}"
+         onclick="changeImage(${index})"
+         onerror="this.remove()">
+    `;
+});
+
+document.getElementById("thumbList").innerHTML =
+    thumbs;
+
+window.currentImageIndex = 0;
+
+window.changeImage = function(index){
+
+    window.currentImageIndex = index;
+
     document.getElementById("mainImage").src =
-        `images/${product.category}/${product.folder}/main.jpg`;
+        imageList[index];
+};
 
-    let thumbs = "";
+/* AUTO SLIDER */
 
-    for (let i = 1; i <= 5; i++) {
+setInterval(()=>{
 
-        thumbs += `
-        <img src="images/${product.category}/${product.folder}/${i}.jpg"
-             onclick="document.getElementById('mainImage').src=this.src"
-             onerror="this.remove()">
-        `;
+    window.currentImageIndex++;
+
+    if(window.currentImageIndex >= imageList.length){
+        window.currentImageIndex = 0;
     }
 
-    document.getElementById("thumbList").innerHTML =
-        thumbs;
+    document.getElementById("mainImage").src =
+        imageList[window.currentImageIndex];
+
+},3000);
 
     document.getElementById("productSpecs").innerHTML =
         product.specs.map(spec =>
