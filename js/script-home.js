@@ -1,14 +1,10 @@
 /* =========================
-   HOME PAGE (CLEAN CORE FIXED)
+   HOME PAGE (CLEAN CORE)
+   - NO SLIDER LOGIC HERE
+   - ONLY DATA + RENDER + FILTER
 ========================= */
 
-function normalize(str) {
-    return (str || "")
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, "_");
-}
+let allProductsCache = [];
 
 /* =========================
    BRAND ORDER
@@ -24,7 +20,76 @@ const brandOrder = [
 ];
 
 /* =========================
-   RENDER HOME (ALL PRODUCTS)
+   RENDER GRID (GENERIC)
+========================= */
+
+function renderProducts(productList = []) {
+
+    const grid = document.getElementById("productGrid");
+    if (!grid) return;
+
+    grid.innerHTML = productList
+        .filter(p => p && p.id && p.name)
+        .map(p => {
+
+            const product = getTranslatedProduct(p) || p;
+
+            return `
+<div class="product-card">
+    <img src="images/${p.category}/${p.folder}/main.jpg">
+
+    <div class="product-info">
+
+        <h3>${product.name}</h3>
+
+        <div class="product-buttons">
+
+            <a class="detail-btn" href="chitiet.html?id=${p.id}">
+                ${t("detailBtn")}
+            </a>
+
+            <button class="quote-btn" onclick="showQuote(${p.id})">
+                ${t("quoteBtn")}
+            </button>
+
+        </div>
+
+    </div>
+</div>`;
+        })
+        .join("");
+}
+
+/* =========================
+   FILTER
+========================= */
+
+function filterProducts(category) {
+
+    const products = getProducts();
+
+    const filtered = category
+        ? products.filter(p => p.category === category)
+        : products;
+
+    renderProductList(filtered, category);
+}
+
+function filterByBrand(brand) {
+
+    const products = getProducts();
+
+    const filtered = brand
+        ? products.filter(p =>
+            p.brand?.trim().toUpperCase() === brand.toUpperCase()
+        )
+        : products;
+
+    renderProductList(filtered, brand);
+}
+
+/* =========================
+   HOME RENDER BY BRAND
 ========================= */
 
 function renderHomeByBrand() {
@@ -32,13 +97,14 @@ function renderHomeByBrand() {
     const container = document.getElementById("homeContainer");
     if (!container) return;
 
-    const products = getProducts().filter(p => p.category && p.brand);
+    const products = getProducts();
 
     const brands = {};
 
     products.forEach(p => {
+        if (!p.brand) return;
 
-        const key = (p.brand || "").trim().toUpperCase();
+        const key = p.brand.trim().toUpperCase();
 
         if (!brands[key]) brands[key] = [];
 
@@ -57,121 +123,12 @@ function renderHomeByBrand() {
     });
 
     container.innerHTML = html;
-
-    initBrandSliders();
 }
 
 /* =========================
-   RENDER HOME FILTERED (BUSINESS)
+   BRAND SECTION (ONLY HTML)
 ========================= */
 
-function renderHomeByBrandFiltered(products) {
-
-    const container = document.getElementById("homeContainer");
-    if (!container) return;
-
-    const brands = {};
-
-    products.forEach(p => {
-
-        const key = (p.brand || "").trim().toUpperCase();
-
-        if (!brands[key]) brands[key] = [];
-
-        brands[key].push(p);
-    });
-
-    let html = "";
-
-    brandOrder.forEach(key => {
-
-        const items = brands[key];
-
-        if (!items || items.length === 0) return;
-
-        html += createBrandSection(key, items);
-    });
-
-    container.innerHTML = html;
-
-    initBrandSliders();
-}
-
-/* =========================
-   LIST VIEW (CATEGORY / SEARCH / BRAND)
-========================= */
-
-function renderProductListPage(products, title) {
-
-    const container = document.getElementById("homeContainer");
-    if (!container) return;
-
-    if (!products.length) {
-
-        container.innerHTML = `
-            <div class="empty-products">
-                <h2>SẢN PHẨM ĐANG CẬP NHẬT</h2>
-                <p>Vui lòng quay lại sau.</p>
-            </div>
-        `;
-        return;
-    }
-
-    container.innerHTML = `
-        <div class="list-header">
-            <button onclick="location.href='index.html'">${t("home")}</button>
-            <h2>${formatBrandName(title)}</h2>
-        </div>
-
-        <div class="product-grid">
-            ${products.map(p => `
-                <div class="product-card">
-                    <div class="brand-overlay">${p.brand ? formatBrandName(p.brand) : ""}</div>
-                    <img src="images/${p.category}/${p.folder}/main.jpg">
-                    <div class="product-info">
-                        <h3>${getTranslatedProduct(p)?.name || p.name}</h3>
-
-                        <div class="product-buttons">
-                            <a class="detail-btn" href="chitiet.html?id=${p.id}">
-                                ${t("detailBtn")}
-                            </a>
-                            <button class="quote-btn" onclick="showQuote(${p.id})">
-                                ${t("quoteBtn")}
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            `).join("")}
-        </div>
-    `;
-}
-
-/* =========================
-   NAV FUNCTIONS
-========================= */
-
-function goHomeAndBusiness(business) {
-
-    sessionStorage.setItem("filterBusiness", business);
-
-    // QUAN TRỌNG: reset trạng thái cũ để tránh fallback HOME sai
-    sessionStorage.removeItem("searchKeyword");
-    sessionStorage.removeItem("filterCategory");
-    sessionStorage.removeItem("filterBrand");
-
-    window.location.href = "index.html";
-}
-
-function goHomeAndCategory(category) {
-    sessionStorage.setItem("filterCategory", category);
-    window.location.href = "index.html";
-}
-
-function goHomeAndBrand(brand) {
-    sessionStorage.setItem("filterBrand", brand);
-    window.location.href = "index.html";
-}
 function createBrandSection(brandKey, items) {
 
     const id = brandKey.toLowerCase();
@@ -201,95 +158,270 @@ function createBrandSection(brandKey, items) {
 
 </section>`;
 }
-window.renderProducts = function(productList = [])  {
 
-    const grid = document.getElementById("productGrid");
-    if (!grid) return;
+/* =========================
+   BRAND SLIDER CONTROL
+   (LOGIC MOVED OUT)
+========================= */
 
-    grid.innerHTML = productList
-        .map(p => `
-            <div class="product-card">
-                <img src="images/${p.category}/${p.folder}/main.jpg">
-                <h3>${p.name}</h3>
-            </div>
-        `).join("");
+function goHomePage() {
+
+    renderHomeByBrand();
+
+    initBrandSliders();
 }
 
 /* =========================
-   INIT ROUTER (FIXED FLOW)
+   PRODUCT LIST PAGE
 ========================= */
 
+function renderProductList(products, title) {
+
+    const container = document.getElementById("homeContainer");
+    if (!container) return;
+
+    container.innerHTML = `
+<div class="list-header">
+
+    <button onclick="goHomePage()">
+        ${t("home")}
+    </button>
+
+    <h2>${formatBrandName(title)}</h2>
+
+</div>
+
+<div class="product-grid">
+
+${products.map(p => {
+
+    const product = getTranslatedProduct(p) || p;
+
+    const brand = (p.brand || "").trim();
+
+    return `
+<div class="product-card">
+
+    ${brand ? `
+    <div class="brand-overlay">
+        ${formatBrandName(brand)}
+    </div>` : ""}
+
+    <img src="images/${p.category}/${p.folder}/main.jpg">
+
+    <div class="product-info">
+
+        <h3>${product.name}</h3>
+
+        <div class="product-buttons">
+
+            <a class="detail-btn" href="chitiet.html?id=${p.id}">
+                ${t("detailBtn")}
+            </a>
+
+            <button class="quote-btn" onclick="showQuote(${p.id})">
+                ${t("quoteBtn")}
+            </button>
+
+        </div>
+
+    </div>
+
+</div>`;
+}).join("")}
+
+</div>`;
+}
+/* =========================
+   SESSION NAV
+========================= */
+
+function goHomeAndFilter(key, value) {
+    sessionStorage.setItem(key, value);
+    window.location.href = "index.html";
+}
+
+function goHomeAndCategory(category) {
+
+    const products = getProducts().filter(p =>
+        p.category === category
+    );
+
+    renderGridWithBrand(products, category);
+}
+function goHomeAndBrand(brand) {
+
+    const products = getProducts().filter(p =>
+        p.brand &&
+        p.brand.toUpperCase() === brand.toUpperCase()
+    );
+
+    renderGridWithBrand(products, brand);
+}
+
+function goHomeAndBusiness(business) {
+    goHomeAndFilter("filterBusiness", business);
+}
+
+/* =========================
+   SHOW QUOTE
+========================= */
+
+function showQuote(id) {
+    alert("Chức năng nhận báo giá đang được cập nhật.");
+}
+function renderGridWithBrand(products, title) {
+
+    const container = document.getElementById("homeContainer");
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="list-header">
+
+            <button onclick="goHomePage()">
+                ${t("home")}
+            </button>
+
+            <h2>${formatBrandName(title)}</h2>
+
+        </div>
+
+        <div class="product-grid">
+
+            ${products.map(p => {
+
+                const product = getTranslatedProduct(p) || p;
+
+                return `
+                <div class="product-card">
+
+                    <div class="brand-overlay">
+                        ${p.brand ? formatBrandName(p.brand) : ""}
+                    </div>
+
+                    <img src="images/${p.category}/${p.folder}/main.jpg">
+
+                    <div class="product-info">
+
+                        <h3>${product.name}</h3>
+
+                        <div class="product-buttons">
+
+                            <a class="detail-btn"
+                               href="chitiet.html?id=${p.id}">
+                                ${t("detailBtn")}
+                            </a>
+
+                            <button class="quote-btn"
+                                    onclick="showQuote(${p.id})">
+                                ${t("quoteBtn")}
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                `;
+            }).join("")}
+
+        </div>
+    `;
+}
+
+/* =========================
+   INIT
+========================= */
 document.addEventListener("DOMContentLoaded", function () {
 
     const search = sessionStorage.getItem("searchKeyword");
     const category = sessionStorage.getItem("filterCategory");
     const brand = sessionStorage.getItem("filterBrand");
-    const business = sessionStorage.getItem("filterBusiness");
 
-    // ================= SEARCH =================
+    /* =========================
+       SEARCH MODE
+    ========================= */
     if (search) {
 
-        const products = SearchSystem.filter(getProducts(), search);
+        window.APP_MODE.mode = "search";
 
-        renderProductListPage(products, search);
+        const products =
+            SearchSystem.filter(
+                getProducts(),
+                search
+            );
 
-        sessionStorage.removeItem("searchKeyword");
+        renderGridWithBrand(
+            products,
+            search
+        );
+
+        sessionStorage.removeItem(
+            "searchKeyword"
+        );
+
         return;
     }
 
-    // ================= CATEGORY =================
+    /* =========================
+       CATEGORY MODE
+    ========================= */
     if (category) {
 
-        const products = getProducts().filter(
-            p => normalize(p.category) === normalize(category)
+        window.APP_MODE.mode = "category";
+
+        const products =
+            getProducts().filter(
+                p => p.category === category
+            );
+
+        renderGridWithBrand(
+            products,
+            category
         );
 
-        renderProductListPage(products, category);
+        sessionStorage.removeItem(
+            "filterCategory"
+        );
 
-        sessionStorage.removeItem("filterCategory");
         return;
     }
 
-    // ================= BRAND =================
+    /* =========================
+       BRAND MODE
+    ========================= */
     if (brand) {
 
-        const products = getProducts().filter(
-            p => normalize(p.brand) === normalize(brand)
+        window.APP_MODE.mode = "brand";
+
+        const products =
+            getProducts().filter(
+                p =>
+                p.brand &&
+                p.brand.toUpperCase() ===
+                brand.toUpperCase()
+            );
+
+        renderGridWithBrand(
+            products,
+            brand
         );
 
-        renderProductListPage(products, brand);
+        sessionStorage.removeItem(
+            "filterBrand"
+        );
 
-        sessionStorage.removeItem("filterBrand");
         return;
     }
 
-    // ================= BUSINESS =================
-    if (business) {
+    /* =========================
+       HOME MODE
+    ========================= */
+    window.APP_MODE.mode = "home";
 
-        const products = getProducts().filter(
-            p => p.business === business
-        );
-
-        if (!products.length) {
-
-            document.getElementById("homeContainer").innerHTML = `
-                <div class="empty-products">
-                    <h2>SẢN PHẨM ĐANG CẬP NHẬT</h2>
-                    <p>Vui lòng quay lại sau.</p>
-                </div>
-            `;
-
-            sessionStorage.removeItem("filterBusiness");
-            return;
-        }
-
-        renderHomeByBrandFiltered(products);
-
-        sessionStorage.removeItem("filterBusiness");
-        return;
-    }
-
-    // ================= HOME =================
     renderHomeByBrand();
+
     initHeroSlider();
+
+    initBrandSliders();
 });
