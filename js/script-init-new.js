@@ -154,8 +154,8 @@ if (business) {
     /* =========================
        RENDER
     ========================= */
-    if (typeof renderProducts === "function") {
-    renderProducts(result);
+    if (typeof window.renderProducts === "function") {
+    window.renderProducts(result);
 }
 
     /* =========================

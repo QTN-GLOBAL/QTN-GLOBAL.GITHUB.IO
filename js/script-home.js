@@ -201,7 +201,7 @@ function createBrandSection(brandKey, items) {
 
 </section>`;
 }
-function renderProducts(productList = []) {
+window.renderProducts = function(productList = [])  {
 
     const grid = document.getElementById("productGrid");
     if (!grid) return;
