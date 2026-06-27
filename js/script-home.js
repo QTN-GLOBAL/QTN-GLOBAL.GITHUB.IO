@@ -430,6 +430,17 @@ if (business) {
             p => p.business === business
         );
 
+    if(products.length === 0){
+
+        alert("Danh mục này đang cập nhật sản phẩm.");
+
+        sessionStorage.removeItem(
+            "filterBusiness"
+        );
+
+        return;
+    }
+
     renderGridWithBrand(
         products,
         business
