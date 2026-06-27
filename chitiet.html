@@ -253,14 +253,16 @@
 
     </div>
 
-    <!-- SẢN PHẨM CÙNG LOẠI -->
-    <div class="related-products">
+   <!-- SẢN PHẨM CÙNG LOẠI -->
+<div class="related-products">
 
-        <h3>Sản phẩm cùng loại</h3>
+    <h3 data-i18n="relatedProductsTitle">
+        Sản phẩm cùng loại
+    </h3>
 
-        <div id="relatedProducts" class="related-grid"></div>
+    <div id="relatedProducts" class="related-grid"></div>
 
-    </div>
+</div>
 
 </div>
     <!-- RIGHT -->
@@ -484,6 +486,8 @@ function renderRelatedSlider() {
 
         const p =
             window.relatedProducts[index];
+        const product =
+            getTranslatedProduct(p) || p;
 
         html += `
 
@@ -492,7 +496,7 @@ function renderRelatedSlider() {
 
             <img src="images/${p.category}/${p.folder}/main.jpg">
 
-            <p>${p.name}</p>
+            <p>${product.name}</p>
 
         </div>
 
