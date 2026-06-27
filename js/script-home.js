@@ -165,6 +165,35 @@ function goHomeAndBrand(brand) {
     sessionStorage.setItem("filterBrand", brand);
     window.location.href = "index.html";
 }
+function createBrandSection(brandKey, items) {
+
+    const id = brandKey.toLowerCase();
+
+    return `
+<section class="brand-section">
+
+    <div class="brand-wrapper">
+
+        <button class="slider-btn left"
+                onclick="moveBrand('${id}', -1)">
+            ❮
+        </button>
+
+        <div class="brand-track"
+             id="${id}"
+             data-index="0"
+             data-items='${JSON.stringify(items)}'>
+        </div>
+
+        <button class="slider-btn right"
+                onclick="moveBrand('${id}', 1)">
+            ❯
+        </button>
+
+    </div>
+
+</section>`;
+}
 
 /* =========================
    INIT ROUTER (FIXED FLOW)
