@@ -510,7 +510,7 @@ if (product) {
 
     const imageList = [];
 
-    for(let i = 1; i <= 5; i++){
+    for (let i = 1; i <= 5; i++) {
 
         imageList.push(
             `images/${product.category}/${product.folder}/${i}.jpg`
@@ -524,7 +524,7 @@ if (product) {
 
     let thumbs = "";
 
-    imageList.forEach((img,index)=>{
+    imageList.forEach((img, index) => {
 
         thumbs += `
         <img src="${img}"
@@ -537,7 +537,7 @@ if (product) {
     document.getElementById("thumbList").innerHTML =
         thumbs;
 
-    window.changeImage = function(index){
+    window.changeImage = function(index) {
 
         currentImage = index;
 
@@ -550,40 +550,49 @@ if (product) {
 
         const activeThumb =
             document.querySelector(
-                `#thumbList img[data-index="${index}"]`
+                '#thumbList img[data-index="' + index + '"]'
             );
 
-        if(activeThumb){
+        if (activeThumb) {
             activeThumb.classList.add("active");
         }
     };
 
-    /* =========================
-       AUTO SLIDER
-    ========================= */
+    /* Active thumbnail đầu tiên */
+    setTimeout(() => {
 
-    setTimeout(()=>{
+        const firstThumb =
+            document.querySelector("#thumbList img");
+
+        if (firstThumb) {
+            firstThumb.classList.add("active");
+        }
+
+    }, 100);
+
+    /* AUTO SLIDER */
+    setTimeout(() => {
 
         const validImages =
             document.querySelectorAll("#thumbList img");
 
-        if(validImages.length <= 1){
+        if (validImages.length <= 1) {
             return;
         }
 
-        setInterval(()=>{
+        setInterval(() => {
 
             currentImage++;
 
-            if(currentImage >= validImages.length){
+            if (currentImage >= validImages.length) {
                 currentImage = 0;
             }
 
             changeImage(currentImage);
 
-        },3000);
+        }, 3000);
 
-    },500);
+    }, 500);
 
     document.getElementById("productSpecs").innerHTML =
         product.specs.map(spec =>
@@ -597,29 +606,6 @@ if (product) {
 
     renderRelatedProducts();
 
-    setTimeout(applyI18nDetail, 0);
-}
-
-window.currentImageIndex = 0;
-
-window.changeImage = function(index){
-
-    window.currentImageIndex = index;
-
-    document.getElementById("mainImage").src =
-        imageList[index];
-};
-
-    document.getElementById("productSpecs").innerHTML =
-        product.specs.map(spec =>
-            spec.includes("<table")
-                ? spec
-                : `<p>• ${spec}</p>`
-        ).join("");
-
-    document.getElementById("buyProductName").innerText =
-        product.name;
-renderRelatedProducts();
     setTimeout(applyI18nDetail, 0);
 }
 
