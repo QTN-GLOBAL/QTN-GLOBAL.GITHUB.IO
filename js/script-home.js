@@ -341,28 +341,25 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =========================
        SEARCH MODE
     ========================= */
-    if (search) {
+   if (search) {
 
-        window.APP_MODE.mode = "search";
+    window.APP_MODE.mode = "search";
 
-        const products =
-            SearchSystem.filter(
-                getProducts(),
-                search
-            );
+    const keyword = normalize(search);
 
-        renderGridWithBrand(
-            products,
-            search
-        );
+    const products = getProducts().filter(p => {
 
-        sessionStorage.removeItem(
-            "searchKeyword"
-        );
+        return normalize(p.name).includes(keyword) ||
+               normalize(p.brand).includes(keyword) ||
+               normalize(p.category).includes(keyword);
+    });
 
-        return;
-    }
+    renderGridWithBrand(products, search);
 
+    sessionStorage.removeItem("searchKeyword");
+
+    return;
+}
     /* =========================
        CATEGORY MODE
     ========================= */
