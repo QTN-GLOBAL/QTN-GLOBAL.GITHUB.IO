@@ -254,6 +254,14 @@
         </div>
 
     </div>
+<!-- SẢN PHẨM CÙNG LOẠI -->
+<div class="related-products">
+
+    <h3>Sản phẩm cùng loại</h3>
+
+    <div id="relatedProducts" class="related-grid"></div>
+
+</div>
 
     <!-- RIGHT -->
     <div class="detail-right">
@@ -435,6 +443,35 @@ const product = rawProduct
     : null;
 
 window.currentProduct = product;
+function renderRelatedProducts() {
+
+    if (!rawProduct) return;
+
+    const related = products
+        .filter(p =>
+            p.category === rawProduct.category &&
+            p.id !== rawProduct.id
+        )
+        .slice(0,4);
+
+    const container =
+        document.getElementById("relatedProducts");
+
+    if (!container) return;
+
+    container.innerHTML = related.map(p => `
+
+        <div class="related-card"
+             onclick="location.href='chitiet.html?id=${p.id}'">
+
+            <img src="images/${p.category}/${p.folder}/main.jpg">
+
+            <p>${p.name}</p>
+
+        </div>
+
+    `).join("");
+}
 
 function applyI18nDetail() {
 
@@ -531,7 +568,7 @@ setInterval(()=>{
 
     document.getElementById("buyProductName").innerText =
         product.name;
-
+renderRelatedProducts();
     setTimeout(applyI18nDetail, 0);
 }
 
