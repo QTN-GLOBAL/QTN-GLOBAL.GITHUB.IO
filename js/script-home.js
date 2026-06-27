@@ -317,25 +317,7 @@ function goHomeAndBrand(brand) {
 
 function goHomeAndBusiness(business) {
 
-    if (
-        business === "industry" ||
-        business === "service" ||
-        business === "trade"
-    ) {
-
-        alert(
-            "Sản phẩm đang cập nhật.\nVui lòng quay lại sau."
-        );
-
-        goHomePage();
-
-        return;
-    }
-
-    sessionStorage.setItem(
-        "filterBusiness",
-        business
-    );
+    sessionStorage.setItem("filterBusiness", business);
 
     window.location.href = "index.html";
 }
@@ -563,13 +545,25 @@ if (business) {
     window.APP_MODE.mode = "business";
 
     const products = getProducts().filter(
-        p => normalize(p.business) === normalize(business)
+        p => p.business === business
     );
 
-    renderGridWithBrand(products, business);
+    if (!products.length) {
+
+        document.getElementById("homeContainer").innerHTML = `
+            <div class="empty-products">
+                <h2>SẢN PHẨM ĐANG CẬP NHẬT</h2>
+                <p>Vui lòng quay lại sau.</p>
+            </div>
+        `;
+
+        sessionStorage.removeItem("filterBusiness");
+        return;
+    }
+
+    renderHomeByBrandFiltered(products);
 
     sessionStorage.removeItem("filterBusiness");
-
     return;
 }
     /* =========================
