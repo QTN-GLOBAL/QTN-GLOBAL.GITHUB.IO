@@ -281,13 +281,25 @@ function goHomeAndBrand(brand) {
 
 function goHomeAndBusiness(business) {
 
+    if (
+        business === "industry" ||
+        business === "service" ||
+        business === "trade"
+    ) {
+
+        alert("Sản phẩm đang cập nhật.\nVui lòng quay lại sau.");
+
+        goHomePage();
+
+        return;
+    }
+
     sessionStorage.setItem(
         "filterBusiness",
         business
     );
 
-    window.location.href =
-        "index.html";
+    window.location.href = "index.html";
 }
 
 /* =========================
@@ -470,21 +482,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return;
     }
-   /* =========================
+  /* =========================
    BUSINESS MODE
 ========================= */
 
 if (business) {
 
-    window.APP_MODE.mode = "business";
+    /* THIẾT BỊ ĐO LƯỜNG + GIA DỤNG */
 
-    const products =
-        getProducts().filter(
-            p => p.business === business
+    if (
+        business === "measure" ||
+        business === "home"
+    ) {
+
+        window.APP_MODE.mode = "home";
+
+        sessionStorage.removeItem(
+            "filterBusiness"
         );
 
+        return;
+    }
+
+    /* CÁC LĨNH VỰC KHÁC */
+
+    window.APP_MODE.mode = "business";
+
     renderGridWithBrand(
-        products,
+        [],
         business
     );
 
@@ -492,9 +517,18 @@ if (business) {
         "filterBusiness"
     );
 
+    setTimeout(() => {
+
+        alert(
+            "Sản phẩm đang cập nhật.\nVui lòng quay lại sau."
+        );
+
+        goHomePage();
+
+    }, 100);
+
     return;
 }
-
     /* =========================
        HOME MODE
     ========================= */
