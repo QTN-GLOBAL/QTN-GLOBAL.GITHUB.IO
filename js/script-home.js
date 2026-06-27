@@ -87,6 +87,23 @@ function filterByBrand(brand) {
 
     renderProductList(filtered, brand);
 }
+/* =========================
+   FILTER BUSINESS
+========================= */
+
+function filterBusiness(business) {
+
+    const products = getProducts();
+
+    const filtered = business
+        ? products.filter(
+            p => p.business === business
+        )
+        : products;
+
+    renderProductList(filtered, business);
+
+}
 
 /* =========================
    HOME RENDER BY BRAND
@@ -263,7 +280,14 @@ function goHomeAndBrand(brand) {
 }
 
 function goHomeAndBusiness(business) {
-    goHomeAndFilter("filterBusiness", business);
+
+    sessionStorage.setItem(
+        "filterBusiness",
+        business
+    );
+
+    window.location.href =
+        "index.html";
 }
 
 /* =========================
@@ -277,6 +301,35 @@ function renderGridWithBrand(products, title) {
 
     const container = document.getElementById("homeContainer");
     if (!container) return;
+
+    /* KHÔNG CÓ SẢN PHẨM */
+
+    if (!products.length) {
+
+        container.innerHTML = `
+            <div class="list-header">
+
+                <button onclick="goHomePage()">
+                    ${t("home")}
+                </button>
+
+                <h2>${formatBrandName(title)}</h2>
+
+            </div>
+
+            <div class="empty-products">
+
+                <h2>SẢN PHẨM ĐANG CẬP NHẬT</h2>
+
+                <p>
+                    Vui lòng quay lại sau.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
 
     container.innerHTML = `
         <div class="list-header">
@@ -293,7 +346,8 @@ function renderGridWithBrand(products, title) {
 
             ${products.map(p => {
 
-                const product = getTranslatedProduct(p) || p;
+                const product =
+                    getTranslatedProduct(p) || p;
 
                 return `
                 <div class="product-card">
@@ -331,7 +385,6 @@ function renderGridWithBrand(products, title) {
         </div>
     `;
 }
-
 /* =========================
    INIT
 ========================= */
@@ -417,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return;
     }
-    /* =========================
+   /* =========================
    BUSINESS MODE
 ========================= */
 
@@ -429,17 +482,6 @@ if (business) {
         getProducts().filter(
             p => p.business === business
         );
-
-    if(products.length === 0){
-
-        alert("Danh mục này đang cập nhật sản phẩm.");
-
-        sessionStorage.removeItem(
-            "filterBusiness"
-        );
-
-        return;
-    }
 
     renderGridWithBrand(
         products,
