@@ -328,10 +328,10 @@ function renderGridWithBrand(products, title) {
         </div>
     `;
 }
-
 /* =========================
-   INIT
+   INIT (FIXED - NO CONFLICT)
 ========================= */
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const search = sessionStorage.getItem("searchKeyword");
@@ -341,25 +341,25 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =========================
        SEARCH MODE
     ========================= */
-   if (search) {
+    if (search) {
 
-    window.APP_MODE.mode = "search";
+        window.APP_MODE.mode = "search";
 
-    const keyword = normalize(search);
+        const keyword = normalize(search);
 
-    const products = getProducts().filter(p => {
+        const products = getProducts().filter(p => {
 
-        return normalize(p.name).includes(keyword) ||
-               normalize(p.brand).includes(keyword) ||
-               normalize(p.category).includes(keyword);
-    });
+            return normalize(p.name).includes(keyword) ||
+                   normalize(p.brand).includes(keyword) ||
+                   normalize(p.category).includes(keyword);
+        });
 
-    renderGridWithBrand(products, search);
+        renderGridWithBrand(products, search);
 
-    sessionStorage.removeItem("searchKeyword");
+        sessionStorage.removeItem("searchKeyword");
+        return;
+    }
 
-    return;
-}
     /* =========================
        CATEGORY MODE
     ========================= */
@@ -367,20 +367,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         window.APP_MODE.mode = "category";
 
-        const products =
-            getProducts().filter(
-                p => p.category === category
-            );
-
-        renderGridWithBrand(
-            products,
-            category
+        const products = getProducts().filter(
+            p => p.category === category
         );
 
-        sessionStorage.removeItem(
-            "filterCategory"
-        );
+        renderGridWithBrand(products, category);
 
+        sessionStorage.removeItem("filterCategory");
         return;
     }
 
@@ -391,34 +384,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         window.APP_MODE.mode = "brand";
 
-        const products =
-            getProducts().filter(
-                p =>
-                p.brand &&
-                p.brand.toUpperCase() ===
-                brand.toUpperCase()
-            );
-
-        renderGridWithBrand(
-            products,
-            brand
+        const products = getProducts().filter(
+            p => (p.brand || "").toUpperCase() === (brand || "").toUpperCase()
         );
 
-        sessionStorage.removeItem(
-            "filterBrand"
-        );
+        renderGridWithBrand(products, brand);
 
+        sessionStorage.removeItem("filterBrand");
         return;
     }
 
     /* =========================
-       HOME MODE
-    ========================= */
-    window.APP_MODE.mode = "home";
+       HOME MODE (DO NOT HANDLE HERE)
+       ========================= */
 
-    renderHomeByBrand();
+    // ❗ QUAN TRỌNG:
+    // HOME đã do script-home.js xử lý
+    // KHÔNG render ở đây để tránh đè UI
 
-    initHeroSlider();
+    window.APP_MODE.mode = "idle";
 
-    initBrandSliders();
+    return;
 });
