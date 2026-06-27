@@ -1025,3 +1025,18 @@
     min-width:0 !important;
     width:auto !important;
 }
+.empty-products{
+    width:100%;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.empty-products h2{
+    color:#1565c0;
+    margin-bottom:10px;
+}
+
+.empty-products p{
+    color:#666;
+    font-size:16px;
+}
