@@ -64,6 +64,27 @@ function runSearch(result, keyword) {
 ========================= */
 function boot() {
 
+    const search =
+        sessionStorage.getItem("searchKeyword");
+
+    const category =
+        sessionStorage.getItem("filterCategory");
+
+    const brand =
+        sessionStorage.getItem("filterBrand");
+
+    const business =
+        sessionStorage.getItem("filterBusiness");
+
+    // Có router trong script-home xử lý rồi.
+    if (
+        search ||
+        category ||
+        brand ||
+        business
+    ) {
+        return;
+    }
 
     const products = getProducts();
 
@@ -145,10 +166,15 @@ if (business) {
     window.allProductsCache = result.slice();
     window.currentProducts = result.slice();
 
-    /* =========================
-       RENDER
-    ========================= */
-    renderProducts(result);
+    /***************************
+   RENDER
+***************************/
+
+// script-home.js đã xử lý giao diện.
+// script-init-new.js chỉ lưu cache.
+
+window.allProductsCache = result.slice();
+window.currentProducts = result.slice();
 
     /* =========================
        CART

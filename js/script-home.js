@@ -92,12 +92,12 @@ function filterByBrand(brand) {
    HOME RENDER BY BRAND
 ========================= */
 
-function renderHomeByBrand() {
+function renderHomeByBrand(productList = null) {
 
     const container = document.getElementById("homeContainer");
     if (!container) return;
 
-    const products = getProducts();
+    const products = productList || getProducts();
 
     const brands = {};
 
@@ -166,8 +166,14 @@ function createBrandSection(brandKey, items) {
 
 function goHomePage() {
 
+    sessionStorage.removeItem("searchKeyword");
+    sessionStorage.removeItem("filterCategory");
+    sessionStorage.removeItem("filterBrand");
+    sessionStorage.removeItem("filterBusiness");
+
     renderHomeByBrand();
 
+    initHeroSlider();
     initBrandSliders();
 }
 
@@ -243,20 +249,23 @@ function goHomeAndFilter(key, value) {
 
 function goHomeAndCategory(category) {
 
-    const products = getProducts().filter(p =>
-        p.category === category
+    sessionStorage.setItem(
+        "filterCategory",
+        category
     );
 
-    renderGridWithBrand(products, category);
+    window.location.href =
+        "index.html";
 }
 function goHomeAndBrand(brand) {
 
-    const products = getProducts().filter(p =>
-        p.brand &&
-        p.brand.toUpperCase() === brand.toUpperCase()
+    sessionStorage.setItem(
+        "filterBrand",
+        brand
     );
 
-    renderGridWithBrand(products, brand);
+    window.location.href =
+        "index.html";
 }
 
 function goHomeAndBusiness(business) {
@@ -328,81 +337,3 @@ function renderGridWithBrand(products, title) {
         </div>
     `;
 }
-/* =========================
-   INIT (FIXED - NO CONFLICT)
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const search = sessionStorage.getItem("searchKeyword");
-    const category = sessionStorage.getItem("filterCategory");
-    const brand = sessionStorage.getItem("filterBrand");
-
-    /* =========================
-       SEARCH MODE
-    ========================= */
-    if (search) {
-
-        window.APP_MODE.mode = "search";
-
-        const keyword = normalize(search);
-
-        const products = getProducts().filter(p => {
-
-            return normalize(p.name).includes(keyword) ||
-                   normalize(p.brand).includes(keyword) ||
-                   normalize(p.category).includes(keyword);
-        });
-
-        renderGridWithBrand(products, search);
-
-        sessionStorage.removeItem("searchKeyword");
-        return;
-    }
-
-    /* =========================
-       CATEGORY MODE
-    ========================= */
-    if (category) {
-
-        window.APP_MODE.mode = "category";
-
-        const products = getProducts().filter(
-            p => p.category === category
-        );
-
-        renderGridWithBrand(products, category);
-
-        sessionStorage.removeItem("filterCategory");
-        return;
-    }
-
-    /* =========================
-       BRAND MODE
-    ========================= */
-    if (brand) {
-
-        window.APP_MODE.mode = "brand";
-
-        const products = getProducts().filter(
-            p => (p.brand || "").toUpperCase() === (brand || "").toUpperCase()
-        );
-
-        renderGridWithBrand(products, brand);
-
-        sessionStorage.removeItem("filterBrand");
-        return;
-    }
-
-    /* =========================
-       HOME MODE (DO NOT HANDLE HERE)
-       ========================= */
-
-    // ❗ QUAN TRỌNG:
-    // HOME đã do script-home.js xử lý
-    // KHÔNG render ở đây để tránh đè UI
-
-    window.APP_MODE.mode = "idle";
-
-    return;
-});
