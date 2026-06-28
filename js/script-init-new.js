@@ -76,7 +76,7 @@ function boot() {
     const business =
         sessionStorage.getItem("filterBusiness");
 
-    // Có router trong script-home xử lý rồi.
+    // app-router.js sẽ xử lý giao diện
     if (
         search ||
         category ||
@@ -166,15 +166,10 @@ if (business) {
     window.allProductsCache = result.slice();
     window.currentProducts = result.slice();
 
-    /***************************
+   /***************************
    RENDER
 ***************************/
-
-// script-home.js đã xử lý giao diện.
-// script-init-new.js chỉ lưu cache.
-
-window.allProductsCache = result.slice();
-window.currentProducts = result.slice();
+// app-router.js xử lý render
 
     /* =========================
        CART
