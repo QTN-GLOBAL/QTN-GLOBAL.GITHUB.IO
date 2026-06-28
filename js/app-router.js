@@ -21,24 +21,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const business =
         sessionStorage.getItem("filterBusiness");
 
-    /* =========================
-       SEARCH
-    ========================= */
+   /***************************
+   SEARCH
+***************************/
+if (search) {
 
-    if (search) {
+    const keyword = search.trim().toLowerCase();
 
-        window.APP_MODE.mode = "search";
+    /* CATEGORY */
 
-        const products =
-            runSearch(
-                getProducts(),
-                search
-            );
-
-        renderGridWithBrand(
-            products,
-            search
+    const categoryProducts =
+        getProducts().filter(
+            p =>
+                (p.category || "")
+                    .toLowerCase() === keyword
         );
+
+    if (categoryProducts.length) {
+window.APP_MODE.mode = "search";
+        renderHomeByBrand(
+            categoryProducts
+        );
+
+        initBrandSliders();
 
         sessionStorage.removeItem(
             "searchKeyword"
@@ -47,6 +52,49 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    /* BRAND */
+
+    const brandProducts =
+        getProducts().filter(
+            p =>
+                (p.brand || "")
+                    .toLowerCase() === keyword
+        );
+
+    if (brandProducts.length) {
+window.APP_MODE.mode = "business";
+        renderHomeByBrand(
+            brandProducts
+        );
+
+        initBrandSliders();
+
+        sessionStorage.removeItem(
+            "searchKeyword"
+        );
+
+        return;
+    }
+
+    /* PRODUCT */
+
+    const products =
+        runSearch(
+            getProducts(),
+            search
+        );
+window.APP_MODE.mode = "search-grid";
+    renderGridWithBrand(
+        products,
+        search
+    );
+
+    sessionStorage.removeItem(
+        "searchKeyword"
+    );
+
+    return;
+}
     /* =========================
        CATEGORY
     ========================= */

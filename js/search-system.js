@@ -32,7 +32,10 @@
         const k = normalize(keyword);
 
         const categoryKey = Object.keys(categoryMap)
-            .find(key => normalize(key) === k);
+    .find(key =>
+        normalize(key) === k ||
+        normalize(categoryMap[key]) === k
+    );
 
         if (categoryKey) {
             return products.filter(

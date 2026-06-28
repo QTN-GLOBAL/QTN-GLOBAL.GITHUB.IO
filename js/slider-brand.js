@@ -10,8 +10,18 @@ const VISIBLE = 5;
    INIT
 ========================= */
 function initBrandSliders() {
- if (window.APP_MODE &&
-        window.APP_MODE.mode !== "home") {
+
+    const mode =
+        window.APP_MODE ?
+        window.APP_MODE.mode :
+        "home";
+
+    // chỉ khóa ở product grid
+    if (
+        mode === "search-grid" ||
+        mode === "category-grid" ||
+        mode === "brand-grid"
+    ) {
         return;
     }
 
