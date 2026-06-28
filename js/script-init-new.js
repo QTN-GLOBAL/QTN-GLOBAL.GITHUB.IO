@@ -17,7 +17,7 @@ function normalizeText(str) {
 /* =========================
    SAFE SEARCH (NO CONFLICT)
 ========================= */
-function runSearch(result, keyword) {
+window.runSearch = function (result, keyword) {
 
     if (!keyword) return result;
 
