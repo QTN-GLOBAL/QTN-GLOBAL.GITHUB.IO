@@ -133,7 +133,7 @@ if (business) {
 
     sessionStorage.removeItem("filterBusiness");
 
-    // nhóm có sản phẩm → HIỂN THỊ SLIDER
+    // các lĩnh vực đã có sản phẩm
     const ALLOWED = ["measure", "home"];
 
     const filtered = products.filter(
@@ -147,15 +147,21 @@ if (business) {
 
         if (!filtered.length) {
 
-            alert("Sản phẩm đang cập nhật. Vui lòng quay lại sau.");
+            alert(
+                t("businessUpdateTitle") +
+                "\n" +
+                t("businessUpdateDesc")
+            );
 
             goHomePage();
             return;
         }
 
-        window.APP_MODE.mode = "business-slider";
+        window.APP_MODE.mode =
+            "business-slider";
 
         renderHomeByBrand(filtered);
+
         initBrandSliders();
 
         return;
@@ -164,25 +170,30 @@ if (business) {
     // =========================
     // CASE 2: CHƯA CÓ SẢN PHẨM
     // =========================
-    const container = document.getElementById("homeContainer");
+    const container =
+        document.getElementById(
+            "homeContainer"
+        );
 
     if (container) {
 
-    const lang = localStorage.getItem("language") || "vi";
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:60px 20px;
+            ">
+                <h2>${t("businessUpdateTitle")}</h2>
+                <p>${t("businessUpdateDesc")}</p>
 
-    container.innerHTML = `
-        <div style="text-align:center;padding:60px 20px;">
-            <h2>${t("businessUpdateTitle")?.[lang] || ""}</h2>
-            <p>${t("businessUpdateDesc")?.[lang] || ""}</p>
+                <button onclick="goHomePage()">
+                    OK
+                </button>
+            </div>
+        `;
+    }
 
-            <button onclick="goHomePage()">
-                OK
-            </button>
-        </div>
-    `;
-
+    return;
 }
-
     /* =========================
        HOME
     ========================= */
