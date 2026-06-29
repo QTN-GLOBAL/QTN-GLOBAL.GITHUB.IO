@@ -76,7 +76,7 @@ function boot() {
     const business =
         sessionStorage.getItem("filterBusiness");
 
-    // app-router.js sẽ xử lý giao diện
+    // app-router.js sẽ xử lý các chế độ này
     if (
         search ||
         category ||
@@ -93,83 +93,18 @@ function boot() {
         return;
     }
 
-    setLanguage(localStorage.getItem("language") || "vi");
-
-    let result = [...products];
-
-    /* =========================
-       CATEGORY FILTER
-    ========================= */
-    const category = sessionStorage.getItem("filterCategory");
-
-    if (category) {
-        sessionStorage.removeItem("filterCategory");
-        result = result.filter(p => p && p.category === category);
-    }
-
-    /* =========================
-       BRAND FILTER
-    ========================= */
-    const brand = sessionStorage.getItem("filterBrand");
-
-    if (brand) {
-        sessionStorage.removeItem("filterBrand");
-        result = result.filter(p => p && p.brand === brand);
-    }
-/***************************
-   BUSINESS FILTER
-***************************/
-const business =
-    sessionStorage.getItem(
-        "filterBusiness"
-    );
-
-if (business) {
-
-    sessionStorage.removeItem(
-        "filterBusiness"
-    );
-
-    result = result.filter(
-        p => p.business === business
-    );
-}
-
-    /* =========================
-       SEARCH (SAFE FLOW FIXED)
-    ========================= */
-    const keyword = sessionStorage.getItem("searchKeyword");
-
-    if (keyword) {
-
-        result = runSearch(result, keyword);
-
-        // clear sau khi dùng
-        sessionStorage.removeItem("searchKeyword");
-    }
-
-    /* =========================
-       FINAL SAFETY FILTER
-       (FIX MẤT ẢNH + MẤT NAME)
-    ========================= */
-    result = result.filter(p =>
-        p &&
-        p.id &&
-        p.name &&
-        p.category &&
-        p.folder
+    setLanguage(
+        localStorage.getItem("language") || "vi"
     );
 
     /* =========================
-       CACHE STATE
+       CACHE
     ========================= */
-    window.allProductsCache = result.slice();
-    window.currentProducts = result.slice();
+    window.allProductsCache =
+        products.slice();
 
-   /***************************
-   RENDER
-***************************/
-// app-router.js xử lý render
+    window.currentProducts =
+        products.slice();
 
     /* =========================
        CART
@@ -188,9 +123,11 @@ if (business) {
     /* =========================
        OPEN CART
     ========================= */
-    const openCartFlag = sessionStorage.getItem("openCart");
+    const openCartFlag =
+        sessionStorage.getItem("openCart");
 
     if (openCartFlag === "1") {
+
         sessionStorage.removeItem("openCart");
 
         if (typeof openCart === "function") {
