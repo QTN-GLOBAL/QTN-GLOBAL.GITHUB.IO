@@ -1,0 +1,228 @@
+/* =========================
+ABOUT PAGE
+========================= */
+
+.about-hero {
+background: linear-gradient(
+135deg,
+#003366,
+#005599
+);
+
+```
+color: #fff;
+
+text-align: center;
+
+padding: 90px 20px;
+```
+
+}
+
+.about-hero h1 {
+font-size: 48px;
+margin-bottom: 20px;
+letter-spacing: 2px;
+}
+
+.about-hero p {
+font-size: 22px;
+opacity: 0.95;
+}
+
+/* =========================
+CONTENT
+========================= */
+
+.about-section {
+
+```
+max-width: 1100px;
+
+margin: auto;
+
+padding: 60px 20px;
+
+line-height: 1.8;
+```
+
+}
+
+.about-section h2 {
+
+```
+color: #003366;
+
+margin-bottom: 30px;
+
+font-size: 32px;
+
+position: relative;
+```
+
+}
+
+.about-section h2::after {
+
+```
+content: "";
+
+display: block;
+
+width: 80px;
+
+height: 4px;
+
+background: #ff9900;
+
+margin-top: 10px;
+```
+
+}
+
+.about-section p {
+
+```
+font-size: 17px;
+
+color: #444;
+```
+
+}
+
+/* =========================
+BUSINESS GRID
+========================= */
+
+.about-grid {
+
+```
+display: grid;
+
+grid-template-columns:
+    repeat(auto-fit,
+    minmax(280px,1fr));
+
+gap: 25px;
+```
+
+}
+
+.about-card {
+
+```
+background: #fff;
+
+border: 1px solid #eee;
+
+border-radius: 12px;
+
+padding: 30px;
+
+box-shadow:
+    0 4px 15px rgba(0,0,0,0.08);
+
+transition: 0.3s;
+```
+
+}
+
+.about-card:hover {
+
+```
+transform: translateY(-6px);
+
+box-shadow:
+    0 10px 25px rgba(0,0,0,0.15);
+```
+
+}
+
+.about-card h3 {
+
+```
+color: #003366;
+
+margin-bottom: 15px;
+
+font-size: 22px;
+```
+
+}
+
+.about-card p {
+
+```
+color: #666;
+```
+
+}
+
+/* =========================
+CORE VALUES
+========================= */
+
+.about-section ul {
+
+```
+padding-left: 25px;
+```
+
+}
+
+.about-section li {
+
+```
+margin-bottom: 12px;
+
+font-size: 18px;
+```
+
+}
+
+/* =========================
+FOOTER SPACE
+========================= */
+
+.footer {
+
+```
+margin-top: 60px;
+```
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width:768px) {
+
+```
+.about-hero {
+
+    padding: 70px 20px;
+}
+
+.about-hero h1 {
+
+    font-size: 34px;
+}
+
+.about-hero p {
+
+    font-size: 18px;
+}
+
+.about-section {
+
+    padding: 40px 20px;
+}
+
+.about-section h2 {
+
+    font-size: 26px;
+}
+```
+
+}
