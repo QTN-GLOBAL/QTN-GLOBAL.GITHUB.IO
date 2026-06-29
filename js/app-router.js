@@ -123,6 +123,7 @@ if (search) {
    CATEGORY
 ***************************/
 if (category) {
+console.log("CATEGORY ROUTER:", category);
 
     const products = getProducts().filter(
         p =>
