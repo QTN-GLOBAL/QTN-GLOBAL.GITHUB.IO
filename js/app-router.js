@@ -168,7 +168,6 @@ const categoryCode =
    CATEGORY
 ***************************/
 if (category) {
-console.log("CATEGORY ROUTER:", category);
 
     const products = getProducts().filter(
         p =>
@@ -183,7 +182,7 @@ console.log("CATEGORY ROUTER:", category);
         );
 
         alert(
-            "Sản phẩm đang cập nhật."
+            "Sản phẩm đang cập nhật.\nVui lòng quay lại sau."
         );
 
         goHomePage();
@@ -194,7 +193,10 @@ console.log("CATEGORY ROUTER:", category);
     window.APP_MODE.mode =
         "category";
 
-    renderHomeByBrand(products);
+    renderSingleSlider(
+        products,
+        category
+    );
 
     initBrandSliders();
 

@@ -158,6 +158,47 @@ function createBrandSection(brandKey, items) {
 
 </section>`;
 }
+function renderSingleSlider(products, title) {
+
+    const container =
+        document.getElementById("homeContainer");
+
+    if (!container) return;
+
+    const id =
+        "single-slider";
+
+    container.innerHTML = `
+
+    <section class="brand-section">
+
+        <h2 class="brand-title">
+            ${formatBrandName(title)}
+        </h2>
+
+        <div class="brand-wrapper">
+
+            <button class="slider-btn left"
+                    onclick="moveBrand('${id}',-1)">
+                ❮
+            </button>
+
+            <div class="brand-track"
+                 id="${id}"
+                 data-index="0"
+                 data-items='${JSON.stringify(products)}'>
+            </div>
+
+            <button class="slider-btn right"
+                    onclick="moveBrand('${id}',1)">
+                ❯
+            </button>
+
+        </div>
+
+    </section>
+    `;
+}
 
 /* =========================
    BRAND SLIDER CONTROL
@@ -337,3 +378,4 @@ function renderGridWithBrand(products, title) {
         </div>
     `;
 }
+
