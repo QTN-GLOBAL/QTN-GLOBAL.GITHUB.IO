@@ -119,26 +119,45 @@ if (search) {
        CATEGORY
     ========================= */
 
-    if (category) {
+   /***************************
+   CATEGORY
+***************************/
+if (category) {
 
-        window.APP_MODE.mode = "category";
+    const products = getProducts().filter(
+        p =>
+            p.category &&
+            p.category === category
+    );
 
-        const products =
-            getProducts().filter(
-                p => p.category === category
-            );
-
-        renderGridWithBrand(
-            products,
-            category
-        );
+    if (!products.length) {
 
         sessionStorage.removeItem(
             "filterCategory"
         );
 
+        alert(
+            "Sản phẩm đang cập nhật."
+        );
+
+        goHomePage();
+
         return;
     }
+
+    window.APP_MODE.mode =
+        "category";
+
+    renderHomeByBrand(products);
+
+    initBrandSliders();
+
+    sessionStorage.removeItem(
+        "filterCategory"
+    );
+
+    return;
+}
 
     /* =========================
        BRAND
