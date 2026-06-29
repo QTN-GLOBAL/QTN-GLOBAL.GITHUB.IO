@@ -44,24 +44,35 @@ if (search) {
     const { type, data } =
         SearchSystem.detectType(getProducts(), search);
 
+    console.log("SEARCH TYPE:", type, data.length);
+
     if (type === "category") {
 
+        window.APP_MODE.mode = "category-slider";
+
         renderSingleSlider(data, search);
+
         sessionStorage.removeItem("searchKeyword");
         return;
     }
 
     if (type === "brand") {
 
+        window.APP_MODE.mode = "brand-slider";
+
         renderSingleSlider(data, search);
+
         sessionStorage.removeItem("searchKeyword");
         return;
     }
 
-    // product
+    // PRODUCT GRID
+    window.APP_MODE.mode = "search-grid";
+
     renderGridWithBrand(data, search);
 
     sessionStorage.removeItem("searchKeyword");
+
     return;
 }
     /* =========================
