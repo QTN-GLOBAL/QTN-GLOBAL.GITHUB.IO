@@ -8,6 +8,19 @@
 ========================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+console.log("APP ROUTER RUN");
+
+console.log("search:",
+    sessionStorage.getItem("searchKeyword"));
+
+console.log("category:",
+    sessionStorage.getItem("filterCategory"));
+
+console.log("brand:",
+    sessionStorage.getItem("filterBrand"));
+
+console.log("business:",
+    sessionStorage.getItem("filterBusiness"));
 
     const search =
         sessionStorage.getItem("searchKeyword");
