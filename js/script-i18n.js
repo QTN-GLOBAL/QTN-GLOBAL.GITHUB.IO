@@ -47,19 +47,18 @@ heroFeature3: "DỊCH VỤ KỸ THUẬT VÀ HỖ TRỢ CHUYÊN NGHIỆP",
 businessTitle: "GIẢI PHÁP THEO LĨNH VỰC",
 
 field1: "THIẾT BỊ ĐO LƯỜNG",
-field1Desc: "Cân điện tử và thiết bị đo lường",
+fieldMeasureDesc: "Cân điện tử và thiết bị đo lường",
 
 field2: "THIẾT BỊ CÔNG NGHIỆP",
-field2Desc: "Máy móc và thiết bị sản xuất",
+fieldIndustryDesc: "Máy móc và thiết bị sản xuất",
 
 field3: "DỊCH VỤ KỸ THUẬT",
-field3Desc: "Lắp đặt, sửa chữa và bảo trì",
+fieldServiceDesc: "Lắp đặt, sửa chữa và bảo trì",
 
 field4: "THIẾT BỊ GIA DỤNG",
-field4Desc: "Điện gia dụng và thiết bị dân dụng",
-
+fieldHomeDesc: "Điện gia dụng và thiết bị dân dụng",
 field5: "THƯƠNG MẠI & PHÂN PHỐI",
-field5Desc: "Cung ứng và phân phối toàn quốc",
+fieldTradeDesc: "Cung ứng và phân phối toàn quốc",
 
 businessUpdateTitle: "Sản phẩm đang cập nhật",
 businessUpdateDesc: "Vui lòng quay lại sau",
@@ -182,19 +181,17 @@ heroFeature3: "PROFESSIONAL TECHNICAL SUPPORT",
 businessTitle: "SOLUTIONS BY INDUSTRY",
 
 field1: "MEASURING EQUIPMENT",
-field1Desc: "Electronic scales and measuring devices",
+fieldMeasureDesc: "Electronic scales and measuring devices",
 
 field2: "INDUSTRIAL EQUIPMENT",
-field2Desc: "Machinery and industrial equipment",
-
+fieldIndustryDesc: "Machinery and industrial equipment",
 field3: "TECHNICAL SERVICES",
-field3Desc: "Installation, repair and maintenance",
+fieldServiceDesc: "Installation, repair and maintenance",
 
 field4: "HOME APPLIANCES",
-field4Desc: "Household and consumer products",
-
+fieldHomeDesc: "Household and consumer products",
 field5: "TRADING & DISTRIBUTION",
-field5Desc: "Nationwide supply and distribution",
+fieldTradeDesc: "Nationwide supply and distribution",
 
 businessUpdateTitle: "Products are being updated",
 businessUpdateDesc: "Please come back later",
@@ -315,19 +312,17 @@ heroFeature3: "专业技术支持",
 businessTitle: "行业解决方案",
 
 field1: "测量设备",
-field1Desc: "电子秤及测量设备",
+fieldMeasureDesc: "电子秤及测量设备",
 
 field2: "工业设备",
-field2Desc: "机械设备与工业设备",
+fieldIndustryDesc: "机械设备与工业設備",
 
 field3: "技术服务",
-field3Desc: "安装、维修和保养",
-
+fieldServiceDesc: "安装、维修和保养",
 field4: "家用设备",
-field4Desc: "家电及民用设备",
-
+fieldHomeDesc: "家电及民用设备",
 field5: "贸易与分销",
-field5Desc: "全国供应与分销",
+fieldTradeDesc: "全国供应与分销",
 businessUpdateTitle: "产品正在更新中",
 businessUpdateDesc: "请稍后再回来",
 
