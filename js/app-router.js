@@ -167,18 +167,20 @@ if (business) {
     const container = document.getElementById("homeContainer");
 
     if (container) {
-        container.innerHTML = `
-            <div style="text-align:center;padding:60px 20px;">
-                <h2>${t("businessUpdateTitle")}</h2>
-<p>${t("businessUpdateDesc")}</p>
-                <button onclick="goHomePage()">
-                    OK
-                </button>
-            </div>
-        `;
-    }
 
-    return;
+    const lang = localStorage.getItem("language") || "vi";
+
+    container.innerHTML = `
+        <div style="text-align:center;padding:60px 20px;">
+            <h2>${t("businessUpdateTitle")?.[lang] || ""}</h2>
+            <p>${t("businessUpdateDesc")?.[lang] || ""}</p>
+
+            <button onclick="goHomePage()">
+                OK
+            </button>
+        </div>
+    `;
+
 }
 
     /* =========================
