@@ -41,52 +41,27 @@ console.log("business:",
 
 if (search) {
 
-    const k = search.trim().toLowerCase();
+    const { type, data } =
+        SearchSystem.detectType(getProducts(), search);
 
-    const products = runSearch(getProducts(), k);
+    if (type === "category") {
 
-    // 👉 phân loại:
-    const isBrand = products.some(p =>
-        p.brand &&
-        normalizeText(p.brand) === normalizeText(k)
-    );
-
-    const isCategory = categoryMap?.[k];
-
-    if (isBrand) {
-
-        window.APP_MODE.mode = "brand-slider";
-
-        renderSingleSlider(products, search);
-
+        renderSingleSlider(data, search);
         sessionStorage.removeItem("searchKeyword");
-
         return;
     }
 
-    if (isCategory) {
+    if (type === "brand") {
 
-        const categoryProducts =
-            getProducts().filter(p =>
-                p.category === categoryMap[k]
-            );
-
-        window.APP_MODE.mode = "category-slider";
-
-        renderSingleSlider(categoryProducts, search);
-
+        renderSingleSlider(data, search);
         sessionStorage.removeItem("searchKeyword");
-
         return;
     }
 
-    // default product search
-    window.APP_MODE.mode = "search-grid";
-
-    renderGridWithBrand(products, search);
+    // product
+    renderGridWithBrand(data, search);
 
     sessionStorage.removeItem("searchKeyword");
-
     return;
 }
     /* =========================

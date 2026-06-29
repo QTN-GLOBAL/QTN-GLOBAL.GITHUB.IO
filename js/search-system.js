@@ -1,7 +1,3 @@
-/* =========================
-   SEARCH SYSTEM (FINAL FIX)
-========================= */
-
 (function () {
 
     function normalize(str) {
@@ -22,75 +18,91 @@
         "can phan tich": "can-phan-tich",
         "can chong nuoc": "can-chong-nuoc",
         "can in tem": "can-in-tem-ma-vach",
-        "can ghe": "can-ghe-ngoi"
+        "can ghe": "can-ghe-ngoi",
+        "may loc khong khí": "may-loc-khong-khi",
+        "phu kien may": "phu-kien-may-loc-khong-khi",
+        "may loc nuoc": "may-loc-nuoc",
+        "loi loc": "loi-loc-va-phu-kien"
     };
 
-    function filterProducts(products, keyword) {
+    function detectType(products, keyword) {
 
-        if (!keyword) return products;
+        if (!keyword) {
+            return {
+                type: "product",
+                data: products
+            };
+        }
 
         const k = normalize(keyword);
 
+        // ======================
+        // 1. CATEGORY MATCH
+        // ======================
         const categoryKey = Object.keys(categoryMap)
-    .find(key =>
-        normalize(key) === k ||
-        normalize(categoryMap[key]) === k
-    );
+            .find(key => normalize(key).includes(k));
 
         if (categoryKey) {
-            return products.filter(
+
+            const categoryProducts = products.filter(
                 p => p.category === categoryMap[categoryKey]
             );
+
+            return {
+                type: "category",
+                data: categoryProducts
+            };
         }
 
-        return products.filter(p => {
+        // ======================
+        // 2. BRAND MATCH
+        // ======================
+        const brandProducts = products.filter(
+            p => normalize(p.brand).includes(k)
+        );
 
-            const text = normalize(
-                [p.name, p.brand, p.description]
-                    .filter(Boolean)
-                    .join(" ")
-            );
+        if (brandProducts.length > 0) {
+            return {
+                type: "brand",
+                data: brandProducts
+            };
+        }
+
+        // ======================
+        // 3. PRODUCT SEARCH
+        // ======================
+        const result = products.filter(p => {
+
+            const text = normalize([
+                p.name,
+                p.brand,
+                p.description
+            ].join(" "));
 
             return text.includes(k);
         });
+
+        return {
+            type: "product",
+            data: result
+        };
     }
 
-    window.SearchSystem = {
+    function go(keyword) {
 
-        filter: filterProducts,
+        const k = (keyword || "").trim();
+        if (!k) return;
 
-        go(keyword) {
+        sessionStorage.setItem("searchKeyword", k);
+        window.APP_MODE = window.APP_MODE || {};
+        window.APP_MODE.mode = "search";
 
-    const k = (keyword || "").trim();
-    if (!k) return;
+        window.location.href = "index.html";
+    }
 
-    sessionStorage.setItem("searchKeyword", k);
-
-    // khóa chế độ trang
-    window.APP_MODE.mode = "search";
-
-    window.location.href = "index.html";
-}
-    };
-
-    document.addEventListener("click", function (e) {
-
-        const btn = e.target.closest("#searchBtn");
-        if (!btn) return;
-
-        const input = document.getElementById("searchInput");
-        window.SearchSystem.go(input ? input.value : "");
-    });
-
-    document.addEventListener("keydown", function (e) {
-
-        if (e.key !== "Enter") return;
-
-        const input = document.getElementById("searchInput");
-
-        if (document.activeElement === input) {
-            window.SearchSystem.go(input.value);
-        }
+    window.SearchSystem = Object.freeze({
+        detectType,
+        go
     });
 
 })();
