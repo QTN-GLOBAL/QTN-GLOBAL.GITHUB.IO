@@ -115,9 +115,9 @@ const categoryCode =
         return;
     }
 
-    /* CATEGORY */
+   /* CATEGORY */
 
-    const categoryMap = {
+const categoryMap = {
     "cân bàn": "can-ban",
     "cân đếm": "can-dem",
     "cân treo": "can-treo",
@@ -133,8 +133,7 @@ const categoryCode =
     "phụ kiện máy lọc không khí": "air-filter"
 };
 
-const categoryCode =
-    categoryMap[keyword];
+const categoryCode = categoryMap[keyword];
 
 if (categoryCode) {
 
@@ -145,27 +144,28 @@ if (categoryCode) {
 
     if (!categoryProducts.length) {
 
-        renderGridWithBrand([], search);
-
         sessionStorage.removeItem("searchKeyword");
+
+        alert("Sản phẩm đang cập nhật.");
+
+        goHomePage();
 
         return;
     }
 
-    window.APP_MODE.mode = "search";
+    // 🔥 QUAN TRỌNG: dùng mode riêng cho CATEGORY
+    window.APP_MODE.mode = "category";
 
+    // 🔥 dùng slider chuyên dụng cho CATEGORY
     renderSingleSlider(
         categoryProducts,
-        search
+        keyword
     );
-
-    initBrandSliders();
 
     sessionStorage.removeItem("searchKeyword");
 
     return;
 }
-
     /* PRODUCT */
 
     const products =
