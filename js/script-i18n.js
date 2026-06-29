@@ -335,10 +335,10 @@ field4Desc: "家电及民用设备",
 field5: "贸易与分销",
 field5Desc: "全国供应与分销",
 businessUpdateTitle: {
-    en: "Products are being updated"
+    cn: "产品正在更新中"
 },
 businessUpdateDesc: {
-    en: "Please come back later"
+    cn: "请稍后再回来"
 },
 
         businessCategories: "业务领域",
