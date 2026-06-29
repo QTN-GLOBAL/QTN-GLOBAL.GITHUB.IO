@@ -1,157 +1,225 @@
 const aboutTranslations = {
     vi: {
-        home: "TRANG CHỦ",
-        about: "GIỚI THIỆU",
-        contact: "LIÊN HỆ",
-
-        aboutHero: "QTN GLOBAL",
-        aboutSlogan: "CHÍNH XÁC TRONG TỪNG GIÁ TRỊ",
-
         aboutIntroTitle: "GIỚI THIỆU",
-        aboutIntroText: "QTN GLOBAL là đơn vị chuyên cung cấp thiết bị đo lường, giải pháp công nghiệp và dịch vụ kỹ thuật chất lượng cao.",
+
+        aboutIntroText1: "Trong bối cảnh công nghệ và tự động hóa ngày càng phát triển, nhu cầu về các thiết bị đo lường chính xác, giải pháp kỹ thuật chuyên nghiệp và các sản phẩm phục vụ đời sống chất lượng cao đang trở thành yếu tố quan trọng đối với cả doanh nghiệp và gia đình.",
+
+        aboutIntroText2: "QTN GLOBAL được hình thành với mục tiêu mang đến những giải pháp thiết bị và công nghệ đáng tin cậy, góp phần nâng cao hiệu quả sản xuất, tối ưu vận hành và cải thiện chất lượng cuộc sống.",
+
+        aboutIntroText3: "Chúng tôi hoạt động trên nhiều lĩnh vực, kết nối giữa công nghệ, kỹ thuật và nhu cầu thực tế của khách hàng để tạo ra những giá trị bền vững.",
+
 
         aboutBusinessTitle: "LĨNH VỰC HOẠT ĐỘNG",
 
-        aboutMeasureTitle: "Cân điện tử",
-        aboutMeasureText: "Cung cấp các loại cân bàn, cân sàn, cân công nghiệp chính xác cao.",
+        aboutMeasureTitle: "Thiết bị đo lường",
+        aboutMeasureText: "QTN GLOBAL cung cấp các giải pháp cân điện tử và thiết bị đo lường phục vụ nhiều lĩnh vực như sản xuất, thương mại, logistics, phòng thí nghiệm và kiểm soát chất lượng.",
+        aboutMeasureList: [
+            "Cân điện tử công nghiệp",
+            "Cân bàn, cân đếm, cân treo",
+            "Đầu cân điện tử",
+            "Cân phân tích, cân kỹ thuật",
+            "Hệ thống cân chuyên dụng và giải pháp tích hợp"
+        ],
+        aboutMeasureNote: "Chúng tôi hợp tác với nhiều thương hiệu uy tín nhằm mang đến các sản phẩm có độ chính xác cao, độ bền ổn định và đáp ứng các yêu cầu kỹ thuật khắt khe.",
 
-        aboutHomeTitle: "Thiết bị gia dụng",
-        aboutHomeText: "Giải pháp thiết bị cho gia đình hiện đại, tiện ích và an toàn.",
 
-        aboutIndustryTitle: "Công nghiệp",
-        aboutIndustryText: "Thiết bị và giải pháp cho nhà máy, xí nghiệp và dây chuyền sản xuất.",
+        aboutHomeTitle: "Thiết bị gia dụng và chăm sóc môi trường sống",
+        aboutHomeText: "Bên cạnh các giải pháp công nghiệp, QTN GLOBAL còn cung cấp các thiết bị phục vụ gia đình và văn phòng hiện đại.",
+        aboutHomeList: [
+            "Máy lọc nước",
+            "Máy lọc không khí",
+            "Lõi lọc và phụ kiện thay thế",
+            "Giải pháp nâng cao chất lượng không khí và nguồn nước"
+        ],
+        aboutHomeNote: "Chúng tôi hướng tới việc xây dựng một môi trường sống an toàn, tiện nghi và bền vững cho mỗi gia đình.",
 
-        aboutServiceTitle: "Dịch vụ kỹ thuật",
-        aboutServiceText: "Bảo trì, sửa chữa và hiệu chuẩn thiết bị đo lường.",
 
-        aboutTradeTitle: "Thương mại quốc tế",
-        aboutTradeText: "Kết nối và phân phối thiết bị từ các thương hiệu toàn cầu.",
+        aboutIndustryTitle: "Thiết bị công nghiệp và giải pháp kỹ thuật",
+        aboutIndustryText: "QTN GLOBAL không chỉ cung cấp thiết bị mà còn đồng hành cùng khách hàng trong quá trình triển khai và vận hành.",
+        aboutIndustryList: [
+            "Tư vấn giải pháp",
+            "Lắp đặt và vận hành",
+            "Kiểm tra và bảo trì",
+            "Hỗ trợ kỹ thuật"
+        ],
+        aboutIndustryNote: "Đội ngũ kỹ thuật luôn hướng đến sự chuyên nghiệp, trách nhiệm và hiệu quả trong từng dự án.",
+
+
+        aboutTradeTitle: "Thương mại và phân phối",
+        aboutTradeText: "Với định hướng phát triển lâu dài, QTN GLOBAL từng bước mở rộng mạng lưới cung ứng và phân phối trên toàn quốc.",
+        aboutTradeNote: "Chúng tôi xây dựng mối quan hệ hợp tác bền vững với đối tác, nhà sản xuất và khách hàng nhằm tạo nên hệ sinh thái cung ứng hiệu quả và đáng tin cậy.",
+
 
         aboutCoreTitle: "GIÁ TRỊ CỐT LÕI",
+        aboutCoreValues: [
+            "Chính xác trong từng sản phẩm",
+            "Uy tín trong từng cam kết",
+            "Chuyên nghiệp trong từng dịch vụ",
+            "Đồng hành cùng khách hàng",
+            "Phát triển bền vững"
+        ],
 
-        aboutValue1: "Chính xác trong từng sản phẩm",
-        aboutValue2: "Uy tín trong từng dịch vụ",
-        aboutValue3: "Đổi mới công nghệ liên tục",
-        aboutValue4: "Hỗ trợ khách hàng tận tâm",
-        aboutValue5: "Phát triển bền vững",
 
         aboutVisionTitle: "TẦM NHÌN",
-        aboutVisionText: "Trở thành doanh nghiệp hàng đầu trong lĩnh vực thiết bị đo lường và giải pháp công nghiệp tại Việt Nam và quốc tế.",
+        aboutVisionText: "Trở thành đơn vị cung cấp giải pháp thiết bị, công nghệ và dịch vụ kỹ thuật đáng tin cậy tại Việt Nam, góp phần nâng cao hiệu quả sản xuất, kinh doanh và chất lượng cuộc sống.",
+
 
         aboutMissionTitle: "SỨ MỆNH",
-        aboutMissionText: "Mang đến giải pháp đo lường chính xác, bền vững và tối ưu cho doanh nghiệp toàn cầu.",
+        aboutMissionText: "Mang đến các sản phẩm chính hãng, giải pháp phù hợp và dịch vụ chuyên nghiệp nhằm tạo ra giá trị lâu dài cho khách hàng, đối tác và cộng đồng.",
 
-        footerDesc: "QTN GLOBAL - Giải pháp đo lường và thiết bị công nghiệp hàng đầu.",
 
-        addressLabel: "Địa chỉ: ",
-        addressText: "Việt Nam",
+        aboutClosing: "QTN GLOBAL tin rằng sự chính xác không chỉ nằm trong từng phép đo mà còn thể hiện trong từng cam kết, từng sản phẩm và từng giá trị mà chúng tôi mang đến.",
 
-        hotlineLabel: "Hotline: ",
-        emailLabel: "Email: ",
-        websiteLabel: "Website: "
+        aboutSlogan: "QTN GLOBAL – CHÍNH XÁC TRONG TỪNG GIÁ TRỊ"
     },
 
+
     en: {
-        home: "HOME",
-        about: "ABOUT",
-        contact: "CONTACT",
-
-        aboutHero: "QTN GLOBAL",
-        aboutSlogan: "PRECISION IN EVERY VALUE",
-
         aboutIntroTitle: "ABOUT US",
-        aboutIntroText: "QTN GLOBAL specializes in providing high-quality measurement equipment, industrial solutions, and technical services.",
+
+        aboutIntroText1: "In the context of rapidly developing technology and automation, the demand for precise measurement devices, professional technical solutions, and high-quality life products is becoming increasingly important for both businesses and households.",
+
+        aboutIntroText2: "QTN GLOBAL was established with the goal of providing reliable equipment and technology solutions, contributing to improved production efficiency, optimized operations, and better quality of life.",
+
+        aboutIntroText3: "We operate across multiple sectors, connecting technology, engineering, and real customer needs to create sustainable value.",
+
 
         aboutBusinessTitle: "OUR BUSINESS AREAS",
 
-        aboutMeasureTitle: "Weighing Equipment",
-        aboutMeasureText: "Providing high-precision bench scales, floor scales, and industrial weighing systems.",
+        aboutMeasureTitle: "Measurement Equipment",
+        aboutMeasureText: "QTN GLOBAL provides electronic weighing solutions and measurement devices for industries such as manufacturing, trade, logistics, laboratories, and quality control.",
+        aboutMeasureList: [
+            "Industrial electronic scales",
+            "Bench scales, counting scales, hanging scales",
+            "Weighing indicators",
+            "Analytical and precision scales",
+            "Integrated weighing systems and solutions"
+        ],
+        aboutMeasureNote: "We cooperate with reputable brands to provide high-accuracy, durable, and technically demanding products.",
 
-        aboutHomeTitle: "Home Appliances",
-        aboutHomeText: "Modern, convenient, and safe solutions for household equipment.",
 
-        aboutIndustryTitle: "Industrial Solutions",
-        aboutIndustryText: "Equipment and solutions for factories, production lines, and industrial systems.",
+        aboutHomeTitle: "Home Appliances & Environment Care",
+        aboutHomeText: "In addition to industrial solutions, QTN GLOBAL also provides modern household and office equipment.",
+        aboutHomeList: [
+            "Water purifiers",
+            "Air purifiers",
+            "Filters and replacement accessories",
+            "Solutions for improving air and water quality"
+        ],
+        aboutHomeNote: "We aim to build a safe, convenient, and sustainable living environment for every household.",
 
-        aboutServiceTitle: "Technical Services",
-        aboutServiceText: "Maintenance, repair, and calibration of measuring equipment.",
 
-        aboutTradeTitle: "International Trade",
-        aboutTradeText: "Connecting and distributing global brands and equipment.",
+        aboutIndustryTitle: "Industrial Equipment & Technical Solutions",
+        aboutIndustryText: "QTN GLOBAL not only supplies equipment but also accompanies customers throughout implementation and operation.",
+        aboutIndustryList: [
+            "Solution consulting",
+            "Installation and operation",
+            "Inspection and maintenance",
+            "Technical support"
+        ],
+        aboutIndustryNote: "Our technical team is committed to professionalism, responsibility, and efficiency in every project.",
+
+
+        aboutTradeTitle: "Trade & Distribution",
+        aboutTradeText: "With a long-term development strategy, QTN GLOBAL is expanding its supply and distribution network nationwide.",
+        aboutTradeNote: "We build sustainable partnerships with manufacturers, suppliers, and customers to create an efficient and reliable ecosystem.",
+
 
         aboutCoreTitle: "CORE VALUES",
+        aboutCoreValues: [
+            "Accuracy in every product",
+            "Trust in every commitment",
+            "Professional service",
+            "Customer companionship",
+            "Sustainable development"
+        ],
 
-        aboutValue1: "Accuracy in every product",
-        aboutValue2: "Trust in every service",
-        aboutValue3: "Continuous innovation",
-        aboutValue4: "Dedicated customer support",
-        aboutValue5: "Sustainable development",
 
         aboutVisionTitle: "VISION",
-        aboutVisionText: "To become a leading company in measurement equipment and industrial solutions in Vietnam and globally.",
+        aboutVisionText: "To become a trusted provider of measurement equipment, technology solutions, and technical services in Vietnam and globally.",
+
 
         aboutMissionTitle: "MISSION",
-        aboutMissionText: "Deliver accurate, sustainable, and optimized measurement solutions for global businesses.",
+        aboutMissionText: "To deliver genuine products, suitable solutions, and professional services that create long-term value for customers, partners, and communities.",
 
-        footerDesc: "QTN GLOBAL - Leading provider of measurement and industrial solutions.",
 
-        addressLabel: "Address: ",
-        addressText: "Vietnam",
+        aboutClosing: "QTN GLOBAL believes that precision is not only in measurement but also in every commitment and value we deliver.",
 
-        hotlineLabel: "Hotline: ",
-        emailLabel: "Email: ",
-        websiteLabel: "Website: "
+        aboutSlogan: "QTN GLOBAL – PRECISION IN EVERY VALUE"
     },
 
+
     zh: {
-        home: "首页",
-        about: "关于我们",
-        contact: "联系",
-
-        aboutHero: "QTN GLOBAL",
-        aboutSlogan: "精准创造每一个价值",
-
         aboutIntroTitle: "公司介绍",
-        aboutIntroText: "QTN GLOBAL 专注于提供高质量的计量设备、工业解决方案和技术服务。",
+
+        aboutIntroText1: "在技术和自动化快速发展的背景下，对高精度测量设备、专业技术解决方案以及高品质生活产品的需求日益增长，成为企业和家庭的重要需求。",
+
+        aboutIntroText2: "QTN GLOBAL 致力于提供可靠的设备与技术解决方案，帮助提升生产效率、优化运营并改善生活质量。",
+
+        aboutIntroText3: "我们在多个领域开展业务，将技术、工程与客户需求相结合，创造可持续价值。",
+
 
         aboutBusinessTitle: "业务领域",
 
-        aboutMeasureTitle: "称重设备",
-        aboutMeasureText: "提供高精度台秤、地磅及工业称重系统。",
+        aboutMeasureTitle: "计量设备",
+        aboutMeasureText: "QTN GLOBAL 提供电子称重解决方案及测量设备，广泛应用于制造、贸易、物流、实验室及质量控制领域。",
+        aboutMeasureList: [
+            "工业电子秤",
+            "台秤、计数秤、吊秤",
+            "称重显示仪表",
+            "分析与精密天平",
+            "集成称重系统解决方案"
+        ],
+        aboutMeasureNote: "我们与知名品牌合作，提供高精度、耐用且满足技术要求的产品。",
 
-        aboutHomeTitle: "家用设备",
-        aboutHomeText: "现代、便捷、安全的家庭设备解决方案。",
 
-        aboutIndustryTitle: "工业解决方案",
-        aboutIndustryText: "适用于工厂、生产线及工业系统的设备与方案。",
+        aboutHomeTitle: "家用设备与环境护理",
+        aboutHomeText: "除了工业解决方案，QTN GLOBAL 还提供现代家庭与办公设备。",
+        aboutHomeList: [
+            "净水器",
+            "空气净化器",
+            "滤芯及替换配件",
+            "空气与水质改善解决方案"
+        ],
+        aboutHomeNote: "致力于为每个家庭打造安全、便利和可持续的生活环境。",
 
-        aboutServiceTitle: "技术服务",
-        aboutServiceText: "提供设备维护、维修与校准服务。",
 
-        aboutTradeTitle: "国际贸易",
-        aboutTradeText: "连接并分销全球品牌与设备。",
+        aboutIndustryTitle: "工业设备与技术解决方案",
+        aboutIndustryText: "QTN GLOBAL 不仅提供设备，还全程支持客户的实施与运营。",
+        aboutIndustryList: [
+            "方案咨询",
+            "安装与运行",
+            "检测与维护",
+            "技术支持"
+        ],
+        aboutIndustryNote: "技术团队始终以专业、责任与高效为核心。",
+
+
+        aboutTradeTitle: "贸易与分销",
+        aboutTradeText: "随着长期发展战略，QTN GLOBAL 正在扩大全国供应与分销网络。",
+        aboutTradeNote: "我们与制造商、供应商及客户建立稳定合作关系，打造高效可靠的生态体系。",
+
 
         aboutCoreTitle: "核心价值",
+        aboutCoreValues: [
+            "产品精准可靠",
+            "诚信履约",
+            "专业服务",
+            "客户同行",
+            "可持续发展"
+        ],
 
-        aboutValue1: "产品精准可靠",
-        aboutValue2: "服务值得信赖",
-        aboutValue3: "持续技术创新",
-        aboutValue4: "客户至上服务",
-        aboutValue5: "可持续发展",
 
         aboutVisionTitle: "愿景",
-        aboutVisionText: "成为越南及全球领先的计量设备与工业解决方案提供商。",
+        aboutVisionText: "成为越南及全球值得信赖的计量设备与技术解决方案提供商。",
+
 
         aboutMissionTitle: "使命",
-        aboutMissionText: "为全球企业提供精准、可持续、优化的测量解决方案.",
+        aboutMissionText: "提供正品设备、合适方案及专业服务，为客户、合作伙伴和社会创造长期价值。",
 
-        footerDesc: "QTN GLOBAL - 领先的计量与工业解决方案提供商。",
 
-        addressLabel: "地址：",
-        addressText: "越南",
+        aboutClosing: "QTN GLOBAL 坚信，精准不仅体现在测量中，也体现在每一个承诺与价值中。",
 
-        hotlineLabel: "热线：",
-        emailLabel: "邮箱：",
-        websiteLabel: "网站："
+        aboutSlogan: "QTN GLOBAL – 精准创造每一个价值"
     }
 };
