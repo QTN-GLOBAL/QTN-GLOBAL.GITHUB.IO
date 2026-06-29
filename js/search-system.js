@@ -19,28 +19,26 @@
         "can chong nuoc": "can-chong-nuoc",
         "can in tem": "can-in-tem-ma-vach",
         "can ghe": "can-ghe-ngoi",
-        "may loc khong khí": "may-loc-khong-khi",
-        "phu kien may": "phu-kien-may-loc-khong-khi",
-        "may loc nuoc": "may-loc-nuoc",
-        "loi loc": "loi-loc-va-phu-kien"
+
+        "may loc khong khi": "air-purifier",
+        "may loc nuoc": "water-purifier",
+        "loi loc": "water-filter",
+        "phu kien": "air-filter"
     };
 
     function detectType(products, keyword) {
 
         if (!keyword) {
-            return {
-                type: "product",
-                data: products
-            };
+            return { type: "product", data: products };
         }
 
         const k = normalize(keyword);
 
         // ======================
-        // 1. CATEGORY MATCH
+        // CATEGORY (FIXED)
         // ======================
         const categoryKey = Object.keys(categoryMap)
-            .find(key => normalize(key).includes(k));
+            .find(key => k.includes(normalize(key)));
 
         if (categoryKey) {
 
@@ -55,7 +53,7 @@
         }
 
         // ======================
-        // 2. BRAND MATCH
+        // BRAND
         // ======================
         const brandProducts = products.filter(
             p => normalize(p.brand).includes(k)
@@ -69,7 +67,7 @@
         }
 
         // ======================
-        // 3. PRODUCT SEARCH
+        // PRODUCT SEARCH
         // ======================
         const result = products.filter(p => {
 
@@ -94,15 +92,13 @@
         if (!k) return;
 
         sessionStorage.setItem("searchKeyword", k);
-        window.APP_MODE = window.APP_MODE || {};
-        window.APP_MODE.mode = "search";
 
         window.location.href = "index.html";
     }
 
-    window.SearchSystem = Object.freeze({
+    window.SearchSystem = {
         detectType,
         go
-    });
+    };
 
 })();
