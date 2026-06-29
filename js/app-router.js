@@ -123,43 +123,63 @@ if (category) {
     return;
 }
 
-    /* =========================
-       BUSINESS
-    ========================= */
+  /* =========================
+   BUSINESS ROUTE (FINAL CLEAN)
+========================= */
 
-    if (business) {
+if (business) {
 
-        window.APP_MODE.mode = "business";
+    const products = getProducts();
 
-        const products =
-            getProducts().filter(
-                p => p.business === business
-            );
+    sessionStorage.removeItem("filterBusiness");
 
-        if (!products.length) {
+    // nhóm có sản phẩm → HIỂN THỊ SLIDER
+    const ALLOWED = ["measure", "home"];
 
-            renderGridWithBrand(
-                [],
-                business
-            );
+    const filtered = products.filter(
+        p => p.business === business
+    );
 
-            sessionStorage.removeItem(
-                "filterBusiness"
-            );
+    // =========================
+    // CASE 1: CÓ SẢN PHẨM
+    // =========================
+    if (ALLOWED.includes(business)) {
 
+        if (!filtered.length) {
+
+            alert("Sản phẩm đang cập nhật. Vui lòng quay lại sau.");
+
+            goHomePage();
             return;
         }
 
-        renderHomeByBrand(products);
+        window.APP_MODE.mode = "business-slider";
 
+        renderHomeByBrand(filtered);
         initBrandSliders();
-
-        sessionStorage.removeItem(
-            "filterBusiness"
-        );
 
         return;
     }
+
+    // =========================
+    // CASE 2: CHƯA CÓ SẢN PHẨM
+    // =========================
+    const container = document.getElementById("homeContainer");
+
+    if (container) {
+        container.innerHTML = `
+            <div style="text-align:center;padding:60px 20px;">
+                <h2>Sản phẩm đang cập nhật</h2>
+                <p>Vui lòng quay lại sau</p>
+                <button onclick="goHomePage()">
+                    OK
+                </button>
+            </div>
+        `;
+    }
+
+    return;
+}
 
     /* =========================
        HOME
