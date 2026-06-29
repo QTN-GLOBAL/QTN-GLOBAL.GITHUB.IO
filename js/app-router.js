@@ -43,6 +43,51 @@ if (search) {
 
     const keyword =
         search.trim().toLowerCase();
+const categoryMap = {
+
+    // CÂN
+
+    "cân bàn": "can-ban",
+    "can ban": "can-ban",
+
+    "cân đếm": "can-dem",
+    "can dem": "can-dem",
+
+    "cân treo": "can-treo",
+    "can treo": "can-treo",
+
+    "đầu cân": "dau-can-dien-tu",
+    "dau can": "dau-can-dien-tu",
+
+    "cân phân tích": "can-phan-tich",
+    "can phan tich": "can-phan-tich",
+
+    "cân chống nước": "can-chong-nuoc",
+    "can chong nuoc": "can-chong-nuoc",
+
+    "cân in tem": "can-in-tem-ma-vach",
+    "can in tem": "can-in-tem-ma-vach",
+
+    "cân ghế": "can-ghe-ngoi",
+    "can ghe": "can-ghe-ngoi",
+
+    // GIA DỤNG
+
+    "máy lọc nước": "water-purifier",
+    "may loc nuoc": "water-purifier",
+
+    "lõi lọc": "water-filter",
+    "loi loc": "water-filter",
+
+    "máy lọc không khí": "air-purifier",
+    "may loc khong khi": "air-purifier",
+
+    "phụ kiện máy lọc không khí": "air-filter",
+    "phu kien may loc khong khi": "air-filter"
+};
+
+const categoryCode =
+    categoryMap[keyword] || keyword;
 
     /* BRAND */
 
