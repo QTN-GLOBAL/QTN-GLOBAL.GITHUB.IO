@@ -88,17 +88,42 @@
 
     function go(keyword) {
 
-        const k = (keyword || "").trim();
-        if (!k) return;
+    const k = (keyword || "").trim();
+    if (!k) return;
 
+    console.log("SEARCH GO:", k);
+
+    try {
         sessionStorage.setItem("searchKeyword", k);
-
-        window.location.href = "index.html";
+    } catch (e) {
+        console.error("sessionStorage error", e);
     }
+
+    window.APP_MODE = window.APP_MODE || {};
+    window.APP_MODE.mode = "search";
+
+    // 🔥 delay nhỏ để chắc chắn storage được ghi
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 10);
+}
 
     window.SearchSystem = {
         detectType,
         go
     };
+document.addEventListener("keydown", function (e) {
+
+    if (e.key !== "Enter") return;
+
+    const input = document.getElementById("searchInput");
+
+    if (!input) return;
+
+    if (document.activeElement === input) {
+        e.preventDefault(); // 🔥 cực quan trọng
+        window.SearchSystem.go(input.value);
+    }
+});
 
 })();
