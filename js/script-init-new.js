@@ -64,28 +64,6 @@ window.runSearch = function (result, keyword) {
 ========================= */
 function boot() {
 
-    const search =
-        sessionStorage.getItem("searchKeyword");
-
-    const category =
-        sessionStorage.getItem("filterCategory");
-
-    const brand =
-        sessionStorage.getItem("filterBrand");
-
-    const business =
-        sessionStorage.getItem("filterBusiness");
-
-    // app-router.js sẽ xử lý giao diện
-    if (
-        search ||
-        category ||
-        brand ||
-        business
-    ) {
-        return;
-    }
-
     const products = getProducts();
 
     if (!Array.isArray(products) || products.length === 0) {
@@ -95,99 +73,15 @@ function boot() {
 
     setLanguage(localStorage.getItem("language") || "vi");
 
-    let result = [...products];
+    // CHỈ CACHE DATA
+    window.allProductsCache = products.slice();
+    window.currentProducts = products.slice();
 
-    /* =========================
-       CATEGORY FILTER
-    ========================= */
-    const category = sessionStorage.getItem("filterCategory");
-
-    if (category) {
-        sessionStorage.removeItem("filterCategory");
-        result = result.filter(p => p && p.category === category);
-    }
-
-    /* =========================
-       BRAND FILTER
-    ========================= */
-    const brand = sessionStorage.getItem("filterBrand");
-
-    if (brand) {
-        sessionStorage.removeItem("filterBrand");
-        result = result.filter(p => p && p.brand === brand);
-    }
-/***************************
-   BUSINESS FILTER
-***************************/
-const business =
-    sessionStorage.getItem(
-        "filterBusiness"
-    );
-
-if (business) {
-
-    sessionStorage.removeItem(
-        "filterBusiness"
-    );
-
-    result = result.filter(
-        p => p.business === business
-    );
-}
-
-    /* =========================
-       SEARCH (SAFE FLOW FIXED)
-    ========================= */
-    const keyword = sessionStorage.getItem("searchKeyword");
-
-    if (keyword) {
-
-        result = runSearch(result, keyword);
-
-        // clear sau khi dùng
-        sessionStorage.removeItem("searchKeyword");
-    }
-
-    /* =========================
-       FINAL SAFETY FILTER
-       (FIX MẤT ẢNH + MẤT NAME)
-    ========================= */
-    result = result.filter(p =>
-        p &&
-        p.id &&
-        p.name &&
-        p.category &&
-        p.folder
-    );
-
-    /* =========================
-       CACHE STATE
-    ========================= */
-    window.allProductsCache = result.slice();
-    window.currentProducts = result.slice();
-
-   /***************************
-   RENDER
-***************************/
-// app-router.js xử lý render
-
-    /* =========================
-       CART
-    ========================= */
+    // CHỈ CART (nếu cần)
     if (typeof updateCartCount === "function") {
         updateCartCount();
     }
 
-    /* =========================
-       SLIDER
-    ========================= */
-    if (typeof initExcellSlider === "function") {
-        initExcellSlider();
-    }
-
-    /* =========================
-       OPEN CART
-    ========================= */
     const openCartFlag = sessionStorage.getItem("openCart");
 
     if (openCartFlag === "1") {
@@ -199,7 +93,4 @@ if (business) {
     }
 }
 
-/* =========================
-   START
-========================= */
 document.addEventListener("DOMContentLoaded", boot);

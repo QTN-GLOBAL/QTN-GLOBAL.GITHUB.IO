@@ -41,147 +41,51 @@ console.log("business:",
 
 if (search) {
 
-    const keyword =
-        search.trim().toLowerCase();
-const categoryMap = {
+    const k = search.trim().toLowerCase();
 
-    // CÂN
+    const products = runSearch(getProducts(), k);
 
-    "cân bàn": "can-ban",
-    "can ban": "can-ban",
+    // 👉 phân loại:
+    const isBrand = products.some(p =>
+        p.brand &&
+        normalizeText(p.brand) === normalizeText(k)
+    );
 
-    "cân đếm": "can-dem",
-    "can dem": "can-dem",
+    const isCategory = categoryMap?.[k];
 
-    "cân treo": "can-treo",
-    "can treo": "can-treo",
+    if (isBrand) {
 
-    "đầu cân": "dau-can-dien-tu",
-    "dau can": "dau-can-dien-tu",
+        window.APP_MODE.mode = "brand-slider";
 
-    "cân phân tích": "can-phan-tich",
-    "can phan tich": "can-phan-tich",
-
-    "cân chống nước": "can-chong-nuoc",
-    "can chong nuoc": "can-chong-nuoc",
-
-    "cân in tem": "can-in-tem-ma-vach",
-    "can in tem": "can-in-tem-ma-vach",
-
-    "cân ghế": "can-ghe-ngoi",
-    "can ghe": "can-ghe-ngoi",
-
-    // GIA DỤNG
-
-    "máy lọc nước": "water-purifier",
-    "may loc nuoc": "water-purifier",
-
-    "lõi lọc": "water-filter",
-    "loi loc": "water-filter",
-
-    "máy lọc không khí": "air-purifier",
-    "may loc khong khi": "air-purifier",
-
-    "phụ kiện máy lọc không khí": "air-filter",
-    "phu kien may loc khong khi": "air-filter"
-};
-
-const categoryCode =
-    categoryMap[keyword] || keyword;
-
-    /* BRAND */
-
-    const brandProducts =
-        getProducts().filter(
-            p =>
-                p.brand &&
-                p.brand.toLowerCase() === keyword
-        );
-
-    if (brandProducts.length) {
-
-        window.APP_MODE.mode = "search";
-
-        renderHomeByBrand(
-            brandProducts
-        );
-
-        initBrandSliders();
-
-        sessionStorage.removeItem(
-            "searchKeyword"
-        );
-
-        return;
-    }
-
-   /* CATEGORY */
-
-const categoryMap = {
-    "cân bàn": "can-ban",
-    "cân đếm": "can-dem",
-    "cân treo": "can-treo",
-    "đầu cân": "dau-can-dien-tu",
-    "cân phân tích": "can-phan-tich",
-    "cân chống nước": "can-chong-nuoc",
-    "cân in tem": "can-in-tem-ma-vach",
-    "cân ghế": "can-ghe-ngoi",
-
-    "máy lọc nước": "water-purifier",
-    "máy lọc không khí": "air-purifier",
-    "lõi lọc": "water-filter",
-    "phụ kiện máy lọc không khí": "air-filter"
-};
-
-const categoryCode = categoryMap[keyword];
-
-if (categoryCode) {
-
-    const categoryProducts =
-        getProducts().filter(
-            p => p.category === categoryCode
-        );
-
-    if (!categoryProducts.length) {
+        renderSingleSlider(products, search);
 
         sessionStorage.removeItem("searchKeyword");
 
-        alert("Sản phẩm đang cập nhật.");
+        return;
+    }
 
-        goHomePage();
+    if (isCategory) {
+
+        const categoryProducts =
+            getProducts().filter(p =>
+                p.category === categoryMap[k]
+            );
+
+        window.APP_MODE.mode = "category-slider";
+
+        renderSingleSlider(categoryProducts, search);
+
+        sessionStorage.removeItem("searchKeyword");
 
         return;
     }
 
-    // 🔥 QUAN TRỌNG: dùng mode riêng cho CATEGORY
-    window.APP_MODE.mode = "category";
+    // default product search
+    window.APP_MODE.mode = "search-grid";
 
-    // 🔥 dùng slider chuyên dụng cho CATEGORY
-    renderSingleSlider(
-        categoryProducts,
-        keyword
-    );
+    renderGridWithBrand(products, search);
 
     sessionStorage.removeItem("searchKeyword");
-
-    return;
-}
-    /* PRODUCT */
-
-    const products =
-        runSearch(
-            getProducts(),
-            search
-        );
-
-    renderGridWithBrand(
-        products,
-        search
-    );
-
-    sessionStorage.removeItem(
-        "searchKeyword"
-    );
 
     return;
 }
@@ -195,39 +99,21 @@ if (categoryCode) {
 if (category) {
 
     const products = getProducts().filter(
-        p =>
-            p.category &&
-            p.category === category
+        p => p.category === category
     );
 
     if (!products.length) {
 
-        sessionStorage.removeItem(
-            "filterCategory"
-        );
-
-        alert(
-            "Sản phẩm đang cập nhật.\nVui lòng quay lại sau."
-        );
-
+        alert("Sản phẩm đang cập nhật.");
         goHomePage();
-
         return;
     }
 
-    window.APP_MODE.mode =
-        "category";
+    window.APP_MODE.mode = "category-slider";
 
-    renderSingleSlider(
-        products,
-        category
-    );
+    renderSingleSlider(products, category);
 
-    initBrandSliders();
-
-    sessionStorage.removeItem(
-        "filterCategory"
-    );
+    sessionStorage.removeItem("filterCategory");
 
     return;
 }
@@ -238,27 +124,18 @@ if (category) {
 
     if (brand) {
 
-        window.APP_MODE.mode = "brand";
+    const products = getProducts().filter(
+        p => (p.brand || "").toUpperCase() === brand.toUpperCase()
+    );
 
-        const products =
-            getProducts().filter(
-                p =>
-                    p.brand &&
-                    p.brand.toUpperCase() ===
-                    brand.toUpperCase()
-            );
+    window.APP_MODE.mode = "brand-slider";
 
-        renderGridWithBrand(
-            products,
-            brand
-        );
+    renderSingleSlider(products, brand);
 
-        sessionStorage.removeItem(
-            "filterBrand"
-        );
+    sessionStorage.removeItem("filterBrand");
 
-        return;
-    }
+    return;
+}
 
     /* =========================
        BUSINESS
