@@ -24,23 +24,28 @@ document.addEventListener("DOMContentLoaded", function () {
    /***************************
    SEARCH
 ***************************/
+/* SEARCH */
+
 if (search) {
 
-    const keyword = search.trim().toLowerCase();
+    const keyword =
+        search.trim().toLowerCase();
 
-    /* CATEGORY */
+    /* BRAND */
 
-    const categoryProducts =
+    const brandProducts =
         getProducts().filter(
             p =>
-                (p.category || "")
-                    .toLowerCase() === keyword
+                p.brand &&
+                p.brand.toLowerCase() === keyword
         );
 
-    if (categoryProducts.length) {
-window.APP_MODE.mode = "search";
+    if (brandProducts.length) {
+
+        window.APP_MODE.mode = "search";
+
         renderHomeByBrand(
-            categoryProducts
+            brandProducts
         );
 
         initBrandSliders();
@@ -52,19 +57,21 @@ window.APP_MODE.mode = "search";
         return;
     }
 
-    /* BRAND */
+    /* CATEGORY */
 
-    const brandProducts =
+    const categoryProducts =
         getProducts().filter(
             p =>
-                (p.brand || "")
-                    .toLowerCase() === keyword
+                p.category &&
+                p.category.toLowerCase() === keyword
         );
 
-    if (brandProducts.length) {
-window.APP_MODE.mode = "business";
+    if (categoryProducts.length) {
+
+        window.APP_MODE.mode = "search";
+
         renderHomeByBrand(
-            brandProducts
+            categoryProducts
         );
 
         initBrandSliders();
@@ -83,7 +90,7 @@ window.APP_MODE.mode = "business";
             getProducts(),
             search
         );
-window.APP_MODE.mode = "search-grid";
+
     renderGridWithBrand(
         products,
         search
