@@ -63,6 +63,9 @@ window.runSearch = function (result, keyword) {
    BOOT (SAFE + NO BREAK DOM)
 ========================= */
 function boot() {
+if (window.APP_MODE && window.APP_MODE.mode !== "home") {
+    return;
+}
 
     const search =
         sessionStorage.getItem("searchKeyword");
