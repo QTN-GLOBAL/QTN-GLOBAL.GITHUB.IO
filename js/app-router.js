@@ -117,29 +117,54 @@ const categoryCode =
 
     /* CATEGORY */
 
+    const categoryMap = {
+    "cân bàn": "can-ban",
+    "cân đếm": "can-dem",
+    "cân treo": "can-treo",
+    "đầu cân": "dau-can-dien-tu",
+    "cân phân tích": "can-phan-tich",
+    "cân chống nước": "can-chong-nuoc",
+    "cân in tem": "can-in-tem-ma-vach",
+    "cân ghế": "can-ghe-ngoi",
+
+    "máy lọc nước": "water-purifier",
+    "máy lọc không khí": "air-purifier",
+    "lõi lọc": "water-filter",
+    "phụ kiện máy lọc không khí": "air-filter"
+};
+
+const categoryCode =
+    categoryMap[keyword];
+
+if (categoryCode) {
+
     const categoryProducts =
         getProducts().filter(
-            p =>
-                p.category &&
-                p.category.toLowerCase() === keyword
+            p => p.category === categoryCode
         );
 
-    if (categoryProducts.length) {
+    if (!categoryProducts.length) {
 
-        window.APP_MODE.mode = "search";
+        renderGridWithBrand([], search);
 
-        renderHomeByBrand(
-            categoryProducts
-        );
-
-        initBrandSliders();
-
-        sessionStorage.removeItem(
-            "searchKeyword"
-        );
+        sessionStorage.removeItem("searchKeyword");
 
         return;
     }
+
+    window.APP_MODE.mode = "search";
+
+    renderSingleSlider(
+        categoryProducts,
+        search
+    );
+
+    initBrandSliders();
+
+    sessionStorage.removeItem("searchKeyword");
+
+    return;
+}
 
     /* PRODUCT */
 
