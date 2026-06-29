@@ -169,8 +169,8 @@ if (business) {
     if (container) {
         container.innerHTML = `
             <div style="text-align:center;padding:60px 20px;">
-                <h2>Sản phẩm đang cập nhật</h2>
-                <p>Vui lòng quay lại sau</p>
+                <h2>${t("businessUpdateTitle")}</h2>
+<p>${t("businessUpdateDesc")}</p>
                 <button onclick="goHomePage()">
                     OK
                 </button>

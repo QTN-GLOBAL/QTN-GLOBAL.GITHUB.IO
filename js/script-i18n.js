@@ -60,6 +60,12 @@ field4Desc: "Điện gia dụng và thiết bị dân dụng",
 
 field5: "THƯƠNG MẠI & PHÂN PHỐI",
 field5Desc: "Cung ứng và phân phối toàn quốc",
+businessUpdateTitle: {
+    vi: "Sản phẩm đang cập nhật"
+},
+businessUpdateDesc: {
+    vi: "Vui lòng quay lại sau"
+},
 
         businessCategories: "LĨNH VỰC KINH DOANH",
 
@@ -192,7 +198,14 @@ field4Desc: "Household and consumer products",
 
 field5: "TRADING & DISTRIBUTION",
 field5Desc: "Nationwide supply and distribution",
+businessUpdateTitle: {
+    en: "Products are being updated"
+},
+businessUpdateDesc: {
+    en: "Please come back later"
+},
 businessCategories: "BUSINESS SECTORS",
+
 
 fieldMeasure: "MEASURING EQUIPMENT",
 fieldIndustry: "INDUSTRIAL EQUIPMENT",
@@ -321,6 +334,12 @@ field4Desc: "家电及民用设备",
 
 field5: "贸易与分销",
 field5Desc: "全国供应与分销",
+businessUpdateTitle: {
+    en: "Products are being updated"
+},
+businessUpdateDesc: {
+    en: "Please come back later"
+},
 
         businessCategories: "业务领域",
 
