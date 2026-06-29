@@ -310,14 +310,14 @@ function goHomeAndBrand(brand) {
 }
 
 function goHomeAndBusiness(business) {
-    goHomeAndFilter("filterBusiness", business);
-}
-function goBusiness(business) {
+
+    console.log("BUSINESS CLICK:", business);
 
     sessionStorage.setItem("filterBusiness", business);
 
     window.location.href = "index.html";
 }
+
 
 /* =========================
    SHOW QUOTE
