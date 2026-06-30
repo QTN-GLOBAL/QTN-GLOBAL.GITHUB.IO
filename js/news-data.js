@@ -42,14 +42,14 @@ const newsData = [
 
     category: "project",
 
-    title: "Lắp đặt hệ thống cân công nghiệp cho khách hàng tại Bắc Sơn",
+    title: "Lắp đặt hệ thống cân ô tô cho khách hàng tại Bắc Ninh",
 
     date: "2026-06-20",
 
     image: "images/news/news2.jpg",
 
     summary:
-        "Hoàn thành bàn giao hệ thống cân điện tử công nghiệp cho khách hàng tại Bắc Sơn, Lạng Sơn.",
+        "Hoàn thành bàn giao cân ô tô cho khách hàng tại Bắc Ninh.",
 
     content: `
         <p>
@@ -119,34 +119,7 @@ const newsData = [
 
         <img src="images/news/news4.jpg">
     `
-},
-
-{
-    id: 5,
-
-    category: "community",
-
-    title: "QTN GLOBAL tham gia chương trình thiện nguyện địa phương",
-
-    date: "2026-06-05",
-
-    image: "images/news/news5.jpg",
-
-    summary:
-        "Hoạt động thiện nguyện hướng tới cộng đồng được tổ chức tại địa phương.",
-
-    content: `
-        <p>
-        Chương trình được tổ chức với sự tham gia
-        của nhiều cán bộ nhân viên công ty.
-        </p>
-
-        <img src="images/news/news5.jpg">
-
-        <p>
-        Đây là hoạt động thường niên của QTN GLOBAL.
-        </p>
-    `
 }
+
 
 ];
