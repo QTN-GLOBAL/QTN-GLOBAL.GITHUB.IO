@@ -7,6 +7,7 @@ const translations = {
     vi: {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
+        news: "Tin tức",
         contact: "LIÊN HỆ",
 
         search: "Tìm kiếm",
@@ -139,6 +140,7 @@ relatedProductsTitle: "Sản phẩm cùng loại",
     en: {
         home: "HOME",
         about: "ABOUT",
+        news: "News",
         contact: "CONTACT",
 
         search: "Search",
@@ -271,6 +273,7 @@ relatedProductsTitle: "Related Products",
     zh: {
         home: "首页",
         about: "关于我们",
+        news: "新闻",
         contact: "联系我们",
 
         search: "搜索",
