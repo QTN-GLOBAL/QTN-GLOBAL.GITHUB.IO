@@ -453,6 +453,9 @@ function refreshUIAfterLanguageChange() {
     if (typeof renderHomeByBrand === "function") {
         renderHomeByBrand();
     }
+    if (typeof renderAboutContent === "function") {
+    renderAboutContent();
+   }
 
     if (typeof renderProducts === "function") {
         renderProducts(window.currentProducts || getProducts());

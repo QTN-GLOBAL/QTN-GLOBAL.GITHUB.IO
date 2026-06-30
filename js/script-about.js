@@ -1,81 +1,49 @@
-function getCurrentLang() {
-    return localStorage.getItem("lang") || "vi";
-}
+/* =========================
+   ABOUT PAGE
+========================= */
 
-function setCurrentLang(lang) {
-    localStorage.setItem("lang", lang);
-}
+// Render nội dung giới thiệu
+function renderAboutContent() {
 
-// render markdown about content
-function renderAboutContent(lang) {
     const container = document.getElementById("aboutContent");
     if (!container) return;
 
-    if (typeof aboutTranslations === "undefined") {
-        console.error("aboutTranslations is not defined");
-        return;
-    }
+    if (typeof aboutTranslations === "undefined") return;
 
-    const t = aboutTranslations[lang];
-    if (!t || !t.aboutContent) {
-        console.error("Missing aboutContent for lang:", lang);
-        return;
-    }
+    const lang =
+        localStorage.getItem("language") || "vi";
 
-    if (typeof marked === "undefined") {
-        console.error("marked.js is not loaded");
-        return;
-    }
+    const data = aboutTranslations[lang]
+        || aboutTranslations.vi;
 
-    container.innerHTML = marked.parse(t.aboutContent);
+    if (!data?.aboutContent) return;
+
+    if (typeof marked === "undefined") return;
+
+    container.innerHTML =
+        marked.parse(data.aboutContent);
 }
 
-function applyTranslations(lang) {
-    const t = aboutTranslations[lang];
-    if (!t) return;
-
-    // update tất cả element có data-i18n (menu, footer,...)
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (t[key] !== undefined) {
-            el.textContent = t[key];
-        }
-    });
-
-    // update title browser
-    if (t.aboutHero) {
-        document.title = t.aboutHero + " - QTN GLOBAL";
-    }
-
-    // render ABOUT CONTENT (MARKDOWN)
-    renderAboutContent(lang);
-}
-
-function initLanguageSelect() {
-    const select = document.getElementById("languageSelect");
-    if (!select) return;
-
-    select.value = getCurrentLang();
-
-    select.addEventListener("change", (e) => {
-        const lang = e.target.value;
-        setCurrentLang(lang);
-        applyTranslations(lang);
-    });
-}
+/* =========================
+   INIT
+========================= */
 
 function initAboutPage() {
-    const lang = getCurrentLang();
 
-    applyTranslations(lang);
-    initLanguageSelect();
+    renderAboutContent();
+
+    // Hero
+    if (typeof initHeroSlider === "function") {
+        initHeroSlider();
+    }
+
+    // Brand Slider
+    if (typeof initBrandSliders === "function") {
+        initBrandSliders();
+    }
 }
-function goBusinessFromAbout(business) {
 
-    sessionStorage.setItem("filterBusiness", business);
-
-    window.location.href = "index.html";
-}
-
-// run
-document.addEventListener("DOMContentLoaded", initAboutPage);
+document.addEventListener(
+    "DOMContentLoaded",
+    initAboutPage
+);

@@ -106,3 +106,48 @@ function goHomeAndBusiness(business) {
     window.location.href =
         "index.html";
 }
+/* =========================
+   HOME NAVIGATION
+========================= */
+
+function goHomePage() {
+    sessionStorage.removeItem("filterCategory");
+    sessionStorage.removeItem("filterBrand");
+    sessionStorage.removeItem("filterBusiness");
+    sessionStorage.removeItem("searchKeyword");
+
+    window.location.href = "index.html";
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+function goContact() {
+
+    // Nếu đang ở trang chủ → cuộn xuống footer
+    if (
+        window.location.pathname.endsWith("index.html") ||
+        window.location.pathname === "/" ||
+        window.location.pathname.endsWith("/")
+    ) {
+
+        document.querySelector("footer")
+            ?.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        return;
+    }
+
+    // Nếu ở About hoặc Detail → quay về footer của index
+    window.location.href = "index.html#footer";
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+function goAbout() {
+    window.location.href = "about.html";
+}
