@@ -8,6 +8,23 @@ const translations = {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
         news: "Tin tức",
+        newsTitle: "TIN TỨC",
+newsDesc: "Cập nhật những thông tin mới nhất về sản phẩm, công nghệ cân điện tử và hoạt động của QTN GLOBAL.",
+
+newsCategoryTitle: "DANH MỤC TIN TỨC",
+featuredNewsTitle: "BÀI VIẾT NỔI BẬT",
+
+newsAll: "Tất cả tin tức",
+newsCompany: "Tin công ty",
+newsProduct: "Sản phẩm mới",
+newsKnowledge: "Kiến thức cân điện tử",
+newsProject: "Dự án thực hiện",
+newsCommunity: "Hoạt động cộng đồng",
+
+searchNewsPlaceholder: "Tìm kiếm tin tức...",
+
+newsNewest: "Mới nhất",
+newsOldest: "Cũ nhất",
         contact: "LIÊN HỆ",
 
         search: "Tìm kiếm",
@@ -141,6 +158,23 @@ relatedProductsTitle: "Sản phẩm cùng loại",
         home: "HOME",
         about: "ABOUT",
         news: "News",
+        newsTitle: "NEWS",
+newsDesc: "Latest updates about products, weighing technology and QTN GLOBAL activities.",
+
+newsCategoryTitle: "NEWS CATEGORIES",
+featuredNewsTitle: "FEATURED ARTICLES",
+
+newsAll: "All News",
+newsCompany: "Company News",
+newsProduct: "New Products",
+newsKnowledge: "Knowledge Base",
+newsProject: "Projects",
+newsCommunity: "Community Activities",
+
+searchNewsPlaceholder: "Search articles...",
+
+newsNewest: "Newest",
+newsOldest: "Oldest",
         contact: "CONTACT",
 
         search: "Search",
@@ -274,6 +308,23 @@ relatedProductsTitle: "Related Products",
         home: "首页",
         about: "关于我们",
         news: "新闻",
+        newsTitle: "新闻",
+newsDesc: "获取 QTN GLOBAL 产品、电子秤技术和企业动态的最新信息。",
+
+newsCategoryTitle: "新闻分类",
+featuredNewsTitle: "热门文章",
+
+newsAll: "全部新闻",
+newsCompany: "公司新闻",
+newsProduct: "新产品",
+newsKnowledge: "电子秤知识",
+newsProject: "项目案例",
+newsCommunity: "社区活动",
+
+searchNewsPlaceholder: "搜索新闻...",
+
+newsNewest: "最新",
+newsOldest: "最旧",
         contact: "联系我们",
 
         search: "搜索",
