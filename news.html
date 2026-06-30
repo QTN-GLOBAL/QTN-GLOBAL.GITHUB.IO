@@ -13,10 +13,7 @@ content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="css/style-base.css">
 <link rel="stylesheet" href="css/style-home.css">
-<link rel="stylesheet" href="css/style-detail-layout.css">
-<link rel="stylesheet" href="css/style-detail-addcart.css">
-<link rel="stylesheet" href="css/style-detail-buynow.css">
-<link rel="stylesheet" href="css/style-cart.css">
+<link rel="stylesheet" href="css/style-about.css">
 <link rel="stylesheet" href="css/style-mobile.css">
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -243,7 +240,7 @@ class="social-icon facebook">
      BUSINESS FIELDS
 ========================= -->
 
-<section id="business" class="business-fields">
+<section class="business-fields">
 
     <h2 data-i18n="businessTitle">
         GIẢI PHÁP THEO LĨNH VỰC
@@ -252,7 +249,7 @@ class="social-icon facebook">
     <div class="field-grid">
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('measure')">
+     onclick="goBusinessFromAbout('measure')">
     <div class="field-icon">⚖️</div>
 
     <h3 data-i18n="fieldMeasure">
@@ -266,7 +263,7 @@ class="social-icon facebook">
 </div>
 
        <div class="field-card"
-     onclick="goHomeAndBusiness('industry')">
+     onclick="goBusinessFromAbout('industry')">
 
     <div class="field-icon">🏭</div>
 
@@ -281,7 +278,7 @@ class="social-icon facebook">
 </div>
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('service')">
+     onclick="goBusinessFromAbout('service')">
 
     <div class="field-icon">🔧</div>
 
@@ -296,7 +293,7 @@ class="social-icon facebook">
 </div>
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('home')">
+     onclick="goBusinessFromAbout('home')">
 
     <div class="field-icon">🏠</div>
 
@@ -311,7 +308,7 @@ class="social-icon facebook">
 </div>
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('trade')">
+     onclick="goBusinessFromAbout('trade')">
 
     <div class="field-icon">🌎</div>
 
@@ -328,80 +325,117 @@ class="social-icon facebook">
     </div>
 
 </section>
+<!-- =========================
+     ABOUT CONTENT (MARKDOWN RENDER)
+========================= -->
+
+<section class="about-section">
+
+    <div id="aboutContent"></div>
+
+</section>
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer id="contactSection" class="footer">
 
-    <div class="footer-container">
 
-        <h3>QTN GLOBAL</h3>
 
-        <p data-i18n="footerDesc">
-            Chuyên cung cấp cân điện tử,
-            đầu cân và thiết bị cân công nghiệp chính hãng.
-        </p>
+<div class="footer-container">
 
-        <p>
-            <span data-i18n="addressLabel">Địa chỉ:</span>
-            <span data-i18n="addressText"></span>
-        </p>
+    <h3>QTN GLOBAL</h3>
 
-        <p>
-            ☎ <span data-i18n="hotlineLabel">Hotline:</span>
-            <a href="tel:0905913636">0905913636</a>
-            —
-            <span data-i18n="techSupport">
-                Hỗ trợ kỹ thuật:
-            </span>
-            <a href="tel:0383598603">0383598603</a>
-        </p>
+    <p data-i18n="footerDesc"></p>
 
-        <p>
-            ✉ <span data-i18n="emailLabel">Email:</span>
-            <a href="mailto:qtnglobal.com@gmail.com">
-                qtnglobal.com@gmail.com
-            </a>
-        </p>
+    <p>
+        <span data-i18n="addressLabel"></span>
+        <span data-i18n="addressText"></span>
+    </p>
 
-        <p>
-            🌐 <span data-i18n="websiteLabel">Website:</span>
-            <a href="https://qtn-global.github.io"
-               target="_blank">
-                qtn-global.github.io
-            </a>
-        </p>
+    <p>
+        ☎
+        <span data-i18n="hotlineLabel"></span>
+        <a href="tel:0905913636">
+            0905913636
+        </a>
+    </p>
 
-    </div>
+    <p>
+        ✉
+        <span data-i18n="emailLabel"></span>
+        <a href="mailto:qtnglobal.com@gmail.com">
+            qtnglobal.com@gmail.com
+        </a>
+    </p>
+
+    <p>
+        🌐
+        <span data-i18n="websiteLabel"></span>
+        <a href="https://qtn-global.github.io"
+           target="_blank">
+            qtn-global.github.io
+        </a>
+    </p>
+
+</div>
+
 
 </footer>
+
 <!-- =========================
-     SCRIPT
+     DATA
 ========================= -->
 
 <script src="products.js"></script>
 <script src="products-i18n.js"></script>
 
-<script src="js/script-i18n.js"></script>
-<script src="js/script-base.js"></script>
+<!-- =========================
+     I18N
+========================= -->
 
+<script src="js/script-i18n.js"></script>
+<script src="js/about-i18n.js"></script>
+
+<!-- =========================
+     CORE
+========================= -->
+
+<script src="js/script-base.js"></script>
 <script src="js/search-system.js"></script>
 <script src="js/script-init-new.js"></script>
 
+<!-- =========================
+     HOME
+========================= -->
+
 <script src="js/script-home.js"></script>
 
+<!-- =========================
+     CART
+========================= -->
 
 <script src="js/script-cart.js"></script>
-<script src="js/script-detail-addcart.js"></script>
-<script src="js/script-detail-buynow.js"></script>
 
-<script src="js/i18n-sync-tool.js"></script>
+<!-- =========================
+     SLIDERS
+========================= -->
 
 <script src="js/slider-hero.js"></script>
 <script src="js/slider-brand.js"></script>
 
-<script src="js/app-router.js"></script>
+<!-- =========================
+     MARKDOWN
+========================= -->
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<script src="js/script-about.js"></script>
 
 </body>
 
 </html>
-
