@@ -13,11 +13,20 @@
    CONTAINER MARKDOWN CONTENT
 ========================= */
 
-#aboutContent {
+#aboutContent{
+    width: 93%;
+    max-width: 1280px;
+
+    margin: 10px auto;   /* sát Business Fields */
+
     background: #ffffff;
     padding: 35px 40px;
-    border-radius: 14px;
-    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+
+    border-radius: 18px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+    box-sizing: border-box;
 
     font-size: 16px;
     line-height: 1.85;
@@ -25,7 +34,6 @@
 
     overflow-wrap: break-word;
 }
-
 /* =========================
    TITLE SYSTEM
 ========================= */
