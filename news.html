@@ -146,9 +146,11 @@ class="social-icon facebook">
 
     <div class="news-header">
 
-        <h1>TIN TỨC</h1>
+        <h1 data-i18n="newsTitle">
+            TIN TỨC
+        </h1>
 
-        <p>
+        <p data-i18n="newsDesc">
             Cập nhật những thông tin mới nhất về sản phẩm,
             công nghệ cân điện tử và hoạt động của QTN GLOBAL.
         </p>
@@ -162,21 +164,42 @@ class="social-icon facebook">
 
             <div class="news-box">
 
-                <h3>DANH MỤC TIN TỨC</h3>
+                <h3 data-i18n="newsCategoryTitle">
+                    DANH MỤC TIN TỨC
+                </h3>
 
                 <ul class="news-categories">
 
-                    <li class="active">Tất cả tin tức</li>
+                    <li class="active"
+                        data-category="all"
+                        data-i18n="newsAll">
+                        Tất cả tin tức
+                    </li>
 
-                    <li>Tin công ty</li>
+                    <li data-category="company"
+                        data-i18n="newsCompany">
+                        Tin công ty
+                    </li>
 
-                    <li>Sản phẩm mới</li>
+                    <li data-category="industry"
+                        data-i18n="newsProduct">
+                        Sản phẩm mới
+                    </li>
 
-                    <li>Kiến thức cân điện tử</li>
+                    <li data-category="knowledge"
+                        data-i18n="newsKnowledge">
+                        Kiến thức cân điện tử
+                    </li>
 
-                    <li>Dự án thực hiện</li>
+                    <li data-category="project"
+                        data-i18n="newsProject">
+                        Dự án thực hiện
+                    </li>
 
-                    <li>Khuyến mãi</li>
+                    <li data-category="community"
+                        data-i18n="newsCommunity">
+                        Hoạt động cộng đồng
+                    </li>
 
                 </ul>
 
@@ -184,35 +207,12 @@ class="social-icon facebook">
 
             <div class="news-box">
 
-                <h3>BÀI VIẾT NỔI BẬT</h3>
+                <h3 data-i18n="featuredNewsTitle">
+                    BÀI VIẾT NỔI BẬT
+                </h3>
 
-                <div class="featured-news">
-
-                    <div class="featured-item">
-                        <img src="images/news/news1.jpg">
-                        <div>
-                            <h4>Cân điện tử chống nước là gì?</h4>
-                            <span>15/06/2026</span>
-                        </div>
-                    </div>
-
-                    <div class="featured-item">
-                        <img src="images/news/news2.jpg">
-                        <div>
-                            <h4>Top đầu cân điện tử phổ biến</h4>
-                            <span>12/06/2026</span>
-                        </div>
-                    </div>
-
-                    <div class="featured-item">
-                        <img src="images/news/news3.jpg">
-                        <div>
-                            <h4>Giải pháp cân cho nhà máy</h4>
-                            <span>08/06/2026</span>
-                        </div>
-                    </div>
-
-                </div>
+                <!-- script-news.js sẽ tự render -->
+                <div class="featured-news"></div>
 
             </div>
 
@@ -224,124 +224,25 @@ class="social-icon facebook">
             <div class="news-toolbar">
 
                 <input type="text"
+                       data-i18n-placeholder="searchNewsPlaceholder"
                        placeholder="Tìm kiếm tin tức...">
 
                 <select>
 
-                    <option>Mới nhất</option>
-                    <option>Cũ nhất</option>
+                    <option data-i18n="newsNewest">
+                        Mới nhất
+                    </option>
+
+                    <option data-i18n="newsOldest">
+                        Cũ nhất
+                    </option>
 
                 </select>
 
             </div>
 
-            <div class="news-grid">
-
-                <article class="news-card">
-
-                    <img src="images/news/news1.jpg">
-
-                    <div class="news-body">
-
-                        <span class="news-date">
-                            15/06/2026
-                        </span>
-
-                        <h3>
-                            Cân điện tử chống nước là gì?
-                        </h3>
-
-                        <p>
-                            Tìm hiểu đặc điểm và ứng dụng của cân điện tử chống nước trong sản xuất thực phẩm.
-                        </p>
-
-                        <a href="#">
-                            Xem chi tiết →
-                        </a>
-
-                    </div>
-
-                </article>
-
-                <article class="news-card">
-
-                    <img src="images/news/news2.jpg">
-
-                    <div class="news-body">
-
-                        <span class="news-date">
-                            12/06/2026
-                        </span>
-
-                        <h3>
-                            Top đầu cân điện tử được sử dụng nhiều nhất
-                        </h3>
-
-                        <p>
-                            Tổng hợp các mẫu đầu cân điện tử đang được doanh nghiệp lựa chọn.
-                        </p>
-
-                        <a href="#">
-                            Xem chi tiết →
-                        </a>
-
-                    </div>
-
-                </article>
-
-                <article class="news-card">
-
-                    <img src="images/news/news3.jpg">
-
-                    <div class="news-body">
-
-                        <span class="news-date">
-                            08/06/2026
-                        </span>
-
-                        <h3>
-                            Giải pháp cân công nghiệp cho nhà máy
-                        </h3>
-
-                        <p>
-                            Các giải pháp cân điện tử hiện đại giúp tối ưu vận hành nhà máy.
-                        </p>
-
-                        <a href="#">
-                            Xem chi tiết →
-                        </a>
-
-                    </div>
-
-                </article>
-
-                <article class="news-card">
-
-                    <img src="images/news/news4.jpg">
-
-                    <div class="news-body">
-
-                        <span class="news-date">
-                            05/06/2026
-                        </span>
-
-                        <h3>
-                            Hướng dẫn hiệu chuẩn cân điện tử
-                        </h3>
-
-                        <p>
-                            Các bước hiệu chuẩn cân điện tử đơn giản và chính xác.
-                        </p>
-
-                        <a href="#">
-                            Xem chi tiết →
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
+            <!-- script-news.js sẽ tự render -->
+            <div class="news-grid"></div>
 
         </div>
 
@@ -424,6 +325,8 @@ class="social-icon facebook">
 ========================= -->
 
 <script src="js/script-home.js"></script>
+<script src="js/news-data.js"></script>
+<script src="js/script-news.js"></script>
 
 <!-- =========================
      CART
