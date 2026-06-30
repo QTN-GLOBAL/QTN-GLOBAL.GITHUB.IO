@@ -70,6 +70,12 @@ function initAboutPage() {
     applyTranslations(lang);
     initLanguageSelect();
 }
+function goBusinessFromAbout(business) {
+
+    sessionStorage.setItem("filterBusiness", business);
+
+    window.location.href = "index.html";
+}
 
 // run
 document.addEventListener("DOMContentLoaded", initAboutPage);
