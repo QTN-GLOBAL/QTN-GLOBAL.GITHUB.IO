@@ -110,15 +110,17 @@ onclick="openCart()">
 ========================= -->
 <nav class="navbar">
 
-    <a href="index.html" data-i18n="home">
-        TRANG CHỦ
-    </a>
+    <a href="#" onclick="goHomePage();return false;"
+   data-i18n="home">
+    TRANG CHỦ
+</a>
 
-   <a href="about.html" data-i18n="about">
+<a href="#" onclick="goAbout();return false;"
+   data-i18n="about">
     GIỚI THIỆU
 </a>
 
-    <a href="#contactSection"
+<a href="#" onclick="goContact();return false;"
    data-i18n="contact">
     LIÊN HỆ
 </a>
@@ -260,7 +262,7 @@ onclick="openCart()">
     <div class="field-grid">
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('measure')">
+     onclick="goBusinessFromAbout('measure')">
     <div class="field-icon">⚖️</div>
 
     <h3 data-i18n="fieldMeasure">
@@ -274,7 +276,7 @@ onclick="openCart()">
 </div>
 
        <div class="field-card"
-     onclick="goHomeAndBusiness('industry')">
+     onclick="goBusinessFromAbout('industry')">
 
     <div class="field-icon">🏭</div>
 
@@ -289,7 +291,7 @@ onclick="openCart()">
 </div>
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('service')">
+     onclick="goBusinessFromAbout('service')">
 
     <div class="field-icon">🔧</div>
 
@@ -304,7 +306,7 @@ onclick="openCart()">
 </div>
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('home')">
+     onclick="goBusinessFromAbout('home')">
 
     <div class="field-icon">🏠</div>
 
@@ -319,7 +321,7 @@ onclick="openCart()">
 </div>
 
         <div class="field-card"
-     onclick="goHomeAndBusiness('trade')">
+     onclick="goBusinessFromAbout('trade')">
 
     <div class="field-icon">🌎</div>
 
@@ -349,7 +351,8 @@ onclick="openCart()">
      FOOTER
 ========================= -->
 
-<footer class="footer" id="footer">
+<footer id="contactSection" class="footer">
+
 
 
 <div class="footer-container">
@@ -393,16 +396,57 @@ onclick="openCart()">
 
 </footer>
 
-<!-- i18n -->
-<script src="js/script-i18n.js"></script>
+<!-- =========================
+     DATA
+========================= -->
 
-<!-- ABOUT DATA -->
+<script src="products.js"></script>
+<script src="products-i18n.js"></script>
+
+<!-- =========================
+     I18N
+========================= -->
+
+<script src="js/script-i18n.js"></script>
 <script src="js/about-i18n.js"></script>
 
-<!-- MARKED LIBRARY (BẮT BUỘC) -->
+<!-- =========================
+     CORE
+========================= -->
+
+<script src="js/script-base.js"></script>
+<script src="js/search-system.js"></script>
+<script src="js/script-init-new.js"></script>
+
+<!-- =========================
+     HOME
+========================= -->
+
+<script src="js/script-home.js"></script>
+
+<!-- =========================
+     CART
+========================= -->
+
+<script src="js/script-cart.js"></script>
+
+<!-- =========================
+     SLIDERS
+========================= -->
+
+<script src="js/slider-hero.js"></script>
+<script src="js/slider-brand.js"></script>
+
+<!-- =========================
+     MARKDOWN
+========================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-<!-- ABOUT LOGIC -->
+<!-- =========================
+     ABOUT
+========================= -->
+
 <script src="js/script-about.js"></script>
 
 </body>
