@@ -132,18 +132,18 @@ function goContact() {
         window.location.pathname.endsWith("/")
     ) {
 
-        document.querySelector("footer")
+        document.getElementById("contactSection")
             ?.scrollIntoView({
-                behavior: "smooth"
+                behavior: "smooth",
+                block: "start"
             });
 
         return;
     }
 
-    // Nếu ở About hoặc Detail → quay về footer của index
-    window.location.href = "index.html#footer";
+    // Nếu ở About hoặc Detail → quay về index + scroll đúng section
+    window.location.href = "index.html#contactSection";
 }
-
 /* =========================
    ABOUT
 ========================= */
