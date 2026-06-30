@@ -62,9 +62,9 @@ function renderNews(list){
                     ${n.summary}
                 </p>
 
-                <a href="news-detail.html?id=${n.id}">
-                    ${t("newsReadMore") || "Xem chi tiết →"}
-                </a>
+                <a href="news-detail.html?id=${news.id}">
+    ${t("newsReadMore")} →
+</a>
 
             </div>
 
@@ -233,6 +233,24 @@ function renderFeaturedNews(){
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+const langSelect =
+    document.getElementById(
+        "languageSelect"
+    );
+
+if(langSelect){
+
+    langSelect.addEventListener(
+        "change",
+        () => {
+
+            renderNews(currentNews);
+
+            renderFeaturedNews();
+
+        }
+    );
+}
 
         renderNews(newsData);
 

@@ -25,6 +25,7 @@ searchNewsPlaceholder: "Tìm kiếm tin tức...",
 
 newsNewest: "Mới nhất",
 newsOldest: "Cũ nhất",
+newsReadMore: "Xem chi tiết",
         contact: "LIÊN HỆ",
 
         search: "Tìm kiếm",
@@ -175,6 +176,7 @@ searchNewsPlaceholder: "Search articles...",
 
 newsNewest: "Newest",
 newsOldest: "Oldest",
+newsReadMore: "Read More",
         contact: "CONTACT",
 
         search: "Search",
@@ -325,6 +327,7 @@ searchNewsPlaceholder: "搜索新闻...",
 
 newsNewest: "最新",
 newsOldest: "最旧",
+newsReadMore: "查看详情",
         contact: "联系我们",
 
         search: "搜索",
