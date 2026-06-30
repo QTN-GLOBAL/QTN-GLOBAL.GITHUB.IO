@@ -200,11 +200,11 @@
     align-items: center;
     justify-content: space-between;
 
-    gap: 10px;
+    gap: 8px;
 
-    padding: 8px 20px;
+    padding: 0 20px;
 
-    min-height: 280px;
+    min-height: 200px;
 
     background: #1565c0;
 
@@ -219,9 +219,9 @@
 }
 
 .hero-left h1{
-    font-size:30px;
-    line-height:1.2;
-    margin-bottom:12px;
+    font-size:28px;      /* giảm nhẹ từ 30 → gọn hơn */
+    line-height:1.15;    /* giảm từ 1.2 → giúp hero thấp xuống */
+    margin-bottom:8px;   /* giảm từ 12 → tiết kiệm chiều cao */
 }
 
 .highlight{
@@ -232,30 +232,32 @@
 
 .hero-list{
     list-style:none;
-    margin-bottom:15px;
+    margin:8px 0 10px 0;   /* giảm margin-bottom */
+    padding:0;
 }
 
 .hero-list li{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:6px;              /* giảm từ 8 → gọn hơn */
 
-    font-size:15px;
+    font-size:14px;      /* giảm nhẹ từ 15 */
 
-    margin-bottom:8px;
+    margin-bottom:6px;   /* giảm từ 8 */
 }
 
 .hero-list i{
     color:#fff176;
-    font-size:14px;
+    font-size:13px;      /* giảm nhẹ */
 }
 
 /* PHONE */
 
 .hero-contact{
     display:flex;
-    gap:12px;
+    gap:10px;
     flex-wrap:wrap;
+    margin-top:6px;   /* thêm để kiểm soát spacing tổng */
 }
 
 .hero-phone{
@@ -265,8 +267,10 @@
 
     text-decoration:none;
 
-    font-size:17px;
+    font-size:15px;   /* giảm từ 17 → gọn đáng kể */
     font-weight:700;
+
+    line-height:1.2;
 }
 
 .hero-phone.green{
@@ -278,7 +282,7 @@
 }
 
 .hero-phone i{
-    font-size:15px;
+    font-size:14px;   /* giảm nhẹ */
 }
 
 /* RIGHT */
@@ -288,30 +292,35 @@
     display:flex;
     justify-content:center;
     align-items:center;
+
+    padding:0;          /* tránh đội chiều cao */
+    margin:0;
 }
 
 /* SLIDER */
 
 .banner-slider{
     width:100%;
-    max-width:380px;
-
+    max-width:360px;     /* giảm nhẹ từ 380 */
+    
     background:#fff;
 
     border-radius:12px;
 
-    padding:8px;
+    padding:6px;         /* giảm từ 8 */
 
     box-shadow:0 6px 18px rgba(0,0,0,.12);
 
     overflow:hidden;
 }
 
+/* MAIN SLIDER AREA */
 .slider-track{
     position:relative;
-    height:200px;
+    height:160px;        /* giảm từ 200 → cực quan trọng */
 }
 
+/* IMAGES */
 .slider-track img{
     position:absolute;
     inset:0;
@@ -323,11 +332,9 @@
 
     opacity:0;
 
-    transition:
-        opacity .5s ease,
-        transform .5s ease;
+    transition:opacity .5s ease, transform .5s ease;
 
-    transform:translateX(30px);
+    transform:translateX(20px);  /* giảm từ 30 */
 }
 
 .slider-track img.active{
@@ -335,17 +342,18 @@
     transform:translateX(0);
 }
 
+/* DOTS */
 .slider-dots{
     display:flex;
     justify-content:center;
-    gap:8px;
+    gap:6px;             /* giảm từ 8 */
 
-    margin-top:10px;
+    margin-top:6px;     /* giảm từ 10 */
 }
 
 .slider-dot{
-    width:10px;
-    height:10px;
+    width:8px;          /* giảm từ 10 */
+    height:8px;
 
     border-radius:50%;
 
@@ -360,13 +368,9 @@
     background:#1565c0;
 }
 
+/* ❌ QUAN TRỌNG: XÓA HOẶC KHÔNG DÙNG */
 .banner-slider img{
-    width:100%;
-    height:220px;
-
-    object-fit:contain;
-
-    display:block;
+    display:none;  /* tránh xung đột height 220px */
 }
 /* =========================
    MAIN LAYOUT
@@ -580,18 +584,18 @@
 .business-fields{
     width: 93%;
     max-width: 1280px;
-    margin: 15px auto;
+    margin: 10px auto;   /* giảm từ 15 */
     background: #ffffff;
     border-radius: 18px;
-    padding: 15px 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    padding: 12px 18px;  /* giảm từ 15 20 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* nhẹ hơn */
 }
 
 .business-fields h2{
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;      /* giảm từ 22 */
     color: #0b3f91;
-    margin-bottom: 15px;
+    margin-bottom: 12px;  /* giảm */
     font-weight: 700;
     position: relative;
 }
@@ -610,91 +614,74 @@
 .field-grid{
     display: grid;
     grid-template-columns: repeat(5,1fr);
-    gap: 10px;
+    gap: 8px;   /* giảm từ 10 */
 }
 
 .field-card{
     background: #ffffff;
     border: 1px solid #e6e6e6;
     border-radius: 12px;
-    padding: 14px 10px;
+    padding: 12px 8px;   /* giảm từ 14 10 */
     text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: 0.25s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04); /* nhẹ hơn */
 }
 
 .field-card:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px); /* giảm từ -3 */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.06);
 }
 
 .field-icon{
-    font-size: 26px;
-    margin-bottom: 8px;
+    font-size: 24px;  /* giảm từ 26 */
+    margin-bottom: 6px;
 }
 
 .field-card h3{
-    color: #0b3f91;
-    font-size: 15px;
-    margin-bottom: 5px;
-    font-weight: 700;
+    font-size: 14px;  /* giảm từ 15 */
+    margin-bottom: 4px;
 }
 
 .field-card p{
-    color: #666;
-    font-size: 12px;
-    line-height: 1.3;
+    font-size: 11.5px; /* giảm nhẹ */
+    line-height: 1.25;
 }
 
 /* TABLET */
 
 @media (max-width:1000px){
-
     .field-grid{
         grid-template-columns: repeat(2,1fr);
+        gap: 8px;
     }
-
 }
-
-/* MOBILE */
 
 @media (max-width:768px){
 
     .business-fields{
         width: 95%;
-        padding: 20px 15px;
+        padding: 15px 12px;  /* giảm */
     }
 
     .business-fields h2{
-        font-size: 24px;
-    }
-
-    .business-fields h2::before,
-    .business-fields h2::after{
-        width: 35px;
-        margin: 0 8px;
-    }
-
-    .field-grid{
-        grid-template-columns: 1fr;
+        font-size: 20px;     /* giảm từ 24 */
     }
 
     .field-card{
-        padding: 20px 15px;
+        padding: 14px 10px;  /* giảm */
     }
 
     .field-icon{
-        font-size: 32px;
+        font-size: 28px;     /* giảm từ 32 */
     }
 
     .field-card h3{
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .field-card p{
-        font-size: 13px;
+        font-size: 12px;
     }
-
 }
 .product-buttons{
     display:flex;
