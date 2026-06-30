@@ -151,3 +151,6 @@ function goContact() {
 function goAbout() {
     window.location.href = "about.html";
 }
+function goBusinessFromAbout(field) {
+    window.location.href = "index.html?field=" + field;
+}
