@@ -384,4 +384,21 @@ function renderGridWithBrand(products, title) {
         </div>
     `;
 }
+window.addEventListener("DOMContentLoaded", () => {
 
+    const params = new URLSearchParams(window.location.search);
+    const field = params.get("field");
+
+    if (field) {
+
+        // dùng luôn system filter sẵn có của bạn
+        sessionStorage.setItem("filterBusiness", field);
+
+        // trigger lại flow giống index
+        goHomeAndBusiness(field);
+
+        // xoá URL để tránh lặp
+        window.history.replaceState({}, "", "index.html");
+    }
+
+});
