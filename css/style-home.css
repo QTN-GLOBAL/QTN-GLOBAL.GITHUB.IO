@@ -368,10 +368,7 @@
     background:#1565c0;
 }
 
-/* ❌ QUAN TRỌNG: XÓA HOẶC KHÔNG DÙNG */
-.banner-slider img{
-    display:none;  /* tránh xung đột height 220px */
-}
+
 /* =========================
    MAIN LAYOUT
 ========================= */
