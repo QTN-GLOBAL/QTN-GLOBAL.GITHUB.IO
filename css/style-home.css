@@ -2,7 +2,7 @@
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
     gap:15px;
-    padding:15px;
+    padding:0;
 }
 
 .product-card{
@@ -384,9 +384,9 @@
     240px
     1fr;
 
-    gap:15px;
+    gap:0px;
 
-    padding:20px;
+    padding:10px 15px;
 
     align-items:start;
 }
@@ -994,13 +994,13 @@
 ========================= */
 
 .brand-section{
-    margin: 10px 0;
+    margin: 0;
 }
-
 #homeContainer{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0;   /* ❌ bỏ gap */
+    padding: 0;
 }
 .brand-track{
     display:grid !important;
