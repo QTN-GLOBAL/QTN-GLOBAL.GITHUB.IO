@@ -18,7 +18,6 @@ function formatNewsDate(dateStr){
 /* =========================
    RENDER NEWS
 ========================= */
-
 function renderNews(list){
 
     const grid =
@@ -37,36 +36,43 @@ function renderNews(list){
         return;
     }
 
-    grid.innerHTML = list.map(news => `
+    grid.innerHTML = list.map(news => {
+
+        const n =
+            getTranslatedNews(news);
+
+        return `
 
         <article class="news-card">
 
-            <img src="${news.image}"
-                 alt="${news.title}">
+            <img src="${n.image}"
+                 alt="${n.title}">
 
             <div class="news-body">
 
                 <span class="news-date">
-                    ${formatNewsDate(news.date)}
+                    ${formatNewsDate(n.date)}
                 </span>
 
                 <h3>
-                    ${news.title}
+                    ${n.title}
                 </h3>
 
                 <p>
-                    ${news.summary}
+                    ${n.summary}
                 </p>
 
-                <a href="news-detail.html?id=${news.id}">
-                    Xem chi tiết →
+                <a href="news-detail.html?id=${n.id}">
+                    ${t("newsReadMore") || "Xem chi tiết →"}
                 </a>
 
             </div>
 
         </article>
 
-    `).join("");
+        `;
+
+    }).join("");
 }
 
 /* =========================
@@ -120,14 +126,16 @@ function searchNews(keyword){
     const result =
         newsData.filter(news => {
 
-            const text =
-                (
-                    news.title +
-                    " " +
-                    news.summary
-                )
-                .toLowerCase();
+           const n =
+    getTranslatedNews(news);
 
+const text =
+(
+    n.title +
+    " " +
+    n.summary
+)
+.toLowerCase();
             return text.includes(keyword);
 
         });
@@ -185,33 +193,39 @@ function renderFeaturedNews(){
         .slice(0,3);
 
     box.innerHTML =
-        featured.map(news => `
+        featured.map(news => {
+
+        const n =
+            getTranslatedNews(news);
+
+        return `
 
         <div class="featured-item"
              onclick="
              location.href=
-             'news-detail.html?id=${news.id}'
+             'news-detail.html?id=${n.id}'
              ">
 
-            <img src="${news.image}">
+            <img src="${n.image}">
 
             <div>
 
                 <h4>
-                    ${news.title}
+                    ${n.title}
                 </h4>
 
                 <span>
-                    ${formatNewsDate(news.date)}
+                    ${formatNewsDate(n.date)}
                 </span>
 
             </div>
 
         </div>
 
-    `).join("");
-}
+    `;
 
+    }).join("");
+}
 /* =========================
    INIT
 ========================= */
