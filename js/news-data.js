@@ -53,8 +53,18 @@ const newsData = [
     image: "images/news/news2.jpg",
 
     images: [
-        "images/news/news2.jpg"
-    ],
+        "images/news/news2/1.jpg",
+        "images/news/news2/2.jpg",
+        "images/news/news2/3.jpg",
+        "images/news/news2/4.jpg",
+        "images/news/news2/5.jpg",
+        "images/news/news2/6.jpg",
+        "images/news/news2/7.jpg",
+        "images/news/news2/8.jpg",
+        "images/news/news2/9.jpg",
+        "images/news/news2/10.jpg",
+        "images/news/news2/11.jpg"
+    ]
 
     youtube: "",
 
