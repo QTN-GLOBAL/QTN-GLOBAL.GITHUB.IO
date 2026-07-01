@@ -8,6 +8,10 @@ function openBuyPopup() {
     if (!window.currentProduct) return;
 
     const product = window.currentProduct;
+    if (product.brand === "Amway") {
+    window.open("https://www.amway.com.vn", "_blank");
+    return;
+}
 
     const popup = document.getElementById("buyPopup");
     if (popup) popup.style.display = "flex";
@@ -175,6 +179,12 @@ function validateCustomerForm() {
 
 function sendOrderZalo() {
 
+    const product = window.currentProduct;
+
+    if (product?.brand === "Amway") {
+        window.open("https://www.amway.com.vn", "_blank");
+        return;
+    }
     // Kiểm tra thông tin khách hàng
     if (!validateCustomerForm()) {
         alert(t("pleaseFillCustomerInfo"));
@@ -223,6 +233,12 @@ function sendOrderZalo() {
 
 function sendOrderMessenger() {
 
+    const product = window.currentProduct;
+
+    if (product?.brand === "Amway") {
+        window.open("https://www.amway.com.vn", "_blank");
+        return;
+    }
     // Kiểm tra thông tin khách hàng
     if (!validateCustomerForm()) {
         alert(t("pleaseFillCustomerInfo"));

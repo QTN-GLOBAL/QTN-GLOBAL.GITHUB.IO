@@ -7,6 +7,13 @@ function openAddCartPopup() {
     if (!window.currentProduct) return;
 
     const product = window.currentProduct;
+
+    // ⭐ CHẶN AMWAY NGAY TỪ ĐẦU
+    if (product.brand === "Amway") {
+        window.open("https://www.amway.com.vn", "_blank");
+        return;
+    }
+
     window.selectedProduct = product;
 
     const popup = document.getElementById("addCartPopup");
