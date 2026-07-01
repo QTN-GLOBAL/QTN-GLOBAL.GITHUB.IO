@@ -250,6 +250,16 @@
     padding:0;
     box-shadow:none;
 }
+.news-content-image{
+    display:block;
+    width:100%;
+    max-width:780px;      /* giống kích thước slider */
+    height:auto;
+    max-height:420px;     /* giống slider */
+    object-fit:contain;
+    margin:25px auto;
+    border-radius:12px;
+}
 
 /* Ẩn thumbnail */
 .news-thumb-list{
@@ -333,14 +343,4 @@
         font-size:26px;
     }
 
-}
-.news-content-image{
-
-    display:block;
-
-    max-width:100%;
-
-    margin:30px auto;
-
-    border-radius:12px;
 }
