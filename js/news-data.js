@@ -11,6 +11,12 @@ const newsData = [
 
     image: "images/news/news1.jpg",
 
+    images: [
+        "images/news/news1.jpg"
+    ],
+
+    youtube: "",
+
     summary:
         "QTN GLOBAL tiếp tục mở rộng hoạt động cung cấp cân điện tử và giải pháp đo lường công nghiệp trên toàn quốc.",
 
@@ -26,8 +32,6 @@ const newsData = [
         công ty cam kết mang tới sản phẩm chính hãng,
         dịch vụ chuyên nghiệp và hỗ trợ nhanh chóng.
         </p>
-
-        <img src="images/news/news1.jpg">
 
         <p>
         Trong thời gian tới, QTN GLOBAL sẽ mở rộng
@@ -48,6 +52,12 @@ const newsData = [
 
     image: "images/news/news2.jpg",
 
+    images: [
+        "images/news/news2.jpg"
+    ],
+
+    youtube: "",
+
     summary:
         "Hoàn thành bàn giao cân ô tô cho khách hàng tại Bắc Ninh.",
 
@@ -56,8 +66,6 @@ const newsData = [
         Dự án lắp đặt cân điện tử công nghiệp
         đã được hoàn thành đúng tiến độ.
         </p>
-
-        <img src="images/news/news2.jpg">
 
         <p>
         Hệ thống hoạt động ổn định,
@@ -77,6 +85,12 @@ const newsData = [
 
     image: "images/news/news3.jpg",
 
+    images: [
+        "images/news/news3.jpg"
+    ],
+
+    youtube: "",
+
     summary:
         "Một số tiêu chí quan trọng giúp doanh nghiệp lựa chọn cân điện tử phù hợp.",
 
@@ -91,8 +105,6 @@ const newsData = [
         Ngoài ra cần quan tâm tới thương hiệu,
         chế độ bảo hành và dịch vụ kỹ thuật.
         </p>
-
-        <img src="images/news/news3.jpg">
     `
 },
 
@@ -107,6 +119,12 @@ const newsData = [
 
     image: "images/news/news4.jpg",
 
+    images: [
+        "images/news/news4.jpg"
+    ],
+
+    youtube: "",
+
     summary:
         "Cân điện tử đang ngày càng được ứng dụng rộng rãi trong tự động hóa sản xuất.",
 
@@ -116,10 +134,7 @@ const newsData = [
         cân điện tử kết hợp phần mềm quản lý
         nhằm nâng cao hiệu quả vận hành.
         </p>
-
-        <img src="images/news/news4.jpg">
     `
 }
-
 
 ];
