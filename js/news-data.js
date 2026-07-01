@@ -3,44 +3,35 @@ const newsData = [
 {
     id: 1,
 
-    category: "company",
+    category: "guide",
 
-    title: "QTN GLOBAL mở rộng dịch vụ cân điện tử công nghiệp",
+    title: "Hướng dẫn sử dụng cân điện tử EXCELL X4252 KW",
 
-    date: "2026-06-30",
+    date: "2026-07-01",
 
-    image: "images/news/news1.jpg",
+    image: "",
 
-    images: [
-        "images/news/news1.jpg"
-    ],
+    images: [],
 
-    youtube: "",
+    youtube: "https://www.youtube.com/watch?v=yYLBZ8VOGQM&t=47s",
 
     summary:
-        "QTN GLOBAL tiếp tục mở rộng hoạt động cung cấp cân điện tử và giải pháp đo lường công nghiệp trên toàn quốc.",
+        "Video hướng dẫn sử dụng cân điện tử EXCELL X4252 KW.",
 
     content: `
         <p>
-        QTN GLOBAL tiếp tục mở rộng hoạt động cung cấp
-        cân điện tử, đầu cân điện tử và các giải pháp
-        đo lường công nghiệp trên toàn quốc.
+        Video hướng dẫn chi tiết cách sử dụng cân điện tử EXCELL X4252 KW,
+        bao gồm các thao tác khởi động, sử dụng các chức năng trên bàn phím,
+        cài đặt thông số cơ bản và lưu ý trong quá trình vận hành.
         </p>
 
         <p>
-        Với đội ngũ kỹ thuật giàu kinh nghiệm,
-        công ty cam kết mang tới sản phẩm chính hãng,
-        dịch vụ chuyên nghiệp và hỗ trợ nhanh chóng.
-        </p>
-
-        <p>
-        Trong thời gian tới, QTN GLOBAL sẽ mở rộng
-        thêm các dòng sản phẩm phục vụ lĩnh vực
-        công nghiệp, thương mại và gia dụng.
+        Video phù hợp cho người mới sử dụng cũng như kỹ thuật viên cần
+        tham khảo quy trình vận hành đúng cách để đảm bảo độ chính xác
+        và kéo dài tuổi thọ của thiết bị.
         </p>
     `
 },
-
 {
     id: 2,
 
