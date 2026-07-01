@@ -446,6 +446,13 @@ const product = rawProduct
     : null;
 
 window.currentProduct = product;
+
+/* ===== AMWAY CONTROL ===== */
+if (product.brand === "Amway") {
+
+    document.querySelector(".btn-add-cart")?.style.display = "none";
+    document.querySelector(".btn-buy-now")?.style.display = "none";
+}
 function renderRelatedProducts() {
 
     if (!rawProduct) return;
