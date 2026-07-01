@@ -1,133 +1,148 @@
 /* =========================
-   NEWS DETAIL
+   GET NEWS ID
 ========================= */
 
-const newsId = Number(
-    new URLSearchParams(
-        location.search
-    ).get("id")
-);
+const newsId =
+    Number(
+        new URLSearchParams(
+            location.search
+        ).get("id")
+    );
 
-const news =
+/* =========================
+   GET NEWS
+========================= */
+
+const rawNews =
     newsData.find(
         n => n.id === newsId
     );
+
+if(!rawNews){
+    location.href = "news.html";
+}
+
+/* =========================
+   I18N NEWS
+========================= */
+
+function getCurrentNews(){
+
+    const lang =
+        localStorage.getItem("language") || "vi";
+
+    if(
+        typeof newsTranslations !== "undefined" &&
+        newsTranslations[lang] &&
+        newsTranslations[lang][rawNews.id]
+    ){
+
+        return {
+            ...rawNews,
+            ...newsTranslations[lang][rawNews.id]
+        };
+    }
+
+    return rawNews;
+}
 
 /* =========================
    RENDER
 ========================= */
 
-if(news){
+function renderNewsDetail(){
+
+    const news =
+        getCurrentNews();
 
     document.title =
-        news.title +
-        " | QTN GLOBAL";
+        news.title + " | QTN GLOBAL";
 
-    const container =
-        document.getElementById(
-            "newsContent"
-        );
+    document.getElementById(
+        "newsTitle"
+    ).innerText =
+        news.title;
 
-    if(container){
+    document.getElementById(
+        "newsDate"
+    ).innerText =
+        new Date(
+            news.date
+        ).toLocaleDateString();
 
-        container.innerHTML = `
+    let html = "";
 
-            <article class="news-detail">
+    /* =========================
+       GALLERY
+    ========================= */
 
-                <h1>
-                    ${news.title}
-                </h1>
+    if(
+        news.images &&
+        news.images.length > 0
+    ){
 
-                <div class="news-detail-date">
+        html += `
 
-                    ${new Date(
-                        news.date
-                    ).toLocaleDateString("vi-VN")}
+        <div class="news-gallery">
 
-                </div>
+            ${news.images.map(img => `
 
-                <div id="newsGallery"
-                     class="news-gallery">
-                </div>
+                <img src="${img}"
+                     alt="${news.title}">
 
-                <div class="news-detail-content">
+            `).join("")}
 
-                    ${news.content}
-
-                </div>
-
-                <div id="newsVideo">
-                </div>
-
-            </article>
+        </div>
 
         `;
-
-        renderNewsGallery();
-
-        renderYoutube();
     }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    html += news.content;
+
+    /* =========================
+       YOUTUBE
+    ========================= */
+
+    if(
+        news.youtube &&
+        news.youtube.trim() !== ""
+    ){
+
+        html += `
+
+        <div class="news-video">
+
+            <a href="${news.youtube}"
+               target="_blank"
+               class="youtube-btn">
+
+                ▶ Xem video trên YouTube
+
+            </a>
+
+        </div>
+
+        `;
+    }
+
+    document.getElementById(
+        "newsContent"
+    ).innerHTML = html;
 }
 
 /* =========================
-   GALLERY
+   INIT
 ========================= */
 
-function renderNewsGallery(){
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    if(
-        !news ||
-        !news.images ||
-        news.images.length === 0
-    ){
-        return;
+        renderNewsDetail();
+
     }
-
-    const gallery =
-        document.getElementById(
-            "newsGallery"
-        );
-
-    if(!gallery) return;
-
-    gallery.innerHTML =
-        news.images.map(img => `
-
-            <img src="${img}"
-                 alt="${news.title}">
-
-        `).join("");
-}
-
-/* =========================
-   YOUTUBE
-========================= */
-
-function renderYoutube(){
-
-    if(
-        !news ||
-        !news.youtube
-    ){
-        return;
-    }
-
-    const videoBox =
-        document.getElementById(
-            "newsVideo"
-        );
-
-    if(!videoBox) return;
-
-    videoBox.innerHTML = `
-
-        <a class="youtube-btn"
-           href="${news.youtube}"
-           target="_blank">
-
-            ▶ Xem video liên quan
-
-        </a>
-
-    `;
-}
+);
