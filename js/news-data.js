@@ -50,7 +50,7 @@ const newsData = [
 
     date: "2026-06-20",
 
-    image: "images/news/news2.jpg",
+    image: "images/news/news2/1.jpg",
 
     images: [
         "images/news/news2/1.jpg",

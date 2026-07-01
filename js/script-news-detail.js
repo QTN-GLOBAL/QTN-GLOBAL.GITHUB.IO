@@ -47,6 +47,77 @@ function getCurrentNews(){
 }
 
 /* =========================
+   NEWS SLIDER
+========================= */
+
+let currentNewsImage = 0;
+
+window.changeNewsImage = function(index){
+
+    const news =
+        getCurrentNews();
+
+    currentNewsImage = index;
+
+    const mainImage =
+        document.getElementById(
+            "newsMainImage"
+        );
+
+    if(mainImage){
+        mainImage.src =
+            news.images[index];
+    }
+
+    document
+        .querySelectorAll(
+            ".news-thumb-list img"
+        )
+        .forEach(img =>
+            img.classList.remove("active")
+        );
+
+    const active =
+        document.querySelector(
+            `.news-thumb-list img[data-index="${index}"]`
+        );
+
+    if(active){
+        active.classList.add("active");
+    }
+};
+
+function startNewsSlider(){
+
+    const news =
+        getCurrentNews();
+
+    if(
+        !news.images ||
+        news.images.length <= 1
+    ){
+        return;
+    }
+
+    setInterval(()=>{
+
+        currentNewsImage++;
+
+        if(
+            currentNewsImage >=
+            news.images.length
+        ){
+            currentNewsImage = 0;
+        }
+
+        changeNewsImage(
+            currentNewsImage
+        );
+
+    },3000);
+}
+
+/* =========================
    RENDER
 ========================= */
 
@@ -73,7 +144,7 @@ function renderNewsDetail(){
     let html = "";
 
     /* =========================
-       GALLERY
+       GALLERY SLIDER
     ========================= */
 
     if(
@@ -83,14 +154,29 @@ function renderNewsDetail(){
 
         html += `
 
-        <div class="news-gallery">
+        <div class="news-slider">
 
-            ${news.images.map(img => `
+            <img id="newsMainImage"
+                 class="news-main-image"
+                 src="${news.images[0]}"
+                 alt="${news.title}">
 
-                <img src="${img}"
-                     alt="${news.title}">
+            <div class="news-thumb-list">
 
-            `).join("")}
+                ${news.images.map((img,index)=>`
+
+                    <img src="${img}"
+                         data-index="${index}"
+                         onclick="changeNewsImage(${index})"
+                         class="${
+                            index === 0
+                            ? "active"
+                            : ""
+                         }">
+
+                `).join("")}
+
+            </div>
 
         </div>
 
@@ -143,6 +229,11 @@ document.addEventListener(
     () => {
 
         renderNewsDetail();
+
+        setTimeout(
+            startNewsSlider,
+            300
+        );
 
     }
 );
