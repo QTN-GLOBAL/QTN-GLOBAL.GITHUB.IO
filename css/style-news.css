@@ -229,27 +229,30 @@
     margin:25px 0;
 }
 /* =========================
-   NEWS SLIDER - SHOW FULL IMAGE (NO CROP)
+   NEWS SLIDER - BALANCED VIEW (NO CROP)
 ========================= */
 
 .news-slider{
-    max-width:900px;     /* thu hẹp chiều ngang */
-    margin:20px auto;    /* căn giữa */
+    max-width:780px;     /* nhỏ hơn nữa để gọn */
+    margin:20px auto;
 }
 
-/* Ảnh chính: KHÔNG CROP */
+/* Ảnh chính - cân đối 2 chiều */
 .news-main-image{
     width:100%;
-    height:auto;          /* bỏ chiều cao cố định */
-    max-height:500px;     /* giới hạn chiều cao */
-    object-fit:contain;   /* hiển thị full ảnh */
+    height:auto;
+    max-height:420px;     /* giới hạn chiều cao để không quá dài */
+    object-fit:contain;   /* giữ nguyên toàn bộ ảnh */
     display:block;
     border-radius:12px;
-    background:#f5f5f5;   /* nền khi ảnh hở viền */
-    box-shadow:0 6px 18px rgba(0,0,0,.12);
+    background:#f5f5f5;
+
+    /* tạo cảm giác “khung ảnh” đẹp hơn */
+    padding:6px;
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
 }
 
-/* ẨN thumbnail nếu còn */
+/* Ẩn thumbnail */
 .news-thumb-list{
     display:none !important;
 }
