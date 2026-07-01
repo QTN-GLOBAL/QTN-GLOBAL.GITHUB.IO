@@ -237,7 +237,9 @@ if(hasImages || hasYoutube){
         src="${getYoutubeThumbnail(news.youtube)}"
         alt="${news.title}">
 
-    <span class="news-play-btn">▶</span>
+    <span class="news-play-btn">
+    <span class="play-icon"></span>
+</span>
 
 </a>
         `;
