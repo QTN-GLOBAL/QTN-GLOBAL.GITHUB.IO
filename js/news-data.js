@@ -64,7 +64,7 @@ const newsData = [
         "images/news/news2/9.jpg",
         "images/news/news2/10.jpg",
         "images/news/news2/11.jpg"
-    ]
+    ],
 
     youtube: "",
 
