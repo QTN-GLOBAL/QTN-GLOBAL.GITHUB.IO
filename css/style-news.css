@@ -229,49 +229,29 @@
     margin:25px 0;
 }
 /* =========================
-   HERO NEWS SLIDER (FINAL)
+   NEWS SLIDER - SHOW FULL IMAGE (NO CROP)
 ========================= */
 
 .news-slider{
-    margin:20px auto;
-    max-width:1100px;   /* thu hẹp để slider đẹp như hero */
+    max-width:900px;     /* thu hẹp chiều ngang */
+    margin:20px auto;    /* căn giữa */
 }
 
-/* Ảnh chính kiểu hero */
+/* Ảnh chính: KHÔNG CROP */
 .news-main-image{
     width:100%;
-    height:420px;       /* tăng chiều cao để giống hero banner */
-    object-fit:cover;
-    border-radius:14px;
+    height:auto;          /* bỏ chiều cao cố định */
+    max-height:500px;     /* giới hạn chiều cao */
+    object-fit:contain;   /* hiển thị full ảnh */
     display:block;
-    box-shadow:0 8px 22px rgba(0,0,0,.12);
+    border-radius:12px;
+    background:#f5f5f5;   /* nền khi ảnh hở viền */
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
 }
 
-/* ẨN THUMBNAIL (không dùng nữa) */
+/* ẨN thumbnail nếu còn */
 .news-thumb-list{
     display:none !important;
-}
-
-/* Hover nhẹ cho ảnh (nếu có JS chuyển slide) */
-.news-main-image{
-    transition:transform .3s ease;
-}
-
-.news-main-image:hover{
-    transform:scale(1.01);
-}
-
-/* Responsive */
-@media (max-width:768px){
-    .news-slider{
-        max-width:100%;
-        margin:15px 0;
-    }
-
-    .news-main-image{
-        height:260px;
-        border-radius:10px;
-    }
 }
 /* SCROLL BAR */
 
