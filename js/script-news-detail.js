@@ -182,12 +182,30 @@ function renderNewsDetail(){
 
         `;
     }
+/* =========================
+   CONTENT
+========================= */
 
-    /* =========================
-       CONTENT
-    ========================= */
+const paragraphs = news.content.split("</p>");
+
+if (paragraphs.length >= 2 && news.images.length > 1) {
+
+    html += paragraphs[0] + "</p>";
+
+    html += `
+        <img
+            src="${news.images[1]}"
+            class="news-content-image"
+            alt="${news.title}">
+    `;
+
+    html += paragraphs.slice(1).join("</p>");
+
+} else {
 
     html += news.content;
+
+}
 
     /* =========================
        YOUTUBE
