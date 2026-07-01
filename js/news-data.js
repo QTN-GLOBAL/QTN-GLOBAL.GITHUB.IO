@@ -9,7 +9,7 @@ const newsData = [
 
     date: "2026-07-01",
 
-    image: "",
+    image: "images/can-ban-dung/kw/1 - Copy.jpg",
 
     images: [],
 
