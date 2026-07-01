@@ -237,19 +237,18 @@
     margin:20px auto;
 }
 
-/* Ảnh chính - cân đối 2 chiều */
 .news-main-image{
     width:100%;
     height:auto;
-    max-height:420px;     /* giới hạn chiều cao để không quá dài */
-    object-fit:contain;   /* giữ nguyên toàn bộ ảnh */
+    max-height:420px;
+    object-fit:contain;
     display:block;
-    border-radius:12px;
-    background:#f5f5f5;
 
-    /* tạo cảm giác “khung ảnh” đẹp hơn */
-    padding:6px;
-    box-shadow:0 6px 18px rgba(0,0,0,.10);
+    border-radius:12px;
+
+    background:transparent;
+    padding:0;
+    box-shadow:none;
 }
 
 /* Ẩn thumbnail */
