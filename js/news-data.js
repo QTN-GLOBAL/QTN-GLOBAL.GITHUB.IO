@@ -3,7 +3,7 @@ const newsData = [
 {
     id: 1,
 
-    category: "guide",
+    category: "knowledge",
 
     title: "Hướng dẫn sử dụng cân điện tử EXCELL X4252 KW",
 
@@ -140,7 +140,7 @@ const newsData = [
 {
     id: 5,
 
-    category: "guide",
+    category: "knowledge",
 
     title: "Hướng dẫn cài đặt và hiệu chuẩn cân đếm EXCELL ALH4",
 
