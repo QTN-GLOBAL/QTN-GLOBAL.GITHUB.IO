@@ -228,3 +228,81 @@
 
     margin:25px 0;
 }
+/* =========================
+   NEWS GALLERY
+========================= */
+
+.news-gallery{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+    gap:15px;
+
+    margin:25px 0;
+}
+
+.news-gallery img{
+
+    width:100%;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.news-gallery img:hover{
+
+    transform:scale(1.03);
+}
+
+/* =========================
+   YOUTUBE BUTTON
+========================= */
+
+.youtube-btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:12px 22px;
+
+    background:#ff0000;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.youtube-btn:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.9;
+}
+
+/* =========================
+   NO NEWS
+========================= */
+
+.no-news{
+
+    text-align:center;
+
+    padding:50px;
+
+    color:#888;
+
+    font-size:18px;
+}
