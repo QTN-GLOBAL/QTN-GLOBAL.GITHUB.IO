@@ -279,6 +279,71 @@
     border-radius:10px;
 }
 /* =========================
+   YOUTUBE VIDEO COVER
+========================= */
+
+.news-video-cover{
+
+    position:relative;
+
+    display:block;
+
+    width:fit-content;
+
+    max-width:780px;
+
+    margin:20px auto;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    cursor:pointer;
+}
+
+/* Ảnh thumbnail */
+
+.news-video-cover img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    max-height:420px;
+
+    object-fit:contain;
+
+    border-radius:12px;
+
+    transition:.35s;
+}
+
+/* Lớp phủ tối nhẹ */
+
+.news-video-cover::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    background:rgba(0,0,0,.18);
+
+    transition:.3s;
+}
+
+/* =========================
    YOUTUBE PLAY BUTTON
 ========================= */
 
@@ -290,11 +355,9 @@
 
     left:50%;
 
-    transform:translate(-50%,-50%);
+    width:90px;
 
-    width:88px;
-
-    height:62px;
+    height:64px;
 
     background:#ff0000;
 
@@ -302,11 +365,15 @@
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
 
-    z-index:20;
+    align-items:center;
+
+    transform:translate(-50%,-50%);
+
+    z-index:100;
+
+    pointer-events:none;
 
     box-shadow:0 10px 30px rgba(0,0,0,.35);
 
@@ -327,37 +394,14 @@
 
     border-left:20px solid #fff;
 
-    margin-left:4px;
+    margin-left:5px;
 }
 
 /* Hover */
 
-.news-video-cover:hover .news-play-btn{
-
-    background:#e60000;
-
-    transform:translate(-50%,-50%) scale(1.12);
-}
-
-.news-video-cover:active .news-play-btn{
-
-    transform:translate(-50%,-50%) scale(.96);
-}
 .news-video-cover:hover::after{
 
     background:rgba(0,0,0,.08);
-}
-.news-video-cover img{
-
-    width:100%;
-
-    max-height:420px;
-
-    object-fit:contain;
-
-    display:block;
-
-    transition:.35s;
 }
 
 .news-video-cover:hover img{
@@ -365,6 +409,17 @@
     transform:scale(1.02);
 }
 
+.news-video-cover:hover .news-play-btn{
+
+    transform:translate(-50%,-50%) scale(1.12);
+
+    background:#e60000;
+}
+
+.news-video-cover:active .news-play-btn{
+
+    transform:translate(-50%,-50%) scale(.96);
+}
 /* =========================
    NO NEWS
 ========================= */
