@@ -229,37 +229,82 @@
     margin:25px 0;
 }
 /* =========================
-   NEWS GALLERY
+   NEWS IMAGE SLIDER
 ========================= */
 
-.news-gallery{
+.news-slider{
 
-    display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(280px,1fr));
-
-    gap:15px;
-
-    margin:25px 0;
+    margin:30px 0;
 }
 
-.news-gallery img{
+.news-main-image{
 
     width:100%;
 
+    height:550px;
+
+    object-fit:cover;
+
     border-radius:12px;
+
+    display:block;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.news-thumb-list{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+    overflow-x:auto;
+
+    padding-bottom:5px;
+}
+
+.news-thumb-list img{
+
+    width:120px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:8px;
 
     cursor:pointer;
 
-    transition:.3s;
+    border:3px solid transparent;
+
+    transition:.25s;
 }
 
-.news-gallery img:hover{
+.news-thumb-list img:hover{
 
-    transform:scale(1.03);
+    transform:translateY(-2px);
 }
 
+.news-thumb-list img.active{
+
+    border-color:#1565c0;
+}
+
+/* SCROLL BAR */
+
+.news-thumb-list::-webkit-scrollbar{
+
+    height:6px;
+}
+
+.news-thumb-list::-webkit-scrollbar-thumb{
+
+    background:#ccc;
+
+    border-radius:10px;
+}
 /* =========================
    YOUTUBE BUTTON
 ========================= */
@@ -305,4 +350,24 @@
     color:#888;
 
     font-size:18px;
+}
+@media(max-width:768px){
+
+    .news-main-image{
+
+        height:260px;
+    }
+
+    .news-thumb-list img{
+
+        width:80px;
+
+        height:60px;
+    }
+
+    .news-detail-header h1{
+
+        font-size:26px;
+    }
+
 }
