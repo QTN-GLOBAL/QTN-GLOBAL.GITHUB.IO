@@ -194,20 +194,25 @@ if(hasImages || hasYoutube){
                  alt="${news.title}">
         `;
 
-    }else{
+  }else{
 
-        html += `
-            <a href="${news.youtube}"
-               target="_blank">
+    html += `
+        <a href="${news.youtube}"
+           target="_blank"
+           class="news-video-cover">
 
-                <img class="news-main-image"
-                     src="${getYoutubeThumbnail(news.youtube)}"
-                     alt="${news.title}">
+            <img
+                class="news-main-image"
+                src="${getYoutubeThumbnail(news.youtube)}"
+                alt="${news.title}">
 
-            </a>
-        `;
-    }
+            <span class="news-play-btn">
+                <span class="play-icon"></span>
+            </span>
 
+        </a>
+    `;
+}
     html += `
         <div class="news-thumb-list">
     `;
@@ -225,7 +230,7 @@ if(hasImages || hasYoutube){
 
     }
 
-    if(hasYoutube){
+    if(hasImages && hasYoutube){
 
         html += `
             <a href="${news.youtube}"
