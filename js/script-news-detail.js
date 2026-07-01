@@ -45,6 +45,30 @@ function getCurrentNews(){
 
     return rawNews;
 }
+/* =========================
+   YOUTUBE THUMBNAIL
+========================= */
+
+function getYoutubeThumbnail(url){
+
+    if(!url) return "";
+
+    let videoId = "";
+
+    if(url.includes("youtu.be/")){
+
+        videoId = url.split("youtu.be/")[1].split("?")[0];
+
+    }else if(url.includes("watch?v=")){
+
+        videoId = url.split("watch?v=")[1].split("&")[0];
+
+    }
+
+    if(!videoId) return "";
+
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+}
 
 /* =========================
    NEWS SLIDER
@@ -147,41 +171,82 @@ function renderNewsDetail(){
        GALLERY SLIDER
     ========================= */
 
-    if(
-        news.images &&
-        news.images.length > 0
-    ){
+    const hasImages =
+    news.images &&
+    news.images.length > 0;
+
+const hasYoutube =
+    news.youtube &&
+    news.youtube.trim() !== "";
+
+if(hasImages || hasYoutube){
+
+    html += `
+    <div class="news-slider">
+    `;
+
+    if(hasImages){
 
         html += `
-
-        <div class="news-slider">
-
             <img id="newsMainImage"
                  class="news-main-image"
                  src="${news.images[0]}"
                  alt="${news.title}">
+        `;
 
-            <div class="news-thumb-list">
+    }else{
 
-                ${news.images.map((img,index)=>`
+        html += `
+            <a href="${news.youtube}"
+               target="_blank">
 
-                    <img src="${img}"
-                         data-index="${index}"
-                         onclick="changeNewsImage(${index})"
-                         class="${
-                            index === 0
-                            ? "active"
-                            : ""
-                         }">
+                <img class="news-main-image"
+                     src="${getYoutubeThumbnail(news.youtube)}"
+                     alt="${news.title}">
 
-                `).join("")}
-
-            </div>
-
-        </div>
-
+            </a>
         `;
     }
+
+    html += `
+        <div class="news-thumb-list">
+    `;
+
+    if(hasImages){
+
+        html += news.images.map((img,index)=>`
+
+            <img src="${img}"
+                 data-index="${index}"
+                 onclick="changeNewsImage(${index})"
+                 class="${index===0?"active":""}">
+
+        `).join("");
+
+    }
+
+    if(hasYoutube){
+
+        html += `
+            <a href="${news.youtube}"
+               target="_blank"
+               class="youtube-thumb">
+
+                <img
+                    src="${getYoutubeThumbnail(news.youtube)}"
+                    alt="Video">
+
+                <span class="play-icon">▶</span>
+
+            </a>
+        `;
+    }
+
+    html += `
+        </div>
+    </div>
+    `;
+}
 /* =========================
    CONTENT
 ========================= */

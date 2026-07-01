@@ -145,6 +145,37 @@ const newsData = [
         nhằm nâng cao hiệu quả vận hành.
         </p>
     `
+},
+{
+    id: 5,
+
+    category: "guide",
+
+    title: "Hướng dẫn cài đặt và hiệu chuẩn cân đếm EXCELL ALH4",
+
+    date: "2026-07-01",
+
+    image: "",
+
+    images: [],
+
+    youtube: "https://www.youtube.com/watch?v=E8oqNE1Cd5M&t=109s",
+
+    summary:
+        "Video hướng dẫn cài đặt và hiệu chuẩn cân đếm EXCELL ALH4.",
+
+    content: `
+        <p>
+        Video hướng dẫn chi tiết cách cài đặt và hiệu chuẩn cân đếm EXCELL ALH4.
+        Nội dung bao gồm các bước thiết lập thông số, hiệu chuẩn cân và kiểm tra
+        hoạt động sau khi hoàn tất.
+        </p>
+
+        <p>
+        Nếu cần hỗ trợ kỹ thuật hoặc tư vấn sản phẩm, vui lòng liên hệ QTN GLOBAL
+        để được đội ngũ kỹ thuật hỗ trợ nhanh chóng.
+        </p>
+    `
 }
 
 ];
