@@ -1,32 +1,23 @@
 const newsTranslations = {
 
 vi: {
-
 1: {
-title: "QTN GLOBAL mở rộng dịch vụ cân điện tử công nghiệp",
+title: "Hướng dẫn sử dụng cân điện tử EXCELL X4252 KW",
 
 summary:
-"QTN GLOBAL tiếp tục mở rộng hoạt động cung cấp cân điện tử và giải pháp đo lường công nghiệp trên toàn quốc.",
+"Video hướng dẫn sử dụng cân điện tử EXCELL X4252 KW.",
 
 content: `
 <p>
-QTN GLOBAL tiếp tục mở rộng hoạt động cung cấp
-cân điện tử, đầu cân điện tử và các giải pháp
-đo lường công nghiệp trên toàn quốc.
+Video hướng dẫn chi tiết cách sử dụng cân điện tử EXCELL X4252 KW,
+bao gồm các thao tác khởi động, sử dụng các chức năng trên bàn phím,
+cài đặt các thông số cơ bản và quy trình vận hành đúng cách.
 </p>
 
 <p>
-Với đội ngũ kỹ thuật giàu kinh nghiệm,
-công ty cam kết mang tới sản phẩm chính hãng,
-dịch vụ chuyên nghiệp và hỗ trợ nhanh chóng.
-</p>
-
-<img src="images/news/news1.jpg">
-
-<p>
-Trong thời gian tới, QTN GLOBAL sẽ mở rộng
-thêm các dòng sản phẩm phục vụ lĩnh vực
-công nghiệp, thương mại và gia dụng.
+Nội dung phù hợp cho người mới sử dụng cũng như kỹ thuật viên cần
+tham khảo quy trình sử dụng để đảm bảo độ chính xác và nâng cao
+hiệu quả làm việc của thiết bị.
 </p>
 `
 },
@@ -43,7 +34,7 @@ Dự án lắp đặt cân điện tử công nghiệp
 đã được hoàn thành đúng tiến độ.
 </p>
 
-<img src="images/news/news2.jpg">
+
 
 <p>
 Hệ thống hoạt động ổn định,
@@ -70,7 +61,7 @@ Ngoài ra cần quan tâm tới thương hiệu,
 chế độ bảo hành và dịch vụ kỹ thuật.
 </p>
 
-<img src="images/news/news3.jpg">
+
 `
 },
 
@@ -87,7 +78,7 @@ cân điện tử kết hợp phần mềm quản lý
 nhằm nâng cao hiệu quả vận hành.
 </p>
 
-<img src="images/news/news4.jpg">
+
 `
 }
 
@@ -100,30 +91,22 @@ nhằm nâng cao hiệu quả vận hành.
 en: {
 
 1: {
-title: "QTN GLOBAL Expands Industrial Weighing Solutions",
+title: "User Guide for the EXCELL X4252 KW Electronic Scale",
 
 summary:
-"QTN GLOBAL continues expanding its electronic weighing and industrial measurement solutions nationwide.",
+"Video guide for operating the EXCELL X4252 KW electronic scale.",
 
 content: `
 <p>
-QTN GLOBAL continues to expand its supply of
-electronic scales, weighing indicators and
-industrial measurement solutions nationwide.
+This video provides a step-by-step guide on how to use the
+EXCELL X4252 KW electronic scale, including power-on procedures,
+keypad functions, basic parameter settings, and proper operating practices.
 </p>
 
 <p>
-With an experienced technical team,
-the company is committed to providing genuine products,
-professional services and fast support.
-</p>
-
-<img src="images/news/news1.jpg">
-
-<p>
-In the coming period, QTN GLOBAL will expand
-its product portfolio for industrial,
-commercial and household applications.
+It is suitable for new users as well as technicians who need
+a quick reference for correct operation to ensure accurate weighing
+performance and extend the service life of the equipment.
 </p>
 `
 },
@@ -140,7 +123,7 @@ The industrial weighing system installation project
 was completed on schedule.
 </p>
 
-<img src="images/news/news2.jpg">
+
 
 <p>
 The system operates stably
@@ -168,7 +151,7 @@ warranty policy and technical support
 should also be considered.
 </p>
 
-<img src="images/news/news3.jpg">
+
 `
 },
 
@@ -185,7 +168,6 @@ electronic scales with management software
 to improve operational efficiency.
 </p>
 
-<img src="images/news/news4.jpg">
 `
 }
 
@@ -198,33 +180,23 @@ to improve operational efficiency.
 zh: {
 
 1: {
-title: "QTN GLOBAL 扩展工业电子秤服务",
+title: "EXCELL X4252 KW 电子秤使用指南",
 
 summary:
-"QTN GLOBAL 持续扩大电子秤及工业测量解决方案业务。",
+"EXCELL X4252 KW 电子秤操作视频教程。",
 
 content: `
 <p>
-QTN GLOBAL 持续扩大电子秤、
-称重显示器以及工业测量解决方案
-在全国范围内的供应服务。
+本视频详细介绍 EXCELL X4252 KW 电子秤的使用方法，
+包括开机、按键操作、基本参数设置以及正确的使用流程。
 </p>
 
 <p>
-凭借经验丰富的技术团队，
-公司致力于提供正品设备、
-专业服务以及快速技术支持。
-</p>
-
-<img src="images/news/news1.jpg">
-
-<p>
-未来，QTN GLOBAL 将进一步扩展
-工业、商业及家用领域的产品线。
+适合首次使用者及技术人员参考，
+帮助确保称重准确性并提高设备使用效率。
 </p>
 `
 },
-
 2: {
 title: "为北宁客户安装汽车衡系统",
 
@@ -237,7 +209,6 @@ content: `
 已按计划顺利完成。
 </p>
 
-<img src="images/news/news2.jpg">
 
 <p>
 系统运行稳定，
@@ -264,7 +235,7 @@ content: `
 保修政策以及技术服务。
 </p>
 
-<img src="images/news/news3.jpg">
+
 `
 },
 
@@ -281,7 +252,7 @@ content: `
 以提升运营效率。
 </p>
 
-<img src="images/news/news4.jpg">
+
 `
 }
 
