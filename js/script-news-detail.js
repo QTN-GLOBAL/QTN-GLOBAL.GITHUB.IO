@@ -229,16 +229,17 @@ if(hasImages || hasYoutube){
 
         html += `
             <a href="${news.youtube}"
-               target="_blank"
-               class="youtube-thumb">
+   target="_blank"
+   class="news-video-cover">
 
-                <img
-                    src="${getYoutubeThumbnail(news.youtube)}"
-                    alt="Video">
+    <img
+        class="news-main-image"
+        src="${getYoutubeThumbnail(news.youtube)}"
+        alt="${news.title}">
 
-                <span class="play-icon">▶</span>
+    <span class="news-play-btn">▶</span>
 
-            </a>
+</a>
         `;
     }
 
@@ -272,31 +273,7 @@ if (paragraphs.length >= 2 && news.images.length > 1) {
 
 }
 
-    /* =========================
-       YOUTUBE
-    ========================= */
-
-    if(
-        news.youtube &&
-        news.youtube.trim() !== ""
-    ){
-
-        html += `
-
-        <div class="news-video">
-
-            <a href="${news.youtube}"
-               target="_blank"
-               class="youtube-btn">
-
-                ▶ Xem video trên YouTube
-
-            </a>
-
-        </div>
-
-        `;
-    }
+    
 
     document.getElementById(
         "newsContent"
