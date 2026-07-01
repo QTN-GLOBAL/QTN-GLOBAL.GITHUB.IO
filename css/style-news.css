@@ -241,7 +241,7 @@
     width:100%;
     height:auto;
     max-height:420px;
-    object-fit:contain;
+    object-fit:cover;
     display:block;
 
     border-radius:12px;
