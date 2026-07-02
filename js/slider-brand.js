@@ -106,9 +106,12 @@ function renderBrand(id) {
 
                 <div class="product-buttons">
 
-                    <a class="detail-btn" href="chitiet.html?id=${p.id}">
-                        ${t("detailBtn")}
-                    </a>
+                    <a class="detail-btn"
+   href="${(p.brand || '').trim().toUpperCase() === 'AMWAY'
+        ? 'amway.html'
+        : 'chitiet.html'}?id=${p.id}">
+    ${t("detailBtn")}
+</a>
 
                     <button class="quote-btn" onclick="showQuote(${p.id})">
                         ${t("quoteBtn")}
