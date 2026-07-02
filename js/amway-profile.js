@@ -12,9 +12,9 @@ const amwayProfile = {
 
     phone: "0383598603",
 
-    distributorCode: "YOUR_AMWAY_CODE",
+    distributorCode: "7027779786",
 
-    email: "your-email@gmail.com",
+    email: "quannguyensky3105@gmail.com",
 
     /* =====================
        SOCIAL LINKS
