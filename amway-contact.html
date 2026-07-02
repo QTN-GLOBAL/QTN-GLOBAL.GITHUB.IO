@@ -97,19 +97,7 @@
             Tôi có thể hỗ trợ
         </h2>
 
-        <ul class="support-list">
-
-            <li data-i18n="support1"></li>
-
-            <li data-i18n="support2"></li>
-
-            <li data-i18n="support3"></li>
-
-            <li data-i18n="support4"></li>
-
-            <li data-i18n="support5"></li>
-
-        </ul>
+        <ul class="support-list" id="supportList"></ul>
 
         <hr>
 
@@ -180,9 +168,13 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const lang =
-        localStorage.getItem("language") || "vi";
+    const lang = localStorage.getItem("language") || "vi";
 
+const support =
+    amwayProfile.support[lang] || amwayProfile.support.vi;
+
+document.getElementById("supportList").innerHTML =
+    support.map(item => `<li>${item}</li>`).join("");
     const select =
         document.getElementById("languageSelect");
 
