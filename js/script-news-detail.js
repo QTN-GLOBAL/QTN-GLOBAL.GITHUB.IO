@@ -291,16 +291,26 @@ if (paragraphs.length >= 2 && news.images.length > 1) {
    INIT
 ========================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-        renderNewsDetail();
+    renderNewsDetail();
 
-        setTimeout(
-            startNewsSlider,
-            300
-        );
+    setTimeout(startNewsSlider, 300);
+
+    const languageSelect =
+        document.getElementById("languageSelect");
+
+    if (languageSelect) {
+
+        languageSelect.addEventListener("change", (e) => {
+
+            setLanguage(e.target.value);
+
+            // Render lại bài viết theo ngôn ngữ mới
+            renderNewsDetail();
+
+        });
 
     }
-);
+
+});
