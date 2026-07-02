@@ -236,13 +236,22 @@
     <div id="thumbList"></div>
 
     <div class="amway-note">
-    <p>
-        Quý khách có nhu cầu mua sản phẩm vui lòng truy cập website chính thức của Amway Việt Nam.
-    </p>
+    <p data-i18n="buyGuide"></p>
 
-    <a href="https://www.amway.com.vn" target="_blank">
-        Truy cập Amway Việt Nam
+<div class="amway-action-buttons">
+
+    <a href="amway-contact.html"
+       class="contact-btn"
+       data-i18n="contactBtn">
     </a>
+
+    <a href="https://www.amway.com.vn"
+       target="_blank"
+       class="amway-btn"
+       data-i18n="visitAmwayBtn">
+    </a>
+
+</div>
 </div>
 
    <!-- SẢN PHẨM CÙNG LOẠI -->
@@ -592,6 +601,18 @@ document.getElementById("languageSelect").addEventListener("change", (e) => {
     </div>
 
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
+    const lang = localStorage.getItem("language") || "vi";
+
+    if (document.getElementById("languageSelect")) {
+        document.getElementById("languageSelect").value = lang;
+    }
+
+    setLanguage(lang);
+
+});
+</script>
 </body>
 </html>
