@@ -344,7 +344,20 @@ function goHomeAndBusiness(business) {
 ========================= */
 
 function showQuote(id) {
+
+    const product = getProducts().find(p => p.id === id);
+
+    if (!product) return;
+
+    if ((product.brand || "").trim().toUpperCase() === "AMWAY") {
+
+        location.href = "amway-contact.html?id=" + id;
+
+        return;
+    }
+
     alert("Chức năng nhận báo giá đang được cập nhật.");
+
 }
 function renderGridWithBrand(products, title) {
 
