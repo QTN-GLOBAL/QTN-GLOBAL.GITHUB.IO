@@ -116,7 +116,9 @@ catChairScale: "Cân ghế ngồi",
 
         addCartBtn: "Thêm giỏ hàng",
        buyNowBtn: "Mua hàng / Báo giá",
-
+buyGuide: "Quý khách có nhu cầu mua sản phẩm vui lòng bấm nút:",
+contactBtn: "Liên hệ",
+visitAmwayBtn: "Truy cập Amway Việt Nam",
 descTitle: "Mô tả",
 specTitle: "Thông số kỹ thuật",
 brandLabel: "Hãng:",
@@ -268,6 +270,9 @@ catChairScale: "Chair Scales",
 
         addCartBtn: "Add to cart",
         buyNowBtn: "Order / Quote",
+buyGuide: "To purchase products, please choose one of the following options:",
+contactBtn: "Contact",
+visitAmwayBtn: "Visit Amway Vietnam",
 
 descTitle: "Description",
 specTitle: "Specifications",
@@ -418,6 +423,9 @@ catChairScale: "座椅秤",
 
         addCartBtn: "加入购物车",
         buyNowBtn: "购买 / 询价",
+buyGuide: "如需购买产品，请选择以下方式：",
+contactBtn: "联系",
+visitAmwayBtn: "访问安利越南",
 
 descTitle: "产品描述",
 specTitle: "技术参数",
