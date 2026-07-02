@@ -1,0 +1,226 @@
+/* =========================
+   AMWAY CONTACT
+========================= */
+
+body{
+    margin:0;
+    padding:0;
+    background:#f5f7fa;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#333;
+}
+
+/* =========================
+   LANGUAGE
+========================= */
+
+.language-bar{
+    width:100%;
+    padding:20px;
+    display:flex;
+    justify-content:flex-end;
+    box-sizing:border-box;
+}
+
+#languageSelect{
+    padding:8px 14px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.contact-container{
+    max-width:900px;
+    margin:0 auto 50px;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.contact-card{
+    background:#fff;
+    border-radius:12px;
+    padding:40px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.contact-card h1{
+    text-align:center;
+    color:#005bac;
+    margin-bottom:20px;
+}
+
+.contact-card h2{
+    color:#005bac;
+    margin:25px 0 15px;
+}
+
+.contact-card h3{
+    color:#005bac;
+}
+
+.contact-card p{
+    line-height:1.7;
+}
+
+.intro{
+    text-align:center;
+    font-size:18px;
+    font-weight:600;
+}
+
+hr{
+    border:none;
+    border-top:1px solid #e6e6e6;
+    margin:30px 0;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.contact-info{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 18px;
+    background:#f8f9fb;
+    border-radius:8px;
+}
+
+.label{
+    font-weight:bold;
+    color:#555;
+}
+
+/* =========================
+   SUPPORT
+========================= */
+
+.support-list{
+    margin:0;
+    padding-left:22px;
+}
+
+.support-list li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+/* =========================
+   NOTE
+========================= */
+
+.note{
+    background:#fff8e8;
+    border-left:4px solid #f0b400;
+    padding:18px;
+    border-radius:8px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.contact-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:35px;
+}
+
+.contact-buttons a{
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:8px;
+    color:#fff;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.call-btn{
+    background:#28a745;
+}
+
+.call-btn:hover{
+    background:#218838;
+}
+
+.zalo-btn{
+    background:#0084ff;
+}
+
+.zalo-btn:hover{
+    background:#006fdd;
+}
+
+.amway-btn{
+    background:#005bac;
+}
+
+.amway-btn:hover{
+    background:#00488a;
+}
+
+.bottom-home{
+    text-align:center;
+    margin-top:30px;
+}
+
+.home-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#666;
+    color:#fff;
+    padding:12px 28px;
+    border-radius:8px;
+    transition:.25s;
+}
+
+.home-btn:hover{
+    background:#444;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .contact-card{
+        padding:25px;
+    }
+
+    .info-row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+    }
+
+    .contact-buttons{
+        flex-direction:column;
+    }
+
+    .contact-buttons a,
+    .home-btn{
+        width:100%;
+        text-align:center;
+        box-sizing:border-box;
+    }
+
+}
