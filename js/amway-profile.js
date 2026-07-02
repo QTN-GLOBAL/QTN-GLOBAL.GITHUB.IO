@@ -8,7 +8,7 @@ const amwayProfile = {
        BASIC INFORMATION
     ====================== */
 
-    name: "Trần Thị Nam",
+    name: "Nguyễn Hồng Quân",
 
     phone: "0383598603",
 
