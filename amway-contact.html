@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Amway Contact</title>
+
+<link rel="stylesheet" href="css/style-base.css">
+<link rel="stylesheet" href="css/style-amway-contact.css">
+
+</head>
+
+<body>
+
+<!-- LANGUAGE -->
+<div class="language-bar">
+
+    <select id="languageSelect">
+
+    <option value="vi">🇻🇳 Tiếng Việt</option>
+
+    <option value="en">🇺🇸 English</option>
+
+    <option value="zh">🇨🇳 中文</option>
+
+</select>
+
+</div>
+
+<!-- CONTACT -->
+<div class="contact-container">
+
+    <div class="contact-card">
+
+        <h1 data-i18n="contactTitle">
+            Liên hệ tư vấn sản phẩm Amway
+        </h1>
+
+        <p class="intro"
+           data-i18n="contactIntro">
+            Cảm ơn Quý khách đã quan tâm đến các sản phẩm Amway.
+        </p>
+
+        <p data-i18n="contactIntro2">
+            Nếu Quý khách cần tư vấn về sản phẩm, hướng dẫn sử dụng hoặc hỗ trợ mua hàng chính hãng, vui lòng liên hệ trực tiếp theo thông tin dưới đây.
+        </p>
+
+        <hr>
+
+        <h2 data-i18n="distributorInfo">
+            Thông tin Nhà phân phối
+        </h2>
+
+        <div class="contact-info">
+
+            <div class="info-row">
+
+                <span class="label"
+                      data-i18n="fullNameLabel">
+                    Họ và tên
+                </span>
+
+                <span id="amwayName"></span>
+
+            </div>
+
+            <div class="info-row">
+
+                <span class="label"
+                      data-i18n="phoneLabel">
+                    Điện thoại
+                </span>
+
+                <span id="amwayPhone"></span>
+
+            </div>
+
+            <div class="info-row">
+
+                <span class="label"
+                      data-i18n="amwayCodeLabel">
+                    Mã số Nhà phân phối
+                </span>
+
+                <span id="amwayCode"></span>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h2 data-i18n="supportTitle">
+            Tôi có thể hỗ trợ
+        </h2>
+
+        <ul class="support-list">
+
+            <li data-i18n="support1"></li>
+
+            <li data-i18n="support2"></li>
+
+            <li data-i18n="support3"></li>
+
+            <li data-i18n="support4"></li>
+
+            <li data-i18n="support5"></li>
+
+        </ul>
+
+        <hr>
+
+        <div class="note">
+
+            <h3 data-i18n="noteTitle">
+                Lưu ý
+            </h3>
+
+            <p data-i18n="noteContent"></p>
+
+        </div>
+
+        <div class="contact-buttons">
+
+            <a href="tel:"
+               id="callButton"
+               class="call-btn"
+               data-i18n="callNow">
+                📞 Gọi ngay
+            </a>
+
+            <a href="#"
+               id="zaloButton"
+               class="zalo-btn"
+               target="_blank"
+               data-i18n="chatZalo">
+                💬 Chat Zalo
+            </a>
+
+            <a href="https://www.amway.com.vn"
+               target="_blank"
+               class="amway-btn"
+               data-i18n="visitAmway">
+                🌐 Website Amway Việt Nam
+            </a>
+
+        </div>
+
+        <div class="bottom-home">
+
+            <a href="index.html"
+               class="home-btn"
+               data-i18n="backHome">
+                🏠 Quay về trang chủ
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="products.js"></script>
+<script src="products-i18n.js"></script>
+
+<script src="js/script-i18n.js"></script>
+
+<script src="js/amway-profile.js"></script>
+
+<script>
+
+    // code của amway-contact.html
+
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const lang =
+        localStorage.getItem("language") || "vi";
+
+    const select =
+        document.getElementById("languageSelect");
+
+    if (select) {
+
+        select.value = lang;
+
+        select.addEventListener("change", e => {
+
+            setLanguage(e.target.value);
+
+        });
+
+    }
+
+    setLanguage(lang);
+
+    document.getElementById("amwayName").innerText =
+        amwayProfile.name;
+
+    document.getElementById("amwayPhone").innerText =
+        amwayProfile.phone;
+
+    document.getElementById("amwayCode").innerText =
+    amwayProfile.distributorCode;
+
+    document.getElementById("callButton").href =
+    "tel:" + amwayProfile.phone;
+
+    document.getElementById("zaloButton").href =
+    amwayProfile.zalo;
+
+});
+
+</script>
+
+</body>
+
+</html>
