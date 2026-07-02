@@ -447,16 +447,7 @@ const product = rawProduct
 
 window.currentProduct = product;
 
-setTimeout(() => {
 
-    const product = window.currentProduct;
-
-    if (!product || product.brand !== "Amway") return;
-
-    document.querySelector(".btn-add-cart")?.style.display = "none";
-    document.querySelector(".btn-buy-now")?.style.display = "none";
-
-}, 0);
 function renderRelatedProducts() {
 
     if (!rawProduct) return;
