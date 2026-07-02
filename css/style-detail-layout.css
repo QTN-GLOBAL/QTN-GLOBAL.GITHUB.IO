@@ -256,3 +256,43 @@ footer{
     }
 
 }
+.amway-action-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.contact-btn,
+.amway-btn{
+
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.contact-btn{
+    background:#2c7be5;
+}
+
+.contact-btn:hover{
+    background:#1d5fbf;
+}
+
+.amway-btn{
+    background:#009933;
+}
+
+.amway-btn:hover{
+    background:#007d2b;
+}
