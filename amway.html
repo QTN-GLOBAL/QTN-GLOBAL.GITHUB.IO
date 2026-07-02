@@ -319,8 +319,9 @@ function renderRelatedSlider() {
         html += `
 
         <div class="related-card"
-             onclick="location.href='chitiet.html?id=${p.id}'">
-
+             onclick="location.href='${p.brand === "Amway"
+    ? "amway.html"
+    : "chitiet.html"}?id=${p.id}'"
             <img src="images/${p.category}/${p.folder}/main.jpg">
 
             <p>${product.name}</p>
@@ -475,8 +476,7 @@ if (product) {
                 : `<p>• ${spec}</p>`
         ).join("");
 
-    document.getElementById("buyProductName").innerText =
-        product.name;
+   
 
     renderRelatedProducts();
 
