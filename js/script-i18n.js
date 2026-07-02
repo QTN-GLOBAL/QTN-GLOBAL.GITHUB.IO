@@ -132,7 +132,7 @@ noteTitle: "Lưu ý",
 
 callNow: "Gọi ngay",
 chatZalo: "Chat Zalo",
-websiteAmway: "Website Amway Việt Nam",
+visitAmwayBtn: "Website Amway Việt Nam",
 backHome: "Quay về trang chủ",
 descTitle: "Mô tả",
 specTitle: "Thông số kỹ thuật",
@@ -301,9 +301,8 @@ noteTitle: "Note",
 
 callNow: "Call Now",
 chatZalo: "Chat on Zalo",
-websiteAmway: "Amway Vietnam Website",
+visitAmwayBtn: "Amway Vietnam Website",
 backHome: "Back to Home",
-
 descTitle: "Description",
 specTitle: "Specifications",
 brandLabel: "Brand:",
@@ -469,7 +468,7 @@ noteTitle: "备注",
 
 callNow: "立即拨打",
 chatZalo: "Zalo 咨询",
-websiteAmway: "安利越南官网",
+visitAmwayBtn: "安利越南官网",
 backHome: "返回首页",
 
 descTitle: "产品描述",
