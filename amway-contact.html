@@ -161,7 +161,16 @@
 
 <script>
 
-    // code của amway-contact.html
+function renderSupportList(lang) {
+
+    const support =
+        amwayProfile.support[lang] ||
+        amwayProfile.support.vi;
+
+    document.getElementById("supportList").innerHTML =
+        support.map(item => `<li>${item}</li>`).join("");
+
+}
 
 </script>
 
@@ -171,11 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const lang = localStorage.getItem("language") || "vi";
 
-const support =
-    amwayProfile.support[lang] || amwayProfile.support.vi;
-
-document.getElementById("supportList").innerHTML =
-    support.map(item => `<li>${item}</li>`).join("");
+renderSupportList(lang);
     const select =
         document.getElementById("languageSelect");
 
@@ -185,10 +190,13 @@ document.getElementById("supportList").innerHTML =
 
         select.addEventListener("change", e => {
 
-            setLanguage(e.target.value);
+    const lang = e.target.value;
 
-        });
+    setLanguage(lang);
 
+    renderSupportList(lang);
+
+});
     }
 
     setLanguage(lang);
