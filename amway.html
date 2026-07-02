@@ -93,149 +93,120 @@
 
 <!-- DETAIL -->
 <div class="detail-page fix-layout">
-<!-- SIDEBAR -->
-<aside class="sidebar">
 
-    <h2 data-i18n="businessCategories">
-        LĨNH VỰC KINH DOANH
-    </h2>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-    <!-- THIẾT BỊ ĐO LƯỜNG -->
+        <h2 data-i18n="businessCategories">
+            LĨNH VỰC KINH DOANH
+        </h2>
 
-    <div class="business-group">
+        <!-- THIẾT BỊ ĐO LƯỜNG -->
+        <div class="business-group">
 
-        <div class="business-title"
-             onclick="goHomeAndBusiness('measure')">
+            <div class="business-title"
+                 onclick="goHomeAndBusiness('measure')">
+                ⚖️
+                <span data-i18n="fieldMeasure">
+                    THIẾT BỊ ĐO LƯỜNG
+                </span>
+            </div>
 
-            ⚖️
+            <ul>
 
-            <span data-i18n="fieldMeasure">
-                THIẾT BỊ ĐO LƯỜNG
-            </span>
+                <li onclick="goHomeAndCategory('can-ban')" data-i18n="catPlatformScale">Cân bàn</li>
+                <li onclick="goHomeAndCategory('can-dem')" data-i18n="catCountingScale">Cân đếm</li>
+                <li onclick="goHomeAndCategory('can-treo')" data-i18n="catCraneScale">Cân treo</li>
+                <li onclick="goHomeAndCategory('dau-can-dien-tu')" data-i18n="catIndicator">Đầu cân điện tử</li>
+                <li onclick="goHomeAndCategory('can-phan-tich')" data-i18n="catAnalyticalScale">Cân phân tích</li>
+                <li onclick="goHomeAndCategory('can-chong-nuoc')" data-i18n="catWaterproofScale">Cân chống nước</li>
+                <li onclick="goHomeAndCategory('can-in-tem-ma-vach')" data-i18n="catLabelPrintingScale">Cân in tem mã vạch</li>
+                <li onclick="goHomeAndCategory('can-ghe-ngoi')" data-i18n="catChairScale">Cân ghế ngồi</li>
 
-        </div>
-
-        <ul>
-
-            <li onclick="goHomeAndCategory('can-ban')" data-i18n="catPlatformScale">
-                Cân bàn
-            </li>
-
-            <li onclick="goHomeAndCategory('can-dem')" data-i18n="catCountingScale">
-                Cân đếm
-            </li>
-
-            <li onclick="goHomeAndCategory('can-treo')" data-i18n="catCraneScale">
-                Cân treo
-            </li>
-
-            <li onclick="goHomeAndCategory('dau-can-dien-tu')" data-i18n="catIndicator">
-                Đầu cân điện tử
-            </li>
-
-            <li onclick="goHomeAndCategory('can-phan-tich')" data-i18n="catAnalyticalScale">
-                Cân phân tích
-            </li>
-
-            <li onclick="goHomeAndCategory('can-chong-nuoc')" data-i18n="catWaterproofScale">
-                Cân chống nước
-            </li>
-
-            <li onclick="goHomeAndCategory('can-in-tem-ma-vach')" data-i18n="catLabelPrintingScale">
-                Cân in tem mã vạch
-            </li>
-
-            <li onclick="goHomeAndCategory('can-ghe-ngoi')" data-i18n="catChairScale">
-                Cân ghế ngồi
-            </li>
-
-        </ul>
-
-    </div>
-
-    <div class="business-group">
-        <div class="business-title" onclick="goHomeAndBusiness('industry')">
-            🏭
-            <span data-i18n="fieldIndustry">
-                THIẾT BỊ CÔNG NGHIỆP
-            </span>
-        </div>
-    </div>
-
-    <div class="business-group">
-        <div class="business-title" onclick="goHomeAndBusiness('service')">
-            🔧
-            <span data-i18n="fieldService">
-                DỊCH VỤ KỸ THUẬT
-            </span>
-        </div>
-    </div>
-
-    <div class="business-group">
-
-        <div class="business-title"
-             onclick="goHomeAndBusiness('home')">
-
-            🏠
-
-            <span data-i18n="fieldHome">
-                THIẾT BỊ GIA DỤNG
-            </span>
+            </ul>
 
         </div>
 
-        <ul>
+        <div class="business-group">
+            <div class="business-title" onclick="goHomeAndBusiness('industry')">
+                🏭
+                <span data-i18n="fieldIndustry">THIẾT BỊ CÔNG NGHIỆP</span>
+            </div>
+        </div>
 
-            <li onclick="goHomeAndCategory('air-purifier')" data-i18n="catAirPurifier">
-                Máy lọc không khí
-            </li>
+        <div class="business-group">
+            <div class="business-title" onclick="goHomeAndBusiness('service')">
+                🔧
+                <span data-i18n="fieldService">DỊCH VỤ KỸ THUẬT</span>
+            </div>
+        </div>
 
-            <li onclick="goHomeAndCategory('air-filter')" data-i18n="catAirFilter">
-                Phụ kiện máy lọc không khí
-            </li>
+        <div class="business-group">
 
-            <li onclick="goHomeAndCategory('water-purifier')" data-i18n="catWaterPurifier">
-                Máy lọc nước
-            </li>
+            <div class="business-title"
+                 onclick="goHomeAndBusiness('home')">
+                🏠
+                <span data-i18n="fieldHome">
+                    THIẾT BỊ GIA DỤNG
+                </span>
+            </div>
 
-            <li onclick="goHomeAndCategory('water-filter')" data-i18n="catWaterFilter">
-                Lõi lọc & phụ kiện
-            </li>
+            <ul>
 
-        </ul>
+                <li onclick="goHomeAndCategory('air-purifier')" data-i18n="catAirPurifier">Máy lọc không khí</li>
+                <li onclick="goHomeAndCategory('air-filter')" data-i18n="catAirFilter">Phụ kiện máy lọc không khí</li>
+                <li onclick="goHomeAndCategory('water-purifier')" data-i18n="catWaterPurifier">Máy lọc nước</li>
+                <li onclick="goHomeAndCategory('water-filter')" data-i18n="catWaterFilter">Lõi lọc & phụ kiện</li>
 
-    </div>
+            </ul>
 
-    <div class="business-group">
+        </div>
 
-        <div class="business-title"
-             onclick="goHomeAndBusiness('trade')">
+        <div class="business-group">
 
-            🌎
+            <div class="business-title"
+                 onclick="goHomeAndBusiness('trade')">
+                🌎
+                <span data-i18n="fieldTrade">
+                    THƯƠNG MẠI & PHÂN PHỐI
+                </span>
+            </div>
 
-            <span data-i18n="fieldTrade">
-                THƯƠNG MẠI & PHÂN PHỐI
-            </span>
+        </div>
+
+    </aside>
+
+    <!-- LEFT -->
+    <div class="detail-left">
+
+        <img id="mainImage">
+
+        <div id="thumbList"></div>
+
+        <!-- THÔNG BÁO AMWAY -->
+        <div class="amway-notice">
+
+            <h3>Amway Việt Nam</h3>
+
+            <p>
+                Sản phẩm này được giới thiệu nhằm cung cấp thông tin cho khách hàng.
+            </p>
+
+            <p>
+                Nếu Quý khách có nhu cầu mua sản phẩm chính hãng, vui lòng truy cập website chính thức của Amway Việt Nam hoặc liên hệ Nhà phân phối Amway.
+            </p>
+
+            <a href="https://www.amway.com.vn"
+               target="_blank"
+               rel="noopener"
+               class="amway-link">
+                Truy cập Amway Việt Nam
+            </a>
 
         </div>
 
     </div>
 
-</aside>
-
-
-   <!-- SẢN PHẨM CÙNG LOẠI -->
-<div class="related-products">
-
-    <h3 data-i18n="relatedProductsTitle">
-        Sản phẩm cùng loại
-    </h3>
-
-    <div id="relatedProducts" class="related-grid"></div>
-
-</div>
-
-</div>
     <!-- RIGHT -->
     <div class="detail-right">
 
@@ -258,7 +229,18 @@
         <h3 data-i18n="specTitle">Thông số</h3>
 
         <div id="productSpecs"></div>
-       </div>
+
+        <!-- SẢN PHẨM CÙNG LOẠI -->
+        <div class="related-products">
+
+            <h3 data-i18n="relatedProductsTitle">
+                Sản phẩm cùng loại
+            </h3>
+
+            <div id="relatedProducts" class="related-grid"></div>
+
+        </div>
+
     </div>
 
 </div>
@@ -275,10 +257,6 @@
 
 <script src="js/script-init-new.js"></script>
 <script src="js/script-home.js"></script>
-
-<script src="js/script-cart.js"></script>
-<script src="js/script-detail-addcart.js"></script>
-<script src="js/script-detail-buynow.js"></script>
 
 <script src="js/i18n-sync-tool.js"></script>
 <script>
