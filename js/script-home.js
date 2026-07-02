@@ -279,13 +279,13 @@ ${products.map(p => {
                 ${t("detailBtn")}
             </a>
 
-            <button class="quote-btn"
+           <button class="quote-btn"
         onclick="${(p.brand || '').trim().toUpperCase() === 'AMWAY'
             ? 'location.href=\'amway-contact.html\''
             : 'showQuote(' + p.id + ')'}">
 
     ${(p.brand || '').trim().toUpperCase() === 'AMWAY'
-        ? 'Liên hệ tư vấn'
+        ? t("contactConsultationBtn")
         : t("quoteBtn")}
 
 </button>
@@ -403,10 +403,16 @@ function renderGridWithBrand(products, title) {
                                 ${t("detailBtn")}
                             </a>
 
-                            <button class="quote-btn"
-                                    onclick="showQuote(${p.id})">
-                                ${t("quoteBtn")}
-                            </button>
+                           <button class="quote-btn"
+        onclick="${(p.brand || '').trim().toUpperCase() === 'AMWAY'
+            ? 'location.href=\'amway-contact.html\''
+            : 'showQuote(' + p.id + ')'}">
+
+    ${(p.brand || '').trim().toUpperCase() === 'AMWAY'
+        ? t("contactConsultationBtn")
+        : t("quoteBtn")}
+
+</button>
 
                         </div>
 

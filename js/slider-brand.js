@@ -113,13 +113,13 @@ function renderBrand(id) {
     ${t("detailBtn")}
 </a>
 
-                    <button class="quote-btn"
+                    <<button class="quote-btn"
         onclick="${(p.brand || '').trim().toUpperCase() === 'AMWAY'
             ? 'location.href=\'amway-contact.html\''
             : 'showQuote(' + p.id + ')'}">
 
     ${(p.brand || '').trim().toUpperCase() === 'AMWAY'
-        ? 'Liên hệ tư vấn'
+        ? t("contactConsultationBtn")
         : t("quoteBtn")}
 
 </button>
