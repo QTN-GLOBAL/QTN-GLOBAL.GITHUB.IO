@@ -44,7 +44,10 @@ function renderProducts(productList = []) {
 
         <div class="product-buttons">
 
-            <a class="detail-btn" href="chitiet.html?id=${p.id}">
+            <a class="detail-btn"
+   href="${p.brand === 'Amway'
+       ? 'amway.html'
+       : 'chitiet.html'}?id=${p.id}">
                 ${t("detailBtn")}
             </a>
 
@@ -262,7 +265,10 @@ ${products.map(p => {
 
         <div class="product-buttons">
 
-            <a class="detail-btn" href="chitiet.html?id=${p.id}">
+            <a class="detail-btn"
+   href="${p.brand === 'Amway'
+       ? 'amway.html'
+       : 'chitiet.html'}?id=${p.id}">
                 ${t("detailBtn")}
             </a>
 
@@ -363,8 +369,10 @@ function renderGridWithBrand(products, title) {
 
                         <div class="product-buttons">
 
-                            <a class="detail-btn"
-                               href="chitiet.html?id=${p.id}">
+                           <a class="detail-btn"
+   href="${p.brand === 'Amway'
+       ? 'amway.html'
+       : 'chitiet.html'}?id=${p.id}">
                                 ${t("detailBtn")}
                             </a>
 
