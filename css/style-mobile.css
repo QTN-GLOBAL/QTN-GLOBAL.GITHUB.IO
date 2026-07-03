@@ -1,354 +1,175 @@
-/* =====================================================
-   MOBILE RESPONSIVE - QTN GLOBAL
-   Apply for <= 768px
-===================================================== */
+/* =========================================
+   QTN GLOBAL - MOBILE RESPONSIVE LAYER
+   (ONLY OVERRIDES - NO DESIGN SYSTEM HERE)
+========================================= */
 
-@media (max-width: 768px) {
+/* =========================
+   1. GLOBAL SAFETY FIX
+========================= */
 
-    /* =========================
-       GLOBAL FIX
-    ========================= */
-    body {
-        font-size: 14px;
+@media (max-width: 1024px) {
+
+    body{
         overflow-x: hidden;
     }
 
-    img {
+    img{
         max-width: 100%;
         height: auto;
     }
 
-    .container {
-        padding: 10px;
-    }
-
-    /* =========================
-       HEADER / MENU
-    ========================= */
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-    }
-
-    .menu {
-        flex-wrap: wrap;
-        gap: 8px;
-        font-size: 13px;
-    }
-
-    .hotline, .zalo, .messenger {
-        font-size: 12px;
-    }
-
-    /* =========================
-       HOME PRODUCT LIST
-    ========================= */
-    .product-list {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .product-card {
-        width: 100%;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .product-card img {
-        width: 100%;
-        height: auto;
-    }
-
-    /* =========================
-       PRODUCT DETAIL PAGE
-    ========================= */
-    .product-container {
-        flex-direction: column;
-    }
-
-    .product-images {
-        width: 100%;
-    }
-
-    .product-info {
-        width: 100%;
-        padding: 10px 0;
-    }
-
-    .product-info h1 {
-        font-size: 18px;
-    }
-
-    .spec-table {
-        font-size: 13px;
-        overflow-x: auto;
-        display: block;
-    }
-
-    /* =========================
-       ADD TO CART / MUA NGAY FORM
-    ========================= */
-    .addCartPopup,
-    #addCartPopup {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-        padding: 12px;
-        overflow-y: auto;
-    }
-
-    .popup-content {
-        width: 100%;
-    }
-
-    .popup-row {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .popup-row input {
-        width: 100%;
-        height: 44px;
-        font-size: 14px;
-    }
-
-    .btn-add-cart,
-    .btn-buy-now {
-        width: 100%;
-        height: 44px;
-        font-size: 15px;
-    }
-
-    /* =========================
-       CART MODAL (GIỎ HÀNG)
-    ========================= */
-    #cartModal {
-        width: 100%;
-        right: 0;
-        height: 100%;
-        border-radius: 0;
-    }
-
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        padding: 10px;
-    }
-
-    .cart-item img {
-        width: 60px;
-        height: auto;
-    }
-
-    .cart-item-info {
-        width: 100%;
-    }
-
-    .cart-qty {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    /* checkbox vẫn giữ bên trái */
-    .cart-item input[type="checkbox"] {
-        transform: scale(1.2);
-    }
-
-    /* =========================
-       BUY NOW FROM CART
-    ========================= */
-    .buyNowCartForm {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .buyNowCartForm input,
-    .buyNowCartForm textarea {
-        width: 100%;
-        height: 44px;
-        font-size: 14px;
-    }
-
-    /* =========================
-       SLIDER / IMAGE GALLERY
-    ========================= */
-    .slider {
-        height: auto;
-    }
-
-    .slider img {
-        width: 100%;
-        object-fit: contain;
-    }
-
-    /* =========================
-       BUTTONS GLOBAL
-    ========================= */
-    button {
-        min-height: 44px;
-        font-size: 14px;
-    }
-
-    .btn-primary {
-        width: 100%;
-    }
-
-    /* =========================
-       FIX OVERFLOW BUG (RẤT QUAN TRỌNG)
-    ========================= */
-    html, body {
-        overflow-x: hidden;
-    }
-
 }
+
 /* =========================
-   HERO BANNER MOBILE
+   2. LAYOUT COLLAPSE (≤992px)
 ========================= */
 
-@media (max-width:768px){
+@media (max-width: 992px) {
 
-    .hero{
-        display:flex !important;
-        flex-direction:column !important;
-        align-items:center !important;
-        padding:20px 15px !important;
-        gap:20px !important;
+    .detail-page,
+    .detail-content{
+        grid-template-columns: 1fr;
     }
 
-    .hero-left,
-    .hero-right{
-        width:100% !important;
-        max-width:100% !important;
+    .sidebar,
+    .brand-sidebar{
+        position: static;
+        width: 100%;
     }
 
-    .hero-left{
-        text-align:center !important;
-    }
-
-    .hero-left h1{
-        font-size:34px !important;
-        line-height:1.15 !important;
-        margin-bottom:15px !important;
-    }
-
-    .hero-list{
-        padding:0 !important;
-        margin:15px 0 !important;
-    }
-
-    .hero-list li{
-        display:flex !important;
-        justify-content:center !important;
-        margin-bottom:10px !important;
-        text-align:center !important;
-    }
-
-    .hero-contact{
-        display:flex !important;
-        flex-direction:column !important;
-        align-items:center !important;
-        gap:10px !important;
-    }
-
-    .hero-phone{
-        width:280px !important;
-        max-width:100% !important;
-    }
-
-    .banner-slider{
-        width:100% !important;
-        display:flex !important;
-        justify-content:center !important;
-    }
-
-    .banner-slider img{
-        width:90% !important;
-        max-width:320px !important;
-        height:auto !important;
-        display:block;
-        margin:auto;
+    #mainImage{
+        height: 300px;
+        object-fit: cover;
     }
 
 }
+
 /* =========================
-   HEADER MOBILE FIX (YOUR STRUCTURE)
+   3. TABLET (≤768px)
 ========================= */
 
 @media (max-width: 768px) {
 
-    /* ===== RESET HEADER ===== */
-    .top-header {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 10px;
+    /* GRID CONTROL */
+    .grid-4{
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    /* ===== LINE 1: LOGO + COMPANY ===== */
-    .logo-area {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    .grid-3{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-2{
+        grid-template-columns: 1fr;
+    }
+
+    /* BUSINESS FIELDS */
+    .business-fields{
+        width: 95%;
+    }
+
+    /* FOOTER */
+    .footer{
+        padding: 35px 18px;
+    }
+
+    .footer h3{
+        font-size: 26px;
+    }
+
+    .footer p{
+        font-size: 15px;
+    }
+
+    /* RELATED */
+    .related-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* MODAL */
+    #cartModal{
         width: 100%;
     }
 
-    .logo-area img {
-        width: 60px !important;
-        height: auto;
-        flex-shrink: 0;
-    }
-
-    .company-info h2 {
-        font-size: 16px !important;
-        margin: 0;
-        line-height: 1.2;
-    }
-
-    .company-info p {
-        font-size: 11px !important;
-        margin: 0;
-        opacity: 0.8;
-    }
-
-    /* ===== LINE 2: CONTACT + ICONS ===== */
-    .top-contact {
-        display: flex !important;
-        flex-wrap: wrap !important;
+    .cart-row,
+    .buy-row{
+        flex-wrap: wrap;
         gap: 8px;
+    }
+
+    .request-type,
+    .buy-buttons,
+    .contact-buttons{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .contact-buttons a,
+    .home-btn{
         width: 100%;
-        justify-content: flex-start;
     }
 
-    .top-btn,
-    .social-icon,
-    .top-cart-btn {
-        font-size: 12px !important;
-        padding: 6px 8px !important;
-        white-space: nowrap;
+    /* ABOUT */
+    #aboutContent{
+        padding: 22px 18px;
+        font-size: 15px;
     }
 
-    /* phone buttons gọn lại */
-    .top-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
+    #aboutContent h1{
+        font-size: 26px;
     }
 
-    /* icon nhỏ lại */
-    .social-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 34px;
+    #aboutContent h2{
+        font-size: 19px;
     }
 
-    /* cart xuống dòng nếu quá chật */
-    .top-cart-btn {
+    /* NEWS */
+    .news-main-image{
+        height: 260px;
+    }
+
+    .news-thumb-list img{
+        width: 80px;
+        height: 60px;
+    }
+
+    .news-detail-header h1{
+        font-size: 26px;
+    }
+
+}
+
+/* =========================
+   4. SMALL MOBILE (≤480px)
+========================= */
+
+@media (max-width: 480px) {
+
+    .container{
+        padding: 0 10px;
+    }
+
+    h1{
+        font-size: 20px;
+    }
+
+    h2{
+        font-size: 18px;
+    }
+
+    /* FORCE SINGLE COLUMN */
+    .grid-4,
+    .grid-3,
+    .grid-2,
+    .related-grid,
+    .brand-track,
+    .field-grid{
+        grid-template-columns: 1fr;
+    }
+
+    /* BUTTON FULL WIDTH */
+    .btn{
         width: 100%;
-        text-align: center;
-        margin-top: 5px;
     }
+
 }
