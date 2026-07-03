@@ -2829,7 +2829,7 @@ business:"measure",
 },
 {
     business: "measure",
-    id: 39,
+    id: 40,
     name: "Cân Bàn Điện Tử Excell X4252+KW",
     category: "can-ban-dung",
     folder: "kw",
