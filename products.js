@@ -2826,6 +2826,60 @@ business:"measure",
         "Lắp đặt đơn giản",
         "Tương thích New eSpring"
     ]
+},
+{
+    business: "measure",
+    id: 39,
+    name: "Cân Bàn Điện Tử Excell X4252+KW",
+    category: "can-ban-dung",
+    folder: "kw",
+    brand: "Excell",
+    origin: "Đài Loan",
+    description: "Cân bàn điện tử Excell X4252+KW độ chính xác cao, thiết kế công nghiệp, phù hợp nhiều môi trường cân khác nhau.",
+    specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
+<th>Kích thước bàn cân</th>
+<th>Độ chính xác</th>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>2g</td>
+<td rowspan="4">420 × 520 mm</td>
+<td rowspan="4">1/15,000</td>
+</tr>
+
+<tr>
+<td>75kg</td>
+<td>5g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>20g</td>
+</tr>
+
+</table>`,
+
+"Cảm biến tải chính xác cao (Loadcell)",
+"Màn hình LCD hiển thị 6 số, đèn nền LED",
+"Chức năng: cân trọng lượng, trừ bì, đếm số lượng",
+"Cổng giao tiếp RS232 (tùy chọn)",
+"Nguồn điện: AC 220V / pin sạc DC 6V",
+"Nhiệt độ hoạt động: 0°C ~ 40°C",
+"Thiết kế bàn cân thép sơn tĩnh điện, phù hợp môi trường công nghiệp"
+
+    ]
 }
 
 

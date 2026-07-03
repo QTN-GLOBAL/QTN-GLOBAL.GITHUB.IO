@@ -4408,6 +4408,116 @@ window.productTranslations = {
     }
 
 },
+39: {
+
+    en: {
+
+        name: "Excell X4252+KW Platform Scale",
+
+        origin: "Taiwan",
+
+        description: "High precision industrial platform scale Excell X4252+KW suitable for multiple weighing applications.",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>Capacity</th>
+<th>Division</th>
+<th>Platform Size</th>
+<th>Accuracy</th>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>2g</td>
+<td rowspan="4">420 × 520 mm</td>
+<td rowspan="4">1/15,000</td>
+</tr>
+
+<tr>
+<td>75kg</td>
+<td>5g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>20g</td>
+</tr>
+
+</table>`,
+
+"High precision load cell sensor",
+"6-digit LCD display with backlight",
+"Functions: weighing, tare, counting",
+"RS232 communication port (optional)",
+"Power supply: AC 220V or DC 6V rechargeable battery",
+"Operating temperature: 0°C ~ 40°C",
+"Industrial steel platform with durable coating"
+
+        ]
+    },
+
+    zh: {
+
+        name: "Excell X4252+KW 台秤",
+
+        origin: "台湾",
+
+        description: "高精度工业台秤 Excell X4252+KW，适用于多种称重应用。",
+
+        specs: [
+
+`<table class="spec-table">
+
+<tr>
+<th>量程</th>
+<th>分度值</th>
+<th>秤台尺寸</th>
+<th>精度</th>
+</tr>
+
+<tr>
+<td>30kg</td>
+<td>2g</td>
+<td rowspan="4">420 × 520 mm</td>
+<td rowspan="4">1/15,000</td>
+</tr>
+
+<tr>
+<td>75kg</td>
+<td>5g</td>
+</tr>
+
+<tr>
+<td>150kg</td>
+<td>10g</td>
+</tr>
+
+<tr>
+<td>300kg</td>
+<td>20g</td>
+</tr>
+
+</table>`,
+
+"高精度称重传感器",
+"6位LCD显示屏带背光",
+"功能：称重、去皮、计数",
+"RS232通讯接口（选配）",
+"电源：AC 220V或DC 6V充电电池",
+"工作温度：0°C ~ 40°C",
+"工业钢结构平台，耐用涂层"
+
+        ]
+    }
+},
 };
 
 

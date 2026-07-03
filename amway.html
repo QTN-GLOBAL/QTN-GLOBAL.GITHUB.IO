@@ -63,34 +63,86 @@
 
 </div>
 
-<!-- MENU -->
+<!-- =========================
+     MENU
+========================= -->
 <nav class="navbar">
-<a href="index.html" data-i18n="home">Trang chủ</a>
 
-<a href="about.html" data-i18n="about">Giới thiệu</a>
+    <!-- MOBILE MENU BUTTON -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
-<a href="news.html" data-i18n="news">Tin tức</a>
+    <!-- MENU CONTENT -->
+    <div class="nav-content" id="navContent">
 
-<a href="#" onclick="goContact(); return false;" data-i18n="contact">Liên hệ</a>
+        <!-- MENU LINKS -->
+        <a href="index.html" data-i18n="home">
+            Trang chủ
+        </a>
 
-    <!-- 🔍 Ô TÌM KIẾM (THÊM Ở ĐÂY) -->
-    <div class="search-box">
-        <input id="searchInput"
-       data-i18n-placeholder="searchPlaceholder"
-       placeholder="Tìm kiếm sản phẩm...">
+        <a href="about.html" data-i18n="about">
+            Giới thiệu
+        </a>
 
-        <button onclick="runSearch()">🔍</button>
-    </div>
+        <a href="news.html" data-i18n="news">
+            Tin tức
+        </a>
 
-    <div class="language-switcher">
-        <select id="languageSelect">
-            <option value="vi">🇻🇳 Tiếng Việt</option>
-            <option value="en">🇺🇸 English</option>
-            <option value="zh">🇨🇳 中文</option>
-        </select>
+        <a href="#"
+           onclick="goContact(); return false;"
+           data-i18n="contact">
+            Liên hệ
+        </a>
+
+       <!-- =========================
+     SEARCH BOX
+========================= -->
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        data-i18n-placeholder="searchPlaceholder"
+        placeholder="Tìm kiếm sản phẩm..."
+        autocomplete="off">
+
+    <button
+        type="button"
+        onclick="runSearch()"
+        aria-label="Search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+    </button>
+
+</div>
+
+        <!-- LANGUAGE -->
+        <div class="language-switcher">
+
+            <select id="languageSelect">
+
+                <option value="vi">
+                    🇻🇳 Tiếng Việt
+                </option>
+
+                <option value="en">
+                    🇺🇸 English
+                </option>
+
+                <option value="zh">
+                    🇨🇳 中文
+                </option>
+
+            </select>
+
+        </div>
+
     </div>
 
 </nav>
+
 </header>
 
 <!-- DETAIL -->
@@ -121,6 +173,10 @@
 
             <li onclick="goHomeAndCategory('can-ban')" data-i18n="catPlatformScale">
                 Cân bàn
+            </li>
+            <li onclick="goHomeAndCategory('can-ban-dung')"
+            data-i18n="catFloorStandingScale">
+            Cân bàn đứng
             </li>
 
             <li onclick="goHomeAndCategory('can-dem')" data-i18n="catCountingScale">
