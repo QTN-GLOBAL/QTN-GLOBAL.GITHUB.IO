@@ -195,32 +195,3 @@ hr{
 .home-btn:hover{
     background:#444;
 }
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    .contact-card{
-        padding:25px;
-    }
-
-    .info-row{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:6px;
-    }
-
-    .contact-buttons{
-        flex-direction:column;
-    }
-
-    .contact-buttons a,
-    .home-btn{
-        width:100%;
-        text-align:center;
-        box-sizing:border-box;
-    }
-
-}

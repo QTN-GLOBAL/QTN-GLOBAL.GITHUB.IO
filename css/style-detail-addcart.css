@@ -1,12 +1,6 @@
-/* =========================
-   ADD CART BUTTONS ONLY
-========================= */
-
-
-/* =========================
-   ADD CART ROW FIX
-========================= */
-
+/* =====================================================
+   ADD CART ROW
+===================================================== */
 .addcart-row{
     display:grid;
     grid-template-columns:40px 1fr 120px;
@@ -31,112 +25,11 @@
     display:flex;
     justify-content:flex-end;
     align-items:center;
-    gap:6px;
-}
-/* FORCE ROW INLINE */
-.cart-row,
-.addcart-row{
-    display:grid !important;
-    grid-template-columns:40px 1fr 120px !important;
-    align-items:center !important;
-    gap:10px !important;
-}
-
-/* LEFT */
-.cart-left,
-.addcart-left{
-    display:flex !important;
-    justify-content:center !important;
-    align-items:center !important;
-}
-
-/* MIDDLE */
-.cart-middle,
-.addcart-middle{
-    text-align:center !important;
-}
-
-/* RIGHT */
-.cart-right,
-.addcart-right{
-    display:flex !important;
-    justify-content:flex-end !important;
-    align-items:center !important;
-    gap:6px !important;
-}
-.detail-buttons{
-    display:flex !important;
-    flex-direction:row !important;
-    width:100%;
-    gap:12px;
-    margin-top:15px;
-}
-
-.btn-addcart{
-    flex:1;
-    height:48px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:#1565c0;
-    color:#fff;
-
-    border:none;
-    border-radius:10px;
-}
-#cartSpecList .addcart-row{
-    display:grid;
-    grid-template-columns:40px 1fr 120px;
-    align-items:center;
-    gap:10px;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
-}
-#cartSpecList .addcart-left{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-#cartSpecList .addcart-middle{
-    text-align:center;
-    font-size:14px;
-}
-
-#cartSpecList .addcart-right{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    gap:6px;
-}
-.add-cart-btn{
-    width:60%;
-    margin:15px auto 0 auto;
-    display:block;
-
-    height:48px;
-    background:#1565c0;
-    color:#fff;
-
-    border:none;
-    border-radius:10px;
-
-    font-size:16px;
-    font-weight:700;
-
-    cursor:pointer;
-}
-/* THU NHỎ CỤM SỐ LƯỢNG */
-
-.addcart-right{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
     gap:4px;
 }
-
+/* =====================================================
+   QUANTITY
+===================================================== */
 .addcart-right button{
     width:28px;
     height:28px;
@@ -157,8 +50,53 @@
     text-align:center;
     padding:0;
 }
-/* TIÊU ĐỀ POPUP THÊM GIỎ */
+/* =====================================================
+   BUTTONS
+===================================================== */
+.detail-buttons{
+    display:flex;
+    width:100%;
+    gap:12px;
+    margin-top:15px;
+}
 
+.btn-addcart{
+    flex:1;
+    height:48px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#1565c0;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+}
+
+.add-cart-btn{
+    width:60%;
+    margin:15px auto 0;
+
+    display:block;
+
+    height:48px;
+
+    background:#1565c0;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+/* =====================================================
+   POPUP
+===================================================== */
 #addCartPopup h2{
     text-align:center;
     font-size:22px;

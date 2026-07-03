@@ -1,25 +1,21 @@
-/* =========================
-   ABOUT PAGE CONTENT ONLY
-   (không ảnh hưởng header/hero/home)
-========================= */
-
+/* =====================================================
+   ABOUT LAYOUT
+===================================================== */
 .about-section{
-    width: 93%;
-    max-width: 1280px;
+    width:93%;
+    max-width:1280px;
 
-    margin: 10px auto;      /* sát Business Fields */
+    margin:10px auto;
+    padding:0;
 
-    padding: 0;             /* bỏ khoảng trắng lớn phía trên */
-
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
-/* =========================
-   CONTAINER MARKDOWN CONTENT
-========================= */
-
+/* =====================================================
+   CONTENT
+===================================================== */
 #aboutContent{
-    background:#ffffff;
+    background:#fff;
 
     padding:35px 40px;
 
@@ -33,107 +29,80 @@
 
     overflow-wrap:break-word;
 }
-/* =========================
-   TITLE SYSTEM
-========================= */
 
-#aboutContent h1 {
-    font-size: 32px;
-    margin-bottom: 22px;
-    color: #0d47a1;
-    font-weight: 700;
+
+/* =====================================================
+   TITLES
+===================================================== */
+#aboutContent h1{
+    font-size:32px;
+    margin-bottom:22px;
+    color:#0d47a1;
+    font-weight:700;
 }
 
-#aboutContent h2 {
-    font-size: 22px;
-    margin-top: 32px;
-    margin-bottom: 14px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #eee;
+#aboutContent h2{
+    font-size:22px;
+    margin-top:32px;
+    margin-bottom:14px;
 
-    color: #222;
+    padding-bottom:8px;
+
+    border-bottom:2px solid #eee;
+
+    color:#222;
 }
 
-/* =========================
-   TEXT STYLE
-========================= */
-
-#aboutContent p {
-    margin-bottom: 14px;
-    color: #444;
+/* =====================================================
+   TEXT
+===================================================== */
+#aboutContent p{
+    margin-bottom:14px;
+    color:#444;
 }
 
-/* =========================
-   LIST STYLE
-========================= */
-
-#aboutContent ul {
-    padding-left: 22px;
-    margin-bottom: 16px;
+#aboutContent strong{
+    color:#0d47a1;
 }
 
-#aboutContent li {
-    margin-bottom: 8px;
+/* =====================================================
+   LIST
+===================================================== */
+#aboutContent ul{
+    padding-left:22px;
+    margin-bottom:16px;
 }
 
-/* =========================
-   STRONG TEXT
-========================= */
-
-#aboutContent strong {
-    color: #0d47a1;
+#aboutContent li{
+    margin-bottom:8px;
 }
 
-/* =========================
-   BLOCKQUOTE (highlight box)
-========================= */
+/* =====================================================
+   BLOCKQUOTE
+===================================================== */
+#aboutContent blockquote{
+    margin:20px 0;
+    padding:14px 18px;
 
-#aboutContent blockquote {
-    margin: 20px 0;
-    padding: 14px 18px;
+    background:#f6f9ff;
 
-    background: #f6f9ff;
-    border-left: 4px solid #0d47a1;
+    border-left:4px solid #0d47a1;
 
-    border-radius: 8px;
+    border-radius:8px;
 
-    color: #333;
+    color:#333;
 }
 
-/* =========================
+/* =====================================================
    LINKS
-========================= */
-
-#aboutContent a {
-    color: #0d47a1;
-    text-decoration: none;
-    font-weight: 500;
+===================================================== */
+#aboutContent a{
+    color:#0d47a1;
+    text-decoration:none;
+    font-weight:500;
 }
 
-#aboutContent a:hover {
-    text-decoration: underline;
+#aboutContent a:hover{
+    text-decoration:underline;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-
-    .about-section {
-        padding: 40px 12px;
-    }
-
-    #aboutContent {
-        padding: 22px 18px;
-        font-size: 15px;
-    }
-
-    #aboutContent h1 {
-        font-size: 26px;
-    }
-
-    #aboutContent h2 {
-        font-size: 19px;
-    }
-}

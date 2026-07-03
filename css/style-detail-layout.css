@@ -1,15 +1,18 @@
-/* =========================
-   DETAIL PAGE LAYOUT
-========================= */
-
+/* =====================================================
+   PAGE LAYOUT
+===================================================== */
 .detail-page{
     display:grid;
     grid-template-columns:240px 1fr;
     gap:20px;
 
     align-items:start;
-}
 
+    overflow:visible;
+}
+/* =====================================================
+   SIDEBAR
+===================================================== */
 /* SIDEBAR */
 .sidebar{
     background:#fff;
@@ -24,6 +27,29 @@
     height:fit-content;
 }
 
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+
+
+/* =====================================================
+   DETAIL CONTAINER
+===================================================== */
+.detail-content{
+    display:grid;
+    grid-template-columns:460px 1fr;
+    gap:30px;
+
+    width:100%;
+
+    min-width:0;
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
 /* IMAGE AREA */
 .detail-left{
     display:flex;
@@ -53,6 +79,10 @@
     border-radius:10px;
 }
 
+
+/* =====================================================
+   THUMBNAILS
+===================================================== */
 /* THUMB */
 #thumbList{
     display:flex;
@@ -87,8 +117,11 @@
     border-color:#1565c0;
 }
 
-/* PRODUCT INFO */
-.detail-right{
+
+/* =====================================================
+   DETAIL INFO
+===================================================== */
+..detail-right{
 
     background:#fff;
 
@@ -98,7 +131,22 @@
 
     min-width:0;
 }
+.detail-right p{
 
+    margin-bottom:10px;
+
+    line-height:1.7;
+}
+.detail-right h3{
+    margin-top:25px;
+    margin-bottom:15px;
+    color:#1565c0;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
 .detail-right h1{
 
     font-size:42px;
@@ -110,19 +158,16 @@
     line-height:1.2;
 }
 
-.detail-right p{
 
-    margin-bottom:10px;
+/* =====================================================
+   PRICE
+===================================================== */
 
-    line-height:1.7;
-}
 
-.detail-right h3{
-    margin-top:25px;
-    margin-bottom:15px;
-    color:#1565c0;
-}
 
+/* =====================================================
+   SPECIFICATION
+===================================================== */
 .detail-right table{
     width:100%;
     border-collapse:collapse;
@@ -141,41 +186,6 @@
     padding:12px;
     border:1px solid #ddd;
 }
-
-/* RESPONSIVE */
-@media(max-width:1400px){
-
-    .detail-page{
-        grid-template-columns:
-        220px
-        1fr;
-    }
-
-}
-
-@media(max-width:992px){
-    .detail-page{
-        grid-template-columns:1fr;
-    }
-    .detail-content{
-       grid-template-columns:1fr;
-   }
-
-    .sidebar,
-    .brand-sidebar{
-        position:static;
-    }
-
-    #mainImage{
-        height:300px;
-    }
-}
-.detail-content{
-    display:grid;
-    grid-template-columns:460px 1fr;
-    gap:30px;
-    width:100%;
-}
 #productSpecs{
 
     background:#fafafa;
@@ -186,23 +196,23 @@
 
     border-radius:8px;
 }
-.detail-page{
-    overflow:visible;
-}
 
-.detail-content{
-    min-width:0;
-}
 
-footer{
-    clear:both;
-    position:relative;
-    z-index:10;
-}
-/* =========================
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+
+
+/* =====================================================
    RELATED PRODUCTS
-========================= */
-
+===================================================== */
 .related-products{
     width:100%;
     margin-top:25px;
@@ -248,14 +258,9 @@ footer{
     line-height:1.4;
     min-height:50px;
 }
-
-@media(max-width:768px){
-
-    .related-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-}
+/* =========================
+   AMWAY BUTTONS
+========================= */
 .amway-action-buttons{
     display:flex;
     gap:15px;
@@ -295,4 +300,20 @@ footer{
 
 .amway-btn:hover{
     background:#007d2b;
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
+footer{
+    clear:both;
+    position:relative;
+    z-index:10;
 }

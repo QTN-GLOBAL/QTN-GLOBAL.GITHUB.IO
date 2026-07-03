@@ -434,23 +434,3 @@
 
     font-size:18px;
 }
-@media(max-width:768px){
-
-    .news-main-image{
-
-        height:260px;
-    }
-
-    .news-thumb-list img{
-
-        width:80px;
-
-        height:60px;
-    }
-
-    .news-detail-header h1{
-
-        font-size:26px;
-    }
-
-}

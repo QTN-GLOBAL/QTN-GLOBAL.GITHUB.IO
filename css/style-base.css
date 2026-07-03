@@ -1,27 +1,177 @@
+/* =====================================================
+   RESET
+===================================================== */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial;
+    font-family:Arial, sans-serif;
 }
 
+html, body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   ROOT VARIABLES
+===================================================== */
+:root{
+
+    /* COLORS */
+    --primary:#1e5eff;
+    --primary-dark:#1747c9;
+    --text:#222;
+    --text-light:#666;
+
+    --bg:#ffffff;
+    --bg-soft:#f5f5f5;
+
+    --border:#e5e7eb;
+
+    /* SHADOW */
+    --shadow-sm:0 2px 6px rgba(0,0,0,0.08);
+    --shadow-md:0 6px 18px rgba(0,0,0,0.12);
+
+    /* RADIUS */
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+
+    /* SPACING (8px system) */
+    --space-1:4px;
+    --space-2:8px;
+    --space-3:12px;
+    --space-4:16px;
+    --space-5:24px;
+    --space-6:32px;
+    --space-7:48px;
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
 body{
     background:#f5f5f5;
     color:#222;
 }
 
-/* BUTTON CHUNG */
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+body{
+    font-family: Arial, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    color:var(--text);
+}
+
+h1{
+    font-size:40px;
+    font-weight:700;
+}
+
+h2{
+    font-size:32px;
+    font-weight:600;
+}
+
+h3{
+    font-size:24px;
+    font-weight:600;
+}
+
+p{
+    font-size:15px;
+    color:var(--text);
+}
+
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 button{
     cursor:pointer;
 }
 
+.btn{
+    padding:10px 16px;
+    border-radius:var(--radius-md);
+    border:none;
+    font-size:14px;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:#fff;
+}
+
+.btn-primary:hover{
+    background:var(--primary-dark);
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+input, textarea, select{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    font-size:14px;
+    outline:none;
+}
+
+input:focus{
+    border-color:var(--primary);
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 16px;
+}
+
+.section{
+    padding:32px 0;
+}
+
+.grid{
+    display:grid;
+    gap:16px;
+}
+
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+
+
+/* =====================================================
+   UTILITIES
+===================================================== */
 img{
     max-width:100%;
+    height:auto;
+    display:block;
 }
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
-
+===================================================== */
 .footer{
 
     background:#0d1b2a;
@@ -114,73 +264,7 @@ img{
     margin-bottom:10px;
 }
 
-/* MOBILE */
 
-@media(max-width:768px){
-
-    .footer{
-
-        padding:35px 18px;
-    }
-
-    .footer h3{
-
-        font-size:26px;
-    }
-
-    .footer p{
-
-        font-size:15px;
-    }
-}
-/* =========================
-   HEADER + MENU FIX
-========================= */
-
-.header {
-    width: 100%;
-}
-
-/* TOP HEADER */
-.top-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* MENU BAR */
-.menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #1565c0;
-    padding: 10px 15px;
-    flex-wrap: wrap;
-}
-
-/* MENU LINKS */
-.menu a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    margin-right: 15px;
-}
-
-/* LANGUAGE BLOCK */
-.lang-switch {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #fff;
-}
-
-.lang-switch span {
-    color: #fff;
-    font-size: 13px;
-}
-
-.lang-switch button {
-    font-size: 12px;
-    padding: 3px 6px;
-    cursor: pointer;
-}
+/* =====================================================
+   ANIMATIONS
+===================================================== */
