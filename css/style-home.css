@@ -1639,3 +1639,227 @@
     display:none;
 
 }
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:60px;
+
+    background:#0d1b2a;
+
+    color:#ffffff;
+
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.footer-container{
+
+    max-width:1400px;
+
+    margin:0 auto;
+
+    padding:55px 30px;
+
+    display:grid;
+
+    grid-template-columns:
+        2fr
+        1fr
+        1fr;
+
+    gap:50px;
+
+}
+
+/* =====================================================
+   COLUMN
+===================================================== */
+
+.footer-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.footer-column h3{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:22px;
+
+    color:#ffffff;
+
+    position:relative;
+
+}
+
+.footer-column h3::after{
+
+    content:"";
+
+    display:block;
+
+    width:55px;
+
+    height:3px;
+
+    margin-top:10px;
+
+    background:#1565c0;
+
+    border-radius:20px;
+
+}
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.footer-column p{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    margin-bottom:14px;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+    color:#d6dce5;
+
+}
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.footer-column i{
+
+    width:18px;
+
+    color:#4fc3f7;
+
+    flex-shrink:0;
+
+    margin-top:4px;
+
+}
+
+/* =====================================================
+   LINK
+===================================================== */
+
+.footer-column a{
+
+    color:#d6dce5;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+.footer-column a:hover{
+
+    color:#4fc3f7;
+
+}
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.footer-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.footer-menu a{
+
+    font-size:15px;
+
+}
+
+/* =====================================================
+   SOCIAL
+===================================================== */
+
+.footer-social{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-top:10px;
+
+}
+
+.footer-social a{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#1565c0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#ffffff;
+
+    transition:.3s;
+
+}
+
+.footer-social a:hover{
+
+    transform:translateY(-3px);
+
+    background:#1e88e5;
+
+}
+
+/* =====================================================
+   COPYRIGHT
+===================================================== */
+
+.footer-bottom{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    text-align:center;
+
+    padding:18px 20px;
+
+    font-size:14px;
+
+    color:#b8c5d3;
+
+}
