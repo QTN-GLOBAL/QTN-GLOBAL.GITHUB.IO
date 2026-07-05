@@ -1664,29 +1664,30 @@
     display:none;
 
 }
-/* =====================================================
-   FOOTER
-===================================================== */
+/*======================================================
+FOOTER
+======================================================*/
 
 .footer{
 
     margin-top:50px;
 
-    background:linear-gradient(180deg,#0d2d63 0%,#081a38 100%);
-
-    color:#ffffff;
+    background:linear-gradient(180deg,#0d2d63,#081a38);
 
     border-top:4px solid #f5b400;
 
+    color:#fff;
+
 }
 
-/* =====================================================
-   CONTAINER
-===================================================== */
+/*======================================================
+CONTAINER
+======================================================*/
 
 .footer-container{
 
     width:93%;
+
     max-width:1400px;
 
     margin:auto;
@@ -1695,25 +1696,31 @@
 
     display:grid;
 
-    grid-template-columns:
-        38%
-        24%
-        20%
-        18%;
+    grid-template-columns:2fr 1fr 1fr .9fr;
 
-    gap:40px;
+    gap:60px;
 
     align-items:start;
 
 }
-/* ==========================
-   COMPANY
-========================== */
+
+/*======================================================
+COLUMN
+======================================================*/
+
+.footer-column{
+
+    min-width:0;
+
+}
+
+/*======================================================
+COMPANY
+======================================================*/
 
 .footer-company{
 
-    display:flex;
-    flex-direction:column;
+    max-width:520px;
 
 }
 
@@ -1723,25 +1730,27 @@
 
     align-items:center;
 
-    gap:18px;
+    gap:20px;
 
-    margin-bottom:20px;
+    margin-bottom:25px;
 
 }
 
 .footer-logo img{
 
-    width:72px;
-
-    height:auto;
+    width:90px;
 
 }
 
 .footer-brand h2{
 
-    font-size:30px;
-
     margin:0;
+
+    font-size:42px;
+
+    line-height:1;
+
+    font-weight:800;
 
     color:#fff;
 
@@ -1749,40 +1758,29 @@
 
 .footer-brand span{
 
+    display:block;
+
+    margin-top:10px;
+
     color:#ffc107;
+
+    font-size:16px;
 
     font-weight:700;
 
-    font-size:18px;
-
 }
 
-/* =====================================================
-   COLUMN
-===================================================== */
-
-.footer-column{
-
-    display:flex;
-
-    flex-direction:column;
-
-    min-width:0;
-
-}
-
-
-/* =====================================================
-   TITLE
-===================================================== */
+/*======================================================
+TITLE
+======================================================*/
 
 .footer-column h3{
 
-    font-size:20px;
+    margin:0 0 24px;
 
-    margin-bottom:20px;
+    font-size:30px;
 
-    color:#ffffff;
+    color:#fff;
 
     position:relative;
 
@@ -1794,21 +1792,19 @@
 
     display:block;
 
-    width:55px;
+    width:56px;
 
     height:3px;
 
-    margin-top:10px;
-
     background:#f5b400;
 
-    border-radius:30px;
+    margin-top:10px;
 
 }
 
-/* =====================================================
-   TEXT
-===================================================== */
+/*======================================================
+TEXT
+======================================================*/
 
 .footer-column p{
 
@@ -1818,9 +1814,11 @@
 
     gap:12px;
 
-    margin-bottom:16px;
-
     line-height:1.8;
+
+    margin-bottom:18px;
+
+    color:#d8e3ef;
 
     font-size:16px;
 
@@ -1828,22 +1826,17 @@
 
 .footer-column i{
 
+    color:#48c5ff;
+
     width:18px;
 
-    color:#4fc3f7;
-
-    margin-top:5px;
-
-    flex-shrink:0;
+    margin-top:6px;
 
 }
-/* =====================================================
-   LINK
-===================================================== */
 
 .footer-column a{
 
-    color:#d7e4f5;
+    color:#d8e3ef;
 
     text-decoration:none;
 
@@ -1853,15 +1846,13 @@
 
 .footer-column a:hover{
 
-    color:#f5b400;
-
-    padding-left:5px;
+    color:#ffc107;
 
 }
 
-/* =====================================================
-   MENU
-===================================================== */
+/*======================================================
+MENU
+======================================================*/
 
 .footer-menu{
 
@@ -1869,25 +1860,20 @@
 
     flex-direction:column;
 
-    gap:12px;
-
 }
 
 .footer-menu a{
 
-    display:block;
-
-    padding:8px 0;
+    padding:12px 0;
 
     border-bottom:1px solid rgba(255,255,255,.08);
 
-    color:#dbe5f3;
-
 }
 
-/* =====================================================
-   SOCIAL
-===================================================== */
+/*======================================================
+SOCIAL
+======================================================*/
+
 .footer-social{
 
     display:flex;
@@ -1904,74 +1890,28 @@
 
     align-items:center;
 
-    gap:15px;
-
-    width:auto;
-
-    height:auto;
-
-    background:none;
-
-    border-radius:0;
-
-    color:#fff;
-
-    text-decoration:none;
+    gap:14px;
 
 }
 
-.footer-social a:hover{
+.footer-social span{
 
-    background:#f5b400;
-
-    color:#0d2d63;
-
-    transform:translateY(-4px);
-
-    padding-left:0;
+    color:#d8e3ef;
 
 }
 
-/* =====================================================
-   COPYRIGHT
-===================================================== */
+/*======================================================
+BOTTOM
+======================================================*/
 
 .footer-bottom{
 
-    border-top:1px solid rgba(255,255,255,.10);
+    border-top:1px solid rgba(255,255,255,.08);
 
     text-align:center;
 
-    padding:18px 20px;
+    padding:18px;
 
-    color:#c9d8ea;
-
-    font-size:14px;
-
-    letter-spacing:.3px;
-
-}
-
-/* =====================================================
-   SMALL EFFECT
-===================================================== */
-
-.footer-column p:hover{
-
-    color:#ffffff;
-
-    transition:.25s;
-
-}
-
-.footer-column i{
-
-    transition:.25s;
-
-}
-
-.footer-column p:hover i{
-
-    color:#f5b400;
+    color:#cdd8e6;
 
 }
