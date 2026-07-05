@@ -1273,9 +1273,9 @@
 
     align-items:center;
 
-    height:42px;
+    height:34px;
 
-    border-radius:10px;
+    border-radius:7px;
 
     background:#1565c0;
 
@@ -1283,9 +1283,9 @@
 
     text-decoration:none;
 
-    font-size:14px;
+    font-size:12px;
 
-    font-weight:700;
+    font-weight:600;
 
     transition:.25s;
 
@@ -1305,19 +1305,19 @@
 
     flex:1;
 
-    height:42px;
+    height:34px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:7px;
 
     background:#f39c12;
 
     color:#ffffff;
 
-    font-size:14px;
+    font-size:12px;
 
-    font-weight:700;
+    font-weight:600;
 
     cursor:pointer;
 
@@ -1330,7 +1330,6 @@
     background:#d98200;
 
 }
-
 /* =====================================================
    SECTION TITLE
 ===================================================== */
