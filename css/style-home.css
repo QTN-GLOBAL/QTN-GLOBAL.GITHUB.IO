@@ -1492,13 +1492,13 @@
 
     width:100%;
 
-    aspect-ratio:1/1;
+    height:150px;
 
     object-fit:contain;
 
     background:#ffffff;
 
-    padding:16px;
+    padding:8px;
 
 }
 
@@ -1514,6 +1514,8 @@
 
     height:100%;
 
+    padding:0 10px 10px;
+
 }
 
 /* =====================================================
@@ -1522,11 +1524,15 @@
 
 .brand-track h3{
 
-    min-height:48px;
+    min-height:40px;
 
-    font-size:15px;
+    font-size:14px;
 
-    line-height:1.45;
+    line-height:1.35;
+
+    margin:6px 0 8px;
+
+    overflow:hidden;
 
 }
 
@@ -1540,7 +1546,7 @@
 
     display:flex;
 
-    gap:8px;
+    gap:6px;
 
 }
 
