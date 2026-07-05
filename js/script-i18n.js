@@ -7,7 +7,7 @@ const translations = {
     vi: {
         home: "TRANG CHỦ",
         about: "GIỚI THIỆU",
-        news: "Tin tức",
+        news: "TIN TỨC",
         newsTitle: "TIN TỨC",
 newsDesc: "Cập nhật những thông tin mới nhất về sản phẩm, công nghệ cân điện tử và hoạt động của QTN GLOBAL.",
 
