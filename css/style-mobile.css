@@ -1205,17 +1205,20 @@ button{
 
 .brand-track{
 
-    display:flex;
+    display:grid;
 
-    overflow-x:auto;
+    grid-template-columns:1fr;
 
     gap:14px;
 
-    padding-bottom:6px;
+}
+.slider-btn{
 
-    scroll-snap-type:x mandatory;
+    display:flex;
 
-    -webkit-overflow-scrolling:touch;
+    opacity:1;
+
+    z-index:999;
 
 }
 
@@ -2414,17 +2417,16 @@ textarea:focus{
 
     .footer-column{
 
-        text-align:center;
+    text-align:left;
 
-        align-items:center;
+    align-items:flex-start;
 
-    }
-
+}
     .footer-column h3::after{
 
-        margin:10px auto 0;
+    margin:10px 0 0;
 
-    }
+}
 
     .footer-column p{
 
@@ -2438,11 +2440,29 @@ textarea:focus{
 
     }
 
-    .footer-social{
+   .footer-social{
 
-        justify-content:center;
+    display:flex;
 
-    }
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+.footer-social a{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    width:100%;
+
+    gap:12px;
 
 }
 
