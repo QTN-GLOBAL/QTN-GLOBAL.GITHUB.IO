@@ -855,22 +855,17 @@
 
 .main-layout{
 
-    max-width:1400px;
-
-    margin:20px auto;
-
-    padding:0 30px 30px;
-
     display:grid;
 
-    grid-template-columns:260px minmax(0,1fr);
+    grid-template-columns:240px 1fr;
 
-    gap:24px;
+    gap:6px;
+
+    padding:4px 12px 10px;
 
     align-items:start;
 
 }
-
 /* =====================================================
    SIDEBAR
 ===================================================== */
@@ -880,7 +875,7 @@
 
     position:sticky;
 
-    top:145px;
+    top:110px;
 
     background:#ffffff;
 
@@ -1551,17 +1546,25 @@
 
 .slider-btn{
 
-    width:42px;
+    position:absolute;
 
-    height:42px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:24px;
+
+    height:24px;
 
     border:none;
 
     border-radius:50%;
 
-    background:#1565c0;
+    background:rgba(0,0,0,.18);
 
-    color:#ffffff;
+    color:#fff;
+
+    font-size:12px;
 
     display:flex;
 
@@ -1573,15 +1576,38 @@
 
     transition:.25s;
 
-    flex-shrink:0;
+    opacity:0;
+
+    z-index:20;
 
 }
 
 .slider-btn:hover{
 
-    background:#0d47a1;
+    background:rgba(13,60,136,.7);
 
-    transform:scale(1.05);
+}
+/* Hiện nút khi rê chuột vào Brand Slider */
+
+.brand-wrapper:hover .slider-btn{
+
+    opacity:1;
+
+}
+
+/* Vị trí nút bên trái */
+
+.slider-btn.left{
+
+    left:8px;
+
+}
+
+/* Vị trí nút bên phải */
+
+.slider-btn.right{
+
+    right:8px;
 
 }
 
