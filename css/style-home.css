@@ -859,7 +859,7 @@
 
     grid-template-columns:240px 1fr;
 
-    gap:6px;
+    gap:8px;
 
     padding:4px 12px 10px;
 
@@ -873,17 +873,21 @@
 .sidebar,
 .brand-sidebar{
 
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
     position:sticky;
 
     top:110px;
 
-    background:#ffffff;
+    align-self:start;
 
-    border-radius:18px;
-
-    padding:22px;
-
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    margin-top:0;
 
 }
 
