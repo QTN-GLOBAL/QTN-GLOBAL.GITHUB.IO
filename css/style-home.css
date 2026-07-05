@@ -442,7 +442,15 @@
 
     flex:1;
 
-    color:#ffffff;
+    color:#fff;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding-top:20px;
 
 }
 
@@ -452,7 +460,7 @@
 
     line-height:1.15;
 
-    margin-bottom:6px;
+    margin:0 0 16px;
 
 }
 
@@ -470,13 +478,9 @@
 
     list-style:none;
 
-    display:flex;
+    margin:0 0 16px;
 
-    flex-direction:column;
-
-    gap:14px;
-
-    margin-bottom:28px;
+    padding:0;
 
 }
 
@@ -507,17 +511,17 @@
 /* =========================
    CONTACT
 ========================= */
-
 .hero-contact{
 
     display:flex;
 
-    gap:18px;
+    gap:10px;
 
     flex-wrap:wrap;
 
-}
+    margin-top:0;
 
+}
 .hero-phone{
 
     display:flex;
