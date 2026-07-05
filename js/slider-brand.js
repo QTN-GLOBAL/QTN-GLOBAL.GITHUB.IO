@@ -14,8 +14,6 @@ function getVisibleCount(){
 
     if(w <= 992) return 3;
 
-    if(w <= 1200) return 4;
-
     return 4;
 
 }
