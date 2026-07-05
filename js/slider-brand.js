@@ -57,7 +57,7 @@ function initBrandSliders() {
 
         renderBrand(track.id);
 
-        if (items.length <= VISIBLE) return;
+        if (items.length <= getVisibleCount()) return;
 
         const timer = setInterval(() => {
             moveBrand(track.id, 1);
@@ -93,10 +93,9 @@ function renderBrand(id) {
     if (index < 0) index = 0;
 
     let html = "";
+const visible = getVisibleCount();
 
-    for (let i = 0; i < const visible = getVisibleCount();
-
-Math.min(visible,total); i++) {
+    for (let i = 0; i < Math.min(visible, total); i++) {
 
         const realIndex = (index + i) % total;
         const p = items[realIndex];
