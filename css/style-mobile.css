@@ -2355,3 +2355,155 @@ textarea:focus{
     outline-offset:2px;
 
 }
+/* =====================================================
+   FOOTER RESPONSIVE
+===================================================== */
+
+/* =========================
+   Laptop
+========================= */
+
+@media (max-width:1200px){
+
+    .footer-container{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:40px;
+
+    }
+
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width:768px){
+
+    .footer{
+
+        margin-top:40px;
+
+    }
+
+    .footer-container{
+
+        grid-template-columns:1fr;
+
+        gap:30px;
+
+        padding:40px 20px;
+
+    }
+
+    .footer-logo{
+
+        justify-content:center;
+
+        text-align:center;
+
+        flex-direction:column;
+
+    }
+
+    .footer-logo img{
+
+        width:64px;
+
+        height:64px;
+
+    }
+
+    .footer-column{
+
+        text-align:center;
+
+        align-items:center;
+
+    }
+
+    .footer-column h3::after{
+
+        margin:10px auto 0;
+
+    }
+
+    .footer-column p{
+
+        justify-content:center;
+
+    }
+
+    .footer-menu{
+
+        align-items:center;
+
+    }
+
+    .footer-social{
+
+        justify-content:center;
+
+    }
+
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width:480px){
+
+    .footer-container{
+
+        padding:30px 15px;
+
+    }
+
+    .footer-logo h2{
+
+        font-size:28px;
+
+    }
+
+    .footer-logo span{
+
+        font-size:13px;
+
+    }
+
+    .footer-column h3{
+
+        font-size:18px;
+
+    }
+
+    .footer-column p{
+
+        font-size:14px;
+
+        line-height:1.6;
+
+    }
+
+    .footer-social a{
+
+        width:40px;
+
+        height:40px;
+
+        font-size:16px;
+
+    }
+
+    .footer-bottom{
+
+        font-size:13px;
+
+        padding:15px;
+
+    }
+
+}
