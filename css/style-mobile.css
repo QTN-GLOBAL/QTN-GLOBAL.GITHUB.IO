@@ -2359,16 +2359,12 @@ textarea:focus{
    FOOTER RESPONSIVE
 ===================================================== */
 
-/* =========================
-   Laptop
-========================= */
-
-@media (max-width:1200px){
+/* Laptop */
+@media (max-width:992px){
 
     .footer-container{
 
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
 
         gap:40px;
 
