@@ -4,7 +4,21 @@
 
 let brandIntervals = [];
 
-const VISIBLE = 5;
+function getVisibleCount(){
+
+    const w = window.innerWidth;
+
+    if(w <= 480) return 1;
+
+    if(w <= 768) return 2;
+
+    if(w <= 992) return 3;
+
+    if(w <= 1200) return 4;
+
+    return 4;
+
+}
 
 /* =========================
    INIT
@@ -82,7 +96,9 @@ function renderBrand(id) {
 
     let html = "";
 
-    for (let i = 0; i < Math.min(VISIBLE, total); i++) {
+    for (let i = 0; i < const visible = getVisibleCount();
+
+Math.min(visible,total); i++) {
 
         const realIndex = (index + i) % total;
         const p = items[realIndex];
@@ -177,3 +193,18 @@ function formatBrandName(name) {
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(" ");
 }
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+window.addEventListener("resize", () => {
+
+    document.querySelectorAll(".brand-track").forEach(track => {
+
+        renderBrand(track.id);
+
+    });
+
+});
