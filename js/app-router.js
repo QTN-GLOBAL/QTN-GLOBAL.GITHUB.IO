@@ -1,23 +1,22 @@
 /* =========================
-   APP ROUTER (SPA NO RELOAD)
-   - HOME
-   - SEARCH
-   - CATEGORY
-   - BRAND
-   - BUSINESS
+   QTN GLOBAL SPA ROUTER
+   - SEO
+   - CATEGORY ROUTE
+   - HOME / SEARCH / BRAND / BUSINESS
+   - SUPPORT GITHUB PAGES
 ========================= */
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    router();
+
+    window.addEventListener("popstate", router);
+});
 
 /* =========================
-   GLOBAL ROUTER CORE
+   SEO MAP
 ========================= */
 
-window.APP_ROUTER = window.APP_ROUTER || {};
-
-
-/* =========================
-   SEO CONFIG
-========================= */
 const SEO_MAP = {
     "": {
         title: "QTN GLOBAL | Cân điện tử",
@@ -70,270 +69,173 @@ const SEO_MAP = {
     }
 };
 
+/* =========================
+   GET ROUTE (FIX GITHUB PAGES)
+========================= */
+
+function getRoute() {
+
+    return location.pathname
+        .split("/")
+        .filter(Boolean)
+        .slice(-1)[0] || "";
+}
+
+/* =========================
+   ROUTER CORE
+========================= */
+
+function router() {
+
+    const route = getRoute();
+
+    setSEO(route);
+    renderPage(route);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function goTo(route) {
+
+    history.pushState({}, "", "/" + route);
+
+    router();
+}
+
+/* =========================
+   SEO HANDLER
+========================= */
+
 function setSEO(key) {
 
-    const cleanKey = (key || "").replace(/^\/|\/$/g, "");
-    const seo = SEO_MAP[cleanKey] || SEO_MAP[""];
+    const seo = SEO_MAP[key] || SEO_MAP[""];
 
     document.title = seo.title;
 
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-        metaDesc.setAttribute("content", seo.desc);
-    }
+    if (metaDesc) metaDesc.setAttribute("content", seo.desc);
 
     const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) {
-        ogTitle.setAttribute("content", seo.title);
-    }
+    if (ogTitle) ogTitle.setAttribute("content", seo.title);
 
     const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) {
-        ogDesc.setAttribute("content", seo.desc);
+    if (ogDesc) ogDesc.setAttribute("content", seo.desc);
+}
+
+/* =========================
+   RENDER PAGE
+========================= */
+
+function renderPage(route) {
+
+    // reset UI
+    hideAllSections();
+
+    switch (route) {
+
+        case "":
+            showHome();
+            break;
+
+        case "can-ban":
+            showCategory("can-ban");
+            break;
+
+        case "can-ban-dung":
+            showCategory("can-ban-dung");
+            break;
+
+        case "can-dem":
+            showCategory("can-dem");
+            break;
+
+        case "can-treo":
+            showCategory("can-treo");
+            break;
+
+        case "dau-can-dien-tu":
+            showCategory("dau-can-dien-tu");
+            break;
+
+        case "can-phan-tich":
+            showCategory("can-phan-tich");
+            break;
+
+        case "can-chong-nuoc":
+            showCategory("can-chong-nuoc");
+            break;
+
+        case "can-in-tem-ma-vach":
+            showCategory("can-in-tem-ma-vach");
+            break;
+
+        case "can-ghe-ngoi":
+            showCategory("can-ghe-ngoi");
+            break;
+
+        default:
+            showHome();
+            break;
     }
 }
 
-
 /* =========================
-   ROUTER INIT (SPA CORE)
+   UI HELPERS
 ========================= */
 
-function initRouter() {
-    const state = getSessionState();
-    logSession(state);
-    routeController(state);
+function hideAllSections() {
+
+    const sections = document.querySelectorAll("[data-page]");
+    sections.forEach(el => el.style.display = "none");
 }
 
-document.addEventListener("DOMContentLoaded", initRouter);
+function showHome() {
 
-/* back/forward browser */
-window.addEventListener("popstate", function () {
-    initRouter();
-});
+    const home = document.querySelector('[data-page="home"]');
+    if (home) home.style.display = "block";
 
+    initHomeSlider();
+}
+
+function showCategory(key) {
+
+    const cat = document.querySelector('[data-page="category"]');
+    if (cat) cat.style.display = "block";
+
+    initCategorySlider(key);
+}
 
 /* =========================
-   SESSION STATE
+   SLIDER LOGIC
+   (bạn thay bằng code hiện tại của bạn)
 ========================= */
 
-function getSessionState() {
-    return {
-        search: sessionStorage.getItem("searchKeyword"),
-        category: sessionStorage.getItem("filterCategory"),
-        brand: sessionStorage.getItem("filterBrand"),
-        business: sessionStorage.getItem("filterBusiness")
-    };
+function initHomeSlider() {
+
+    console.log("Init HOME slider");
+
+    // tránh init lại nhiều lần
+    if (window.homeSliderInitDone) return;
+    window.homeSliderInitDone = true;
+
+    // TODO: gắn code slider home của bạn vào đây
 }
 
-function logSession(state) {
-    console.log("search:", state.search);
-    console.log("category:", state.category);
-    console.log("brand:", state.brand);
-    console.log("business:", state.business);
-}
+function initCategorySlider(category) {
 
+    console.log("Init CATEGORY slider:", category);
+
+    // reset mỗi lần vào category
+    window.homeSliderInitDone = false;
+
+    // TODO: render slider theo category
+}
 
 /* =========================
-   ROUTER CONTROLLER
+   CLICK MENU GLOBAL (OPTIONAL)
 ========================= */
 
-function routeController(state) {
-
-    /* =========================
-       SEARCH ROUTE
-    ========================= */
-
-    if (state.search) {
-
-        const { type, data } =
-            SearchSystem.detectType(getProducts(), state.search);
-
-        console.log("SEARCH TYPE:", type, data.length);
-
-        if (type === "category") {
-
-            window.APP_MODE.mode = "category-slider";
-
-            renderSingleSlider(data, state.search);
-
-            sessionStorage.removeItem("searchKeyword");
-            return;
-        }
-
-        if (type === "brand") {
-
-            window.APP_MODE.mode = "brand-slider";
-
-            renderSingleSlider(data, state.search);
-
-            sessionStorage.removeItem("searchKeyword");
-            return;
-        }
-
-        window.APP_MODE.mode = "search-grid";
-
-        renderGridWithBrand(data, state.search);
-
-        sessionStorage.removeItem("searchKeyword");
-        return;
-    }
-
-
-    /* =========================
-       CATEGORY ROUTE
-    ========================= */
-
-    if (state.category) {
-
-        const products = getProducts().filter(
-            p => p.category === state.category
-        );
-
-        if (!products.length) {
-
-            alert("Sản phẩm đang cập nhật.");
-            goHomePage();
-            return;
-        }
-
-        window.APP_MODE.mode = "category-slider";
-
-        setSEO(state.category);
-
-        renderSingleSlider(products, state.category);
-
-        sessionStorage.removeItem("filterCategory");
-        return;
-    }
-
-
-    /* =========================
-       BRAND ROUTE
-    ========================= */
-
-    if (state.brand) {
-
-        const products = getProducts().filter(
-            p => (p.brand || "").toUpperCase() === state.brand.toUpperCase()
-        );
-
-        window.APP_MODE.mode = "brand-slider";
-
-        renderSingleSlider(products, state.brand);
-
-        sessionStorage.removeItem("filterBrand");
-        return;
-    }
-
-
-    /* =========================
-       BUSINESS ROUTE
-    ========================= */
-
-    if (state.business) {
-
-        const products = getProducts();
-
-        const ALLOWED = ["measure", "home"];
-
-        const filtered = products.filter(
-            p => p.business === state.business
-        );
-
-        sessionStorage.removeItem("filterBusiness");
-
-        if (ALLOWED.includes(state.business)) {
-
-            if (!filtered.length) {
-
-                alert(
-                    t("businessUpdateTitle") +
-                    "\n" +
-                    t("businessUpdateDesc")
-                );
-
-                goHomePage();
-                return;
-            }
-
-            window.APP_MODE.mode = "business-slider";
-
-            renderHomeByBrand(filtered);
-
-            initBrandSliders();
-
-            return;
-        }
-
-        const container = document.getElementById("homeContainer");
-
-        if (container) {
-            container.innerHTML = `
-                <div style="text-align:center;padding:60px 20px;">
-                    <h2>${t("businessUpdateTitle")}</h2>
-                    <p>${t("businessUpdateDesc")}</p>
-                    <button onclick="goHomePage()">OK</button>
-                </div>
-            `;
-        }
-
-        return;
-    }
-
-
-    /* =========================
-       HOME ROUTE
-    ========================= */
-
-    setSEO("");
-
-    window.APP_MODE.mode = "home";
-
-    renderHomeByBrand();
-
-    initHeroSlider();
-
-    initBrandSliders();
-}
-
-
-/* =========================
-   NAVIGATION (SPA CORE)
-========================= */
-
-function goToCategoryURL(category) {
-
-    const urlMap = {
-        "can-ban": "/can-ban",
-        "can-ban-dung": "/can-ban-dung",
-        "can-dem": "/can-dem",
-        "can-treo": "/can-treo"
-    };
-
-    const path = urlMap[category] || "/";
-
-    sessionStorage.setItem("filterCategory", category);
-
-    history.pushState({}, "", path);
-
-    routeController(getSessionState());
-}
-
-
-/* =========================
-   GLOBAL ROUTER API
-========================= */
-
-window.APP_ROUTER.goCategory = goToCategoryURL;
-
-window.APP_ROUTER.goHome = function () {
-    sessionStorage.clear();
-    history.pushState({}, "", "/");
-    routeController(getSessionState());
-};
-
-window.APP_ROUTER.goBrand = function (brand) {
-    sessionStorage.setItem("filterBrand", brand);
-    history.pushState({}, "", "/brand/" + brand);
-    routeController(getSessionState());
-};
+// dùng trong HTML: onclick="goTo('can-ban')"
+window.goTo = goTo;
