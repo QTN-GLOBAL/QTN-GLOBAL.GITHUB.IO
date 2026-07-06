@@ -6,7 +6,49 @@
    - BRAND
    - BUSINESS
 ========================= */
+/* =========================
+   SEO QTN GLOBAL
+========================= */
 
+const SEO_MAP = {
+    "": {
+        title: "QTN GLOBAL | Cân điện tử",
+        desc: "Thiết bị đo lường công nghiệp chính xác"
+    },
+
+    "can-ban": {
+        title: "Cân bàn điện tử | QTN GLOBAL",
+        desc: "Cân bàn điện tử chính xác cao"
+    },
+
+    "can-ban-dung": {
+        title: "Cân bàn đứng | QTN GLOBAL",
+        desc: "Cân bàn đứng tải trọng lớn"
+    },
+
+    "can-dem": {
+        title: "Cân đếm điện tử | QTN GLOBAL",
+        desc: "Cân đếm linh kiện chính xác"
+    },
+
+    "can-treo": {
+        title: "Cân treo điện tử | QTN GLOBAL",
+        desc: "Cân treo công nghiệp tải nặng"
+    }
+};
+
+function setSEO(key) {
+
+    const seo = SEO_MAP[key] || SEO_MAP[""];
+
+    document.title = seo.title;
+
+    const meta = document.querySelector('meta[name="description"]');
+
+    if (meta) {
+        meta.setAttribute("content", seo.desc);
+    }
+}
 document.addEventListener("DOMContentLoaded", function () {
 console.log("APP ROUTER RUN");
 
@@ -96,6 +138,7 @@ if (category) {
     }
 
     window.APP_MODE.mode = "category-slider";
+setSEO(category);
 
     renderSingleSlider(products, category);
 
@@ -197,7 +240,7 @@ if (business) {
     /* =========================
        HOME
     ========================= */
-
+setSEO("");
     window.APP_MODE.mode = "home";
 
     renderHomeByBrand();
