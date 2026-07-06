@@ -108,59 +108,104 @@ onclick="openCart()">
 <!-- =========================
      MENU
 ========================= -->
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <nav class="navbar">
 
     <!-- MOBILE MENU BUTTON -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-        <i class="fa-solid fa-bars"></i>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open Menu">
+
+        <i class="fas fa-bars"></i>
+
     </button>
 
-    <!-- MENU CONTENT -->
+    <!-- MENU -->
+
     <div class="nav-content" id="navContent">
 
-        <!-- MENU LINKS -->
-        <a href="index.html" data-i18n="home">
-            Trang chủ
+        <!-- CLOSE -->
+
+        <button
+            class="menu-close"
+            id="menuClose"
+            aria-label="Close Menu">
+
+            <i class="fas fa-times"></i>
+
+        </button>
+
+        <!-- MENU -->
+
+        <a href="index.html">
+
+            <i class="fas fa-house"></i>
+
+            <span data-i18n="home">
+                Trang chủ
+            </span>
+
         </a>
 
-        <a href="about.html" data-i18n="about">
-            Giới thiệu
+        <a href="about.html">
+
+            <i class="fas fa-circle-info"></i>
+
+            <span data-i18n="about">
+                Giới thiệu
+            </span>
+
         </a>
 
-        <a href="news.html" data-i18n="news">
-            Tin tức
+        <a href="news.html">
+
+            <i class="fas fa-newspaper"></i>
+
+            <span data-i18n="news">
+                Tin tức
+            </span>
+
         </a>
 
         <a href="#"
-           onclick="goContact(); return false;"
-           data-i18n="contact">
-            Liên hệ
+           onclick="goContact();return false;">
+
+            <i class="fas fa-phone"></i>
+
+            <span data-i18n="contact">
+                Liên hệ
+            </span>
+
         </a>
 
-       <!-- =========================
-     SEARCH BOX
-========================= -->
-<div class="search-box">
+        <!-- SEARCH -->
 
-    <input
-        type="text"
-        id="searchInput"
-        data-i18n-placeholder="searchPlaceholder"
-        placeholder="Tìm kiếm sản phẩm..."
-        autocomplete="off">
+        <div class="search-box">
 
-    <button
-        type="button"
-        onclick="runSearch()"
-        aria-label="Search">
+            <input
+                id="searchInput"
+                type="text"
+                autocomplete="off"
+                data-i18n-placeholder="searchPlaceholder"
+                placeholder="Tìm kiếm sản phẩm...">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
+            <button
+                type="button"
+                onclick="runSearch()">
 
-    </button>
+                <i class="fas fa-search"></i>
 
-</div>
+            </button>
+
+        </div>
 
         <!-- LANGUAGE -->
+
         <div class="language-switcher">
 
             <select id="languageSelect">
@@ -182,6 +227,10 @@ onclick="openCart()">
         </div>
 
     </div>
+
+    <!-- DARK BACKGROUND -->
+
+    <div class="menu-overlay" id="menuOverlay"></div>
 
 </nav>
 
@@ -763,6 +812,7 @@ class="cart-body">
 <script src="js/slider-brand.js"></script>
 
 <script src="js/app-router.js"></script>
+<script src="js/script-mobile-menu.js"></script>
 
 
 </body>
