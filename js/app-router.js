@@ -18,7 +18,6 @@ window.APP_ROUTER = window.APP_ROUTER || {};
 /* =========================
    SEO CONFIG
 ========================= */
-
 const SEO_MAP = {
     "": {
         title: "QTN GLOBAL | Cân điện tử",
@@ -43,40 +42,54 @@ const SEO_MAP = {
     "can-treo": {
         title: "Cân treo điện tử | QTN GLOBAL",
         desc: "Cân treo công nghiệp tải nặng"
-    
     },
+
     "dau-can-dien-tu": {
-        title: "Đầu cân điện từ | QTN GLOBAL",
+        title: "Đầu cân điện tử | QTN GLOBAL",
         desc: "Đầu cân điện tử chất lượng cao"
- },
- "can-phan-tich": {
+    },
+
+    "can-phan-tich": {
         title: "Cân phân tích | QTN GLOBAL",
         desc: "Cân phân tích chính xác cao"
- },
- "can-chong-nuoc": {
-        title: "Cân chống nước| QTN GLOBAL",
+    },
+
+    "can-chong-nuoc": {
+        title: "Cân chống nước | QTN GLOBAL",
         desc: "Cân chống nước chất lượng cao"
- },
- "can-in-tem-ma-vach": {
+    },
+
+    "can-in-tem-ma-vach": {
         title: "Cân in tem mã vạch | QTN GLOBAL",
         desc: "Cân siêu thị chất lượng cao"
- },
- "can-ghe-ngoi": {
+    },
+
+    "can-ghe-ngoi": {
         title: "Cân ghế ngồi | QTN GLOBAL",
         desc: "Cân ghế ngồi chắc chắn"
- }
+    }
 };
 
 function setSEO(key) {
 
-    const seo = SEO_MAP[key] || SEO_MAP[""];
+    const cleanKey = (key || "").replace(/^\/|\/$/g, "");
+    const seo = SEO_MAP[cleanKey] || SEO_MAP[""];
 
     document.title = seo.title;
 
-    const meta = document.querySelector('meta[name="description"]');
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.setAttribute("content", seo.desc);
+    }
 
-    if (meta) {
-        meta.setAttribute("content", seo.desc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+        ogTitle.setAttribute("content", seo.title);
+    }
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) {
+        ogDesc.setAttribute("content", seo.desc);
     }
 }
 
