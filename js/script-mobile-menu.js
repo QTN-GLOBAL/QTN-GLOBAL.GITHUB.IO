@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nav.classList.add("show");
 
         overlay.classList.add("show");
+        toggle.classList.add("hide");
 
         document.body.style.overflow="hidden";
 
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nav.classList.remove("show");
 
         overlay.classList.remove("show");
+        toggle.classList.remove("hide");
 
         document.body.style.overflow="";
 
