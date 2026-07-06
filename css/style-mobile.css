@@ -2595,8 +2595,13 @@ textarea:focus{
         color:#fff;
 
         z-index:1001;
+        transition:.3s;
 
     }
+    .menu-toggle.hide{
+    opacity:0;
+    pointer-events:none;
+}
 
     .menu-close{
 
