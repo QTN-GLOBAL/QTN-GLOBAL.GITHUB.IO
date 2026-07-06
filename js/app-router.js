@@ -1,13 +1,22 @@
 /* =========================
-   APP ROUTER
+   APP ROUTER (SPA NO RELOAD)
    - HOME
    - SEARCH
    - CATEGORY
    - BRAND
    - BUSINESS
 ========================= */
+
+
 /* =========================
-   SEO QTN GLOBAL
+   GLOBAL ROUTER CORE
+========================= */
+
+window.APP_ROUTER = window.APP_ROUTER || {};
+
+
+/* =========================
+   SEO CONFIG
 ========================= */
 
 const SEO_MAP = {
@@ -49,198 +58,201 @@ function setSEO(key) {
         meta.setAttribute("content", seo.desc);
     }
 }
-document.addEventListener("DOMContentLoaded", function () {
-console.log("APP ROUTER RUN");
 
-console.log("search:",
-    sessionStorage.getItem("searchKeyword"));
 
-console.log("category:",
-    sessionStorage.getItem("filterCategory"));
-
-console.log("brand:",
-    sessionStorage.getItem("filterBrand"));
-
-console.log("business:",
-    sessionStorage.getItem("filterBusiness"));
-
-    const search =
-        sessionStorage.getItem("searchKeyword");
-
-    const category =
-        sessionStorage.getItem("filterCategory");
-
-    const brand =
-        sessionStorage.getItem("filterBrand");
-
-    const business =
-        sessionStorage.getItem("filterBusiness");
-
-   /***************************
-   SEARCH
-***************************/
-/* SEARCH */
-
-if (search) {
-
-    const { type, data } =
-        SearchSystem.detectType(getProducts(), search);
-
-    console.log("SEARCH TYPE:", type, data.length);
-
-    if (type === "category") {
-
-        window.APP_MODE.mode = "category-slider";
-
-        renderSingleSlider(data, search);
-
-        sessionStorage.removeItem("searchKeyword");
-        return;
-    }
-
-    if (type === "brand") {
-
-        window.APP_MODE.mode = "brand-slider";
-
-        renderSingleSlider(data, search);
-
-        sessionStorage.removeItem("searchKeyword");
-        return;
-    }
-
-    // PRODUCT GRID
-    window.APP_MODE.mode = "search-grid";
-
-    renderGridWithBrand(data, search);
-
-    sessionStorage.removeItem("searchKeyword");
-
-    return;
-}
-    /* =========================
-       CATEGORY
-    ========================= */
-
-   /***************************
-   CATEGORY
-***************************/
-if (category) {
-
-    const products = getProducts().filter(
-        p => p.category === category
-    );
-
-    if (!products.length) {
-
-        alert("Sản phẩm đang cập nhật.");
-        goHomePage();
-        return;
-    }
-
-    window.APP_MODE.mode = "category-slider";
-setSEO(category);
-
-    renderSingleSlider(products, category);
-
-    sessionStorage.removeItem("filterCategory");
-
-    return;
-}
-
-    /* =========================
-       BRAND
-    ========================= */
-
-    if (brand) {
-
-    const products = getProducts().filter(
-        p => (p.brand || "").toUpperCase() === brand.toUpperCase()
-    );
-
-    window.APP_MODE.mode = "brand-slider";
-
-    renderSingleSlider(products, brand);
-
-    sessionStorage.removeItem("filterBrand");
-
-    return;
-}
-
-  /* =========================
-   BUSINESS ROUTE (FINAL CLEAN)
+/* =========================
+   ROUTER INIT (SPA CORE)
 ========================= */
 
-if (business) {
+function initRouter() {
+    const state = getSessionState();
+    logSession(state);
+    routeController(state);
+}
 
-    const products = getProducts();
+document.addEventListener("DOMContentLoaded", initRouter);
 
-    sessionStorage.removeItem("filterBusiness");
+/* back/forward browser */
+window.addEventListener("popstate", function () {
+    initRouter();
+});
 
-    // các lĩnh vực đã có sản phẩm
-    const ALLOWED = ["measure", "home"];
 
-    const filtered = products.filter(
-        p => p.business === business
-    );
+/* =========================
+   SESSION STATE
+========================= */
 
-    // =========================
-    // CASE 1: CÓ SẢN PHẨM
-    // =========================
-    if (ALLOWED.includes(business)) {
+function getSessionState() {
+    return {
+        search: sessionStorage.getItem("searchKeyword"),
+        category: sessionStorage.getItem("filterCategory"),
+        brand: sessionStorage.getItem("filterBrand"),
+        business: sessionStorage.getItem("filterBusiness")
+    };
+}
 
-        if (!filtered.length) {
+function logSession(state) {
+    console.log("search:", state.search);
+    console.log("category:", state.category);
+    console.log("brand:", state.brand);
+    console.log("business:", state.business);
+}
 
-            alert(
-                t("businessUpdateTitle") +
-                "\n" +
-                t("businessUpdateDesc")
-            );
 
+/* =========================
+   ROUTER CONTROLLER
+========================= */
+
+function routeController(state) {
+
+    /* =========================
+       SEARCH ROUTE
+    ========================= */
+
+    if (state.search) {
+
+        const { type, data } =
+            SearchSystem.detectType(getProducts(), state.search);
+
+        console.log("SEARCH TYPE:", type, data.length);
+
+        if (type === "category") {
+
+            window.APP_MODE.mode = "category-slider";
+
+            renderSingleSlider(data, state.search);
+
+            sessionStorage.removeItem("searchKeyword");
+            return;
+        }
+
+        if (type === "brand") {
+
+            window.APP_MODE.mode = "brand-slider";
+
+            renderSingleSlider(data, state.search);
+
+            sessionStorage.removeItem("searchKeyword");
+            return;
+        }
+
+        window.APP_MODE.mode = "search-grid";
+
+        renderGridWithBrand(data, state.search);
+
+        sessionStorage.removeItem("searchKeyword");
+        return;
+    }
+
+
+    /* =========================
+       CATEGORY ROUTE
+    ========================= */
+
+    if (state.category) {
+
+        const products = getProducts().filter(
+            p => p.category === state.category
+        );
+
+        if (!products.length) {
+
+            alert("Sản phẩm đang cập nhật.");
             goHomePage();
             return;
         }
 
-        window.APP_MODE.mode =
-            "business-slider";
+        window.APP_MODE.mode = "category-slider";
 
-        renderHomeByBrand(filtered);
+        setSEO(state.category);
 
-        initBrandSliders();
+        renderSingleSlider(products, state.category);
+
+        sessionStorage.removeItem("filterCategory");
+        return;
+    }
+
+
+    /* =========================
+       BRAND ROUTE
+    ========================= */
+
+    if (state.brand) {
+
+        const products = getProducts().filter(
+            p => (p.brand || "").toUpperCase() === state.brand.toUpperCase()
+        );
+
+        window.APP_MODE.mode = "brand-slider";
+
+        renderSingleSlider(products, state.brand);
+
+        sessionStorage.removeItem("filterBrand");
+        return;
+    }
+
+
+    /* =========================
+       BUSINESS ROUTE
+    ========================= */
+
+    if (state.business) {
+
+        const products = getProducts();
+
+        const ALLOWED = ["measure", "home"];
+
+        const filtered = products.filter(
+            p => p.business === state.business
+        );
+
+        sessionStorage.removeItem("filterBusiness");
+
+        if (ALLOWED.includes(state.business)) {
+
+            if (!filtered.length) {
+
+                alert(
+                    t("businessUpdateTitle") +
+                    "\n" +
+                    t("businessUpdateDesc")
+                );
+
+                goHomePage();
+                return;
+            }
+
+            window.APP_MODE.mode = "business-slider";
+
+            renderHomeByBrand(filtered);
+
+            initBrandSliders();
+
+            return;
+        }
+
+        const container = document.getElementById("homeContainer");
+
+        if (container) {
+            container.innerHTML = `
+                <div style="text-align:center;padding:60px 20px;">
+                    <h2>${t("businessUpdateTitle")}</h2>
+                    <p>${t("businessUpdateDesc")}</p>
+                    <button onclick="goHomePage()">OK</button>
+                </div>
+            `;
+        }
 
         return;
     }
 
-    // =========================
-    // CASE 2: CHƯA CÓ SẢN PHẨM
-    // =========================
-    const container =
-        document.getElementById(
-            "homeContainer"
-        );
 
-    if (container) {
-
-        container.innerHTML = `
-            <div style="
-                text-align:center;
-                padding:60px 20px;
-            ">
-                <h2>${t("businessUpdateTitle")}</h2>
-                <p>${t("businessUpdateDesc")}</p>
-
-                <button onclick="goHomePage()">
-                    OK
-                </button>
-            </div>
-        `;
-    }
-
-    return;
-}
     /* =========================
-       HOME
+       HOME ROUTE
     ========================= */
-setSEO("");
+
+    setSEO("");
+
     window.APP_MODE.mode = "home";
 
     renderHomeByBrand();
@@ -248,4 +260,46 @@ setSEO("");
     initHeroSlider();
 
     initBrandSliders();
-});
+}
+
+
+/* =========================
+   NAVIGATION (SPA CORE)
+========================= */
+
+function goToCategoryURL(category) {
+
+    const urlMap = {
+        "can-ban": "/can-ban",
+        "can-ban-dung": "/can-ban-dung",
+        "can-dem": "/can-dem",
+        "can-treo": "/can-treo"
+    };
+
+    const path = urlMap[category] || "/";
+
+    sessionStorage.setItem("filterCategory", category);
+
+    history.pushState({}, "", path);
+
+    routeController(getSessionState());
+}
+
+
+/* =========================
+   GLOBAL ROUTER API
+========================= */
+
+window.APP_ROUTER.goCategory = goToCategoryURL;
+
+window.APP_ROUTER.goHome = function () {
+    sessionStorage.clear();
+    history.pushState({}, "", "/");
+    routeController(getSessionState());
+};
+
+window.APP_ROUTER.goBrand = function (brand) {
+    sessionStorage.setItem("filterBrand", brand);
+    history.pushState({}, "", "/brand/" + brand);
+    routeController(getSessionState());
+};
