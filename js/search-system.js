@@ -112,6 +112,17 @@
         detectType,
         go
     };
+window.runSearch = function () {
+
+    const input = document.getElementById("searchInput");
+
+    if (!input) return;
+
+    alert("Nút Search đã được bấm");
+
+    SearchSystem.go(input.value);
+
+};
 document.addEventListener("keydown", function (e) {
 
     if (e.key !== "Enter") return;
