@@ -125,5 +125,14 @@ document.addEventListener("keydown", function (e) {
         window.SearchSystem.go(input.value);
     }
 });
+// Click nút tìm kiếm
+window.runSearch = function () {
 
+    const input = document.getElementById("searchInput");
+
+    if (!input) return;
+
+    SearchSystem.go(input.value);
+
+};
 })();
