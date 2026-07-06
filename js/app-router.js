@@ -1,137 +1,208 @@
+/* =========================
+   APP ROUTER
+   - HOME
+   - SEARCH
+   - CATEGORY
+   - BRAND
+   - BUSINESS
+========================= */
+
 document.addEventListener("DOMContentLoaded", function () {
-    router();
-    window.addEventListener("popstate", router);
-});
+console.log("APP ROUTER RUN");
 
-/* =========================
-   SEO MAP
-========================= */
+console.log("search:",
+    sessionStorage.getItem("searchKeyword"));
 
-const SEO_MAP = {
-    "": {
-        title: "QTN GLOBAL | Cân điện tử",
-        desc: "Thiết bị đo lường công nghiệp chính xác"
-    },
-    "can-ban": {
-        title: "Cân bàn điện tử | QTN GLOBAL",
-        desc: "Cân bàn điện tử chính xác cao"
-    },
-    "can-ban-dung": {
-        title: "Cân bàn đứng | QTN GLOBAL",
-        desc: "Cân bàn đứng tải trọng lớn"
-    },
-    "can-dem": {
-        title: "Cân đếm điện tử | QTN GLOBAL",
-        desc: "Cân đếm linh kiện chính xác"
-    },
-    "can-treo": {
-        title: "Cân treo điện tử | QTN GLOBAL",
-        desc: "Cân treo công nghiệp tải nặng"
-    }
-};
+console.log("category:",
+    sessionStorage.getItem("filterCategory"));
 
-/* =========================
-   GET ROUTE
-========================= */
+console.log("brand:",
+    sessionStorage.getItem("filterBrand"));
 
-function getRoute() {
-    return location.pathname
-        .split("/")
-        .filter(Boolean)
-        .pop() || "";
-}
+console.log("business:",
+    sessionStorage.getItem("filterBusiness"));
 
-/* =========================
-   ROUTER
-========================= */
+    const search =
+        sessionStorage.getItem("searchKeyword");
 
-function router() {
+    const category =
+        sessionStorage.getItem("filterCategory");
 
-    const route = getRoute();
+    const brand =
+        sessionStorage.getItem("filterBrand");
 
-    setSEO(route);
-    setActiveMenu(route);
-    renderCategory(route);
-}
+    const business =
+        sessionStorage.getItem("filterBusiness");
 
-/* =========================
-   NAVIGATION
-========================= */
+   /***************************
+   SEARCH
+***************************/
+/* SEARCH */
 
-function goTo(route) {
-    history.pushState({}, "", "/" + route);
-    router();
-}
+if (search) {
 
-window.goTo = goTo;
+    const { type, data } =
+        SearchSystem.detectType(getProducts(), search);
 
-/* =========================
-   SEO
-========================= */
+    console.log("SEARCH TYPE:", type, data.length);
 
-function setSEO(key) {
+    if (type === "category") {
 
-    const seo = SEO_MAP[key] || SEO_MAP[""];
+        window.APP_MODE.mode = "category-slider";
 
-    document.title = seo.title;
+        renderSingleSlider(data, search);
 
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", seo.desc);
-}
-
-/* =========================
-   ACTIVE MENU (QUAN TRỌNG)
-========================= */
-
-function setActiveMenu(route) {
-
-    document.querySelectorAll("[data-category]").forEach(el => {
-        el.classList.remove("active");
-    });
-
-    const active = document.querySelector(`[data-category="${route}"]`);
-    if (active) active.classList.add("active");
-}
-
-/* =========================
-   RENDER CATEGORY
-========================= */
-
-function renderCategory(route) {
-
-    console.log("ROUTE:", route);
-
-    // HOME
-    if (!route) {
-        showHome();
+        sessionStorage.removeItem("searchKeyword");
         return;
     }
 
-    // CATEGORY
-    showHome(); // giữ layout home (slider nền)
+    if (type === "brand") {
 
-    if (typeof renderProductsByCategory === "function") {
-        renderProductsByCategory(route);
+        window.APP_MODE.mode = "brand-slider";
+
+        renderSingleSlider(data, search);
+
+        sessionStorage.removeItem("searchKeyword");
+        return;
     }
 
-    if (typeof initCategorySlider === "function") {
-        initCategorySlider(route);
+    // PRODUCT GRID
+    window.APP_MODE.mode = "search-grid";
+
+    renderGridWithBrand(data, search);
+
+    sessionStorage.removeItem("searchKeyword");
+
+    return;
+}
+    /* =========================
+       CATEGORY
+    ========================= */
+
+   /***************************
+   CATEGORY
+***************************/
+if (category) {
+
+    const products = getProducts().filter(
+        p => p.category === category
+    );
+
+    if (!products.length) {
+
+        alert("Sản phẩm đang cập nhật.");
+        goHomePage();
+        return;
     }
+
+    window.APP_MODE.mode = "category-slider";
+
+    renderSingleSlider(products, category);
+
+    sessionStorage.removeItem("filterCategory");
+
+    return;
 }
 
-/* =========================
-   HOME
+    /* =========================
+       BRAND
+    ========================= */
+
+    if (brand) {
+
+    const products = getProducts().filter(
+        p => (p.brand || "").toUpperCase() === brand.toUpperCase()
+    );
+
+    window.APP_MODE.mode = "brand-slider";
+
+    renderSingleSlider(products, brand);
+
+    sessionStorage.removeItem("filterBrand");
+
+    return;
+}
+
+  /* =========================
+   BUSINESS ROUTE (FINAL CLEAN)
 ========================= */
 
-function showHome() {
+if (business) {
 
-    const homeSlider = document.querySelector("#home-slider");
+    const products = getProducts();
 
-    if (homeSlider) {
-        homeSlider.style.display = "block";
+    sessionStorage.removeItem("filterBusiness");
+
+    // các lĩnh vực đã có sản phẩm
+    const ALLOWED = ["measure", "home"];
+
+    const filtered = products.filter(
+        p => p.business === business
+    );
+
+    // =========================
+    // CASE 1: CÓ SẢN PHẨM
+    // =========================
+    if (ALLOWED.includes(business)) {
+
+        if (!filtered.length) {
+
+            alert(
+                t("businessUpdateTitle") +
+                "\n" +
+                t("businessUpdateDesc")
+            );
+
+            goHomePage();
+            return;
+        }
+
+        window.APP_MODE.mode =
+            "business-slider";
+
+        renderHomeByBrand(filtered);
+
+        initBrandSliders();
+
+        return;
     }
 
-    if (typeof initHomeSlider === "function") {
-        initHomeSlider();
+    // =========================
+    // CASE 2: CHƯA CÓ SẢN PHẨM
+    // =========================
+    const container =
+        document.getElementById(
+            "homeContainer"
+        );
+
+    if (container) {
+
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:60px 20px;
+            ">
+                <h2>${t("businessUpdateTitle")}</h2>
+                <p>${t("businessUpdateDesc")}</p>
+
+                <button onclick="goHomePage()">
+                    OK
+                </button>
+            </div>
+        `;
     }
+
+    return;
 }
+    /* =========================
+       HOME
+    ========================= */
+
+    window.APP_MODE.mode = "home";
+
+    renderHomeByBrand();
+
+    initHeroSlider();
+
+    initBrandSliders();
+});
