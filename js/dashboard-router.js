@@ -9,7 +9,7 @@
 
 const DASHBOARD_PAGES = {
 
-    home: renderHome,
+    dashboard: renderDashboard,
 
     website: renderWebsite
 
@@ -37,6 +37,6 @@ function openPage(page){
 
 document.addEventListener("DOMContentLoaded",()=>{
 
-    openPage("home");
+    openPage("dashboard");
 
 });
