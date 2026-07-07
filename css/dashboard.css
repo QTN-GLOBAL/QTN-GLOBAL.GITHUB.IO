@@ -104,3 +104,106 @@ body{
     padding:35px;
 
 }
+/* =====================================================
+   SIDEBAR LOGO
+===================================================== */
+
+.sidebar-logo{
+
+    padding:28px 24px;
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+}
+
+.sidebar-logo h2{
+
+    font-size:30px;
+
+    color:#fff;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
+
+}
+
+.sidebar-logo p{
+
+    font-size:12px;
+
+    color:rgba(255,255,255,.7);
+
+    letter-spacing:3px;
+
+}
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.sidebar-menu{
+
+    flex:1;
+
+    padding:25px 0;
+
+}
+
+.sidebar-menu h3{
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:rgba(255,255,255,.45);
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin:28px 24px 12px;
+
+}
+
+.sidebar-menu ul{
+
+    list-style:none;
+
+}
+
+.sidebar-menu li{
+
+    display:flex;
+
+    align-items:center;
+
+    height:46px;
+
+    padding:0 24px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    color:rgba(255,255,255,.88);
+
+    font-size:15px;
+
+}
+
+.sidebar-menu li:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.sidebar-menu li.active{
+
+    background:#2a4f86;
+
+    border-left:4px solid #58a6ff;
+
+    font-weight:bold;
+
+}
