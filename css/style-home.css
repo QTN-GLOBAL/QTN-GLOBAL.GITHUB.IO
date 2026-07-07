@@ -1123,35 +1123,26 @@
    PRODUCT CARD
 ===================================================== */
 
-.product-card{
+.product-card {
 
-    position:relative;
+    background: #f4f7fb;
 
-    display:flex;
+    border-radius: 18px;
 
-    flex-direction:column;
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
 
-    height:100%;
-
-    background:#ffffff;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    border:1px solid #edf1f7;
-
-    transition:.3s;
-
-    box-shadow:0 4px 15px rgba(0,0,0,.05);
+    transition: .3s ease;
 
 }
 
-.product-card:hover{
 
-    transform:translateY(-6px);
+.product-card:hover {
 
-    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.15);
 
 }
 
@@ -1186,20 +1177,13 @@
 /* =====================================================
    IMAGE
 ===================================================== */
-
-.product-card img{
+.product-card img {
 
     width:100%;
 
-    aspect-ratio:1/1;
+    padding:15px;
 
-    object-fit:contain;
-
-    background:#ffffff;
-
-    padding:18px;
-
-    transition:.35s;
+    box-sizing:border-box;
 
 }
 
