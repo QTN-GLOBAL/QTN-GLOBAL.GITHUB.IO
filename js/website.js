@@ -9,6 +9,7 @@ function renderWebsite() {
     if (!content) return;
 
     content.innerHTML = `
+    openWebsitePage("products");
 
         <!-- =========================================
              HEADER
@@ -32,11 +33,13 @@ function renderWebsite() {
 
         <div class="website-tabs">
 
-            <div class="website-tab active">
+            <div
+    class="website-tab active"
+    onclick="openWebsitePage('products')">
 
-                Products
+    Products
 
-            </div>
+</div>
 
             <div class="website-tab">
 
