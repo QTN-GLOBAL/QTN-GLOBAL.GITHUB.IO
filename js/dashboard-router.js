@@ -9,17 +9,7 @@
 
 const DASHBOARD_PAGES = {
 
-    home: renderHome,
-
-    website: renderWebsite,
-
-    seo: renderSEO,
-
-    qvzo: renderQVZO,
-
-    media: renderMedia,
-
-    settings: renderSettings
+    home: renderHome
 
 };
 
