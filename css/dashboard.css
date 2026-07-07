@@ -1,6 +1,6 @@
 /* =====================================================
    QTN GLOBAL CONTROL CENTER
-   DASHBOARD
+   DASHBOARD LAYOUT
 ===================================================== */
 
 *{
@@ -11,154 +11,96 @@
 
 body{
 
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 
-    background:#f5f7fa;
+    background:#f4f6fb;
 
     color:#333;
 
-}
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
-.dashboard{
-
-    width:95%;
-
-    max-width:1300px;
-
-    margin:40px auto;
+    overflow:hidden;
 
 }
 
 /* =====================================================
-   HEADER
+   LAYOUT
 ===================================================== */
 
-.dashboard-header{
+.dashboard-layout{
 
-    text-align:center;
+    display:flex;
 
-    margin-bottom:50px;
+    width:100vw;
 
-}
-
-.dashboard-header h1{
-
-    font-size:42px;
-
-    color:#1c355e;
-
-    letter-spacing:3px;
-
-}
-
-.dashboard-header p{
-
-    margin-top:10px;
-
-    font-size:16px;
-
-    color:#777;
-
-    letter-spacing:4px;
+    height:100vh;
 
 }
 
 /* =====================================================
-   GRID
+   SIDEBAR
 ===================================================== */
 
-.dashboard-grid{
+.sidebar{
 
-    display:grid;
+    width:260px;
 
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-    gap:30px;
-
-}
-
-/* =====================================================
-   CARD
-===================================================== */
-
-.module-card{
-
-    background:#fff;
-
-    border-radius:14px;
-
-    padding:35px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-    transition:.3s;
-
-}
-
-.module-card:hover{
-
-    transform:translateY(-6px);
-
-    box-shadow:0 16px 40px rgba(0,0,0,.12);
-
-}
-
-.module-card h2{
-
-    color:#1c355e;
-
-    margin-bottom:15px;
-
-    font-size:28px;
-
-}
-
-.module-card p{
-
-    color:#666;
-
-    line-height:1.6;
-
-    min-height:55px;
-
-    margin-bottom:25px;
-
-}
-
-/* =====================================================
-   BUTTON
-===================================================== */
-
-.module-card button{
-
-    width:100%;
-
-    height:50px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#1c355e;
+    background:#17396a;
 
     color:#fff;
 
-    font-size:15px;
+    display:flex;
 
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
+    flex-direction:column;
 
 }
 
-.module-card button:hover{
+/* =====================================================
+   MAIN
+===================================================== */
 
-    background:#28508d;
+.main-content{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar{
+
+    height:70px;
+
+    background:#fff;
+
+    border-bottom:1px solid #e6e6e6;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content{
+
+    flex:1;
+
+    overflow:auto;
+
+    padding:35px;
 
 }
