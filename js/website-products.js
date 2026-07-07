@@ -4,19 +4,96 @@
 
 function renderWebsiteProducts(){
 
-   const content = document.getElementById("websiteWorkspace");
+    const workspace =
+        document.getElementById("websiteWorkspace");
 
-    if(!content) return;
+    if(!workspace) return;
 
-    content.innerHTML = `
+    workspace.innerHTML = `
 
-        <h2>📦 Products</h2>
+        <!-- =========================================
+             PRODUCTS HEADER
+        ========================================== -->
 
-        <p>
+        <div class="products-header">
 
-            Đây sẽ là trung tâm quản lý toàn bộ sản phẩm.
+            <h2>📦 Products</h2>
 
-        </p>
+            <button class="btn-primary">
+
+                + Add Product
+
+            </button>
+
+        </div>
+
+        <!-- =========================================
+             PRODUCTS TOOLBAR
+        ========================================== -->
+
+        <div class="products-toolbar">
+
+            <input
+                type="text"
+                placeholder="Search products...">
+
+            <select>
+
+                <option>All Categories</option>
+
+            </select>
+
+            <select>
+
+                <option>All Brands</option>
+
+            </select>
+
+        </div>
+
+        <!-- =========================================
+             PRODUCTS TABLE
+        ========================================== -->
+
+        <table class="products-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Image</th>
+
+                    <th>Product</th>
+
+                    <th>Brand</th>
+
+                    <th>Category</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td colspan="7">
+
+                        Chưa có dữ liệu sản phẩm.
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
 
     `;
 
