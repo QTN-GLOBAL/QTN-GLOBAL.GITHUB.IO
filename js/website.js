@@ -4,26 +4,23 @@
 
 function renderWebsite() {
 
-    const content =
-        document.getElementById("dashboardContent");
+    const content = document.getElementById("dashboardContent");
 
     if (!content) return;
 
     content.innerHTML = `
 
-        <h1>🌐 WEBSITE</h1>
+        <div class="website-header">
 
-        <p>
+            <h1>🌐 Website</h1>
 
-            Đây là module quản lý Website QTN GLOBAL.
+            <p>
 
-        </p>
+                Quản lý toàn bộ Website QTN GLOBAL.
 
-        <button onclick="openPage('home')">
+            </p>
 
-            ← Quay về Home
-
-        </button>
+        </div>
 
     `;
 
