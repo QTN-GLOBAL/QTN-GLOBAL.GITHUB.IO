@@ -52,9 +52,17 @@
 
 .website-tab{
 
-    padding:10px 18px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px 20px;
 
     background:#f5f7fa;
+
+    border:1px solid #e3e6eb;
 
     border-radius:8px;
 
@@ -65,6 +73,8 @@
     font-size:14px;
 
     font-weight:600;
+
+    user-select:none;
 
 }
 
@@ -85,11 +95,124 @@
 }
 
 /* =====================================================
-   CONTENT
+   WEBSITE WORKSPACE
 ===================================================== */
 
-.website-content{
+#websiteWorkspace{
 
     min-height:450px;
+
+}
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+.products-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.products-header h2{
+
+    color:#1c355e;
+
+}
+
+.btn-primary{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#1c355e;
+
+    color:#fff;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.btn-primary:hover{
+
+    background:#284f87;
+
+}
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.products-toolbar{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.products-toolbar input,
+
+.products-toolbar select{
+
+    height:42px;
+
+    padding:0 14px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    outline:none;
+
+}
+
+.products-toolbar input{
+
+    flex:1;
+
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.products-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.products-table th{
+
+    background:#f5f7fa;
+
+    padding:14px;
+
+    text-align:left;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.products-table td{
+
+    padding:14px;
+
+    border-bottom:1px solid #eee;
 
 }
