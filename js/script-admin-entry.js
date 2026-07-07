@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     adminEntry.addEventListener("click", () => {
 
-        window.location.href = "admin/admin.html";
+        window.location.href = "admin.html";
 
     });
 
