@@ -1915,3 +1915,27 @@ BOTTOM
     color:#cdd8e6;
 
 }
+/* =====================================
+   HIDE PRODUCT BUTTONS UNTIL HOVER
+===================================== */
+
+.product-buttons {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: opacity .3s ease, visibility .3s ease;
+
+}
+
+
+/* Hover vào card sản phẩm */
+
+.product-card:hover .product-buttons {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
