@@ -9,7 +9,9 @@
 
 const DASHBOARD_PAGES = {
 
-    home: renderHome
+    home: renderHome,
+
+    website: renderWebsite
 
 };
 
