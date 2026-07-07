@@ -19,81 +19,111 @@
 
 <body>
 
-    <main class="dashboard">
+    <!-- =====================================================
+         DASHBOARD LAYOUT
+    ====================================================== -->
 
-        <!-- HEADER -->
+    <div class="dashboard-layout">
 
-        <header class="dashboard-header">
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
 
-            <h1>QTN GLOBAL</h1>
+        <aside class="sidebar">
 
-            <p>CONTROL CENTER</p>
+            <div class="sidebar-logo">
 
-        </header>
+                <h2>QTN GLOBAL</h2>
 
-        <!-- MODULES -->
-
-        <section class="dashboard-grid">
-
-            <div class="module-card">
-
-                <h2>🌐 WEBSITE</h2>
-
-                <p>
-                    Quản lý Website QTN GLOBAL
-                </p>
-
-                <button>
-                    MỞ
-                </button>
+                <p>CONTROL CENTER</p>
 
             </div>
 
-            <div class="module-card">
+            <nav class="sidebar-menu">
 
-                <h2>📈 SEO CENTER</h2>
+                <h3>Dashboard</h3>
+
+                <ul>
+
+                    <li class="active">
+                        Dashboard
+                    </li>
+
+                </ul>
+
+                <h3>Applications</h3>
+
+                <ul>
+
+                    <li>🌐 Website</li>
+
+                    <li>📈 SEO Center</li>
+
+                    <li>🎬 QVZO</li>
+
+                </ul>
+
+                <h3>System</h3>
+
+                <ul>
+
+                    <li>🖼 Media</li>
+
+                    <li>⚙ Settings</li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- =====================================================
+             MAIN
+        ====================================================== -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="page-title">
+
+                    Dashboard
+
+                </div>
+
+                <div class="topbar-right">
+
+                    Admin
+
+                </div>
+
+            </header>
+
+            <!-- CONTENT -->
+
+            <section
+                id="dashboardContent"
+                class="content">
+
+                <h1>
+
+                    Welcome to QTN GLOBAL Control Center
+
+                </h1>
 
                 <p>
-                    Quản lý Website SEO Google
+
+                    Đây sẽ là trung tâm quản trị của toàn bộ hệ thống.
+
                 </p>
 
-                <button>
-                    MỞ
-                </button>
+            </section>
 
-            </div>
+        </main>
 
-            <div class="module-card">
-
-                <h2>🎬 QVZO</h2>
-
-                <p>
-                    Nền tảng Video Social
-                </p>
-
-                <button>
-                    MỞ
-                </button>
-
-            </div>
-
-            <div class="module-card">
-
-                <h2>⚙ SETTINGS</h2>
-
-                <p>
-                    Cấu hình hệ thống
-                </p>
-
-                <button>
-                    MỞ
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
+    </div>
 
     <script src="js/dashboard.js"></script>
 
