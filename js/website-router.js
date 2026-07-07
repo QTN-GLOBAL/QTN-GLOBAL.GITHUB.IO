@@ -8,10 +8,23 @@
 
 const WEBSITE_PAGES = {
 
-    products: renderWebsiteProducts
+    products: renderWebsiteProducts,
+
+    categories: renderWebsiteCategories,
+
+    brands: renderWebsiteBrands,
+
+    news: renderWebsiteNews,
+
+    languages: renderWebsiteLanguages,
+
+    banner: renderWebsiteBanner,
+
+    business: renderWebsiteBusiness,
+
+    seo: renderWebsiteSEO
 
 };
-
 /* =====================================================
    OPEN PAGE
 ===================================================== */

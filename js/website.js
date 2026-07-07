@@ -71,12 +71,9 @@ function renderWebsite() {
              CONTENT
         ========================================== -->
 
-        <div class="website-content">
+        <div id="websiteWorkspace">
 
-        </div>
-
-    `;
-
+</div>
     // Mở tab Products mặc định
     openWebsitePage("products");
 

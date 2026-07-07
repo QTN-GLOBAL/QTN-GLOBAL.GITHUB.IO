@@ -4,8 +4,7 @@
 
 function renderWebsiteProducts(){
 
-    const content =
-        document.querySelector(".website-content");
+   const content = document.getElementById("websiteWorkspace");
 
     if(!content) return;
 
