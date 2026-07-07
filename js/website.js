@@ -28,23 +28,28 @@ function renderWebsite() {
              WEBSITE TABS
         ========================================== -->
 
-        <div class="website-tabs">
+       <div class="website-tab"
+     data-page="products"
+     onclick="openWebsitePage('products')">
 
-            <div class="website-tab active"
-                 onclick="openWebsitePage('products')">
+    Products
 
-                Products
-
-            </div>
-
-            <div class="website-tab"
-     onclick="openWebsitePage('categories')">
-    Categories
 </div>
 
-           <div class="website-tab"
+<div class="website-tab"
+     data-page="categories"
+     onclick="openWebsitePage('categories')">
+
+    Categories
+
+</div>
+
+<div class="website-tab"
+     data-page="brands"
      onclick="openWebsitePage('brands')">
+
     Brands
+
 </div>
 
             <div class="website-tab">
