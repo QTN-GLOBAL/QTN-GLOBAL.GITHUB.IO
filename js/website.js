@@ -11,7 +11,7 @@ function renderWebsite() {
     content.innerHTML = `
 
         <!-- =========================================
-             HEADER
+             WEBSITE HEADER
         ========================================== -->
 
         <div class="website-header">
@@ -19,63 +19,85 @@ function renderWebsite() {
             <h1>🌐 Website</h1>
 
             <p>
+
                 Quản lý toàn bộ Website QTN GLOBAL.
+
             </p>
 
         </div>
 
         <!-- =========================================
-             WEBSITE TABS
+             WEBSITE NAVIGATION
         ========================================== -->
 
-       <div class="website-tab"
-     data-page="products"
-     onclick="openWebsitePage('products')">
+        <div class="website-tabs">
 
-    Products
+            <div
+                class="website-tab"
+                data-page="products"
+                onclick="openWebsitePage('products')">
 
-</div>
+                Products
 
-<div class="website-tab"
-     data-page="categories"
-     onclick="openWebsitePage('categories')">
+            </div>
 
-    Categories
+            <div
+                class="website-tab"
+                data-page="categories"
+                onclick="openWebsitePage('categories')">
 
-</div>
+                Categories
 
-<div class="website-tab"
-     data-page="brands"
-     onclick="openWebsitePage('brands')">
+            </div>
 
-    Brands
+            <div
+                class="website-tab"
+                data-page="brands"
+                onclick="openWebsitePage('brands')">
 
-</div>
+                Brands
 
-            <div class="website-tab">
+            </div>
+
+            <div
+                class="website-tab">
+
                 News
+
             </div>
 
-            <div class="website-tab">
+            <div
+                class="website-tab">
+
                 Languages
+
             </div>
 
-            <div class="website-tab">
+            <div
+                class="website-tab">
+
                 Banner
+
             </div>
 
-            <div class="website-tab">
+            <div
+                class="website-tab">
+
                 Business
+
             </div>
 
-            <div class="website-tab">
+            <div
+                class="website-tab">
+
                 SEO
+
             </div>
 
         </div>
 
-                <!-- =========================================
-             CONTENT
+        <!-- =========================================
+             WEBSITE WORKSPACE
         ========================================== -->
 
         <div id="websiteWorkspace">
@@ -84,7 +106,6 @@ function renderWebsite() {
 
     `;
 
-    // Mở tab Products mặc định
     openWebsitePage("products");
 
 }
