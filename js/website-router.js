@@ -12,17 +12,7 @@ const WEBSITE_PAGES = {
 
     categories: renderWebsiteCategories,
 
-    brands: renderWebsiteBrands,
-
-    news: renderWebsiteNews,
-
-    languages: renderWebsiteLanguages,
-
-    banner: renderWebsiteBanner,
-
-    business: renderWebsiteBusiness,
-
-    seo: renderWebsiteSEO
+    brands: renderWebsiteBrands
 
 };
 /* =====================================================

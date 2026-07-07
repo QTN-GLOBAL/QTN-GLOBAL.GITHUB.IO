@@ -37,13 +37,15 @@ function renderWebsite() {
 
             </div>
 
-            <div class="website-tab">
-                Categories
-            </div>
+            <div class="website-tab"
+     onclick="openWebsitePage('categories')">
+    Categories
+</div>
 
-            <div class="website-tab">
-                Brands
-            </div>
+           <div class="website-tab"
+     onclick="openWebsitePage('brands')">
+    Brands
+</div>
 
             <div class="website-tab">
                 News
@@ -67,13 +69,16 @@ function renderWebsite() {
 
         </div>
 
-        <!-- =========================================
+                <!-- =========================================
              CONTENT
         ========================================== -->
 
         <div id="websiteWorkspace">
 
-</div>
+        </div>
+
+    `;
+
     // Mở tab Products mặc định
     openWebsitePage("products");
 
