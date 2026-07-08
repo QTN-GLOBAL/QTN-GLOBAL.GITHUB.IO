@@ -10,6 +10,7 @@ function renderWebsiteProducts(){
     if(!workspace) return;
 
     workspace.innerHTML = `
+    bindProductEvents();
 
         <!-- =========================================
              PRODUCTS HEADER
@@ -50,6 +51,12 @@ function renderWebsiteProducts(){
             </select>
 
         </div>
+        <!-- =========================================
+             PRODUCT FORM
+        ========================================== -->
+
+        <div id="productFormContainer"></div>
+
 
         <!-- =========================================
              PRODUCTS TABLE
