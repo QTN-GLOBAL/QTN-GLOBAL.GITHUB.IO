@@ -13,6 +13,12 @@ const BUSINESS_CONFIG = {
 
         icon: "⚖️",
 
+        description: "Cân điện tử và thiết bị đo lường",
+
+        color: "#2F80ED",
+
+        active: true,
+
         hasProducts: true,
 
         form: "measure"
@@ -26,6 +32,12 @@ const BUSINESS_CONFIG = {
         name: "Thiết bị công nghiệp",
 
         icon: "🏭",
+
+        description: "Máy móc và thiết bị công nghiệp",
+
+        color: "#F2994A",
+
+        active: true,
 
         hasProducts: false,
 
@@ -41,6 +53,12 @@ const BUSINESS_CONFIG = {
 
         icon: "🔧",
 
+        description: "Lắp đặt, sửa chữa và bảo trì",
+
+        color: "#EB5757",
+
+        active: true,
+
         hasProducts: false,
 
         form: "service"
@@ -54,6 +72,12 @@ const BUSINESS_CONFIG = {
         name: "Thiết bị gia dụng",
 
         icon: "🏠",
+
+        description: "Máy lọc nước và thiết bị gia dụng",
+
+        color: "#27AE60",
+
+        active: true,
 
         hasProducts: true,
 
@@ -69,6 +93,12 @@ const BUSINESS_CONFIG = {
 
         icon: "🌎",
 
+        description: "Giải pháp thương mại và phân phối",
+
+        color: "#9B51E0",
+
+        active: true,
+
         hasProducts: false,
 
         form: "trade"
@@ -81,9 +111,10 @@ const BUSINESS_CONFIG = {
    GET ALL BUSINESSES
 ===================================================== */
 
-function getBusinesses(){
+function getBusinesses() {
 
-    return Object.values(BUSINESS_CONFIG);
+    return Object.values(BUSINESS_CONFIG)
+        .filter(item => item.active);
 
 }
 
@@ -91,8 +122,18 @@ function getBusinesses(){
    GET BUSINESS
 ===================================================== */
 
-function getBusiness(id){
+function getBusiness(id) {
 
-    return BUSINESS_CONFIG[id];
+    return BUSINESS_CONFIG[id] || null;
+
+}
+
+/* =====================================================
+   CHECK BUSINESS
+===================================================== */
+
+function hasBusiness(id) {
+
+    return BUSINESS_CONFIG.hasOwnProperty(id);
 
 }
