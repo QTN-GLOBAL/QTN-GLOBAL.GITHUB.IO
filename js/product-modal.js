@@ -67,10 +67,12 @@ function openProductModal(){
 
     createProductModal();
 
-    document
-        .getElementById("productModal")
-        .classList
-        .add("show");
+renderProductBasicForm();
+
+document
+    .getElementById("productModal")
+    .classList
+    .add("show");
 
 }
 
