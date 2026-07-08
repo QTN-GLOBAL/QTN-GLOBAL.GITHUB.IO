@@ -5,98 +5,219 @@
 
 const BRAND_CONFIG = {
 
-    measure: [
+    jadever: {
 
-        {
-            id: "jadever",
-            name: "Jadever",
-            country: "Taiwan",
-            active: true
-        },
+        id: "jadever",
 
-        {
-            id: "excell",
-            name: "EXCELL",
-            country: "Taiwan",
-            active: true
-        },
+        name: "Jadever",
 
-        {
-            id: "ohaus",
-            name: "OHAUS",
-            country: "USA",
-            active: true
-        },
+        origin: "Taiwan",
 
-        {
-            id: "vibra",
-            name: "VIBRA",
-            country: "Japan",
-            active: true
-        },
+        logo: "jadever.png",
 
-        {
-            id: "yaohua",
-            name: "YAOHUA",
-            country: "China",
-            active: true
-        }
+        website: "",
 
-    ],
+        active: true,
 
-    home: [
+        categories: [
 
-        {
-            id: "espring",
-            name: "eSpring",
-            country: "USA",
-            active: true
-        },
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc"
 
-        {
-            id: "atmosphere",
-            name: "Atmosphere",
-            country: "USA",
-            active: true
-        },
+        ]
 
-        {
-            id: "amway-home",
-            name: "Amway Home",
-            country: "USA",
-            active: true
-        },
+    },
 
-        {
-            id: "artistry",
-            name: "Artistry",
-            country: "USA",
-            active: true
-        },
+    excell: {
 
-        {
-            id: "nutrilite",
-            name: "Nutrilite",
-            country: "USA",
-            active: true
-        }
+        id: "excell",
 
-    ],
+        name: "EXCELL",
 
-    industry: [],
+        origin: "Taiwan",
 
-    service: [],
+        logo: "excell.png",
 
-    trade: []
+        website: "",
+
+        active: true,
+
+        categories: [
+
+            "can-ban",
+            "can-ban-dung",
+            "can-treo",
+            "dau-can-dien-tu"
+
+        ]
+
+    },
+
+    vibra: {
+
+        id: "vibra",
+
+        name: "VIBRA",
+
+        origin: "Japan",
+
+        logo: "vibra.png",
+
+        website: "",
+
+        active: true,
+
+        categories: [
+
+            "can-ban",
+            "can-phan-tich"
+
+        ]
+
+    },
+
+    ohaus: {
+
+        id: "ohaus",
+
+        name: "OHAUS",
+
+        origin: "USA",
+
+        logo: "ohaus.png",
+
+        website: "",
+
+        active: true,
+
+        categories: [
+
+            "can-ban",
+            "can-phan-tich"
+
+        ]
+
+    },
+
+    yaohua: {
+
+        id: "yaohua",
+
+        name: "Yaohua",
+
+        origin: "China",
+
+        logo: "yaohua.png",
+
+        website: "",
+
+        active: true,
+
+        categories: [
+
+            "dau-can-dien-tu"
+
+        ]
+
+    },
+
+    espring: {
+
+        id: "espring",
+
+        name: "eSpring",
+
+        origin: "USA",
+
+        logo: "espring.png",
+
+        website: "",
+
+        active: true,
+
+        categories: [
+
+            "water-purifier",
+            "water-filter"
+
+        ]
+
+    },
+
+    atmosphere: {
+
+        id: "atmosphere",
+
+        name: "Atmosphere",
+
+        origin: "USA",
+
+        logo: "atmosphere.png",
+
+        website: "",
+
+        active: true,
+
+        categories: [
+
+            "air-purifier",
+            "air-filter"
+
+        ]
+
+    },
+
+    amway: {
+
+        id: "amway",
+
+        name: "Amway",
+
+        origin: "USA",
+
+        logo: "amway.png",
+
+        website: "",
+
+        active: true,
+
+        categories: [
+
+            "water-purifier",
+            "water-filter",
+            "air-purifier",
+            "air-filter"
+
+        ]
+
+    }
 
 };
 
 /* =====================================================
-   GET BRANDS
+   GET BRANDS BY CATEGORY
 ===================================================== */
 
-function getBrands(business){
+function getBrands(categoryId) {
 
-    return BRAND_CONFIG[business] || [];
+    return Object.values(BRAND_CONFIG).filter(item =>
+
+        item.active &&
+        item.categories.includes(categoryId)
+
+    );
+
+}
+
+/* =====================================================
+   GET BRAND
+===================================================== */
+
+function getBrand(id) {
+
+    return BRAND_CONFIG[id] || null;
 
 }
