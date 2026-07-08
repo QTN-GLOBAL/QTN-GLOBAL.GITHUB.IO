@@ -10,7 +10,7 @@ function renderWebsiteProducts(){
     if(!workspace) return;
 
     workspace.innerHTML = `
-    bindProductEvents();
+    
 
         <!-- =========================================
              PRODUCTS HEADER
@@ -103,5 +103,5 @@ function renderWebsiteProducts(){
         </table>
 
     `;
-
+bindProductEvents();
 }
