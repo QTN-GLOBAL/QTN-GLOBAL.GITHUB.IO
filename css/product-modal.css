@@ -1,0 +1,123 @@
+/* =====================================================
+   PRODUCT MODAL
+===================================================== */
+
+.product-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.product-modal.show{
+
+    display:flex;
+
+}
+
+/* =====================================================
+   MODAL CARD
+===================================================== */
+
+.product-modal-card{
+
+    width:95%;
+
+    max-width:1100px;
+
+    max-height:90vh;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.product-modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 24px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.product-modal-header h2{
+
+    margin:0;
+
+    font-size:24px;
+
+}
+
+.product-modal-close{
+
+    border:none;
+
+    background:none;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+/* =====================================================
+   BODY
+===================================================== */
+
+.product-modal-body{
+
+    flex:1;
+
+    overflow:auto;
+
+    padding:25px;
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.product-modal-footer{
+
+    border-top:1px solid #eee;
+
+    padding:18px 24px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+}
