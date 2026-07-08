@@ -1,61 +1,208 @@
 /* =====================================================
-   PRODUCT MANAGER
+   PRODUCT BASIC
+   STEP 1
+   - Render Basic Information
 ===================================================== */
 
-function bindProductEvents() {
+function renderProductBasic() {
 
-    const addBtn = document.querySelector(".btn-primary");
+    const body =
+        document.getElementById("productModalBody");
 
-    if (!addBtn) return;
+    if (!body) return;
 
-    addBtn.addEventListener("click", openProductModal);
+    body.innerHTML = `
 
-}
+        <div class="product-basic">
 
-function showAddProductForm() {
+            <h3 class="product-step-title">
 
-    const container =
-        document.getElementById("productFormContainer");
+                Basic Information
 
-    if (!container) return;
+            </h3>
 
-    container.innerHTML = `
+            <!-- =========================
+                 BUSINESS
+            ========================== -->
 
-        <div class="product-form-card">
+            <div class="form-group">
 
-            <div class="product-form-header">
+                <label>
 
-                <h3>Add New Product</h3>
+                    Business
 
-                <button
-                    class="btn-cancel"
-                    onclick="hideAddProductForm()">
+                </label>
 
-                    Cancel
+                <select id="productBusiness">
 
-                </button>
+                    <option value="">
+
+                        Select Business
+
+                    </option>
+
+                </select>
 
             </div>
 
-            <div class="product-form-body">
+            <!-- =========================
+                 CATEGORY
+            ========================== -->
 
-                Form sẽ được xây ở bước tiếp theo...
+            <div class="form-group">
+
+                <label>
+
+                    Category
+
+                </label>
+
+                <select id="productCategory">
+
+                    <option value="">
+
+                        Select Category
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- =========================
+                 BRAND
+            ========================== -->
+
+            <div class="form-group">
+
+                <label>
+
+                    Brand
+
+                </label>
+
+                <select id="productBrand">
+
+                    <option value="">
+
+                        Select Brand
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- =========================
+                 PRODUCT NAME
+            ========================== -->
+
+            <div class="form-group">
+
+                <label>
+
+                    Product Name
+
+                </label>
+
+                <input
+                    id="productName"
+                    type="text"
+                    placeholder="Product Name">
+
+            </div>
+
+            <!-- =========================
+                 FOLDER
+            ========================== -->
+
+            <div class="form-group">
+
+                <label>
+
+                    Folder
+
+                </label>
+
+                <input
+                    id="productFolder"
+                    type="text">
+
+            </div>
+
+            <!-- =========================
+                 PRODUCT ID
+            ========================== -->
+
+            <div class="form-group">
+
+                <label>
+
+                    Product ID
+
+                </label>
+
+                <input
+                    id="productId"
+                    type="number"
+                    readonly>
+
+            </div>
+
+            <!-- =========================
+                 STATUS
+            ========================== -->
+
+            <div class="form-group">
+
+                <label>
+
+                    Status
+
+                </label>
+
+                <div class="status-group">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="productStatus"
+                            value="draft"
+                            checked>
+
+                        Draft
+
+                    </label>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="productStatus"
+                            value="active">
+
+                        Active
+
+                    </label>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="productStatus"
+                            value="hidden">
+
+                        Hidden
+
+                    </label>
+
+                </div>
 
             </div>
 
         </div>
 
     `;
-
-}
-
-function hideAddProductForm() {
-
-    const container =
-        document.getElementById("productFormContainer");
-
-    if (!container) return;
-
-    container.innerHTML = "";
 
 }
