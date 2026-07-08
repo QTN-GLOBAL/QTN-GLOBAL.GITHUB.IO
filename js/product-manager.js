@@ -8,7 +8,7 @@ function bindProductEvents() {
 
     if (!addBtn) return;
 
-    addBtn.addEventListener("click", showAddProductForm);
+    addBtn.addEventListener("click", openProductModal);
 
 }
 
