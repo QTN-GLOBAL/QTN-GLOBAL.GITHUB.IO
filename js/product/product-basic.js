@@ -228,6 +228,8 @@ function initProductBasic() {
 
     }
 
+    generateProductId();
+
 }
 
 /* =====================================================
@@ -363,10 +365,11 @@ function bindBasicEvents() {
 
         business.addEventListener("change", function () {
 
-            loadCategoryOptions(this.value);
+    loadCategoryOptions(this.value);
 
-        });
+    generateProductId();
 
+});
     }
 
     if (category) {
@@ -442,5 +445,49 @@ function generateFolder() {
 
     folderInput.value =
         `${category.folder}/${slug}`;
+
+}
+/* =====================================================
+   BUSINESS PREFIX
+===================================================== */
+
+function getBusinessPrefix(businessId) {
+
+    const map = {
+
+        measure: "ME",
+
+        industry: "IN",
+
+        home: "HO",
+
+        service: "SV",
+
+        trade: "TR"
+
+    };
+
+    return map[businessId] || "PD";
+
+}
+/* =====================================================
+   GENERATE PRODUCT ID
+===================================================== */
+
+function generateProductId() {
+
+    const business =
+        document.getElementById("productBusiness");
+
+    const productId =
+        document.getElementById("productId");
+
+    if (!business || !productId) return;
+
+    const prefix =
+        getBusinessPrefix(business.value);
+
+    productId.value =
+        `${prefix}000001`;
 
 }
