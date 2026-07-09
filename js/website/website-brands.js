@@ -112,13 +112,12 @@ function renderBrandList() {
 
                 <td>
 
-                    <div class="brand-logo-placeholder">
+    <img
+        src="${getBrandImage(brand.name)}"
+        class="brand-image"
+        onerror="this.src='images/no-image.jpg'">
 
-                        🏷
-
-                    </div>
-
-                </td>
+</td>
 
                 <td>
 
@@ -210,11 +209,12 @@ function getBrandImage(brandName){
 
     );
 
-    if(!product) return "";
+    if(!product){
 
-    const categoryFolder =
-        getCategoryFolder(product.category);
+        return "images/no-image.jpg";
 
-    return `images/products/${categoryFolder}/${product.folder}/main.jpg`;
+    }
+
+    return `images/${product.category}/${product.folder}/main.jpg`;
 
 }
