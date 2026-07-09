@@ -10,6 +10,7 @@ const BRAND_CONFIG = {
         id: "jadever",
 
         name: "Jadever",
+        
 
         origin: "Taiwan",
 
@@ -18,6 +19,7 @@ const BRAND_CONFIG = {
         website: "",
 
         active: true,
+        business: ["measure"],
 
         categories: [
 
@@ -25,8 +27,11 @@ const BRAND_CONFIG = {
             "can-ban-dung",
             "can-dem",
             "can-treo",
-            "can-chong-nuoc"
-
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
         ]
 
     },
@@ -36,6 +41,7 @@ const BRAND_CONFIG = {
         id: "excell",
 
         name: "EXCELL",
+        
 
         origin: "Taiwan",
 
@@ -44,13 +50,19 @@ const BRAND_CONFIG = {
         website: "",
 
         active: true,
+        business: ["measure"],
 
         categories: [
 
             "can-ban",
             "can-ban-dung",
+            "can-dem",
             "can-treo",
-            "dau-can-dien-tu"
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
 
         ]
 
@@ -69,11 +81,19 @@ const BRAND_CONFIG = {
         website: "",
 
         active: true,
+        business: ["measure"],
 
         categories: [
 
             "can-ban",
-            "can-phan-tich"
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
 
         ]
 
@@ -92,11 +112,19 @@ const BRAND_CONFIG = {
         website: "",
 
         active: true,
+        business: ["measure"],
 
         categories: [
 
-            "can-ban",
-            "can-phan-tich"
+           "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
 
         ]
 
@@ -115,14 +143,202 @@ const BRAND_CONFIG = {
         website: "",
 
         active: true,
+        business: ["measure"],
 
         categories: [
 
-            "dau-can-dien-tu"
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
 
         ]
 
     },
+   oneko: {
+
+    id: "oneko",
+
+    name: "ONEKO",
+
+    origin: "",
+
+    logo: "oneko.png",
+
+    website: "",
+
+    active: true,
+
+    business: ["measure"],
+    categories: [
+
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
+        ]
+
+},
+
+faithful: {
+
+    id: "faithful",
+
+    name: "FAITHFUL",
+
+    origin: "",
+
+    logo: "faithful.png",
+
+    website: "",
+
+    active: true,
+
+    business: ["measure"],
+    categories: [
+
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
+        ]
+
+},
+
+shinko: {
+
+    id: "shinko",
+
+    name: "Shinko",
+
+    origin: "Japan",
+
+    logo: "shinko.png",
+
+    website: "",
+
+    active: true,
+
+    business: ["measure"],
+categories: [
+
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
+        ]
+
+},
+
+oks: {
+
+    id: "oks",
+
+    name: "OKS",
+
+    origin: "",
+
+    logo: "oks.png",
+
+    website: "",
+
+    active: true,
+
+    business: ["measure"],
+categories: [
+
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
+        ]
+
+},
+
+hz: {
+
+    id: "hz",
+
+    name: "HZ",
+
+    origin: "",
+
+    logo: "hz.png",
+
+    website: "",
+
+    active: true,
+
+    business: ["measure"],
+categories: [
+
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
+        ]
+
+},
+
+fuji: {
+
+    id: "fuji",
+
+    name: "FUJI",
+
+    origin: "Japan",
+
+    logo: "fuji.png",
+
+    website: "",
+
+    active: true,
+
+    business: ["measure"],
+categories: [
+
+            "can-ban",
+            "can-ban-dung",
+            "can-dem",
+            "can-treo",
+            "can-chong-nuoc",
+            "dau-can-dien-tu",
+             "can-phan-tich",
+             "can-in-tem-ma-vach",
+             "can-ghe-ngoi"
+        ]
+
+},
 
     espring: {
 
@@ -183,6 +399,7 @@ const BRAND_CONFIG = {
         website: "",
 
         active: true,
+        business: ["home"],
 
         categories: [
 
@@ -213,11 +430,17 @@ function getBrands(categoryId) {
 }
 
 /* =====================================================
-   GET BRAND
+   GET BRANDS BY BUSINESS
 ===================================================== */
 
-function getBrand(id) {
+function getBrands(businessId) {
 
-    return BRAND_CONFIG[id] || null;
+    return Object.values(BRAND_CONFIG).filter(item =>
+
+        item.active &&
+        item.business &&
+        item.business.includes(businessId)
+
+    );
 
 }
