@@ -216,6 +216,8 @@ function initProductBasic() {
 
     loadBusinessOptions();
 
+    bindBasicEvents();
+
 }
 
 /* =====================================================
@@ -244,6 +246,104 @@ function loadBusinessOptions() {
             `${business.icon} ${business.name}`;
 
         select.appendChild(option);
+
+    });
+
+}
+/* =====================================================
+   LOAD CATEGORY OPTIONS
+===================================================== */
+
+function loadCategoryOptions(businessId) {
+
+    const select =
+        document.getElementById("productCategory");
+
+    if (!select) return;
+
+    select.innerHTML = "";
+
+    if (!businessId) {
+
+        select.innerHTML =
+            `<option value="">Select Category</option>`;
+
+        return;
+
+    }
+
+    const categories =
+        getCategoriesByBusiness(businessId);
+
+    categories.forEach(category => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = category.id;
+
+        option.textContent = category.name;
+
+        select.appendChild(option);
+
+    });
+
+}
+/* =====================================================
+   LOAD BRAND OPTIONS
+===================================================== */
+
+function loadBrandOptions(businessId) {
+
+    const select =
+        document.getElementById("productBrand");
+
+    if (!select) return;
+
+    select.innerHTML = "";
+
+    if (!businessId) {
+
+        select.innerHTML =
+            `<option value="">Select Brand</option>`;
+
+        return;
+
+    }
+
+    const brands =
+        getBrandsByBusiness(businessId);
+
+    brands.forEach(brand => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = brand.id;
+
+        option.textContent = brand.name;
+
+        select.appendChild(option);
+
+    });
+
+}
+/* =====================================================
+   BIND EVENTS
+===================================================== */
+
+function bindBasicEvents() {
+
+    const business =
+        document.getElementById("productBusiness");
+
+    if (!business) return;
+
+    business.addEventListener("change", function () {
+
+        loadCategoryOptions(this.value);
+
+        loadBrandOptions(this.value);
 
     });
 
