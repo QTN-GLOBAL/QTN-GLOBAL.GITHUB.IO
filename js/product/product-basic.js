@@ -218,6 +218,15 @@ function initProductBasic() {
 
     bindBasicEvents();
 
+    const business =
+        document.getElementById("productBusiness");
+
+    if (business) {
+
+        loadCategoryOptions(business.value);
+
+    }
+
 }
 
 /* =====================================================
