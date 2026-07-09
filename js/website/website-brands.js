@@ -5,15 +5,12 @@
 
 function renderWebsiteBrands() {
 
-    const content =
-        document.getElementById("websiteContent");
+    const workspace =
+        document.getElementById("websiteWorkspace");
 
-    if (!content) return;
+    if (!workspace) return;
 
-    const brands =
-        Object.values(BRAND_CONFIG);
-
-    content.innerHTML = `
+    workspace.innerHTML = `
 
         <div class="website-page">
 

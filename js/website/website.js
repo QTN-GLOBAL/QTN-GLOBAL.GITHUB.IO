@@ -4,8 +4,8 @@
 
 function renderWebsite() {
 
-    const content = document.getElementById("dashboardContent");
-
+   const content =
+    document.getElementById("websiteWorkspace");
     if (!content) return;
 
     content.innerHTML = `
