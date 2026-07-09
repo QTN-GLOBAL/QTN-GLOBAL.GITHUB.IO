@@ -273,7 +273,7 @@ function loadCategoryOptions(businessId) {
     }
 
     const categories =
-        getCategoriesByBusiness(businessId);
+        getCategories(businessId);
 
     categories.forEach(category => {
 
@@ -282,18 +282,27 @@ function loadCategoryOptions(businessId) {
 
         option.value = category.id;
 
-        option.textContent = category.name;
+        option.textContent =
+            `${category.icon} ${category.name}`;
 
         select.appendChild(option);
 
     });
+
+    /* Load Brand theo Category đầu tiên */
+
+    if (categories.length > 0) {
+
+        loadBrandOptions(categories[0].id);
+
+    }
 
 }
 /* =====================================================
    LOAD BRAND OPTIONS
 ===================================================== */
 
-function loadBrandOptions(businessId) {
+function loadBrandOptions(categoryId) {
 
     const select =
         document.getElementById("productBrand");
@@ -302,7 +311,7 @@ function loadBrandOptions(businessId) {
 
     select.innerHTML = "";
 
-    if (!businessId) {
+    if (!categoryId) {
 
         select.innerHTML =
             `<option value="">Select Brand</option>`;
@@ -312,7 +321,7 @@ function loadBrandOptions(businessId) {
     }
 
     const brands =
-        getBrandsByBusiness(businessId);
+        getBrands(categoryId);
 
     brands.forEach(brand => {
 
@@ -337,14 +346,27 @@ function bindBasicEvents() {
     const business =
         document.getElementById("productBusiness");
 
-    if (!business) return;
+    const category =
+        document.getElementById("productCategory");
 
-    business.addEventListener("change", function () {
+    if (business) {
 
-        loadCategoryOptions(this.value);
+        business.addEventListener("change", function () {
 
-        loadBrandOptions(this.value);
+            loadCategoryOptions(this.value);
 
-    });
+        });
+
+    }
+
+    if (category) {
+
+        category.addEventListener("change", function () {
+
+            loadBrandOptions(this.value);
+
+        });
+
+    }
 
 }
