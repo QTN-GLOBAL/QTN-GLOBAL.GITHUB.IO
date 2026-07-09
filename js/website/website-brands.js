@@ -183,3 +183,38 @@ function renderBrandList() {
     });
 
 }
+/* =====================================================
+   GET CATEGORY FOLDER
+===================================================== */
+
+function getCategoryFolder(categoryId){
+
+    const category = getCategory(categoryId);
+
+    if(!category) return "";
+
+    return category.folder;
+
+}
+
+/* =====================================================
+   GET BRAND IMAGE
+===================================================== */
+
+function getBrandImage(brandName){
+
+    const product = (window.products || []).find(item =>
+
+        item.brand &&
+        item.brand.toLowerCase() === brandName.toLowerCase()
+
+    );
+
+    if(!product) return "";
+
+    const categoryFolder =
+        getCategoryFolder(product.category);
+
+    return `images/products/${categoryFolder}/${product.folder}/main.jpg`;
+
+}
