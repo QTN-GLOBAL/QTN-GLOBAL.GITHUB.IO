@@ -520,11 +520,13 @@ function generateProductId() {
 
     if (product) {
 
-        productId.value = product.id;
+    productId.value = product.id;
 
-        return;
+    updateBrandFromProduct(product);
 
-    }
+    return;
+
+}
 
     productId.value =
         getNextProductId();
@@ -582,5 +584,37 @@ function findProductByName(productName) {
         product.name.trim().toLowerCase() === keyword
 
     ) || null;
+
+}
+/* =====================================================
+   UPDATE BRAND FROM PRODUCT
+===================================================== */
+
+function updateBrandFromProduct(product) {
+
+    if (!product) return;
+
+    const brandSelect =
+        document.getElementById("productBrand");
+
+    if (!brandSelect) return;
+
+    const brandName =
+        String(product.brand || "").toLowerCase();
+
+    for (const option of brandSelect.options) {
+
+        if (
+            option.value.toLowerCase() === brandName ||
+            option.text.toLowerCase() === brandName
+        ) {
+
+            brandSelect.value = option.value;
+
+            return;
+
+        }
+
+    }
 
 }
