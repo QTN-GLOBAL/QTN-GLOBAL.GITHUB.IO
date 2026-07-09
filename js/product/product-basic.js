@@ -398,19 +398,27 @@ function bindBasicEvents() {
 
     }
 
-    /* =========================
-       PRODUCT NAME
-    ========================= */
+   /* =========================
+   PRODUCT NAME
+========================= */
 
-    if (productName) {
+if (productName) {
 
-        productName.addEventListener("input", generateFolder);
+    function updateProduct() {
 
-        productName.addEventListener("change", generateFolder);
+        generateFolder();
 
-        productName.addEventListener("keyup", generateFolder);
+        generateProductId();
 
     }
+
+    productName.addEventListener("input", updateProduct);
+
+    productName.addEventListener("change", updateProduct);
+
+    productName.addEventListener("keyup", updateProduct);
+
+}
 
 }
 /* =====================================================
@@ -499,10 +507,24 @@ function getBusinessPrefix(businessId) {
 
 function generateProductId() {
 
+    const productName =
+        document.getElementById("productName");
+
     const productId =
         document.getElementById("productId");
 
-    if (!productId) return;
+    if (!productName || !productId) return;
+
+    const product =
+        findProductByName(productName.value);
+
+    if (product) {
+
+        productId.value = product.id;
+
+        return;
+
+    }
 
     productId.value =
         getNextProductId();
@@ -533,5 +555,32 @@ function getNextProductId() {
     });
 
     return maxId + 1;
+
+}
+/* =====================================================
+   FIND PRODUCT BY NAME
+===================================================== */
+
+function findProductByName(productName) {
+
+    if (
+        !window.products ||
+        !Array.isArray(window.products)
+    ) {
+
+        return null;
+
+    }
+
+    const keyword = productName
+        .trim()
+        .toLowerCase();
+
+    return window.products.find(product =>
+
+        product.name &&
+        product.name.trim().toLowerCase() === keyword
+
+    ) || null;
 
 }
