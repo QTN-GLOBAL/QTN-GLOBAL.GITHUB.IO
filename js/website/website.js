@@ -4,8 +4,9 @@
 
 function renderWebsite() {
 
-   const content =
-    document.getElementById("websiteWorkspace");
+    const content =
+        document.getElementById("dashboardContent");
+
     if (!content) return;
 
     content.innerHTML = `
@@ -59,36 +60,31 @@ function renderWebsite() {
 
             </div>
 
-            <div
-                class="website-tab">
+            <div class="website-tab">
 
                 News
 
             </div>
 
-            <div
-                class="website-tab">
+            <div class="website-tab">
 
                 Languages
 
             </div>
 
-            <div
-                class="website-tab">
+            <div class="website-tab">
 
                 Banner
 
             </div>
 
-            <div
-                class="website-tab">
+            <div class="website-tab">
 
                 Business
 
             </div>
 
-            <div
-                class="website-tab">
+            <div class="website-tab">
 
                 SEO
 
@@ -100,17 +96,9 @@ function renderWebsite() {
              WEBSITE WORKSPACE
         ========================================== -->
 
-        <div id="websiteWorkspace">
+        <div id="websiteWorkspace"></div>
 
-        </div>
-
-        `;
-
-    console.log("renderWebsite() đã chạy");
-
-    console.log(
-        document.getElementById("websiteWorkspace")
-    );
+    `;
 
     openWebsitePage("products");
 
