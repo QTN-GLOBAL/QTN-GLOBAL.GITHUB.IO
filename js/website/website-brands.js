@@ -16,11 +16,7 @@ function renderWebsiteBrands() {
 
             <div class="page-header">
 
-                <h2>
-
-                    Brand Manager
-
-                </h2>
+                <h2>🏷 Brand Manager</h2>
 
                 <button
                     class="primary-btn"
@@ -32,11 +28,37 @@ function renderWebsiteBrands() {
 
             </div>
 
-            <div
-                class="brand-list"
-                id="brandList">
+            <table class="brands-table">
 
-            </div>
+                <thead>
+
+                    <tr>
+
+                        <th width="60">#</th>
+
+                        <th width="70">Logo</th>
+
+                        <th>Brand</th>
+
+                        <th width="120">Origin</th>
+
+                        <th width="100">Category</th>
+
+                        <th width="100">Products</th>
+
+                        <th width="90">Status</th>
+
+                        <th width="120">Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="brandList">
+
+                </tbody>
+
+            </table>
 
         </div>
 
@@ -52,32 +74,109 @@ function renderWebsiteBrands() {
 
 function renderBrandList() {
 
-    const container =
+    const tbody =
         document.getElementById("brandList");
 
-    if (!container) return;
+    if (!tbody) return;
 
-    container.innerHTML = "";
+    tbody.innerHTML = "";
 
-    Object.values(BRAND_CONFIG).forEach(brand => {
+    const brands =
+        Object.values(BRAND_CONFIG);
 
-        container.innerHTML += `
+    brands.forEach((brand, index) => {
 
-            <div class="brand-card">
+        const totalCategory =
+            brand.categories
+                ? brand.categories.length
+                : 0;
 
-                <div class="brand-name">
+        const totalProduct =
+            (window.products || []).filter(item =>
 
-                    ${brand.name}
+                item.brand &&
+                item.brand.toLowerCase() ===
+                brand.name.toLowerCase()
 
-                </div>
+            ).length;
 
-                <div class="brand-info">
+        tbody.innerHTML += `
 
-                    ${brand.origin || ""}
+            <tr>
 
-                </div>
+                <td>
 
-            </div>
+                    ${index + 1}
+
+                </td>
+
+                <td>
+
+                    <div class="brand-logo-placeholder">
+
+                        🏷
+
+                    </div>
+
+                </td>
+
+                <td>
+
+                    <strong>
+
+                        ${brand.name}
+
+                    </strong>
+
+                </td>
+
+                <td>
+
+                    ${brand.origin}
+
+                </td>
+
+                <td>
+
+                    ${totalCategory}
+
+                </td>
+
+                <td>
+
+                    ${totalProduct}
+
+                </td>
+
+                <td>
+
+                    <span class="status-active">
+
+                        Active
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="edit-btn">
+
+                        ✏ Edit
+
+                    </button>
+
+                    <button
+                        class="delete-btn">
+
+                        🗑
+
+                    </button>
+
+                </td>
+
+            </tr>
 
         `;
 
