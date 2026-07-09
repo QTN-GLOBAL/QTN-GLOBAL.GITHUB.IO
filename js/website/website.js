@@ -104,7 +104,13 @@ function renderWebsite() {
 
         </div>
 
-    `;
+        `;
+
+    console.log("renderWebsite() đã chạy");
+
+    console.log(
+        document.getElementById("websiteWorkspace")
+    );
 
     openWebsitePage("products");
 
