@@ -363,9 +363,11 @@ function bindBasicEvents() {
 
     if (business) {
 
-        business.addEventListener("change", function () {
+       business.addEventListener("change", function () {
 
     loadCategoryOptions(this.value);
+
+    generateFolder();
 
     generateProductId();
 
@@ -428,23 +430,29 @@ function generateFolder() {
 
     }
 
-    const slug =
-        productName.value
-            .trim()
-            .toLowerCase()
+    let slug =
+        productName.value.trim();
 
+    if (slug !== "") {
+
+        slug = slug
             .normalize("NFD")
-
             .replace(/[\u0300-\u036f]/g, "")
-
             .replace(/đ/g, "d")
-
+            .replace(/Đ/g, "D")
+            .toLowerCase()
             .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
 
-            .replace(/^-|-$/g, "");
+        folderInput.value =
+            `${category.folder}/${slug}`;
 
-    folderInput.value =
-        `${category.folder}/${slug}`;
+    } else {
+
+        folderInput.value =
+            `${category.folder}/`;
+
+    }
 
 }
 /* =====================================================
