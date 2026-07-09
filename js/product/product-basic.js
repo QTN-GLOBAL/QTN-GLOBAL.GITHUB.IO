@@ -361,41 +361,56 @@ function bindBasicEvents() {
     const category =
         document.getElementById("productCategory");
 
+    const productName =
+        document.getElementById("productName");
+
+    /* =========================
+       BUSINESS
+    ========================= */
+
     if (business) {
 
-       business.addEventListener("change", function () {
+        business.addEventListener("change", function () {
 
-    loadCategoryOptions(this.value);
+            loadCategoryOptions(this.value);
 
-    generateFolder();
+            generateFolder();
 
-    generateProductId();
+            generateProductId();
 
-});
+        });
+
     }
+
+    /* =========================
+       CATEGORY
+    ========================= */
 
     if (category) {
 
         category.addEventListener("change", function () {
 
-    loadBrandOptions(this.value);
+            loadBrandOptions(this.value);
 
-    generateFolder();
+            generateFolder();
 
-});
+        });
+
     }
 
-}
-const productName =
-    document.getElementById("productName");
+    /* =========================
+       PRODUCT NAME
+    ========================= */
 
-if (productName) {
+    if (productName) {
 
-    productName.addEventListener("input", function () {
+        productName.addEventListener("input", generateFolder);
 
-        generateFolder();
+        productName.addEventListener("change", generateFolder);
 
-    });
+        productName.addEventListener("keyup", generateFolder);
+
+    }
 
 }
 /* =====================================================
