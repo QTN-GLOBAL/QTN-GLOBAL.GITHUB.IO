@@ -311,40 +311,35 @@ function loadCategoryOptions(businessId) {
 
 }
 /* =====================================================
-   LOAD BRAND OPTIONS
+   LOAD BRAND
 ===================================================== */
 
-function loadBrandOptions(categoryId) {
+function loadBrandOptions() {
 
-    const select =
+    const business =
+        document.getElementById("productBusiness");
+
+    const brand =
         document.getElementById("productBrand");
 
-    if (!select) return;
+    if (!business || !brand) return;
 
-    select.innerHTML = "";
-
-    if (!categoryId) {
-
-        select.innerHTML =
-            `<option value="">Select Brand</option>`;
-
-        return;
-
-    }
+    brand.innerHTML = "";
 
     const brands =
-        getBrands(categoryId);
+        getBrands(business.value);
 
-    brands.forEach(brand => {
+    brands.forEach(item => {
 
-        const option =
-            document.createElement("option");
+        brand.innerHTML += `
 
-        option.value = brand.id;
+            <option value="${item.id}">
 
-        option.textContent = brand.name;
+                ${item.name}
 
-        select.appendChild(option);
+            </option>
+
+        `;
 
     });
 
@@ -390,7 +385,7 @@ function bindBasicEvents() {
 
         category.addEventListener("change", function () {
 
-            loadBrandOptions(this.value);
+            loadBrandOptions();
 
             generateFolder();
 
