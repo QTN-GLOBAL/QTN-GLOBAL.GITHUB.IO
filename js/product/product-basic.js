@@ -203,6 +203,48 @@ function renderProductBasic() {
 
         </div>
 
-    `;
+      `;
+
+    initProductBasic();
+
+}
+/* =====================================================
+   INIT PRODUCT BASIC
+===================================================== */
+
+function initProductBasic() {
+
+    loadBusinessOptions();
+
+}
+
+/* =====================================================
+   LOAD BUSINESS OPTIONS
+===================================================== */
+
+function loadBusinessOptions() {
+
+    const select =
+        document.getElementById("productBusiness");
+
+    if (!select) return;
+
+    select.innerHTML = "";
+
+    const businesses = getBusinesses();
+
+    businesses.forEach(business => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = business.id;
+
+        option.textContent =
+            `${business.icon} ${business.name}`;
+
+        select.appendChild(option);
+
+    });
 
 }
