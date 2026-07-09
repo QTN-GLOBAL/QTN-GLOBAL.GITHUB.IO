@@ -125,8 +125,9 @@ function renderProductBasic() {
                 </label>
 
                 <input
-                    id="productFolder"
-                    type="text">
+    id="productFolder"
+    type="text"
+    readonly>
 
             </div>
 
@@ -372,10 +373,74 @@ function bindBasicEvents() {
 
         category.addEventListener("change", function () {
 
-            loadBrandOptions(this.value);
+    loadBrandOptions(this.value);
 
-        });
+    generateFolder();
+
+});
+    }
+
+}
+const productName =
+    document.getElementById("productName");
+
+if (productName) {
+
+    productName.addEventListener("input", function () {
+
+        generateFolder();
+
+    });
+
+}
+/* =====================================================
+   GENERATE FOLDER
+===================================================== */
+
+function generateFolder() {
+
+    const categorySelect =
+        document.getElementById("productCategory");
+
+    const productName =
+        document.getElementById("productName");
+
+    const folderInput =
+        document.getElementById("productFolder");
+
+    if (
+        !categorySelect ||
+        !productName ||
+        !folderInput
+    ) return;
+
+    const category =
+        getCategory(categorySelect.value);
+
+    if (!category) {
+
+        folderInput.value = "";
+
+        return;
 
     }
+
+    const slug =
+        productName.value
+            .trim()
+            .toLowerCase()
+
+            .normalize("NFD")
+
+            .replace(/[\u0300-\u036f]/g, "")
+
+            .replace(/đ/g, "d")
+
+            .replace(/[^a-z0-9]+/g, "-")
+
+            .replace(/^-|-$/g, "");
+
+    folderInput.value =
+        `${category.folder}/${slug}`;
 
 }
