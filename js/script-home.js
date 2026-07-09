@@ -16,7 +16,13 @@ const brandOrder = [
     "YAOHUA",
     "VIBRA",
     "JADEVER",
-    "AMWAY"
+     "ONEKO",
+     "FAITHFUL",
+     "Shinko",
+     "OKS",
+     "HZ",
+     "FUJI",
+     "AMWAY"
 ];
 
 /* =========================
