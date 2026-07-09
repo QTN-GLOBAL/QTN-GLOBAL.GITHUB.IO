@@ -144,9 +144,9 @@ function renderProductBasic() {
                 </label>
 
                 <input
-                    id="productId"
-                    type="number"
-                    readonly>
+    id="productId"
+    type="text"
+    readonly>
 
             </div>
 
