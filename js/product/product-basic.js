@@ -499,26 +499,39 @@ function getBusinessPrefix(businessId) {
 
 function generateProductId() {
 
-    console.log("generateProductId()");
-
-    const business =
-        document.getElementById("productBusiness");
-
     const productId =
         document.getElementById("productId");
 
-    console.log(business);
-
-    console.log(productId);
-
-    if (!business || !productId) return;
-
-    const prefix =
-        getBusinessPrefix(business.value);
-
-    console.log(prefix);
+    if (!productId) return;
 
     productId.value =
-        prefix + "000001";
+        getNextProductId();
+
+}
+/* =====================================================
+   GET NEXT PRODUCT ID
+===================================================== */
+
+function getNextProductId() {
+
+    if (!window.products || window.products.length === 0) {
+
+        return 1;
+
+    }
+
+    let maxId = 0;
+
+    window.products.forEach(product => {
+
+        if (product.id > maxId) {
+
+            maxId = product.id;
+
+        }
+
+    });
+
+    return maxId + 1;
 
 }
