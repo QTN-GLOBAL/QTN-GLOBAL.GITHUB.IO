@@ -476,18 +476,26 @@ function getBusinessPrefix(businessId) {
 
 function generateProductId() {
 
+    console.log("generateProductId()");
+
     const business =
         document.getElementById("productBusiness");
 
     const productId =
         document.getElementById("productId");
 
+    console.log(business);
+
+    console.log(productId);
+
     if (!business || !productId) return;
 
     const prefix =
         getBusinessPrefix(business.value);
 
+    console.log(prefix);
+
     productId.value =
-        `${prefix}000001`;
+        prefix + "000001";
 
 }
