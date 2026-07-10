@@ -1,105 +1,72 @@
 /* =====================================================
-   WEBSITE MODULE
+   QTN GLOBAL CMS
+   SHARED EDITOR LAYOUT
 ===================================================== */
 
-function renderWebsite() {
+/* =====================================================
+   RENDER EDITOR
+===================================================== */
 
-    const content =
-        document.getElementById("dashboardContent");
+function renderEditorLayout(options = {}) {
 
-    if (!content) return;
+    return `
 
-    content.innerHTML = `
+        <div class="editor-layout">
 
-        <!-- =========================================
-             WEBSITE HEADER
-        ========================================== -->
+            <!-- =====================================
+                 HEADER
+            ====================================== -->
 
-        <div class="website-header">
+            <div class="editor-header">
 
-            <h1>🌐 Website</h1>
+                <div>
 
-            <p>
+                    <h2>
 
-                Quản lý toàn bộ Website QTN GLOBAL.
+                        ${options.title || "Editor"}
 
-            </p>
+                    </h2>
 
-        </div>
+                    <p>
 
-        <!-- =========================================
-             WEBSITE NAVIGATION
-        ========================================== -->
+                        ${options.description || ""}
 
-        <div class="website-tabs">
+                    </p>
 
-            <div
-                class="website-tab"
-                data-page="products"
-                onclick="openWebsitePage('products')">
+                </div>
 
-                Products
+                <button
+                    class="editor-close-btn"
+                    onclick="${options.onClose || ""}">
 
-            </div>
+                    ✕
 
-            <div
-                class="website-tab"
-                data-page="categories"
-                onclick="openWebsitePage('categories')">
-
-                Categories
+                </button>
 
             </div>
 
-            <div
-                class="website-tab"
-                data-page="brands"
-                onclick="openWebsitePage('brands')">
+            <!-- =====================================
+                 BODY
+            ====================================== -->
 
-                Brands
+            <div class="editor-body">
 
-            </div>
-
-            <div class="website-tab">
-
-                News
+                ${options.body || ""}
 
             </div>
 
-            <div class="website-tab">
+            <!-- =====================================
+                 FOOTER
+            ====================================== -->
 
-                Languages
+            <div class="editor-footer">
 
-            </div>
-
-            <div class="website-tab">
-
-                Banner
-
-            </div>
-
-            <div class="website-tab">
-
-                Business
-
-            </div>
-
-            <div class="website-tab">
-
-                SEO
+                ${options.footer || ""}
 
             </div>
 
         </div>
-
-        <!-- =========================================
-             WEBSITE WORKSPACE
-        ========================================== -->
-
-        <div id="websiteWorkspace"></div>
 
     `;
-
-    openWebsitePage("products");
 
 }

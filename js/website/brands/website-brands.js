@@ -59,7 +59,7 @@ function renderWebsiteBrands() {
                 </tbody>
 
             </table>
-
+<div id="brandEditorContainer"></div>
         </div>
 
     `;

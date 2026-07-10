@@ -1,60 +1,102 @@
 /* =====================================================
-   WEBSITE ROUTER
+   BRAND EDITOR
 ===================================================== */
+
+let currentBrand = null;
 
 /* =====================================================
-   PAGE MAP
+   OPEN
 ===================================================== */
 
-const WEBSITE_PAGES = {
+function openBrandEditor(brandName){
 
-    products: renderWebsiteProducts,
+    currentBrand = Object.values(BRAND_CONFIG).find(item =>
 
-    categories: renderWebsiteCategories,
+        item.name === brandName
 
-    brands: renderWebsiteBrands
+    );
 
-};
+    if(!currentBrand){
+
+        return;
+
+    }
+
+    renderBrandEditor();
+
+}
+
 /* =====================================================
-   ACTIVE TAB
+   CLOSE
 ===================================================== */
 
-function setWebsiteActiveTab(page){
+function closeBrandEditor(){
 
-    document
-        .querySelectorAll(".website-tab")
-        .forEach(tab => {
+    const container =
+        document.getElementById("brandEditorContainer");
 
-            tab.classList.remove("active");
+    if(container){
 
-        });
-
-    const activeTab =
-        document.querySelector(
-            '.website-tab[data-page="' + page + '"]'
-        );
-
-    if(activeTab){
-
-        activeTab.classList.add("active");
+        container.innerHTML = "";
 
     }
 
 }
+
 /* =====================================================
-   OPEN PAGE
+   RENDER
 ===================================================== */
 
-function openWebsitePage(page){
+function renderBrandEditor(){
 
-    setWebsiteActiveTab(page);
+    const container =
+        document.getElementById("brandEditorContainer");
 
-    const render = WEBSITE_PAGES[page];
+    if(!container) return;
 
-    if(render){
+    container.innerHTML = renderEditorLayout({
 
-        render();
+        title:"🏷 Brand Editor",
 
-    }
+        description:"Quản lý thông tin thương hiệu.",
+
+        body:`
+
+            <div class="brand-editor-info">
+
+                <p>
+
+                    <strong>Brand:</strong>
+
+                    ${currentBrand.name}
+
+                </p>
+
+                <p>
+
+                    <strong>Origin:</strong>
+
+                    ${currentBrand.origin}
+
+                </p>
+
+            </div>
+
+        `,
+
+        footer:`
+
+            <button
+                class="primary-btn">
+
+                Save
+
+            </button>
+
+        `,
+
+        onClose:"closeBrandEditor()"
+
+    });
 
 }
