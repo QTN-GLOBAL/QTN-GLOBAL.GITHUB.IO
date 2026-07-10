@@ -82,30 +82,7 @@ function renderBrandEditor(){
     value:currentBrand.origin
 
 })}
-/* ==========================================
-   SWITCH
-========================================== */
 
-.switch-item{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    cursor:pointer;
-
-}
-
-.switch-item input{
-
-    width:18px;
-
-    height:18px;
-
-}
-    </div>
 
 `,
 right:`
