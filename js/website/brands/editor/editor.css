@@ -86,3 +86,42 @@
     height:18px;
 
 }
+/* ==========================================
+   STATUS
+========================================== */
+
+.status-active{
+
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:6px;
+
+    background:#27ae60;
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.status-hidden{
+
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:6px;
+
+    background:#999;
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
