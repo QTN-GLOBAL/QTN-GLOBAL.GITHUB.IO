@@ -64,35 +64,24 @@ function renderBrandEditor(){
 
     <div class="brand-form">
 
-        <div class="form-group">
+        ${renderTextInput({
 
-            <label>
+    id:"brandName",
 
-                Brand Name
+    label:"Brand Name",
 
-            </label>
+    value:currentBrand.name
 
-            <input
-                id="brandName"
-                type="text"
-                value="${currentBrand.name}">
+})}
+        ${renderTextInput({
 
-        </div>
+    id:"brandOrigin",
 
-        <div class="form-group">
+    label:"Origin",
 
-            <label>
+    value:currentBrand.origin
 
-                Origin
-
-            </label>
-
-            <input
-                id="brandOrigin"
-                type="text"
-                value="${currentBrand.origin || ""}">
-
-        </div>
+})}
 
         <div class="form-group">
 
