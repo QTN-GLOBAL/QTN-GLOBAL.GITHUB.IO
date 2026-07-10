@@ -216,3 +216,28 @@
     border-bottom:1px solid #eee;
 
 }
+/* =========================================
+   BRAND IMAGE
+========================================= */
+
+.brand-image{
+
+    width:60px;
+
+    height:60px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    border:1px solid #e5e7eb;
+
+    background:#fff;
+
+    padding:4px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+    display:block;
+
+}
