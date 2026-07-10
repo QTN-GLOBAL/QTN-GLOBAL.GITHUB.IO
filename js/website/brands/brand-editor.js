@@ -60,121 +60,142 @@ function renderBrandEditor(){
 
         description:"Quản lý thông tin thương hiệu.",
 
-        body:`
+       left:`
 
-            <div class="brand-form">
+    <div class="brand-form">
 
-                <div class="form-group">
+        <div class="form-group">
 
-                    <label>
+            <label>
 
-                        Brand Name
+                Brand Name
 
-                    </label>
+            </label>
 
-                    <input
-                        id="brandName"
-                        type="text"
-                        value="${currentBrand.name}">
+            <input
+                id="brandName"
+                type="text"
+                value="${currentBrand.name}">
 
-                </div>
+        </div>
 
-                <div class="form-group">
+        <div class="form-group">
 
-                    <label>
+            <label>
 
-                        Origin
+                Origin
 
-                    </label>
+            </label>
 
-                    <input
-                        id="brandOrigin"
-                        type="text"
-                        value="${currentBrand.origin || ""}">
+            <input
+                id="brandOrigin"
+                type="text"
+                value="${currentBrand.origin || ""}">
 
-                </div>
-<div class="form-group">
+        </div>
 
-    <label>
+        <div class="form-group">
 
-        Status
+            <label>
 
-    </label>
+                Status
 
-    <label class="switch-item">
+            </label>
 
-        <input
-            id="brandActive"
-            type="checkbox"
-            ${currentBrand.active ? "checked" : ""}>
+            <label class="switch-item">
 
-        <span>
+                <input
+                    id="brandActive"
+                    type="checkbox"
+                    ${currentBrand.active ? "checked" : ""}>
 
-            Active
+                <span>
 
-        </span>
+                    Active
 
-    </label>
+                </span>
 
-</div>
+            </label>
 
-                <div class="form-group">
+        </div>
 
-    <label>
+    </div>
 
-        Categories
+`,
+right:`
 
-    </label>
+    <div class="brand-logo-box">
 
-    ${renderCheckboxGroup({
+        <img
+            src="${getBrandImage(currentBrand.name)}"
+            class="brand-preview"
+            onerror="this.src='images/no-image.jpg'">
 
-        items: getCategories(
+        <button class="secondary-btn">
 
-            currentBrand.business
-                ? currentBrand.business[0]
-                : "measure"
+            Change Logo
 
-        ),
+        </button>
 
-        selected: currentBrand.categories,
+    </div>
 
-        idField: "id",
+`,
+bottom:`
 
-        labelField: "name",
+    <div class="form-group">
 
-        name: "brandCategories"
+        <label>
 
-    })}
+            Categories
 
-</div>
+        </label>
 
-                <div class="form-group">
+        ${renderCheckboxGroup({
 
-                    <label>
+            items:getCategories(
 
-                        Products
+                currentBrand.business
+                    ? currentBrand.business[0]
+                    : "measure"
 
-                    </label>
+            ),
 
-                    <div>
+            selected:currentBrand.categories,
 
-                        ${
-                            (window.products || []).filter(item =>
+            idField:"id",
 
-                                item.brand &&
-                                item.brand.toLowerCase() ===
-                                currentBrand.name.toLowerCase()
+            labelField:"name",
 
-                            ).length
-                        } Products
+            name:"brandCategories"
 
-                    </div>
+        })}
 
-                </div>
+    </div>
 
-            </div>
+    <div class="form-group">
 
-        `,
+        <label>
+
+            Products
+
+        </label>
+
+        <div>
+
+            ${(window.products||[]).filter(item=>
+
+                item.brand &&
+                item.brand.toLowerCase()===currentBrand.name.toLowerCase()
+
+            ).length}
+
+            Products
+
+        </div>
+
+    </div>
+
+`,
 
         footer:`
 
