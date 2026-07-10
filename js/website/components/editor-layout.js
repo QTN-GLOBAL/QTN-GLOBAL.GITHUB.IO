@@ -1,10 +1,6 @@
 /* =====================================================
    QTN GLOBAL CMS
-   SHARED EDITOR LAYOUT
-===================================================== */
-
-/* =====================================================
-   RENDER EDITOR
+   UNIVERSAL EDITOR LAYOUT
 ===================================================== */
 
 function renderEditorLayout(options = {}) {
@@ -13,9 +9,7 @@ function renderEditorLayout(options = {}) {
 
         <div class="editor-layout">
 
-            <!-- =====================================
-                 HEADER
-            ====================================== -->
+            <!-- HEADER -->
 
             <div class="editor-header">
 
@@ -45,19 +39,33 @@ function renderEditorLayout(options = {}) {
 
             </div>
 
-            <!-- =====================================
-                 BODY
-            ====================================== -->
+            <!-- CONTENT -->
 
-            <div class="editor-body">
+            <div class="editor-content">
 
-                ${options.body || ""}
+                <div class="editor-left">
+
+                    ${options.left || ""}
+
+                </div>
+
+                <div class="editor-right">
+
+                    ${options.right || ""}
+
+                </div>
 
             </div>
 
-            <!-- =====================================
-                 FOOTER
-            ====================================== -->
+            <!-- BOTTOM -->
+
+            <div class="editor-bottom">
+
+                ${options.bottom || ""}
+
+            </div>
+
+            <!-- FOOTER -->
 
             <div class="editor-footer">
 
