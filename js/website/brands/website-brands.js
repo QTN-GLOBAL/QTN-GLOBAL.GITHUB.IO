@@ -159,12 +159,13 @@ function renderBrandList() {
 
                 <td>
 
-                    <button
-                        class="edit-btn">
+                   <button
+    class="edit-btn"
+    onclick="openBrandEditor('${brand.name}')">
 
-                        ✏ Edit
+    ✏ Edit
 
-                    </button>
+</button>
 
                     <button
                         class="delete-btn">
