@@ -202,16 +202,23 @@
 
     display:grid;
 
-    grid-template-columns:420px 260px;
+    grid-template-columns:1fr 300px;
 
-    gap:30px;
-
-    align-items:start;
+    gap:24px;
 
 }
 
 .editor-layout{
 
     max-width:900px;
+
+}
+.form-group input{
+
+    width:100%;
+
+    max-width:320px;
+
+    padding:8px 10px;
 
 }
