@@ -245,3 +245,20 @@
     height:18px;
 
 }
+textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    padding:10px;
+
+    border:1px solid #dcdcdc;
+
+    border-radius:8px;
+
+    resize:vertical;
+
+    font:inherit;
+
+}
