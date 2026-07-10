@@ -96,21 +96,33 @@ function renderBrandEditor(){
 
                 <div class="form-group">
 
-                    <label>
+    <label>
 
-                        Categories
+        Categories
 
-                    </label>
+    </label>
 
-                    <div>
+    ${renderCheckboxGroup({
 
-                        ${currentBrand.categories
-                            ? currentBrand.categories.join(", ")
-                            : ""}
+        items: getCategories(
 
-                    </div>
+            currentBrand.business
+                ? currentBrand.business[0]
+                : "measure"
 
-                </div>
+        ),
+
+        selected: currentBrand.categories,
+
+        idField: "id",
+
+        labelField: "name",
+
+        name: "brandCategories"
+
+    })}
+
+</div>
 
                 <div class="form-group">
 
@@ -176,6 +188,8 @@ function saveBrand(){
 
     currentBrand.origin =
         document.getElementById("brandOrigin").value;
+   currentBrand.categories =
+    getCheckboxGroupValues("brandCategories");
 
     renderBrandList();
 
