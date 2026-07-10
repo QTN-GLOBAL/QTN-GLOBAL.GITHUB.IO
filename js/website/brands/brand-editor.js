@@ -93,6 +93,30 @@ function renderBrandEditor(){
                         value="${currentBrand.origin || ""}">
 
                 </div>
+<div class="form-group">
+
+    <label>
+
+        Status
+
+    </label>
+
+    <label class="switch-item">
+
+        <input
+            id="brandActive"
+            type="checkbox"
+            ${currentBrand.active ? "checked" : ""}>
+
+        <span>
+
+            Active
+
+        </span>
+
+    </label>
+
+</div>
 
                 <div class="form-group">
 
@@ -188,6 +212,8 @@ function saveBrand(){
 
     currentBrand.origin =
         document.getElementById("brandOrigin").value;
+currentBrand.active =
+    document.getElementById("brandActive").checked;
    currentBrand.categories =
     getCheckboxGroupValues("brandCategories");
 
