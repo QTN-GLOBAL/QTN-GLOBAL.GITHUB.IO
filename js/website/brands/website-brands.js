@@ -149,11 +149,11 @@ function renderBrandList() {
 
                 <td>
 
-                    <span class="status-active">
+                   <span class="${brand.active ? "status-active" : "status-hidden"}">
 
-                        Active
+    ${brand.active ? "Active" : "Hidden"}
 
-                    </span>
+</span>
 
                 </td>
 
