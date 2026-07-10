@@ -63,3 +63,26 @@
     gap:8px;
 
 }
+/* ==========================================
+   SWITCH
+========================================== */
+
+.switch-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:10px;
+
+}
+
+.switch-item input{
+
+    width:18px;
+
+    height:18px;
+
+}
