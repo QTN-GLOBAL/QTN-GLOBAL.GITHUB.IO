@@ -125,3 +125,44 @@
     font-weight:600;
 
 }
+/* ==========================================
+   UNIVERSAL EDITOR
+========================================== */
+
+.editor-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:24px;
+
+    margin:20px 0;
+
+}
+
+.editor-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.editor-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.editor-bottom{
+
+    margin-top:20px;
+
+}
