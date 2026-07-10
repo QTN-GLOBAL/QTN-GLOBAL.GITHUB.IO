@@ -218,3 +218,4 @@ function getBrandImage(brandName){
     return `images/${product.category}/${product.folder}/main.jpg`;
 
 }
+// Test GitHub Desktop
