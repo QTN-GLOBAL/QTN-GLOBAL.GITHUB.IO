@@ -273,3 +273,18 @@ select{
     border:1px solid #ddd;
 
 }
+.image-picker{
+
+    text-align:center;
+
+}
+
+.image-picker img{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:contain;
+
+}
