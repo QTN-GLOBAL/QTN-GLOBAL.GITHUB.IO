@@ -18,8 +18,13 @@ const BRAND_CONFIG = {
 
         website: "",
 
-        active: true,
-        business: ["measure"],
+description: "",
+
+active: true,
+
+business: ["measure"],
+
+
 
         categories: [
 
@@ -47,10 +52,13 @@ const BRAND_CONFIG = {
 
         logo: "excell.png",
 
-        website: "",
+          website: "",
 
-        active: true,
-        business: ["measure"],
+description: "",
+
+active: true,
+
+business: ["measure"],
 
         categories: [
 
@@ -78,10 +86,13 @@ const BRAND_CONFIG = {
 
         logo: "vibra.png",
 
-        website: "",
+         website: "",
 
-        active: true,
-        business: ["measure"],
+description: "",
+
+active: true,
+
+business: ["measure"],
 
         categories: [
 
@@ -109,10 +120,13 @@ const BRAND_CONFIG = {
 
         logo: "ohaus.png",
 
-        website: "",
+         website: "",
 
-        active: true,
-        business: ["measure"],
+description: "",
+
+active: true,
+
+business: ["measure"],
 
         categories: [
 
@@ -140,10 +154,13 @@ const BRAND_CONFIG = {
 
         logo: "yaohua.png",
 
-        website: "",
+          website: "",
 
-        active: true,
-        business: ["measure"],
+description: "",
+
+active: true,
+
+business: ["measure"],
 
         categories: [
 
@@ -170,11 +187,13 @@ const BRAND_CONFIG = {
 
     logo: "oneko.png",
 
-    website: "",
+     website: "",
 
-    active: true,
+description: "",
 
-    business: ["measure"],
+active: true,
+
+business: ["measure"],
     categories: [
 
             "can-ban",
@@ -200,11 +219,13 @@ faithful: {
 
     logo: "faithful.png",
 
-    website: "",
+     website: "",
 
-    active: true,
+description: "",
 
-    business: ["measure"],
+active: true,
+
+business: ["measure"],
     categories: [
 
             "can-ban",
@@ -230,11 +251,13 @@ shinko: {
 
     logo: "shinko.png",
 
-    website: "",
+      website: "",
 
-    active: true,
+description: "",
 
-    business: ["measure"],
+active: true,
+
+business: ["measure"],
 categories: [
 
             "can-ban",
@@ -260,11 +283,13 @@ oks: {
 
     logo: "oks.png",
 
-    website: "",
+     website: "",
 
-    active: true,
+description: "",
 
-    business: ["measure"],
+active: true,
+
+business: ["measure"],
 categories: [
 
             "can-ban",
@@ -290,11 +315,13 @@ hz: {
 
     logo: "hz.png",
 
-    website: "",
+      website: "",
 
-    active: true,
+description: "",
 
-    business: ["measure"],
+active: true,
+
+business: ["measure"],
 categories: [
 
             "can-ban",
@@ -320,11 +347,13 @@ fuji: {
 
     logo: "fuji.png",
 
-    website: "",
+     website: "",
 
-    active: true,
+description: "",
 
-    business: ["measure"],
+active: true,
+
+business: ["measure"],
 categories: [
 
             "can-ban",
@@ -340,51 +369,8 @@ categories: [
 
 },
 
-    espring: {
-
-        id: "espring",
-
-        name: "eSpring",
-
-        origin: "USA",
-
-        logo: "espring.png",
-
-        website: "",
-
-        active: true,
-
-        categories: [
-
-            "water-purifier",
-            "water-filter"
-
-        ]
-
-    },
-
-    atmosphere: {
-
-        id: "atmosphere",
-
-        name: "Atmosphere",
-
-        origin: "USA",
-
-        logo: "atmosphere.png",
-
-        website: "",
-
-        active: true,
-
-        categories: [
-
-            "air-purifier",
-            "air-filter"
-
-        ]
-
-    },
+   
+    
 
     amway: {
 
@@ -398,8 +384,11 @@ categories: [
 
         website: "",
 
-        active: true,
-        business: ["home"],
+description: "",
+
+active: true,
+
+business: ["home"],
 
         categories: [
 
@@ -418,7 +407,7 @@ categories: [
    GET BRANDS BY CATEGORY
 ===================================================== */
 
-function getBrands(categoryId) {
+function getBrandsByCategory(categoryId) {
 
     return Object.values(BRAND_CONFIG).filter(item =>
 
@@ -433,7 +422,7 @@ function getBrands(categoryId) {
    GET BRANDS BY BUSINESS
 ===================================================== */
 
-function getBrands(businessId) {
+function getBrandsByBusiness(businessId) {
 
     return Object.values(BRAND_CONFIG).filter(item =>
 
