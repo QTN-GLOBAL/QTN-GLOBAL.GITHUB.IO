@@ -222,3 +222,26 @@
     padding:8px 10px;
 
 }
+/* ==========================================
+   SWITCH
+========================================== */
+
+.switch-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+}
+
+.switch-item input{
+
+    width:18px;
+
+    height:18px;
+
+}

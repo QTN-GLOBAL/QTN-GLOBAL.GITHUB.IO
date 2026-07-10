@@ -82,32 +82,29 @@ function renderBrandEditor(){
     value:currentBrand.origin
 
 })}
+/* ==========================================
+   SWITCH
+========================================== */
 
-        <div class="form-group">
+.switch-item{
 
-            <label>
+    display:flex;
 
-                Status
+    align-items:center;
 
-            </label>
+    gap:10px;
 
-            <label class="switch-item">
+    cursor:pointer;
 
-                <input
-                    id="brandActive"
-                    type="checkbox"
-                    ${currentBrand.active ? "checked" : ""}>
+}
 
-                <span>
+.switch-item input{
 
-                    Active
+    width:18px;
 
-                </span>
+    height:18px;
 
-            </label>
-
-        </div>
-
+}
     </div>
 
 `,
