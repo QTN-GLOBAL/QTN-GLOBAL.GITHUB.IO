@@ -62,23 +62,79 @@ function renderBrandEditor(){
 
         body:`
 
-            <div class="brand-editor-info">
+            <div class="brand-form">
 
-                <p>
+                <div class="form-group">
 
-                    <strong>Brand:</strong>
+                    <label>
 
-                    ${currentBrand.name}
+                        Brand Name
 
-                </p>
+                    </label>
 
-                <p>
+                    <input
+                        id="brandName"
+                        type="text"
+                        value="${currentBrand.name}">
 
-                    <strong>Origin:</strong>
+                </div>
 
-                    ${currentBrand.origin}
+                <div class="form-group">
 
-                </p>
+                    <label>
+
+                        Origin
+
+                    </label>
+
+                    <input
+                        id="brandOrigin"
+                        type="text"
+                        value="${currentBrand.origin || ""}">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        Categories
+
+                    </label>
+
+                    <div>
+
+                        ${currentBrand.categories
+                            ? currentBrand.categories.join(", ")
+                            : ""}
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        Products
+
+                    </label>
+
+                    <div>
+
+                        ${
+                            (window.products || []).filter(item =>
+
+                                item.brand &&
+                                item.brand.toLowerCase() ===
+                                currentBrand.name.toLowerCase()
+
+                            ).length
+                        } Products
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -87,7 +143,16 @@ function renderBrandEditor(){
         footer:`
 
             <button
-                class="primary-btn">
+                class="secondary-btn"
+                onclick="closeBrandEditor()">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="saveBrand()">
 
                 Save
 
@@ -98,5 +163,22 @@ function renderBrandEditor(){
         onClose:"closeBrandEditor()"
 
     });
+
+}
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveBrand(){
+
+    currentBrand.name =
+        document.getElementById("brandName").value;
+
+    currentBrand.origin =
+        document.getElementById("brandOrigin").value;
+
+    renderBrandList();
+
+    closeBrandEditor();
 
 }
