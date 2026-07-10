@@ -166,3 +166,52 @@
     margin-top:20px;
 
 }
+/* ==========================================
+   BRAND EDITOR
+========================================== */
+
+.brand-logo-box{
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:20px;
+
+    text-align:center;
+
+    background:#fafafa;
+
+}
+
+.brand-preview{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin:0 auto 20px;
+
+}
+
+.editor-content{
+
+    display:grid;
+
+    grid-template-columns:420px 260px;
+
+    gap:30px;
+
+    align-items:start;
+
+}
+
+.editor-layout{
+
+    max-width:900px;
+
+}
