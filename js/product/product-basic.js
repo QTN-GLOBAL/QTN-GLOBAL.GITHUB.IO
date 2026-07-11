@@ -249,6 +249,7 @@ function initProductBasic() {
     }
 
     generateProductId();
+    initProductSearch();
 
 }
 
@@ -715,5 +716,78 @@ function updateProductInfo(){
         folderInput.value = "";
 
     }
+
+}
+/* =====================================================
+   PRODUCT SEARCH
+===================================================== */
+
+function initProductSearch() {
+
+    const input = document.getElementById("productSearch");
+    const result = document.getElementById("productSearchResult");
+
+    if (!input || !result) return;
+
+    input.addEventListener("input", function () {
+
+        const keyword = this.value.trim().toLowerCase();
+
+        result.innerHTML = "";
+
+        if (keyword.length < 2) {
+
+            result.style.display = "none";
+            return;
+
+        }
+
+        const list = (window.products || []).filter(item => {
+
+            return (
+                item.name.toLowerCase().includes(keyword) ||
+                item.folder.toLowerCase().includes(keyword) ||
+                item.brand.toLowerCase().includes(keyword) ||
+                item.category.toLowerCase().includes(keyword)
+            );
+
+        });
+
+        if (!list.length) {
+
+            result.style.display = "none";
+            return;
+
+        }
+
+        list.slice(0, 10).forEach(item => {
+
+            result.innerHTML += `
+
+                <div
+                    class="search-product-item"
+                    onclick="selectProduct(${item.id})">
+
+                    <div class="search-product-code">
+
+                        ${item.folder}
+
+                    </div>
+
+                    <div class="search-product-name">
+
+                        ${item.name}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        result.style.display = "block";
+
+    });
 
 }
