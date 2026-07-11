@@ -433,3 +433,12 @@ function getBrandsByBusiness(businessId) {
     );
 
 }
+/* =====================================================
+   BACKWARD COMPATIBILITY
+===================================================== */
+
+function getBrands(businessId){
+
+    return getBrandsByBusiness(businessId);
+
+}
