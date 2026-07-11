@@ -382,7 +382,7 @@ function loadBrandOptions(categoryId) {
         `;
 
     });
-
+updateOrigin();
 }
 /* =====================================================
    BIND EVENTS
@@ -871,6 +871,7 @@ for (const option of brandSelect.options) {
 
         brandSelect.value =
             option.value;
+       updateOrigin();
 
         break;
 
@@ -896,6 +897,35 @@ for (const option of brandSelect.options) {
     // Hiện đúng model
     document.getElementById("productSearch").value =
         product.folder;
+
+}
+/* =====================================================
+   UPDATE ORIGIN
+===================================================== */
+
+function updateOrigin() {
+
+    const brandSelect =
+        document.getElementById("productBrand");
+
+    const originInput =
+        document.getElementById("productOrigin");
+
+    if (!brandSelect || !originInput) return;
+
+    const brandName =
+        brandSelect.value;
+
+    const brand =
+        Object.values(BRAND_CONFIG).find(item =>
+
+            item.name.toLowerCase() ===
+            brandName.toLowerCase()
+
+        );
+
+    originInput.value =
+        brand ? brand.origin : "";
 
 }
 /* =====================================================
