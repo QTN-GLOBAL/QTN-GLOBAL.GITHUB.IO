@@ -791,3 +791,53 @@ function initProductSearch() {
     });
 
 }
+/* =====================================================
+   SELECT PRODUCT
+===================================================== */
+
+function selectProduct(productId){
+
+    const product = (window.products || []).find(item =>
+
+        item.id == productId
+
+    );
+
+    if(!product) return;
+
+    // Business
+    document.getElementById("productBusiness").value =
+        product.business;
+
+    loadCategoryOptions();
+
+    // Category
+    document.getElementById("productCategory").value =
+        product.category;
+
+    loadBrandOptions();
+
+    // Brand
+    document.getElementById("productBrand").value =
+        product.brand;
+
+    // Name
+    document.getElementById("productName").value =
+        product.name;
+
+    // Folder
+    document.getElementById("productFolder").value =
+        product.folder;
+
+    // Product ID
+    document.getElementById("productId").value =
+        product.id;
+
+    // Đóng kết quả tìm kiếm
+    document.getElementById("productSearchResult").style.display = "none";
+
+    // Hiện đúng model
+    document.getElementById("productSearch").value =
+        product.folder;
+
+}
