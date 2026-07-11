@@ -324,12 +324,7 @@ function loadCategoryOptions(businessId) {
 
     /* Load Brand theo Category đầu tiên */
 
-    if (categories.length > 0) {
-
-        loadBrandOptions(categories[0].id);
-
-    }
-
+    // Không tự load Brand ở đây
 }
 /* =====================================================
    LOAD BRAND
@@ -811,22 +806,31 @@ function selectProduct(productId){
     if(!product) return;
 
    // Business
-const businessSelect = document.getElementById("productBusiness");
-businessSelect.value = product.business;
+const businessSelect =
+    document.getElementById("productBusiness");
 
-// Load Category
-loadCategoryOptions();
+businessSelect.value =
+    product.business;
 
-// Category
-const categorySelect = document.getElementById("productCategory");
-categorySelect.value = product.category;
+// Nạp lại Category theo Business
+loadCategoryOptions(product.business);
 
-// Load Brand theo Category mới
-loadBrandOptions();
+// Chọn đúng Category
+const categorySelect =
+    document.getElementById("productCategory");
 
-// Brand
-const brandSelect = document.getElementById("productBrand");
-brandSelect.value = product.brand;
+categorySelect.value =
+    product.category;
+
+// Nạp lại Brand theo Category
+loadBrandOptions(product.category);
+
+// Chọn đúng Brand
+const brandSelect =
+    document.getElementById("productBrand");
+
+brandSelect.value =
+    product.brand;
 
     // Name
     document.getElementById("productName").value =
