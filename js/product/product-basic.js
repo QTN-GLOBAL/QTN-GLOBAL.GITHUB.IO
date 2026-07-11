@@ -92,6 +92,25 @@ function renderProductBasic() {
                 </select>
 
             </div>
+
+            <!-- =========================
+                  Origin
+            ========================== -->
+<div class="form-group">
+
+    <label>
+
+        Origin
+
+    </label>
+
+    <input
+        id="productOrigin"
+        type="text"
+        readonly
+        placeholder="Auto from Brand">
+
+</div>
  <!-- =========================
                 Search Product
             ========================== -->
@@ -877,5 +896,34 @@ for (const option of brandSelect.options) {
     // Hiện đúng model
     document.getElementById("productSearch").value =
         product.folder;
+
+}
+/* =====================================================
+   UPDATE ORIGIN
+===================================================== */
+
+function updateOrigin() {
+
+    const brandSelect =
+        document.getElementById("productBrand");
+
+    const originInput =
+        document.getElementById("productOrigin");
+
+    if (!brandSelect || !originInput) return;
+
+    const brandName =
+        brandSelect.value;
+
+    const brand =
+        Object.values(BRAND_CONFIG).find(item =>
+
+            item.name.toLowerCase() ===
+            brandName.toLowerCase()
+
+        );
+
+    originInput.value =
+        brand ? brand.origin : "";
 
 }
