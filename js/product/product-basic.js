@@ -699,7 +699,19 @@ function updateProductInfo(){
 
         if(brandSelect){
 
-            brandSelect.value = product.brand;
+            const brandName = (product.brand || "").toLowerCase();
+
+for (const option of brandSelect.options) {
+
+    if (option.value.toLowerCase() === brandName) {
+
+        brandSelect.value = option.value;
+
+        break;
+
+    }
+
+}
 
         }
 
