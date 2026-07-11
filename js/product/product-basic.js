@@ -841,8 +841,23 @@ loadBrandOptions(product.category);
 const brandSelect =
     document.getElementById("productBrand");
 
-brandSelect.value =
-    product.brand;
+const productBrand =
+    (product.brand || "").toLowerCase();
+
+for (const option of brandSelect.options) {
+
+    if (
+        option.value.toLowerCase() === productBrand
+    ) {
+
+        brandSelect.value =
+            option.value;
+
+        break;
+
+    }
+
+}
 
     // Name
     document.getElementById("productName").value =
