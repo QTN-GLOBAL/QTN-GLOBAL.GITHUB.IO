@@ -106,9 +106,10 @@ function renderProductBasic() {
                 </label>
 
                 <input
-                    id="productName"
-                    type="text"
-                    placeholder="Product Name">
+    id="productName"
+    type="text"
+    placeholder="Product Name"
+    oninput="updateProductInfo()">
 
             </div>
 
@@ -612,4 +613,89 @@ function updateBrandFromProduct(product) {
 
     }
 
+}
+/* =====================================================
+   AUTO PRODUCT INFO
+===================================================== */
+
+function updateProductInfo(){
+
+    const nameInput = document.getElementById("productName");
+    const folderInput = document.getElementById("productFolder");
+    const categorySelect = document.getElementById("productCategory");
+    const brandSelect = document.getElementById("productBrand");
+
+    if(!nameInput) return;
+
+    const keyword =
+        nameInput.value.trim().toLowerCase();
+
+    if(keyword === ""){
+
+        if(folderInput) folderInput.value = "";
+
+        return;
+
+    }
+
+    // ============================================
+    // TÌM TRONG products.js
+    // ============================================
+
+    const product = (window.products || []).find(item =>
+
+        item.folder &&
+        item.folder.toLowerCase() === keyword
+
+    );
+
+    if(product){
+
+        // Hiện đầy đủ tên sản phẩm
+
+        nameInput.value = product.name;
+
+        // Folder
+
+        if(folderInput){
+
+            folderInput.value = product.folder;
+
+        }
+
+        // Category
+
+        if(categorySelect){
+
+            categorySelect.value = product.category;
+
+            categorySelect.dispatchEvent(
+                new Event("change")
+            );
+
+        }
+
+        // Brand
+
+        if(brandSelect){
+
+            brandSelect.value = product.brand;
+
+        }
+
+        return;
+
+    }
+
+    // ============================================
+    // KHÔNG TÌM THẤY
+    // ============================================
+
+    if(folderInput){
+
+        folderInput.value = "";
+
+    }
+
+}
 }
