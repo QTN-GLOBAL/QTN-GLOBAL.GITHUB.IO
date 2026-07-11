@@ -805,21 +805,23 @@ function selectProduct(productId){
 
     if(!product) return;
 
-    // Business
-    document.getElementById("productBusiness").value =
-        product.business;
+   // Business
+const businessSelect = document.getElementById("productBusiness");
+businessSelect.value = product.business;
 
-    loadCategoryOptions();
+// Load Category
+loadCategoryOptions();
 
-    // Category
-    document.getElementById("productCategory").value =
-        product.category;
+// Category
+const categorySelect = document.getElementById("productCategory");
+categorySelect.value = product.category;
 
-    loadBrandOptions();
+// Load Brand theo Category mới
+loadBrandOptions();
 
-    // Brand
-    document.getElementById("productBrand").value =
-        product.brand;
+// Brand
+const brandSelect = document.getElementById("productBrand");
+brandSelect.value = product.brand;
 
     // Name
     document.getElementById("productName").value =
