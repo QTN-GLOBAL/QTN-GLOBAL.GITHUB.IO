@@ -92,7 +92,26 @@ function renderProductBasic() {
                 </select>
 
             </div>
+ <!-- =========================
+                Search Product
+            ========================== -->
+<div class="form-group">
 
+    <label>
+
+        🔍 Search Product
+
+    </label>
+
+    <input
+        id="productSearch"
+        type="text"
+        placeholder="Nhập model, tên sản phẩm, thương hiệu..."
+        autocomplete="off">
+
+    <div id="productSearchResult"></div>
+
+</div>
             <!-- =========================
                  PRODUCT NAME
             ========================== -->
