@@ -335,7 +335,7 @@ function loadCategoryOptions(businessId) {
    LOAD BRAND
 ===================================================== */
 
-function loadBrandOptions() {
+function loadBrandOptions(categoryId) {
 
     const business =
         document.getElementById("productBusiness");
@@ -348,18 +348,23 @@ function loadBrandOptions() {
     brand.innerHTML = "";
 
     const brands =
-        getBrands(business.value);
+        getBrandsByBusiness(business.value);
 
     brands.forEach(item => {
 
+        // Nếu có category thì chỉ hiện brand hỗ trợ category đó
+        if (
+            categoryId &&
+            item.categories &&
+            !item.categories.includes(categoryId)
+        ) {
+            return;
+        }
+
         brand.innerHTML += `
-
-            <option value="${item.id}">
-
+            <option value="${item.name}">
                 ${item.name}
-
             </option>
-
         `;
 
     });
