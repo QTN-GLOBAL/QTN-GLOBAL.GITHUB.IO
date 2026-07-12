@@ -268,7 +268,34 @@ function initProductBasic() {
     }
 
     generateProductId();
+
     initProductSearch();
+
+    // =========================
+    // Product Name -> Auto Product ID
+    // =========================
+
+    const productName =
+        document.getElementById("productName");
+
+    if (productName) {
+
+        productName.oninput = function () {
+
+            const idInput =
+                document.getElementById("productId");
+
+            // Chỉ tự sinh ID khi đang tạo sản phẩm mới
+            if (!idInput.value.trim()) {
+
+                idInput.value =
+                    getNextProductId();
+
+            }
+
+        };
+
+    }
 
 }
 
@@ -550,24 +577,36 @@ function generateProductId() {
 
     if (!productName || !productId) return;
 
+    // Nếu chưa nhập tên thì chưa cấp ID
+    if (!productName.value.trim()) {
+
+        productId.value = "";
+
+        return;
+
+    }
+
+    // Tìm sản phẩm cũ
     const product =
         findProductByName(productName.value);
 
     if (product) {
 
-    productId.value = product.id;
+        productId.value =
+            product.id;
 
-    updateBrandFromProduct(product);
+        updateBrandFromProduct(product);
 
-    return;
+        return;
 
-}
+    }
 
+    // Nếu là sản phẩm mới
     productId.value =
         getNextProductId();
 
 }
-/* =====================================================
+=============
    GET NEXT PRODUCT ID
 ===================================================== */
 
@@ -955,5 +994,28 @@ function updateOrigin() {
 
     originInput.value =
         brand ? brand.origin : "";
+
+}
+/* =====================================================
+   NEXT PRODUCT ID
+===================================================== */
+
+function getNextProductId() {
+
+    const products = window.products || [];
+
+    if (products.length === 0) {
+
+        return 1;
+
+    }
+
+    const maxId = Math.max(
+
+        ...products.map(item => item.id)
+
+    );
+
+    return maxId + 1;
 
 }
