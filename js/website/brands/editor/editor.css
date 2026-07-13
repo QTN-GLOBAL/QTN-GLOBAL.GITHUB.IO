@@ -351,15 +351,53 @@ select{
    PRODUCT IMAGES
 ========================================== */
 
+.product-image-layout{
+
+    display:flex;
+
+    gap:30px;
+
+    margin-top:20px;
+
+    align-items:flex-start;
+
+}
+
+.main-image-panel{
+
+    width:35%;
+
+}
+
+.gallery-panel{
+
+    flex:1;
+
+}
+
+.panel-title{
+
+    display:block;
+
+    font-weight:600;
+
+    margin-bottom:12px;
+
+}
+
+/* =========================
+   MAIN IMAGE
+========================= */
+
 .image-upload-box{
 
-    width:100%;
+    height:260px;
 
-    height:140px;
+    border:2px dashed #d6d6d6;
 
-    border:2px dashed #cfcfcf;
+    border-radius:12px;
 
-    border-radius:10px;
+    background:#fafafa;
 
     display:flex;
 
@@ -373,31 +411,21 @@ select{
 
     transition:.25s;
 
-    background:#fafafa;
-
 }
 
 .image-upload-box:hover{
 
     border-color:#1976d2;
 
-    background:#f4f9ff;
+    background:#f5faff;
 
 }
 
 .upload-icon{
 
-    font-size:42px;
+    font-size:52px;
 
-    margin-bottom:10px;
-
-}
-
-.image-upload-box div:last-child{
-
-    font-size:15px;
-
-    color:#666;
+    margin-bottom:15px;
 
 }
 
@@ -409,19 +437,21 @@ select{
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
 
-    gap:12px;
+    gap:15px;
 
 }
 
 .gallery-add{
 
-    height:110px;
+    height:120px;
 
-    border:2px dashed #d0d0d0;
+    border:2px dashed #d6d6d6;
 
     border-radius:10px;
+
+    background:#fafafa;
 
     display:flex;
 
@@ -429,11 +459,9 @@ select{
 
     align-items:center;
 
-    font-size:30px;
+    font-size:36px;
 
     cursor:pointer;
-
-    background:#fafafa;
 
     transition:.25s;
 
@@ -443,6 +471,20 @@ select{
 
     border-color:#1976d2;
 
-    background:#f4f9ff;
+    background:#f5faff;
+
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.step-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:space-between;
 
 }
