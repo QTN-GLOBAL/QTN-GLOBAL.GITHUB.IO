@@ -115,5 +115,6 @@ function renderProductImages() {
 
     `;
 initMainImageUpload();
+initGalleryUpload();
 
 }
