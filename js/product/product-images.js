@@ -73,17 +73,99 @@ function renderProductImages() {
 
                 <div class="gallery-grid">
 
-    <div class="gallery-slot" data-index="0"></div>
+   <div class="gallery-slot" data-index="0">
 
-    <div class="gallery-slot" data-index="1"></div>
+    <input
+        type="file"
+        class="gallery-input"
+        accept="image/*"
+        hidden>
 
-    <div class="gallery-slot" data-index="2"></div>
+    <div class="gallery-add">
 
-    <div class="gallery-slot" data-index="3"></div>
+        +
 
-    <div class="gallery-slot" data-index="4"></div>
+    </div>
 
-    <div class="gallery-slot" data-index="5"></div>
+</div>
+    <div class="gallery-slot" data-index="1">
+
+    <input
+        type="file"
+        class="gallery-input"
+        accept="image/*"
+        hidden>
+
+    <div class="gallery-add">
+
+        +
+
+    </div>
+
+</div>
+   <div class="gallery-slot" data-index="2">
+
+    <input
+        type="file"
+        class="gallery-input"
+        accept="image/*"
+        hidden>
+
+    <div class="gallery-add">
+
+        +
+
+    </div>
+
+</div>
+
+    <div class="gallery-slot" data-index="3">
+
+    <input
+        type="file"
+        class="gallery-input"
+        accept="image/*"
+        hidden>
+
+    <div class="gallery-add">
+
+        +
+
+    </div>
+
+</div>
+
+  <div class="gallery-slot" data-index="4">
+
+    <input
+        type="file"
+        class="gallery-input"
+        accept="image/*"
+        hidden>
+
+    <div class="gallery-add">
+
+        +
+
+    </div>
+
+</div>
+
+   <div class="gallery-slot" data-index="5">
+
+    <input
+        type="file"
+        class="gallery-input"
+        accept="image/*"
+        hidden>
+
+    <div class="gallery-add">
+
+        +
+
+    </div>
+
+</div>
 
 </div>
 
