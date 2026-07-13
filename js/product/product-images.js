@@ -73,15 +73,19 @@ function renderProductImages() {
 
                 <div class="gallery-grid">
 
-                    <div class="gallery-add">+</div>
-                    <div class="gallery-add">+</div>
-                    <div class="gallery-add">+</div>
+    <div class="gallery-slot" data-index="0"></div>
 
-                    <div class="gallery-add">+</div>
-                    <div class="gallery-add">+</div>
-                    <div class="gallery-add">+</div>
+    <div class="gallery-slot" data-index="1"></div>
 
-                </div>
+    <div class="gallery-slot" data-index="2"></div>
+
+    <div class="gallery-slot" data-index="3"></div>
+
+    <div class="gallery-slot" data-index="4"></div>
+
+    <div class="gallery-slot" data-index="5"></div>
+
+</div>
 
             </div>
 
