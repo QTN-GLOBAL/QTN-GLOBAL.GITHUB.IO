@@ -2,6 +2,10 @@
    PRODUCT IMAGES
 ========================================== */
 
+/* ==========================================
+   PRODUCT IMAGES
+========================================== */
+
 function renderProductImages() {
 
     const body =
@@ -11,64 +15,113 @@ function renderProductImages() {
 
     body.innerHTML = `
 
-        <div class="product-step">
+    <div class="product-images">
 
-            <h3 class="product-step-title">
+        <h3 class="product-step-title">
 
-                Step 2 / 6 - Product Images
+            Step 2 / 6 - Product Images
 
-            </h3>
+        </h3>
 
-            <div class="form-group">
+        <!-- =========================
+             MAIN IMAGE
+        ========================== -->
 
-                <label>
+        <div class="form-group">
 
-                    Main Image
+            <label>
 
-                </label>
+                Main Image
 
-                <input
-                    type="file"
-                    id="mainImage">
+            </label>
 
-            </div>
+            <div
+                class="image-upload-box"
+                id="mainImageBox">
 
-            <div class="form-group">
+                <div class="upload-icon">
 
-                <label>
+                    📷
 
-                    Gallery Images
+                </div>
 
-                </label>
+                <div>
 
-                <input
-                    type="file"
-                    multiple
-                    id="galleryImages">
+                    Click to upload
 
-            </div>
-
-            <div class="step-buttons">
-
-                <button
-                    type="button"
-                    onclick="renderProductBasic()">
-
-                    ← Back
-
-                </button>
-
-                <button
-                    type="button"
-                    onclick="alert('Step 3 đang phát triển...')">
-
-                    Next →
-
-                </button>
+                </div>
 
             </div>
 
         </div>
+
+        <!-- =========================
+             GALLERY
+        ========================== -->
+
+        <div class="form-group">
+
+            <label>
+
+                Gallery Images
+
+            </label>
+
+            <div class="gallery-grid">
+
+                <div class="gallery-add">
+
+                    +
+
+                </div>
+
+                <div class="gallery-add">
+
+                    +
+
+                </div>
+
+                <div class="gallery-add">
+
+                    +
+
+                </div>
+
+                <div class="gallery-add">
+
+                    +
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             BUTTONS
+        ========================== -->
+
+        <div class="step-buttons">
+
+            <button
+                type="button"
+                onclick="renderProductBasic()">
+
+                ← Back
+
+            </button>
+
+            <button
+                type="button"
+                onclick="alert('Step 3 sẽ làm tiếp')">
+
+                Next →
+
+            </button>
+
+        </div>
+
+    </div>
 
     `;
 
