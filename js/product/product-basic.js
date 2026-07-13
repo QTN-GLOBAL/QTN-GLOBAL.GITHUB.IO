@@ -465,55 +465,29 @@ if (productName) {
 
 function generateFolder() {
 
-    const categorySelect =
-        document.getElementById("productCategory");
-
     const productName =
         document.getElementById("productName");
 
     const folderInput =
         document.getElementById("productFolder");
 
-    if (
-        !categorySelect ||
-        !productName ||
-        !folderInput
-    ) return;
+    if (!productName || !folderInput) return;
 
-    const category =
-        getCategory(categorySelect.value);
+    // Nếu sản phẩm đã tồn tại
+    const product =
+        findProductByName(productName.value);
 
-    if (!category) {
+    if (product) {
 
-        folderInput.value = "";
+        folderInput.value = product.folder;
 
         return;
 
     }
 
-    let slug =
-        productName.value.trim();
-
-    if (slug !== "") {
-
-        slug = slug
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/đ/g, "d")
-            .replace(/Đ/g, "D")
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-")
-            .replace(/^-+|-+$/g, "");
-
-        folderInput.value =
-            `${category.folder}/${slug}`;
-
-    } else {
-
-        folderInput.value =
-            `${category.folder}/`;
-
-    }
+    // Nếu là sản phẩm mới
+    folderInput.value =
+        createProductFolder(productName.value);
 
 }
 /* =====================================================
