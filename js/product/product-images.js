@@ -2,26 +2,20 @@
    PRODUCT IMAGES
 ========================================== */
 
-function renderProductImages(){
+function renderProductImages() {
 
-    const container =
-        document.getElementById("productFormContent");
+    const body =
+        document.getElementById("productModalBody");
 
-    if(!container) return;
+    if (!body) return;
 
-    container.innerHTML = `
+    body.innerHTML = `
 
         <div class="product-step">
 
-            <h2>
+            <h3 class="product-step-title">
 
-                Step 2 / 6
-
-            </h2>
-
-            <h3>
-
-                Product Images
+                Step 2 / 6 - Product Images
 
             </h3>
 
@@ -43,7 +37,7 @@ function renderProductImages(){
 
                 <label>
 
-                    Gallery
+                    Gallery Images
 
                 </label>
 
@@ -57,16 +51,18 @@ function renderProductImages(){
             <div class="step-buttons">
 
                 <button
+                    type="button"
                     onclick="renderProductBasic()">
 
-                    Back
+                    ← Back
 
                 </button>
 
                 <button
-                    onclick="renderProductDescription()">
+                    type="button"
+                    onclick="alert('Step 3 đang phát triển...')">
 
-                    Next
+                    Next →
 
                 </button>
 

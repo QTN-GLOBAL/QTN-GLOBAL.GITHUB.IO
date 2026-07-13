@@ -3,7 +3,6 @@
    STEP 1
    - Render Basic Information
 ===================================================== */
-
 function renderProductBasic() {
 
     const body =
@@ -17,21 +16,13 @@ function renderProductBasic() {
 
             <h3 class="product-step-title">
 
-                Basic Information
+                Step 1 / 6 - Basic Information
 
             </h3>
 
-            <!-- =========================
-                 BUSINESS
-            ========================== -->
-
             <div class="form-group">
 
-                <label>
-
-                    Business
-
-                </label>
+                <label>Business</label>
 
                 <select id="productBusiness">
 
@@ -45,17 +36,9 @@ function renderProductBasic() {
 
             </div>
 
-            <!-- =========================
-                 CATEGORY
-            ========================== -->
-
             <div class="form-group">
 
-                <label>
-
-                    Category
-
-                </label>
+                <label>Category</label>
 
                 <select id="productCategory">
 
@@ -69,17 +52,9 @@ function renderProductBasic() {
 
             </div>
 
-            <!-- =========================
-                 BRAND
-            ========================== -->
-
             <div class="form-group">
 
-                <label>
-
-                    Brand
-
-                </label>
+                <label>Brand</label>
 
                 <select id="productBrand">
 
@@ -93,113 +68,69 @@ function renderProductBasic() {
 
             </div>
 
-            <!-- =========================
-                  Origin
-            ========================== -->
-<div class="form-group">
-
-    <label>
-
-        Origin
-
-    </label>
-
-    <input
-        id="productOrigin"
-        type="text"
-        readonly
-        placeholder="Auto from Brand">
-
-</div>
- <!-- =========================
-                Search Product
-            ========================== -->
-<div class="form-group">
-
-    <label>
-
-        🔍 Search Product
-
-    </label>
-
-    <input
-        id="productSearch"
-        type="text"
-        placeholder="Nhập model, tên sản phẩm, thương hiệu..."
-        autocomplete="off">
-
-    <div id="productSearchResult"></div>
-
-</div>
-            <!-- =========================
-                 PRODUCT NAME
-            ========================== -->
-
             <div class="form-group">
 
-                <label>
-
-                    Product Name
-
-                </label>
+                <label>Origin</label>
 
                 <input
-    id="productName"
-    type="text"
-    placeholder="Product Name"
-    oninput="updateProductInfo()">
+                    id="productOrigin"
+                    type="text"
+                    readonly
+                    placeholder="Auto from Brand">
 
             </div>
 
-            <!-- =========================
-                 FOLDER
-            ========================== -->
-
             <div class="form-group">
 
-                <label>
-
-                    Folder
-
-                </label>
+                <label>🔍 Search Product</label>
 
                 <input
-    id="productFolder"
-    type="text"
-    readonly>
+                    id="productSearch"
+                    type="text"
+                    placeholder="Nhập model, tên sản phẩm, thương hiệu..."
+                    autocomplete="off">
+
+                <div id="productSearchResult"></div>
 
             </div>
 
-            <!-- =========================
-                 PRODUCT ID
-            ========================== -->
-
             <div class="form-group">
 
-                <label>
-
-                    Product ID
-
-                </label>
+                <label>Product Name</label>
 
                 <input
-    id="productId"
-    type="text"
-    readonly>
+                    id="productName"
+                    type="text"
+                    placeholder="Product Name"
+                    oninput="updateProductInfo()">
 
             </div>
 
-            <!-- =========================
-                 STATUS
-            ========================== -->
+            <div class="form-group">
+
+                <label>Folder</label>
+
+                <input
+                    id="productFolder"
+                    type="text"
+                    readonly>
+
+            </div>
 
             <div class="form-group">
 
-                <label>
+                <label>Product ID</label>
 
-                    Status
+                <input
+                    id="productId"
+                    type="text"
+                    readonly>
 
-                </label>
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
 
                 <div class="status-group">
 
@@ -241,9 +172,22 @@ function renderProductBasic() {
 
             </div>
 
+            <div class="step-buttons">
+
+                <button
+                    type="button"
+                    class="btn-next"
+                    onclick="renderProductImages()">
+
+                    Next →
+
+                </button>
+
+            </div>
+
         </div>
 
-      `;
+    `;
 
     initProductBasic();
 
