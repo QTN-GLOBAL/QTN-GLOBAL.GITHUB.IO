@@ -410,6 +410,9 @@ select{
     cursor:pointer;
 
     transition:.25s;
+    position:relative;
+
+overflow:hidden;
 
 }
 
@@ -497,5 +500,50 @@ select{
     object-fit:contain;
 
     border-radius:10px;
+
+}
+/* =========================
+   IMAGE ACTIONS
+========================= */
+
+.image-actions{
+
+    position:absolute;
+
+    top:10px;
+
+    right:10px;
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+.image-actions button{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.image-actions button:hover{
+
+    background:#1976d2;
+
+    color:#fff;
 
 }
