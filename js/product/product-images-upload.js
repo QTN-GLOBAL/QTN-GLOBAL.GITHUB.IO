@@ -32,12 +32,44 @@ function initMainImageUpload() {
 
             box.innerHTML = `
 
-                <img
-                    src="${e.target.result}"
-                    class="main-image-preview">
+    <img
+        src="${e.target.result}"
+        class="main-image-preview">
 
-            `;
+    <div class="image-actions">
 
+        <button
+            id="replaceMainImage"
+            type="button">
+
+            🔄
+
+        </button>
+
+        <button
+            id="removeMainImage"
+            type="button">
+
+            ❌
+
+        </button>
+
+    </div>
+
+`;
+document.getElementById("replaceMainImage").onclick = function () {
+
+    input.click();
+
+};
+
+document.getElementById("removeMainImage").onclick = function () {
+
+    input.value = "";
+
+    renderProductImages();
+
+};
         };
 
         reader.readAsDataURL(file);
