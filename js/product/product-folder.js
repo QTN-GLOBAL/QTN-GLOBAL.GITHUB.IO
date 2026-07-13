@@ -29,30 +29,17 @@ function slugifyFolder(text) {
    CREATE FOLDER
 ===================================================== */
 
-function createProductFolder(name) {
+function generateFolder(){
 
-    if (!name) return "";
+    const product =
+        document.getElementById("productName");
 
-    let folder = name;
+    const folder =
+        document.getElementById("productFolder");
 
-    // Loại bỏ các từ chung
+    if(!product || !folder) return;
 
-    folder = folder.replace(/cân điện tử/gi, "");
-
-    folder = folder.replace(/đầu cân điện tử/gi, "");
-
-    folder = folder.replace(/đầu cân/gi, "");
-
-    folder = folder.replace(/cân bàn đứng/gi, "");
-
-    folder = folder.replace(/cân bàn/gi, "");
-
-    folder = folder.replace(/cân treo/gi, "");
-
-    folder = folder.replace(/cân/gi, "");
-
-    folder = folder.trim();
-
-    return slugifyFolder(folder);
+    folder.value =
+        createProductFolder(product.value);
 
 }
