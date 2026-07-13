@@ -19,3 +19,29 @@ function initMainImageUpload() {
     };
 
 }
+input.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+
+        const box =
+            document.getElementById("mainImageBox");
+
+        box.innerHTML = `
+
+            <img
+                src="${e.target.result}"
+                class="main-image-preview">
+
+        `;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
