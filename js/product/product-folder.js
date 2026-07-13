@@ -38,23 +38,28 @@ function slugifyFolder(text) {
    CREATE PRODUCT FOLDER
 ===================================================== */
 
-function createProductFolder(productName) {
+function createProductFolder(productName){
 
-    if (!productName) return "";
+    if(!productName) return "";
 
-    let folder = productName;
+    // Chuẩn hóa khoảng trắng
+    let text = productName.trim();
 
-    // Loại bỏ các từ phổ biến
+    // Tách thành các từ
+    let words = text.split(/\s+/);
 
-   // Loại bỏ các tiền tố phổ biến ở đầu tên
-folder = folder.replace(
-    /^(đầu\s*cân\s*điện\s*tử|đầu\s*cân|cân\s*bàn\s*đứng|cân\s*bàn|cân\s*sàn|cân\s*treo|cân\s*phân\s*tích|cân\s*kỹ\s*thuật|cân\s*điện\s*tử|cân)\s*/i,
-    ""
-);
+    // Lấy 2 từ cuối
+    let lastTwo = words.slice(-2).join(" ");
 
-    folder = folder.trim();
+    // Nếu chứa số hoặc dấu +
+    if(/[0-9+]/.test(lastTwo)){
 
-    return slugifyFolder(folder);
+        return slugifyFolder(lastTwo);
+
+    }
+
+    // Nếu không thì lấy từ cuối
+    return slugifyFolder(words[words.length-1]);
 
 }
 
