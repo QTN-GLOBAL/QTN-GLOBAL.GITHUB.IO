@@ -440,14 +440,13 @@ overflow:hidden;
 
     display:grid;
 
-    grid-template-columns:380px 1fr;
+    grid-template-columns:340px 1fr;
 
-    gap:40px;
+    gap:35px;
 
     align-items:start;
 
 }
-
 /* ==========================================
    LEFT
 ========================================== */
@@ -473,6 +472,11 @@ overflow:hidden;
 /* ==========================================
    MAIN IMAGE
 ========================================== */
+.main-image-panel{
+
+    width:100%;
+
+}
 
 .image-upload-box{
 
@@ -480,13 +484,15 @@ overflow:hidden;
 
     width:100%;
 
-    height:280px;
+    height:320px;
 
-    border:2px dashed #d8d8d8;
+    border:2px dashed #d9d9d9;
 
     border-radius:12px;
 
     background:#fafafa;
+
+    overflow:hidden;
 
     display:flex;
 
@@ -494,25 +500,7 @@ overflow:hidden;
 
     align-items:center;
 
-    flex-direction:column;
-
-    overflow:hidden;
-
     cursor:pointer;
-
-}
-
-.image-upload-box:hover{
-
-    border-color:#1976d2;
-
-}
-
-.upload-icon{
-
-    font-size:52px;
-
-    margin-bottom:15px;
 
 }
 
@@ -525,7 +513,6 @@ overflow:hidden;
     object-fit:contain;
 
 }
-
 /* ==========================================
    MAIN ACTIONS
 ========================================== */
@@ -575,12 +562,11 @@ overflow:hidden;
 /* ==========================================
    GALLERY
 ========================================== */
-
 .gallery-grid{
 
     display:grid;
 
-    grid-template-columns:repeat(3,150px);
+    grid-template-columns:repeat(3,140px);
 
     gap:18px;
 
@@ -590,35 +576,17 @@ overflow:hidden;
 
     position:relative;
 
-    width:150px;
+    width:140px;
 
-    height:150px;
+    height:140px;
 
-    border:2px dashed #d8d8d8;
+    border:2px dashed #d9d9d9;
 
     border-radius:10px;
 
     overflow:hidden;
 
     background:#fff;
-
-}
-
-.gallery-add{
-
-    width:100%;
-
-    height:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:38px;
-
-    cursor:pointer;
 
 }
 
@@ -635,14 +603,14 @@ overflow:hidden;
 /* ==========================================
    GALLERY ACTIONS
 ========================================== */
-
+.image-actions,
 .gallery-actions{
 
     position:absolute;
 
-    top:6px;
+    top:8px;
 
-    right:6px;
+    right:8px;
 
     display:flex;
 
@@ -650,11 +618,12 @@ overflow:hidden;
 
 }
 
+.image-actions button,
 .gallery-actions button{
 
-    width:26px;
+    width:30px;
 
-    height:26px;
+    height:30px;
 
     border:none;
 
@@ -664,7 +633,18 @@ overflow:hidden;
 
     cursor:pointer;
 
-    box-shadow:0 2px 6px rgba(0,0,0,.15);
+    box-shadow:0 2px 6px rgba(0,0,0,.18);
+
+    transition:.2s;
+
+}
+
+.image-actions button:hover,
+.gallery-actions button:hover{
+
+    background:#1976d2;
+
+    color:#fff;
 
 }
 
@@ -674,10 +654,38 @@ overflow:hidden;
 
 .step-buttons{
 
-    margin-top:30px;
+    margin-top:35px;
 
     display:flex;
 
     justify-content:space-between;
+
+}
+
+.step-buttons button{
+
+    min-width:120px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#0d6efd;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.step-buttons button:hover{
+
+    background:#0b5ed7;
 
 }
