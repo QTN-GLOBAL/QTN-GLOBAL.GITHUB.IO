@@ -34,22 +34,28 @@ function renderProductImages() {
                 </label>
 
                 <div
-                    class="image-upload-box"
-                    id="mainImageBox">
+    class="image-upload-box"
+    id="mainImageBox">
 
-                    <div class="upload-icon">
+    <input
+        type="file"
+        id="mainImageInput"
+        accept="image/*"
+        hidden>
 
-                        📷
+    <div class="upload-icon">
 
-                    </div>
+        📷
 
-                    <div>
+    </div>
 
-                        Click to upload
+    <div>
 
-                    </div>
+        Click to upload
 
-                </div>
+    </div>
+
+</div>
 
             </div>
 
@@ -104,5 +110,6 @@ function renderProductImages() {
     </div>
 
     `;
+initMainImageUpload();
 
 }
