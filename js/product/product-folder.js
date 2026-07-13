@@ -46,25 +46,11 @@ function createProductFolder(productName) {
 
     // Loại bỏ các từ phổ biến
 
-    folder = folder.replace(/đầu cân điện tử/gi, "");
-
-    folder = folder.replace(/đầu cân/gi, "");
-
-    folder = folder.replace(/cân điện tử/gi, "");
-
-    folder = folder.replace(/cân bàn đứng/gi, "");
-
-    folder = folder.replace(/cân bàn/gi, "");
-
-    folder = folder.replace(/cân sàn/gi, "");
-
-    folder = folder.replace(/cân treo/gi, "");
-
-    folder = folder.replace(/cân phân tích/gi, "");
-
-    folder = folder.replace(/cân kỹ thuật/gi, "");
-
-    folder = folder.replace(/cân/gi, "");
+   // Loại bỏ các tiền tố phổ biến ở đầu tên
+folder = folder.replace(
+    /^(đầu\s*cân\s*điện\s*tử|đầu\s*cân|cân\s*bàn\s*đứng|cân\s*bàn|cân\s*sàn|cân\s*treo|cân\s*phân\s*tích|cân\s*kỹ\s*thuật|cân\s*điện\s*tử|cân)\s*/i,
+    ""
+);
 
     folder = folder.trim();
 
