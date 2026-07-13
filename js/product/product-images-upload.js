@@ -1,5 +1,5 @@
 /* ==========================================
-   MAIN IMAGE
+   MAIN IMAGE UPLOAD
 ========================================== */
 
 function initMainImageUpload() {
@@ -12,36 +12,36 @@ function initMainImageUpload() {
 
     if (!box || !input) return;
 
+    // Click vùng upload
     box.onclick = function () {
 
         input.click();
 
     };
 
-}
-input.addEventListener("change", function () {
+    // Chọn ảnh
+    input.onchange = function () {
 
-    const file = this.files[0];
+        const file = this.files[0];
 
-    if (!file) return;
+        if (!file) return;
 
-    const reader = new FileReader();
+        const reader = new FileReader();
 
-    reader.onload = function (e) {
+        reader.onload = function (e) {
 
-        const box =
-            document.getElementById("mainImageBox");
+            box.innerHTML = `
 
-        box.innerHTML = `
+                <img
+                    src="${e.target.result}"
+                    class="main-image-preview">
 
-            <img
-                src="${e.target.result}"
-                class="main-image-preview">
+            `;
 
-        `;
+        };
+
+        reader.readAsDataURL(file);
 
     };
 
-    reader.readAsDataURL(file);
-
-});
+}
