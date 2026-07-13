@@ -355,11 +355,11 @@ select{
 
     width:100%;
 
-    height:170px;
+    height:140px;
 
     border:2px dashed #cfcfcf;
 
-    border-radius:12px;
+    border-radius:10px;
 
     display:flex;
 
@@ -387,11 +387,23 @@ select{
 
 .upload-icon{
 
-    font-size:48px;
+    font-size:42px;
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 
 }
+
+.image-upload-box div:last-child{
+
+    font-size:15px;
+
+    color:#666;
+
+}
+
+/* =========================
+   GALLERY
+========================= */
 
 .gallery-grid{
 
@@ -399,13 +411,13 @@ select{
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:15px;
+    gap:12px;
 
 }
 
 .gallery-add{
 
-    aspect-ratio:1;
+    height:110px;
 
     border:2px dashed #d0d0d0;
 
@@ -417,7 +429,7 @@ select{
 
     align-items:center;
 
-    font-size:34px;
+    font-size:30px;
 
     cursor:pointer;
 
