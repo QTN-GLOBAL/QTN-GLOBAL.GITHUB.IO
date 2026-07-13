@@ -38,28 +38,31 @@ function slugifyFolder(text) {
    CREATE PRODUCT FOLDER
 ===================================================== */
 
-function createProductFolder(productName){
+function createProductFolder(productName) {
 
-    if(!productName) return "";
+    if (!productName) return "";
 
     // Chuẩn hóa khoảng trắng
-    let text = productName.trim();
+    productName = productName.trim();
 
-    // Tách thành các từ
-    let words = text.split(/\s+/);
+    // Lấy các từ
+    const words = productName.split(/\s+/);
 
-    // Lấy 2 từ cuối
-    let lastTwo = words.slice(-2).join(" ");
+    // Ghép các từ cuối cho đến khi gặp model
+    let result = [];
 
-    // Nếu chứa số hoặc dấu +
-    if(/[0-9+]/.test(lastTwo)){
+    for (let i = words.length - 1; i >= 0; i--) {
 
-        return slugifyFolder(lastTwo);
+        result.unshift(words[i]);
+
+        // Nếu từ có số thì coi là bắt đầu model
+        if (/\d/.test(words[i])) {
+            break;
+        }
 
     }
 
-    // Nếu không thì lấy từ cuối
-    return slugifyFolder(words[words.length-1]);
+    return slugifyFolder(result.join(" "));
 
 }
 
