@@ -1,19 +1,25 @@
-function initGalleryUpload(){
+/* ==========================================
+   GALLERY
+========================================== */
+
+function initGalleryUpload() {
 
     const slots =
         document.querySelectorAll(".gallery-slot");
 
-    slots.forEach(function(slot){
+    slots.forEach(function (slot) {
 
-        slot.innerHTML = `
+        const input =
+            slot.querySelector(".gallery-input");
 
-            <div class="gallery-add">
+        const add =
+            slot.querySelector(".gallery-add");
 
-                +
+        add.onclick = function () {
 
-            </div>
+            input.click();
 
-        `;
+        };
 
     });
 
