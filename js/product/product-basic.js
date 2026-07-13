@@ -271,6 +271,8 @@ function initProductBasic() {
 
     initProductSearch();
 
+    bindProductSync();
+
 }
 
 /* =====================================================
