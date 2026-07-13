@@ -2,10 +2,6 @@
    PRODUCT IMAGES
 ========================================== */
 
-/* ==========================================
-   PRODUCT IMAGES
-========================================== */
-
 function renderProductImages() {
 
     const body =
@@ -23,83 +19,67 @@ function renderProductImages() {
 
         </h3>
 
-        <!-- =========================
-             MAIN IMAGE
-        ========================== -->
+        <div class="product-image-layout">
 
-        <div class="form-group">
+            <!-- =========================
+                 MAIN IMAGE
+            ========================== -->
 
-            <label>
+            <div class="main-image-panel">
 
-                Main Image
+                <label class="panel-title">
 
-            </label>
+                    Main Image
 
-            <div
-                class="image-upload-box"
-                id="mainImageBox">
+                </label>
 
-                <div class="upload-icon">
+                <div
+                    class="image-upload-box"
+                    id="mainImageBox">
 
-                    📷
+                    <div class="upload-icon">
+
+                        📷
+
+                    </div>
+
+                    <div>
+
+                        Click to upload
+
+                    </div>
 
                 </div>
 
-                <div>
+            </div>
 
-                    Click to upload
+            <!-- =========================
+                 GALLERY
+            ========================== -->
+
+            <div class="gallery-panel">
+
+                <label class="panel-title">
+
+                    Gallery Images
+
+                </label>
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-add">+</div>
+                    <div class="gallery-add">+</div>
+                    <div class="gallery-add">+</div>
+
+                    <div class="gallery-add">+</div>
+                    <div class="gallery-add">+</div>
+                    <div class="gallery-add">+</div>
 
                 </div>
 
             </div>
 
         </div>
-
-        <!-- =========================
-             GALLERY
-        ========================== -->
-
-        <div class="form-group">
-
-            <label>
-
-                Gallery Images
-
-            </label>
-
-            <div class="gallery-grid">
-
-                <div class="gallery-add">
-
-                    +
-
-                </div>
-
-                <div class="gallery-add">
-
-                    +
-
-                </div>
-
-                <div class="gallery-add">
-
-                    +
-
-                </div>
-
-                <div class="gallery-add">
-
-                    +
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- =========================
-             BUTTONS
-        ========================== -->
 
         <div class="step-buttons">
 
@@ -113,7 +93,7 @@ function renderProductImages() {
 
             <button
                 type="button"
-                onclick="alert('Step 3 sẽ làm tiếp')">
+                onclick="alert('Step 3 sẽ làm sau')">
 
                 Next →
 
