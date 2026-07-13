@@ -34,23 +34,7 @@ function createProductModal() {
 
                 </div>
 
-                <div class="product-modal-footer">
-
-                    <button
-                        onclick="closeProductModal()">
-
-                        Cancel
-
-                    </button>
-
-                    <button>
-
-                        Next →
-
-                    </button>
-
-                </div>
-
+               
             </div>
 
         </div>
