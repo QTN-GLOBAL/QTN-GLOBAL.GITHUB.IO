@@ -26,16 +26,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <body>
 
 <!-- =========================
-     HEADER
+     HEADER + HERO COMBINED
 ========================= -->
 
 <header class="header">
 
+
+<!-- =========================
+     TOP HEADER
+========================= -->
+
 <div class="top-header">
+
 
 <div class="logo-area">
 
 <img src="images/logo.png" alt="QTN GLOBAL">
+
 
 <div class="company-info">
 
@@ -44,15 +51,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <span style="color:#d4a017;">GLOBAL</span>
 </h2>
 
+
 <p data-i18n="slogan">
     CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
 </p>
 
+
 </div>
 
 </div>
+
+
 
 <div class="top-contact">
+
 
 <a href="tel:0905913636" class="top-btn">
 
@@ -62,6 +74,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </a>
 
+
+
 <a href="tel:0383598603" class="top-btn">
 
 <i class="fa-solid fa-phone"></i>
@@ -69,6 +83,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 0383 598 603
 
 </a>
+
+
 
 <a href="https://zalo.me/0383598603"
 target="_blank"
@@ -80,6 +96,8 @@ Zalo
 
 </a>
 
+
+
 <a href="https://m.me/QTNSCALE"
 target="_blank"
 class="social-icon facebook">
@@ -88,14 +106,19 @@ class="social-icon facebook">
 
 </a>
 
+
+
 <a class="top-cart-btn"
 href="javascript:void(0)"
 onclick="openCart()">
 
+
 <span data-i18n="cart">
-    🛒 GIỎ HÀNG
+🛒 GIỎ HÀNG
 </span>
+
 (<span id="cartCount">0</span>)
+
 
 </a>
 
@@ -103,241 +126,370 @@ onclick="openCart()">
 
 </div>
 
+
 </div>
 
-<!-- =========================
-     MENU
-========================= -->
+
+
+
 <!-- =========================
      NAVBAR
 ========================= -->
 
 <nav class="navbar">
 
-    <!-- MOBILE MENU BUTTON -->
 
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open Menu">
+<button
+class="menu-toggle"
+id="menuToggle"
+aria-label="Open Menu">
 
-        <i class="fas fa-bars"></i>
+<i class="fas fa-bars"></i>
 
-    </button>
+</button>
 
-    <!-- MENU -->
 
-    <div class="nav-content" id="navContent">
 
-        <!-- CLOSE -->
+<div class="nav-content" id="navContent">
 
-        <button
-            class="menu-close"
-            id="menuClose"
-            aria-label="Close Menu">
 
-            <i class="fas fa-times"></i>
 
-        </button>
+<button
+class="menu-close"
+id="menuClose"
+aria-label="Close Menu">
 
-        <!-- MENU -->
+<i class="fas fa-times"></i>
 
-        <a href="index.html">
+</button>
 
-            <i class="fas fa-house"></i>
 
-            <span data-i18n="home">
-                Trang chủ
-            </span>
 
-        </a>
 
-        <a href="about.html">
+<a href="index.html">
 
-            <i class="fas fa-circle-info"></i>
+<i class="fas fa-house"></i>
 
-            <span data-i18n="about">
-                Giới thiệu
-            </span>
+<span data-i18n="home">
+Trang chủ
+</span>
 
-        </a>
+</a>
 
-        <a href="news.html">
 
-            <i class="fas fa-newspaper"></i>
 
-            <span data-i18n="news">
-                Tin tức
-            </span>
 
-        </a>
+<a href="about.html">
 
-        <a href="#"
-           onclick="goContact();return false;">
+<i class="fas fa-circle-info"></i>
 
-            <i class="fas fa-phone"></i>
+<span data-i18n="about">
+Giới thiệu
+</span>
 
-            <span data-i18n="contact">
-                Liên hệ
-            </span>
+</a>
 
-        </a>
 
-        <!-- SEARCH -->
 
-        <div class="search-box">
 
-            <input
-                id="searchInput"
-                type="text"
-                autocomplete="off"
-                data-i18n-placeholder="searchPlaceholder"
-                placeholder="Tìm kiếm sản phẩm...">
+<a href="news.html">
 
-            <button
-                type="button"
-                onclick="runSearch()">
+<i class="fas fa-newspaper"></i>
 
-                <i class="fas fa-search"></i>
+<span data-i18n="news">
+Tin tức
+</span>
 
-            </button>
+</a>
 
-        </div>
 
-        <!-- LANGUAGE -->
 
-        <div class="language-switcher">
 
-            <select id="languageSelect">
+<a href="#"
+onclick="goContact();return false;">
 
-                <option value="vi">
-                    🇻🇳 Tiếng Việt
-                </option>
+<i class="fas fa-phone"></i>
 
-                <option value="en">
-                    🇺🇸 English
-                </option>
+<span data-i18n="contact">
+Liên hệ
+</span>
 
-                <option value="zh">
-                    🇨🇳 中文
-                </option>
+</a>
 
-            </select>
 
-        </div>
 
-    </div>
 
-    <!-- DARK BACKGROUND -->
 
-    <div class="menu-overlay" id="menuOverlay"></div>
+<!-- SEARCH -->
+
+<div class="search-box">
+
+
+<input
+id="searchInput"
+type="text"
+autocomplete="off"
+data-i18n-placeholder="searchPlaceholder"
+placeholder="Tìm kiếm sản phẩm...">
+
+
+
+<button
+type="button"
+onclick="runSearch()">
+
+<i class="fas fa-search"></i>
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<!-- LANGUAGE -->
+
+<div class="language-switcher">
+
+
+<select id="languageSelect">
+
+
+<option value="vi">
+🇻🇳 Tiếng Việt
+</option>
+
+
+<option value="en">
+🇺🇸 English
+</option>
+
+
+<option value="zh">
+🇨🇳 中文
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
 
 </nav>
 
-</header>
+
+
+
+
 <!-- =========================
-     HERO
+     HERO INSIDE HEADER
 ========================= -->
+
 
 <section class="hero">
 
-    <!-- LEFT -->
 
-    <div class="hero-left">
 
-        <h1>
+<!-- LEFT -->
 
-            <span data-i18n="heroLine1">
-                GIẢI PHÁP
-            </span>
+<div class="hero-left">
 
-            <br>
 
-            <span class="highlight"
-                  data-i18n="heroLine2">
-                THIẾT BỊ & CÔNG NGHỆ
-            </span>
+<h1>
 
-            <br>
 
-            <span data-i18n="heroLine3">
-                CHO DOANH NGHIỆP
-            </span>
+<span data-i18n="heroLine1">
 
-            <br>
+GIẢI PHÁP
 
-            <span data-i18n="heroLine4">
-                VÀ GIA ĐÌNH
-            </span>
+</span>
 
-        </h1>
 
-        <ul class="hero-list">
+<br>
 
-            <li>
-                <i class="fa-solid fa-circle-check"></i>
-                <span data-i18n="heroFeature1">
-                    THIẾT BỊ CHÍNH HÃNG - CHẤT LƯỢNG CAO
-                </span>
-            </li>
 
-            <li>
-                <i class="fa-solid fa-circle-check"></i>
-                <span data-i18n="heroFeature2">
-                    GIẢI PHÁP TOÀN DIỆN CHO DOANH NGHIỆP
-                </span>
-            </li>
+<span class="highlight"
+data-i18n="heroLine2">
 
-            <li>
-                <i class="fa-solid fa-circle-check"></i>
-                <span data-i18n="heroFeature3">
-                    DỊCH VỤ KỸ THUẬT VÀ HỖ TRỢ CHUYÊN NGHIỆP
-                </span>
-            </li>
+THIẾT BỊ & CÔNG NGHỆ
 
-        </ul>
+</span>
 
-        <div class="hero-contact">
 
-            <a href="tel:0905913636"
-               class="hero-phone green">
+<br>
 
-                <i class="fa-solid fa-phone"></i>
 
-                0905 913 636
+<span data-i18n="heroLine3">
 
-            </a>
+CHO DOANH NGHIỆP
 
-            <a href="tel:0383598603"
-               class="hero-phone blue">
+</span>
 
-                <i class="fa-solid fa-phone"></i>
 
-                0383 598 603
+<br>
 
-            </a>
 
-        </div>
+<span data-i18n="heroLine4">
 
-    </div>
+VÀ GIA ĐÌNH
 
-    <!-- RIGHT -->
+</span>
 
-    <div class="hero-right">
 
-        <div class="banner-slider">
+</h1>
 
-            <div class="slider-track" id="slider-track">
-            </div>
 
-            <div class="slider-dots" id="slider-dots">
-            </div>
 
-        </div>
 
-    </div>
+
+<ul class="hero-list">
+
+
+<li>
+
+<i class="fa-solid fa-circle-check"></i>
+
+
+<span data-i18n="heroFeature1">
+
+THIẾT BỊ CHÍNH HÃNG - CHẤT LƯỢNG CAO
+
+</span>
+
+
+</li>
+
+
+
+<li>
+
+<i class="fa-solid fa-circle-check"></i>
+
+
+<span data-i18n="heroFeature2">
+
+GIẢI PHÁP TOÀN DIỆN CHO DOANH NGHIỆP
+
+</span>
+
+
+</li>
+
+
+
+<li>
+
+<i class="fa-solid fa-circle-check"></i>
+
+
+<span data-i18n="heroFeature3">
+
+DỊCH VỤ KỸ THUẬT VÀ HỖ TRỢ CHUYÊN NGHIỆP
+
+</span>
+
+
+</li>
+
+
+
+</ul>
+
+
+
+
+
+<div class="hero-contact">
+
+
+
+<a href="tel:0905913636"
+class="hero-phone green">
+
+
+<i class="fa-solid fa-phone"></i>
+
+0905 913 636
+
+
+</a>
+
+
+
+
+<a href="tel:0383598603"
+class="hero-phone blue">
+
+
+<i class="fa-solid fa-phone"></i>
+
+0383 598 603
+
+
+</a>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+<!-- RIGHT SLIDER -->
+
+<div class="hero-right">
+
+
+
+<div class="banner-slider">
+
+
+<div class="slider-track" id="slider-track">
+
+</div>
+
+
+
+<div class="slider-dots" id="slider-dots">
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
 
 </section>
+
+
+
+</header>
 
 <!-- =========================
      MAIN
