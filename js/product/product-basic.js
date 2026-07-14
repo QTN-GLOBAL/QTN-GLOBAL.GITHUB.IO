@@ -193,33 +193,32 @@ function renderProductBasic() {
 loadProductBasic();
 
 }
-/* =====================================================
+/* ==========================================
    INIT PRODUCT BASIC
-===================================================== */
+========================================== */
 
 function initProductBasic() {
 
+    // Load Business trước
     loadBusinessOptions();
 
+    // Bind Events
     bindBasicEvents();
 
-    const business =
-        document.getElementById("productBusiness");
+    // Khởi tạo Search
+    initProductSearch();
 
-    if (business) {
+    // Đồng bộ Product Name -> Folder
+    bindProductSync();
 
-        loadCategoryOptions(business.value);
+    // Chỉ sinh ID khi chưa có
+    if (!window.currentProduct.id) {
+
+        generateProductId();
 
     }
 
-    generateProductId();
-
-    initProductSearch();
-
-    bindProductSync();
-
 }
-
 /* =====================================================
    LOAD BUSINESS OPTIONS
 ===================================================== */
@@ -231,8 +230,24 @@ function loadBusinessOptions() {
 
     if (!select) return;
 
+    // Lưu giá trị đang chọn
+    const currentValue = window.currentProduct.business || "";
+
+    // Xóa danh sách cũ
     select.innerHTML = "";
 
+    // Option mặc định
+    const defaultOption =
+        document.createElement("option");
+
+    defaultOption.value = "";
+
+    defaultOption.textContent =
+        "Select Business";
+
+    select.appendChild(defaultOption);
+
+    // Load dữ liệu
     const businesses = getBusinesses();
 
     businesses.forEach(business => {
@@ -249,6 +264,9 @@ function loadBusinessOptions() {
 
     });
 
+    // Khôi phục giá trị cũ
+    select.value = currentValue;
+
 }
 /* =====================================================
    LOAD CATEGORY OPTIONS
@@ -261,12 +279,25 @@ function loadCategoryOptions(businessId) {
 
     if (!select) return;
 
+    // Lưu Category hiện tại
+    const currentValue =
+        window.currentProduct.category || "";
+
+    // Xóa danh sách cũ
     select.innerHTML = "";
 
-    if (!businessId) {
+    // Option mặc định
+    const defaultOption =
+        document.createElement("option");
 
-        select.innerHTML =
-            `<option value="">Select Category</option>`;
+    defaultOption.value = "";
+
+    defaultOption.textContent =
+        "Select Category";
+
+    select.appendChild(defaultOption);
+
+    if (!businessId) {
 
         return;
 
@@ -289,9 +320,9 @@ function loadCategoryOptions(businessId) {
 
     });
 
-    /* Load Brand theo Category đầu tiên */
+    // Khôi phục Category
+    select.value = currentValue;
 
-    // Không tự load Brand ở đây
 }
 /* =====================================================
    LOAD BRAND
@@ -307,14 +338,30 @@ function loadBrandOptions(categoryId) {
 
     if (!business || !brand) return;
 
+    // Lưu Brand hiện tại
+    const currentValue =
+        window.currentProduct.brand || "";
+
+    // Xóa danh sách cũ
     brand.innerHTML = "";
+
+    // Option mặc định
+    const defaultOption =
+        document.createElement("option");
+
+    defaultOption.value = "";
+
+    defaultOption.textContent =
+        "Select Brand";
+
+    brand.appendChild(defaultOption);
 
     const brands =
         getBrandsByBusiness(business.value);
 
     brands.forEach(item => {
 
-        // Nếu có category thì chỉ hiện brand hỗ trợ category đó
+        // Chỉ hiện Brand hỗ trợ Category
         if (
             categoryId &&
             item.categories &&
@@ -323,14 +370,23 @@ function loadBrandOptions(categoryId) {
             return;
         }
 
-        brand.innerHTML += `
-            <option value="${item.name}">
-                ${item.name}
-            </option>
-        `;
+        const option =
+            document.createElement("option");
+
+        option.value = item.name;
+
+        option.textContent = item.name;
+
+        brand.appendChild(option);
 
     });
-updateOrigin();
+
+    // Khôi phục Brand
+    brand.value = currentValue;
+
+    // Cập nhật Origin
+    updateOrigin();
+
 }
 /* =====================================================
    BIND EVENTS
@@ -359,7 +415,12 @@ function bindBasicEvents() {
 
             generateFolder();
 
-            generateProductId();
+            // Chỉ tạo ID khi chưa có
+            if (!window.currentProduct.id) {
+
+                generateProductId();
+
+            }
 
         });
 
@@ -373,7 +434,7 @@ function bindBasicEvents() {
 
         category.addEventListener("change", function () {
 
-            loadBrandOptions();
+            loadBrandOptions(this.value);
 
             generateFolder();
 
@@ -381,27 +442,32 @@ function bindBasicEvents() {
 
     }
 
-   /* =========================
-   PRODUCT NAME
-========================= */
+    /* =========================
+       PRODUCT NAME
+    ========================= */
 
-if (productName) {
+    if (productName) {
 
-    function updateProduct() {
+        function updateProduct() {
 
-        generateFolder();
+            generateFolder();
 
-        generateProductId();
+            // Chỉ tạo ID khi chưa có
+            if (!window.currentProduct.id) {
+
+                generateProductId();
+
+            }
+
+        }
+
+        productName.addEventListener("input", updateProduct);
+
+        productName.addEventListener("change", updateProduct);
+
+        productName.addEventListener("keyup", updateProduct);
 
     }
-
-    productName.addEventListener("input", updateProduct);
-
-    productName.addEventListener("change", updateProduct);
-
-    productName.addEventListener("keyup", updateProduct);
-
-}
 
 }
 /* =====================================================
@@ -417,6 +483,16 @@ function generateFolder() {
         document.getElementById("productFolder");
 
     if (!productName || !folderInput) return;
+
+    // Nếu đã có Folder thì giữ nguyên
+    if (window.currentProduct.folder) {
+
+        folderInput.value =
+            window.currentProduct.folder;
+
+        return;
+
+    }
 
     // Nếu sản phẩm đã tồn tại
     const product =
@@ -472,19 +548,31 @@ function generateProductId() {
 
     if (!productName || !productId) return;
 
+    // Nếu currentProduct đã có ID thì giữ nguyên
+    if (window.currentProduct.id) {
+
+        productId.value =
+            window.currentProduct.id;
+
+        return;
+
+    }
+
+    // Nếu sản phẩm đã tồn tại
     const product =
         findProductByName(productName.value);
 
     if (product) {
 
-    productId.value = product.id;
+        productId.value = product.id;
 
-    updateBrandFromProduct(product);
+        updateBrandFromProduct(product);
 
-    return;
+        return;
 
-}
+    }
 
+    // Chỉ sinh ID cho sản phẩm mới
     productId.value =
         getNextProductId();
 
@@ -580,94 +668,106 @@ function updateBrandFromProduct(product) {
    AUTO PRODUCT INFO
 ===================================================== */
 
-function updateProductInfo(){
+function updateProductInfo() {
 
-    const nameInput = document.getElementById("productName");
-    const folderInput = document.getElementById("productFolder");
-    const categorySelect = document.getElementById("productCategory");
-    const brandSelect = document.getElementById("productBrand");
+    const nameInput =
+        document.getElementById("productName");
 
-    if(!nameInput) return;
+    const folderInput =
+        document.getElementById("productFolder");
+
+    const idInput =
+        document.getElementById("productId");
+
+    const categorySelect =
+        document.getElementById("productCategory");
+
+    const brandSelect =
+        document.getElementById("productBrand");
+
+    if (!nameInput) return;
 
     const keyword =
-        nameInput.value.trim().toLowerCase();
+        nameInput.value.trim();
 
-    if(keyword === ""){
-
-        if(folderInput) folderInput.value = "";
+    if (keyword === "") {
 
         return;
 
     }
 
-    // ============================================
-    // TÌM TRONG products.js
-    // ============================================
+    /* ==========================================
+       TÌM SẢN PHẨM ĐÃ TỒN TẠI
+    ========================================== */
 
-    const product = (window.products || []).find(item =>
+    const product =
+        findProductByName(keyword);
 
-        item.folder &&
-        item.folder.toLowerCase() === keyword
+    if (product) {
 
-    );
-
-    if(product){
-
-        // Hiện đầy đủ tên sản phẩm
-
+        // Tên
         nameInput.value = product.name;
 
         // Folder
+        if (folderInput) {
 
-        if(folderInput){
+            folderInput.value = product.folder || "";
 
-            folderInput.value = product.folder;
+        }
+
+        // Product ID
+        if (idInput) {
+
+            idInput.value = product.id || "";
 
         }
 
         // Category
+        if (categorySelect) {
 
-        if(categorySelect){
+            categorySelect.value =
+                product.category || "";
 
-            categorySelect.value = product.category;
-
-            categorySelect.dispatchEvent(
-                new Event("change")
-            );
+            loadBrandOptions(product.category);
 
         }
 
         // Brand
+        if (brandSelect) {
 
-        if(brandSelect){
-
-            const brandName = (product.brand || "").toLowerCase();
-
-for (const option of brandSelect.options) {
-
-    if (option.value.toLowerCase() === brandName) {
-
-        brandSelect.value = option.value;
-
-        break;
-
-    }
-
-}
+            brandSelect.value =
+                product.brand || "";
 
         }
+
+        // Origin
+        updateOrigin();
 
         return;
 
     }
 
-    // ============================================
-    // KHÔNG TÌM THẤY
-    // ============================================
+    /* ==========================================
+       SẢN PHẨM MỚI
+    ========================================== */
 
-    if(folderInput){
+    if (
+        folderInput &&
+        !window.currentProduct.folder
+    ) {
 
-        folderInput.value = "";
+        folderInput.value =
+            createProductFolder(keyword);
+
+    }
+
+    if (
+        idInput &&
+        !window.currentProduct.id
+    ) {
+
+        idInput.value =
+            getNextProductId();
 
     }
 
@@ -678,31 +778,70 @@ for (const option of brandSelect.options) {
 
 function initProductSearch() {
 
-    const input = document.getElementById("productSearch");
-    const result = document.getElementById("productSearchResult");
+    const input =
+        document.getElementById("productSearch");
+
+    const result =
+        document.getElementById("productSearchResult");
 
     if (!input || !result) return;
 
-    input.addEventListener("input", function () {
+    input.oninput = function () {
 
-        const keyword = this.value.trim().toLowerCase();
+        const keyword =
+            this.value.trim().toLowerCase();
 
         result.innerHTML = "";
 
         if (keyword.length < 2) {
 
             result.style.display = "none";
+
             return;
 
         }
 
-        const list = (window.products || []).filter(item => {
+        const products =
+            window.products || [];
+
+        const list = products.filter(product => {
 
             return (
-                item.name.toLowerCase().includes(keyword) ||
-                item.folder.toLowerCase().includes(keyword) ||
-                item.brand.toLowerCase().includes(keyword) ||
-                item.category.toLowerCase().includes(keyword)
+
+                String(product.name || "")
+                    .toLowerCase()
+                    .includes(keyword)
+
+                ||
+
+                String(product.folder || "")
+                    .toLowerCase()
+                    .includes(keyword)
+
+                ||
+
+                String(product.brand || "")
+                    .toLowerCase()
+                    .includes(keyword)
+
+                ||
+
+                String(product.category || "")
+                    .toLowerCase()
+                    .includes(keyword)
+
+                ||
+
+                String(product.origin || "")
+                    .toLowerCase()
+                    .includes(keyword)
+
+                ||
+
+                String(product.business || "")
+                    .toLowerCase()
+                    .includes(keyword)
+
             );
 
         });
@@ -710,116 +849,178 @@ function initProductSearch() {
         if (!list.length) {
 
             result.style.display = "none";
+
             return;
 
         }
 
-        list.slice(0, 10).forEach(item => {
+        list.slice(0,10).forEach(product => {
 
-            result.innerHTML += `
+            const item =
+                document.createElement("div");
 
-                <div
-                    class="search-product-item"
-                    onclick="selectProduct(${item.id})">
+            item.className =
+                "search-product-item";
 
-                    <div class="search-product-code">
+            item.onclick = function () {
 
-                        ${item.folder}
+                selectProduct(product.id);
 
-                    </div>
+            };
 
-                    <div class="search-product-name">
+            item.innerHTML = `
 
-                        ${item.name}
+                <div class="search-product-code">
 
-                    </div>
+                    ${product.folder}
+
+                </div>
+
+                <div class="search-product-name">
+
+                    ${product.name}
 
                 </div>
 
             `;
 
+            result.appendChild(item);
+
         });
 
         result.style.display = "block";
 
-    });
+    };
 
 }
 /* =====================================================
    SELECT PRODUCT
 ===================================================== */
 
-function selectProduct(productId){
+function selectProduct(productId) {
 
-    const product = (window.products || []).find(item =>
+    const product =
+        (window.products || []).find(item =>
 
-        item.id == productId
+            item.id == productId
 
-    );
+        );
 
-    if(!product) return;
+    if (!product) return;
 
-   // Business
-const businessSelect =
-    document.getElementById("productBusiness");
+    /* =========================
+       BUSINESS
+    ========================= */
 
-businessSelect.value =
-    product.business;
+    const businessSelect =
+        document.getElementById("productBusiness");
 
-// Nạp lại Category theo Business
-loadCategoryOptions(product.business);
+    businessSelect.value =
+        product.business || "";
 
-// Chọn đúng Category
-const categorySelect =
-    document.getElementById("productCategory");
+    loadCategoryOptions(product.business);
 
-categorySelect.value =
-    product.category;
+    /* =========================
+       CATEGORY
+    ========================= */
 
-// Nạp lại Brand theo Category
-loadBrandOptions(product.category);
+    const categorySelect =
+        document.getElementById("productCategory");
 
-// Chọn đúng Brand
-const brandSelect =
-    document.getElementById("productBrand");
+    categorySelect.value =
+        product.category || "";
 
-const productBrand =
-    (product.brand || "").toLowerCase();
+    loadBrandOptions(product.category);
 
-for (const option of brandSelect.options) {
+    /* =========================
+       BRAND
+    ========================= */
 
-    if (
-        option.value.toLowerCase() === productBrand
-    ) {
+    const brandSelect =
+        document.getElementById("productBrand");
 
-        brandSelect.value =
-            option.value;
-       updateOrigin();
+    brandSelect.value =
+        product.brand || "";
 
-        break;
+    updateOrigin();
+
+    /* =========================
+       PRODUCT NAME
+    ========================= */
+
+    document.getElementById("productName").value =
+        product.name || "";
+
+    /* =========================
+       FOLDER
+    ========================= */
+
+    document.getElementById("productFolder").value =
+        product.folder || "";
+
+    /* =========================
+       PRODUCT ID
+    ========================= */
+
+    document.getElementById("productId").value =
+        product.id || "";
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    if (product.status) {
+
+        const radio =
+            document.querySelector(
+
+                `input[name="productStatus"][value="${product.status}"]`
+
+            );
+
+        if (radio) {
+
+            radio.checked = true;
+
+        }
 
     }
 
-}
+    /* =========================
+       SAVE SESSION
+    ========================= */
 
-    // Name
-    document.getElementById("productName").value =
-        product.name;
+    window.currentProduct = {
 
-    // Folder
-    document.getElementById("productFolder").value =
-        product.folder;
+        ...window.currentProduct,
 
-    // Product ID
-    document.getElementById("productId").value =
-        product.id;
+        business: product.business || "",
 
-    // Đóng kết quả tìm kiếm
-    document.getElementById("productSearchResult").style.display = "none";
+        category: product.category || "",
 
-    // Hiện đúng model
+        brand: product.brand || "",
+
+        origin: product.origin || "",
+
+        folder: product.folder || "",
+
+        id: product.id || "",
+
+        name: product.name || "",
+
+        status: product.status || "draft"
+
+    };
+
+    /* =========================
+       SEARCH
+    ========================= */
+
     document.getElementById("productSearch").value =
-        product.folder;
+        product.folder || "";
+
+    document.getElementById("productSearchResult").style.display =
+        "none";
 
 }
 /* =====================================================
@@ -851,35 +1052,7 @@ function updateOrigin() {
         brand ? brand.origin : "";
 
 }
-/* =====================================================
-   UPDATE ORIGIN
-===================================================== */
 
-function updateOrigin() {
-
-    const brandSelect =
-        document.getElementById("productBrand");
-
-    const originInput =
-        document.getElementById("productOrigin");
-
-    if (!brandSelect || !originInput) return;
-
-    const brandName =
-        brandSelect.value;
-
-    const brand =
-        Object.values(BRAND_CONFIG).find(item =>
-
-            item.name.toLowerCase() ===
-            brandName.toLowerCase()
-
-        );
-
-    originInput.value =
-        brand ? brand.origin : "";
-
-}
 /* =====================================================
    NEXT PRODUCT ID
 ===================================================== */
@@ -896,7 +1069,7 @@ function getNextProductId() {
 
     const maxId = Math.max(
 
-        ...products.map(item => item.id)
+        ...products.map(item => Number(item.id) || 0)
 
     );
 
