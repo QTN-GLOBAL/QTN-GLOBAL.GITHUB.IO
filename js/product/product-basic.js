@@ -1027,7 +1027,6 @@ function validateProductBasic() {
 /* ==========================================
    NEXT STEP
 ========================================== */
-
 function nextProductBasic() {
 
     if (!validateProductBasic()) {
@@ -1037,6 +1036,8 @@ function nextProductBasic() {
     }
 
     saveProductBasic();
+
+    console.log(currentProduct);
 
     renderProductImages();
 
