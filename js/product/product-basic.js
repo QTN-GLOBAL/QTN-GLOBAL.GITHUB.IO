@@ -174,14 +174,13 @@ function renderProductBasic() {
 
             <div class="step-buttons">
 
-                <button
-                    type="button"
-                    class="btn-next"
-                    onclick="renderProductImages()">
+               <button
+    type="button"
+    onclick="nextProductBasic()">
 
-                    Next →
+    Next →
 
-                </button>
+</button>
 
             </div>
 
@@ -190,6 +189,8 @@ function renderProductBasic() {
     `;
 
     initProductBasic();
+
+loadProductBasic();
 
 }
 /* =====================================================
@@ -900,5 +901,143 @@ function getNextProductId() {
     );
 
     return maxId + 1;
+
+}
+/* ==========================================
+   SAVE PRODUCT BASIC
+========================================== */
+
+function saveProductBasic() {
+
+    currentProduct.business =
+        document.getElementById("productBusiness")?.value || "";
+
+    currentProduct.category =
+        document.getElementById("productCategory")?.value || "";
+
+    currentProduct.brand =
+        document.getElementById("productBrand")?.value || "";
+
+    currentProduct.origin =
+        document.getElementById("productOrigin")?.value || "";
+
+    currentProduct.folder =
+        document.getElementById("productFolder")?.value || "";
+
+    currentProduct.id =
+        document.getElementById("productId")?.value || "";
+
+    currentProduct.name =
+        document.getElementById("productName")?.value || "";
+
+    const status = document.querySelector(
+        'input[name="productStatus"]:checked'
+    );
+
+    currentProduct.status =
+        status ? status.value : "draft";
+
+}
+/* ==========================================
+   LOAD PRODUCT BASIC
+========================================== */
+
+function loadProductBasic() {
+
+    if (document.getElementById("productBusiness"))
+        document.getElementById("productBusiness").value =
+            currentProduct.business || "";
+
+    if (document.getElementById("productCategory"))
+        document.getElementById("productCategory").value =
+            currentProduct.category || "";
+
+    if (document.getElementById("productBrand"))
+        document.getElementById("productBrand").value =
+            currentProduct.brand || "";
+
+    if (document.getElementById("productOrigin"))
+        document.getElementById("productOrigin").value =
+            currentProduct.origin || "";
+
+    if (document.getElementById("productFolder"))
+        document.getElementById("productFolder").value =
+            currentProduct.folder || "";
+
+    if (document.getElementById("productId"))
+        document.getElementById("productId").value =
+            currentProduct.id || "";
+
+    if (document.getElementById("productName"))
+        document.getElementById("productName").value =
+            currentProduct.name || "";
+
+    const radio = document.querySelector(
+        `input[name="productStatus"][value="${currentProduct.status}"]`
+    );
+
+    if (radio) {
+
+        radio.checked = true;
+
+    }
+
+}
+/* ==========================================
+   VALIDATE PRODUCT BASIC
+========================================== */
+
+function validateProductBasic() {
+
+    if (!document.getElementById("productBusiness").value) {
+
+        alert("Vui lòng chọn Business");
+
+        return false;
+
+    }
+
+    if (!document.getElementById("productCategory").value) {
+
+        alert("Vui lòng chọn Category");
+
+        return false;
+
+    }
+
+    if (!document.getElementById("productBrand").value) {
+
+        alert("Vui lòng chọn Brand");
+
+        return false;
+
+    }
+
+    if (!document.getElementById("productName").value.trim()) {
+
+        alert("Vui lòng nhập tên sản phẩm");
+
+        return false;
+
+    }
+
+    return true;
+
+}
+/* ==========================================
+   NEXT STEP
+========================================== */
+
+function nextProductBasic() {
+
+    if (!validateProductBasic()) {
+
+        return;
+
+    }
+
+    saveProductBasic();
+
+    renderProductImages();
 
 }
