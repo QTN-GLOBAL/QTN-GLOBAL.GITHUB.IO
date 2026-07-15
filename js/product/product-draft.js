@@ -66,7 +66,14 @@ function renderDraftList() {
 
     container.innerHTML = "";
 
-    if (!window.productDrafts.length) {
+    // Đọc Draft từ localStorage
+    const drafts = JSON.parse(
+
+        localStorage.getItem("productDrafts") || "[]"
+
+    );
+
+    if (!drafts.length) {
 
         container.innerHTML =
             "<div>Chưa có Draft</div>";
@@ -75,7 +82,7 @@ function renderDraftList() {
 
     }
 
-    window.productDrafts.forEach(product => {
+    drafts.forEach(product => {
 
         container.innerHTML += `
 
