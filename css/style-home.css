@@ -94,29 +94,11 @@
 
 .logo-area{
 
-    display:flex;
-
-    align-items:center;
-
     flex-shrink:0;
 
-}
-
-
-
-/* =========================
-   BRAND WRAPPER
-========================= */
-
-.brand-logo{
-
-    position:relative;
-
     display:flex;
 
     align-items:center;
-
-    min-height:92px;
 
 }
 
@@ -126,95 +108,33 @@
    LOGO
 ========================= */
 
-.brand-logo img{
-
-    position:absolute;
-
-    left:0;
-
-    top:50%;
-
-    transform:translateY(-50%);
-
-    width:110px;
-
-    height:auto;
+.brand-logo{
 
     display:block;
 
-    z-index:5;
+    text-decoration:none;
 
 }
 
 
 
-/* =========================
-   TEXT
-========================= */
+.brand-logo img{
 
-.brand-text{
+    display:block;
 
-    padding-left:82px;
+    width:330px;
 
-    display:flex;
+    height:auto;
 
-    flex-direction:column;
-
-    justify-content:center;
+    transition:.25s;
 
 }
 
 
 
-.brand-text h2{
+.brand-logo:hover img{
 
-    margin:0;
-
-    display:flex;
-
-    align-items:center;
-
-    font-size:44px;
-
-    font-weight:700;
-
-    line-height:1;
-
-    letter-spacing:.4px;
-
-}
-
-
-
-.brand-text .tn{
-
-    color:#0d47a1;
-
-}
-
-
-
-.brand-text .global{
-
-    color:#d4a017;
-
-    margin-left:10px;
-
-}
-
-
-
-.brand-text p{
-
-    margin:6px 0 0;
-
-    font-size:15px;
-
-    color:#555;
-
-    line-height:1.2;
-
-    letter-spacing:.4px;
+    transform:scale(1.03);
 
 }
 /* =========================
