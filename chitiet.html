@@ -16,186 +16,356 @@
 </head>
 
 <body>
+<!-- =========================
+     HEADER FULL CONTENT
+========================= -->
 
-<!-- HEADER -->
 <header class="header">
+
+
+<!-- =========================
+     TOP HEADER
+========================= -->
 
 <div class="top-header">
 
+
+<!-- LOGO + SLOGAN -->
+
+<!-- =========================
+     LOGO BRAND
+========================= -->
+
 <div class="logo-area">
 
-<img src="images/logo.png" alt="QTN GLOBAL">
+    <div class="brand-logo">
 
-<div class="company-info">
+        <img
+            src="images/logo.png"
+            alt="QTN GLOBAL">
 
-<h2>
-<span style="color:#0d47a1;">QTN</span>
-<span style="color:#d4a017;">GLOBAL</span>
-</h2>
+        <div class="brand-text">
 
-<p data-i18n="slogan">CHÍNH XÁC TRONG TỪNG GIÁ TRỊ</p>
+            <h2>
 
-</div>
+                <span class="tn">
+                    TN
+                </span>
 
-</div>
+                <span class="global">
+                    GLOBAL
+                </span>
 
-<div class="top-contact">
+            </h2>
 
-<a href="tel:0905913636" class="top-btn">
-<i class="fa-solid fa-phone"></i> 0905 913 636
-</a>
-
-<a href="tel:0383598603" class="top-btn">
-<i class="fa-solid fa-phone"></i> 0383 598 603
-</a>
-
-<a href="https://zalo.me/0383598603" target="_blank" class="social-icon zalo">
-<span class="zalo-text">Zalo</span>
-</a>
-
-<a href="https://m.me/QTNSCALE" target="_blank" class="social-icon facebook">
-<i class="fa-brands fa-facebook-messenger"></i>
-</a>
-
-<a class="top-cart-btn" href="index.html" onclick="goHomeOpenCart()">
-<span data-i18n="cart">
-    🛒 GIỎ HÀNG
-</span>
-(<span id="cartCount">0</span>)
-</a>
-
-</div>
-
-</div>
-
-<!-- =========================
-     MENU
-========================= -->
-<!-- =========================
-     NAVBAR
-========================= -->
-
-<nav class="navbar">
-
-    <!-- MOBILE MENU BUTTON -->
-
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open Menu">
-
-        <i class="fas fa-bars"></i>
-
-    </button>
-
-    <!-- MENU -->
-
-    <div class="nav-content" id="navContent">
-
-        <!-- CLOSE -->
-
-        <button
-            class="menu-close"
-            id="menuClose"
-            aria-label="Close Menu">
-
-            <i class="fas fa-times"></i>
-
-        </button>
-
-        <!-- MENU -->
-
-        <a href="index.html">
-
-            <i class="fas fa-house"></i>
-
-            <span data-i18n="home">
-                Trang chủ
-            </span>
-
-        </a>
-
-        <a href="about.html">
-
-            <i class="fas fa-circle-info"></i>
-
-            <span data-i18n="about">
-                Giới thiệu
-            </span>
-
-        </a>
-
-        <a href="news.html">
-
-            <i class="fas fa-newspaper"></i>
-
-            <span data-i18n="news">
-                Tin tức
-            </span>
-
-        </a>
-
-        <a href="#"
-           onclick="goContact();return false;">
-
-            <i class="fas fa-phone"></i>
-
-            <span data-i18n="contact">
-                Liên hệ
-            </span>
-
-        </a>
-
-        <!-- SEARCH -->
-
-        <div class="search-box">
-
-            <input
-                id="searchInput"
-                type="text"
-                autocomplete="off"
-                data-i18n-placeholder="searchPlaceholder"
-                placeholder="Tìm kiếm sản phẩm...">
-
-            <button
-                type="button"
-                onclick="runSearch()">
-
-                <i class="fas fa-search"></i>
-
-            </button>
-
-        </div>
-
-        <!-- LANGUAGE -->
-
-        <div class="language-switcher">
-
-            <select id="languageSelect">
-
-                <option value="vi">
-                    🇻🇳 Tiếng Việt
-                </option>
-
-                <option value="en">
-                    🇺🇸 English
-                </option>
-
-                <option value="zh">
-                    🇨🇳 中文
-                </option>
-
-            </select>
+            <p data-i18n="slogan">
+                CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
+            </p>
 
         </div>
 
     </div>
 
-    <!-- DARK BACKGROUND -->
+</div>
 
-    <div class="menu-overlay" id="menuOverlay"></div>
+
+
+
+
+<!-- HERO SLIDER -->
+
+<div class="header-slider">
+
+
+<div class="banner-slider">
+
+
+<div class="slider-track" id="slider-track">
+
+</div>
+
+
+<div class="slider-dots" id="slider-dots">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- CONTACT AREA -->
+
+<div class="top-contact">
+
+
+
+<a href="tel:0905913636" class="top-btn">
+
+<i class="fa-solid fa-phone"></i>
+
+0905 913 636
+
+</a>
+
+
+
+
+<a href="tel:0383598603" class="top-btn">
+
+<i class="fa-solid fa-phone"></i>
+
+0383 598 603
+
+</a>
+
+
+
+
+<a href="https://zalo.me/0383598603"
+target="_blank"
+class="social-icon zalo">
+
+<span class="zalo-text">
+Zalo
+</span>
+
+</a>
+
+
+
+
+
+<a href="https://m.me/QTNSCALE"
+target="_blank"
+class="social-icon facebook">
+
+<i class="fa-brands fa-facebook-messenger"></i>
+
+</a>
+
+
+
+
+
+
+<a class="top-cart-btn"
+href="javascript:void(0)"
+onclick="openCart()">
+
+
+
+<span data-i18n="cart">
+🛒 GIỎ HÀNG
+</span>
+
+
+(<span id="cartCount">0</span>)
+
+
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+
+<nav class="navbar">
+
+
+<button
+class="menu-toggle"
+id="menuToggle"
+aria-label="Open Menu">
+
+<i class="fas fa-bars"></i>
+
+</button>
+
+
+
+
+
+<div class="nav-content" id="navContent">
+
+
+
+
+
+<button
+class="menu-close"
+id="menuClose"
+aria-label="Close Menu">
+
+<i class="fas fa-times"></i>
+
+</button>
+
+
+
+
+
+
+<a href="index.html">
+
+<i class="fas fa-house"></i>
+
+<span data-i18n="home">
+Trang chủ
+</span>
+
+</a>
+
+
+
+
+
+<a href="about.html">
+
+<i class="fas fa-circle-info"></i>
+
+<span data-i18n="about">
+Giới thiệu
+</span>
+
+</a>
+
+
+
+
+
+<a href="news.html">
+
+<i class="fas fa-newspaper"></i>
+
+<span data-i18n="news">
+Tin tức
+</span>
+
+</a>
+
+
+
+
+
+<a href="#"
+onclick="goContact();return false;">
+
+<i class="fas fa-phone"></i>
+
+<span data-i18n="contact">
+Liên hệ
+</span>
+
+</a>
+
+
+
+
+
+
+
+
+<div class="search-box">
+
+
+<input
+id="searchInput"
+type="text"
+autocomplete="off"
+data-i18n-placeholder="searchPlaceholder"
+placeholder="Tìm kiếm sản phẩm...">
+
+
+
+
+
+<button
+type="button"
+onclick="runSearch()">
+
+<i class="fas fa-search"></i>
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="language-switcher">
+
+
+<select id="languageSelect">
+
+
+<option value="vi">
+🇻🇳 Tiếng Việt
+</option>
+
+
+<option value="en">
+🇺🇸 English
+</option>
+
+
+<option value="zh">
+🇨🇳 中文
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+
 
 </nav>
+
+
+
+
 
 </header>
 
