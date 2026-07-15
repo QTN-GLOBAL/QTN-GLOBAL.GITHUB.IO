@@ -578,8 +578,9 @@
 
 }
 
+
 /* =========================
-   HEADER HERO SLIDER
+   HEADER SLIDER
 ========================= */
 
 .banner-slider{
@@ -588,13 +589,15 @@
 
     max-width:620px;
 
-    background:#ffffff;
+    background:transparent;
 
-    border-radius:12px;
+    border-radius:0;
+
+    box-shadow:none;
+
+    padding:0;
 
     overflow:hidden;
-
-    box-shadow:0 6px 20px rgba(0,0,0,.12);
 
 }
 
@@ -647,46 +650,12 @@
 
 }
 /* =========================
-   SLIDER DOTS
+   HIDE SLIDER DOTS
 ========================= */
 
 .slider-dots{
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:8px;
-
-    margin-top:8px;
-
-}
-
-
-.slider-dot{
-
-    width:8px;
-
-    height:8px;
-
-    border-radius:50%;
-
-    background:#cfcfcf;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-
-.slider-dot.active{
-
-    background:#1565c0;
-
-    transform:scale(1.25);
+    display:none;
 
 }
 /* =====================================================
