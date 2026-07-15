@@ -1322,13 +1322,10 @@ function nextProductBasic() {
 
     }
 
-    // Lưu Step 1 vào currentProduct
     saveProductBasic();
 
-   
-    console.log(window.currentProduct);
+    saveProductDraft();
 
-    // Sang Step 2
     renderProductImages();
 
 }
