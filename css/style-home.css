@@ -104,6 +104,10 @@
 
 
 
+/* =========================
+   BRAND WRAPPER
+========================= */
+
 .brand-logo{
 
     position:relative;
@@ -112,13 +116,15 @@
 
     align-items:center;
 
-    min-height:90px;
+    min-height:92px;
 
 }
 
 
 
-/* ---------- LOGO ---------- */
+/* =========================
+   LOGO
+========================= */
 
 .brand-logo img{
 
@@ -130,21 +136,25 @@
 
     transform:translateY(-50%);
 
-    width:95px;
+    width:110px;
 
     height:auto;
 
     display:block;
 
-    z-index:3;
+    z-index:5;
 
 }
 
 
 
-/* ---------- TEXT ---------- */
+/* =========================
+   TEXT
+========================= */
 
 .brand-text{
+
+    padding-left:82px;
 
     display:flex;
 
@@ -152,19 +162,17 @@
 
     justify-content:center;
 
-    margin-left:72px;
-
 }
 
 
 
 .brand-text h2{
 
+    margin:0;
+
     display:flex;
 
     align-items:center;
-
-    margin:0;
 
     font-size:44px;
 
@@ -172,7 +180,7 @@
 
     line-height:1;
 
-    letter-spacing:.5px;
+    letter-spacing:.4px;
 
 }
 
@@ -206,10 +214,9 @@
 
     line-height:1.2;
 
-    letter-spacing:.5px;
+    letter-spacing:.4px;
 
 }
-
 /* =========================
    CONTACT AREA
    PHONE - ZALO - MESSENGER - CART
