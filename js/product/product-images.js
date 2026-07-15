@@ -206,8 +206,7 @@ initGalleryUpload();
 
 function backToProductBasic() {
 
-    // Sau này sẽ lưu Step 2 ở đây
-    // saveProductImages();
+    console.log(window.currentProduct);
 
     renderProductBasic();
 
