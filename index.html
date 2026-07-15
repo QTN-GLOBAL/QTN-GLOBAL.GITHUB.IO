@@ -26,7 +26,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <body>
 
 <!-- =========================
-     HEADER + HERO COMBINED
+     HEADER FULL CONTENT
 ========================= -->
 
 <header class="header">
@@ -53,7 +53,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 
 <p data-i18n="slogan">
-    CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
+CHÍNH XÁC TRONG TỪNG GIÁ TRỊ
 </p>
 
 
@@ -123,11 +123,11 @@ onclick="openCart()">
 </a>
 
 
-
 </div>
 
 
 </div>
+
 
 
 
@@ -135,6 +135,7 @@ onclick="openCart()">
 <!-- =========================
      NAVBAR
 ========================= -->
+
 
 <nav class="navbar">
 
@@ -165,7 +166,6 @@ aria-label="Close Menu">
 
 
 
-
 <a href="index.html">
 
 <i class="fas fa-house"></i>
@@ -175,7 +175,6 @@ Trang chủ
 </span>
 
 </a>
-
 
 
 
@@ -191,7 +190,6 @@ Giới thiệu
 
 
 
-
 <a href="news.html">
 
 <i class="fas fa-newspaper"></i>
@@ -201,7 +199,6 @@ Tin tức
 </span>
 
 </a>
-
 
 
 
@@ -218,9 +215,6 @@ Liên hệ
 
 
 
-
-
-<!-- SEARCH -->
 
 <div class="search-box">
 
@@ -243,14 +237,10 @@ onclick="runSearch()">
 </button>
 
 
-
 </div>
 
 
 
-
-
-<!-- LANGUAGE -->
 
 <div class="language-switcher">
 
@@ -294,27 +284,25 @@ onclick="runSearch()">
 
 
 
+
 <!-- =========================
-     HERO INSIDE HEADER
+     HEADER MAIN CONTENT
+     (HERO MERGED HERE)
 ========================= -->
 
 
-<section class="hero">
+<div class="header-main">
 
 
 
-<!-- LEFT -->
-
-<div class="hero-left">
+<div class="header-text">
 
 
 <h1>
 
 
 <span data-i18n="heroLine1">
-
 GIẢI PHÁP
-
 </span>
 
 
@@ -323,9 +311,7 @@ GIẢI PHÁP
 
 <span class="highlight"
 data-i18n="heroLine2">
-
 THIẾT BỊ & CÔNG NGHỆ
-
 </span>
 
 
@@ -333,9 +319,7 @@ THIẾT BỊ & CÔNG NGHỆ
 
 
 <span data-i18n="heroLine3">
-
 CHO DOANH NGHIỆP
-
 </span>
 
 
@@ -343,14 +327,11 @@ CHO DOANH NGHIỆP
 
 
 <span data-i18n="heroLine4">
-
 VÀ GIA ĐÌNH
-
 </span>
 
 
 </h1>
-
 
 
 
@@ -362,48 +343,33 @@ VÀ GIA ĐÌNH
 
 <i class="fa-solid fa-circle-check"></i>
 
-
 <span data-i18n="heroFeature1">
-
 THIẾT BỊ CHÍNH HÃNG - CHẤT LƯỢNG CAO
-
 </span>
 
-
 </li>
-
 
 
 <li>
 
 <i class="fa-solid fa-circle-check"></i>
-
 
 <span data-i18n="heroFeature2">
-
 GIẢI PHÁP TOÀN DIỆN CHO DOANH NGHIỆP
-
 </span>
 
-
 </li>
-
 
 
 <li>
 
 <i class="fa-solid fa-circle-check"></i>
 
-
 <span data-i18n="heroFeature3">
-
 DỊCH VỤ KỸ THUẬT VÀ HỖ TRỢ CHUYÊN NGHIỆP
-
 </span>
 
-
 </li>
-
 
 
 </ul>
@@ -411,19 +377,15 @@ DỊCH VỤ KỸ THUẬT VÀ HỖ TRỢ CHUYÊN NGHIỆP
 
 
 
-
 <div class="hero-contact">
-
 
 
 <a href="tel:0905913636"
 class="hero-phone green">
 
-
 <i class="fa-solid fa-phone"></i>
 
 0905 913 636
-
 
 </a>
 
@@ -433,33 +395,27 @@ class="hero-phone green">
 <a href="tel:0383598603"
 class="hero-phone blue">
 
-
 <i class="fa-solid fa-phone"></i>
 
 0383 598 603
-
 
 </a>
 
 
 
+</div>
+
+
 
 </div>
 
 
 
 
-</div>
 
 
 
-
-
-
-<!-- RIGHT SLIDER -->
-
-<div class="hero-right">
-
+<div class="header-slider">
 
 
 <div class="banner-slider">
@@ -470,12 +426,13 @@ class="hero-phone blue">
 </div>
 
 
-
 <div class="slider-dots" id="slider-dots">
 
 </div>
 
 
+</div>
+
 
 </div>
 
@@ -484,8 +441,6 @@ class="hero-phone blue">
 </div>
 
 
-
-</section>
 
 
 
