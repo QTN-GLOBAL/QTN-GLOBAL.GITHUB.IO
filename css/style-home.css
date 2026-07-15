@@ -110,17 +110,17 @@
 
     align-items:center;
 
-    gap:8px;
-
 }
 
 
 
 .brand-logo img{
 
-    width:68px;
+    width:90px;
 
     height:auto;
+
+    display:block;
 
     flex-shrink:0;
 
@@ -129,6 +129,8 @@
 
 
 .brand-text{
+
+    margin-left:-18px;
 
     display:flex;
 
@@ -139,18 +141,13 @@
 }
 
 
-
 .brand-text h2{
 
     margin:0;
 
+    font-size:42px;
+
     line-height:1;
-
-    font-size:38px;
-
-    font-weight:700;
-
-    letter-spacing:.5px;
 
 }
 
