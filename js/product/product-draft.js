@@ -82,3 +82,27 @@ function renderDraftList() {
     });
 
 }
+/* =====================================================
+   LOAD PRODUCT DRAFT
+===================================================== */
+
+function loadProductDraft(id) {
+
+    const draft = window.productDrafts.find(item =>
+
+        String(item.id) === String(id)
+
+    );
+
+    if (!draft) return;
+
+    // Clone dữ liệu
+    window.currentProduct = JSON.parse(
+
+        JSON.stringify(draft)
+
+    );
+
+    renderProductBasic();
+
+}
