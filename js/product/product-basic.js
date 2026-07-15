@@ -1082,6 +1082,12 @@ function getNextProductId() {
 
 function saveProductBasic() {
 
+    if (!window.currentProduct) {
+
+        resetCurrentProduct();
+
+    }
+
     currentProduct.business =
         document.getElementById("productBusiness")?.value || "";
 
@@ -1103,12 +1109,15 @@ function saveProductBasic() {
     currentProduct.name =
         document.getElementById("productName")?.value || "";
 
-    const status = document.querySelector(
-        'input[name="productStatus"]:checked'
-    );
+    const status =
+        document.querySelector(
+            'input[name="productStatus"]:checked'
+        );
 
     currentProduct.status =
         status ? status.value : "draft";
+
+    return currentProduct;
 
 }
 /* ==========================================
@@ -1117,37 +1126,116 @@ function saveProductBasic() {
 
 function loadProductBasic() {
 
-    if (document.getElementById("productBusiness"))
-        document.getElementById("productBusiness").value =
+    if (!window.currentProduct) return;
+
+    /* =========================
+       BUSINESS
+    ========================= */
+
+    const business =
+        document.getElementById("productBusiness");
+
+    if (business) {
+
+        business.value =
             currentProduct.business || "";
 
-    if (document.getElementById("productCategory"))
-        document.getElementById("productCategory").value =
+        loadCategoryOptions(
+            currentProduct.business
+        );
+
+    }
+
+    /* =========================
+       CATEGORY
+    ========================= */
+
+    const category =
+        document.getElementById("productCategory");
+
+    if (category) {
+
+        category.value =
             currentProduct.category || "";
 
-    if (document.getElementById("productBrand"))
-        document.getElementById("productBrand").value =
+        loadBrandOptions(
+            currentProduct.category
+        );
+
+    }
+
+    /* =========================
+       BRAND
+    ========================= */
+
+    const brand =
+        document.getElementById("productBrand");
+
+    if (brand) {
+
+        brand.value =
             currentProduct.brand || "";
 
-    if (document.getElementById("productOrigin"))
-        document.getElementById("productOrigin").value =
-            currentProduct.origin || "";
+    }
 
-    if (document.getElementById("productFolder"))
-        document.getElementById("productFolder").value =
-            currentProduct.folder || "";
+    /* =========================
+       ORIGIN
+    ========================= */
 
-    if (document.getElementById("productId"))
-        document.getElementById("productId").value =
-            currentProduct.id || "";
+    updateOrigin();
 
-    if (document.getElementById("productName"))
-        document.getElementById("productName").value =
+    /* =========================
+       PRODUCT NAME
+    ========================= */
+
+    const name =
+        document.getElementById("productName");
+
+    if (name) {
+
+        name.value =
             currentProduct.name || "";
 
-    const radio = document.querySelector(
-        `input[name="productStatus"][value="${currentProduct.status}"]`
-    );
+    }
+
+    /* =========================
+       FOLDER
+    ========================= */
+
+    const folder =
+        document.getElementById("productFolder");
+
+    if (folder) {
+
+        folder.value =
+            currentProduct.folder || "";
+
+    }
+
+    /* =========================
+       PRODUCT ID
+    ========================= */
+
+    const id =
+        document.getElementById("productId");
+
+    if (id) {
+
+        id.value =
+            currentProduct.id || "";
+
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    const radio =
+        document.querySelector(
+
+            `input[name="productStatus"][value="${currentProduct.status}"]`
+
+        );
 
     if (radio) {
 
@@ -1162,33 +1250,53 @@ function loadProductBasic() {
 
 function validateProductBasic() {
 
-    if (!document.getElementById("productBusiness").value) {
+    const business =
+        document.getElementById("productBusiness");
+
+    const category =
+        document.getElementById("productCategory");
+
+    const brand =
+        document.getElementById("productBrand");
+
+    const productName =
+        document.getElementById("productName");
+
+    if (!business || !business.value) {
 
         alert("Vui lòng chọn Business");
 
+        business?.focus();
+
         return false;
 
     }
 
-    if (!document.getElementById("productCategory").value) {
+    if (!category || !category.value) {
 
         alert("Vui lòng chọn Category");
 
+        category?.focus();
+
         return false;
 
     }
 
-    if (!document.getElementById("productBrand").value) {
+    if (!brand || !brand.value) {
 
         alert("Vui lòng chọn Brand");
 
+        brand?.focus();
+
         return false;
 
     }
 
-    if (!document.getElementById("productName").value.trim()) {
+    if (!productName || !productName.value.trim()) {
 
         alert("Vui lòng nhập tên sản phẩm");
+
+        productName?.focus();
 
         return false;
 
@@ -1200,18 +1308,25 @@ function validateProductBasic() {
 /* ==========================================
    NEXT STEP
 ========================================== */
+
 function nextProductBasic() {
 
+    // Validate
     if (!validateProductBasic()) {
 
         return;
 
     }
 
+    // Lưu dữ liệu Step 1
     saveProductBasic();
 
-    console.log(currentProduct);
+    // Debug
+    console.log("Current Product");
 
+    console.log(window.currentProduct);
+
+    // Sang Step 2
     renderProductImages();
 
 }
