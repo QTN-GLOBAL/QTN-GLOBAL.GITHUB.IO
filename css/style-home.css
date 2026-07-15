@@ -112,9 +112,13 @@
 
     align-items:center;
 
+    min-height:90px;
+
 }
 
 
+
+/* ---------- LOGO ---------- */
 
 .brand-logo img{
 
@@ -124,21 +128,23 @@
 
     top:50%;
 
-    transform:translateY(-58%);
+    transform:translateY(-50%);
 
-    width:110px;
+    width:95px;
 
     height:auto;
 
-    z-index:2;
+    display:block;
+
+    z-index:3;
 
 }
 
 
 
-.brand-text{
+/* ---------- TEXT ---------- */
 
-    margin-left:55px;
+.brand-text{
 
     display:flex;
 
@@ -146,20 +152,30 @@
 
     justify-content:center;
 
+    margin-left:72px;
+
 }
+
 
 
 .brand-text h2{
 
+    display:flex;
+
+    align-items:center;
+
     margin:0;
 
-    font-size:42px;
+    font-size:44px;
 
     font-weight:700;
 
     line-height:1;
 
+    letter-spacing:.5px;
+
 }
+
 
 
 .brand-text .tn{
@@ -174,7 +190,7 @@
 
     color:#d4a017;
 
-    margin-left:6px;
+    margin-left:10px;
 
 }
 
@@ -182,13 +198,15 @@
 
 .brand-text p{
 
-    margin-top:6px;
+    margin:6px 0 0;
 
     font-size:15px;
 
     color:#555;
 
-    letter-spacing:.4px;
+    line-height:1.2;
+
+    letter-spacing:.5px;
 
 }
 
