@@ -106,7 +106,13 @@ function renderDraftList() {
 
 function loadProductDraft(id) {
 
-    const draft = window.productDrafts.find(item =>
+    const drafts = JSON.parse(
+
+        localStorage.getItem("productDrafts") || "[]"
+
+    );
+
+    const draft = drafts.find(item =>
 
         String(item.id) === String(id)
 
