@@ -415,16 +415,6 @@ function bindBasicEvents() {
         business.addEventListener("change", function () {
 
             loadCategoryOptions(this.value);
-
-            generateFolder();
-
-            // Chỉ tạo ID khi chưa có
-            if (!window.currentProduct.id) {
-
-                generateProductId();
-
-            }
-
         });
 
     }
@@ -438,8 +428,6 @@ function bindBasicEvents() {
         category.addEventListener("change", function () {
 
             loadBrandOptions(this.value);
-
-            generateFolder();
 
         });
 
