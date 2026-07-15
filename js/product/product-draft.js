@@ -1,54 +1,44 @@
 /* =====================================================
-   PRODUCT DRAFT
-   SAVE / LOAD DRAFT
+   SAVE PRODUCT DRAFT
 ===================================================== */
 
 function saveProductDraft() {
 
     if (!window.currentProduct) return;
 
-    const drafts = JSON.parse(
+    // Không lưu nếu chưa có ID
+    if (!currentProduct.id) return;
 
-        localStorage.getItem("productDrafts") || "[]"
+    // Tìm Draft đã tồn tại
+    const index = window.productDrafts.findIndex(item =>
 
-    );
-
-    const index = drafts.findIndex(
-
-        item => String(item.id) === String(currentProduct.id)
+        String(item.id) === String(currentProduct.id)
 
     );
 
-    const draft = {
+    // Clone dữ liệu tránh tham chiếu
+    const draft = JSON.parse(
 
-        id: currentProduct.id,
+        JSON.stringify(currentProduct)
 
-        step: 1,
-
-        updatedAt: new Date().toISOString(),
-
-        data: JSON.parse(JSON.stringify(currentProduct))
-
-    };
+    );
 
     if (index >= 0) {
 
-        drafts[index] = draft;
+        window.productDrafts[index] = draft;
 
     } else {
 
-        drafts.push(draft);
+        window.productDrafts.push(draft);
 
     }
 
-    localStorage.setItem(
+    console.log(
 
-        "productDrafts",
+        "Draft Saved:",
 
-        JSON.stringify(drafts)
+        window.productDrafts
 
     );
-
-    console.log("Draft Saved:", draft);
 
 }
