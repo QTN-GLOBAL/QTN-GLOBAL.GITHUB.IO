@@ -42,3 +42,43 @@ function saveProductDraft() {
     );
 
 }
+/* =====================================================
+   RENDER DRAFT LIST
+===================================================== */
+
+function renderDraftList() {
+
+    const container =
+        document.getElementById("draftProductList");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (!window.productDrafts.length) {
+
+        container.innerHTML =
+            "<div>Chưa có Draft</div>";
+
+        return;
+
+    }
+
+    window.productDrafts.forEach(product => {
+
+        container.innerHTML += `
+
+            <button
+                type="button"
+                class="draft-item"
+                onclick="loadProductDraft('${product.id}')">
+
+                ${product.id}
+
+            </button>
+
+        `;
+
+    });
+
+}
