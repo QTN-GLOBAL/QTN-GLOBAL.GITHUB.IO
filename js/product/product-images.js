@@ -176,12 +176,12 @@ function renderProductImages() {
         <div class="step-buttons">
 
             <button
-                type="button"
-                onclick="renderProductBasic()">
+    type="button"
+    onclick="backToProductBasic()">
 
-                ← Back
+    ← Back
 
-            </button>
+</button>
 
             <button
                 type="button"
@@ -198,5 +198,17 @@ function renderProductImages() {
     `;
 initMainImageUpload();
 initGalleryUpload();
+
+}
+/* ==========================================
+   BACK TO STEP 1
+========================================== */
+
+function backToProductBasic() {
+
+    // Sau này sẽ lưu Step 2 ở đây
+    // saveProductImages();
+
+    renderProductBasic();
 
 }
