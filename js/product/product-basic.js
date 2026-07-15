@@ -19,6 +19,15 @@ function renderProductBasic() {
                 Step 1 / 6 - Basic Information
 
             </h3>
+<div class="draft-panel">
+
+    <label>Draft Products</label>
+
+    <div id="draftProductList">
+
+    </div>
+
+</div>
 
             <div class="form-group">
 
@@ -188,9 +197,11 @@ function renderProductBasic() {
 
     `;
 
-    initProductBasic();
+   initProductBasic();
 
 loadProductBasic();
+
+renderDraftList();
 
 }
 /* ==========================================
