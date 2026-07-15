@@ -6,38 +6,49 @@ function saveProductDraft() {
 
     if (!window.currentProduct) return;
 
-    // Không lưu nếu chưa có ID
     if (!currentProduct.id) return;
 
-    // Tìm Draft đã tồn tại
-    const index = window.productDrafts.findIndex(item =>
+    let drafts = JSON.parse(
 
-        String(item.id) === String(currentProduct.id)
+        localStorage.getItem("productDrafts") || "[]"
 
     );
 
-    // Clone dữ liệu tránh tham chiếu
     const draft = JSON.parse(
 
         JSON.stringify(currentProduct)
 
     );
 
+    const index = drafts.findIndex(item =>
+
+        String(item.id) === String(draft.id)
+
+    );
+
     if (index >= 0) {
 
-        window.productDrafts[index] = draft;
+        drafts[index] = draft;
 
     } else {
 
-        window.productDrafts.push(draft);
+        drafts.push(draft);
 
     }
 
+    localStorage.setItem(
+
+        "productDrafts",
+
+        JSON.stringify(drafts)
+
+    );
+
     console.log(
 
-        "Draft Saved:",
+        "Draft Saved",
 
-        window.productDrafts
+        drafts
 
     );
 
