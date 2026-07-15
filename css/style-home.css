@@ -89,8 +89,7 @@
 }
 
 /* =========================
-   LOGO AREA
-   LEFT HEADER
+   BRAND
 ========================= */
 
 .logo-area{
@@ -99,31 +98,37 @@
 
     align-items:center;
 
-    gap:16px;
-
-    flex:0 0 auto;
+    flex-shrink:0;
 
 }
 
 
-.logo-area img{
 
-    width:72px;
+.brand-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+
+.brand-logo img{
+
+    width:68px;
 
     height:auto;
-
-    display:block;
 
     flex-shrink:0;
 
 }
 
-/* =========================
-   COMPANY INFO
-   LOGO SLOGAN AREA
-========================= */
 
-.company-info{
+
+.brand-text{
 
     display:flex;
 
@@ -131,35 +136,55 @@
 
     justify-content:center;
 
-    white-space:nowrap;
-
 }
 
 
-.company-info h2{
 
-    font-size:30px;
+.brand-text h2{
 
-    font-weight:700;
+    margin:0;
 
     line-height:1;
 
-    margin:0 0 6px 0;
+    font-size:38px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
 
 }
 
 
-.company-info p{
 
-    font-size:13px;
+.brand-text .tn{
 
-    color:#444;
+    color:#0d47a1;
 
-    line-height:1.4;
+}
+
+
+
+.brand-text .global{
+
+    color:#d4a017;
+
+    margin-left:6px;
+
+}
+
+
+
+.brand-text p{
+
+    margin-top:4px;
+
+    font-size:14px;
+
+    color:#555;
 
     letter-spacing:.4px;
 
-    margin:0;
+    line-height:1.2;
 
 }
 
