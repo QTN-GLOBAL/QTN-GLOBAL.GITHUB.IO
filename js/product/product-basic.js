@@ -1325,9 +1325,7 @@ function nextProductBasic() {
     // Lưu Step 1 vào currentProduct
     saveProductBasic();
 
-    // Lưu Draft
-    saveProductDraft();
-
+   
     console.log(window.currentProduct);
 
     // Sang Step 2
