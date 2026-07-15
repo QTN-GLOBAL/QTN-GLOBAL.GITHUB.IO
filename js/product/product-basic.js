@@ -1316,18 +1316,17 @@ function validateProductBasic() {
 
 function nextProductBasic() {
 
-    // Validate
     if (!validateProductBasic()) {
 
         return;
 
     }
 
-    // Lưu dữ liệu Step 1
+    // Lưu Step 1 vào currentProduct
     saveProductBasic();
 
-    // Debug
-    console.log("Current Product");
+    // Lưu Draft
+    saveProductDraft();
 
     console.log(window.currentProduct);
 
