@@ -400,6 +400,9 @@ function bindBasicEvents() {
     const category =
         document.getElementById("productCategory");
 
+    const brand =
+        document.getElementById("productBrand");
+
     const productName =
         document.getElementById("productName");
 
@@ -437,6 +440,20 @@ function bindBasicEvents() {
             loadBrandOptions(this.value);
 
             generateFolder();
+
+        });
+
+    }
+
+    /* =========================
+       BRAND
+    ========================= */
+
+    if (brand) {
+
+        brand.addEventListener("change", function () {
+
+            updateOrigin();
 
         });
 
