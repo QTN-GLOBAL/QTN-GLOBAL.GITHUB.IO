@@ -196,8 +196,29 @@ function renderProductImages() {
     </div>
 
     `;
-initMainImageUpload();
-initGalleryUpload();
+initProductImages();
+
+}
+/* ==========================================
+   INIT PRODUCT IMAGES
+========================================== */
+
+function initProductImages() {
+
+    initMainImageUpload();
+
+    initGalleryUpload();
+
+    loadProductImages();
+
+}
+/* ==========================================
+   LOAD PRODUCT IMAGES
+========================================== */
+
+function loadProductImages() {
+
+    // Bước sau sẽ làm
 
 }
 /* ==========================================
@@ -206,8 +227,37 @@ initGalleryUpload();
 
 function backToProductBasic() {
 
-    console.log(window.currentProduct);
+    saveProductImages();
 
     renderProductBasic();
+
+}
+/* ==========================================
+   SAVE PRODUCT IMAGES
+========================================== */
+
+function saveProductImages() {
+
+    if (!window.currentProduct) {
+
+        window.currentProduct = {};
+
+    }
+
+    // Giữ nguyên nếu đã có
+    if (!currentProduct.mainImage) {
+
+        currentProduct.mainImage = "";
+
+    }
+
+    if (!currentProduct.gallery) {
+
+        currentProduct.gallery = [];
+
+    }
+
+    // Lưu luôn Draft sau khi cập nhật Step 2
+    saveProductDraft();
 
 }
