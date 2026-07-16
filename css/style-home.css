@@ -84,15 +84,17 @@
 
     width:340px;
 
-    min-width:340px;
+    height:150px;
 
-    padding:0 10px;
+    flex-shrink:0;
+
+    overflow:hidden;
 
     display:flex;
 
     flex-direction:column;
 
-    justify-content:center;
+    justify-content:flex-start;
 
 }
 
@@ -122,23 +124,25 @@
 
     list-style:none;
 
+    height:120px;
+
+    overflow:hidden;
+
 }
 
 .header-info li{
 
-    margin:8px 0;
+    height:22px;
 
-    color:#555;
+    line-height:22px;
 
-    font-size:15px;
-
-    font-weight:500;
+    margin:0;
 
     opacity:0;
 
-    transform:translateX(-20px);
+    transform:translateX(-15px);
 
-    transition:all .45s ease;
+    transition:.45s;
 
 }
 
