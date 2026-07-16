@@ -76,7 +76,79 @@
 }
 
 
+/* =========================
+   HEADER INFO
+========================= */
 
+.header-info{
+
+    width:340px;
+
+    min-width:340px;
+
+    padding:0 10px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.header-info h2{
+
+    margin:0 0 12px;
+
+    color:#0d47a1;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    min-height:30px;
+
+    opacity:0;
+
+    transition:opacity .4s ease;
+
+}
+
+.header-info ul{
+
+    margin:0;
+
+    padding:0;
+
+    list-style:none;
+
+}
+
+.header-info li{
+
+    margin:8px 0;
+
+    color:#555;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    opacity:0;
+
+    transform:translateX(-20px);
+
+    transition:all .45s ease;
+
+}
+
+.header-info li.show{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+}
 
 /* =====================================================
    HEADER SLIDER
@@ -98,59 +170,6 @@
 
 }
 
-/* =========================
-   HERO TEXT AREA
-========================= */
-
-.hero-text-area{
-
-    width:330px;
-
-    height:120px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    overflow:hidden;
-
-}
-
-.hero-lines{
-
-    position:relative;
-
-    width:100%;
-
-    height:110px;
-
-}
-
-.hero-line{
-
-    position:absolute;
-
-    left:0;
-
-    width:100%;
-
-    padding:4px 0;
-
-    opacity:0;
-
-    transform:translateY(20px);
-
-    color:#0d47a1;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    transition:.45s;
-
-}
 
 /* =====================================================
    SLIDER CONTAINER
