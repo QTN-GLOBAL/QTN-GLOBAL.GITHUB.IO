@@ -1136,6 +1136,7 @@ function saveProductBasic() {
     return currentProduct;
 
 }
+
 /* ==========================================
    LOAD PRODUCT BASIC
 ========================================== */
@@ -1156,15 +1157,15 @@ function loadProductBasic() {
         business.value =
             currentProduct.business || "";
 
-        loadCategoryOptions(
-            currentProduct.business
-        );
-
     }
 
     /* =========================
-       CATEGORY
+       CATEGORY LIST
     ========================= */
+
+    loadCategoryOptions(
+        currentProduct.business
+    );
 
     const category =
         document.getElementById("productCategory");
@@ -1174,15 +1175,15 @@ function loadProductBasic() {
         category.value =
             currentProduct.category || "";
 
-        loadBrandOptions(
-            currentProduct.category
-        );
-
     }
 
     /* =========================
-       BRAND
+       BRAND LIST
     ========================= */
+
+    loadBrandOptions(
+        currentProduct.category
+    );
 
     const brand =
         document.getElementById("productBrand");
@@ -1249,7 +1250,7 @@ function loadProductBasic() {
     const radio =
         document.querySelector(
 
-            `input[name="productStatus"][value="${currentProduct.status}"]`
+            `input[name="productStatus"][value="${currentProduct.status || "draft"}"]`
 
         );
 
