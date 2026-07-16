@@ -218,7 +218,69 @@ function initProductImages() {
 
 function loadProductImages() {
 
-    // Bước sau sẽ làm
+    if (!window.currentProduct) return;
+
+    /* =========================
+       MAIN IMAGE
+    ========================= */
+
+    if (!currentProduct.mainImage) return;
+
+    const box =
+        document.getElementById("mainImageBox");
+
+    const input =
+        document.getElementById("mainImageInput");
+
+    if (!box || !input) return;
+
+    box.innerHTML = `
+
+        <img
+            src="${currentProduct.mainImage.src}"
+            class="main-image-preview">
+
+        <div class="image-actions">
+
+            <button
+                id="replaceMainImage"
+                type="button">
+
+                🔄
+
+            </button>
+
+            <button
+                id="removeMainImage"
+                type="button">
+
+                ❌
+
+            </button>
+
+        </div>
+
+    `;
+
+    document.getElementById("replaceMainImage").onclick =
+        function () {
+
+            input.click();
+
+        };
+
+    document.getElementById("removeMainImage").onclick =
+        function () {
+
+            input.value = "";
+
+            currentProduct.mainImage = "";
+
+            saveProductDraft();
+
+            renderProductImages();
+
+        };
 
 }
 /* ==========================================
