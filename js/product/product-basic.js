@@ -1080,7 +1080,7 @@ function getNextProductId() {
 
     return maxId + 1;
 
-}z
+}
 /* ==========================================
    SAVE PRODUCT BASIC
 ========================================== */
