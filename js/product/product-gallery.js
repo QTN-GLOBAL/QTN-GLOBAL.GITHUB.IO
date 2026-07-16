@@ -291,3 +291,34 @@ function bindGalleryPreviewEvents(
     };
 
 }
+/* ==========================================
+   LOAD GALLERY
+========================================== */
+
+function loadGalleryImages() {
+
+    if (!window.currentProduct) return;
+
+    if (!Array.isArray(currentProduct.gallery)) return;
+
+    const slots =
+        document.querySelectorAll(".gallery-slot");
+
+    slots.forEach((slot, index) => {
+
+        const image =
+            currentProduct.gallery[index];
+
+        if (!image) return;
+
+        renderGalleryPreview(
+
+            slot,
+
+            index
+
+        );
+
+    });
+
+}
