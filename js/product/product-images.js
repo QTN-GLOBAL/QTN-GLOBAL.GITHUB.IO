@@ -328,13 +328,12 @@ function saveProductImages() {
 /* ==========================================
    NEXT STEP 2
 ========================================== */
-
 function nextProductImages() {
 
     saveProductImages();
 
     saveProductDraft();
 
-    renderProductDescription();
+    renderProductContentImport();
 
 }
