@@ -331,19 +331,10 @@ function saveProductImages() {
 
 function nextProductImages() {
 
-    // Lưu dữ liệu ảnh
     saveProductImages();
 
-    // Lưu Draft toàn bộ sản phẩm
     saveProductDraft();
 
-    // Debug
-    console.log("Step 2 Saved:", window.currentProduct);
-
-    // Chuyển Step 3
-    alert("Step 2 đã lưu. Step 3 sẽ làm sau");
-
-    // Sau này thay bằng:
-    // renderProductDescription();
+    renderProductDescription();
 
 }
