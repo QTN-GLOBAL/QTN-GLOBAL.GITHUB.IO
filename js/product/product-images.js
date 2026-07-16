@@ -211,6 +211,8 @@ function initProductImages() {
 
     loadProductImages();
 
+    loadGalleryImages();
+
 }
 /* ==========================================
    LOAD PRODUCT IMAGES
