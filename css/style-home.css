@@ -23,11 +23,9 @@
     box-shadow:0 2px 10px rgba(0,0,0,.08);
 
 }
-
-/* =========================
+/* =====================================================
    TOP HEADER
-   LOGO | HERO SLIDER | CONTACT
-========================= */
+===================================================== */
 
 .top-header{
 
@@ -35,9 +33,9 @@
 
     margin:0 auto;
 
-    height:120px;
+    min-height:170px;
 
-    padding:0 25px;
+    padding:10px 25px;
 
     display:flex;
 
@@ -47,58 +45,23 @@
 
 }
 
-/* LEFT
-   LOGO + SLOGAN
-*/
-
-.logo-area{
-
-    flex:0 0 auto;
-
-}
 
 
-/* CENTER
-   HERO SLIDER
-*/
-
-.header-slider{
-
-    flex:1;
-
-    min-width:0;
-
-}
-
-
-/* RIGHT
-   PHONE - ZALO - MESSENGER - CART
-*/
-
-.top-contact{
-
-    width:360px;
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    align-items:center;
-
-    gap:18px;
-
-    flex-shrink:0;
-
-}
-/* =========================
+/* =====================================================
    LOGO
-========================= */
+===================================================== */
 
 .logo-area{
 
-    width:250px;
+    width:240px;
 
     flex-shrink:0;
+
+}
+
+.brand-logo{
+
+    display:block;
 
 }
 
@@ -111,26 +74,138 @@
     display:block;
 
 }
-/* =========================
-   CONTACT AREA
-   PHONE - ZALO - MESSENGER - CART
-========================= */
+
+
+
+/* =====================================================
+   HEADER SLIDER
+===================================================== */
+
+.header-slider{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:0;
+
+}
+
+
+
+/* =====================================================
+   SLIDER CONTAINER
+===================================================== */
+
+.banner-slider{
+
+    width:100%;
+
+    max-width:560px;
+
+    height:160px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+
+
+/* TRACK */
+
+.slider-track{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+}
+
+
+
+/* IMAGE */
+
+.slider-track img{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    opacity:0;
+
+    transform:translateX(30px);
+
+    transition:
+        opacity .45s,
+        transform .45s;
+
+}
+
+.slider-track img.active{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+}
+
+
+
+/* HIDE DOTS */
+
+.slider-dots{
+
+    display:none;
+
+}
+
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
 
 .top-contact{
 
+    width:360px;
+
+    flex-shrink:0;
+
     display:flex;
+
+    justify-content:flex-end;
 
     align-items:center;
 
     gap:18px;
 
-    padding-right:25px;
-
 }
-/* =========================
+
+
+
+/* =====================================================
    HEADER LINKS
-   PHONE - SOCIAL - CART
-========================= */
+===================================================== */
 
 .top-btn,
 .social-icon,
@@ -140,13 +215,11 @@
 
     align-items:center;
 
-    justify-content:center;
-
     gap:6px;
 
-    text-decoration:none;
-
     color:#0d47a1;
+
+    text-decoration:none;
 
     font-size:14px;
 
@@ -158,7 +231,6 @@
 
 }
 
-
 .top-btn:hover,
 .social-icon:hover,
 .top-cart-btn:hover{
@@ -167,9 +239,7 @@
 
 }
 
-/* =========================
-   HEADER ICONS
-========================= */
+
 
 .top-btn i,
 .social-icon i{
@@ -188,23 +258,18 @@
 
 }
 
-/* =========================
-   CART
-========================= */
+
 
 .top-cart-btn{
 
-    padding-left:12px;
+    padding-left:14px;
 
-    border-left:1px solid #dddddd;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    white-space:nowrap;
+    border-left:1px solid #ddd;
 
 }
+
+
+
 /* =====================================================
    NAVBAR
 ===================================================== */
@@ -214,7 +279,6 @@
     background:#0d3c88;
 
 }
-
 
 .nav-content{
 
@@ -233,13 +297,20 @@
     gap:25px;
 
 }
-/* =========================
-   MENU LINK
-========================= */
+
+
+
+/* =====================================================
+   MENU
+===================================================== */
 
 .nav-content>a{
 
-    color:#ffffff;
+    display:flex;
+
+    align-items:center;
+
+    color:#fff;
 
     text-decoration:none;
 
@@ -249,14 +320,9 @@
 
     white-space:nowrap;
 
-    display:flex;
-
-    align-items:center;
-
     transition:.25s;
 
 }
-
 
 .nav-content>a:hover{
 
@@ -264,23 +330,15 @@
 
 }
 
-/* =========================
-   PUSH RIGHT - SEARCH
-========================= */
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
 
 .search-box{
 
     margin-left:auto;
-
-    flex-shrink:0;
-
-}
-
-/* =========================
-   SEARCH BOX
-========================= */
-
-.search-box{
 
     display:flex;
 
@@ -290,35 +348,19 @@
 
     height:40px;
 
-    background:#ffffff;
+    background:#fff;
+
+    border:1px solid #d9d9d9;
 
     border-radius:999px;
 
     overflow:hidden;
 
-    border:1px solid #d9d9d9;
-
-    flex-shrink:0;
-
-    transition:.25s;
-
 }
-
-
-.search-box:focus-within{
-
-    border-color:#1565c0;
-
-    box-shadow:0 0 0 3px rgba(21,101,192,.15);
-
-}
-
 
 .search-box input{
 
     flex:1;
-
-    height:100%;
 
     border:none;
 
@@ -328,17 +370,7 @@
 
     font-size:14px;
 
-    background:transparent;
-
 }
-
-
-.search-box input::placeholder{
-
-    color:#888;
-
-}
-
 
 .search-box button{
 
@@ -350,44 +382,17 @@
 
     background:#1565c0;
 
-    color:#ffffff;
+    color:#fff;
 
     cursor:pointer;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    transition:.25s;
-
 }
 
 
-.search-box button:hover{
 
-    background:#0b57b5;
-
-}
-
-
-.search-box button i{
-
-    font-size:15px;
-
-}
-
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-
-.language-switcher{
-
-    flex-shrink:0;
-
-}
-
+/* =====================================================
+   LANGUAGE
+===================================================== */
 
 .language-switcher select{
 
@@ -399,214 +404,32 @@
 
     border:1px solid #d6d6d6;
 
-    background:#ffffff;
-
-    font-size:14px;
-
-    cursor:pointer;
-
-    outline:none;
-
 }
 
 
-.language-switcher select:focus{
 
-    border-color:#1565c0;
-
-}
-/* =========================
-   MOBILE BUTTON
-========================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 .menu-toggle{
 
     display:none;
 
-    width:42px;
-
-    height:42px;
-
-    flex-shrink:0;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#1565c0;
-
-    color:#ffffff;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-    align-items:center;
-
-    justify-content:center;
-
 }
+
+
+
 /* =====================================================
-   HERO REMOVED
-   SLIDER MOVED TO TOP HEADER
+   REMOVE OLD HERO
 ===================================================== */
 
-.header-main{
-
-    display:none;
-
-}
-
-/* =========================
-   HERO TEXT REMOVED
-   SLIDER ONLY HEADER
-========================= */
-
-.header-text{
-
-    display:none;
-
-}
-
-
+.header-main,
+.header-text,
+.hero-list,
+.hero-contact,
+.hero-phone,
 .highlight{
-
-    display:none;
-
-}
-
-/* =========================
-   HERO FEATURE REMOVED
-   SLIDER ONLY HEADER
-========================= */
-
-.hero-list{
-
-    display:none;
-
-}
-/* =========================
-   HERO CONTACT REMOVED
-   PHONE MOVED TO TOP HEADER
-========================= */
-
-.hero-contact{
-
-    display:none;
-
-}
-
-
-.hero-phone{
-
-    display:none;
-
-}
-
-/* =====================================================
-   HEADER SLIDER (NEW)
-===================================================== */
-.header-slider{
-
-    flex:1;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    min-width:420px;
-
-}
-
-
-
-/* =========================
-   SLIDER CONTAINER
-========================= */
-
-.banner-slider{
-
-    width:100%;
-
-    max-width:560px;
-
-    height:150px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    overflow:hidden;
-
-}
-
-
-
-/* =========================
-   TRACK
-========================= */
-
-.slider-track{
-
-    width:100%;
-
-    height:170px;
-
-}
-
-
-
-/* =========================
-   IMAGES
-========================= */
-
-.slider-track img{
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:contain;
-
-    object-position:center;
-
-    opacity:0;
-
-    transform:translateX(40px);
-
-    transition:
-        opacity .45s ease,
-        transform .45s ease;
-
-}
-
-
-
-.slider-track img.active{
-
-    opacity:1;
-
-    transform:translateX(0);
-
-}
-
-
-
-/* =========================
-   DOTS
-========================= */
-
-.slider-dots{
 
     display:none;
 
