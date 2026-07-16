@@ -253,11 +253,72 @@ function backToProductImages() {
 }
 
 /* ==========================================
-   NEXT
+   NEXT STEP
 ========================================== */
 
 function nextProductContentImport() {
 
-    alert("Version 1: Save Source URL sẽ làm ở bước tiếp theo.");
+    saveProductContentImport();
+
+    saveProductDraft();
+
+    alert("Source URL đã lưu.\n\nStep 4 sẽ làm tiếp.");
+
+}
+/* ==========================================
+   SAVE CONTENT IMPORT
+========================================== */
+
+function saveProductContentImport() {
+
+    if (!window.currentProduct) {
+
+        window.currentProduct = {};
+
+    }
+
+    currentProduct.source = {
+
+        type:
+
+            document.getElementById("contentSourceType")?.value || "website",
+
+        url:
+
+            document.getElementById("contentSourceUrl")?.value.trim() || "",
+
+        options: {
+
+            description:
+
+                document.getElementById("importDescription")?.checked || false,
+
+            specification:
+
+                document.getElementById("importSpecification")?.checked || false,
+
+            features:
+
+                document.getElementById("importFeatures")?.checked || false,
+
+            applications:
+
+                document.getElementById("importApplications")?.checked || false,
+
+            accessories:
+
+                document.getElementById("importAccessories")?.checked || false,
+
+            images:
+
+                document.getElementById("importImages")?.checked || false
+
+        },
+
+        imported: false,
+
+        importedAt: ""
+
+    };
 
 }
