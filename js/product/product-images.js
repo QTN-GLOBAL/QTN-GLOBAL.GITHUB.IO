@@ -184,12 +184,12 @@ function renderProductImages() {
 </button>
 
             <button
-                type="button"
-                onclick="alert('Step 3 sẽ làm sau')">
+    type="button"
+    onclick="nextProductImages()">
 
-                Next →
+    Next →
 
-            </button>
+</button>
 
         </div>
 
@@ -323,5 +323,27 @@ function saveProductImages() {
 
     // Lưu luôn Draft sau khi cập nhật Step 2
     saveProductDraft();
+
+}
+/* ==========================================
+   NEXT STEP 2
+========================================== */
+
+function nextProductImages() {
+
+    // Lưu dữ liệu ảnh
+    saveProductImages();
+
+    // Lưu Draft toàn bộ sản phẩm
+    saveProductDraft();
+
+    // Debug
+    console.log("Step 2 Saved:", window.currentProduct);
+
+    // Chuyển Step 3
+    alert("Step 2 đã lưu. Step 3 sẽ làm sau");
+
+    // Sau này thay bằng:
+    // renderProductDescription();
 
 }
