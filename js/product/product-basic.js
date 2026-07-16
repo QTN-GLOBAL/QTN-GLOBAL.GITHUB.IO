@@ -199,30 +199,36 @@ function renderProductBasic() {
 
    initProductBasic();
 
-loadProductBasic();
 
-renderDraftList();
 
 }
+
 /* ==========================================
    INIT PRODUCT BASIC
 ========================================== */
 
 function initProductBasic() {
 
-    // Load Business trước
+    // Load Business
     loadBusinessOptions();
 
-    // Bind Events
+    // Nếu có Draft thì load lại
+    if (window.currentProduct) {
+
+        loadProductBasic();
+
+    }
+
+    // Sau khi dữ liệu đã hiện mới bind event
     bindBasicEvents();
 
-    // Khởi tạo Search
-    initProductSearch();
-
-    // Đồng bộ Product Name -> Folder
     bindProductSync();
 
-    // Chỉ sinh ID khi chưa có
+    initProductSearch();
+
+    renderDraftList();
+
+    // Chỉ sinh ID cho sản phẩm mới
     if (!window.currentProduct.id) {
 
         generateProductId();
@@ -576,34 +582,7 @@ function generateProductId() {
         getNextProductId();
 
 }
-/* ========================================
-=============
-   GET NEXT PRODUCT ID
-===================================================== */
 
-function getNextProductId() {
-
-    if (!window.products || window.products.length === 0) {
-
-        return 1;
-
-    }
-
-    let maxId = 0;
-
-    window.products.forEach(product => {
-
-        if (product.id > maxId) {
-
-            maxId = product.id;
-
-        }
-
-    });
-
-    return maxId + 1;
-
-}
 /* =====================================================
    FIND PRODUCT BY NAME
 ===================================================== */
