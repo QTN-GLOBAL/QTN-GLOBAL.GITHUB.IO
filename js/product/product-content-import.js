@@ -240,6 +240,8 @@ function initProductContentImport() {
 
     console.log("STEP 3 READY");
 
+    loadProductContentImport();
+
 }
 
 /* ==========================================
@@ -320,5 +322,113 @@ function saveProductContentImport() {
         importedAt: ""
 
     };
+
+}
+/* ==========================================
+   LOAD CONTENT IMPORT
+========================================== */
+
+function loadProductContentImport() {
+
+    if (!window.currentProduct) return;
+
+    if (!window.currentProduct.source) return;
+
+    const source = window.currentProduct.source;
+
+    /* =========================
+       SOURCE TYPE
+    ========================= */
+
+    const type =
+        document.getElementById("contentSourceType");
+
+    if (type) {
+
+        type.value =
+            source.type || "website";
+
+    }
+
+    /* =========================
+       SOURCE URL
+    ========================= */
+
+    const url =
+        document.getElementById("contentSourceUrl");
+
+    if (url) {
+
+        url.value =
+            source.url || "";
+
+    }
+
+    /* =========================
+       OPTIONS
+    ========================= */
+
+    const options =
+        source.options || {};
+
+    const description =
+        document.getElementById("importDescription");
+
+    if (description) {
+
+        description.checked =
+            options.description ?? true;
+
+    }
+
+    const specification =
+        document.getElementById("importSpecification");
+
+    if (specification) {
+
+        specification.checked =
+            options.specification ?? true;
+
+    }
+
+    const features =
+        document.getElementById("importFeatures");
+
+    if (features) {
+
+        features.checked =
+            options.features ?? true;
+
+    }
+
+    const applications =
+        document.getElementById("importApplications");
+
+    if (applications) {
+
+        applications.checked =
+            options.applications ?? true;
+
+    }
+
+    const accessories =
+        document.getElementById("importAccessories");
+
+    if (accessories) {
+
+        accessories.checked =
+            options.accessories ?? true;
+
+    }
+
+    const images =
+        document.getElementById("importImages");
+
+    if (images) {
+
+        images.checked =
+            options.images ?? false;
+
+    }
 
 }
