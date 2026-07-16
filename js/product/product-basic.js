@@ -290,10 +290,6 @@ function loadCategoryOptions(businessId) {
 
     if (!select) return;
 
-    // Lưu Category hiện tại
-    const currentValue =
-        window.currentProduct.category || "";
-
     // Xóa danh sách cũ
     select.innerHTML = "";
 
@@ -331,9 +327,6 @@ function loadCategoryOptions(businessId) {
 
     });
 
-    // Khôi phục Category
-    select.value = currentValue;
-
 }
 /* =====================================================
    LOAD BRAND
@@ -348,10 +341,6 @@ function loadBrandOptions(categoryId) {
         document.getElementById("productBrand");
 
     if (!business || !brand) return;
-
-    // Lưu Brand hiện tại
-    const currentValue =
-        window.currentProduct.brand || "";
 
     // Xóa danh sách cũ
     brand.innerHTML = "";
@@ -391,12 +380,6 @@ function loadBrandOptions(categoryId) {
         brand.appendChild(option);
 
     });
-
-    // Khôi phục Brand
-    brand.value = currentValue;
-
-    // Cập nhật Origin
-    updateOrigin();
 
 }
 /* =====================================================
