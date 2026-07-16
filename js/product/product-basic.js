@@ -1035,25 +1035,52 @@ function updateOrigin() {
    NEXT PRODUCT ID
 ===================================================== */
 
+/* =====================================================
+   NEXT PRODUCT ID
+===================================================== */
+
 function getNextProductId() {
 
-    const products = window.products || [];
+    const products =
+        window.products || [];
 
-    if (products.length === 0) {
+    const drafts = JSON.parse(
 
-        return 1;
-
-    }
-
-    const maxId = Math.max(
-
-        ...products.map(item => Number(item.id) || 0)
+        localStorage.getItem("productDrafts") || "[]"
 
     );
 
+    let maxId = 0;
+
+    // Products đã Publish
+    products.forEach(item => {
+
+        const id = Number(item.id) || 0;
+
+        if (id > maxId) {
+
+            maxId = id;
+
+        }
+
+    });
+
+    // Draft chưa Publish
+    drafts.forEach(item => {
+
+        const id = Number(item.id) || 0;
+
+        if (id > maxId) {
+
+            maxId = id;
+
+        }
+
+    });
+
     return maxId + 1;
 
-}
+}z
 /* ==========================================
    SAVE PRODUCT BASIC
 ========================================== */
