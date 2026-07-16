@@ -86,13 +86,15 @@
 
     flex:1;
 
+    min-width:0;
+
     display:flex;
 
     justify-content:center;
 
     align-items:center;
 
-    min-width:0;
+    overflow:hidden;
 
 }
 
@@ -158,17 +160,9 @@
 
     width:100%;
 
-    max-width:560px;
+    max-width:430px;
 
-    height:160px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    overflow:hidden;
+    height:150px;
 
 }
 
@@ -240,9 +234,7 @@
 
 .top-contact{
 
-    width:360px;
-
-    flex-shrink:0;
+    flex:0 0 460px;
 
     display:flex;
 
@@ -251,6 +243,10 @@
     align-items:center;
 
     gap:18px;
+
+    z-index:10;
+
+    position:relative;
 
 }
 
