@@ -12,14 +12,20 @@ function initMainImageUpload() {
 
     if (!box || !input) return;
 
-    // Click vùng upload
+    /* =========================
+       CLICK UPLOAD
+    ========================= */
+
     box.onclick = function () {
 
         input.click();
 
     };
 
-    // Chọn ảnh
+    /* =========================
+       CHOOSE IMAGE
+    ========================= */
+
     input.onchange = function () {
 
         const file = this.files[0];
@@ -30,46 +36,84 @@ function initMainImageUpload() {
 
         reader.onload = function (e) {
 
+            /* =========================
+               SAVE TO CURRENTPRODUCT
+            ========================= */
+
+            window.currentProduct.mainImage = {
+
+                name: file.name,
+
+                src: e.target.result
+
+            };
+
+            /* =========================
+               SAVE DRAFT
+            ========================= */
+
+            saveProductDraft();
+
+            /* =========================
+               PREVIEW
+            ========================= */
+
             box.innerHTML = `
 
-    <img
-        src="${e.target.result}"
-        class="main-image-preview">
+                <img
+                    src="${e.target.result}"
+                    class="main-image-preview">
 
-    <div class="image-actions">
+                <div class="image-actions">
 
-        <button
-            id="replaceMainImage"
-            type="button">
+                    <button
+                        id="replaceMainImage"
+                        type="button">
 
-            🔄
+                        🔄
 
-        </button>
+                    </button>
 
-        <button
-            id="removeMainImage"
-            type="button">
+                    <button
+                        id="removeMainImage"
+                        type="button">
 
-            ❌
+                        ❌
 
-        </button>
+                    </button>
 
-    </div>
+                </div>
 
-`;
-document.getElementById("replaceMainImage").onclick = function () {
+            `;
 
-    input.click();
+            /* =========================
+               REPLACE
+            ========================= */
 
-};
+            document.getElementById("replaceMainImage").onclick =
+                function () {
 
-document.getElementById("removeMainImage").onclick = function () {
+                    input.click();
 
-    input.value = "";
+                };
 
-    renderProductImages();
+            /* =========================
+               REMOVE
+            ========================= */
 
-};
+            document.getElementById("removeMainImage").onclick =
+                function () {
+
+                    input.value = "";
+
+                    window.currentProduct.mainImage = "";
+
+                    saveProductDraft();
+
+                    renderProductImages();
+
+                };
+
         };
 
         reader.readAsDataURL(file);
