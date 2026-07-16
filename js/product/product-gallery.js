@@ -7,7 +7,13 @@ function initGalleryUpload() {
     const slots =
         document.querySelectorAll(".gallery-slot");
 
-    slots.forEach(function (slot) {
+    if (!window.currentProduct.gallery) {
+
+        window.currentProduct.gallery = [];
+
+    }
+
+    slots.forEach(function (slot, index) {
 
         const input =
             slot.querySelector(".gallery-input");
@@ -17,14 +23,20 @@ function initGalleryUpload() {
 
         if (!input || !add) return;
 
-        // Click dấu +
+        /* =========================
+           CLICK +
+        ========================= */
+
         add.onclick = function () {
 
             input.click();
 
         };
 
-        // Chọn ảnh
+        /* =========================
+           CHOOSE IMAGE
+        ========================= */
+
         input.onchange = function () {
 
             const file = this.files[0];
@@ -34,6 +46,24 @@ function initGalleryUpload() {
             const reader = new FileReader();
 
             reader.onload = function (e) {
+
+                /* =========================
+                   SAVE CURRENT PRODUCT
+                ========================= */
+
+                currentProduct.gallery[index] = {
+
+                    name: file.name,
+
+                    src: e.target.result
+
+                };
+
+                saveProductDraft();
+
+                /* =========================
+                   PREVIEW
+                ========================= */
 
                 slot.innerHTML = `
 
@@ -50,14 +80,16 @@ function initGalleryUpload() {
                     <div class="gallery-actions">
 
                         <button
-                            class="replace-gallery">
+                            class="replace-gallery"
+                            type="button">
 
                             🔄
 
                         </button>
 
                         <button
-                            class="remove-gallery">
+                            class="remove-gallery"
+                            type="button">
 
                             ❌
 
@@ -67,11 +99,13 @@ function initGalleryUpload() {
 
                 `;
 
-                // Lấy lại input mới
                 const newInput =
                     slot.querySelector(".gallery-input");
 
-                // Replace
+                /* =========================
+                   REPLACE
+                ========================= */
+
                 slot.querySelector(".replace-gallery").onclick =
                     function () {
 
@@ -79,9 +113,16 @@ function initGalleryUpload() {
 
                     };
 
-                // Remove
+                /* =========================
+                   REMOVE
+                ========================= */
+
                 slot.querySelector(".remove-gallery").onclick =
                     function () {
+
+                        currentProduct.gallery[index] = null;
+
+                        saveProductDraft();
 
                         slot.innerHTML = `
 
@@ -103,7 +144,10 @@ function initGalleryUpload() {
 
                     };
 
-                // Upload lại sau Replace
+                /* =========================
+                   REPLACE AGAIN
+                ========================= */
+
                 newInput.onchange =
                     input.onchange;
 
