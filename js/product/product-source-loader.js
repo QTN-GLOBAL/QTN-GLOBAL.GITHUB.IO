@@ -1,80 +1,130 @@
 /* =====================================================
-   PRODUCT HTML FETCHER
-   - Fetch HTML from URL
-   - Return raw HTML
+   PRODUCT SOURCE LOADER
+   - Unified Source Loader
+   - Website
+   - PDF (Future)
+   - Word (Future)
 ===================================================== */
+
 window.ProductSourceLoader = {
 
     /* ==========================================
-       FETCH HTML
+       LOAD SOURCE
     ========================================== */
 
     async load(source) {
 
-        if (!url) {
+        if (!source) {
 
-            throw "Source URL is empty.";
+            throw "Source is missing.";
 
         }
 
-        console.log("Fetching HTML...");
+        switch (source.type) {
 
-        /* ==========================================
-           DEVELOPMENT MODE
-           (Temporary)
-        ========================================== */
+            case "website":
 
-        return await this.loadWebsite(source);
+                return await this.loadWebsite(source);
+
+            case "pdf":
+
+                return await this.loadPdf(source);
+
+            case "word":
+
+                return await this.loadWord(source);
+
+            default:
+
+                throw "Unsupported source type.";
+
+        }
 
     },
 
     /* ==========================================
-       DEVELOPMENT FETCH
-       (Will replace by API later)
+       WEBSITE
     ========================================== */
 
     async loadWebsite(source) {
 
-        console.log("Development Fetch");
+        console.log("Loading Website...");
 
-        console.log(url);
+        console.log(source.url);
 
-        throw "HTML Fetch API chưa được kết nối.";
+        /*
+           Tạm thời chưa có API
+        */
+
+        return {
+
+            success: false,
+
+            sourceType: "website",
+
+            url: source.url,
+
+            title: "",
+
+            html: "",
+
+            fetchedAt: new Date().toISOString(),
+
+            message: "Website Loader chưa kết nối API."
+
+        };
 
     },
 
     /* ==========================================
-       SERVER FETCH
-       (Future)
+       PDF
     ========================================== */
 
-    async fetchServer(url) {
+    async loadPdf(source) {
 
-        const response = await fetch("/api/import", {
+        return {
 
-            method: "POST",
+            success: false,
 
-            headers: {
+            sourceType: "pdf",
 
-                "Content-Type": "application/json"
+            url: source.url,
 
-            },
+            title: "",
 
-            body: JSON.stringify({
+            html: "",
 
-                url
+            fetchedAt: new Date().toISOString(),
 
-            })
+            message: "PDF Loader chưa phát triển."
 
-        });
+        };
 
-        if (!response.ok) {
+    },
 
-            throw "Cannot fetch HTML.";
+    /* ==========================================
+       WORD
+    ========================================== */
 
-        }
+    async loadWord(source) {
 
-        return await response.text();
+        return {
+
+            success: false,
+
+            sourceType: "word",
+
+            url: source.url,
+
+            title: "",
+
+            html: "",
+
+            fetchedAt: new Date().toISOString(),
+
+            message: "Word Loader chưa phát triển."
+
+        };
 
     }
 
