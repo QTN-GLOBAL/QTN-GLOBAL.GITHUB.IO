@@ -1,114 +1,82 @@
 /* =====================================================
-   PRODUCT SYNC
-   Form -> currentProduct
+   PRODUCT HTML FETCHER
+   - Fetch HTML from URL
+   - Return raw HTML
 ===================================================== */
 
-function syncProductSession() {
+window.ProductHtmlFetcher = {
 
-    if (!window.currentProduct) return;
+    /* ==========================================
+       FETCH HTML
+    ========================================== */
 
-    const business =
-        document.getElementById("productBusiness");
+    async fetch(url) {
 
-    const category =
-        document.getElementById("productCategory");
+        if (!url) {
 
-    const brand =
-        document.getElementById("productBrand");
+            throw "Source URL is empty.";
 
-    const origin =
-        document.getElementById("productOrigin");
+        }
 
-    const folder =
-        document.getElementById("productFolder");
+        console.log("Fetching HTML...");
 
-    const productId =
-        document.getElementById("productId");
+        /* ==========================================
+           DEVELOPMENT MODE
+           (Temporary)
+        ========================================== */
 
-    const productName =
-        document.getElementById("productName");
+        return await this.fetchDevelopment(url);
 
-    const status =
-        document.querySelector(
-            'input[name="productStatus"]:checked'
-        );
+    },
 
-    window.currentProduct.business =
-        business ? business.value : "";
+    /* ==========================================
+       DEVELOPMENT FETCH
+       (Will replace by API later)
+    ========================================== */
 
-    window.currentProduct.category =
-        category ? category.value : "";
+    async fetchDevelopment(url) {
 
-    window.currentProduct.brand =
-        brand ? brand.value : "";
+        console.log("Development Fetch");
 
-    window.currentProduct.origin =
-        origin ? origin.value : "";
+        console.log(url);
 
-    window.currentProduct.folder =
-        folder ? folder.value : "";
+        throw "HTML Fetch API chưa được kết nối.";
 
-    window.currentProduct.id =
-        productId ? productId.value : "";
+    },
 
-    window.currentProduct.name =
-        productName ? productName.value : "";
+    /* ==========================================
+       SERVER FETCH
+       (Future)
+    ========================================== */
 
-    window.currentProduct.status =
-        status ? status.value : "draft";
+    async fetchServer(url) {
 
-}
+        const response = await fetch("/api/import", {
 
-/* =====================================================
-   BIND SYNC EVENTS
-===================================================== */
+            method: "POST",
 
-function bindProductSync() {
+            headers: {
 
-    const ids = [
+                "Content-Type": "application/json"
 
-        "productBusiness",
+            },
 
-        "productCategory",
+            body: JSON.stringify({
 
-        "productBrand",
+                url
 
-        "productOrigin",
-
-        "productFolder",
-
-        "productId",
-
-        "productName"
-
-    ];
-
-    ids.forEach(id => {
-
-        const el =
-            document.getElementById(id);
-
-        if (!el) return;
-
-        el.addEventListener("input", syncProductSession);
-
-        el.addEventListener("change", syncProductSession);
-
-    });
-
-    document
-        .querySelectorAll(
-            'input[name="productStatus"]'
-        )
-        .forEach(radio => {
-
-            radio.addEventListener(
-                "change",
-                syncProductSession
-            );
+            })
 
         });
 
-    syncProductSession();
+        if (!response.ok) {
 
-}
+            throw "Cannot fetch HTML.";
+
+        }
+
+        return await response.text();
+
+    }
+
+};
