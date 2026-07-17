@@ -22,11 +22,16 @@ window.ProductImportEngine = {
                FETCH HTML
             ========================= */
 
-            const html =
-                await ProductSourceLoader.load({
-    type: "website",
-    url: url
-});;
+            const sourceResult =
+    await ProductSourceLoader.load({
+
+        type: "website",
+
+        url: url
+
+    });
+
+console.log(sourceResult);
 
             if (!html) {
 
