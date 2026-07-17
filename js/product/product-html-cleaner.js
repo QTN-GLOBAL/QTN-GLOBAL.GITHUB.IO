@@ -1,114 +1,135 @@
 /* =====================================================
-   PRODUCT SYNC
-   Form -> currentProduct
+   PRODUCT HTML CLEANER
+   - Remove useless HTML
+   - Keep product content only
 ===================================================== */
 
-function syncProductSession() {
+window.ProductHtmlCleaner = {
 
-    if (!window.currentProduct) return;
+    /* ==========================================
+       CLEAN HTML
+    ========================================== */
 
-    const business =
-        document.getElementById("productBusiness");
+    clean(html) {
 
-    const category =
-        document.getElementById("productCategory");
+        if (!html) {
 
-    const brand =
-        document.getElementById("productBrand");
+            return "";
 
-    const origin =
-        document.getElementById("productOrigin");
+        }
 
-    const folder =
-        document.getElementById("productFolder");
+        console.log("Cleaning HTML...");
 
-    const productId =
-        document.getElementById("productId");
+        const parser = new DOMParser();
 
-    const productName =
-        document.getElementById("productName");
+        const doc = parser.parseFromString(
 
-    const status =
-        document.querySelector(
-            'input[name="productStatus"]:checked'
+            html,
+
+            "text/html"
+
         );
 
-    window.currentProduct.business =
-        business ? business.value : "";
+        /* =========================
+           REMOVE TAGS
+        ========================= */
 
-    window.currentProduct.category =
-        category ? category.value : "";
+        const removeTags = [
 
-    window.currentProduct.brand =
-        brand ? brand.value : "";
+            "script",
 
-    window.currentProduct.origin =
-        origin ? origin.value : "";
+            "style",
 
-    window.currentProduct.folder =
-        folder ? folder.value : "";
+            "noscript",
 
-    window.currentProduct.id =
-        productId ? productId.value : "";
+            "iframe",
 
-    window.currentProduct.name =
-        productName ? productName.value : "";
+            "svg",
 
-    window.currentProduct.status =
-        status ? status.value : "draft";
+            "canvas",
 
-}
+            "footer",
 
-/* =====================================================
-   BIND SYNC EVENTS
-===================================================== */
+            "header",
 
-function bindProductSync() {
+            "nav",
 
-    const ids = [
+            "aside",
 
-        "productBusiness",
+            "form"
 
-        "productCategory",
+        ];
 
-        "productBrand",
+        removeTags.forEach(tag => {
 
-        "productOrigin",
+            doc.querySelectorAll(tag)
 
-        "productFolder",
-
-        "productId",
-
-        "productName"
-
-    ];
-
-    ids.forEach(id => {
-
-        const el =
-            document.getElementById(id);
-
-        if (!el) return;
-
-        el.addEventListener("input", syncProductSession);
-
-        el.addEventListener("change", syncProductSession);
-
-    });
-
-    document
-        .querySelectorAll(
-            'input[name="productStatus"]'
-        )
-        .forEach(radio => {
-
-            radio.addEventListener(
-                "change",
-                syncProductSession
-            );
+                .forEach(node => node.remove());
 
         });
 
-    syncProductSession();
+        /* =========================
+           REMOVE COMMON CLASSES
+        ========================= */
 
-}
+        const removeSelectors = [
+
+            ".header",
+
+            ".footer",
+
+            ".sidebar",
+
+            ".menu",
+
+            ".navigation",
+
+            ".breadcrumb",
+
+            ".comment",
+
+            ".comments",
+
+            ".facebook",
+
+            ".fb",
+
+            ".zalo",
+
+            ".messenger",
+
+            ".popup",
+
+            ".banner",
+
+            ".ads",
+
+            ".advertisement",
+
+            ".related",
+
+            ".related-products",
+
+            ".recommend",
+
+            ".recommend-product"
+
+        ];
+
+        removeSelectors.forEach(selector => {
+
+            doc.querySelectorAll(selector)
+
+                .forEach(node => node.remove());
+
+        });
+
+        /* =========================
+           RETURN BODY HTML
+        ========================= */
+
+        return doc.body.innerHTML;
+
+    }
+
+};
