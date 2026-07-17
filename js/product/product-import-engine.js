@@ -1,114 +1,87 @@
 /* =====================================================
-   PRODUCT SYNC
-   Form -> currentProduct
+   PRODUCT IMPORT ENGINE
+   CORE IMPORT CONTROLLER
 ===================================================== */
 
-function syncProductSession() {
+window.ProductImportEngine = {
 
-    if (!window.currentProduct) return;
+    /* ==========================================
+       IMPORT PRODUCT
+    ========================================== */
 
-    const business =
-        document.getElementById("productBusiness");
+    async importProduct(url) {
 
-    const category =
-        document.getElementById("productCategory");
+        try {
 
-    const brand =
-        document.getElementById("productBrand");
+            console.log("========== PRODUCT IMPORT ==========");
 
-    const origin =
-        document.getElementById("productOrigin");
+            console.log("URL:", url);
 
-    const folder =
-        document.getElementById("productFolder");
+            /* =========================
+               STEP 1
+               FETCH HTML
+            ========================= */
 
-    const productId =
-        document.getElementById("productId");
+            const html =
+                await ProductHtmlFetcher.fetch(url);
 
-    const productName =
-        document.getElementById("productName");
+            if (!html) {
 
-    const status =
-        document.querySelector(
-            'input[name="productStatus"]:checked'
-        );
+                throw "Cannot fetch HTML.";
 
-    window.currentProduct.business =
-        business ? business.value : "";
+            }
 
-    window.currentProduct.category =
-        category ? category.value : "";
+            console.log("HTML Loaded");
 
-    window.currentProduct.brand =
-        brand ? brand.value : "";
+            /* =========================
+               STEP 2
+               CLEAN HTML
+            ========================= */
 
-    window.currentProduct.origin =
-        origin ? origin.value : "";
+            const cleanHtml =
+                ProductHtmlCleaner.clean(html);
 
-    window.currentProduct.folder =
-        folder ? folder.value : "";
+            console.log("HTML Cleaned");
 
-    window.currentProduct.id =
-        productId ? productId.value : "";
+            /* =========================
+               STEP 3
+               AI PARSE
+            ========================= */
 
-    window.currentProduct.name =
-        productName ? productName.value : "";
+            const result =
+                await ProductAIParser.parse(cleanHtml);
 
-    window.currentProduct.status =
-        status ? status.value : "draft";
+            console.log("AI Parsed");
 
-}
+            /* =========================
+               STEP 4
+               SAVE RESULT
+            ========================= */
 
-/* =====================================================
-   BIND SYNC EVENTS
-===================================================== */
+            ProductImportResult.apply(result);
 
-function bindProductSync() {
+            console.log("Draft Updated");
 
-    const ids = [
+            return true;
 
-        "productBusiness",
+        }
 
-        "productCategory",
+        catch (error) {
 
-        "productBrand",
+            console.error(error);
 
-        "productOrigin",
+            alert(
 
-        "productFolder",
+                "Import thất bại.\n\n" +
 
-        "productId",
+                error
 
-        "productName"
-
-    ];
-
-    ids.forEach(id => {
-
-        const el =
-            document.getElementById(id);
-
-        if (!el) return;
-
-        el.addEventListener("input", syncProductSession);
-
-        el.addEventListener("change", syncProductSession);
-
-    });
-
-    document
-        .querySelectorAll(
-            'input[name="productStatus"]'
-        )
-        .forEach(radio => {
-
-            radio.addEventListener(
-                "change",
-                syncProductSession
             );
 
-        });
+            return false;
 
-    syncProductSession();
+        }
 
-}
+    }
+
+};
