@@ -23,7 +23,10 @@ window.ProductImportEngine = {
             ========================= */
 
             const html =
-                await ProductHtmlFetcher.fetch(url);
+                await ProductSourceLoader.load({
+    type: "website",
+    url: url
+});;
 
             if (!html) {
 

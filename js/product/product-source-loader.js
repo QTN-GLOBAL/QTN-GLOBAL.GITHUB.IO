@@ -3,14 +3,13 @@
    - Fetch HTML from URL
    - Return raw HTML
 ===================================================== */
-
-window.ProductHtmlFetcher = {
+window.ProductSourceLoader = {
 
     /* ==========================================
        FETCH HTML
     ========================================== */
 
-    async fetch(url) {
+    async load(source) {
 
         if (!url) {
 
@@ -25,7 +24,7 @@ window.ProductHtmlFetcher = {
            (Temporary)
         ========================================== */
 
-        return await this.fetchDevelopment(url);
+        return await this.loadWebsite(source);
 
     },
 
@@ -34,7 +33,7 @@ window.ProductHtmlFetcher = {
        (Will replace by API later)
     ========================================== */
 
-    async fetchDevelopment(url) {
+    async loadWebsite(source) {
 
         console.log("Development Fetch");
 
