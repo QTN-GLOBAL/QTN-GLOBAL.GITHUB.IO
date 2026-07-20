@@ -1,114 +1,58 @@
 /* =====================================================
-   PRODUCT SYNC
-   Form -> currentProduct
+   PRODUCT IMPORT RESULT
+   - Save AI Result To Current Product
 ===================================================== */
 
-function syncProductSession() {
+window.ProductImportResult = {
 
-    if (!window.currentProduct) return;
+    /* ==========================================
+       APPLY RESULT
+    ========================================== */
 
-    const business =
-        document.getElementById("productBusiness");
+    apply(result) {
 
-    const category =
-        document.getElementById("productCategory");
+        if (!window.currentProduct) {
 
-    const brand =
-        document.getElementById("productBrand");
+            window.currentProduct = {};
 
-    const origin =
-        document.getElementById("productOrigin");
+        }
 
-    const folder =
-        document.getElementById("productFolder");
+        console.log("Applying AI Result...");
 
-    const productId =
-        document.getElementById("productId");
+        currentProduct.description =
 
-    const productName =
-        document.getElementById("productName");
+            result.description || "";
 
-    const status =
-        document.querySelector(
-            'input[name="productStatus"]:checked'
-        );
+        currentProduct.specification =
 
-    window.currentProduct.business =
-        business ? business.value : "";
+            result.specification || [];
 
-    window.currentProduct.category =
-        category ? category.value : "";
+        currentProduct.features =
 
-    window.currentProduct.brand =
-        brand ? brand.value : "";
+            result.features || [];
 
-    window.currentProduct.origin =
-        origin ? origin.value : "";
+        currentProduct.applications =
 
-    window.currentProduct.folder =
-        folder ? folder.value : "";
+            result.applications || [];
 
-    window.currentProduct.id =
-        productId ? productId.value : "";
+        currentProduct.accessories =
 
-    window.currentProduct.name =
-        productName ? productName.value : "";
+            result.accessories || [];
 
-    window.currentProduct.status =
-        status ? status.value : "draft";
+        currentProduct.aiImported = true;
 
-}
+        currentProduct.aiImportedAt =
 
-/* =====================================================
-   BIND SYNC EVENTS
-===================================================== */
+            new Date().toISOString();
 
-function bindProductSync() {
+        if (typeof saveProductDraft === "function") {
 
-    const ids = [
+            saveProductDraft();
 
-        "productBusiness",
+        }
 
-        "productCategory",
+        return currentProduct;
 
-        "productBrand",
+    }
 
-        "productOrigin",
-
-        "productFolder",
-
-        "productId",
-
-        "productName"
-
-    ];
-
-    ids.forEach(id => {
-
-        const el =
-            document.getElementById(id);
-
-        if (!el) return;
-
-        el.addEventListener("input", syncProductSession);
-
-        el.addEventListener("change", syncProductSession);
-
-    });
-
-    document
-        .querySelectorAll(
-            'input[name="productStatus"]'
-        )
-        .forEach(radio => {
-
-            radio.addEventListener(
-                "change",
-                syncProductSession
-            );
-
-        });
-
-    syncProductSession();
-
-}
+};
