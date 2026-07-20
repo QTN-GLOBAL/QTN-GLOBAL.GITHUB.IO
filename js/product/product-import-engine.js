@@ -1,45 +1,38 @@
 /* =====================================================
    PRODUCT IMPORT ENGINE
-   CORE IMPORT CONTROLLER
+   Version 1
 ===================================================== */
 
 window.ProductImportEngine = {
 
     /* ==========================================
-       IMPORT PRODUCT
+       IMPORT
     ========================================== */
 
-    async importProduct(url) {
+    async import(source) {
 
         try {
 
-            console.log("========== PRODUCT IMPORT ==========");
-
-            console.log("URL:", url);
+            console.log("=================================");
+            console.log("PRODUCT IMPORT ENGINE");
+            console.log("=================================");
 
             /* =========================
                STEP 1
-               FETCH HTML
+               LOAD SOURCE
             ========================= */
 
             const sourceResult =
-    await ProductSourceLoader.load({
+                await ProductSourceLoader.load(source);
 
-        type: "website",
+            if (!sourceResult.success) {
 
-        url: url
-
-    });
-
-console.log(sourceResult);
-
-            if (!html) {
-
-                throw "Cannot fetch HTML.";
+                throw sourceResult.error ||
+                    "Load source failed.";
 
             }
 
-            console.log("HTML Loaded");
+            console.log("SOURCE OK");
 
             /* =========================
                STEP 2
@@ -47,46 +40,92 @@ console.log(sourceResult);
             ========================= */
 
             const cleanHtml =
-                ProductHtmlCleaner.clean(html);
+                ProductHtmlCleaner.clean(
 
-            console.log("HTML Cleaned");
+                    sourceResult.html
+
+                );
+
+            console.log("HTML CLEAN OK");
 
             /* =========================
                STEP 3
-               AI PARSE
+               BUILD PROMPT
             ========================= */
 
-            const result =
-                await ProductAIParser.parse(cleanHtml);
+            const prompt =
+                ProductPromptBuilder.build(
 
-            console.log("AI Parsed");
+                    cleanHtml,
+
+                    source.options || {}
+
+                );
+
+            console.log("PROMPT OK");
 
             /* =========================
                STEP 4
-               SAVE RESULT
+               AI PARSE
             ========================= */
 
-            ProductImportResult.apply(result);
+            const aiResult =
+                await ProductAIParser.parse(
 
-            console.log("Draft Updated");
+                    prompt
 
-            return true;
+                );
 
-        }
+            console.log("AI OK");
 
-        catch (error) {
+            /* =========================
+               STEP 5
+               VALIDATE
+            ========================= */
 
-            console.error(error);
+            const result =
+                ProductJsonValidator.validate(
 
-            alert(
+                    aiResult
 
-                "Import thất bại.\n\n" +
+                );
 
-                error
+            console.log("VALIDATOR OK");
+
+            /* =========================
+               STEP 6
+               APPLY
+            ========================= */
+
+            ProductImportResult.apply(
+
+                result
 
             );
 
-            return false;
+            console.log("IMPORT DONE");
+
+            return {
+
+                success: true,
+
+                result
+
+            };
+
+        }
+
+        catch (err) {
+
+            console.error(err);
+
+            return {
+
+                success: false,
+
+                error: err
+
+            };
 
         }
 
