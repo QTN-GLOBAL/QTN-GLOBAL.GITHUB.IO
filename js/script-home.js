@@ -281,8 +281,12 @@ function changeBrandPage(page){
 
     }
 
-    renderBrandPage(brands);
+   renderBrandPage(brands);
 
+window.scrollTo({
+    top: document.getElementById("homeContainer").offsetTop - 20,
+    behavior: "smooth"
+});
 }
 /* =========================
    BRAND SECTION (ONLY HTML)
