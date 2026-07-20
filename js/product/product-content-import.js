@@ -258,13 +258,58 @@ function backToProductImages() {
    NEXT STEP
 ========================================== */
 
-function nextProductContentImport() {
+async function nextProductContentImport() {
 
     saveProductContentImport();
 
     saveProductDraft();
 
-    alert("Source URL đã lưu.\n\nStep 4 sẽ làm tiếp.");
+    const status = document.getElementById("contentImportStatus");
+
+    if (status) {
+
+        status.innerHTML = "⏳ Đang tải dữ liệu từ Website...";
+
+    }
+
+    const result = await ProductImportEngine.import(
+
+        window.currentProduct.source
+
+    );
+
+    if (!result.success) {
+
+        if (status) {
+
+            status.innerHTML = "❌ Import thất bại";
+
+        }
+
+        alert(result.error || "Import thất bại.");
+
+        return;
+
+    }
+
+    window.currentProduct.importResult = result.result;
+
+    if (status) {
+
+        status.innerHTML = "✅ Website đã đọc thành công";
+
+    }
+
+    console.log(result);
+
+    alert("Đã lấy HTML thành công.");
+
+    /*
+        BƯỚC TIẾP THEO
+
+        renderProductDescription();
+
+    */
 
 }
 /* ==========================================
