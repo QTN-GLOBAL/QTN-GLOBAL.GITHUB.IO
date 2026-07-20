@@ -82,20 +82,27 @@ function renderSpecificationContent() {
 
     box.innerHTML = `
 
-        <div class="ai-block">
+<div class="ai-block">
 
-            <h4>Description</h4>
+    <h4>Description</h4>
 
-            <div class="ai-description">
+    <textarea
 
-                ${product.description || ""}
+        id="productDescription"
 
-            </div>
+        class="form-control"
 
-        </div>
+        style="width:100%;
+               min-height:180px;
+               resize:vertical;">
 
-    `;
+${product.description || ""}
 
+    </textarea>
+
+</div>
+
+`;
 }
 
 /* ==========================================
@@ -114,6 +121,37 @@ function backToContentImport() {
 
 function nextProductPreview() {
 
-    alert("Step 5 sẽ làm sau.");
+    saveSpecificationStep();
+
+    console.log(currentProduct.product);
+
+    alert("Step 5 sẽ làm tiếp.");
+
+}
+/* ==========================================
+   SAVE DESCRIPTION
+========================================== */
+
+function saveSpecificationStep() {
+
+    if (!window.currentProduct) return;
+
+    if (!window.currentProduct.product) return;
+
+    const description =
+
+        document.getElementById(
+
+            "productDescription"
+
+        );
+
+    if (description) {
+
+        currentProduct.product.description =
+
+            description.value.trim();
+
+    }
 
 }
