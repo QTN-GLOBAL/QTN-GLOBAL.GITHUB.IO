@@ -3,6 +3,7 @@
 ========================================== */
 
 import { downloadHtml } from "../services/html.service.js";
+import { parseProductWithAI } from "../services/openai.service.js";
 
 /* ==========================================
    IMPORT PRODUCT
@@ -13,11 +14,8 @@ export async function importProduct(req, res) {
     try {
 
         console.log("");
-
         console.log("========== IMPORT REQUEST ==========");
-
         console.log(req.body);
-
         console.log("====================================");
 
         const {
@@ -41,6 +39,7 @@ export async function importProduct(req, res) {
         }
 
         /* ==========================
+           STEP 1
            DOWNLOAD HTML
         ========================== */
 
@@ -52,11 +51,27 @@ export async function importProduct(req, res) {
 
         }
 
+        console.log("");
+        console.log("HTML DOWNLOAD OK");
+
         /* ==========================
-           NEXT:
-           HTML CLEANER
-           PROMPT BUILDER
-           OPENAI
+           STEP 2
+           OPENAI PARSE
+        ========================== */
+
+        const aiResult = await parseProductWithAI(
+
+            result.html,
+
+            options
+
+        );
+
+        console.log("");
+        console.log("OPENAI PARSE OK");
+
+        /* ==========================
+           RETURN
         ========================== */
 
         return res.json({
@@ -65,11 +80,9 @@ export async function importProduct(req, res) {
 
             url,
 
-            options,
-
             title: result.title || "",
 
-            html: result.html
+            data: aiResult
 
         });
 
