@@ -1,17 +1,15 @@
 /* ==========================================
    QTN GLOBAL AI IMPORT SERVER
 ========================================== */
-import importRoute from "./routes/import.route.js";
+
 import express from "express";
 import cors from "cors";
 
+import importRoute from "./routes/import.route.js";
+
 const app = express();
 
-/* ==========================================
-   CONFIG
-========================================== */
-
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 /* ==========================================
    MIDDLEWARE
@@ -19,9 +17,22 @@ const PORT = 3000;
 
 app.use(cors());
 
-app.use(express.json({ limit: "20mb" }));
+app.use(express.json({
 
-app.use(express.urlencoded({ extended: true }));
+    limit: "20mb"
+
+}));
+
+app.use(express.urlencoded({
+
+    extended: true
+
+}));
+
+/* ==========================================
+   ROUTES
+========================================== */
+
 app.use("/api/import", importRoute);
 
 /* ==========================================
@@ -42,10 +53,24 @@ app.get("/", (req, res) => {
 
 });
 
+/* ==========================================
+   NOT FOUND
+========================================== */
 
+app.use((req, res) => {
+
+    res.status(404).json({
+
+        success: false,
+
+        message: "API Not Found"
+
+    });
+
+});
 
 /* ==========================================
-   START
+   START SERVER
 ========================================== */
 
 app.listen(PORT, () => {
@@ -58,7 +83,7 @@ app.listen(PORT, () => {
 
     console.log("Running:");
 
-    console.log("http://localhost:" + PORT);
+    console.log(`http://localhost:${PORT}`);
 
     console.log("===================================");
 
