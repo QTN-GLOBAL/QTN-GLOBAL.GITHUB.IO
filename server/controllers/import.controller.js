@@ -6,6 +6,7 @@ import { downloadHtml } from "../services/html.service.js";
 import { cleanHtml } from "../utils/html-cleaner.js";
 import { buildPrompt } from "../utils/prompt-builder.js";
 import { parseProduct } from "../services/mock-ai.service.js";
+import { normalizeProduct } from "../utils/product-normalizer.js";
 
 /* ==========================================
    IMPORT PRODUCT
@@ -60,7 +61,7 @@ export async function importProduct(req, res) {
            CLEAN HTML
         ========================== */
 
-        const cleanHtmlResult = cleanHtml(
+        const clean = cleanHtml(
 
             htmlResult.html
 
@@ -75,7 +76,7 @@ export async function importProduct(req, res) {
 
         const prompt = buildPrompt(
 
-            cleanHtmlResult,
+            clean,
 
             options
 
@@ -97,6 +98,19 @@ export async function importProduct(req, res) {
         console.log("MOCK AI OK");
 
         /* ==========================
+           STEP 5
+           NORMALIZE
+        ========================== */
+
+        const product = normalizeProduct(
+
+            aiResult
+
+        );
+
+        console.log("NORMALIZER OK");
+
+        /* ==========================
            RETURN
         ========================== */
 
@@ -108,7 +122,7 @@ export async function importProduct(req, res) {
 
             title: htmlResult.title,
 
-            result: aiResult
+            product
 
         });
 
