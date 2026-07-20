@@ -1,18 +1,24 @@
 /* ==========================================
    IMPORT CONTROLLER
 ========================================== */
+
 import { downloadHtml } from "../services/html.service.js";
+
+/* ==========================================
+   IMPORT PRODUCT
+========================================== */
+
 export async function importProduct(req, res) {
 
     try {
 
         console.log("");
 
-        console.log("========== IMPORT ==========");
+        console.log("========== IMPORT REQUEST ==========");
 
         console.log(req.body);
 
-        console.log("============================");
+        console.log("====================================");
 
         const {
 
@@ -34,9 +40,38 @@ export async function importProduct(req, res) {
 
         }
 
+        /* ==========================
+           DOWNLOAD HTML
+        ========================== */
+
         const result = await downloadHtml(url);
 
-return res.json(result);
+        if (!result.success) {
+
+            return res.status(500).json(result);
+
+        }
+
+        /* ==========================
+           NEXT:
+           HTML CLEANER
+           PROMPT BUILDER
+           OPENAI
+        ========================== */
+
+        return res.json({
+
+            success: true,
+
+            url,
+
+            options,
+
+            title: result.title || "",
+
+            html: result.html
+
+        });
 
     }
 
