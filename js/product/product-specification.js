@@ -67,18 +67,58 @@ function renderSpecificationContent() {
     if (!product) {
 
         box.innerHTML = `
-
-            <div class="import-status">
-
-                Không có dữ liệu AI.
-
-            </div>
-
+        <div class="import-status">
+            Không có dữ liệu AI.
+        </div>
         `;
 
         return;
 
     }
+
+    let specificationHTML = "";
+
+    (product.specification || []).forEach((item, index) => {
+
+        specificationHTML += `
+
+        <tr>
+
+            <td>
+
+                <input
+                    class="spec-name"
+                    data-index="${index}"
+                    value="${item.name || ""}">
+
+            </td>
+
+            <td>
+
+                <input
+                    class="spec-value"
+                    data-index="${index}"
+                    value="${item.value || ""}">
+
+            </td>
+
+            <td>
+
+                <button
+                    type="button"
+                    onclick="removeSpecification(${index})">
+
+                    ❌
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
 
     box.innerHTML = `
 
@@ -102,7 +142,132 @@ ${product.description || ""}
 
 </div>
 
+<div class="ai-block">
+
+    <h4>Technical Specification</h4>
+
+    <table
+        class="spec-table"
+        style="width:100%;border-collapse:collapse;">
+
+        <thead>
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Value</th>
+
+                <th></th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            ${specificationHTML}
+
+        </tbody>
+
+    </table>
+
+    <br>
+
+    <button
+
+        type="button"
+
+        onclick="addSpecification()">
+
+        + Add Specification
+
+    </button>
+
+</div>
+
 `;
+
+}
+
+/* ==========================================
+   ADD SPECIFICATION
+========================================== */
+
+function addSpecification() {
+
+    if (!currentProduct.product.specification) {
+
+        currentProduct.product.specification = [];
+
+    }
+
+    currentProduct.product.specification.push({
+
+        name: "",
+
+        value: ""
+
+    });
+
+    renderSpecificationContent();
+
+}
+
+/* ==========================================
+   REMOVE SPECIFICATION
+========================================== */
+
+function removeSpecification(index) {
+
+    currentProduct.product.specification.splice(index,1);
+
+    renderSpecificationContent();
+
+}
+
+/* ==========================================
+   SAVE
+========================================== */
+
+function saveSpecificationStep() {
+
+    if (!window.currentProduct) return;
+
+    if (!window.currentProduct.product) return;
+
+    const description =
+        document.getElementById("productDescription");
+
+    if (description) {
+
+        currentProduct.product.description =
+            description.value.trim();
+
+    }
+
+    document
+        .querySelectorAll(".spec-name")
+        .forEach(input=>{
+
+            const i = input.dataset.index;
+
+            currentProduct.product.specification[i].name =
+                input.value;
+
+        });
+
+    document
+        .querySelectorAll(".spec-value")
+        .forEach(input=>{
+
+            const i = input.dataset.index;
+
+            currentProduct.product.specification[i].value =
+                input.value;
+
+        });
+
 }
 
 /* ==========================================
@@ -126,32 +291,5 @@ function nextProductPreview() {
     console.log(currentProduct.product);
 
     alert("Step 5 sẽ làm tiếp.");
-
-}
-/* ==========================================
-   SAVE DESCRIPTION
-========================================== */
-
-function saveSpecificationStep() {
-
-    if (!window.currentProduct) return;
-
-    if (!window.currentProduct.product) return;
-
-    const description =
-
-        document.getElementById(
-
-            "productDescription"
-
-        );
-
-    if (description) {
-
-        currentProduct.product.description =
-
-            description.value.trim();
-
-    }
 
 }
