@@ -63,11 +63,23 @@ export async function importProduct(req, res) {
            CLEAN HTML
         ========================== */
 
-        const clean = cleanHtml(
+       const clean = cleanHtml(
 
-            result.html
+    result.html
 
-        );
+);
+
+return res.json({
+
+    success: true,
+
+    debug: true,
+
+    cleanLength: clean.length,
+
+    cleanStart: clean.substring(0,1000)
+
+});
 
         console.log("");
 
