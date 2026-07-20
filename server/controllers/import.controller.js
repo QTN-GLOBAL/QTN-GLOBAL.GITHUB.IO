@@ -1,7 +1,7 @@
 /* ==========================================
    IMPORT CONTROLLER
 ========================================== */
-
+import { downloadHtml } from "../services/html.service.js";
 export async function importProduct(req, res) {
 
     try {
@@ -34,17 +34,9 @@ export async function importProduct(req, res) {
 
         }
 
-        return res.json({
+        const result = await downloadHtml(url);
 
-            success: true,
-
-            message: "Controller Ready",
-
-            url,
-
-            options
-
-        });
+return res.json(result);
 
     }
 
