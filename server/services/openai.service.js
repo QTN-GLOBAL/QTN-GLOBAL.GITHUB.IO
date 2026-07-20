@@ -1,199 +1,155 @@
-/* =====================================================
+/* ==========================================
    OPENAI SERVICE
-   QTN GLOBAL SERVER CORE
+========================================== */
 
-   Chức năng:
-   - Kết nối OpenAI API
-   - AI Product
-   - AI SEO
-   - AI Content
-   - QVZO AI Engine
-===================================================== */
+import OpenAI from "openai";
 
+import dotenv from "dotenv";
 
-const OpenAI = require("openai");
+dotenv.config();
 
+/* ==========================================
+   OPENAI CLIENT
+========================================== */
 
+const client = new OpenAI({
 
-class OpenAIService {
+    apiKey: process.env.OPENAI_API_KEY
 
+});
 
-    constructor(){
+/* ==========================================
+   PARSE PRODUCT WITH AI
+========================================== */
 
+export async function parseProductWithAI(html, options = {}) {
 
-        this.client = new OpenAI({
+    console.log("");
 
-            apiKey:
-            process.env.OPENAI_API_KEY
+    console.log("========== OPENAI ==========");
 
-        });
+    console.log("Sending HTML to OpenAI...");
 
+    console.log("============================");
 
-    }
+    const prompt = `
 
+Bạn là AI chuyên phân tích trang sản phẩm.
 
+Đọc HTML dưới đây.
 
+Chỉ trả về JSON.
 
+Không giải thích.
 
-    /*
-    =====================================================
-    CHAT CORE
-    =====================================================
-    */
+Không markdown.
 
+JSON gồm:
 
-    async chat(
-        message,
-        system = "Bạn là AI Assistant của QTN GLOBAL."
-    ){
+{
 
+"name":"",
 
-        try{
+"brand":"",
 
+"origin":"",
 
-            const response =
-            await this.client.chat.completions.create({
+"description":"",
 
-                model:
-                "gpt-5-mini",
+"specification":[
 
+{
 
-                messages:[
+"name":"",
 
-                    {
-                        role:"system",
-                        content:system
-                    },
-
-
-                    {
-                        role:"user",
-                        content:message
-                    }
-
-                ]
-
-            });
-
-
-
-            return response
-                .choices[0]
-                .message
-                .content;
-
-
-
-        }
-
-        catch(error){
-
-
-            console.error(
-                "OPENAI SERVICE ERROR:",
-                error
-            );
-
-
-            throw error;
-
-        }
-
-
-    }
-
-
-
-
-
-    /*
-    =====================================================
-    PRODUCT AI
-    =====================================================
-    */
-
-
-    async generateProductDescription(product){
-
-
-        const prompt = `
-
-Viết mô tả sản phẩm chuẩn SEO cho QTN GLOBAL.
-
-Tên sản phẩm:
-${product.name}
-
-Thương hiệu:
-${product.brand}
-
-Xuất xứ:
-${product.origin}
-
-Thông số:
-${JSON.stringify(product.specs)}
-
-Yêu cầu:
-- Chuyên nghiệp
-- Dễ hiểu
-- Tập trung lợi ích khách hàng
-- Phù hợp website B2B
-
-
-`;
-
-
-
-        return this.chat(
-
-            prompt,
-
-            "Bạn là chuyên gia marketing thiết bị công nghiệp."
-
-        );
-
-
-    }
-
-
-
-
-
-    /*
-    =====================================================
-    SEO AI
-    =====================================================
-    */
-
-
-    async generateSEO(keyword){
-
-
-        return this.chat(
-
-`
-Tạo bộ SEO cho từ khóa:
-
-${keyword}
-
-Bao gồm:
-- SEO Title
-- Meta Description
-- Keywords
-- Nội dung giới thiệu
-`,
-
-"Bạn là chuyên gia SEO website."
-
-        );
-
-
-    }
-
-
+"value":""
 
 }
 
+],
 
+"features":[
 
-module.exports =
-new OpenAIService();
+""
+
+],
+
+"applications":[
+
+""
+
+],
+
+"accessories":[
+
+""
+
+]
+
+}
+
+HTML:
+
+${html}
+
+`;
+
+    const completion = await client.chat.completions.create({
+
+        model: "gpt-5.5",
+
+        messages: [
+
+            {
+
+                role: "system",
+
+                content:
+
+                    "You extract product information into JSON."
+
+            },
+
+            {
+
+                role: "user",
+
+                content: prompt
+
+            }
+
+        ],
+
+        temperature: 0
+
+    });
+
+    const text =
+
+        completion.choices[0].message.content;
+
+    console.log("");
+
+    console.log("========== AI RESULT ==========");
+
+    console.log(text);
+
+    console.log("===============================");
+
+    try {
+
+        return JSON.parse(text);
+
+    }
+
+    catch {
+
+        return {
+
+            raw: text
+
+        };
+
+    }
+
+}
