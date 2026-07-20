@@ -4,6 +4,8 @@
 
 import { downloadHtml } from "../services/html.service.js";
 import { cleanHtml } from "../utils/html-cleaner.js";
+import { buildPrompt } from "../utils/prompt-builder.js";
+import { parseProduct } from "../services/mock-ai.service.js";
 
 /* ==========================================
    IMPORT PRODUCT
@@ -14,11 +16,8 @@ export async function importProduct(req, res) {
     try {
 
         console.log("");
-
         console.log("========== IMPORT REQUEST ==========");
-
         console.log(req.body);
-
         console.log("====================================");
 
         const {
@@ -46,15 +45,13 @@ export async function importProduct(req, res) {
            DOWNLOAD HTML
         ========================== */
 
-        const result = await downloadHtml(url);
+        const htmlResult = await downloadHtml(url);
 
-        if (!result.success) {
+        if (!htmlResult.success) {
 
-            return res.status(500).json(result);
+            return res.status(500).json(htmlResult);
 
         }
-
-        console.log("");
 
         console.log("DOWNLOAD OK");
 
@@ -63,27 +60,41 @@ export async function importProduct(req, res) {
            CLEAN HTML
         ========================== */
 
-       const clean = cleanHtml(
+        const cleanHtmlResult = cleanHtml(
 
-    result.html
+            htmlResult.html
 
-);
-
-return res.json({
-
-    success: true,
-
-    debug: true,
-
-    cleanLength: clean.length,
-
-    cleanStart: clean.substring(0,1000)
-
-});
-
-        console.log("");
+        );
 
         console.log("HTML CLEAN OK");
+
+        /* ==========================
+           STEP 3
+           BUILD PROMPT
+        ========================== */
+
+        const prompt = buildPrompt(
+
+            cleanHtmlResult,
+
+            options
+
+        );
+
+        console.log("PROMPT OK");
+
+        /* ==========================
+           STEP 4
+           MOCK AI
+        ========================== */
+
+        const aiResult = await parseProduct(
+
+            prompt
+
+        );
+
+        console.log("MOCK AI OK");
 
         /* ==========================
            RETURN
@@ -95,9 +106,9 @@ return res.json({
 
             url,
 
-            title: result.title,
+            title: htmlResult.title,
 
-            html: clean
+            result: aiResult
 
         });
 
