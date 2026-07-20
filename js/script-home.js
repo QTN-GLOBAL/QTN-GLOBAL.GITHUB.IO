@@ -24,6 +24,13 @@ const brandOrder = [
      "FUJI",
      "AMWAY"
 ];
+/* =========================
+   BRAND PAGINATION
+========================= */
+
+const BRANDS_PER_PAGE = 5;
+
+let currentBrandPage = 1;
 
 /* =========================
    RENDER GRID (GENERIC)
