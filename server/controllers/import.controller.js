@@ -3,7 +3,7 @@
 ========================================== */
 
 import { downloadHtml } from "../services/html.service.js";
-import { parseProductWithAI } from "../services/openai.service.js";
+import { cleanHtml } from "../utils/html-cleaner.js";
 
 /* ==========================================
    IMPORT PRODUCT
@@ -14,8 +14,11 @@ export async function importProduct(req, res) {
     try {
 
         console.log("");
+
         console.log("========== IMPORT REQUEST ==========");
+
         console.log(req.body);
+
         console.log("====================================");
 
         const {
@@ -52,23 +55,23 @@ export async function importProduct(req, res) {
         }
 
         console.log("");
-        console.log("HTML DOWNLOAD OK");
+
+        console.log("DOWNLOAD OK");
 
         /* ==========================
            STEP 2
-           OPENAI PARSE
+           CLEAN HTML
         ========================== */
 
-        const aiResult = await parseProductWithAI(
+        const clean = cleanHtml(
 
-            result.html,
-
-            options
+            result.html
 
         );
 
         console.log("");
-        console.log("OPENAI PARSE OK");
+
+        console.log("HTML CLEAN OK");
 
         /* ==========================
            RETURN
@@ -80,9 +83,9 @@ export async function importProduct(req, res) {
 
             url,
 
-            title: result.title || "",
+            title: result.title,
 
-            data: aiResult
+            html: clean
 
         });
 
