@@ -1,5 +1,5 @@
 /* ==========================================
-   HTML CLEANER
+   HTML CLEANER V2
 ========================================== */
 
 import * as cheerio from "cheerio";
@@ -35,7 +35,7 @@ export function cleanHtml(html) {
     ).remove();
 
     /* ==========================
-       REMOVE COMMON CLASSES
+       REMOVE COMMON BLOCKS
     ========================== */
 
     $(
@@ -49,35 +49,107 @@ export function cleanHtml(html) {
         ".modal," +
         ".banner," +
         ".advertisement," +
-        ".ads"
+        ".ads," +
+        ".social," +
+        ".language-select," +
+        ".header-top," +
+        ".header-bot," +
+        ".main-slide," +
+        ".menu-product"
     ).remove();
 
     /* ==========================
-       MAIN CONTENT
+       TRY FIND PRODUCT CONTENT
     ========================== */
+
+    const selectors = [
+
+        "article",
+
+        "main",
+
+        ".product-detail",
+
+        ".product-content",
+
+        ".product-info",
+
+        ".product",
+
+        ".entry-content",
+
+        ".post-content",
+
+        ".node-content",
+
+        ".pane-content",
+
+        ".content",
+
+        "#content",
+
+        "#main"
+
+    ];
 
     let content = "";
 
-    if ($("article").length) {
+    for (const selector of selectors) {
 
-        content = $("article").first().html();
+        const node = $(selector).first();
+
+        if (node.length) {
+
+            const html = node.html();
+
+            if (html && html.length > 500) {
+
+                console.log("FOUND:", selector);
+
+                content = html;
+
+                break;
+
+            }
+
+        }
 
     }
 
-    else if ($("main").length) {
+    /* ==========================
+       FALLBACK
+    ========================== */
 
-        content = $("main").first().html();
+    if (!content) {
+
+        console.log("NO PRODUCT SELECTOR FOUND");
+
+        content = $("body").html() || "";
 
     }
 
-    else {
+    /* ==========================
+       NORMALIZE
+    ========================== */
 
-        content = $("body").html();
+    content = content
 
-    }
+        .replace(/\n+/g, "\n")
 
-    console.log("HTML CLEAN DONE");
+        .replace(/\t+/g, "")
 
-    return content || "";
+        .replace(/\s{2,}/g, " ")
+
+        .trim();
+
+    console.log("");
+
+    console.log("HTML LENGTH:", content.length);
+
+    console.log("");
+
+    console.log("========== HTML CLEAN DONE ==========");
+
+    return content;
 
 }
