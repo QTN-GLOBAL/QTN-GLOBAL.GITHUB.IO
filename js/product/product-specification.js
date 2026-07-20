@@ -80,13 +80,43 @@ function renderSpecificationContent() {
 
     }
 
-    box.innerHTML = `
+   box.innerHTML = `
 
-        ${renderDescriptionEditor(product)}
+    ${renderDescriptionEditor(product)}
 
-        ${renderSpecificationEditor(product)}
+    ${renderSpecificationEditor(product)}
 
-    `;
+    ${renderEditableList({
+
+        title:"Features",
+
+        key:"features",
+
+        button:"+ Add Feature"
+
+    })}
+
+    ${renderEditableList({
+
+        title:"Applications",
+
+        key:"applications",
+
+        button:"+ Add Application"
+
+    })}
+
+    ${renderEditableList({
+
+        title:"Accessories",
+
+        key:"accessories",
+
+        button:"+ Add Accessory"
+
+    })}
+
+`;
 
 }
 /* ==========================================
@@ -311,6 +341,19 @@ function saveSpecificationStep() {
                 input.value;
 
         });
+document
+.querySelectorAll(".list-editor")
+.forEach(input=>{
+
+    const key=input.dataset.key;
+
+    const index=input.dataset.index;
+
+    currentProduct.product[key][index]=
+
+        input.value.trim();
+
+});
 
 }
 
@@ -335,5 +378,130 @@ function nextProductPreview() {
     console.log(currentProduct.product);
 
     alert("Step 5 sẽ làm tiếp.");
+
+}
+/* ==========================================
+   FEATURES / APPLICATIONS / ACCESSORIES
+========================================== */
+
+function renderEditableList(config){
+
+    const product = currentProduct.product;
+
+    if(!product[config.key]){
+
+        product[config.key]=[];
+
+    }
+
+    let rows="";
+
+    product[config.key].forEach((item,index)=>{
+
+        rows += `
+
+<tr>
+
+    <td style="width:100%;">
+
+        <input
+
+            class="list-editor"
+
+            data-key="${config.key}"
+
+            data-index="${index}"
+
+            value="${item}">
+
+    </td>
+
+    <td style="width:60px;">
+
+        <button
+
+            type="button"
+
+            onclick="removeListItem('${config.key}',${index})">
+
+            ❌
+
+        </button>
+
+    </td>
+
+</tr>
+
+`;
+
+    });
+
+    return `
+
+<div class="ai-block">
+
+    <h4>
+
+        ${config.title}
+
+    </h4>
+
+    <table
+        class="spec-table"
+        style="width:100%;">
+
+        <tbody>
+
+            ${rows}
+
+        </tbody>
+
+    </table>
+
+    <br>
+
+    <button
+
+        type="button"
+
+        onclick="addListItem('${config.key}')">
+
+        ${config.button}
+
+    </button>
+
+</div>
+
+`;
+
+}
+
+/* ==========================================
+   ADD LIST ITEM
+========================================== */
+
+function addListItem(key){
+
+    if(!currentProduct.product[key]){
+
+        currentProduct.product[key]=[];
+
+    }
+
+    currentProduct.product[key].push("");
+
+    renderSpecificationContent();
+
+}
+
+/* ==========================================
+   REMOVE LIST ITEM
+========================================== */
+
+function removeListItem(key,index){
+
+    currentProduct.product[key].splice(index,1);
+
+    renderSpecificationContent();
 
 }
