@@ -67,88 +67,132 @@ function renderSpecificationContent() {
     if (!product) {
 
         box.innerHTML = `
+
         <div class="import-status">
+
             Không có dữ liệu AI.
+
         </div>
+
         `;
 
         return;
 
     }
 
-    let specificationHTML = "";
-
-    (product.specification || []).forEach((item, index) => {
-
-        specificationHTML += `
-
-        <tr>
-
-            <td>
-
-                <input
-                    class="spec-name"
-                    data-index="${index}"
-                    value="${item.name || ""}">
-
-            </td>
-
-            <td>
-
-                <input
-                    class="spec-value"
-                    data-index="${index}"
-                    value="${item.value || ""}">
-
-            </td>
-
-            <td>
-
-                <button
-                    type="button"
-                    onclick="removeSpecification(${index})">
-
-                    ❌
-
-                </button>
-
-            </td>
-
-        </tr>
-
-        `;
-
-    });
-
     box.innerHTML = `
 
-<div class="ai-block">
+        ${renderDescriptionEditor(product)}
 
-    <h4>Description</h4>
+        ${renderSpecificationEditor(product)}
 
-    <textarea
+    `;
 
-        id="productDescription"
+}
+/* ==========================================
+   DESCRIPTION EDITOR
+========================================== */
 
-        class="form-control"
+function renderDescriptionEditor(product){
 
-        style="width:100%;
-               min-height:180px;
-               resize:vertical;">
+    return `
+
+    <div class="ai-block">
+
+        <h4>Description</h4>
+
+        <textarea
+
+            id="productDescription"
+
+            class="form-control"
+
+            style="width:100%;
+                   min-height:180px;
+                   resize:vertical;">
 
 ${product.description || ""}
 
-    </textarea>
+        </textarea>
 
-</div>
+    </div>
+
+    `;
+
+}
+/* ==========================================
+   SPECIFICATION EDITOR
+========================================== */
+
+function renderSpecificationEditor(product){
+
+    let rows = "";
+
+    (product.specification || []).forEach((item,index)=>{
+
+        rows += `
+
+<tr>
+
+    <td>
+
+        <input
+
+            class="spec-name"
+
+            data-index="${index}"
+
+            value="${item.name || ""}">
+
+    </td>
+
+    <td>
+
+        <input
+
+            class="spec-value"
+
+            data-index="${index}"
+
+            value="${item.value || ""}">
+
+    </td>
+
+    <td>
+
+        <button
+
+            type="button"
+
+            onclick="removeSpecification(${index})">
+
+            ❌
+
+        </button>
+
+    </td>
+
+</tr>
+
+`;
+
+    });
+
+    return `
 
 <div class="ai-block">
 
-    <h4>Technical Specification</h4>
+    <h4>
+
+        Technical Specification
+
+    </h4>
 
     <table
+
         class="spec-table"
-        style="width:100%;border-collapse:collapse;">
+
+        style="width:100%;">
 
         <thead>
 
@@ -166,7 +210,7 @@ ${product.description || ""}
 
         <tbody>
 
-            ${specificationHTML}
+            ${rows}
 
         </tbody>
 
