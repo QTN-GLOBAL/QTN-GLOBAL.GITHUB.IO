@@ -292,8 +292,9 @@ async function nextProductContentImport() {
 
     }
 
-    window.currentProduct.importResult = result.result;
+   window.currentProduct.importResult = result;
 
+window.currentProduct.product = result.product;
     if (status) {
 
         status.innerHTML = "✅ Website đã đọc thành công";
@@ -302,15 +303,9 @@ async function nextProductContentImport() {
 
     console.log(result);
 
-    alert("Đã lấy HTML thành công.");
+   saveProductContentImport();
 
-    /*
-        BƯỚC TIẾP THEO
-
-        renderProductDescription();
-
-    */
-
+renderProductSpecification();
 }
 /* ==========================================
    SAVE CONTENT IMPORT
