@@ -1,114 +1,118 @@
 /* =====================================================
-   PRODUCT SYNC
-   Form -> currentProduct
+   PRODUCT AI PARSER
+   - AI Parser
+   - Version 1
 ===================================================== */
 
-function syncProductSession() {
+window.ProductAIParser = {
 
-    if (!window.currentProduct) return;
+    /* ==========================================
+       PARSE
+    ========================================== */
 
-    const business =
-        document.getElementById("productBusiness");
+    async parse(prompt) {
 
-    const category =
-        document.getElementById("productCategory");
+        if (!prompt) {
 
-    const brand =
-        document.getElementById("productBrand");
+            throw "Prompt is empty.";
 
-    const origin =
-        document.getElementById("productOrigin");
+        }
 
-    const folder =
-        document.getElementById("productFolder");
+        console.log("AI Parsing...");
 
-    const productId =
-        document.getElementById("productId");
+        /*
+            Version 1
 
-    const productName =
-        document.getElementById("productName");
+            Sau này sẽ gọi OpenAI
 
-    const status =
-        document.querySelector(
-            'input[name="productStatus"]:checked'
-        );
+        */
 
-    window.currentProduct.business =
-        business ? business.value : "";
+        return await this.mock(prompt);
 
-    window.currentProduct.category =
-        category ? category.value : "";
+    },
 
-    window.currentProduct.brand =
-        brand ? brand.value : "";
+    /* ==========================================
+       MOCK AI
+    ========================================== */
 
-    window.currentProduct.origin =
-        origin ? origin.value : "";
+    async mock(prompt) {
 
-    window.currentProduct.folder =
-        folder ? folder.value : "";
+        console.log(prompt);
 
-    window.currentProduct.id =
-        productId ? productId.value : "";
+        return {
 
-    window.currentProduct.name =
-        productName ? productName.value : "";
+            success: true,
 
-    window.currentProduct.status =
-        status ? status.value : "draft";
+            description:
 
-}
+                "AI Description",
 
-/* =====================================================
-   BIND SYNC EVENTS
-===================================================== */
+            specification: [
 
-function bindProductSync() {
+                {
 
-    const ids = [
+                    name: "Capacity",
 
-        "productBusiness",
+                    value: "30kg"
 
-        "productCategory",
+                },
 
-        "productBrand",
+                {
 
-        "productOrigin",
+                    name: "Division",
 
-        "productFolder",
+                    value: "5g"
 
-        "productId",
+                }
 
-        "productName"
+            ],
 
-    ];
+            features: [
 
-    ids.forEach(id => {
+                "AI Feature 1",
 
-        const el =
-            document.getElementById(id);
+                "AI Feature 2"
 
-        if (!el) return;
+            ],
 
-        el.addEventListener("input", syncProductSession);
+            applications: [
 
-        el.addEventListener("change", syncProductSession);
+                "AI Application"
 
-    });
+            ],
 
-    document
-        .querySelectorAll(
-            'input[name="productStatus"]'
-        )
-        .forEach(radio => {
+            accessories: [
 
-            radio.addEventListener(
-                "change",
-                syncProductSession
-            );
+                "Adapter",
 
-        });
+                "Manual"
 
-    syncProductSession();
+            ]
 
-}
+        };
+
+    },
+
+    /* ==========================================
+       OPENAI
+       (Future)
+    ========================================== */
+
+    async openAI(prompt) {
+
+        throw "OpenAI chưa kết nối.";
+
+    },
+
+    /* ==========================================
+       GEMINI
+       (Future)
+    ========================================== */
+
+    async gemini(prompt) {
+
+        throw "Gemini chưa kết nối.";
+
+    }
+
+};
