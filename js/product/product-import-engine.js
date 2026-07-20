@@ -1,13 +1,9 @@
 /* =====================================================
    PRODUCT IMPORT ENGINE
-   Version 2
+   Version 3
 ===================================================== */
 
 window.ProductImportEngine = {
-
-    /* ==========================================
-       IMPORT
-    ========================================== */
 
     async import(source) {
 
@@ -18,10 +14,6 @@ window.ProductImportEngine = {
             console.log("PRODUCT IMPORT ENGINE");
 
             console.log("=================================");
-
-            /* =========================
-               SEND TO BACKEND
-            ========================= */
 
             const response = await fetch(
 
@@ -55,27 +47,23 @@ window.ProductImportEngine = {
 
             if (!result.success) {
 
-                throw result.message || "Import failed.";
+                throw new Error(
+
+                    result.message || "Import failed."
+
+                );
 
             }
-
-            /* =========================
-               SAVE HTML
-            ========================= */
-
-            window.currentProduct.importResult = result;
 
             console.log("BACKEND OK");
 
             console.log(result.title);
 
-            return {
+            /* ==========================
+               TRẢ THẲNG BACKEND RESULT
+            ========================== */
 
-                success: true,
-
-                result
-
-            };
+            return result;
 
         }
 
@@ -87,7 +75,7 @@ window.ProductImportEngine = {
 
                 success: false,
 
-                error: err
+                error: err.message || err
 
             };
 
