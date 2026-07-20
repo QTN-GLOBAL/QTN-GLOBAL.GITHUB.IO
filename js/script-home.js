@@ -117,37 +117,173 @@ function filterByBrand(brand) {
 
 function renderHomeByBrand(productList = null) {
 
-    const container = document.getElementById("homeContainer");
-    if (!container) return;
-
     const products = productList || getProducts();
 
     const brands = {};
 
     products.forEach(p => {
+
         if (!p.brand) return;
 
         const key = p.brand.trim().toUpperCase();
 
-        if (!brands[key]) brands[key] = [];
+        if (!brands[key]) {
+            brands[key] = [];
+        }
 
         brands[key].push(p);
+
     });
+
+    renderBrandPage(brands);
+
+}
+/* =========================
+   RENDER BRAND PAGE
+========================= */
+
+function renderBrandPage(brands) {
+
+    const container = document.getElementById("homeContainer");
+
+    if (!container) return;
 
     let html = "";
 
-    brandOrder.forEach(key => {
+    const existBrands = brandOrder.filter(key => brands[key]);
 
-        const items = brands[key];
+    const totalPages = Math.ceil(
+        existBrands.length / BRANDS_PER_PAGE
+    );
 
-        if (!items || items.length === 0) return;
+    if (currentBrandPage > totalPages) {
+        currentBrandPage = 1;
+    }
 
-        html += createBrandSection(key, items);
-    });
+    const start = (currentBrandPage - 1) * BRANDS_PER_PAGE;
+
+    const end = start + BRANDS_PER_PAGE;
+
+    existBrands
+        .slice(start, end)
+        .forEach(key => {
+
+            html += createBrandSection(
+                key,
+                brands[key]
+            );
+
+        });
+
+    if (totalPages > 1) {
+
+        html += `
+<div class="brand-pagination">
+
+<button
+onclick="changeBrandPage(-1)">
+❮
+</button>
+
+`;
+
+        for (let i = 1; i <= totalPages; i++) {
+
+            html += `
+<button
+class="${i===currentBrandPage?'active':''}"
+onclick="changeBrandPage(${i})">
+
+${i}
+
+</button>
+`;
+
+        }
+
+        html += `
+<button
+onclick="changeBrandPage(-2)">
+❯
+</button>
+
+</div>
+`;
+
+    }
 
     container.innerHTML = html;
+
+    initBrandSliders();
+
 }
 
+/* =========================
+   CHANGE PAGE
+========================= */
+
+function changeBrandPage(page){
+
+    const products = getProducts();
+
+    const brands = {};
+
+    products.forEach(p=>{
+
+        if(!p.brand) return;
+
+        const key =
+            p.brand.trim().toUpperCase();
+
+        if(!brands[key]){
+
+            brands[key]=[];
+
+        }
+
+        brands[key].push(p);
+
+    });
+
+    const totalPages = Math.ceil(
+
+        brandOrder.filter(
+            b=>brands[b]
+        ).length
+
+        / BRANDS_PER_PAGE
+
+    );
+
+    if(page===-1){
+
+        if(currentBrandPage>1){
+
+            currentBrandPage--;
+
+        }
+
+    }
+
+    else if(page===-2){
+
+        if(currentBrandPage<totalPages){
+
+            currentBrandPage++;
+
+        }
+
+    }
+
+    else{
+
+        currentBrandPage=page;
+
+    }
+
+    renderBrandPage(brands);
+
+}
 /* =========================
    BRAND SECTION (ONLY HTML)
 ========================= */
