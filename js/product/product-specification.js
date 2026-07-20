@@ -371,13 +371,31 @@ function backToContentImport() {
    NEXT
 ========================================== */
 
-function nextProductPreview() {
+function nextProductPreview(){
 
     saveSpecificationStep();
 
+    normalizeSpecification();
+
+    if(
+
+        !validateSpecification()
+
+    ){
+
+        return;
+
+    }
+
+    saveProductDraft();
+
     console.log(currentProduct.product);
 
-    alert("Step 5 sẽ làm tiếp.");
+    alert(
+
+        "Step 5 Preview sẽ làm tiếp."
+
+    );
 
 }
 /* ==========================================
@@ -503,5 +521,115 @@ function removeListItem(key,index){
     currentProduct.product[key].splice(index,1);
 
     renderSpecificationContent();
+
+}
+/* ==========================================
+   AUTO SAVE
+========================================== */
+
+let specificationTimer = null;
+
+function scheduleSpecificationSave(){
+
+    clearTimeout(specificationTimer);
+
+    specificationTimer = setTimeout(()=>{
+
+        saveSpecificationStep();
+
+        saveProductDraft();
+
+    },500);
+
+}
+/* ==========================================
+   AUTO BIND
+========================================== */
+
+document.addEventListener("input",(e)=>{
+
+    if(
+
+        e.target.classList.contains("spec-name") ||
+
+        e.target.classList.contains("spec-value") ||
+
+        e.target.classList.contains("list-editor") ||
+
+        e.target.id==="productDescription"
+
+    ){
+
+        scheduleSpecificationSave();
+
+    }
+
+});
+/* ==========================================
+   NORMALIZE
+========================================== */
+
+function normalizeSpecification(){
+
+    if(!currentProduct?.product?.specification) return;
+
+    currentProduct.product.specification.forEach(item=>{
+
+        if(item.name){
+
+            item.name=item.name.trim();
+
+        }
+
+        if(item.value){
+
+            item.value=item.value
+
+                .replace(/\s+/g," ")
+
+                .replace(/KG/g,"kg")
+
+                .replace(/Kg/g,"kg")
+
+                .replace(/G$/,"g")
+
+                .trim();
+
+        }
+
+    });
+
+}
+/* ==========================================
+   VALIDATE
+========================================== */
+
+function validateSpecification(){
+
+    const specs=currentProduct.product.specification||[];
+
+    for(let item of specs){
+
+        if(
+
+            !item.name ||
+
+            !item.value
+
+        ){
+
+            alert(
+
+                "Specification không được để trống."
+
+            );
+
+            return false;
+
+        }
+
+    }
+
+    return true;
 
 }
