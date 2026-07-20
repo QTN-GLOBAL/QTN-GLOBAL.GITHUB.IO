@@ -1,6 +1,6 @@
 /* =====================================================
    PRODUCT IMPORT ENGINE
-   Version 1
+   Version 2
 ===================================================== */
 
 window.ProductImportEngine = {
@@ -14,96 +14,60 @@ window.ProductImportEngine = {
         try {
 
             console.log("=================================");
+
             console.log("PRODUCT IMPORT ENGINE");
+
             console.log("=================================");
 
             /* =========================
-               STEP 1
-               LOAD SOURCE
+               SEND TO BACKEND
             ========================= */
 
-            const sourceResult =
-                await ProductSourceLoader.load(source);
+            const response = await fetch(
 
-            if (!sourceResult.success) {
+                "http://localhost:3000/api/import",
 
-                throw sourceResult.error ||
-                    "Load source failed.";
+                {
 
-            }
+                    method: "POST",
 
-            console.log("SOURCE OK");
+                    headers: {
 
-            /* =========================
-               STEP 2
-               CLEAN HTML
-            ========================= */
+                        "Content-Type": "application/json"
 
-            const cleanHtml =
-                ProductHtmlCleaner.clean(
+                    },
 
-                    sourceResult.html
+                    body: JSON.stringify({
 
-                );
+                        url: source.url,
 
-            console.log("HTML CLEAN OK");
+                        options: source.options || {}
 
-            /* =========================
-               STEP 3
-               BUILD PROMPT
-            ========================= */
+                    })
 
-            const prompt =
-                ProductPromptBuilder.build(
-
-                    cleanHtml,
-
-                    source.options || {}
-
-                );
-
-            console.log("PROMPT OK");
-
-            /* =========================
-               STEP 4
-               AI PARSE
-            ========================= */
-
-            const aiResult =
-                await ProductAIParser.parse(
-
-                    prompt
-
-                );
-
-            console.log("AI OK");
-
-            /* =========================
-               STEP 5
-               VALIDATE
-            ========================= */
-
-            const result =
-                ProductJsonValidator.validate(
-
-                    aiResult
-
-                );
-
-            console.log("VALIDATOR OK");
-
-            /* =========================
-               STEP 6
-               APPLY
-            ========================= */
-
-            ProductImportResult.apply(
-
-                result
+                }
 
             );
 
-            console.log("IMPORT DONE");
+            const result = await response.json();
+
+            console.log(result);
+
+            if (!result.success) {
+
+                throw result.message || "Import failed.";
+
+            }
+
+            /* =========================
+               SAVE HTML
+            ========================= */
+
+            window.currentProduct.importResult = result;
+
+            console.log("BACKEND OK");
+
+            console.log(result.title);
 
             return {
 
