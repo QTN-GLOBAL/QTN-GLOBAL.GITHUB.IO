@@ -1,19 +1,25 @@
 /* ==========================================
    PRODUCT PARSER SERVICE
-   VERSION 1
+   VERSION 2
 
-   NHIỆM VỤ:
-   - Đọc HTML đã được clean
+   MỤC TIÊU:
    - Không dùng OpenAI
    - Không tốn API
-   - Lấy dữ liệu sản phẩm trực tiếp từ HTML
+   - Lấy dữ liệu thật từ HTML
+   - Lọc nội dung sản phẩm
+   - Tách Description
+   - Tách Specification
+   - Tách Features
+   - Tách Applications
+   - Tách Accessories
+   - Lấy Images
 ========================================== */
 
 import * as cheerio from "cheerio";
 
 
 /* ==========================================
-   PARSE PRODUCT FROM HTML
+   MAIN PARSER
 ========================================== */
 
 export function parseProductFromHtml(
@@ -27,7 +33,7 @@ export function parseProductFromHtml(
     console.log("");
 
     console.log(
-        "========== FREE PRODUCT PARSER =========="
+        "========== FREE PRODUCT PARSER V2 =========="
     );
 
 
@@ -41,27 +47,7 @@ export function parseProductFromHtml(
             "HTML EMPTY"
         );
 
-        return {
-
-            name: "",
-
-            brand: "",
-
-            origin: "",
-
-            description: "",
-
-            specification: [],
-
-            features: [],
-
-            applications: [],
-
-            accessories: [],
-
-            images: []
-
-        };
+        return createEmptyProduct();
 
     }
 
@@ -87,36 +73,29 @@ export function parseProductFromHtml(
        RESULT
     ========================================== */
 
-    const product = {
+    const product =
 
-        name: "",
-
-        brand: "",
-
-        origin: "",
-
-        description: "",
-
-        specification: [],
-
-        features: [],
-
-        applications: [],
-
-        accessories: [],
-
-        images: []
-
-    };
+        createEmptyProduct();
 
 
     /* ==========================================
-       HELPER
+       HELPER:
+       CLEAN TEXT
     ========================================== */
 
-    function cleanText(text) {
+    function cleanText(
 
-        return String(text || "")
+        text
+
+    ) {
+
+        return String(
+
+            text || ""
+
+        )
+
+            .replace(/\u00a0/g, " ")
 
             .replace(/\s+/g, " ")
 
@@ -126,6 +105,41 @@ export function parseProductFromHtml(
 
 
     /* ==========================================
+       HELPER:
+       REMOVE DUPLICATES
+    ========================================== */
+
+    function uniqueArray(
+
+        array
+
+    ) {
+
+        return [
+
+            ...new Set(
+
+                array
+
+                    .map(
+
+                        item =>
+
+                            cleanText(item)
+
+                    )
+
+                    .filter(Boolean)
+
+            )
+
+        ];
+
+    }
+
+
+    /* ==========================================
+       HELPER:
        FIND FIRST TEXT
     ========================================== */
 
@@ -141,9 +155,11 @@ export function parseProductFromHtml(
 
         ) {
 
-            const element = $(selector)
+            const element =
 
-                .first();
+                $(selector)
+
+                    .first();
 
 
             if (
@@ -152,14 +168,20 @@ export function parseProductFromHtml(
 
             ) {
 
-                const text = cleanText(
+                const text =
 
-                    element.text()
+                    cleanText(
 
-                );
+                        element.text()
+
+                    );
 
 
-                if (text) {
+                if (
+
+                    text
+
+                ) {
 
                     return text;
 
@@ -176,6 +198,7 @@ export function parseProductFromHtml(
 
 
     /* ==========================================
+       STEP 1
        PRODUCT NAME
     ========================================== */
 
@@ -183,18 +206,22 @@ export function parseProductFromHtml(
 
         findFirstText([
 
-            "h1",
+            "h1.product-title",
 
-            ".product-title",
+            "h1.product-name",
 
-            ".product-name",
+            ".product-detail h1",
 
-            ".entry-title",
+            ".product-info h1",
 
-            ".title"
+            ".product-content h1",
+
+            "h1"
 
         ]);
 
+
+    console.log("");
 
     console.log(
 
@@ -206,6 +233,7 @@ export function parseProductFromHtml(
 
 
     /* ==========================================
+       STEP 2
        BRAND
     ========================================== */
 
@@ -215,6 +243,8 @@ export function parseProductFromHtml(
 
             ".product-brand",
 
+            ".brand-name",
+
             ".brand",
 
             "[class*='brand']"
@@ -223,6 +253,7 @@ export function parseProductFromHtml(
 
 
     /* ==========================================
+       STEP 3
        ORIGIN
     ========================================== */
 
@@ -240,55 +271,77 @@ export function parseProductFromHtml(
 
 
     /* ==========================================
+       STEP 4
        DESCRIPTION
     ========================================== */
 
-    const descriptionSelectors = [
+    if (
 
-        ".product-description",
-
-        ".product-detail-description",
-
-        ".product-content",
-
-        ".product-contents",
-
-        ".entry-content",
-
-        ".description"
-
-    ];
-
-
-    for (
-
-        const selector of
-
-        descriptionSelectors
+        options.description !== false
 
     ) {
 
-        const element =
+        const descriptionSelectors = [
 
-            $(selector).first();
+            ".product-description",
+
+            ".product-detail-description",
+
+            ".product-intro",
+
+            ".product-summary",
+
+            ".product-short-description",
+
+            ".product-detail .description",
+
+            ".product-info .description",
+
+            ".entry-content .description"
+
+        ];
 
 
-        if (
+        for (
 
-            element.length
+            const selector of
+
+            descriptionSelectors
 
         ) {
 
-            const text = cleanText(
+            const element =
 
-                element.text()
+                $(selector)
 
-            );
+                    .first();
 
 
             if (
 
-                text.length > 30
+                !element.length
+
+            ) {
+
+                continue;
+
+            }
+
+
+            const text =
+
+                cleanText(
+
+                    element.text()
+
+                );
+
+
+            if (
+
+                text.length >= 30 &&
+
+                text.length <= 5000
 
             ) {
 
@@ -302,7 +355,155 @@ export function parseProductFromHtml(
 
         }
 
+
+        /* ======================================
+           FALLBACK DESCRIPTION
+
+           Nếu không tìm được selector
+           cụ thể thì lấy đoạn văn đầu tiên
+           trong khu vực product.
+        ====================================== */
+
+        if (
+
+            !product.description
+
+        ) {
+
+            const productContainers = [
+
+                ".product-detail",
+
+                ".product-content",
+
+                ".product-info",
+
+                "main",
+
+                "article"
+
+            ];
+
+
+            for (
+
+                const selector of
+
+                productContainers
+
+            ) {
+
+                const container =
+
+                    $(selector)
+
+                        .first();
+
+
+                if (
+
+                    !container.length
+
+                ) {
+
+                    continue;
+
+                }
+
+
+                let paragraphs = [];
+
+
+                container
+
+                    .find("p")
+
+                    .each(
+
+                        function () {
+
+                            const text =
+
+                                cleanText(
+
+                                    $(this)
+
+                                        .text()
+
+                                );
+
+
+                            if (
+
+                                text.length >= 30 &&
+
+                                text.length <= 1000
+
+                            ) {
+
+                                paragraphs.push(
+
+                                    text
+
+                                );
+
+                            }
+
+                        }
+
+                    );
+
+
+                paragraphs =
+
+                    uniqueArray(
+
+                        paragraphs
+
+                    );
+
+
+                if (
+
+                    paragraphs.length
+
+                ) {
+
+                    product.description =
+
+                        paragraphs
+
+                            .slice(
+
+                                0,
+
+                                5
+
+                            )
+
+                            .join(" ");
+
+
+                    break;
+
+                }
+
+            }
+
+        }
+
     }
+
+
+    console.log("");
+
+    console.log(
+
+        "DESCRIPTION:",
+
+        product.description
+
+    );
 
 
     console.log(
@@ -315,33 +516,66 @@ export function parseProductFromHtml(
 
 
     /* ==========================================
+       STEP 5
        SPECIFICATION
-       TABLE
     ========================================== */
 
-    $("table").each(
+    if (
 
-        function () {
+        options.specification !== false
 
-            const rows = $(this)
+    ) {
 
-                .find("tr");
+        $("table").each(
 
+            function () {
 
-            rows.each(
+                const table =
 
-                function () {
-
-                    const cells = $(this)
-
-                        .find("th, td");
+                    $(this);
 
 
-                    if (
+                const rows =
 
-                        cells.length >= 2
+                    table.find("tr");
 
-                    ) {
+
+                if (
+
+                    !rows.length
+
+                ) {
+
+                    return;
+
+                }
+
+
+                rows.each(
+
+                    function () {
+
+                        const cells =
+
+                            $(this)
+
+                                .find(
+
+                                    "th, td"
+
+                                );
+
+
+                        if (
+
+                            cells.length < 2
+
+                        ) {
+
+                            return;
+
+                        }
+
 
                         const name =
 
@@ -365,77 +599,149 @@ export function parseProductFromHtml(
                             );
 
 
+                        /* ======================
+                           FILTER
+                        ====================== */
+
                         if (
 
-                            name &&
+                            !name ||
 
-                            value &&
-
-                            name.length < 150 &&
-
-                            value.length < 500
+                            !value
 
                         ) {
 
-                            product.specification
-
-                                .push({
-
-                                    name,
-
-                                    value
-
-                                });
+                            return;
 
                         }
 
+
+                        if (
+
+                            name.length > 150
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        if (
+
+                            value.length > 1000
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        /* ======================
+                           LOẠI BỎ MENU / LINK
+                        ====================== */
+
+                        const lowerName =
+
+                            name.toLowerCase();
+
+
+                        const invalidNames = [
+
+                            "menu",
+
+                            "home",
+
+                            "search",
+
+                            "login",
+
+                            "email",
+
+                            "facebook",
+
+                            "youtube",
+
+                            "instagram"
+
+                        ];
+
+
+                        if (
+
+                            invalidNames.includes(
+
+                                lowerName
+
+                            )
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        product.specification
+
+                            .push({
+
+                                name,
+
+                                value
+
+                            });
+
                     }
 
-                }
+                );
 
-            );
-
-        }
-
-    );
-
-
-    /* ==========================================
-       REMOVE DUPLICATE SPECIFICATION
-    ========================================== */
-
-    product.specification =
-
-        product.specification.filter(
-
-            (
-
-                item,
-
-                index,
-
-                array
-
-            ) =>
-
-                index ===
-
-                array.findIndex(
-
-                    other =>
-
-                        other.name ===
-
-                            item.name &&
-
-                        other.value ===
-
-                            item.value
-
-                )
+            }
 
         );
 
+
+        /* ======================================
+           REMOVE DUPLICATE SPECIFICATION
+        ====================================== */
+
+        product.specification =
+
+            product.specification.filter(
+
+                (
+
+                    item,
+
+                    index,
+
+                    array
+
+                ) =>
+
+                    index ===
+
+                    array.findIndex(
+
+                        other =>
+
+                            other.name ===
+
+                                item.name &&
+
+                            other.value ===
+
+                                item.value
+
+                    )
+
+            );
+
+    }
+
+
+    console.log("");
 
     console.log(
 
@@ -447,6 +753,7 @@ export function parseProductFromHtml(
 
 
     /* ==========================================
+       STEP 6
        FIND LIST BY HEADING
     ========================================== */
 
@@ -456,10 +763,10 @@ export function parseProductFromHtml(
 
     ) {
 
-        let result = [];
+        const result = [];
 
 
-        $("h1, h2, h3, h4, h5, strong, b")
+        $("h1, h2, h3, h4, h5, h6")
 
             .each(
 
@@ -469,9 +776,18 @@ export function parseProductFromHtml(
 
                         cleanText(
 
-                            $(this).text()
+                            $(this)
 
-                        ).toLowerCase();
+                                .text()
+
+                        );
+
+
+                    const lowerHeading =
+
+                        heading
+
+                            .toLowerCase();
 
 
                     const matched =
@@ -480,27 +796,52 @@ export function parseProductFromHtml(
 
                             keyword =>
 
-                                heading.includes(
+                                lowerHeading
 
-                                    keyword
+                                    .includes(
 
-                                )
+                                        keyword
+
+                                    )
 
                         );
 
 
-                    if (!matched) {
+                    if (
+
+                        !matched
+
+                    ) {
 
                         return;
 
                     }
 
 
-                    const container =
+                    /* ======================
+                       TÌM LIST GẦN HEADING
+                    ====================== */
+
+                    let container =
 
                         $(this)
 
-                            .parent();
+                            .next();
+
+
+                    if (
+
+                        !container.length
+
+                    ) {
+
+                        container =
+
+                            $(this)
+
+                                .parent();
+
+                    }
 
 
                     container
@@ -526,11 +867,7 @@ export function parseProductFromHtml(
 
                                     text &&
 
-                                    !result.includes(
-
-                                        text
-
-                                    )
+                                    text.length <= 500
 
                                 ) {
 
@@ -551,178 +888,184 @@ export function parseProductFromHtml(
             );
 
 
-        return result;
+        return uniqueArray(
+
+            result
+
+        );
 
     }
 
 
     /* ==========================================
+       STEP 7
        FEATURES
     ========================================== */
 
-    product.features =
+    if (
 
-        findListByHeading([
+        options.features !== false
 
-            "feature",
+    ) {
 
-            "tính năng",
+        product.features =
 
-            "đặc điểm",
+            findListByHeading([
 
-            "ưu điểm",
+                "feature",
 
-            "features"
+                "features",
 
-        ]);
+                "tính năng",
+
+                "đặc điểm",
+
+                "ưu điểm"
+
+            ]);
+
+    }
 
 
     /* ==========================================
+       STEP 8
        APPLICATIONS
     ========================================== */
 
-    product.applications =
+    if (
 
-        findListByHeading([
+        options.applications !== false
 
-            "application",
+    ) {
 
-            "ứng dụng",
+        product.applications =
 
-            "applications"
+            findListByHeading([
 
-        ]);
+                "application",
+
+                "applications",
+
+                "ứng dụng"
+
+            ]);
+
+    }
 
 
     /* ==========================================
+       STEP 9
        ACCESSORIES
     ========================================== */
 
-    product.accessories =
+    if (
 
-        findListByHeading([
+        options.accessories !== false
 
-            "accessor",
+    ) {
 
-            "phụ kiện",
+        product.accessories =
 
-            "accessories"
+            findListByHeading([
 
-        ]);
+                "accessory",
+
+                "accessories",
+
+                "phụ kiện"
+
+            ]);
+
+    }
 
 
     /* ==========================================
+       STEP 10
        IMAGES
     ========================================== */
 
-    $("img").each(
-
-        function () {
-
-            const src =
-
-                $(this).attr("src") ||
-
-                $(this).attr("data-src") ||
-
-                $(this).attr(
-
-                    "data-original"
-
-                );
-
-
-            if (
-
-                src &&
-
-                !product.images.includes(
-
-                    src
-
-                )
-
-            ) {
-
-                product.images.push(
-
-                    src
-
-                );
-
-            }
-
-        }
-
-    );
-
-
-    /* ==========================================
-       OPTIONS
-    ========================================== */
-
     if (
 
-        options.description === false
+        options.images !== false
 
     ) {
 
-        product.description = "";
+        $("img")
 
-    }
+            .each(
 
+                function () {
 
-    if (
+                    const src =
 
-        options.specification === false
+                        $(this)
 
-    ) {
+                            .attr("src") ||
 
-        product.specification = [];
+                        $(this)
 
-    }
+                            .attr("data-src") ||
 
+                        $(this)
 
-    if (
+                            .attr(
 
-        options.features === false
+                                "data-original"
 
-    ) {
-
-        product.features = [];
-
-    }
+                            );
 
 
-    if (
+                    if (
 
-        options.applications === false
+                        !src
 
-    ) {
+                    ) {
 
-        product.applications = [];
+                        return;
 
-    }
-
-
-    if (
-
-        options.accessories === false
-
-    ) {
-
-        product.accessories = [];
-
-    }
+                    }
 
 
-    if (
+                    if (
 
-        options.images === false
+                        src.startsWith(
 
-    ) {
+                            "data:"
 
-        product.images = [];
+                        )
+
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    if (
+
+                        !product.images
+
+                            .includes(
+
+                                src
+
+                            )
+
+                    ) {
+
+                        product.images
+
+                            .push(
+
+                                src
+
+                            );
+
+                    }
+
+                }
+
+            );
 
     }
 
@@ -735,23 +1078,130 @@ export function parseProductFromHtml(
 
     console.log(
 
-        "========== PARSER RESULT =========="
+        "========== PARSER V2 RESULT =========="
 
     );
 
+
     console.log(
 
-        product
+        "NAME:",
+
+        product.name
 
     );
 
+
     console.log(
 
-        "===================================="
+        "BRAND:",
+
+        product.brand
+
+    );
+
+
+    console.log(
+
+        "ORIGIN:",
+
+        product.origin
+
+    );
+
+
+    console.log(
+
+        "DESCRIPTION LENGTH:",
+
+        product.description.length
+
+    );
+
+
+    console.log(
+
+        "SPECIFICATION:",
+
+        product.specification.length
+
+    );
+
+
+    console.log(
+
+        "FEATURES:",
+
+        product.features.length
+
+    );
+
+
+    console.log(
+
+        "APPLICATIONS:",
+
+        product.applications.length
+
+    );
+
+
+    console.log(
+
+        "ACCESSORIES:",
+
+        product.accessories.length
+
+    );
+
+
+    console.log(
+
+        "IMAGES:",
+
+        product.images.length
+
+    );
+
+
+    console.log(
+
+        "======================================="
 
     );
 
 
     return product;
+
+}
+
+
+/* ==========================================
+   EMPTY PRODUCT
+========================================== */
+
+function createEmptyProduct() {
+
+    return {
+
+        name: "",
+
+        brand: "",
+
+        origin: "",
+
+        description: "",
+
+        specification: [],
+
+        features: [],
+
+        applications: [],
+
+        accessories: [],
+
+        images: []
+
+    };
 
 }
