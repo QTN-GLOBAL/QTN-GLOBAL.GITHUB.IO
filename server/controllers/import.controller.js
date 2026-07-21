@@ -129,7 +129,7 @@ export async function importProduct(req, res) {
 
             );
 console.log("========== CLEAN HTML PREVIEW ==========");
-console.log(clean.substring(0, 10000));
+console.log(clean.substring(0, 20000));
 console.log("========================================");
 
 
