@@ -1,6 +1,12 @@
+```javascript
 /* ==========================================
    PRODUCT CONTENT IMPORT
    STEP 3
+========================================== */
+
+
+/* ==========================================
+   RENDER PRODUCT CONTENT IMPORT
 ========================================== */
 
 function renderProductContentImport() {
@@ -9,6 +15,7 @@ function renderProductContentImport() {
         document.getElementById("productModalBody");
 
     if (!body) return;
+
 
     body.innerHTML = `
 
@@ -19,6 +26,7 @@ function renderProductContentImport() {
             Step 3 / 6 - AI Content Import
 
         </h3>
+
 
         <!-- =========================
              SOURCE TYPE
@@ -62,6 +70,7 @@ function renderProductContentImport() {
 
         </div>
 
+
         <!-- =========================
              SOURCE URL
         ========================== -->
@@ -91,6 +100,7 @@ function renderProductContentImport() {
 
         </div>
 
+
         <!-- =========================
              IMPORT OPTIONS
         ========================== -->
@@ -103,67 +113,90 @@ function renderProductContentImport() {
 
             </label>
 
+
             <div class="import-options">
 
                 <label>
 
                     <input
+
                         type="checkbox"
+
                         id="importDescription"
+
                         checked>
 
                     Product Description
 
                 </label>
 
+
                 <label>
 
                     <input
+
                         type="checkbox"
+
                         id="importSpecification"
+
                         checked>
 
                     Technical Specification
 
                 </label>
 
+
                 <label>
 
                     <input
+
                         type="checkbox"
+
                         id="importFeatures"
+
                         checked>
 
                     Features
 
                 </label>
 
+
                 <label>
 
                     <input
+
                         type="checkbox"
+
                         id="importApplications"
+
                         checked>
 
                     Applications
 
                 </label>
 
+
                 <label>
 
                     <input
+
                         type="checkbox"
+
                         id="importAccessories"
+
                         checked>
 
                     Accessories
 
                 </label>
 
+
                 <label>
 
                     <input
+
                         type="checkbox"
+
                         id="importImages">
 
                     Product Images (Coming Soon)
@@ -173,6 +206,7 @@ function renderProductContentImport() {
             </div>
 
         </div>
+
 
         <!-- =========================
              STATUS
@@ -186,8 +220,11 @@ function renderProductContentImport() {
 
             </label>
 
+
             <div
+
                 id="contentImportStatus"
+
                 class="import-status">
 
                 Ready to Import
@@ -195,6 +232,7 @@ function renderProductContentImport() {
             </div>
 
         </div>
+
 
         <!-- =========================
              BUTTONS
@@ -212,6 +250,7 @@ function renderProductContentImport() {
 
             </button>
 
+
             <button
 
                 type="button"
@@ -228,9 +267,11 @@ function renderProductContentImport() {
 
     `;
 
+
     initProductContentImport();
 
 }
+
 
 /* ==========================================
    INIT
@@ -238,11 +279,17 @@ function renderProductContentImport() {
 
 function initProductContentImport() {
 
-    console.log("STEP 3 READY");
+    console.log(
+
+        "STEP 3 READY"
+
+    );
+
 
     loadProductContentImport();
 
 }
+
 
 /* ==========================================
    BACK
@@ -254,59 +301,544 @@ function backToProductImages() {
 
 }
 
+
 /* ==========================================
    NEXT STEP
 ========================================== */
 
 async function nextProductContentImport() {
 
+    /* ==========================
+       SAVE SOURCE
+    ========================== */
+
     saveProductContentImport();
+
+
+    /* ==========================
+       SAVE CURRENT DRAFT
+    ========================== */
 
     saveProductDraft();
 
-    const status = document.getElementById("contentImportStatus");
+
+    /* ==========================
+       STATUS
+    ========================== */
+
+    const status =
+
+        document.getElementById(
+
+            "contentImportStatus"
+
+        );
+
 
     if (status) {
 
-        status.innerHTML = "⏳ Đang tải dữ liệu từ Website...";
+        status.innerHTML =
+
+            "⏳ Đang tải dữ liệu từ Website...";
 
     }
 
-    const result = await ProductImportEngine.import(
 
-        window.currentProduct.source
+    /* ==========================
+       GET SOURCE
+    ========================== */
 
-    );
+    const source =
 
-    if (!result.success) {
+        window.currentProduct?.source;
+
+
+    if (
+
+        !source ||
+
+        !source.url
+
+    ) {
 
         if (status) {
 
-            status.innerHTML = "❌ Import thất bại";
+            status.innerHTML =
+
+                "❌ Chưa nhập Source URL";
 
         }
 
-        alert(result.error || "Import thất bại.");
+
+        alert(
+
+            "Vui lòng nhập URL sản phẩm."
+
+        );
+
 
         return;
 
     }
 
-   window.currentProduct.importResult = result;
 
-window.currentProduct.product = result.product;
-    if (status) {
+    /* ==========================
+       IMPORT
+    ========================== */
 
-        status.innerHTML = "✅ Website đã đọc thành công";
+    const result =
+
+        await ProductImportEngine.import(
+
+            source
+
+        );
+
+
+    /* ==========================
+       IMPORT FAILED
+    ========================== */
+
+    if (!result.success) {
+
+        if (status) {
+
+            status.innerHTML =
+
+                "❌ Import thất bại";
+
+        }
+
+
+        alert(
+
+            result.error ||
+
+            "Import thất bại."
+
+        );
+
+
+        return;
 
     }
 
-    console.log(result);
 
-   saveProductContentImport();
+    /* ==========================
+       SAVE IMPORT RESULT
+    ========================== */
 
-renderProductSpecification();
+    window.currentProduct.importResult =
+
+        result;
+
+
+    /* ==========================
+       OLD PRODUCT
+       STEP 1 DATA
+    ========================== */
+
+    const oldProduct =
+
+        window.currentProduct.product ||
+
+        {};
+
+
+    /* ==========================
+       AI PRODUCT
+       STEP 3 DATA
+    ========================== */
+
+    const aiProduct =
+
+        result.result?.product ||
+
+        result.product ||
+
+        {};
+
+
+    console.log("");
+
+    console.log(
+
+        "========== AI PRODUCT =========="
+
+    );
+
+    console.log(
+
+        aiProduct
+
+    );
+
+    console.log(
+
+        "================================"
+
+    );
+
+
+    /* ==========================
+       MERGE PRODUCT
+    ========================== */
+
+    window.currentProduct.product =
+
+        mergeImportedProduct(
+
+            oldProduct,
+
+            aiProduct
+
+        );
+
+
+    /* ==========================
+       STATUS
+    ========================== */
+
+    if (status) {
+
+        status.innerHTML =
+
+            "✅ Website đã đọc thành công";
+
+    }
+
+
+    /* ==========================
+       DEBUG
+    ========================== */
+
+    console.log("");
+
+    console.log(
+
+        "========== MERGED PRODUCT =========="
+
+    );
+
+    console.log(
+
+        window.currentProduct.product
+
+    );
+
+    console.log(
+
+        "===================================="
+
+    );
+
+
+    /* ==========================
+       SAVE DRAFT
+    ========================== */
+
+    saveProductContentImport();
+
+    saveProductDraft();
+
+
+    /* ==========================
+       GO STEP 4
+    ========================== */
+
+    renderProductSpecification();
+
 }
+
+
+/* ==========================================
+   MERGE IMPORTED PRODUCT
+========================================== */
+
+function mergeImportedProduct(
+
+    oldProduct,
+
+    aiProduct
+
+) {
+
+    /* ==========================
+       CLONE OLD PRODUCT
+    ========================== */
+
+    const merged =
+
+        JSON.parse(
+
+            JSON.stringify(
+
+                oldProduct || {}
+
+            )
+
+        );
+
+
+    /* ==========================
+       HELPER
+    ========================== */
+
+    function isValidAIValue(value) {
+
+        if (
+
+            value === null ||
+
+            value === undefined
+
+        ) {
+
+            return false;
+
+        }
+
+
+        if (
+
+            typeof value ===
+
+            "string"
+
+        ) {
+
+            const text =
+
+                value.trim();
+
+
+            if (!text) {
+
+                return false;
+
+            }
+
+
+            const invalidValues = [
+
+                "unknown",
+
+                "undefined",
+
+                "null",
+
+                "n/a",
+
+                "na",
+
+                "none"
+
+            ];
+
+
+            if (
+
+                invalidValues.includes(
+
+                    text.toLowerCase()
+
+                )
+
+            ) {
+
+                return false;
+
+            }
+
+        }
+
+
+        return true;
+
+    }
+
+
+    /* ==========================
+       SIMPLE FIELDS
+    ========================== */
+
+    const simpleFields = [
+
+        "name",
+
+        "brand",
+
+        "origin",
+
+        "description"
+
+    ];
+
+
+    simpleFields.forEach(
+
+        field => {
+
+            if (
+
+                isValidAIValue(
+
+                    aiProduct[field]
+
+                )
+
+            ) {
+
+                /*
+
+                AI chỉ ghi đè nếu:
+
+                1. Dữ liệu cũ chưa có
+
+                2. Dữ liệu cũ là Unknown
+
+                3. Field là name hoặc description
+
+                */
+
+                const oldValue =
+
+                    merged[field];
+
+
+                const oldInvalid =
+
+                    !isValidAIValue(
+
+                        oldValue
+
+                    );
+
+
+                if (
+
+                    oldInvalid ||
+
+                    field === "name" ||
+
+                    field === "description"
+
+                ) {
+
+                    merged[field] =
+
+                        aiProduct[field];
+
+                }
+
+            }
+
+        }
+
+    );
+
+
+    /* ==========================
+       SPECIFICATION
+    ========================== */
+
+    if (
+
+        Array.isArray(
+
+            aiProduct.specification
+
+        ) &&
+
+        aiProduct.specification.length
+
+    ) {
+
+        merged.specification =
+
+            aiProduct.specification;
+
+    }
+
+
+    /* ==========================
+       FEATURES
+    ========================== */
+
+    if (
+
+        Array.isArray(
+
+            aiProduct.features
+
+        ) &&
+
+        aiProduct.features.length
+
+    ) {
+
+        merged.features =
+
+            aiProduct.features;
+
+    }
+
+
+    /* ==========================
+       APPLICATIONS
+    ========================== */
+
+    if (
+
+        Array.isArray(
+
+            aiProduct.applications
+
+        ) &&
+
+        aiProduct.applications.length
+
+    ) {
+
+        merged.applications =
+
+            aiProduct.applications;
+
+    }
+
+
+    /* ==========================
+       ACCESSORIES
+    ========================== */
+
+    if (
+
+        Array.isArray(
+
+            aiProduct.accessories
+
+        ) &&
+
+        aiProduct.accessories.length
+
+    ) {
+
+        merged.accessories =
+
+            aiProduct.accessories;
+
+    }
+
+
+    /* ==========================
+       RETURN
+    ========================== */
+
+    return merged;
+
+}
+
+
 /* ==========================================
    SAVE CONTENT IMPORT
 ========================================== */
@@ -319,156 +851,321 @@ function saveProductContentImport() {
 
     }
 
-    currentProduct.source = {
+
+    window.currentProduct.source = {
 
         type:
 
-            document.getElementById("contentSourceType")?.value || "website",
+            document.getElementById(
+
+                "contentSourceType"
+
+            )?.value ||
+
+            "website",
+
 
         url:
 
-            document.getElementById("contentSourceUrl")?.value.trim() || "",
+            document.getElementById(
+
+                "contentSourceUrl"
+
+            )?.value.trim() ||
+
+            "",
+
 
         options: {
 
             description:
 
-                document.getElementById("importDescription")?.checked || false,
+                document.getElementById(
+
+                    "importDescription"
+
+                )?.checked ||
+
+                false,
+
 
             specification:
 
-                document.getElementById("importSpecification")?.checked || false,
+                document.getElementById(
+
+                    "importSpecification"
+
+                )?.checked ||
+
+                false,
+
 
             features:
 
-                document.getElementById("importFeatures")?.checked || false,
+                document.getElementById(
+
+                    "importFeatures"
+
+                )?.checked ||
+
+                false,
+
 
             applications:
 
-                document.getElementById("importApplications")?.checked || false,
+                document.getElementById(
+
+                    "importApplications"
+
+                )?.checked ||
+
+                false,
+
 
             accessories:
 
-                document.getElementById("importAccessories")?.checked || false,
+                document.getElementById(
+
+                    "importAccessories"
+
+                )?.checked ||
+
+                false,
+
 
             images:
 
-                document.getElementById("importImages")?.checked || false
+                document.getElementById(
+
+                    "importImages"
+
+                )?.checked ||
+
+                false
 
         },
 
-        imported: false,
 
-        importedAt: ""
+        imported:
+
+            false,
+
+
+        importedAt:
+
+            ""
 
     };
 
 }
+
+
 /* ==========================================
    LOAD CONTENT IMPORT
 ========================================== */
 
 function loadProductContentImport() {
 
-    if (!window.currentProduct) return;
+    if (!window.currentProduct) {
 
-    if (!window.currentProduct.source) return;
+        return;
 
-    const source = window.currentProduct.source;
+    }
 
-    /* =========================
+
+    if (
+
+        !window.currentProduct.source
+
+    ) {
+
+        return;
+
+    }
+
+
+    const source =
+
+        window.currentProduct.source;
+
+
+    /* ==========================
        SOURCE TYPE
-    ========================= */
+    ========================== */
 
     const type =
-        document.getElementById("contentSourceType");
+
+        document.getElementById(
+
+            "contentSourceType"
+
+        );
+
 
     if (type) {
 
         type.value =
-            source.type || "website";
+
+            source.type ||
+
+            "website";
 
     }
 
-    /* =========================
+
+    /* ==========================
        SOURCE URL
-    ========================= */
+    ========================== */
 
     const url =
-        document.getElementById("contentSourceUrl");
+
+        document.getElementById(
+
+            "contentSourceUrl"
+
+        );
+
 
     if (url) {
 
         url.value =
-            source.url || "";
+
+            source.url ||
+
+            "";
 
     }
 
-    /* =========================
+
+    /* ==========================
        OPTIONS
-    ========================= */
+    ========================== */
 
     const options =
-        source.options || {};
+
+        source.options ||
+
+        {};
+
 
     const description =
-        document.getElementById("importDescription");
+
+        document.getElementById(
+
+            "importDescription"
+
+        );
+
 
     if (description) {
 
         description.checked =
-            options.description ?? true;
+
+            options.description ??
+
+            true;
 
     }
 
+
     const specification =
-        document.getElementById("importSpecification");
+
+        document.getElementById(
+
+            "importSpecification"
+
+        );
+
 
     if (specification) {
 
         specification.checked =
-            options.specification ?? true;
+
+            options.specification ??
+
+            true;
 
     }
 
+
     const features =
-        document.getElementById("importFeatures");
+
+        document.getElementById(
+
+            "importFeatures"
+
+        );
+
 
     if (features) {
 
         features.checked =
-            options.features ?? true;
+
+            options.features ??
+
+            true;
 
     }
 
+
     const applications =
-        document.getElementById("importApplications");
+
+        document.getElementById(
+
+            "importApplications"
+
+        );
+
 
     if (applications) {
 
         applications.checked =
-            options.applications ?? true;
+
+            options.applications ??
+
+            true;
 
     }
 
+
     const accessories =
-        document.getElementById("importAccessories");
+
+        document.getElementById(
+
+            "importAccessories"
+
+        );
+
 
     if (accessories) {
 
         accessories.checked =
-            options.accessories ?? true;
+
+            options.accessories ??
+
+            true;
 
     }
 
+
     const images =
-        document.getElementById("importImages");
+
+        document.getElementById(
+
+            "importImages"
+
+        );
+
 
     if (images) {
 
         images.checked =
-            options.images ?? false;
+
+            options.images ??
+
+            false;
 
     }
 
 }
+```
