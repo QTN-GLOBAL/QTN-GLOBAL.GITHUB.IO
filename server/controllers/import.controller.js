@@ -3,10 +3,13 @@
 ========================================== */
 
 import { downloadHtml } from "../services/html.service.js";
+
 import { cleanHtml } from "../utils/html-cleaner.js";
-import { buildPrompt } from "../utils/prompt-builder.js";
-import { parseProduct } from "../services/mock-ai.service.js";
+
+import { parseProductWithAI } from "../services/openai.service.js";
+
 import { normalizeProduct } from "../utils/product-normalizer.js";
+
 
 /* ==========================================
    IMPORT PRODUCT
@@ -17,9 +20,21 @@ export async function importProduct(req, res) {
     try {
 
         console.log("");
-        console.log("========== IMPORT REQUEST ==========");
-        console.log(req.body);
+
         console.log("====================================");
+
+        console.log("IMPORT PRODUCT REQUEST");
+
+        console.log("====================================");
+
+        console.log(req.body);
+
+        console.log("====================================");
+
+
+        /* ==========================
+           REQUEST DATA
+        ========================== */
 
         const {
 
@@ -28,6 +43,11 @@ export async function importProduct(req, res) {
             options = {}
 
         } = req.body;
+
+
+        /* ==========================
+           VALIDATE URL
+        ========================== */
 
         if (!url) {
 
@@ -41,77 +61,169 @@ export async function importProduct(req, res) {
 
         }
 
+
         /* ==========================
            STEP 1
            DOWNLOAD HTML
         ========================== */
 
-        const htmlResult = await downloadHtml(url);
+        console.log("");
+
+        console.log("STEP 1");
+
+        console.log("Downloading website...");
+
+
+        const htmlResult =
+
+            await downloadHtml(url);
+
 
         if (!htmlResult.success) {
 
-            return res.status(500).json(htmlResult);
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+
+                    htmlResult.message ||
+
+                    "Cannot download website."
+
+            });
 
         }
 
+
+        console.log("");
+
         console.log("DOWNLOAD OK");
+
+        console.log(
+
+            "HTML LENGTH:",
+
+            htmlResult.html?.length || 0
+
+        );
+
 
         /* ==========================
            STEP 2
            CLEAN HTML
         ========================== */
 
-        const clean = cleanHtml(
+        console.log("");
 
-            htmlResult.html
+        console.log("STEP 2");
 
-        );
+        console.log("Cleaning HTML...");
+
+
+        const clean =
+
+            cleanHtml(
+
+                htmlResult.html
+
+            );
+
+
+        console.log("");
 
         console.log("HTML CLEAN OK");
 
-        /* ==========================
-           STEP 3
-           BUILD PROMPT
-        ========================== */
+        console.log(
 
-        const prompt = buildPrompt(
+            "CLEAN HTML LENGTH:",
 
-            clean,
-
-            options
+            clean?.length || 0
 
         );
 
-        console.log("PROMPT OK");
+
+        /* ==========================
+           STEP 3
+           OPENAI
+        ========================== */
+
+        console.log("");
+
+        console.log("STEP 3");
+
+        console.log(
+
+            "Sending product data to OpenAI..."
+
+        );
+
+
+        const aiResult =
+
+            await parseProductWithAI(
+
+                clean,
+
+                options
+
+            );
+
+
+        console.log("");
+
+        console.log("OPENAI OK");
+
 
         /* ==========================
            STEP 4
-           MOCK AI
+           NORMALIZE PRODUCT
         ========================== */
 
-        const aiResult = await parseProduct(
+        console.log("");
 
-            prompt
+        console.log("STEP 4");
+
+        console.log(
+
+            "Normalizing product..."
 
         );
 
-        console.log("MOCK AI OK");
 
-        /* ==========================
-           STEP 5
-           NORMALIZE
-        ========================== */
+        const product =
 
-        const product = normalizeProduct(
+            normalizeProduct(
 
-            aiResult
+                aiResult
 
-        );
+            );
+
+
+        console.log("");
 
         console.log("NORMALIZER OK");
 
+
+        console.log("");
+
+        console.log(
+
+            "========== FINAL PRODUCT =========="
+
+        );
+
+        console.log(product);
+
+        console.log(
+
+            "==================================="
+
+        );
+
+
         /* ==========================
-           RETURN
+           RETURN PRODUCT
         ========================== */
 
         return res.json({
@@ -120,23 +232,46 @@ export async function importProduct(req, res) {
 
             url,
 
-            title: htmlResult.title,
+            title:
+
+                htmlResult.title || "",
 
             product
 
         });
 
+
     }
 
     catch (error) {
 
+
+        console.error("");
+
+        console.error(
+
+            "========== IMPORT ERROR =========="
+
+        );
+
         console.error(error);
+
+        console.error(
+
+            "==================================="
+
+        );
+
 
         return res.status(500).json({
 
             success: false,
 
-            message: error.message
+            message:
+
+                error.message ||
+
+                "Product import failed."
 
         });
 
