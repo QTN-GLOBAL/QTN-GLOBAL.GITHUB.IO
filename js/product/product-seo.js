@@ -699,23 +699,116 @@ function saveProductSEO() {
 
 }
 
-
 /* ==========================================
    SAVE FINAL PRODUCT
 ========================================== */
 
 function saveFinalProduct() {
 
-    /* ==========================
-       SAVE SEO
-    ========================== */
+    console.log("");
+
+    console.log(
+        "========== SAVE FINAL PRODUCT =========="
+    );
+
+
+    /* ==========================================
+       CHECK CURRENT PRODUCT
+    ========================================== */
+
+    if (!window.currentProduct) {
+
+        alert(
+            "Không tìm thấy dữ liệu sản phẩm."
+        );
+
+        return;
+
+    }
+
+
+    if (!window.currentProduct.product) {
+
+        alert(
+            "Không tìm thấy thông tin sản phẩm."
+        );
+
+        return;
+
+    }
+
+
+    const product =
+        window.currentProduct.product;
+
+
+    /* ==========================================
+       SAVE SEO FIRST
+    ========================================== */
 
     saveProductSEO();
 
 
-    /* ==========================
-       SAVE DRAFT
-    ========================== */
+    /* ==========================================
+       VALIDATE PRODUCT NAME
+    ========================================== */
+
+    if (
+        !product.name ||
+        !product.name.trim()
+    ) {
+
+        alert(
+            "Vui lòng nhập tên sản phẩm."
+        );
+
+        return;
+
+    }
+
+
+    /* ==========================================
+       GENERATE PRODUCT ID
+    ========================================== */
+
+    if (!product.id) {
+
+        product.id =
+
+            "product-" +
+
+            Date.now();
+
+    }
+
+
+    /* ==========================================
+       PRODUCT STATUS
+    ========================================== */
+
+    product.status =
+        "draft";
+
+
+    /* ==========================================
+       SAVE TIME
+    ========================================== */
+
+    product.updatedAt =
+        new Date().toISOString();
+
+
+    if (!product.createdAt) {
+
+        product.createdAt =
+            new Date().toISOString();
+
+    }
+
+
+    /* ==========================================
+       SAVE TO DRAFT
+    ========================================== */
 
     if (
 
@@ -730,64 +823,71 @@ function saveFinalProduct() {
     }
 
 
-    /* ==========================
-       STATUS
-    ========================== */
+    /* ==========================================
+       DEBUG
+    ========================================== */
 
-    const status =
+    console.log(
+        "PRODUCT SAVED:"
+    );
+
+    console.log(
+        product
+    );
+
+
+    console.log(
+        "========================================"
+    );
+
+
+    /* ==========================================
+       SUCCESS MESSAGE
+    ========================================== */
+
+    alert(
+
+        "✅ Sản phẩm đã được lưu vào Draft."
+
+    );
+
+
+    /* ==========================================
+       CLOSE MODAL
+    ========================================== */
+
+    const modal =
 
         document.getElementById(
 
-            "productSeoStatus"
+            "productModal"
 
         );
 
 
-    if (status) {
+    if (modal) {
 
-        status.innerHTML =
-
-            "✅ Product đã được lưu.";
+        modal.style.display =
+            "none";
 
     }
 
 
-    /* ==========================
-       DEBUG
-    ========================== */
+    /* ==========================================
+       REFRESH PRODUCT LIST
+    ========================================== */
 
-    console.log("");
+    if (
 
-    console.log(
+        typeof renderProductList ===
 
-        "========== FINAL PRODUCT =========="
+        "function"
 
-    );
+    ) {
 
+        renderProductList();
 
-    console.log(
-
-        window.currentProduct?.product
-
-    );
-
-
-    console.log(
-
-        "===================================="
-
-    );
-
-
-    /* ==========================
-       TEMPORARY MESSAGE
-    ========================== */
-
-    alert(
-
-        "Product đã được lưu vào Draft."
-
-    );
+    }
 
 }
 
