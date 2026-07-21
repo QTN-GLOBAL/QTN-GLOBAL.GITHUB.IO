@@ -558,7 +558,7 @@ function removeListItem(key,index){
    AUTO SAVE
 ========================================== */
 
-let specificationTimer = null;
+var specificationTimer = null;
 
 function scheduleSpecificationSave(){
 
