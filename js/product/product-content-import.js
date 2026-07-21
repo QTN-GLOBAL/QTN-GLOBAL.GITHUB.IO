@@ -1,43 +1,40 @@
-/* ==========================================
+/* =========================================================
    PRODUCT CONTENT IMPORT
    STEP 3 / 6
 
-   PURPOSE:
+   DATA FLOW
 
-   - Nhập URL sản phẩm
-   - Gọi ProductImportEngine
-   - Giữ nguyên API Import hiện tại
-   - Nhận dữ liệu từ Backend / Free Parser / AI
-   - Chuẩn hóa dữ liệu về cấu trúc products.js
-   - Chỉ sử dụng:
-        product.specs
+   ProductImportEngine
+          ↓
+   normalizeImportedProduct()
+          ↓
+   currentProduct.product
+          ↓
+   currentProduct.product.specs
+          ↓
+   product-specification.js
 
-   IMPORTANT:
+   IMPORTANT
 
-   Không sử dụng song song:
+   CHỈ CÓ MỘT FIELD DUY NHẤT:
 
-        specification
-        specs
+       product.specs
 
-   Sau Step 3:
+   KHÔNG SỬ DỤNG:
 
-        currentProduct.product.specs
+       product.specification
 
-   là nguồn dữ liệu duy nhất cho
-   Technical Specification ở Step 4.
-========================================== */
+   ========================================================= */
 
 
-/* ==========================================
+/* =========================================================
    RENDER STEP 3
-========================================== */
+========================================================= */
 
 function renderProductContentImport() {
 
     const body =
-        document.getElementById(
-            "productModalBody"
-        );
+        document.getElementById("productModalBody");
 
     if (!body) return;
 
@@ -47,59 +44,36 @@ function renderProductContentImport() {
     <div class="product-content-import">
 
         <h3 class="product-step-title">
-
             Step 3 / 6 - AI Content Import
-
         </h3>
 
 
-        <!-- =================================
+        <!-- =========================================
              SOURCE TYPE
-        ================================== -->
+        ========================================== -->
 
         <div class="form-group">
 
             <label>
-
                 Source Type
-
             </label>
 
-
-            <select
-                id="contentSourceType">
+            <select id="contentSourceType">
 
                 <option value="website">
-
                     🌐 Website
-
                 </option>
 
-
-                <option
-                    value="pdf"
-                    disabled>
-
+                <option value="pdf" disabled>
                     📄 PDF Catalogue (Coming Soon)
-
                 </option>
 
-
-                <option
-                    value="word"
-                    disabled>
-
+                <option value="word" disabled>
                     📝 Word Document (Coming Soon)
-
                 </option>
 
-
-                <option
-                    value="manual"
-                    disabled>
-
+                <option value="manual" disabled>
                     ✍ Manual Input (Coming Soon)
-
                 </option>
 
             </select>
@@ -107,113 +81,79 @@ function renderProductContentImport() {
         </div>
 
 
-        <!-- =================================
+        <!-- =========================================
              SOURCE URL
-        ================================== -->
+        ========================================== -->
 
         <div class="form-group">
 
             <label>
-
                 Source URL
-
             </label>
 
-
             <input
-
                 id="contentSourceUrl"
-
                 type="text"
-
                 placeholder="https://www.excell.vn/..."
-
             >
 
-
             <small>
-
-                Nhập URL trang sản phẩm cần AI
-                đọc và phân tích.
-
+                Nhập URL trang sản phẩm cần AI đọc và phân tích.
             </small>
 
         </div>
 
 
-        <!-- =================================
+        <!-- =========================================
              IMPORT CONTENT
-        ================================== -->
+        ========================================== -->
 
         <div class="form-group">
 
             <label>
-
                 Import Content
-
             </label>
-
 
             <div class="import-content-info">
 
                 <div>
-
                     ✓ Product Name
-
                 </div>
 
-
                 <div>
-
                     ✓ Product Description
-
                 </div>
 
-
                 <div>
-
                     ✓ Product Specifications
-
                 </div>
 
-
                 <div>
-
                     ✓ AI Product Information
-
                 </div>
 
             </div>
 
-
             <small>
-
                 AI sẽ đọc nội dung từ Website
-                và chuyển dữ liệu sang bước
-                xử lý sản phẩm tiếp theo.
-
+                và chuyển dữ liệu sang bước xử lý sản phẩm tiếp theo.
             </small>
 
         </div>
 
 
-        <!-- =================================
+        <!-- =========================================
              STATUS
-        ================================== -->
+        ========================================== -->
 
         <div class="form-group">
 
             <label>
-
                 Status
-
             </label>
 
-
             <div
-
                 id="contentImportStatus"
-
                 class="import-status">
 
                 Ready to Import
@@ -223,45 +163,32 @@ function renderProductContentImport() {
         </div>
 
 
-        <!-- =================================
-             AI RESULT PREVIEW
-        ================================== -->
+        <!-- =========================================
+             PREVIEW
+        ========================================== -->
 
         <div
-
             id="contentImportPreview"
-
             class="content-import-preview"
-
             style="display:none;">
 
             <h4>
-
                 Imported Content
-
             </h4>
 
-
-            <div
-
-                id="contentImportPreviewContent">
-
-            </div>
+            <div id="contentImportPreviewContent"></div>
 
         </div>
 
 
-        <!-- =================================
+        <!-- =========================================
              BUTTONS
-        ================================== -->
+        ========================================== -->
 
         <div class="step-buttons">
 
-
             <button
-
                 type="button"
-
                 onclick="backToProductImages()">
 
                 ← Back
@@ -270,36 +197,28 @@ function renderProductContentImport() {
 
 
             <button
-
                 type="button"
-
                 onclick="nextProductContentImport()">
 
                 Import & Next →
 
             </button>
 
-
         </div>
-
 
     </div>
 
     `;
 
 
-    /* ======================================
-       INIT
-    ====================================== */
-
     initProductContentImport();
 
 }
 
 
-/* ==========================================
+/* =========================================================
    INIT
-========================================== */
+========================================================= */
 
 function initProductContentImport() {
 
@@ -307,15 +226,14 @@ function initProductContentImport() {
         "STEP 3 READY"
     );
 
-
     loadProductContentImport();
 
 }
 
 
-/* ==========================================
+/* =========================================================
    BACK
-========================================== */
+========================================================= */
 
 function backToProductImages() {
 
@@ -324,23 +242,22 @@ function backToProductImages() {
 }
 
 
-/* ==========================================
-   NEXT STEP
-========================================== */
+/* =========================================================
+   NEXT
+========================================================= */
 
 async function nextProductContentImport() {
 
-
-    /* ======================================
+    /* =========================================
        SAVE SOURCE
-    ====================================== */
+    ========================================== */
 
     saveProductContentImport();
 
 
-    /* ======================================
+    /* =========================================
        SAVE DRAFT
-    ====================================== */
+    ========================================== */
 
     if (
         typeof saveProductDraft === "function"
@@ -351,62 +268,51 @@ async function nextProductContentImport() {
     }
 
 
-    /* ======================================
+    /* =========================================
        STATUS
-    ====================================== */
+    ========================================== */
 
     const status =
-
         document.getElementById(
-
             "contentImportStatus"
-
         );
 
 
     if (status) {
 
         status.innerHTML =
-
             "⏳ Đang tải dữ liệu từ Website...";
 
     }
 
 
-    /* ======================================
-       GET SOURCE
-    ====================================== */
+    /* =========================================
+       SOURCE
+    ========================================== */
 
     const source =
-
         window.currentProduct?.source;
 
 
-    /* ======================================
+    /* =========================================
        VALIDATE URL
-    ====================================== */
+    ========================================== */
 
     if (
-
         !source ||
-
         !source.url
-
     ) {
 
         if (status) {
 
             status.innerHTML =
-
                 "❌ Chưa nhập Source URL";
 
         }
 
 
         alert(
-
             "Vui lòng nhập URL sản phẩm."
-
         );
 
 
@@ -415,44 +321,41 @@ async function nextProductContentImport() {
     }
 
 
-    /* ======================================
+    /* =========================================
        IMPORT
-
-       GIỮ NGUYÊN API HIỆN TẠI
-
-       ProductImportEngine.import(source)
-
-       API bên trong ProductImportEngine
-       không thay đổi.
-    ====================================== */
+    ========================================== */
 
     try {
 
+        if (
+            typeof ProductImportEngine === "undefined"
+        ) {
+
+            throw new Error(
+                "ProductImportEngine chưa được tải."
+            );
+
+        }
+
+
         const result =
-
             await ProductImportEngine.import(
-
                 source
-
             );
 
 
-        /* ==================================
+        /* =====================================
            CHECK RESULT
-        ================================== */
+        ====================================== */
 
         if (
-
             !result ||
-
             !result.success
-
         ) {
 
             if (status) {
 
                 status.innerHTML =
-
                     "❌ Import thất bại";
 
             }
@@ -474,233 +377,146 @@ async function nextProductContentImport() {
         }
 
 
-        /* ==================================
-           SAVE RAW IMPORT RESULT
-
-           Giữ nguyên kết quả gốc để
-           có thể debug khi cần.
-
-           Không dùng trực tiếp làm
-           cấu trúc sản phẩm cuối.
-        ================================== */
+        /* =====================================
+           SAVE RAW RESULT
+        ====================================== */
 
         window.currentProduct.importResult =
-
             result;
 
 
-        /* ==================================
+        /* =====================================
            GET IMPORTED PRODUCT
-        ================================== */
+        ====================================== */
 
         let importedProduct = {};
 
 
         if (
-
             result.product &&
-
             typeof result.product === "object"
-
         ) {
 
             importedProduct =
-
                 result.product;
 
         }
 
-
         else if (
-
             result.result &&
-
             result.result.product &&
-
             typeof result.result.product === "object"
-
         ) {
 
             importedProduct =
-
                 result.result.product;
 
         }
 
 
-        /* ==================================
+        /* =====================================
            OLD PRODUCT
+        ====================================== */
 
-           Lấy dữ liệu quản lý từ Step 1.
+        const current =
+            window.currentProduct || {};
 
-           Step 1 luôn được ưu tiên cho:
-
-           business
-           category
-           brand
-           origin
-           folder
-        ================================== */
 
         const oldProduct = {
 
-            ...(
-
-                window.currentProduct.product ||
-
-                {}
-
-            ),
-
+            ...(current.product || {}),
 
             business:
+                current.business ||
 
-                window.currentProduct.business ||
-
-                window.currentProduct.product
-                    ?.business ||
+                current.product?.business ||
 
                 "",
 
 
             category:
+                current.category ||
 
-                window.currentProduct.category ||
-
-                window.currentProduct.product
-                    ?.category ||
+                current.product?.category ||
 
                 "",
 
 
             brand:
+                current.brand ||
 
-                window.currentProduct.brand ||
-
-                window.currentProduct.product
-                    ?.brand ||
+                current.product?.brand ||
 
                 "",
 
 
             origin:
+                current.origin ||
 
-                window.currentProduct.origin ||
-
-                window.currentProduct.product
-                    ?.origin ||
+                current.product?.origin ||
 
                 "",
 
 
             folder:
+                current.folder ||
 
-                window.currentProduct.folder ||
-
-                window.currentProduct.product
-                    ?.folder ||
+                current.product?.folder ||
 
                 ""
 
         };
 
 
-        /* ==================================
-           DEBUG STEP 1
-        ================================== */
-
         console.log("");
 
         console.log(
-
             "========== STEP 1 PRODUCT =========="
-
         );
 
         console.log(
-
             oldProduct
-
         );
 
         console.log(
-
             "===================================="
-
         );
 
 
-        /* ==================================
-           DEBUG RAW IMPORT
-        ================================== */
+        /* =====================================
+           RAW IMPORT DEBUG
+        ====================================== */
 
         console.log("");
 
         console.log(
-
             "========== RAW IMPORT PRODUCT =========="
-
         );
 
         console.log(
-
             importedProduct
-
         );
 
         console.log(
-
             "========================================="
-
         );
 
 
-        /* ==================================
-           NORMALIZE IMPORTED PRODUCT
-
-           Đây là điểm quan trọng.
-
-           Mọi dữ liệu:
-
-              specification
-              specs
-
-           đều được đưa về:
-
-              specs
-
-           Không giữ specification.
-        ================================== */
+        /* =====================================
+           NORMALIZE
+        ====================================== */
 
         const normalizedProduct =
-
             normalizeImportedProduct(
-
                 importedProduct
-
             );
 
 
-        /* ==================================
-           MERGE PRODUCT
-
-           Step 1 + Import
-
-           Kết quả cuối:
-
-              currentProduct.product
-
-           phải có:
-
-              specs
-
-           Không có:
-
-              specification
-        ================================== */
+        /* =====================================
+           MERGE
+        ====================================== */
 
         const mergedProduct =
-
             mergeImportedProduct(
 
                 oldProduct,
@@ -710,177 +526,131 @@ async function nextProductContentImport() {
             );
 
 
-        /* ==================================
-           PRESERVE STEP 1 DATA
+        /* =====================================
+           STEP 1 PRIORITY
+        ====================================== */
 
-           Step 1 luôn được ưu tiên.
-        ================================== */
-
-        if (
-
-            window.currentProduct.business
-
-        ) {
+        if (current.business) {
 
             mergedProduct.business =
-
-                window.currentProduct.business;
+                current.business;
 
         }
 
 
-        if (
-
-            window.currentProduct.category
-
-        ) {
+        if (current.category) {
 
             mergedProduct.category =
-
-                window.currentProduct.category;
+                current.category;
 
         }
 
 
-        if (
-
-            window.currentProduct.brand
-
-        ) {
+        if (current.brand) {
 
             mergedProduct.brand =
-
-                window.currentProduct.brand;
+                current.brand;
 
         }
 
 
-        if (
-
-            window.currentProduct.origin
-
-        ) {
+        if (current.origin) {
 
             mergedProduct.origin =
-
-                window.currentProduct.origin;
+                current.origin;
 
         }
 
 
-        if (
-
-            window.currentProduct.folder
-
-        ) {
+        if (current.folder) {
 
             mergedProduct.folder =
-
-                window.currentProduct.folder;
+                current.folder;
 
         }
 
 
-        /* ==================================
-           FINAL CLEAN
+        /* =====================================
+           FINAL DATA CLEAN
 
-           Tuyệt đối không để
-           specification tồn tại.
+           CHỈ CÓ:
 
-           Chỉ dùng:
+               specs
 
-              specs
-        ================================== */
+           KHÔNG CÓ:
+
+               specification
+        ====================================== */
 
         delete mergedProduct.specification;
 
 
-        /* ==================================
-           SAVE MERGED PRODUCT
-        ================================== */
+        /* =====================================
+           SAVE
+        ====================================== */
 
         window.currentProduct.product =
-
             mergedProduct;
 
 
-        /* ==================================
-           DEBUG NORMALIZED PRODUCT
-        ================================== */
+        /* =====================================
+           DEBUG
+        ====================================== */
 
         console.log("");
 
         console.log(
-
             "========== NORMALIZED PRODUCT =========="
-
         );
 
         console.log(
-
             window.currentProduct.product
-
         );
 
         console.log(
-
             "========================================="
-
         );
 
-
-        /* ==================================
-           VERIFY SPECS
-        ================================== */
 
         console.log("");
 
         console.log(
-
             "========== PRODUCT SPECS =========="
-
         );
 
         console.log(
-
             window.currentProduct.product.specs
-
         );
 
         console.log(
-
             "==================================="
-
         );
 
 
-        /* ==================================
-           SHOW STATUS
-        ================================== */
+        /* =====================================
+           STATUS
+        ====================================== */
 
         if (status) {
 
             status.innerHTML =
-
                 "✅ Website đã đọc thành công";
 
         }
 
 
-        /* ==================================
-           SHOW PREVIEW
-        ================================== */
+        /* =====================================
+           PREVIEW
+        ====================================== */
 
         renderContentImportPreview(
-
             mergedProduct
-
         );
 
 
-        /* ==================================
-           SAVE SOURCE
-        ================================== */
+        /* =====================================
+           MARK IMPORT
+        ====================================== */
 
         markProductContentImported();
 
@@ -888,14 +658,12 @@ async function nextProductContentImport() {
         saveProductContentImport();
 
 
-        /* ==================================
+        /* =====================================
            SAVE DRAFT
-        ================================== */
+        ====================================== */
 
         if (
-
             typeof saveProductDraft === "function"
-
         ) {
 
             saveProductDraft();
@@ -903,13 +671,9 @@ async function nextProductContentImport() {
         }
 
 
-        /* ==================================
+        /* =====================================
            STEP 4
-
-           Step 4 sẽ đọc:
-
-              currentProduct.product.specs
-        ================================== */
+        ====================================== */
 
         renderProductSpecification();
 
@@ -919,18 +683,14 @@ async function nextProductContentImport() {
     catch (error) {
 
         console.error(
-
             "IMPORT ERROR:",
-
             error
-
         );
 
 
         if (status) {
 
             status.innerHTML =
-
                 "❌ Import thất bại";
 
         }
@@ -949,43 +709,17 @@ async function nextProductContentImport() {
 }
 
 
-/* ==========================================
+/* =========================================================
    NORMALIZE IMPORTED PRODUCT
-
-   MỤC TIÊU:
-
-   Tất cả dữ liệu Import phải có
-   một cấu trúc duy nhất:
-
-       specs
-
-   Các nguồn có thể trả:
-
-       specification
-       specs
-
-   Kết quả luôn:
-
-       specs
-
-   Và:
-
-       specification = undefined
-========================================== */
+========================================================= */
 
 function normalizeImportedProduct(
-
     importedProduct
-
 ) {
 
-
     if (
-
         !importedProduct ||
-
         typeof importedProduct !== "object"
-
     ) {
 
         return {};
@@ -1000,165 +734,72 @@ function normalizeImportedProduct(
     };
 
 
-    /* ======================================
-       NORMALIZE SPECS
-    ====================================== */
-
-    let specs = [];
+    let rawSpecs = [];
 
 
-    /* ======================================
-       CASE 1
+    /* =========================================
+       PRIMARY SOURCE
 
-       Backend / Parser trả:
+       CHUẨN:
 
            specs
-    ====================================== */
+    ========================================== */
 
     if (
-
         Array.isArray(
-
             importedProduct.specs
-
         )
-
     ) {
 
-        specs =
-
+        rawSpecs =
             importedProduct.specs;
 
     }
 
 
-    /* ======================================
-       CASE 2
+    /* =========================================
+       LEGACY COMPATIBILITY
 
-       Free Parser / AI cũ trả:
+       Parser cũ có thể vẫn trả:
 
            specification
-       
-       Chuyển sang:
 
-           specs
-    ====================================== */
+       Chỉ đọc để chuyển đổi.
+
+       Sau normalize sẽ XÓA.
+    ========================================== */
 
     else if (
-
         Array.isArray(
-
             importedProduct.specification
-
         )
-
     ) {
 
-        specs =
-
+        rawSpecs =
             importedProduct.specification;
 
     }
 
 
-    /* ======================================
-       NORMALIZE SPECS ITEMS
-
-       products.js hiện tại cho phép:
-
-       1. String
-
-       Ví dụ:
-
-       "Độ phân giải nội: 1/30.000"
-
-       2. HTML String
-
-       Ví dụ:
-
-       "<table>...</table>"
-
-       3. Object
-
-       Ví dụ:
-
-       {
-           name: "Mức cân",
-           value: "30kg"
-       }
-
-       Giữ nguyên tất cả dạng dữ liệu
-       để Step 4 xử lý.
-    ====================================== */
+    /* =========================================
+       NORMALIZE SPECS
+    ========================================== */
 
     normalized.specs =
+        rawSpecs
 
-        specs.map(item => {
+            .map(
+                normalizeSpecItem
+            )
 
-            if (
-
-                item === null ||
-
-                item === undefined
-
-            ) {
-
-                return "";
-
-            }
+            .filter(
+                item => item !== ""
+            );
 
 
-            if (
-
-                typeof item === "string"
-
-            ) {
-
-                return item.trim();
-
-            }
-
-
-            if (
-
-                typeof item === "object"
-
-            ) {
-
-                return {
-
-                    name:
-
-                        item.name !== undefined
-
-                            ? String(item.name).trim()
-
-                            : "",
-
-
-                    value:
-
-                        item.value !== undefined
-
-                            ? String(item.value).trim()
-
-                            : ""
-
-                };
-
-            }
-
-
-            return String(item);
-
-        });
-
-
-    /* ======================================
-       REMOVE OLD FIELD
-
-       Không cho phép 2 luồng tồn tại.
-    ====================================== */
+    /* =========================================
+       REMOVE LEGACY FIELD
+    ========================================== */
 
     delete normalized.specification;
 
@@ -1168,28 +809,120 @@ function normalizeImportedProduct(
 }
 
 
-/* ==========================================
+/* =========================================================
+   NORMALIZE ONE SPEC ITEM
+
+   INPUT:
+
+   String
+       "Độ phân giải 1/30.000"
+
+   HTML
+       "<table>...</table>"
+
+   Object
+       {
+           name: "Hóa đơn in",
+           value: "Tiếng Việt..."
+       }
+
+   OUTPUT:
+
+   String
+========================================================= */
+
+function normalizeSpecItem(
+    item
+) {
+
+    if (
+        item === null ||
+        item === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    /* =========================================
+       STRING
+    ========================================== */
+
+    if (
+        typeof item === "string"
+    ) {
+
+        return item.trim();
+
+    }
+
+
+    /* =========================================
+       OBJECT
+    ========================================== */
+
+    if (
+        typeof item === "object"
+    ) {
+
+        const name =
+            item.name !== undefined
+
+                ? String(item.name).trim()
+
+                : "";
+
+
+        const value =
+            item.value !== undefined
+
+                ? String(item.value).trim()
+
+                : "";
+
+
+        if (
+            name &&
+            value
+        ) {
+
+            return `${name}: ${value}`;
+
+        }
+
+
+        if (name) {
+
+            return name;
+
+        }
+
+
+        if (value) {
+
+            return value;
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /* =========================================
+       OTHER
+    ========================================== */
+
+    return String(item).trim();
+
+}
+
+
+/* =========================================================
    MERGE IMPORTED PRODUCT
-
-   PURPOSE:
-
-   - Giữ dữ liệu Step 1
-   - Nhận dữ liệu Import
-   - Chỉ lấy dữ liệu Import hợp lệ
-   - Chỉ sử dụng specs
-
-   KHÔNG TẠO:
-
-       specification
-
-   KHÔNG TẠO:
-
-       _aiFeatures
-
-       _aiApplications
-
-       _aiAccessories
-========================================== */
+========================================================= */
 
 function mergeImportedProduct(
 
@@ -1206,18 +939,17 @@ function mergeImportedProduct(
     };
 
 
-    /* ======================================
-       CHECK VALID VALUE
-    ====================================== */
+    /* =========================================
+       VALID VALUE
+    ========================================== */
 
-    function isValidImportedValue(value) {
+    function isValidImportedValue(
+        value
+    ) {
 
         if (
-
             value === null ||
-
             value === undefined
-
         ) {
 
             return false;
@@ -1226,13 +958,10 @@ function mergeImportedProduct(
 
 
         if (
-
             typeof value === "string"
-
         ) {
 
             const text =
-
                 value.trim();
 
 
@@ -1261,13 +990,9 @@ function mergeImportedProduct(
 
 
             if (
-
                 invalidValues.includes(
-
                     text.toLowerCase()
-
                 )
-
             ) {
 
                 return false;
@@ -1282,109 +1007,76 @@ function mergeImportedProduct(
     }
 
 
-    /* ======================================
+    /* =========================================
        NAME
-    ====================================== */
+    ========================================== */
 
     if (
-
         isValidImportedValue(
-
             importedProduct.name
-
         )
-
     ) {
 
         merged.name =
-
             importedProduct.name;
 
     }
 
 
-    /* ======================================
+    /* =========================================
        DESCRIPTION
-    ====================================== */
+    ========================================== */
 
     if (
-
         isValidImportedValue(
-
             importedProduct.description
-
         )
-
     ) {
 
         merged.description =
-
             importedProduct.description;
 
     }
 
 
-    /* ======================================
+    /* =========================================
        SPECS
 
-       ĐÂY LÀ FIELD DUY NHẤT.
-
-       Không dùng specification.
-    ====================================== */
+       DUY NHẤT
+    ========================================== */
 
     if (
-
         Array.isArray(
-
             importedProduct.specs
-
-        ) &&
-
-        importedProduct.specs.length > 0
-
+        )
     ) {
 
         merged.specs =
-
             importedProduct.specs;
 
     }
 
 
-    /* ======================================
+    /* =========================================
        IMAGES
-
-       Nếu Import Engine trả về images
-       thì giữ lại.
-
-       Không xử lý UI hình ảnh ở Step 3.
-    ====================================== */
+    ========================================== */
 
     if (
-
         Array.isArray(
-
             importedProduct.images
-
         ) &&
-
         importedProduct.images.length > 0
-
     ) {
 
         merged.images =
-
             importedProduct.images;
 
     }
 
 
-    /* ======================================
+    /* =========================================
        FINAL CLEAN
-
-       Không bao giờ để specification
-       tồn tại trong currentProduct.product.
-    ====================================== */
+    ========================================== */
 
     delete merged.specification;
 
@@ -1394,40 +1086,29 @@ function mergeImportedProduct(
 }
 
 
-/* ==========================================
+/* =========================================================
    PREVIEW IMPORT RESULT
-========================================== */
+========================================================= */
 
 function renderContentImportPreview(
-
     product
-
 ) {
 
     const preview =
-
         document.getElementById(
-
             "contentImportPreview"
-
         );
 
 
     const content =
-
         document.getElementById(
-
             "contentImportPreviewContent"
-
         );
 
 
     if (
-
         !preview ||
-
         !content
-
     ) {
 
         return;
@@ -1436,25 +1117,18 @@ function renderContentImportPreview(
 
 
     const name =
-
         product?.name ||
-
         "Chưa xác định";
 
 
     const description =
-
         product?.description ||
-
         "Chưa có mô tả";
 
 
     const specs =
-
         Array.isArray(
-
             product?.specs
-
         )
 
             ? product.specs
@@ -1467,9 +1141,7 @@ function renderContentImportPreview(
         <div>
 
             <strong>
-
                 Product Name:
-
             </strong>
 
             ${escapeContentImportHTML(name)}
@@ -1480,9 +1152,7 @@ function renderContentImportPreview(
         <div>
 
             <strong>
-
                 Description:
-
             </strong>
 
             ${escapeContentImportHTML(description)}
@@ -1493,9 +1163,7 @@ function renderContentImportPreview(
         <div>
 
             <strong>
-
                 Specifications:
-
             </strong>
 
             ${specs.length}
@@ -1508,31 +1176,22 @@ function renderContentImportPreview(
 
 
     preview.style.display =
-
         "block";
 
 }
 
 
-/* ==========================================
+/* =========================================================
    ESCAPE HTML
-
-   Tránh AI content chèn trực tiếp
-   HTML nguy hiểm vào Preview.
-========================================== */
+========================================================= */
 
 function escapeContentImportHTML(
-
     value
-
 ) {
 
     const div =
-
         document.createElement(
-
             "div"
-
         );
 
 
@@ -1552,16 +1211,14 @@ function escapeContentImportHTML(
 }
 
 
-/* ==========================================
+/* =========================================================
    SAVE CONTENT IMPORT
-========================================== */
+========================================================= */
 
 function saveProductContentImport() {
 
     if (
-
         !window.currentProduct
-
     ) {
 
         window.currentProduct = {};
@@ -1584,9 +1241,7 @@ function saveProductContentImport() {
         type:
 
             document.getElementById(
-
                 "contentSourceType"
-
             )?.value ||
 
             "website",
@@ -1595,22 +1250,17 @@ function saveProductContentImport() {
         url:
 
             document.getElementById(
-
                 "contentSourceUrl"
-
             )?.value.trim() ||
 
             "",
 
 
-        /*
+        /* =====================================
+           IMPORT OPTIONS
 
-           Giữ options cũ nếu tồn tại.
-
-           API Import hiện tại vẫn nhận:
-
-           source.options
-        */
+           Dùng specs thay specification
+        ====================================== */
 
         options:
 
@@ -1620,7 +1270,7 @@ function saveProductContentImport() {
 
                 description: true,
 
-                specification: true
+                specs: true
 
             },
 
@@ -1643,27 +1293,14 @@ function saveProductContentImport() {
 }
 
 
-/* ==========================================
+/* =========================================================
    LOAD CONTENT IMPORT
-========================================== */
+========================================================= */
 
 function loadProductContentImport() {
 
     if (
-
         !window.currentProduct
-
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-
-        !window.currentProduct.source
-
     ) {
 
         return;
@@ -1676,49 +1313,46 @@ function loadProductContentImport() {
         window.currentProduct.source;
 
 
-    /* ======================================
+    if (!source) {
+
+        return;
+
+    }
+
+
+    /* =========================================
        TYPE
-    ====================================== */
+    ========================================== */
 
     const type =
-
         document.getElementById(
-
             "contentSourceType"
-
         );
 
 
     if (type) {
 
         type.value =
-
             source.type ||
-
             "website";
 
     }
 
 
-    /* ======================================
+    /* =========================================
        URL
-    ====================================== */
+    ========================================== */
 
     const url =
-
         document.getElementById(
-
             "contentSourceUrl"
-
         );
 
 
     if (url) {
 
         url.value =
-
             source.url ||
-
             "";
 
     }
@@ -1726,16 +1360,14 @@ function loadProductContentImport() {
 }
 
 
-/* ==========================================
+/* =========================================================
    MARK IMPORT SUCCESS
-========================================== */
+========================================================= */
 
 function markProductContentImported() {
 
     if (
-
         !window.currentProduct
-
     ) {
 
         return;
@@ -1744,9 +1376,7 @@ function markProductContentImported() {
 
 
     if (
-
         !window.currentProduct.source
-
     ) {
 
         window.currentProduct.source = {};
@@ -1755,12 +1385,10 @@ function markProductContentImported() {
 
 
     window.currentProduct.source.imported =
-
         true;
 
 
     window.currentProduct.source.importedAt =
-
         new Date().toISOString();
 
 }

@@ -1,83 +1,35 @@
-/* =====================================================
+/* =========================================================
    PRODUCT SPECIFICATION
    STEP 4 / 6
 
-   MỤC TIÊU:
+   SINGLE DATA SOURCE
 
-   - Hiển thị thông tin sản phẩm
-   - Hiển thị Description
-   - Hiển thị Technical Specification
-   - Dùng DUY NHẤT trường:
+       currentProduct.product.specs
 
-        specs
-
-   - Đồng bộ trực tiếp với products.js
-
-   CẤU TRÚC:
-
-   {
-       business: "measure",
-       id: 10,
-       name: "Cân điện tử đếm ALH4",
-       category: "can-dem",
-       folder: "alh4",
-       brand: "EXCELL",
-       origin: "Đài Loan",
-
-       description: "...",
+   FINAL PRODUCT STRUCTURE
 
        specs: [
 
-           `<table>...</table>`,
+           "<table>...</table>",
 
            "Độ phân giải nội 1/30.000",
 
-           "Tiêu chuẩn chính xác cấp III theo OIML",
+           "Màn hình LCD...",
 
-           "Màn hình LCD 3 cửa sổ đèn nền xanh"
+           "Nguồn AC 220V..."
 
        ]
-   }
-
-   IMPORTANT:
 
    KHÔNG SỬ DỤNG:
 
        specification
 
-       features
-
-       applications
-
-       accessories
-
-   CHỈ DÙNG:
-
-       specs
-===================================================== */
+   ========================================================= */
 
 
-/* =====================================================
-   GLOBAL TIMER
-===================================================== */
-
-/*
-   Dùng var để tránh lỗi:
-
-   Identifier 'specificationTimer'
-   has already been declared
-
-   Nếu file bị load lại cũng không gây lỗi
-   khai báo let / const.
-*/
-
-var specificationTimer =
-    window.specificationTimer || null;
-
-
-/* =====================================================
+/* =========================================================
    RENDER STEP 4
-===================================================== */
+========================================================= */
 
 function renderProductSpecification() {
 
@@ -100,8 +52,72 @@ function renderProductSpecification() {
         </h3>
 
 
-        <div id="specificationContent"></div>
+        <!-- =====================================
+             PRODUCT INFORMATION
+        ====================================== -->
 
+        ${renderProductInformation()}
+
+
+        <!-- =====================================
+             DESCRIPTION
+        ====================================== -->
+
+        ${renderDescriptionEditor()}
+
+
+        <!-- =====================================
+             TECHNICAL SPECIFICATION
+        ====================================== -->
+
+        <div class="ai-block">
+
+            <h4>
+                Technical Specification
+            </h4>
+
+
+            <p class="specification-help">
+
+                Dữ liệu được lấy từ Website và Free Parser.
+                Bạn có thể kiểm tra và chỉnh sửa trước
+                khi chuyển sang bước Preview.
+
+            </p>
+
+
+            <div id="specsEditor">
+
+            </div>
+
+
+            <div class="spec-add-buttons">
+
+                <button
+                    type="button"
+                    onclick="addTextSpec()">
+
+                    + Add Specification
+
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="addTableSpec()">
+
+                    + Add Specification Table
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             BUTTONS
+        ====================================== -->
 
         <div class="step-buttons">
 
@@ -129,162 +145,93 @@ function renderProductSpecification() {
     `;
 
 
-    renderSpecificationContent();
+    renderSpecsEditor();
 
 }
 
 
-/* =====================================================
-   RENDER CONTENT
-===================================================== */
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
 
-function renderSpecificationContent() {
-
-    const box =
-        document.getElementById(
-            "specificationContent"
-        );
-
-    if (!box) return;
-
+function renderProductInformation() {
 
     const product =
-        window.currentProduct?.product;
+        window.currentProduct?.product || {};
 
-
-    if (!product) {
-
-        box.innerHTML = `
-
-        <div class="import-status">
-
-            Không có dữ liệu sản phẩm.
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    /*
-       Đảm bảo chỉ sử dụng specs
-    */
-
-    if (!Array.isArray(product.specs)) {
-
-        product.specs = [];
-
-    }
-
-
-    box.innerHTML = `
-
-        ${renderProductInformation(product)}
-
-        ${renderDescriptionEditor(product)}
-
-        ${renderSpecsEditor(product)}
-
-    `;
-
-}
-
-
-/* =====================================================
-   PRODUCT INFORMATION
-===================================================== */
-
-function renderProductInformation(product) {
 
     return `
 
     <div class="ai-block">
 
         <h4>
-
             Product Information
-
         </h4>
 
 
-        <div class="product-info-grid">
+        <div>
 
+            <strong>
+                Product Name
+            </strong>
 
-            <div class="form-group">
-
-                <label>
-
-                    Product Name
-
-                </label>
-
-
-                <input
-
-                    type="text"
-
-                    id="productName"
-
-                    class="form-control"
-
-                    value="${escapeSpecificationHTML(
-                        product.name || ""
-                    )}"
-
-                >
-
+            <div>
+                ${escapeSpecificationHTML(
+                    product.name || ""
+                )}
             </div>
 
-
-            <div class="product-info-meta">
-
-                <div>
-
-                    <strong>Business:</strong>
-
-                    ${escapeSpecificationHTML(
-                        product.business || ""
-                    )}
-
-                </div>
+        </div>
 
 
-                <div>
+        <div>
 
-                    <strong>Category:</strong>
+            <strong>
+                Business:
+            </strong>
 
-                    ${escapeSpecificationHTML(
-                        product.category || ""
-                    )}
+            ${escapeSpecificationHTML(
+                product.business || ""
+            )}
 
-                </div>
-
-
-                <div>
-
-                    <strong>Brand:</strong>
-
-                    ${escapeSpecificationHTML(
-                        product.brand || ""
-                    )}
-
-                </div>
+        </div>
 
 
-                <div>
+        <div>
 
-                    <strong>Origin:</strong>
+            <strong>
+                Category:
+            </strong>
 
-                    ${escapeSpecificationHTML(
-                        product.origin || ""
-                    )}
+            ${escapeSpecificationHTML(
+                product.category || ""
+            )}
 
-                </div>
+        </div>
 
-            </div>
+
+        <div>
+
+            <strong>
+                Brand:
+            </strong>
+
+            ${escapeSpecificationHTML(
+                product.brand || ""
+            )}
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Origin:
+            </strong>
+
+            ${escapeSpecificationHTML(
+                product.origin || ""
+            )}
 
         </div>
 
@@ -295,20 +242,22 @@ function renderProductInformation(product) {
 }
 
 
-/* =====================================================
+/* =========================================================
    DESCRIPTION EDITOR
-===================================================== */
+========================================================= */
 
-function renderDescriptionEditor(product) {
+function renderDescriptionEditor() {
+
+    const product =
+        window.currentProduct?.product || {};
+
 
     return `
 
     <div class="ai-block">
 
         <h4>
-
             Product Description
-
         </h4>
 
 
@@ -335,232 +284,242 @@ function renderDescriptionEditor(product) {
 }
 
 
-/* =====================================================
-   SPECS EDITOR
-===================================================== */
+/* =========================================================
+   RENDER SPECS EDITOR
+========================================================= */
 
-function renderSpecsEditor(product) {
+function renderSpecsEditor() {
 
-    let rows = "";
+    const box =
+        document.getElementById(
+            "specsEditor"
+        );
 
 
-    /*
-       DUYỆT product.specs
+    if (!box) return;
 
-       Mỗi item có thể là:
 
-       1. HTML table
+    const product =
+        window.currentProduct?.product;
 
-       hoặc
 
-       2. Text specification
-    */
+    if (!product) {
+
+        box.innerHTML = `
+
+            <div class="import-status">
+
+                Không có dữ liệu sản phẩm.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    /* =====================================
+       ENSURE SPECS
+    ====================================== */
+
+    if (
+        !Array.isArray(
+            product.specs
+        )
+    ) {
+
+        product.specs = [];
+
+    }
+
+
+    let html = "";
+
 
     product.specs.forEach(
 
-        (item, index) => {
+        (spec, index) => {
 
-            const isHTML =
-                typeof item === "string" &&
-                item.trim().startsWith("<");
+            html +=
+                renderSpecEditorItem(
 
+                    spec,
 
-            if (isHTML) {
+                    index
 
-                rows += `
-
-                <div
-                    class="spec-item spec-html-item"
-                    data-index="${index}"
-                >
-
-                    <div class="spec-item-header">
-
-                        <strong>
-
-                            Technical Specification Table
-
-                        </strong>
-
-
-                        <button
-
-                            type="button"
-
-                            onclick="
-                                removeSpecItem(${index})
-                            "
-
-                        >
-
-                            ❌
-
-                        </button>
-
-                    </div>
-
-
-                    <textarea
-
-                        class="spec-html-editor"
-
-                        data-index="${index}"
-
-                        style="
-                            width:100%;
-                            min-height:260px;
-                            resize:vertical;
-                            font-family:monospace;
-                        "
-
-                    >${escapeSpecificationHTML(
-                        item
-                    )}</textarea>
-
-
-                    <div class="spec-preview-title">
-
-                        Preview
-
-                    </div>
-
-
-                    <div
-                        class="spec-html-preview"
-                        data-preview-index="${index}"
-                    >
-
-                        ${item}
-
-                    </div>
-
-                </div>
-
-                `;
-
-            }
-
-
-            else {
-
-                rows += `
-
-                <div
-                    class="spec-item spec-text-item"
-                    data-index="${index}"
-                >
-
-                    <div class="spec-item-header">
-
-                        <strong>
-
-                            Specification ${index + 1}
-
-                        </strong>
-
-
-                        <button
-
-                            type="button"
-
-                            onclick="
-                                removeSpecItem(${index})
-                            "
-
-                        >
-
-                            ❌
-
-                        </button>
-
-                    </div>
-
-
-                    <input
-
-                        type="text"
-
-                        class="spec-text-editor"
-
-                        data-index="${index}"
-
-                        value="${escapeSpecificationHTML(
-                            item || ""
-                        )}"
-
-                        placeholder="
-                            Nhập thông số kỹ thuật...
-                        "
-
-                    >
-
-                </div>
-
-                `;
-
-            }
+                );
 
         }
 
     );
 
 
+    if (!html) {
+
+        html = `
+
+            <div class="import-status">
+
+                Chưa có Technical Specification.
+
+                <br><br>
+
+                Bạn có thể thêm Specification
+                hoặc Specification Table.
+
+            </div>
+
+        `;
+
+    }
+
+
+    box.innerHTML =
+        html;
+
+}
+
+
+/* =========================================================
+   RENDER ONE SPEC
+========================================================= */
+
+function renderSpecEditorItem(
+
+    spec,
+
+    index
+
+) {
+
+    /* =====================================
+       HTML TABLE
+    ====================================== */
+
+    if (
+        isHTMLTableSpec(spec)
+    ) {
+
+        return `
+
+        <div
+            class="spec-editor-item"
+            data-index="${index}">
+
+
+            <div class="spec-editor-header">
+
+                <strong>
+
+                    Specification Table ${index + 1}
+
+                </strong>
+
+
+                <button
+
+                    type="button"
+
+                    onclick="removeSpec(${index})">
+
+                    ❌
+
+                </button>
+
+            </div>
+
+
+            <textarea
+
+                class="spec-table-editor"
+
+                data-index="${index}"
+
+                style="
+                    width:100%;
+                    min-height:220px;
+                    resize:vertical;
+                    font-family:monospace;
+                "
+
+            >${escapeSpecificationHTML(
+                spec
+            )}</textarea>
+
+
+            <div class="spec-table-preview">
+
+                <strong>
+                    Table Preview
+                </strong>
+
+                <div>
+
+                    ${spec}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }
+
+
+    /* =====================================
+       TEXT SPEC
+    ====================================== */
+
     return `
 
-    <div class="ai-block">
-
-        <h4>
-
-            Technical Specification
-
-        </h4>
+    <div
+        class="spec-editor-item"
+        data-index="${index}">
 
 
-        <p class="spec-description">
+        <div class="spec-editor-header">
 
-            Dữ liệu được lấy từ Website và Free Parser.
+            <strong>
 
-            Bạn có thể kiểm tra và chỉnh sửa trước khi
-            chuyển sang bước Preview.
+                Specification ${index + 1}
 
-        </p>
-
-
-        <div id="specsEditor">
-
-            ${rows}
-
-        </div>
-
-
-        <div class="spec-add-buttons">
-
-            <button
-
-                type="button"
-
-                onclick="addSpecText()"
-
-            >
-
-                + Add Specification
-
-            </button>
+            </strong>
 
 
             <button
 
                 type="button"
 
-                onclick="addSpecTable()"
+                onclick="removeSpec(${index})">
 
-            >
-
-                + Add Specification Table
+                ❌
 
             </button>
 
         </div>
+
+
+        <textarea
+
+            class="spec-text-editor"
+
+            data-index="${index}"
+
+            style="
+                width:100%;
+                min-height:70px;
+                resize:vertical;
+            "
+
+        >${escapeSpecificationHTML(
+            spec
+        )}</textarea>
+
 
     </div>
 
@@ -569,132 +528,119 @@ function renderSpecsEditor(product) {
 }
 
 
-/* =====================================================
+/* =========================================================
+   DETECT HTML TABLE
+========================================================= */
+
+function isHTMLTableSpec(
+    spec
+) {
+
+    if (
+        typeof spec !== "string"
+    ) {
+
+        return false;
+
+    }
+
+
+    return (
+        /<table[\s>]/i.test(
+            spec
+        )
+    );
+
+}
+
+
+/* =========================================================
    ADD TEXT SPEC
-===================================================== */
+========================================================= */
 
-function addSpecText() {
+function addTextSpec() {
+
+    ensureProductSpecs();
+
 
     saveSpecificationStep();
 
 
-    if (
-        !window.currentProduct ||
-        !window.currentProduct.product
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        !Array.isArray(
-            window.currentProduct.product.specs
-        )
-    ) {
-
-        window.currentProduct.product.specs = [];
-
-    }
-
-
     window.currentProduct.product.specs.push(
-
         ""
-
     );
 
 
-    renderSpecificationContent();
+    renderSpecsEditor();
 
 }
 
 
-/* =====================================================
-   ADD HTML TABLE
-===================================================== */
+/* =========================================================
+   ADD TABLE SPEC
+========================================================= */
 
-function addSpecTable() {
+function addTableSpec() {
+
+    ensureProductSpecs();
+
+
+    saveSpecificationStep();
+
+
+    const table = `
+
+<table class="spec-table">
+
+<tr>
+
+    <th>Thông số</th>
+
+    <th>Giá trị</th>
+
+</tr>
+
+<tr>
+
+    <td></td>
+
+    <td></td>
+
+</tr>
+
+</table>
+
+`;
+
+
+    window.currentProduct.product.specs.push(
+        table.trim()
+    );
+
+
+    renderSpecsEditor();
+
+}
+
+
+/* =========================================================
+   REMOVE SPEC
+========================================================= */
+
+function removeSpec(
+    index
+) {
+
+    ensureProductSpecs();
+
 
     saveSpecificationStep();
 
 
     if (
-        !window.currentProduct ||
-        !window.currentProduct.product
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        !Array.isArray(
-            window.currentProduct.product.specs
-        )
-    ) {
-
-        window.currentProduct.product.specs = [];
-
-    }
-
-
-    window.currentProduct.product.specs.push(
-
-`<table class="spec-table">
-
-<tr>
-
-<th>Mức cân</th>
-
-<th>Bước nhảy</th>
-
-<th>Kích thước</th>
-
-</tr>
-
-<tr>
-
-<td></td>
-
-<td></td>
-
-<td></td>
-
-</tr>
-
-</table>`
-
-    );
-
-
-    renderSpecificationContent();
-
-}
-
-
-/* =====================================================
-   REMOVE SPEC
-===================================================== */
-
-function removeSpecItem(index) {
-
-    if (
-        !window.currentProduct ||
-        !window.currentProduct.product
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        !Array.isArray(
-            window.currentProduct.product.specs
-        )
+        index < 0 ||
+        index >=
+        window.currentProduct.product.specs.length
     ) {
 
         return;
@@ -703,15 +649,12 @@ function removeSpecItem(index) {
 
 
     window.currentProduct.product.specs.splice(
-
         index,
-
         1
-
     );
 
 
-    renderSpecificationContent();
+    renderSpecsEditor();
 
 
     scheduleSpecificationSave();
@@ -719,15 +662,58 @@ function removeSpecItem(index) {
 }
 
 
-/* =====================================================
+/* =========================================================
+   ENSURE SPECS
+========================================================= */
+
+function ensureProductSpecs() {
+
+    if (
+        !window.currentProduct
+    ) {
+
+        window.currentProduct = {};
+
+    }
+
+
+    if (
+        !window.currentProduct.product
+    ) {
+
+        window.currentProduct.product = {};
+
+    }
+
+
+    if (
+        !Array.isArray(
+            window.currentProduct.product.specs
+        )
+    ) {
+
+        window.currentProduct.product.specs = [];
+
+    }
+
+
+    /* =====================================
+       REMOVE LEGACY FIELD
+    ====================================== */
+
+    delete window.currentProduct.product.specification;
+
+}
+
+
+/* =========================================================
    SAVE STEP 4
-===================================================== */
+========================================================= */
 
 function saveSpecificationStep() {
 
     if (
-        !window.currentProduct ||
-        !window.currentProduct.product
+        !window.currentProduct?.product
     ) {
 
         return;
@@ -739,27 +725,9 @@ function saveSpecificationStep() {
         window.currentProduct.product;
 
 
-    /* =================================================
-       PRODUCT NAME
-    ================================================= */
-
-    const nameInput =
-        document.getElementById(
-            "productName"
-        );
-
-
-    if (nameInput) {
-
-        product.name =
-            nameInput.value.trim();
-
-    }
-
-
-    /* =================================================
+    /* =====================================
        DESCRIPTION
-    ================================================= */
+    ====================================== */
 
     const description =
         document.getElementById(
@@ -775,16 +743,9 @@ function saveSpecificationStep() {
     }
 
 
-    /* =================================================
-       SAVE SPECS
-    ================================================= */
-
-    const specs = [];
-
-
-    /*
-       TEXT SPEC
-    */
+    /* =====================================
+       TEXT SPECS
+    ====================================== */
 
     document
         .querySelectorAll(
@@ -792,94 +753,54 @@ function saveSpecificationStep() {
         )
         .forEach(
 
-            input => {
+            textarea => {
 
-                specs.push(
+                const index =
+                    Number(
+                        textarea.dataset.index
+                    );
 
-                    input.value.trim()
 
-                );
+                if (
+                    product.specs[index] !==
+                    undefined
+                ) {
+
+                    product.specs[index] =
+                        textarea.value.trim();
+
+                }
 
             }
 
         );
 
 
-    /*
-       HTML TABLE SPEC
-
-       Giữ nguyên HTML
-    */
+    /* =====================================
+       TABLE SPECS
+    ====================================== */
 
     document
         .querySelectorAll(
-            ".spec-html-editor"
+            ".spec-table-editor"
         )
         .forEach(
 
             textarea => {
 
-                specs.push(
-
-                    textarea.value.trim()
-
-                );
-
-            }
-
-        );
-
-
-    /*
-       QUAN TRỌNG:
-
-       Cách trên sẽ làm thay đổi thứ tự.
-
-       Vì vậy ta dùng lại DOM order
-       để lưu đúng thứ tự specs.
-    */
-
-    const orderedSpecs = [];
-
-
-    document
-        .querySelectorAll(
-            ".spec-item"
-        )
-        .forEach(
-
-            item => {
-
-                const textInput =
-                    item.querySelector(
-                        ".spec-text-editor"
+                const index =
+                    Number(
+                        textarea.dataset.index
                     );
 
 
-                const htmlInput =
-                    item.querySelector(
-                        ".spec-html-editor"
-                    );
+                if (
+                    product.specs[index] !==
+                    undefined
+                ) {
 
-
-                if (textInput) {
-
-                    orderedSpecs.push(
-
-                        textInput.value.trim()
-
-                    );
-
-                }
-
-
-                else if (htmlInput) {
-
-                    orderedSpecs.push(
-
-                        htmlInput.value.trim()
-
-                    );
+                    product.specs[index] =
+                        textarea.value.trim();
 
                 }
 
@@ -888,262 +809,138 @@ function saveSpecificationStep() {
         );
 
 
-    /*
-       GHI DUY NHẤT VÀO:
-
-           product.specs
-    */
+    /* =====================================
+       CLEAN SPECS
+    ====================================== */
 
     product.specs =
-        orderedSpecs;
-
-
-    /*
-       XÓA CẤU TRÚC CŨ NẾU CÒN
-
-       Không cho specification
-       tồn tại song song với specs.
-    */
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            product,
-            "specification"
-        )
-    ) {
-
-        delete product.specification;
-
-    }
-
-
-    /*
-       XÓA CÁC FIELD AI CŨ
-
-       Vì products.js chính thức
-       không sử dụng các field này.
-    */
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            product,
-            "features"
-        )
-    ) {
-
-        delete product.features;
-
-    }
-
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            product,
-            "applications"
-        )
-    ) {
-
-        delete product.applications;
-
-    }
-
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            product,
-            "accessories"
-        )
-    ) {
-
-        delete product.accessories;
-
-    }
-
-
-    /*
-       XÓA FIELD AI TẠM
-    */
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            product,
-            "_aiFeatures"
-        )
-    ) {
-
-        delete product._aiFeatures;
-
-    }
-
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            product,
-            "_aiApplications"
-        )
-    ) {
-
-        delete product._aiApplications;
-
-    }
-
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            product,
-            "_aiAccessories"
-        )
-    ) {
-
-        delete product._aiAccessories;
-
-    }
-
-
-    /*
-       DEBUG
-    */
-
-    console.log("");
-
-    console.log(
-
-        "========== STEP 4 SAVED =========="
-
-    );
-
-
-    console.log(
-
-        "PRODUCT NAME:",
-
-        product.name
-
-    );
-
-
-    console.log(
-
-        "DESCRIPTION:",
-
-        product.description
-
-    );
-
-
-    console.log(
-
-        "SPECS:",
-
         product.specs
 
-    );
+            .map(
+                normalizeStep4Spec
+            )
+
+            .filter(
+                item => item !== ""
+            );
 
 
-    console.log(
+    /* =====================================
+       REMOVE LEGACY
+    ====================================== */
 
-        "================================="
-
-    );
-
-}
-
-
-/* =====================================================
-   NEXT → STEP 5
-===================================================== */
-
-function nextProductPreview() {
-
-    /*
-       SAVE STEP 4
-    */
-
-    saveSpecificationStep();
-
-
-    /*
-       NORMALIZE
-    */
-
-    normalizeProductSpecs();
-
-
-    /*
-       SAVE DRAFT
-    */
-
-    if (
-        typeof saveProductDraft ===
-        "function"
-    ) {
-
-        saveProductDraft();
-
-    }
-
-
-    /*
-       DEBUG
-    */
-
-    console.log("");
-
-    console.log(
-
-        "========== STEP 4 → STEP 5 =========="
-
-    );
-
-
-    console.log(
-
-        "PRODUCT DATA:",
-
-        window.currentProduct?.product
-
-    );
-
-
-    console.log(
-
-        "====================================="
-
-    );
-
-
-    /*
-       GO STEP 5
-    */
-
-    if (
-        typeof renderProductPreview ===
-        "function"
-    ) {
-
-        renderProductPreview();
-
-    }
+    delete product.specification;
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   NORMALIZE STEP 4 SPEC
+========================================================= */
+
+function normalizeStep4Spec(
+    spec
+) {
+
+    if (
+        spec === null ||
+        spec === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    if (
+        typeof spec === "string"
+    ) {
+
+        return spec.trim();
+
+    }
+
+
+    /* =====================================
+       SAFETY
+
+       Nếu vẫn còn Object từ dữ liệu cũ,
+       chuyển thành text.
+
+       Không bao giờ để:
+
+           [object Object]
+    ====================================== */
+
+    if (
+        typeof spec === "object"
+    ) {
+
+        const name =
+            spec.name !== undefined
+
+                ? String(
+                    spec.name
+                ).trim()
+
+                : "";
+
+
+        const value =
+            spec.value !== undefined
+
+                ? String(
+                    spec.value
+                ).trim()
+
+                : "";
+
+
+        if (
+            name &&
+            value
+        ) {
+
+            return `${name}: ${value}`;
+
+        }
+
+
+        if (name) {
+
+            return name;
+
+        }
+
+
+        if (value) {
+
+            return value;
+
+        }
+
+
+        return "";
+
+    }
+
+
+    return String(spec).trim();
+
+}
+
+
+/* =========================================================
    BACK
-===================================================== */
+========================================================= */
 
 function backToContentImport() {
 
-    /*
-       Lưu trước khi quay lại Step 3
-    */
-
     saveSpecificationStep();
 
 
     if (
-        typeof saveProductDraft ===
-        "function"
+        typeof saveProductDraft === "function"
     ) {
 
         saveProductDraft();
@@ -1156,152 +953,111 @@ function backToContentImport() {
 }
 
 
-/* =====================================================
-   NORMALIZE SPECS
-===================================================== */
+/* =========================================================
+   NEXT → STEP 5
+========================================================= */
 
-function normalizeProductSpecs() {
+function nextProductPreview() {
 
-    const product =
-        window.currentProduct?.product;
+    /* =====================================
+       SAVE
+    ====================================== */
+
+    saveSpecificationStep();
 
 
-    if (!product) return;
-
+    /* =====================================
+       CLEAN LEGACY
+    ====================================== */
 
     if (
-        !Array.isArray(
-            product.specs
-        )
+        window.currentProduct?.product
     ) {
 
-        product.specs = [];
-
-        return;
+        delete
+            window.currentProduct.product
+                .specification;
 
     }
 
 
-    product.specs =
+    /* =====================================
+       SAVE DRAFT
+    ====================================== */
 
-        product.specs
+    if (
+        typeof saveProductDraft === "function"
+    ) {
 
-            .map(
+        saveProductDraft();
 
-                item => {
-
-                    if (
-                        typeof item ===
-                        "string"
-                    ) {
-
-                        return item.trim();
-
-                    }
+    }
 
 
-                    /*
-                       Nếu dữ liệu cũ vô tình
-                       có dạng object:
+    /* =====================================
+       DEBUG
+    ====================================== */
 
-                       {
-                           name: "...",
-                           value: "..."
-                       }
+    console.log("");
 
-                       KHÔNG dùng name làm tên sản phẩm.
-
-                       name/value ở đây chỉ được
-                       chuyển tạm thành text spec.
-
-                       Nhưng cấu trúc chính thức
-                       sau cùng vẫn là:
-
-                           specs: ["..."]
-
-                       */
-
-                    if (
-                        item &&
-                        typeof item ===
-                        "object"
-                    ) {
-
-                        const key =
-                            item.name ||
-                            item.key ||
-                            "";
+    console.log(
+        "========== STEP 4 → STEP 5 =========="
+    );
 
 
-                        const value =
-                            item.value ||
-                            "";
+    console.log(
+        "PRODUCT DATA:"
+    );
 
 
-                        if (
-                            key &&
-                            value
-                        ) {
-
-                            return (
-
-                                key +
-
-                                ": " +
-
-                                value
-
-                            );
-
-                        }
+    console.log(
+        window.currentProduct?.product
+    );
 
 
-                        return (
-
-                            key ||
-
-                            value ||
-
-                            ""
-
-                        );
-
-                    }
+    console.log(
+        "PRODUCT SPECS:"
+    );
 
 
-                    return "";
+    console.log(
+        window.currentProduct?.product?.specs
+    );
 
-                }
 
-            )
+    console.log(
+        "====================================="
+    );
 
-            .filter(
 
-                item => item !== ""
+    /* =====================================
+       GO STEP 5
+    ====================================== */
 
-            );
+    renderProductPreview();
 
 }
 
 
-/* =====================================================
+/* =========================================================
    AUTO SAVE
-===================================================== */
+========================================================= */
+
+var specificationAutoSaveTimer = null;
+
 
 function scheduleSpecificationSave() {
 
     clearTimeout(
-
-        specificationTimer
-
+        specificationAutoSaveTimer
     );
 
 
-    specificationTimer =
+    specificationAutoSaveTimer =
 
         setTimeout(
 
-            function() {
+            () => {
 
                 saveSpecificationStep();
 
@@ -1321,76 +1077,50 @@ function scheduleSpecificationSave() {
 
         );
 
-
-    window.specificationTimer =
-
-        specificationTimer;
-
 }
 
 
-/* =====================================================
+/* =========================================================
    AUTO BIND
-===================================================== */
+========================================================= */
 
-if (
-    !window.productSpecificationInputBound
-) {
+document.addEventListener(
 
-    document.addEventListener(
+    "input",
 
-        "input",
+    function(event) {
 
-        function(e) {
+        if (
 
-            if (
+            event.target.id ===
+            "productDescription" ||
 
-                e.target.id ===
-                "productName" ||
+            event.target.classList.contains(
+                "spec-text-editor"
+            ) ||
 
-                e.target.id ===
-                "productDescription" ||
+            event.target.classList.contains(
+                "spec-table-editor"
+            )
 
-                e.target.classList.contains(
-                    "spec-text-editor"
-                ) ||
+        ) {
 
-                e.target.classList.contains(
-                    "spec-html-editor"
-                )
-
-            ) {
-
-                scheduleSpecificationSave();
-
-            }
+            scheduleSpecificationSave();
 
         }
 
-    );
-
-
-    window.productSpecificationInputBound =
-        true;
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeSpecificationHTML(value) {
-
-    if (
-        value === null ||
-        value === undefined
-    ) {
-
-        return "";
-
     }
 
+);
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeSpecificationHTML(
+    value
+) {
 
     const div =
         document.createElement(
@@ -1399,7 +1129,14 @@ function escapeSpecificationHTML(value) {
 
 
     div.textContent =
-        String(value);
+
+        value === null ||
+
+        value === undefined
+
+            ? ""
+
+            : String(value);
 
 
     return div.innerHTML;
