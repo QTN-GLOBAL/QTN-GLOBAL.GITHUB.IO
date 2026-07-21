@@ -321,70 +321,279 @@ async function nextProductContentImport() {
 
 
         /* ==================================
-           OLD PRODUCT
-           STEP 1 DATA
-        ================================== */
+   OLD PRODUCT
+   STEP 1 DATA
+================================== */
 
-        const oldProduct =
-            window.currentProduct.product ||
-            {};
+const oldProduct = {
 
+    ...(window.currentProduct.product || {}),
 
-        /* ==================================
-           AI PRODUCT
-        ================================== */
+    /*
+       STEP 1 DATA
+       Được lấy từ currentProduct
+       chứ không phải currentProduct.product
+    */
 
-        let aiProduct = {};
+    business:
+        window.currentProduct.business,
 
+    category:
+        window.currentProduct.category,
 
-        if (
-            result.product
-        ) {
+    brand:
+        window.currentProduct.brand,
 
-            aiProduct =
-                result.product;
+    origin:
+        window.currentProduct.origin,
 
-        }
+    folder:
+        window.currentProduct.folder
 
-        else if (
-            result.result &&
-            result.result.product
-        ) {
-
-            aiProduct =
-                result.result.product;
-
-        }
+};
 
 
-        console.log("");
+/* ==================================
+   AI PRODUCT
+================================== */
 
-        console.log(
-            "========== AI PRODUCT =========="
-        );
-
-        console.log(
-            aiProduct
-        );
-
-        console.log(
-            "================================"
-        );
+let aiProduct = {};
 
 
-        /* ==================================
-           MERGE
-        ================================== */
+if (result.product) {
 
-        const mergedProduct =
-            mergeImportedProduct(
-                oldProduct,
-                aiProduct
-            );
+    aiProduct =
+        result.product;
+
+}
+
+else if (
+    result.result &&
+    result.result.product
+) {
+
+    aiProduct =
+        result.result.product;
+
+}
 
 
-        window.currentProduct.product =
-            mergedProduct;
+console.log("");
+
+console.log(
+    "========== STEP 1 PRODUCT =========="
+);
+
+console.log(
+    oldProduct
+);
+
+console.log(
+    "===================================="
+);
+
+
+console.log("");
+
+console.log(
+    "========== AI PRODUCT =========="
+);
+
+console.log(
+    aiProduct
+);
+
+console.log(
+    "================================"
+);
+
+
+/* ==================================
+   MERGE
+================================== */
+
+const mergedProduct = {
+
+    ...oldProduct,
+
+    /*
+       AI chỉ được bổ sung
+       dữ liệu product
+    */
+
+    name:
+
+        aiProduct.name ||
+
+        oldProduct.name ||
+
+        "",
+
+
+    description:
+
+        aiProduct.description ||
+
+        oldProduct.description ||
+
+        "",
+
+
+    specification:
+
+        Array.isArray(
+            aiProduct.specification
+        ) &&
+        aiProduct.specification.length
+
+            ? aiProduct.specification
+
+            : (
+
+                oldProduct.specification ||
+
+                []
+
+            ),
+
+
+    features:
+
+        Array.isArray(
+            aiProduct.features
+        ) &&
+        aiProduct.features.length
+
+            ? aiProduct.features
+
+            : (
+
+                oldProduct.features ||
+
+                []
+
+            ),
+
+
+    applications:
+
+        Array.isArray(
+            aiProduct.applications
+        ) &&
+        aiProduct.applications.length
+
+            ? aiProduct.applications
+
+            : (
+
+                oldProduct.applications ||
+
+                []
+
+            ),
+
+
+    accessories:
+
+        Array.isArray(
+            aiProduct.accessories
+        ) &&
+        aiProduct.accessories.length
+
+            ? aiProduct.accessories
+
+            : (
+
+                oldProduct.accessories ||
+
+                []
+
+            )
+
+};
+
+
+/* ==================================
+   PRESERVE STEP 1 DATA
+================================== */
+
+if (
+    window.currentProduct.brand
+) {
+
+    mergedProduct.brand =
+
+        window.currentProduct.brand;
+
+}
+
+
+if (
+    window.currentProduct.origin
+) {
+
+    mergedProduct.origin =
+
+        window.currentProduct.origin;
+
+}
+
+
+if (
+    window.currentProduct.business
+) {
+
+    mergedProduct.business =
+
+        window.currentProduct.business;
+
+}
+
+
+if (
+    window.currentProduct.category
+) {
+
+    mergedProduct.category =
+
+        window.currentProduct.category;
+
+}
+
+
+if (
+    window.currentProduct.folder
+) {
+
+    mergedProduct.folder =
+
+        window.currentProduct.folder;
+
+}
+
+
+/* ==================================
+   SAVE MERGED PRODUCT
+================================== */
+
+window.currentProduct.product =
+
+    mergedProduct;
+
+
+console.log("");
+
+console.log(
+    "========== MERGED PRODUCT =========="
+);
+
+console.log(
+    window.currentProduct.product
+);
+
+console.log(
+    "===================================="
+);
 
 
         /* ==================================
