@@ -1,3 +1,4 @@
+
 /* ==========================================
    IMPORT CONTROLLER
 ========================================== */
@@ -5,6 +6,8 @@
 import { downloadHtml } from "../services/html.service.js";
 
 import { cleanHtml } from "../utils/html-cleaner.js";
+
+import { buildPrompt } from "../utils/prompt-builder.js";
 
 import { parseProductWithAI } from "../services/openai.service.js";
 
@@ -21,19 +24,21 @@ export async function importProduct(req, res) {
 
         console.log("");
 
-        console.log("====================================");
+        console.log(
+            "========== IMPORT REQUEST =========="
+        );
 
-        console.log("IMPORT PRODUCT REQUEST");
+        console.log(
+            req.body
+        );
 
-        console.log("====================================");
-
-        console.log(req.body);
-
-        console.log("====================================");
+        console.log(
+            "===================================="
+        );
 
 
         /* ==========================
-           REQUEST DATA
+           GET REQUEST DATA
         ========================== */
 
         const {
@@ -55,7 +60,8 @@ export async function importProduct(req, res) {
 
                 success: false,
 
-                message: "Missing Product URL"
+                message:
+                    "Missing Product URL"
 
             });
 
@@ -69,42 +75,34 @@ export async function importProduct(req, res) {
 
         console.log("");
 
-        console.log("STEP 1");
-
-        console.log("Downloading website...");
+        console.log(
+            "STEP 1: DOWNLOADING HTML..."
+        );
 
 
         const htmlResult =
 
-            await downloadHtml(url);
+            await downloadHtml(
+
+                url
+
+            );
 
 
         if (!htmlResult.success) {
 
-            return res.status(500).json({
+            return res.status(500).json(
 
-                success: false,
+                htmlResult
 
-                message:
-
-                    htmlResult.message ||
-
-                    "Cannot download website."
-
-            });
+            );
 
         }
 
 
-        console.log("");
-
-        console.log("DOWNLOAD OK");
-
         console.log(
 
-            "HTML LENGTH:",
-
-            htmlResult.html?.length || 0
+            "DOWNLOAD OK"
 
         );
 
@@ -116,9 +114,11 @@ export async function importProduct(req, res) {
 
         console.log("");
 
-        console.log("STEP 2");
+        console.log(
 
-        console.log("Cleaning HTML...");
+            "STEP 2: CLEANING HTML..."
+
+        );
 
 
         const clean =
@@ -130,33 +130,66 @@ export async function importProduct(req, res) {
             );
 
 
-        console.log("");
-
-        console.log("HTML CLEAN OK");
-
         console.log(
 
-            "CLEAN HTML LENGTH:",
-
-            clean?.length || 0
+            "HTML CLEAN OK"
 
         );
 
 
         /* ==========================
            STEP 3
-           OPENAI
+           BUILD PROMPT
         ========================== */
 
         console.log("");
 
-        console.log("STEP 3");
+        console.log(
+
+            "STEP 3: BUILDING PROMPT..."
+
+        );
+
+
+        const prompt =
+
+            buildPrompt(
+
+                clean,
+
+                options
+
+            );
+
 
         console.log(
 
-            "Sending product data to OpenAI..."
+            "PROMPT OK"
 
         );
+
+
+        /* ==========================
+           STEP 4
+           OPENAI AI
+        ========================== */
+
+        console.log("");
+
+        console.log(
+
+            "STEP 4: SENDING TO OPENAI..."
+
+        );
+
+
+        /*
+           OpenAI service tự xây dựng
+           prompt riêng.
+
+           Vì vậy truyền clean HTML
+           thay vì prompt cũ.
+        */
 
 
         const aiResult =
@@ -170,23 +203,23 @@ export async function importProduct(req, res) {
             );
 
 
-        console.log("");
+        console.log(
 
-        console.log("OPENAI OK");
+            "OPENAI AI OK"
+
+        );
 
 
         /* ==========================
-           STEP 4
+           STEP 5
            NORMALIZE PRODUCT
         ========================== */
 
         console.log("");
 
-        console.log("STEP 4");
-
         console.log(
 
-            "Normalizing product..."
+            "STEP 5: NORMALIZING PRODUCT..."
 
         );
 
@@ -200,31 +233,37 @@ export async function importProduct(req, res) {
             );
 
 
-        console.log("");
-
-        console.log("NORMALIZER OK");
-
-
-        console.log("");
-
         console.log(
 
-            "========== FINAL PRODUCT =========="
-
-        );
-
-        console.log(product);
-
-        console.log(
-
-            "==================================="
+            "NORMALIZER OK"
 
         );
 
 
         /* ==========================
-           RETURN PRODUCT
+           RETURN RESULT
         ========================== */
+
+        console.log("");
+
+        console.log(
+
+            "========== IMPORT SUCCESS =========="
+
+        );
+
+        console.log(
+
+            product
+
+        );
+
+        console.log(
+
+            "===================================="
+
+        );
+
 
         return res.json({
 
@@ -233,18 +272,16 @@ export async function importProduct(req, res) {
             url,
 
             title:
-
-                htmlResult.title || "",
+                htmlResult.title,
 
             product
 
         });
 
-
     }
 
-    catch (error) {
 
+    catch (error) {
 
         console.error("");
 
@@ -254,11 +291,15 @@ export async function importProduct(req, res) {
 
         );
 
-        console.error(error);
+        console.error(
+
+            error
+
+        );
 
         console.error(
 
-            "==================================="
+            "=================================="
 
         );
 
@@ -269,12 +310,11 @@ export async function importProduct(req, res) {
 
             message:
 
-                error.message ||
-
-                "Product import failed."
+                error.message
 
         });
 
     }
 
 }
+
