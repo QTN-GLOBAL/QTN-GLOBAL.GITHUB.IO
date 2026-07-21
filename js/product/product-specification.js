@@ -368,34 +368,65 @@ function backToContentImport() {
 }
 
 /* ==========================================
-   NEXT
+   NEXT → PRODUCT PREVIEW
 ========================================== */
 
-function nextProductPreview(){
+function nextProductPreview() {
+
+    /* ==========================
+       SAVE STEP 4 DATA
+    ========================== */
 
     saveSpecificationStep();
 
-    normalizeSpecification();
 
-    if(
+    /* ==========================
+       SAVE DRAFT
+    ========================== */
 
-        !validateSpecification()
+    if (typeof saveProductDraft === "function") {
 
-    ){
-
-        return;
+        saveProductDraft();
 
     }
 
-    saveProductDraft();
 
-    console.log(currentProduct.product);
+    /* ==========================
+       DEBUG
+    ========================== */
 
-    alert(
+    console.log("");
 
-        "Step 5 Preview sẽ làm tiếp."
+    console.log(
+
+        "========== STEP 4 → STEP 5 =========="
 
     );
+
+    console.log(
+
+        "PRODUCT DATA:"
+
+    );
+
+    console.log(
+
+        window.currentProduct?.product
+
+    );
+
+    console.log(
+
+        "====================================="
+
+    );
+
+
+    /* ==========================
+       GO TO STEP 5
+    ========================== */
+
+    renderProductPreview();
 
 }
 /* ==========================================
