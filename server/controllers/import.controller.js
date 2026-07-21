@@ -128,6 +128,9 @@ export async function importProduct(req, res) {
                 htmlResult.html
 
             );
+console.log("========== CLEAN HTML PREVIEW ==========");
+console.log(clean.substring(0, 10000));
+console.log("========================================");
 
 
         console.log(
