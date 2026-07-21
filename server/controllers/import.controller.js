@@ -9,10 +9,9 @@ import { cleanHtml } from "../utils/html-cleaner.js";
 
 import { buildPrompt } from "../utils/prompt-builder.js";
 
-import { parseProductWithAI } from "../services/openai.service.js";
+import { parseProductFromHtml } from "../services/product-parser.service.js";
 
 import { normalizeProduct } from "../utils/product-normalizer.js";
-
 
 /* ==========================================
    IMPORT PRODUCT
@@ -172,46 +171,42 @@ console.log("========================================");
         );
 
 
-        /* ==========================
-           STEP 4
-           OPENAI AI
-        ========================== */
+       /* ==========================
+   STEP 4
+   FREE PRODUCT PARSER
+========================== */
 
-        console.log("");
+console.log("");
 
-        console.log(
-
-            "STEP 4: SENDING TO OPENAI..."
-
-        );
+console.log(
+    "STEP 4: PARSING PRODUCT FROM HTML..."
+);
 
 
-        /*
-           OpenAI service tự xây dựng
-           prompt riêng.
+const parsedProduct =
 
-           Vì vậy truyền clean HTML
-           thay vì prompt cũ.
-        */
+    parseProductFromHtml(
 
+        clean,
 
-        const aiResult =
+        options
 
-            await parseProductWithAI(
-
-                clean,
-
-                options
-
-            );
+    );
 
 
-        console.log(
+console.log("");
 
-            "OPENAI AI OK"
+console.log(
 
-        );
+    "FREE PARSER OK"
 
+);
+
+console.log(
+
+    parsedProduct
+
+);
 
         /* ==========================
            STEP 5
@@ -229,12 +224,11 @@ console.log("========================================");
 
         const product =
 
-            normalizeProduct(
+    normalizeProduct(
 
-                aiResult
+        parsedProduct
 
-            );
-
+    );
 
         console.log(
 
