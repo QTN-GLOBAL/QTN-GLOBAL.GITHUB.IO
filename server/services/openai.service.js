@@ -7,32 +7,37 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const client = new OpenAI({
-
-    apiKey:
-        process.env.OPENAI_API_KEY
-
-});
 /* ==========================================
    OPENAI CLIENT
 ========================================== */
 
-const apiKey = process.env.OPENAI_API_KEY || "";
+const apiKey =
+    process.env.OPENAI_API_KEY || "";
 
-const client = apiKey
+const client =
 
-    ? new OpenAI({
+    apiKey
 
-        apiKey
+        ? new OpenAI({
 
-    })
+            apiKey
 
-    : null;
+        })
+
+        : null;
+
+
 /* ==========================================
    PARSE PRODUCT WITH AI
 ========================================== */
 
-export async function parseProductWithAI(html, options = {}) {
+export async function parseProductWithAI(
+
+    html,
+
+    options = {}
+
+) {
 
     /* ==========================================
        CHECK OPENAI CLIENT
@@ -58,10 +63,6 @@ export async function parseProductWithAI(html, options = {}) {
             "==========================================="
         );
 
-
-        /* ==========================================
-           MOCK AI RESULT
-        ========================================== */
 
         return {
 
@@ -228,7 +229,6 @@ ${html}
                     role: "system",
 
                     content:
-
                         "You extract product information into JSON."
 
                 },
