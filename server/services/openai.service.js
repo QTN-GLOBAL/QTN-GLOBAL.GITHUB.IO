@@ -12,25 +12,136 @@ dotenv.config();
    OPENAI CLIENT
 ========================================== */
 
-const client = new OpenAI({
+const apiKey = process.env.OPENAI_API_KEY || "";
 
-    apiKey: process.env.OPENAI_API_KEY
+const client = apiKey
 
-});
+    ? new OpenAI({
 
+        apiKey
+
+    })
+
+    : null;
 /* ==========================================
    PARSE PRODUCT WITH AI
 ========================================== */
 
 export async function parseProductWithAI(html, options = {}) {
 
+    /* ==========================================
+       CHECK OPENAI CLIENT
+    ========================================== */
+
+    if (!client) {
+
+        console.log("");
+
+        console.log(
+            "========== OPENAI NOT CONFIGURED =========="
+        );
+
+        console.log(
+            "OPENAI_API_KEY chưa được cấu hình."
+        );
+
+        console.log(
+            "Sử dụng Mock AI tạm thời."
+        );
+
+        console.log(
+            "==========================================="
+        );
+
+
+        /* ==========================================
+           MOCK AI RESULT
+        ========================================== */
+
+        return {
+
+            name: "AI Product",
+
+            brand: "Unknown",
+
+            origin: "Unknown",
+
+            description:
+                "Đây là mô tả sản phẩm được sinh bởi Mock AI.",
+
+            specification: [
+
+                {
+
+                    name: "Capacity",
+
+                    value: "30kg"
+
+                },
+
+                {
+
+                    name: "Division",
+
+                    value: "5g"
+
+                }
+
+            ],
+
+            features: [
+
+                "Feature 1",
+
+                "Feature 2",
+
+                "Feature 3"
+
+            ],
+
+            applications: [
+
+                "Factory",
+
+                "Warehouse"
+
+            ],
+
+            accessories: [
+
+                "Adapter",
+
+                "Manual"
+
+            ]
+
+        };
+
+    }
+
+
+    /* ==========================================
+       OPENAI START
+    ========================================== */
+
     console.log("");
 
-    console.log("========== OPENAI ==========");
+    console.log(
+        "========== OPENAI =========="
+    );
 
-    console.log("Sending HTML to OpenAI...");
+    console.log(
+        "Sending HTML to OpenAI..."
+    );
 
-    console.log("============================");
+    console.log(
+        "============================"
+    );
+
+
+    /* ==========================================
+       BUILD PROMPT
+    ========================================== */
 
     const prompt = `
 
@@ -94,47 +205,72 @@ ${html}
 
 `;
 
-    const completion = await client.chat.completions.create({
 
-        model: "gpt-5.5",
+    /* ==========================================
+       SEND TO OPENAI
+    ========================================== */
 
-        messages: [
+    const completion =
 
-            {
+        await client.chat.completions.create({
 
-                role: "system",
+            model: "gpt-5.5",
 
-                content:
+            messages: [
 
-                    "You extract product information into JSON."
+                {
 
-            },
+                    role: "system",
 
-            {
+                    content:
 
-                role: "user",
+                        "You extract product information into JSON."
 
-                content: prompt
+                },
 
-            }
+                {
 
-        ],
+                    role: "user",
 
-        temperature: 0
+                    content: prompt
 
-    });
+                }
+
+            ],
+
+            temperature: 0
+
+        });
+
+
+    /* ==========================================
+       GET AI RESPONSE
+    ========================================== */
 
     const text =
 
-        completion.choices[0].message.content;
+        completion
+            .choices[0]
+            .message
+            .content;
+
 
     console.log("");
 
-    console.log("========== AI RESULT ==========");
+    console.log(
+        "========== AI RESULT =========="
+    );
 
     console.log(text);
 
-    console.log("===============================");
+    console.log(
+        "==============================="
+    );
+
+
+    /* ==========================================
+       PARSE JSON
+    ========================================== */
 
     try {
 
@@ -142,7 +278,12 @@ ${html}
 
     }
 
-    catch {
+    catch (error) {
+
+        console.error(
+            "AI JSON PARSE ERROR:",
+            error
+        );
 
         return {
 
