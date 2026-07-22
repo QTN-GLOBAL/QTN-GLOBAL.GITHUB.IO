@@ -13,6 +13,7 @@ newsDesc: "Cập nhật những thông tin mới nhất về sản phẩm, công
 
 newsCategoryTitle: "DANH MỤC TIN TỨC",
 featuredNewsTitle: "BÀI VIẾT NỔI BẬT",
+  productCategories: "DANH MỤC SẢN PHẨM",
 
 newsAll: "Tất cả tin tức",
 newsCompany: "Tin công ty",
@@ -182,7 +183,7 @@ newsDesc: "Latest updates about products, weighing technology and QTN GLOBAL act
 
 newsCategoryTitle: "NEWS CATEGORIES",
 featuredNewsTitle: "FEATURED ARTICLES",
-
+ productCategories: "PRODUCT CATEGORIES",
 newsAll: "All News",
 newsCompany: "Company News",
 newsProduct: "New Products",
@@ -352,7 +353,7 @@ newsDesc: "获取 QTN GLOBAL 产品、电子秤技术和企业动态的最新信
 
 newsCategoryTitle: "新闻分类",
 featuredNewsTitle: "热门文章",
-
+productCategories: "产品分类",
 newsAll: "全部新闻",
 newsCompany: "公司新闻",
 newsProduct: "新产品",
