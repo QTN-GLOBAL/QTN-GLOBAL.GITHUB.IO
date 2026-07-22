@@ -2011,6 +2011,7 @@ color:#777;
 
 /* =====================================================
    CARD
+   HÒA VÀO NỀN TRANG
 ===================================================== */
 
 .best-seller-card{
@@ -2019,34 +2020,27 @@ color:#777;
 
     min-width:0;
 
-    background:#fff;
+    background:transparent;
 
-    border-radius:10px;
+    border:none;
+
+    border-radius:0;
 
     overflow:hidden;
 
-    box-shadow:
-        0 2px 10px
-        rgba(0,0,0,.08);
+    box-shadow:none;
 
     transition:
-        transform .25s,
-        box-shadow .25s;
+        transform .25s;
 
 }
 
 
 .best-seller-card:hover{
 
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 5px 18px
-        rgba(0,0,0,.15);
+    transform:none;
 
 }
-
 
 /* =====================================================
    BRAND
