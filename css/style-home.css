@@ -1951,6 +1951,7 @@ color:#777;
 
 /* =====================================================
    TITLE
+   CĂN GIỮA
 ===================================================== */
 
 .best-seller-title{
@@ -1964,6 +1965,8 @@ color:#777;
     font-weight:700;
 
     color:#1565c0;
+
+    text-align:center;
 
     border-bottom:2px solid #e8eef8;
 
