@@ -1246,9 +1246,14 @@
 
 /* =====================================================
    BRAND WRAPPER
+   VÙNG HIỂN THỊ SLIDER
 ===================================================== */
 
 .brand-wrapper{
+
+    width:100%;
+
+    min-width:0;
 
     position:relative;
 
@@ -1256,10 +1261,100 @@
 
     align-items:center;
 
-    gap:14px;
+    overflow:hidden;
 
 }
 
+
+/* =====================================================
+   BRAND TRACK
+   TRACK CHẠY BÊN TRONG
+===================================================== */
+
+.brand-wrapper .brand-track{
+
+    flex:0 0 auto;
+
+    width:max-content;
+
+    min-width:100%;
+
+    display:flex;
+
+    align-items:stretch;
+
+    gap:10px;
+
+    overflow:visible;
+
+    will-change:transform;
+
+}
+
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+.brand-wrapper .product-card{
+
+    flex:0 0 220px;
+
+    width:220px;
+
+    min-width:220px;
+
+    box-sizing:border-box;
+
+}
+
+
+/* =====================================================
+   ẢNH SẢN PHẨM
+===================================================== */
+
+.brand-wrapper .product-card img{
+
+    width:100%;
+
+    height:135px;
+
+    object-fit:contain;
+
+    display:block;
+
+}
+
+
+/* =====================================================
+   NÚT ĐIỀU HƯỚNG
+===================================================== */
+
+.brand-wrapper .slider-btn{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:10;
+
+}
+
+
+.brand-wrapper .slider-btn.left{
+
+    left:5px;
+
+}
+
+
+.brand-wrapper .slider-btn.right{
+
+    right:5px;
+
+}
 /* =====================================================
    TRACK
 ===================================================== */
