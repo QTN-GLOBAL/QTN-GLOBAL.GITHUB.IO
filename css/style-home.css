@@ -1595,15 +1595,16 @@ FOOTER
 
 .footer{
 
-    margin-top:50px;
+    margin-top:25px;
 
     background:linear-gradient(180deg,#0d2d63,#081a38);
 
-    border-top:4px solid #f5b400;
+    border-top:3px solid #f5b400;
 
     color:#fff;
 
 }
+
 
 /*======================================================
 CONTAINER
@@ -1617,17 +1618,18 @@ CONTAINER
 
     margin:auto;
 
-    padding:60px 0;
+    padding:30px 0;
 
     display:grid;
 
     grid-template-columns:2fr 1fr 1fr .9fr;
 
-    gap:60px;
+    gap:35px;
 
     align-items:start;
 
 }
+
 
 /*======================================================
 COLUMN
@@ -1638,6 +1640,7 @@ COLUMN
     min-width:0;
 
 }
+
 
 /*======================================================
 COMPANY
@@ -1655,15 +1658,15 @@ COMPANY
 
     align-items:center;
 
-    gap:20px;
+    gap:15px;
 
-    margin-bottom:25px;
+    margin-bottom:15px;
 
 }
 
 .footer-logo img{
 
-    width:90px;
+    width:70px;
 
 }
 
@@ -1671,7 +1674,7 @@ COMPANY
 
     margin:0;
 
-    font-size:42px;
+    font-size:32px;
 
     line-height:1;
 
@@ -1685,15 +1688,16 @@ COMPANY
 
     display:block;
 
-    margin-top:10px;
+    margin-top:6px;
 
     color:#ffc107;
 
-    font-size:16px;
+    font-size:14px;
 
     font-weight:700;
 
 }
+
 
 /*======================================================
 TITLE
@@ -1701,9 +1705,9 @@ TITLE
 
 .footer-column h3{
 
-    margin:0 0 24px;
+    margin:0 0 15px;
 
-    font-size:30px;
+    font-size:22px;
 
     color:#fff;
 
@@ -1717,15 +1721,16 @@ TITLE
 
     display:block;
 
-    width:56px;
+    width:45px;
 
-    height:3px;
+    height:2px;
 
     background:#f5b400;
 
-    margin-top:10px;
+    margin-top:7px;
 
 }
+
 
 /*======================================================
 TEXT
@@ -1737,15 +1742,15 @@ TEXT
 
     align-items:flex-start;
 
-    gap:12px;
+    gap:10px;
 
-    line-height:1.8;
+    line-height:1.6;
 
-    margin-bottom:18px;
+    margin-bottom:10px;
 
     color:#d8e3ef;
 
-    font-size:16px;
+    font-size:14px;
 
 }
 
@@ -1753,9 +1758,9 @@ TEXT
 
     color:#48c5ff;
 
-    width:18px;
+    width:16px;
 
-    margin-top:6px;
+    margin-top:4px;
 
 }
 
@@ -1775,6 +1780,7 @@ TEXT
 
 }
 
+
 /*======================================================
 MENU
 ======================================================*/
@@ -1789,11 +1795,12 @@ MENU
 
 .footer-menu a{
 
-    padding:12px 0;
+    padding:7px 0;
 
     border-bottom:1px solid rgba(255,255,255,.08);
 
 }
+
 
 /*======================================================
 SOCIAL
@@ -1805,7 +1812,7 @@ SOCIAL
 
     flex-direction:column;
 
-    gap:14px;
+    gap:9px;
 
 }
 
@@ -1815,7 +1822,7 @@ SOCIAL
 
     align-items:center;
 
-    gap:14px;
+    gap:10px;
 
 }
 
@@ -1824,6 +1831,7 @@ SOCIAL
     color:#d8e3ef;
 
 }
+
 
 /*======================================================
 BOTTOM
@@ -1835,9 +1843,11 @@ BOTTOM
 
     text-align:center;
 
-    padding:18px;
+    padding:10px;
 
     color:#cdd8e6;
+
+    font-size:13px;
 
 }
 /* =====================================
