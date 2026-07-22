@@ -2158,18 +2158,11 @@ color:#777;
 
     justify-content:center;
 
-    background:transparent;
-
-    border:none;
-
-    text-decoration:none;
-
     overflow:hidden;
 
     box-sizing:border-box;
 
 }
-
 
 /* =====================================================
    PRODUCT IMAGE
@@ -2188,8 +2181,6 @@ color:#777;
     padding:5px;
 
     box-sizing:border-box;
-
-    transition:transform .3s ease;
 
 }
 
