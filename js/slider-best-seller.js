@@ -1,89 +1,95 @@
 /* =====================================================
-   BEST SELLER SLIDER
-   - HIỂN THỊ TOÀN BỘ SẢN PHẨM
-   - KHÔNG PHỤ THUỘC BRAND
-   - KHÔNG PHỤ THUỘC PHÂN TRANG BRAND
+   BEST SELLER
+   - Hiển thị toàn bộ sản phẩm
+   - Không hiển thị tên
+   - Không hiển thị Brand
+   - Không hiển thị nút Chi tiết
+   - Không hiển thị nút Báo giá
+   - Không có nút điều hướng
+   - Bấm ảnh mở trang chi tiết
 ===================================================== */
-
-let bestSellerIndex = 0;
-let bestSellerTimer = null;
 
 
 /* =====================================================
-   GET PRODUCTS
+   RENDER BEST SELLER
 ===================================================== */
 
-function getBestSellerProducts() {
+function renderBestSeller() {
 
-    if (typeof getProducts === "function") {
+    const container =
+        document.getElementById("bestSellerTrack");
 
-        const products = getProducts();
+    if (!container) return;
 
-        if (Array.isArray(products)) {
 
-            return products.filter(
-                p => p && p.id && p.name
-            );
+    /* =========================
+       LẤY TOÀN BỘ SẢN PHẨM
+    ========================= */
 
-        }
+    const products =
+        typeof getProducts === "function"
+            ? getProducts()
+            : [];
+
+
+    if (!Array.isArray(products) ||
+        products.length === 0) {
+
+        container.innerHTML = "";
+
+        return;
 
     }
 
 
     /* =========================
-       FALLBACK
+       RENDER SẢN PHẨM
     ========================= */
 
-    if (
-        typeof products !== "undefined"
-        &&
-        Array.isArray(products)
-    ) {
+    container.innerHTML = products
+        .filter(p =>
+            p &&
+            p.id &&
+            p.folder &&
+            p.category
+        )
+        .map(p => {
 
-        return products.filter(
-            p => p && p.id && p.name
-        );
-
-    }
-
-
-    return [];
-
-}
+            const brand =
+                (p.brand || "")
+                    .trim()
+                    .toUpperCase();
 
 
-/* =====================================================
-   VISIBLE COUNT
-===================================================== */
+            /* =========================
+               LINK CHI TIẾT
+            ========================= */
 
-function getBestSellerVisibleCount() {
-
-    const width =
-        window.innerWidth;
-
-
-    if (width <= 480) {
-
-        return 1;
-
-    }
+            const detailUrl =
+                brand === "AMWAY"
+                    ? `amway.html?id=${p.id}`
+                    : `chitiet.html?id=${p.id}`;
 
 
-    if (width <= 768) {
+            return `
 
-        return 2;
+                <a
+                    class="best-seller-item"
+                    href="${detailUrl}"
+                >
 
-    }
+                    <img
+                        src="images/${p.category}/${p.folder}/main.jpg"
+                        alt=""
+                        loading="lazy"
+                    >
 
+                </a>
 
-    if (width <= 992) {
+            `;
 
-        return 3;
-
-    }
-
-
-    return 4;
+        })
+        .join("");
 
 }
 
@@ -92,421 +98,22 @@ function getBestSellerVisibleCount() {
    INIT
 ===================================================== */
 
-function initBestSellerSlider() {
-
-    const track =
-        document.getElementById(
-            "bestSellerTrack"
-        );
-
-
-    if (!track) {
-
-        console.log(
-            "BEST SELLER: TRACK NOT FOUND"
-        );
-
-        return;
-
-    }
-
-
-    const productList =
-        getBestSellerProducts();
-
-
-    console.log(
-        "BEST SELLER PRODUCTS:",
-        productList
-    );
-
-
-    if (
-        !productList
-        ||
-        productList.length === 0
-    ) {
-
-        console.log(
-            "BEST SELLER: NO PRODUCTS"
-        );
-
-        return;
-
-    }
-
-
-    bestSellerIndex = 0;
-
+function initBestSeller() {
 
     renderBestSeller();
 
-
-    /* =========================
-       CLEAR TIMER
-    ========================= */
-
-    if (
-        bestSellerTimer
-    ) {
-
-        clearInterval(
-            bestSellerTimer
-        );
-
-    }
-
-
-    /* =========================
-       AUTO SLIDE
-    ========================= */
-
-    bestSellerTimer =
-        setInterval(
-
-            function(){
-
-                moveBestSeller(1);
-
-            },
-
-            5000
-
-        );
-
 }
-
-
-/* =====================================================
-   RENDER
-===================================================== */
-
-function renderBestSeller() {
-
-    const track =
-        document.getElementById(
-            "bestSellerTrack"
-        );
-
-
-    if (!track) return;
-
-
-    const productList =
-        getBestSellerProducts();
-
-
-    if (
-        !productList
-        ||
-        productList.length === 0
-    ) {
-
-        track.innerHTML = "";
-
-        return;
-
-    }
-
-
-    const visible =
-        getBestSellerVisibleCount();
-
-
-    let html = "";
-
-
-    for (
-        let i = 0;
-        i < visible;
-        i++
-    ) {
-
-
-        const index =
-            (
-                bestSellerIndex
-                +
-                i
-            )
-            %
-            productList.length;
-
-
-        const p =
-            productList[index];
-
-
-        if (!p) continue;
-
-
-        const product =
-            typeof getTranslatedProduct === "function"
-
-            ?
-
-            (
-                getTranslatedProduct(p)
-                ||
-                p
-            )
-
-            :
-
-            p;
-
-
-        const brand =
-            (
-                p.brand
-                ||
-                ""
-            )
-            .trim();
-
-
-        const brandUpper =
-            brand.toUpperCase();
-
-
-        html += `
-
-<div class="best-seller-card">
-
-
-    ${
-        brand
-
-        ?
-
-        `
-
-        <div class="best-seller-brand">
-
-            ${formatBrandName(brand)}
-
-        </div>
-
-        `
-
-        :
-
-        ""
-    }
-
-
-    <img
-        src="images/${p.category}/${p.folder}/main.jpg"
-        alt="${product.name}">
-
-
-    <div class="best-seller-info">
-
-
-        <h3>
-
-            ${product.name}
-
-        </h3>
-
-
-        <div class="best-seller-buttons">
-
-
-            <a
-                class="detail-btn"
-
-                href="${
-                    brandUpper === "AMWAY"
-
-                    ?
-
-                    "amway.html"
-
-                    :
-
-                    "chitiet.html"
-                }?id=${p.id}">
-
-                ${
-                    typeof t === "function"
-
-                    ?
-
-                    t("detailBtn")
-
-                    :
-
-                    "Xem chi tiết"
-                }
-
-            </a>
-
-
-            <button
-                class="quote-btn"
-
-                onclick="${
-                    brandUpper === "AMWAY"
-
-                    ?
-
-                    "location.href='amway-contact.html'"
-
-                    :
-
-                    "showQuote(" + p.id + ")"
-                }">
-
-
-                ${
-                    brandUpper === "AMWAY"
-
-                    ?
-
-                    (
-                        typeof t === "function"
-
-                        ?
-
-                        t("contactConsultationBtn")
-
-                        :
-
-                        "Liên hệ tư vấn"
-                    )
-
-                    :
-
-                    (
-                        typeof t === "function"
-
-                        ?
-
-                        t("quoteBtn")
-
-                        :
-
-                        "Báo giá"
-                    )
-                }
-
-
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-</div>
-
-`;
-
-    }
-
-
-    track.innerHTML =
-        html;
-
-
-    console.log(
-        "BEST SELLER RENDERED:",
-        visible,
-        "PRODUCTS"
-    );
-
-}
-
-
-/* =====================================================
-   MOVE
-===================================================== */
-
-function moveBestSeller(
-    direction
-) {
-
-    const productList =
-        getBestSellerProducts();
-
-
-    if (
-        !productList
-        ||
-        productList.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    bestSellerIndex +=
-        direction;
-
-
-    if (
-        bestSellerIndex
-        >=
-        productList.length
-    ) {
-
-        bestSellerIndex = 0;
-
-    }
-
-
-    if (
-        bestSellerIndex < 0
-    ) {
-
-        bestSellerIndex =
-            productList.length - 1;
-
-    }
-
-
-    renderBestSeller();
-
-}
-
-
-/* =====================================================
-   RESIZE
-===================================================== */
-
-window.addEventListener(
-    "resize",
-    function(){
-
-        renderBestSeller();
-
-    }
-);
 
 
 /* =====================================================
    DOM READY
 ===================================================== */
 
-window.addEventListener(
+document.addEventListener(
     "DOMContentLoaded",
-    function(){
+    function() {
 
-        setTimeout(
-
-            function(){
-
-                initBestSellerSlider();
-
-            },
-
-            300
-
-        );
+        initBestSeller();
 
     }
 );
