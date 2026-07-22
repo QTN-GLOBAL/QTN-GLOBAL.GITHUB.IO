@@ -2051,9 +2051,11 @@ color:#777;
 ===================================================== */
 .best-seller-item{
 
-    flex:0 0 calc(
-        (100% - 42px) / 8
-    );
+    flex:0 0 160px;
+
+    width:160px;
+
+    height:160px;
 
     display:flex;
 
@@ -2088,12 +2090,11 @@ color:#777;
 
     object-fit:contain;
 
-    padding:8px;
+    padding:5px;
 
     box-sizing:border-box;
 
-    transition:
-        transform .3s ease;
+    transition:transform .3s ease;
 
 }
 
