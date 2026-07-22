@@ -2124,6 +2124,7 @@ color:#777;
 /* =====================================================
    TRACK
 ===================================================== */
+
 .best-seller-track{
 
     width:max-content;
@@ -2143,7 +2144,9 @@ color:#777;
 
 /* =====================================================
    PRODUCT ITEM
+   KHUNG SẢN PHẨM ĐỒNG ĐỀU
 ===================================================== */
+
 .best-seller-item{
 
     flex:0 0 160px;
@@ -2164,23 +2167,33 @@ color:#777;
 
 }
 
+
 /* =====================================================
    PRODUCT IMAGE
+   CĂN GIỮA + GIỚI HẠN KÍCH THƯỚC
 ===================================================== */
 
 .best-seller-item img{
 
     display:block;
 
-    width:100%;
+    width:auto;
 
-    height:150px;
+    height:auto;
+
+    max-width:145px;
+
+    max-height:145px;
 
     object-fit:contain;
 
-    padding:5px;
+    margin:auto;
+
+    padding:0;
 
     box-sizing:border-box;
+
+    transition:transform .25s ease;
 
 }
 
@@ -2204,15 +2217,20 @@ color:#777;
 
     .best-seller-item{
 
-        flex:0 0 calc(
-            (100% - 30px) / 3
-        );
+        flex:0 0 150px;
+
+        width:150px;
+
+        height:150px;
 
     }
 
+
     .best-seller-item img{
 
-        height:140px;
+        max-width:135px;
+
+        max-height:135px;
 
     }
 
@@ -2231,23 +2249,30 @@ color:#777;
 
     }
 
+
     .best-seller-track{
 
-        gap:10px;
+        gap:6px;
 
     }
+
 
     .best-seller-item{
 
-        flex:0 0 calc(
-            (100% - 10px) / 2
-        );
+        flex:0 0 140px;
+
+        width:140px;
+
+        height:140px;
 
     }
 
+
     .best-seller-item img{
 
-        height:130px;
+        max-width:125px;
+
+        max-height:125px;
 
     }
 
@@ -2262,13 +2287,20 @@ color:#777;
 
     .best-seller-item{
 
-        flex:0 0 100%;
+        flex:0 0 130px;
+
+        width:130px;
+
+        height:130px;
 
     }
 
+
     .best-seller-item img{
 
-        height:180px;
+        max-width:115px;
+
+        max-height:115px;
 
     }
 
