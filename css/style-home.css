@@ -1287,11 +1287,13 @@
 
     align-items:center;
 
-    gap:5px;
+    gap:4px;
 
-    margin-top:18px;
+    margin-top:5px;
 
-    margin-bottom:5px;
+    margin-bottom:0;
+
+    padding:0;
 
 }
 
@@ -1302,23 +1304,23 @@
 
 .brand-pagination button{
 
-    width:28px;
+    width:26px;
 
-    height:28px;
+    height:26px;
 
     padding:0;
 
     border:none;
 
-    border-radius:5px;
+    border-radius:4px;
 
     background:#e0e0e0;
 
     color:#555;
 
-    font-size:13px;
+    font-size:12px;
 
-    line-height:28px;
+    line-height:26px;
 
     text-align:center;
 
@@ -1376,7 +1378,6 @@
     padding:0;
 
 }
-
 
 /* =====================================================
    PRODUCT CARD
