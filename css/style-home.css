@@ -2176,14 +2176,14 @@ color:#777;
 
 /* =====================================================
    SLIDER BUTTON
-   ẨN MẶC ĐỊNH
+   NHỎ + MÀU XÁM
 ===================================================== */
 
 .best-seller-btn{
 
-    width:38px;
+    width:28px;
 
-    height:38px;
+    height:28px;
 
     flex-shrink:0;
 
@@ -2191,11 +2191,11 @@ color:#777;
 
     border-radius:50%;
 
-    background:#1565c0;
+    background:#b0b0b0;
 
     color:#fff;
 
-    font-size:18px;
+    font-size:14px;
 
     cursor:pointer;
 
@@ -2206,10 +2206,37 @@ color:#777;
     transition:
         opacity .25s,
         visibility .25s,
-        transform .25s;
+        transform .25s,
+        background .25s;
 
 }
 
+
+/* =====================================================
+   HIỆN NÚT KHI HOVER SLIDER
+===================================================== */
+
+.best-seller-wrapper:hover
+.best-seller-btn{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* =====================================================
+   HOVER NÚT
+===================================================== */
+
+.best-seller-btn:hover{
+
+    transform:scale(1.1);
+
+    background:#888;
+
+}
 
 /* =====================================================
    HIỆN NÚT ĐIỀU HƯỚNG KHI HOVER SLIDER
