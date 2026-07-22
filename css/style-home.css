@@ -2144,7 +2144,7 @@ color:#777;
 
 /* =====================================================
    PRODUCT ITEM
-   KHUNG SẢN PHẨM ĐỒNG ĐỀU
+   KHUNG HIỂN THỊ CỐ ĐỊNH
 ===================================================== */
 
 .best-seller-item{
@@ -2170,24 +2170,22 @@ color:#777;
 
 /* =====================================================
    PRODUCT IMAGE
-   CĂN GIỮA + GIỚI HẠN KÍCH THƯỚC
+   ÉP TẤT CẢ ẢNH VÀO CÙNG KHUNG
 ===================================================== */
 
 .best-seller-item img{
 
     display:block;
 
-    width:auto;
+    width:145px;
 
-    height:auto;
-
-    max-width:145px;
-
-    max-height:145px;
+    height:145px;
 
     object-fit:contain;
 
-    margin:auto;
+    object-position:center;
+
+    margin:0;
 
     padding:0;
 
@@ -2228,9 +2226,9 @@ color:#777;
 
     .best-seller-item img{
 
-        max-width:135px;
+        width:135px;
 
-        max-height:135px;
+        height:135px;
 
     }
 
@@ -2270,9 +2268,9 @@ color:#777;
 
     .best-seller-item img{
 
-        max-width:125px;
+        width:125px;
 
-        max-height:125px;
+        height:125px;
 
     }
 
@@ -2298,9 +2296,9 @@ color:#777;
 
     .best-seller-item img{
 
-        max-width:115px;
+        width:115px;
 
-        max-height:115px;
+        height:115px;
 
     }
 
