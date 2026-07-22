@@ -2036,7 +2036,7 @@ color:#777;
 
     align-items:center;
 
-    gap:15px;
+    gap:6px;
 
     overflow:hidden;
 
@@ -2046,11 +2046,10 @@ color:#777;
 /* =====================================================
    PRODUCT ITEM
 ===================================================== */
-
 .best-seller-item{
 
     flex:0 0 calc(
-        (100% - 60px) / 5
+        (100% - 42px) / 8
     );
 
     display:flex;
