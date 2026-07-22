@@ -2041,33 +2041,14 @@ color:#777;
     transform:none;
 
 }
-
 /* =====================================================
    BRAND
+   ẨN HOÀN TOÀN
 ===================================================== */
 
 .best-seller-brand{
 
-    position:absolute;
-
-    top:8px;
-
-    left:8px;
-
-    z-index:2;
-
-    padding:4px 8px;
-
-    border-radius:4px;
-
-    background:
-        rgba(21,101,192,.9);
-
-    color:#fff;
-
-    font-size:12px;
-
-    font-weight:600;
+    display:none !important;
 
 }
 
