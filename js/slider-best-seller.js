@@ -10,7 +10,50 @@ let bestSellerTimer = null;
 
 
 /* =====================================================
-   SỐ SẢN PHẨM HIỂN THỊ
+   GET PRODUCTS
+===================================================== */
+
+function getBestSellerProducts() {
+
+    if (typeof getProducts === "function") {
+
+        const products = getProducts();
+
+        if (Array.isArray(products)) {
+
+            return products.filter(
+                p => p && p.id && p.name
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       FALLBACK
+    ========================= */
+
+    if (
+        typeof products !== "undefined"
+        &&
+        Array.isArray(products)
+    ) {
+
+        return products.filter(
+            p => p && p.id && p.name
+        );
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =====================================================
+   VISIBLE COUNT
 ===================================================== */
 
 function getBestSellerVisibleCount() {
@@ -18,11 +61,13 @@ function getBestSellerVisibleCount() {
     const width =
         window.innerWidth;
 
+
     if (width <= 480) {
 
         return 1;
 
     }
+
 
     if (width <= 768) {
 
@@ -30,11 +75,13 @@ function getBestSellerVisibleCount() {
 
     }
 
+
     if (width <= 992) {
 
         return 3;
 
     }
+
 
     return 4;
 
@@ -52,18 +99,37 @@ function initBestSellerSlider() {
             "bestSellerTrack"
         );
 
-    if (!track) return;
+
+    if (!track) {
+
+        console.log(
+            "BEST SELLER: TRACK NOT FOUND"
+        );
+
+        return;
+
+    }
 
 
-    const products =
-        getProducts();
+    const productList =
+        getBestSellerProducts();
+
+
+    console.log(
+        "BEST SELLER PRODUCTS:",
+        productList
+    );
 
 
     if (
-        !products
+        !productList
         ||
-        products.length === 0
+        productList.length === 0
     ) {
+
+        console.log(
+            "BEST SELLER: NO PRODUCTS"
+        );
 
         return;
 
@@ -77,7 +143,7 @@ function initBestSellerSlider() {
 
 
     /* =========================
-       CLEAR OLD TIMER
+       CLEAR TIMER
     ========================= */
 
     if (
@@ -98,11 +164,9 @@ function initBestSellerSlider() {
     bestSellerTimer =
         setInterval(
 
-            () => {
+            function(){
 
-                moveBestSeller(
-                    1
-                );
+                moveBestSeller(1);
 
             },
 
@@ -124,17 +188,18 @@ function renderBestSeller() {
             "bestSellerTrack"
         );
 
+
     if (!track) return;
 
 
-    const products =
-        getProducts();
+    const productList =
+        getBestSellerProducts();
 
 
     if (
-        !products
+        !productList
         ||
-        products.length === 0
+        productList.length === 0
     ) {
 
         track.innerHTML = "";
@@ -157,25 +222,37 @@ function renderBestSeller() {
         i++
     ) {
 
+
         const index =
             (
                 bestSellerIndex
-                + i
+                +
+                i
             )
             %
-            products.length;
+            productList.length;
 
 
         const p =
-            products[index];
+            productList[index];
 
 
         if (!p) continue;
 
 
         const product =
-            getTranslatedProduct(p)
-            ||
+            typeof getTranslatedProduct === "function"
+
+            ?
+
+            (
+                getTranslatedProduct(p)
+                ||
+                p
+            )
+
+            :
+
             p;
 
 
@@ -188,22 +265,34 @@ function renderBestSeller() {
             .trim();
 
 
+        const brandUpper =
+            brand.toUpperCase();
+
+
         html += `
 
 <div class="best-seller-card">
 
 
-    ${brand ? `
+    ${
+        brand
 
-    <div class="best-seller-brand">
+        ?
 
-        ${formatBrandName(
-            brand
-        )}
+        `
 
-    </div>
+        <div class="best-seller-brand">
 
-    ` : ""}
+            ${formatBrandName(brand)}
+
+        </div>
+
+        `
+
+        :
+
+        ""
+    }
 
 
     <img
@@ -227,11 +316,29 @@ function renderBestSeller() {
             <a
                 class="detail-btn"
 
-                href="${brand.toUpperCase() === 'AMWAY'
-                    ? 'amway.html'
-                    : 'chitiet.html'}?id=${p.id}">
+                href="${
+                    brandUpper === "AMWAY"
 
-                ${t("detailBtn")}
+                    ?
+
+                    "amway.html"
+
+                    :
+
+                    "chitiet.html"
+                }?id=${p.id}">
+
+                ${
+                    typeof t === "function"
+
+                    ?
+
+                    t("detailBtn")
+
+                    :
+
+                    "Xem chi tiết"
+                }
 
             </a>
 
@@ -239,14 +346,50 @@ function renderBestSeller() {
             <button
                 class="quote-btn"
 
-                onclick="${brand.toUpperCase() === 'AMWAY'
-                    ? 'location.href=\\'amway-contact.html\\''
-                    : 'showQuote(' + p.id + ')'}">
+                onclick="${
+                    brandUpper === "AMWAY"
+
+                    ?
+
+                    "location.href='amway-contact.html'"
+
+                    :
+
+                    "showQuote(" + p.id + ")"
+                }">
 
 
-                ${brand.toUpperCase() === 'AMWAY'
-                    ? t("contactConsultationBtn")
-                    : t("quoteBtn")}
+                ${
+                    brandUpper === "AMWAY"
+
+                    ?
+
+                    (
+                        typeof t === "function"
+
+                        ?
+
+                        t("contactConsultationBtn")
+
+                        :
+
+                        "Liên hệ tư vấn"
+                    )
+
+                    :
+
+                    (
+                        typeof t === "function"
+
+                        ?
+
+                        t("quoteBtn")
+
+                        :
+
+                        "Báo giá"
+                    )
+                }
 
 
             </button>
@@ -268,6 +411,13 @@ function renderBestSeller() {
     track.innerHTML =
         html;
 
+
+    console.log(
+        "BEST SELLER RENDERED:",
+        visible,
+        "PRODUCTS"
+    );
+
 }
 
 
@@ -279,14 +429,14 @@ function moveBestSeller(
     direction
 ) {
 
-    const products =
-        getProducts();
+    const productList =
+        getBestSellerProducts();
 
 
     if (
-        !products
+        !productList
         ||
-        products.length === 0
+        productList.length === 0
     ) {
 
         return;
@@ -298,14 +448,10 @@ function moveBestSeller(
         direction;
 
 
-    /* =========================
-       LOOP FORWARD
-    ========================= */
-
     if (
         bestSellerIndex
         >=
-        products.length
+        productList.length
     ) {
 
         bestSellerIndex = 0;
@@ -313,16 +459,12 @@ function moveBestSeller(
     }
 
 
-    /* =========================
-       LOOP BACKWARD
-    ========================= */
-
     if (
         bestSellerIndex < 0
     ) {
 
         bestSellerIndex =
-            products.length - 1;
+            productList.length - 1;
 
     }
 
@@ -338,7 +480,7 @@ function moveBestSeller(
 
 window.addEventListener(
     "resize",
-    () => {
+    function(){
 
         renderBestSeller();
 
@@ -352,9 +494,19 @@ window.addEventListener(
 
 window.addEventListener(
     "DOMContentLoaded",
-    () => {
+    function(){
 
-        initBestSellerSlider();
+        setTimeout(
+
+            function(){
+
+                initBestSellerSlider();
+
+            },
+
+            300
+
+        );
 
     }
 );
