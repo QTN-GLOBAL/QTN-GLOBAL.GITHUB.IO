@@ -1,8 +1,25 @@
-/* =========================
-   BRAND SLIDER - FINAL FIX (NO MISSING ITEM)
-========================= */
+/* =====================================================
+   BRAND SLIDER
+   SMOOTH INFINITE SLIDER
+   - Chạy liên tục từ phải sang trái
+   - Không giật cục
+   - Không nhảy từng sản phẩm
+   - Không mất sản phẩm
+   - Giữ nút điều hướng
+   - Giữ tên sản phẩm
+   - Giữ Brand
+   - Giữ Chi tiết / Nhận báo giá
+===================================================== */
 
-let brandIntervals = [];
+
+let brandAnimations = [];
+
+let brandPaused = false;
+
+
+/* =====================================================
+   VISIBLE COUNT
+===================================================== */
 
 function getVisibleCount(){
 
@@ -18,9 +35,11 @@ function getVisibleCount(){
 
 }
 
-/* =========================
+
+/* =====================================================
    INIT
-========================= */
+===================================================== */
+
 function initBrandSliders() {
 
     const mode =
@@ -28,180 +47,717 @@ function initBrandSliders() {
         window.APP_MODE.mode :
         "home";
 
-    // chỉ khóa ở product grid
+
+    /* =========================
+       KHÓA Ở PRODUCT GRID
+    ========================= */
+
     if (
         mode === "search-grid" ||
         mode === "category-grid" ||
         mode === "brand-grid"
     ) {
+
         return;
+
     }
 
-    brandIntervals.forEach(clearInterval);
-    brandIntervals = [];
 
-    document.querySelectorAll(".brand-track").forEach(track => {
+    /* =========================
+       DỪNG ANIMATION CŨ
+    ========================= */
 
-        let items = [];
+    brandAnimations.forEach(
+        animation => {
 
-        try {
-            items = JSON.parse(track.dataset.items || "[]");
-        } catch (e) {
-            items = [];
+            cancelAnimationFrame(
+                animation
+            );
+
         }
+    );
 
-        if (!Array.isArray(items) || items.length === 0) return;
 
-        // reset index
-        track.dataset.index = "0";
+    brandAnimations = [];
 
-        renderBrand(track.id);
 
-        if (items.length <= getVisibleCount()) return;
+    /* =========================
+       INIT TỪNG BRAND
+    ========================= */
 
-        const timer = setInterval(() => {
-            moveBrand(track.id, 1);
-        }, 6000);
+    document
+        .querySelectorAll(".brand-track")
+        .forEach(track => {
 
-        brandIntervals.push(timer);
-    });
+            let items = [];
+
+            try {
+
+                items =
+                    JSON.parse(
+                        track.dataset.items || "[]"
+                    );
+
+            } catch (e) {
+
+                items = [];
+
+            }
+
+
+            if (
+                !Array.isArray(items) ||
+                items.length === 0
+            ) {
+
+                return;
+
+            }
+
+
+            renderBrand(
+                track.id
+            );
+
+        });
+
 }
 
-/* =========================
-   RENDER
-========================= */
+
+/* =====================================================
+   RENDER BRAND
+===================================================== */
+
 function renderBrand(id) {
 
-    const el = document.getElementById(id);
+    const el =
+        document.getElementById(id);
+
     if (!el) return;
+
 
     let items = [];
 
     try {
-        items = JSON.parse(el.dataset.items || "[]");
+
+        items =
+            JSON.parse(
+                el.dataset.items || "[]"
+            );
+
     } catch (e) {
+
         items = [];
+
     }
 
-    const total = items.length;
-    if (total === 0) return;
 
-    let index = Number(el.dataset.index || 0);
+    if (
+        !Array.isArray(items) ||
+        items.length === 0
+    ) {
 
-    // FIX INDEX SAFE
-    if (index >= total) index = 0;
-    if (index < 0) index = 0;
+        return;
+
+    }
+
+
+    /* =================================================
+       NẾU KHÔNG ĐỦ SẢN PHẨM
+       HIỂN THỊ BÌNH THƯỜNG
+    ================================================= */
+
+    if (
+        items.length <=
+        getVisibleCount()
+    ) {
+
+        renderBrandStatic(
+            el,
+            items
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       TẠO 2 BỘ SẢN PHẨM
+
+       Bộ 1
+       Bộ 2
+
+       Chạy hết bộ 1
+       -> nối tiếp bộ 2
+       -> quay lại đầu
+       -> không nhìn thấy điểm lặp
+    ================================================= */
+
+    const createItems =
+        list => {
+
+            return list
+                .map(p => {
+
+                    if (!p) return "";
+
+
+                    const product =
+                        getTranslatedProduct(p)
+                        || p;
+
+
+                    const brand =
+                        (p.brand || "")
+                            .trim()
+                            .toUpperCase();
+
+
+                    const detailUrl =
+                        brand === "AMWAY"
+                            ? "amway.html"
+                            : "chitiet.html";
+
+
+                    const quoteAction =
+                        brand === "AMWAY"
+                            ? "location.href='amway-contact.html'"
+                            : "showQuote(" + p.id + ")";
+
+
+                    const quoteText =
+                        brand === "AMWAY"
+                            ? t("contactConsultationBtn")
+                            : t("quoteBtn");
+
+
+                    return `
+
+                    <div class="product-card">
+
+                        <div class="brand-overlay">
+
+                            ${formatBrandName(
+                                p.brand || ""
+                            )}
+
+                        </div>
+
+
+                        <img
+                            src="images/${p.category}/${p.folder}/main.jpg"
+                        >
+
+
+                        <div class="product-info">
+
+                            <h3>
+                                ${product.name}
+                            </h3>
+
+
+                            <div class="product-buttons">
+
+
+                                <a
+                                    class="detail-btn"
+                                    href="${detailUrl}?id=${p.id}"
+                                >
+
+                                    ${t("detailBtn")}
+
+                                </a>
+
+
+                                <button
+                                    class="quote-btn"
+                                    onclick="${quoteAction}"
+                                >
+
+                                    ${quoteText}
+
+                                </button>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    `;
+
+                })
+                .join("");
+
+        };
+
+
+    const html =
+        createItems(items);
+
+
+    /* =================================================
+       NHÂN ĐÔI DANH SÁCH
+    ================================================= */
+
+    el.innerHTML =
+        html + html;
+
+
+    /* =================================================
+       START ANIMATION
+    ================================================= */
+
+    startBrandSlider(
+        el.id
+    );
+
+}
+
+
+/* =====================================================
+   STATIC BRAND
+===================================================== */
+
+function renderBrandStatic(
+    el,
+    items
+) {
 
     let html = "";
-const visible = getVisibleCount();
 
-    for (let i = 0; i < Math.min(visible, total); i++) {
 
-        const realIndex = (index + i) % total;
-        const p = items[realIndex];
+    const visible =
+        getVisibleCount();
+
+
+    for (
+        let i = 0;
+        i < Math.min(
+            visible,
+            items.length
+        );
+        i++
+    ) {
+
+        const p =
+            items[i];
+
 
         if (!p) continue;
 
-        const product = getTranslatedProduct(p) || p;
+
+        const product =
+            getTranslatedProduct(p)
+            || p;
+
+
+        const brand =
+            (p.brand || "")
+                .trim()
+                .toUpperCase();
+
+
+        const detailUrl =
+            brand === "AMWAY"
+                ? "amway.html"
+                : "chitiet.html";
+
+
+        const quoteAction =
+            brand === "AMWAY"
+                ? "location.href='amway-contact.html'"
+                : "showQuote(" + p.id + ")";
+
+
+        const quoteText =
+            brand === "AMWAY"
+                ? t("contactConsultationBtn")
+                : t("quoteBtn");
+
 
         html += `
+
         <div class="product-card">
 
             <div class="brand-overlay">
-                ${formatBrandName(p.brand || "")}
+
+                ${formatBrandName(
+                    p.brand || ""
+                )}
+
             </div>
 
-            <img src="images/${p.category}/${p.folder}/main.jpg">
+
+            <img
+                src="images/${p.category}/${p.folder}/main.jpg"
+            >
+
 
             <div class="product-info">
 
-                <h3>${product.name}</h3>
+                <h3>
+                    ${product.name}
+                </h3>
+
 
                 <div class="product-buttons">
 
-                    <a class="detail-btn"
-   href="${(p.brand || '').trim().toUpperCase() === 'AMWAY'
-        ? 'amway.html'
-        : 'chitiet.html'}?id=${p.id}">
-    ${t("detailBtn")}
-</a>
+                    <a
+                        class="detail-btn"
+                        href="${detailUrl}?id=${p.id}"
+                    >
 
-                    <<button class="quote-btn"
-        onclick="${(p.brand || '').trim().toUpperCase() === 'AMWAY'
-            ? 'location.href=\'amway-contact.html\''
-            : 'showQuote(' + p.id + ')'}">
+                        ${t("detailBtn")}
 
-    ${(p.brand || '').trim().toUpperCase() === 'AMWAY'
-        ? t("contactConsultationBtn")
-        : t("quoteBtn")}
+                    </a>
 
-</button>
+
+                    <button
+                        class="quote-btn"
+                        onclick="${quoteAction}"
+                    >
+
+                        ${quoteText}
+
+                    </button>
 
                 </div>
 
             </div>
 
         </div>
+
         `;
+
     }
 
-    el.innerHTML = html;
+
+    el.innerHTML =
+        html;
+
 }
 
-/* =========================
-   MOVE (WRAP SAFE)
-========================= */
-function moveBrand(id, dir) {
 
-    const el = document.getElementById(id);
+/* =====================================================
+   START SMOOTH SLIDER
+===================================================== */
+
+function startBrandSlider(id) {
+
+    const track =
+        document.getElementById(id);
+
+    if (!track) return;
+
+
+    let position = 0;
+
+    let lastTime = null;
+
+
+    /* =================================================
+       TỐC ĐỘ
+
+       0.035 = chậm
+       0.05  = trung bình
+       0.07  = nhanh
+    ================================================= */
+
+    const speed =
+        0.035;
+
+
+    /* =================================================
+       WIDTH CỦA 1 BỘ
+
+       Vì HTML có 2 bộ giống nhau
+       nên scrollWidth / 2
+       chính là chiều rộng 1 bộ
+    ================================================= */
+
+    function getLoopWidth() {
+
+        return track.scrollWidth / 2;
+
+    }
+
+
+    /* =================================================
+       ANIMATION
+    ================================================= */
+
+    function animate(time) {
+
+        if (!lastTime) {
+
+            lastTime =
+                time;
+
+        }
+
+
+        const delta =
+            time - lastTime;
+
+
+        lastTime =
+            time;
+
+
+        if (!brandPaused) {
+
+            position +=
+                speed * delta;
+
+
+            const loopWidth =
+                getLoopWidth();
+
+
+            if (
+                loopWidth > 0 &&
+                position >= loopWidth
+            ) {
+
+                position -=
+                    loopWidth;
+
+            }
+
+
+            track.style.transform =
+                `translate3d(
+                    ${-position}px,
+                    0,
+                    0
+                )`;
+
+        }
+
+
+        const animation =
+            requestAnimationFrame(
+                animate
+            );
+
+
+        brandAnimations.push(
+            animation
+        );
+
+    }
+
+
+    const animation =
+        requestAnimationFrame(
+            animate
+        );
+
+
+    brandAnimations.push(
+        animation
+    );
+
+}
+
+
+/* =====================================================
+   MOVE BRAND
+   - GIỮ NÚT ĐIỀU HƯỚNG CŨ
+===================================================== */
+
+function moveBrand(
+    id,
+    dir
+) {
+
+    const el =
+        document.getElementById(id);
+
     if (!el) return;
 
-    let items = [];
 
-    try {
-        items = JSON.parse(el.dataset.items || "[]");
-    } catch (e) {
-        items = [];
+    /*
+       Nút trái / phải vẫn giữ lại
+       nhưng thay vì nhảy từng item,
+       chúng ta cho slider chạy nhanh
+       theo hướng được chọn.
+    */
+
+
+    const amount =
+        250;
+
+
+    let currentTransform =
+        el.style.transform;
+
+
+    let currentX = 0;
+
+
+    const match =
+        currentTransform.match(
+            /translate3d\((-?[\d.]+)px/
+        );
+
+
+    if (match) {
+
+        currentX =
+            Number(
+                match[1]
+            );
+
     }
 
-    const total = items.length;
-    if (total === 0) return;
 
-    let index = Number(el.dataset.index || 0);
+    currentX +=
+        dir * amount;
 
-    index = index + dir;
 
-    // WRAP FULL CIRCLE (KHÔNG MẤT ITEM)
-    if (index >= total) index = 0;
-    if (index < 0) index = total - 1;
+    el.style.transition =
+        "transform .6s ease";
 
-    el.dataset.index = index;
 
-    renderBrand(id);
+    el.style.transform =
+        `translate3d(
+            ${currentX}px,
+            0,
+            0
+        )`;
+
+
+    setTimeout(
+        () => {
+
+            el.style.transition =
+                "";
+
+        },
+        600
+    );
+
 }
 
-/* =========================
-   FORMAT
-========================= */
-function formatBrandName(name) {
+
+/* =====================================================
+   FORMAT BRAND NAME
+===================================================== */
+
+function formatBrandName(
+    name
+) {
+
     return (name || "")
         .toLowerCase()
         .split(" ")
-        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .map(
+            w =>
+                w.charAt(0)
+                .toUpperCase()
+                +
+                w.slice(1)
+        )
         .join(" ");
+
 }
 
 
-/* =========================
+/* =====================================================
+   PAUSE KHI RÊ CHUỘT
+===================================================== */
+
+document.addEventListener(
+
+    "mouseenter",
+
+    function(event) {
+
+        if (
+            event.target.closest(
+                ".brand-track .product-card"
+            )
+        ) {
+
+            brandPaused =
+                true;
+
+        }
+
+    },
+
+    true
+
+);
+
+
+/* =====================================================
+   CHẠY LẠI KHI RỜI CHUỘT
+===================================================== */
+
+document.addEventListener(
+
+    "mouseleave",
+
+    function(event) {
+
+        if (
+            event.target.closest(
+                ".brand-track .product-card"
+            )
+        ) {
+
+            brandPaused =
+                false;
+
+        }
+
+    },
+
+    true
+
+);
+
+
+/* =====================================================
    RESPONSIVE
-========================= */
+===================================================== */
 
-window.addEventListener("resize", () => {
+window.addEventListener(
 
-    document.querySelectorAll(".brand-track").forEach(track => {
+    "resize",
 
-        renderBrand(track.id);
+    () => {
 
-    });
+        document
+            .querySelectorAll(
+                ".brand-track"
+            )
+            .forEach(
+                track => {
 
-});
+                    /*
+                       Không render lại khi đang chạy
+                       để tránh slider bị giật.
+                    */
+
+                    if (
+                        !track.innerHTML
+                    ) {
+
+                        renderBrand(
+                            track.id
+                        );
+
+                    }
+
+                }
+            );
+
+    }
+
+);
