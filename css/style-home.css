@@ -1998,6 +1998,8 @@ color:#777;
 
     box-sizing:border-box;
 
+    overflow:hidden;
+
 }
 
 
@@ -2027,10 +2029,9 @@ color:#777;
 /* =====================================================
    TRACK
 ===================================================== */
-
 .best-seller-track{
 
-    width:100%;
+    width:max-content;
 
     display:flex;
 
@@ -2038,7 +2039,9 @@ color:#777;
 
     gap:6px;
 
-    overflow:hidden;
+    overflow:visible;
+
+    will-change:transform;
 
 }
 
