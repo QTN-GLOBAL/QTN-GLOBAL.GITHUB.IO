@@ -1,268 +1,360 @@
 /* =====================================================
-   HERO SLIDER
+   BEST SELLER SLIDER
+   - HIỂN THỊ TOÀN BỘ SẢN PHẨM
+   - KHÔNG PHỤ THUỘC BRAND
+   - KHÔNG PHỤ THUỘC PHÂN TRANG BRAND
 ===================================================== */
 
-let heroIndex = 0;
-let heroSlides = [];
-let heroTimer = null;
+let bestSellerIndex = 0;
+let bestSellerTimer = null;
+
 
 /* =====================================================
-   HEADER INFO DATA
+   SỐ SẢN PHẨM HIỂN THỊ
 ===================================================== */
 
-const HEADER_INFO = [
+function getBestSellerVisibleCount() {
 
-{
-    title: "QTN GLOBAL",
+    const width =
+        window.innerWidth;
 
-    items: [
+    if (width <= 480) {
 
-        "✔ Chính xác trong từng giá trị",
-
-        "✔ Thiết bị đo lường chất lượng cao",
-
-        "✔ Đại lý chính hãng Excell - Ohaus - Jadever",
-
-        "✔ Giải pháp cân điện tử cho doanh nghiệp",
-
-        "✔ Hỗ trợ kỹ thuật toàn quốc"
-
-    ]
-},
-
-{
-    title: "THIẾT BỊ ĐO LƯỜNG",
-
-    items: [
-
-        "✔ Cân điện tử",
-
-        "✔ Đầu cân điện tử",
-
-        "✔ Cảm biến lực",
-
-        "✔ Quả cân chuẩn",
-
-        "✔ Thiết bị phòng thí nghiệm"
-
-    ]
-},
-
-{
-    title: "QTN GLOBAL",
-
-    items: [
-
-        "✔ Uy tín",
-
-        "✔ Chuyên nghiệp",
-
-        "✔ Chính hãng",
-
-        "✔ Giá cạnh tranh",
-
-        "✔ Bảo hành toàn quốc"
-
-    ]
-}
-
-];
-
-let headerInfoIndex = 0;
-let headerInfoTimer = null;
-
-/* =====================================================
-   HERO SLIDER
-===================================================== */
-
-function initHeroSlider(){
-
-    if(heroTimer){
-
-        clearInterval(heroTimer);
+        return 1;
 
     }
 
-    if(
+    if (width <= 768) {
 
-        window.APP_MODE &&
-        window.APP_MODE.mode !== "home"
+        return 2;
 
-    ){
+    }
+
+    if (width <= 992) {
+
+        return 3;
+
+    }
+
+    return 4;
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+function initBestSellerSlider() {
+
+    const track =
+        document.getElementById(
+            "bestSellerTrack"
+        );
+
+    if (!track) return;
+
+
+    const products =
+        getProducts();
+
+
+    if (
+        !products
+        ||
+        products.length === 0
+    ) {
 
         return;
 
     }
 
-    const track = document.getElementById("slider-track");
-    const dots  = document.getElementById("slider-dots");
 
-    if(!track || !dots) return;
+    bestSellerIndex = 0;
 
-    heroSlides = getProducts()
 
-        .filter(p =>
+    renderBestSeller();
 
-            (p.brand || "").toLowerCase().includes("excell")
 
-        )
+    /* =========================
+       CLEAR OLD TIMER
+    ========================= */
 
-        .map(p =>
+    if (
+        bestSellerTimer
+    ) {
 
-            `images/${p.category}/${p.folder}/main.jpg`
+        clearInterval(
+            bestSellerTimer
+        );
+
+    }
+
+
+    /* =========================
+       AUTO SLIDE
+    ========================= */
+
+    bestSellerTimer =
+        setInterval(
+
+            () => {
+
+                moveBestSeller(
+                    1
+                );
+
+            },
+
+            5000
 
         );
 
-    if(heroSlides.length === 0){
-
-        return;
-
-    }
-
-    heroIndex = 0;
-
-    track.innerHTML = "";
-    dots.innerHTML = "";
-
-    heroSlides.forEach((src,index)=>{
-
-        const img = document.createElement("img");
-
-        img.src = src;
-
-        if(index===0){
-
-            img.classList.add("active");
-
-        }
-
-        track.appendChild(img);
-
-        const dot = document.createElement("div");
-
-        dot.className = "slider-dot";
-
-        if(index===0){
-
-            dot.classList.add("active");
-
-        }
-
-        dot.onclick = ()=>{
-
-            showHeroSlide(index);
-
-        };
-
-        dots.appendChild(dot);
-
-    });
-
-    function showHeroSlide(index){
-
-        heroIndex = index;
-
-        track.querySelectorAll("img").forEach(img=>{
-
-            img.classList.remove("active");
-
-        });
-
-        dots.querySelectorAll(".slider-dot").forEach(dot=>{
-
-            dot.classList.remove("active");
-
-        });
-
-        track.querySelectorAll("img")[heroIndex].classList.add("active");
-
-        dots.querySelectorAll(".slider-dot")[heroIndex].classList.add("active");
-
-    }
-
-    heroTimer = setInterval(()=>{
-
-        heroIndex++;
-
-        if(heroIndex>=heroSlides.length){
-
-            heroIndex=0;
-
-        }
-
-        showHeroSlide(heroIndex);
-
-    },5000);
-
-    initHeaderInfo();
-
 }
+
 
 /* =====================================================
-   HEADER INFO
+   RENDER
 ===================================================== */
 
-function initHeaderInfo(){
+function renderBestSeller() {
 
-    const title = document.getElementById("headerTitle");
-    const list  = document.getElementById("headerList");
+    const track =
+        document.getElementById(
+            "bestSellerTrack"
+        );
 
-    if(!title || !list){
+    if (!track) return;
+
+
+    const products =
+        getProducts();
+
+
+    if (
+        !products
+        ||
+        products.length === 0
+    ) {
+
+        track.innerHTML = "";
 
         return;
 
     }
 
-    if(headerInfoTimer){
 
-        clearInterval(headerInfoTimer);
+    const visible =
+        getBestSellerVisibleCount();
+
+
+    let html = "";
+
+
+    for (
+        let i = 0;
+        i < visible;
+        i++
+    ) {
+
+        const index =
+            (
+                bestSellerIndex
+                + i
+            )
+            %
+            products.length;
+
+
+        const p =
+            products[index];
+
+
+        if (!p) continue;
+
+
+        const product =
+            getTranslatedProduct(p)
+            ||
+            p;
+
+
+        const brand =
+            (
+                p.brand
+                ||
+                ""
+            )
+            .trim();
+
+
+        html += `
+
+<div class="best-seller-card">
+
+
+    ${brand ? `
+
+    <div class="best-seller-brand">
+
+        ${formatBrandName(
+            brand
+        )}
+
+    </div>
+
+    ` : ""}
+
+
+    <img
+        src="images/${p.category}/${p.folder}/main.jpg"
+        alt="${product.name}">
+
+
+    <div class="best-seller-info">
+
+
+        <h3>
+
+            ${product.name}
+
+        </h3>
+
+
+        <div class="best-seller-buttons">
+
+
+            <a
+                class="detail-btn"
+
+                href="${brand.toUpperCase() === 'AMWAY'
+                    ? 'amway.html'
+                    : 'chitiet.html'}?id=${p.id}">
+
+                ${t("detailBtn")}
+
+            </a>
+
+
+            <button
+                class="quote-btn"
+
+                onclick="${brand.toUpperCase() === 'AMWAY'
+                    ? 'location.href=\\'amway-contact.html\\''
+                    : 'showQuote(' + p.id + ')'}">
+
+
+                ${brand.toUpperCase() === 'AMWAY'
+                    ? t("contactConsultationBtn")
+                    : t("quoteBtn")}
+
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+`;
 
     }
 
-    function render(){
 
-        const data = HEADER_INFO[headerInfoIndex];
-
-        title.style.opacity = 0;
-
-        list.innerHTML = "";
-
-        setTimeout(()=>{
-
-            title.textContent = data.title;
-
-            title.style.opacity = 1;
-
-            data.items.forEach((text,index)=>{
-
-                const li = document.createElement("li");
-
-                li.textContent = text;
-
-                list.appendChild(li);
-
-                setTimeout(()=>{
-
-                    li.classList.add("show");
-
-                },index*450);
-
-            });
-
-        },250);
-
-        headerInfoIndex++;
-
-        if(headerInfoIndex>=HEADER_INFO.length){
-
-            headerInfoIndex=0;
-
-        }
-
-    }
-
-    render();
-
-    headerInfoTimer = setInterval(render,7000);
+    track.innerHTML =
+        html;
 
 }
+
+
+/* =====================================================
+   MOVE
+===================================================== */
+
+function moveBestSeller(
+    direction
+) {
+
+    const products =
+        getProducts();
+
+
+    if (
+        !products
+        ||
+        products.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    bestSellerIndex +=
+        direction;
+
+
+    /* =========================
+       LOOP FORWARD
+    ========================= */
+
+    if (
+        bestSellerIndex
+        >=
+        products.length
+    ) {
+
+        bestSellerIndex = 0;
+
+    }
+
+
+    /* =========================
+       LOOP BACKWARD
+    ========================= */
+
+    if (
+        bestSellerIndex < 0
+    ) {
+
+        bestSellerIndex =
+            products.length - 1;
+
+    }
+
+
+    renderBestSeller();
+
+}
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        renderBestSeller();
+
+    }
+);
+
+
+/* =====================================================
+   DOM READY
+===================================================== */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        initBestSellerSlider();
+
+    }
+);
