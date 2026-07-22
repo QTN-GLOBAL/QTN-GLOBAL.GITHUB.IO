@@ -4,21 +4,37 @@
 
    PURPOSE
    ---------------------------------------------------------
-   Step 4 xử lý:
+   Step 4 quản lý:
 
    1. Product Information
+      - name
+      - business
+      - category
+      - brand
+      - origin
+
    2. Product Description
-   3. Technical Specification Table
-   4. Technical Specification Text
+      - product.description
+
+   3. Technical Specification
+      - product.specs.table
+      - product.specs.text
+
 
    DATA STRUCTURE
    ---------------------------------------------------------
 
-   window.currentProduct.product
-
-   {
+   currentProduct.product = {
 
        name: "",
+
+       business: "",
+
+       category: "",
+
+       brand: "",
+
+       origin: "",
 
        description: "",
 
@@ -44,8 +60,6 @@
 
    CHỈ SỬ DỤNG:
 
-       product.description
-
        product.specs
 
    KHÔNG SỬ DỤNG:
@@ -53,18 +67,11 @@
        product.specification
 
 
-   STEP 3 IMPORT
-          ↓
-   product.description
-          ↓
-   product.specs.table
-          ↓
-   product.specs.text
-          ↓
-   STEP 4 EDIT
-          ↓
-   STEP 5 PREVIEW
+   STEP 4 KHÔNG TẠO:
 
+       Specification 1
+       Specification 2
+       Specification 3
 
    ========================================================= */
 
@@ -75,11 +82,6 @@
 
 function renderProductSpecification() {
 
-    console.log(
-        "STEP 4 - PRODUCT SPECIFICATION"
-    );
-
-
     const body =
         document.getElementById(
             "productModalBody"
@@ -89,7 +91,7 @@ function renderProductSpecification() {
     if (!body) {
 
         console.error(
-            "productModalBody không tồn tại."
+            "productModalBody not found."
         );
 
         return;
@@ -97,27 +99,33 @@ function renderProductSpecification() {
     }
 
 
+    const product =
+        window.currentProduct?.product || {};
+
+
     /* =========================================
-       ĐẢM BẢO PRODUCT STRUCTURE
+       NORMALIZE DATA
     ========================================== */
 
-    ensureProductSpecificationStructure();
+    const normalizedSpecs =
+        normalizeStep4Specs(
+            product.specs
+        );
 
 
-    const product =
-        window.currentProduct.product;
+    /* =========================================
+       SAVE NORMALIZED SPECS
+    ========================================== */
 
+    if (
+        window.currentProduct &&
+        window.currentProduct.product
+    ) {
 
-    const specs =
-        product.specs;
+        window.currentProduct.product.specs =
+            normalizedSpecs;
 
-
-    const table =
-        specs.table;
-
-
-    const text =
-        specs.text;
+    }
 
 
     /* =========================================
@@ -128,9 +136,9 @@ function renderProductSpecification() {
 
         <div class="product-specification">
 
-            <!-- =================================
-                 TITLE
-            ================================== -->
+            <!-- =====================================
+                 STEP TITLE
+            ====================================== -->
 
             <h3 class="product-step-title">
 
@@ -139,11 +147,11 @@ function renderProductSpecification() {
             </h3>
 
 
-            <!-- =================================
+            <!-- =====================================
                  PRODUCT INFORMATION
-            ================================== -->
+            ====================================== -->
 
-            <div class="product-info-section">
+            <div class="product-information-section">
 
                 <h4>
 
@@ -152,112 +160,149 @@ function renderProductSpecification() {
                 </h4>
 
 
-                <div class="product-info-grid">
+                <!-- PRODUCT NAME -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Product Name
+
+                    </label>
 
 
-                    <div class="form-group">
+                    <input
 
-                        <label>
+                        id="specProductName"
 
-                            Product Name
+                        type="text"
 
-                        </label>
+                        value="${escapeSpecificationHTML(
+                            product.name || ""
+                        )}"
 
-                        <input
-                            type="text"
-                            id="specProductName"
-                            value="${escapeProductSpecificationHTML(
-                                product.name || ""
-                            )}"
-                        >
+                    >
 
-                    </div>
+                </div>
 
 
-                    <div class="form-group">
+                <!-- BUSINESS -->
 
-                        <label>
+                <div class="form-group">
 
-                            Business
+                    <label>
 
-                        </label>
+                        Business
 
-                        <input
-                            type="text"
-                            value="${escapeProductSpecificationHTML(
-                                product.business || ""
-                            )}"
-                            readonly
-                        >
-
-                    </div>
+                    </label>
 
 
-                    <div class="form-group">
+                    <input
 
-                        <label>
+                        id="specProductBusiness"
 
-                            Category
+                        type="text"
 
-                        </label>
+                        value="${escapeSpecificationHTML(
+                            product.business || ""
+                        )}"
 
-                        <input
-                            type="text"
-                            value="${escapeProductSpecificationHTML(
-                                product.category || ""
-                            )}"
-                            readonly
-                        >
+                        readonly
 
-                    </div>
+                    >
+
+                </div>
 
 
-                    <div class="form-group">
+                <!-- CATEGORY -->
 
-                        <label>
+                <div class="form-group">
 
-                            Brand
+                    <label>
 
-                        </label>
+                        Category
 
-                        <input
-                            type="text"
-                            value="${escapeProductSpecificationHTML(
-                                product.brand || ""
-                            )}"
-                            readonly
-                        >
-
-                    </div>
+                    </label>
 
 
-                    <div class="form-group">
+                    <input
 
-                        <label>
+                        id="specProductCategory"
 
-                            Origin
+                        type="text"
 
-                        </label>
+                        value="${escapeSpecificationHTML(
+                            product.category || ""
+                        )}"
 
-                        <input
-                            type="text"
-                            value="${escapeProductSpecificationHTML(
-                                product.origin || ""
-                            )}"
-                            readonly
-                        >
+                        readonly
 
-                    </div>
+                    >
 
+                </div>
+
+
+                <!-- BRAND -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Brand
+
+                    </label>
+
+
+                    <input
+
+                        id="specProductBrand"
+
+                        type="text"
+
+                        value="${escapeSpecificationHTML(
+                            product.brand || ""
+                        )}"
+
+                        readonly
+
+                    >
+
+                </div>
+
+
+                <!-- ORIGIN -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Origin
+
+                    </label>
+
+
+                    <input
+
+                        id="specProductOrigin"
+
+                        type="text"
+
+                        value="${escapeSpecificationHTML(
+                            product.origin || ""
+                        )}"
+
+                        readonly
+
+                    >
 
                 </div>
 
             </div>
 
 
-            <!-- =================================
+            <!-- =====================================
                  PRODUCT DESCRIPTION
-            ================================== -->
+            ====================================== -->
 
             <div class="product-description-section">
 
@@ -269,10 +314,14 @@ function renderProductSpecification() {
 
 
                 <textarea
+
                     id="specProductDescription"
-                    rows="7"
+
+                    rows="8"
+
                     placeholder="Nhập mô tả sản phẩm..."
-                >${escapeProductSpecificationHTML(
+
+                >${escapeSpecificationHTML(
                     product.description || ""
                 )}</textarea>
 
@@ -287,9 +336,9 @@ function renderProductSpecification() {
             </div>
 
 
-            <!-- =================================
+            <!-- =====================================
                  TECHNICAL SPECIFICATION
-            ================================== -->
+            ====================================== -->
 
             <div class="technical-specification-section">
 
@@ -309,12 +358,11 @@ function renderProductSpecification() {
                 </p>
 
 
-                <!-- =============================
+                <!-- =================================
                      SPECIFICATION TABLE
-                ============================== -->
+                ================================== -->
 
                 <div class="specification-table-section">
-
 
                     <div class="specification-section-header">
 
@@ -326,9 +374,11 @@ function renderProductSpecification() {
 
 
                         <button
+
                             type="button"
-                            class="spec-add-button"
+
                             onclick="addSpecificationTable()"
+
                         >
 
                             + Add Specification Table
@@ -339,19 +389,19 @@ function renderProductSpecification() {
 
 
                     <div
-                        id="specificationTablesContainer"
-                    ></div>
 
+                        id="specificationTablesContainer"
+
+                    ></div>
 
                 </div>
 
 
-                <!-- =============================
+                <!-- =================================
                      SPECIFICATION TEXT
-                ============================== -->
+                ================================== -->
 
                 <div class="specification-text-section">
-
 
                     <div class="specification-section-header">
 
@@ -363,9 +413,11 @@ function renderProductSpecification() {
 
 
                         <button
+
                             type="button"
-                            class="spec-add-button"
+
                             onclick="addSpecificationText()"
+
                         >
 
                             + Add Specification Text
@@ -376,26 +428,29 @@ function renderProductSpecification() {
 
 
                     <div
+
                         id="specificationTextContainer"
+
                     ></div>
 
-
                 </div>
-
 
             </div>
 
 
-            <!-- =================================
+            <!-- =====================================
                  STEP BUTTONS
-            ================================== -->
+            ====================================== -->
 
             <div class="step-buttons">
 
 
                 <button
+
                     type="button"
-                    onclick="backToProductImages()"
+
+                    onclick="backToProductContentImport()"
+
                 >
 
                     ← Back
@@ -404,8 +459,11 @@ function renderProductSpecification() {
 
 
                 <button
+
                     type="button"
+
                     onclick="nextProductSpecification()"
+
                 >
 
                     Next →
@@ -422,26 +480,1333 @@ function renderProductSpecification() {
 
 
     /* =========================================
-       RENDER TABLE
+       RENDER TABLES
     ========================================== */
 
-    renderSpecificationTable();
+    renderSpecificationTables();
 
 
     /* =========================================
        RENDER TEXT
     ========================================== */
 
-    renderSpecificationText();
+    renderSpecificationTexts();
 
 }
 
 
 /* =========================================================
-   ENSURE PRODUCT STRUCTURE
+   NORMALIZE STEP 4 SPECS
 ========================================================= */
 
-function ensureProductSpecificationStructure() {
+function normalizeStep4Specs(
+    specs
+) {
+
+    const normalized = {
+
+        table: {
+
+            headers: [],
+
+            rows: []
+
+        },
+
+        text: []
+
+    };
+
+
+    if (
+        !specs ||
+        typeof specs !== "object"
+    ) {
+
+        return normalized;
+
+    }
+
+
+    /* =========================================
+       TABLE
+    ========================================== */
+
+    if (
+        specs.table &&
+        typeof specs.table === "object"
+    ) {
+
+        if (
+            Array.isArray(
+                specs.table.headers
+            )
+        ) {
+
+            normalized.table.headers =
+
+                specs.table.headers.map(
+
+                    header =>
+
+                        String(
+                            header ?? ""
+                        ).trim()
+
+                );
+
+        }
+
+
+        if (
+            Array.isArray(
+                specs.table.rows
+            )
+        ) {
+
+            normalized.table.rows =
+
+                specs.table.rows.map(
+
+                    row => {
+
+                        if (
+                            !Array.isArray(row)
+                        ) {
+
+                            return [];
+
+                        }
+
+
+                        return row.map(
+
+                            value =>
+
+                                String(
+                                    value ?? ""
+                                ).trim()
+
+                        );
+
+                    }
+
+                );
+
+        }
+
+    }
+
+
+    /* =========================================
+       TEXT
+    ========================================== */
+
+    if (
+        Array.isArray(
+            specs.text
+        )
+    ) {
+
+        normalized.text =
+
+            specs.text
+
+                .map(
+
+                    item => {
+
+                        if (
+                            item === null ||
+                            item === undefined
+                        ) {
+
+                            return "";
+
+                        }
+
+
+                        if (
+                            typeof item === "string"
+                        ) {
+
+                            return item.trim();
+
+                        }
+
+
+                        if (
+                            typeof item === "object"
+                        ) {
+
+                            const name =
+
+                                item.name !== undefined
+
+                                    ? String(
+                                        item.name
+                                    ).trim()
+
+                                    : "";
+
+
+                            const value =
+
+                                item.value !== undefined
+
+                                    ? String(
+                                        item.value
+                                    ).trim()
+
+                                    : "";
+
+
+                            if (
+                                name &&
+                                value
+                            ) {
+
+                                return (
+
+                                    name +
+
+                                    ": " +
+
+                                    value
+
+                                );
+
+                            }
+
+
+                            return (
+
+                                name ||
+
+                                value ||
+
+                                ""
+
+                            );
+
+                        }
+
+
+                        return String(
+                            item
+                        ).trim();
+
+                    }
+
+                )
+
+                .filter(Boolean);
+
+    }
+
+
+    return normalized;
+
+}
+
+
+/* =========================================================
+   RENDER SPECIFICATION TABLES
+========================================================= */
+
+function renderSpecificationTables() {
+
+    const container =
+        document.getElementById(
+            "specificationTablesContainer"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    const specs =
+        window.currentProduct?.product?.specs || {};
+
+
+    const table =
+        specs.table || {};
+
+
+    const headers =
+
+        Array.isArray(
+            table.headers
+        )
+
+            ? table.headers
+
+            : [];
+
+
+    const rows =
+
+        Array.isArray(
+            table.rows
+        )
+
+            ? table.rows
+
+            : [];
+
+
+    /* =========================================
+       NO TABLE
+    ========================================== */
+
+    if (
+        headers.length === 0 &&
+        rows.length === 0
+    ) {
+
+        container.innerHTML = "";
+
+        return;
+
+    }
+
+
+    renderSingleSpecificationTable(
+
+        container,
+
+        headers,
+
+        rows
+
+    );
+
+}
+
+
+/* =========================================================
+   RENDER SINGLE TABLE
+========================================================= */
+
+function renderSingleSpecificationTable(
+
+    container,
+
+    headers,
+
+    rows
+
+) {
+
+    const safeHeaders =
+
+        Array.isArray(headers)
+
+            ? headers
+
+            : [];
+
+
+    const safeRows =
+
+        Array.isArray(rows)
+
+            ? rows
+
+            : [];
+
+
+    container.innerHTML = `
+
+        <div class="specification-table-card">
+
+
+            <div class="specification-table-card-header">
+
+                <strong>
+
+                    Technical Specification Table
+
+                </strong>
+
+
+                <button
+
+                    type="button"
+
+                    onclick="removeSpecificationTable()"
+
+                >
+
+                    ✕ Remove Table
+
+                </button>
+
+            </div>
+
+
+            <div class="specification-table-wrapper">
+
+                <table
+
+                    class="product-specification-table"
+
+                >
+
+                    <thead>
+
+                        <tr>
+
+                            ${safeHeaders.map(
+
+                                (header, index) => `
+
+                                    <th>
+
+                                        <div class="specification-header-cell">
+
+                                            <input
+
+                                                type="text"
+
+                                                class="specification-header-input"
+
+                                                data-column-index="${index}"
+
+                                                value="${escapeSpecificationHTML(
+                                                    header
+                                                )}"
+
+                                                placeholder="Tên thông số"
+
+                                                onchange="updateSpecificationTable()"
+
+                                            >
+
+
+                                            <button
+
+                                                type="button"
+
+                                                class="specification-remove-column"
+
+                                                onclick="removeSpecificationColumn(${index})"
+
+                                            >
+
+                                                ✕
+
+                                            </button>
+
+                                        </div>
+
+                                    </th>
+
+                                `
+
+                            ).join("")}
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        ${safeRows.map(
+
+                            (row, rowIndex) => `
+
+                                <tr>
+
+                                    ${safeHeaders.map(
+
+                                        (_, columnIndex) => `
+
+                                            <td>
+
+                                                <input
+
+                                                    type="text"
+
+                                                    class="specification-cell-input"
+
+                                                    data-row-index="${rowIndex}"
+
+                                                    data-column-index="${columnIndex}"
+
+                                                    value="${escapeSpecificationHTML(
+                                                        row?.[columnIndex] || ""
+                                                    )}"
+
+                                                    placeholder="Giá trị"
+
+                                                    onchange="updateSpecificationTable()"
+
+                                                >
+
+                                            </td>
+
+                                        `
+
+                                    ).join("")}
+
+
+                                    <td class="specification-row-action">
+
+                                        <button
+
+                                            type="button"
+
+                                            onclick="removeSpecificationRow(${rowIndex})"
+
+                                        >
+
+                                            ✕
+
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            `
+
+                        ).join("")}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="specification-table-actions">
+
+
+                <button
+
+                    type="button"
+
+                    onclick="addSpecificationColumn()"
+
+                >
+
+                    + Cột
+
+                </button>
+
+
+                <button
+
+                    type="button"
+
+                    onclick="addSpecificationRow()"
+
+                >
+
+                    + Add Row
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ADD SPECIFICATION TABLE
+========================================================= */
+
+function addSpecificationTable() {
+
+    if (
+        !window.currentProduct
+    ) {
+
+        window.currentProduct = {};
+
+    }
+
+
+    if (
+        !window.currentProduct.product
+    ) {
+
+        window.currentProduct.product = {};
+
+    }
+
+
+    window.currentProduct.product.specs = {
+
+        table: {
+
+            headers: [
+
+                "Mức cân",
+
+                "Bước nhảy",
+
+                "Đĩa cân inox",
+
+                "Kích thước cân",
+
+                "Đơn vị cân"
+
+            ],
+
+            rows: [
+
+                [
+
+                    "",
+
+                    "",
+
+                    "",
+
+                    "",
+
+                    ""
+
+                ]
+
+            ]
+
+        },
+
+        text:
+
+            Array.isArray(
+
+                window.currentProduct.product
+
+                    .specs
+
+                    ?.text
+
+            )
+
+                ? [
+
+                    ...window.currentProduct.product
+
+                        .specs
+
+                        .text
+
+                ]
+
+                : []
+
+    };
+
+
+    renderSpecificationTables();
+
+}
+
+
+/* =========================================================
+   REMOVE SPECIFICATION TABLE
+========================================================= */
+
+function removeSpecificationTable() {
+
+    if (
+        !window.currentProduct?.product
+    ) {
+
+        return;
+
+    }
+
+
+    window.currentProduct.product.specs = {
+
+        table: {
+
+            headers: [],
+
+            rows: []
+
+        },
+
+
+        text:
+
+            Array.isArray(
+
+                window.currentProduct.product
+
+                    .specs
+
+                    ?.text
+
+            )
+
+                ? [
+
+                    ...window.currentProduct.product
+
+                        .specs
+
+                        .text
+
+                ]
+
+                : []
+
+    };
+
+
+    renderSpecificationTables();
+
+}
+
+
+/* =========================================================
+   ADD SPECIFICATION COLUMN
+========================================================= */
+
+function addSpecificationColumn() {
+
+    const specs =
+        window.currentProduct?.product?.specs;
+
+
+    if (!specs) {
+
+        return;
+
+    }
+
+
+    if (
+        !specs.table
+    ) {
+
+        specs.table = {
+
+            headers: [],
+
+            rows: []
+
+        };
+
+    }
+
+
+    specs.table.headers.push(
+
+        "Thông số mới"
+
+    );
+
+
+    specs.table.rows =
+
+        specs.table.rows.map(
+
+            row => [
+
+                ...row,
+
+                ""
+
+            ]
+
+        );
+
+
+    renderSpecificationTables();
+
+}
+
+
+/* =========================================================
+   REMOVE SPECIFICATION COLUMN
+========================================================= */
+
+function removeSpecificationColumn(
+
+    columnIndex
+
+) {
+
+    const specs =
+        window.currentProduct?.product?.specs;
+
+
+    if (
+        !specs?.table
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        specs.table.headers.length <= 1
+    ) {
+
+        alert(
+
+            "Bảng phải có ít nhất một cột."
+
+        );
+
+
+        return;
+
+    }
+
+
+    specs.table.headers.splice(
+
+        columnIndex,
+
+        1
+
+    );
+
+
+    specs.table.rows =
+
+        specs.table.rows.map(
+
+            row => {
+
+                const newRow = [
+
+                    ...row
+
+                ];
+
+
+                newRow.splice(
+
+                    columnIndex,
+
+                    1
+
+                );
+
+
+                return newRow;
+
+            }
+
+        );
+
+
+    renderSpecificationTables();
+
+}
+
+
+/* =========================================================
+   ADD SPECIFICATION ROW
+========================================================= */
+
+function addSpecificationRow() {
+
+    const specs =
+        window.currentProduct?.product?.specs;
+
+
+    if (
+        !specs?.table
+    ) {
+
+        return;
+
+    }
+
+
+    const columnCount =
+
+        specs.table.headers.length;
+
+
+    if (
+        columnCount === 0
+    ) {
+
+        return;
+
+    }
+
+
+    specs.table.rows.push(
+
+        new Array(
+            columnCount
+        ).fill("")
+
+    );
+
+
+    renderSpecificationTables();
+
+}
+
+
+/* =========================================================
+   REMOVE SPECIFICATION ROW
+========================================================= */
+
+function removeSpecificationRow(
+
+    rowIndex
+
+) {
+
+    const specs =
+        window.currentProduct?.product?.specs;
+
+
+    if (
+        !specs?.table
+    ) {
+
+        return;
+
+    }
+
+
+    specs.table.rows.splice(
+
+        rowIndex,
+
+        1
+
+    );
+
+
+    renderSpecificationTables();
+
+}
+
+
+/* =========================================================
+   UPDATE SPECIFICATION TABLE
+========================================================= */
+
+function updateSpecificationTable() {
+
+    const specs =
+        window.currentProduct?.product?.specs;
+
+
+    if (
+        !specs?.table
+    ) {
+
+        return;
+
+    }
+
+
+    const headerInputs =
+
+        document.querySelectorAll(
+
+            ".specification-header-input"
+
+        );
+
+
+    specs.table.headers =
+
+        Array.from(
+
+            headerInputs
+
+        ).map(
+
+            input =>
+
+                input.value.trim()
+
+        );
+
+
+    const rowInputs =
+
+        document.querySelectorAll(
+
+            ".specification-cell-input"
+
+        );
+
+
+    const columnCount =
+
+        specs.table.headers.length;
+
+
+    const rowCount =
+
+        columnCount > 0
+
+            ? Math.ceil(
+
+                rowInputs.length /
+
+                columnCount
+
+            )
+
+            : 0;
+
+
+    const newRows = [];
+
+
+    for (
+
+        let rowIndex = 0;
+
+        rowIndex < rowCount;
+
+        rowIndex++
+
+    ) {
+
+        const row = [];
+
+
+        for (
+
+            let columnIndex = 0;
+
+            columnIndex < columnCount;
+
+            columnIndex++
+
+        ) {
+
+            const input =
+
+                document.querySelector(
+
+                    `.specification-cell-input[data-row-index="${rowIndex}"][data-column-index="${columnIndex}"]`
+
+                );
+
+
+            row.push(
+
+                input
+
+                    ? input.value.trim()
+
+                    : ""
+
+            );
+
+        }
+
+
+        newRows.push(
+
+            row
+
+        );
+
+    }
+
+
+    specs.table.rows =
+
+        newRows;
+
+}
+
+
+/* =========================================================
+   RENDER SPECIFICATION TEXTS
+========================================================= */
+
+function renderSpecificationTexts() {
+
+    const container =
+        document.getElementById(
+            "specificationTextContainer"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    const specs =
+        window.currentProduct?.product?.specs || {};
+
+
+    const texts =
+
+        Array.isArray(
+            specs.text
+        )
+
+            ? specs.text
+
+            : [];
+
+
+    container.innerHTML =
+
+        texts.map(
+
+            (text, index) => `
+
+                <div
+
+                    class="specification-text-item"
+
+                    data-text-index="${index}"
+
+                >
+
+
+                    <textarea
+
+                        class="specification-text-input"
+
+                        rows="4"
+
+                        placeholder="Nhập thông số kỹ thuật..."
+
+                        onchange="updateSpecificationTexts()"
+
+                    >${escapeSpecificationHTML(
+                        text
+                    )}</textarea>
+
+
+                    <button
+
+                        type="button"
+
+                        onclick="removeSpecificationText(${index})"
+
+                    >
+
+                        ✕ Remove
+
+                    </button>
+
+
+                </div>
+
+            `
+
+        ).join("");
+
+}
+
+
+/* =========================================================
+   ADD SPECIFICATION TEXT
+========================================================= */
+
+function addSpecificationText(
+
+    value = ""
+
+) {
+
+    if (
+        !window.currentProduct
+    ) {
+
+        window.currentProduct = {};
+
+    }
+
+
+    if (
+        !window.currentProduct.product
+    ) {
+
+        window.currentProduct.product = {};
+
+    }
+
+
+    if (
+        !window.currentProduct.product.specs
+    ) {
+
+        window.currentProduct.product.specs = {
+
+            table: {
+
+                headers: [],
+
+                rows: []
+
+            },
+
+            text: []
+
+        };
+
+    }
+
+
+    if (
+        !Array.isArray(
+
+            window.currentProduct.product
+
+                .specs
+
+                .text
+
+        )
+    ) {
+
+        window.currentProduct.product.specs.text = [];
+
+    }
+
+
+    window.currentProduct.product.specs.text.push(
+
+        value
+
+    );
+
+
+    renderSpecificationTexts();
+
+}
+
+
+/* =========================================================
+   REMOVE SPECIFICATION TEXT
+========================================================= */
+
+function removeSpecificationText(
+
+    index
+
+) {
+
+    const specs =
+        window.currentProduct?.product?.specs;
+
+
+    if (
+        !Array.isArray(
+            specs?.text
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    specs.text.splice(
+
+        index,
+
+        1
+
+    );
+
+
+    renderSpecificationTexts();
+
+}
+
+
+/* =========================================================
+   UPDATE SPECIFICATION TEXTS
+========================================================= */
+
+function updateSpecificationTexts() {
+
+    const inputs =
+
+        document.querySelectorAll(
+
+            ".specification-text-input"
+
+        );
+
+
+    if (
+        !window.currentProduct?.product
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !window.currentProduct.product.specs
+    ) {
+
+        window.currentProduct.product.specs = {
+
+            table: {
+
+                headers: [],
+
+                rows: []
+
+            },
+
+            text: []
+
+        };
+
+    }
+
+
+    window.currentProduct.product.specs.text =
+
+        Array.from(
+
+            inputs
+
+        ).map(
+
+            input =>
+
+                input.value.trim()
+
+        );
+
+}
+
+
+/* =========================================================
+   SAVE STEP 4
+========================================================= */
+
+function saveProductSpecification() {
 
     if (
         !window.currentProduct
@@ -462,17 +1827,74 @@ function ensureProductSpecificationStructure() {
 
 
     const product =
+
         window.currentProduct.product;
 
 
     /* =========================================
-       SPECS
+       UPDATE TABLE
+    ========================================== */
+
+    updateSpecificationTable();
+
+
+    /* =========================================
+       UPDATE TEXT
+    ========================================== */
+
+    updateSpecificationTexts();
+
+
+    /* =========================================
+       PRODUCT NAME
+    ========================================== */
+
+    const nameInput =
+
+        document.getElementById(
+
+            "specProductName"
+
+        );
+
+
+    if (nameInput) {
+
+        product.name =
+
+            nameInput.value.trim();
+
+    }
+
+
+    /* =========================================
+       DESCRIPTION
+    ========================================== */
+
+    const descriptionInput =
+
+        document.getElementById(
+
+            "specProductDescription"
+
+        );
+
+
+    if (descriptionInput) {
+
+        product.description =
+
+            descriptionInput.value.trim();
+
+    }
+
+
+    /* =========================================
+       ENSURE SPECS STRUCTURE
     ========================================== */
 
     if (
-        !product.specs ||
-        typeof product.specs !== "object" ||
-        Array.isArray(product.specs)
+        !product.specs
     ) {
 
         product.specs = {
@@ -493,1098 +1915,66 @@ function ensureProductSpecificationStructure() {
 
 
     /* =========================================
-       TABLE
-    ========================================== */
-
-    if (
-        !product.specs.table ||
-        typeof product.specs.table !== "object"
-    ) {
-
-        product.specs.table = {
-
-            headers: [],
-
-            rows: []
-
-        };
-
-    }
-
-
-    if (
-        !Array.isArray(
-            product.specs.table.headers
-        )
-    ) {
-
-        product.specs.table.headers = [];
-
-    }
-
-
-    if (
-        !Array.isArray(
-            product.specs.table.rows
-        )
-    ) {
-
-        product.specs.table.rows = [];
-
-    }
-
-
-    /* =========================================
-       TEXT
-    ========================================== */
-
-    if (
-        !Array.isArray(
-            product.specs.text
-        )
-    ) {
-
-        product.specs.text = [];
-
-    }
-
-
-    /* =========================================
-       REMOVE LEGACY
+       REMOVE LEGACY FIELD
     ========================================== */
 
     delete product.specification;
 
-}
-
-
-/* =========================================================
-   RENDER SPECIFICATION TABLE
-========================================================= */
-
-function renderSpecificationTable() {
-
-    const container =
-        document.getElementById(
-            "specificationTablesContainer"
-        );
-
-
-    if (!container) {
-
-        return;
-
-    }
-
-
-    ensureProductSpecificationStructure();
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    container.innerHTML = "";
-
 
     /* =========================================
-       KHÔNG CÓ TABLE
+       DEBUG
     ========================================== */
 
-    if (
-        !table.headers.length
-    ) {
-
-        return;
-
-    }
-
-
-    const tableBlock =
-        document.createElement(
-            "div"
-        );
-
-
-    tableBlock.className =
-        "specification-table-block";
-
-
-    tableBlock.innerHTML = `
-
-        <div class="specification-table-header">
-
-            <strong>
-
-                Technical Specification Table
-
-            </strong>
-
-
-            <button
-                type="button"
-                class="spec-remove-table"
-                onclick="removeSpecificationTable()"
-            >
-
-                ✕ Remove Table
-
-            </button>
-
-        </div>
-
-
-        <div class="specification-table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr
-                        id="specificationTableHeaderRow"
-                    ></tr>
-
-                </thead>
-
-
-                <tbody
-                    id="specificationTableBody"
-                ></tbody>
-
-            </table>
-
-        </div>
-
-
-        <div class="specification-table-actions">
-
-            <button
-                type="button"
-                onclick="addSpecificationColumn()"
-            >
-
-                + Cột
-
-            </button>
-
-
-            <button
-                type="button"
-                onclick="addSpecificationRow()"
-            >
-
-                + Add Row
-
-            </button>
-
-        </div>
-
-    `;
-
-
-    container.appendChild(
-        tableBlock
-    );
-
-
-    renderSpecificationTableHeader();
-
-
-    renderSpecificationTableRows();
-
-}
-
-
-/* =========================================================
-   RENDER TABLE HEADER
-========================================================= */
-
-function renderSpecificationTableHeader() {
-
-    const headerRow =
-        document.getElementById(
-            "specificationTableHeaderRow"
-        );
-
-
-    if (!headerRow) {
-
-        return;
-
-    }
-
-
-    const headers =
-        window.currentProduct.product.specs.table.headers;
-
-
-    headerRow.innerHTML = "";
-
-
-    headers.forEach(
-
-        (
-            header,
-            index
-        ) => {
-
-
-            const th =
-                document.createElement(
-                    "th"
-                );
-
-
-            th.innerHTML = `
-
-                <input
-                    type="text"
-                    value="${escapeProductSpecificationHTML(
-                        header
-                    )}"
-                    placeholder="Tên thông số"
-                    onchange="updateSpecificationHeader(
-                        ${index},
-                        this.value
-                    )"
-                >
-
-
-                <button
-                    type="button"
-                    onclick="removeSpecificationColumn(
-                        ${index}
-                    )"
-                >
-
-                    ✕
-
-                </button>
-
-            `;
-
-
-            headerRow.appendChild(
-                th
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   RENDER TABLE ROWS
-========================================================= */
-
-function renderSpecificationTableRows() {
-
-    const body =
-        document.getElementById(
-            "specificationTableBody"
-        );
-
-
-    if (!body) {
-
-        return;
-
-    }
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    body.innerHTML = "";
-
-
-    table.rows.forEach(
-
-        (
-            row,
-            rowIndex
-        ) => {
-
-
-            const tr =
-                document.createElement(
-                    "tr"
-                );
-
-
-            table.headers.forEach(
-
-                (
-                    header,
-                    columnIndex
-                ) => {
-
-
-                    const value =
-                        Array.isArray(row)
-
-                            ? row[columnIndex] || ""
-
-                            : "";
-
-
-                    const td =
-                        document.createElement(
-                            "td"
-                        );
-
-
-                    td.innerHTML = `
-
-                        <input
-                            type="text"
-                            value="${escapeProductSpecificationHTML(
-                                value
-                            )}"
-                            placeholder="Giá trị"
-                            onchange="updateSpecificationCell(
-                                ${rowIndex},
-                                ${columnIndex},
-                                this.value
-                            )"
-                        >
-
-                    `;
-
-
-                    tr.appendChild(
-                        td
-                    );
-
-                }
-
-            );
-
-
-            const removeCell =
-                document.createElement(
-                    "td"
-                );
-
-
-            removeCell.innerHTML = `
-
-                <button
-                    type="button"
-                    onclick="removeSpecificationRow(
-                        ${rowIndex}
-                    )"
-                >
-
-                    ✕
-
-                </button>
-
-            `;
-
-
-            tr.appendChild(
-                removeCell
-            );
-
-
-            body.appendChild(
-                tr
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   ADD SPECIFICATION TABLE
-========================================================= */
-
-function addSpecificationTable() {
-
-    ensureProductSpecificationStructure();
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    /* =========================================
-       NẾU ĐÃ CÓ TABLE
-    ========================================== */
-
-    if (
-        table.headers.length
-    ) {
-
-        return;
-
-    }
-
-
-    /* =========================================
-       DEFAULT COLUMNS
-
-       Dành cho sản phẩm cân
-    ========================================== */
-
-    table.headers = [
-
-        "Mức cân",
-
-        "Bước nhảy",
-
-        "Đĩa cân inox",
-
-        "Kích thước cân",
-
-        "Đơn vị cân"
-
-    ];
-
-
-    table.rows = [
-
-        [
-
-            "",
-
-            "",
-
-            "",
-
-            "",
-
-            ""
-
-        ]
-
-    ];
-
-
-    renderSpecificationTable();
-
-}
-
-
-/* =========================================================
-   REMOVE SPECIFICATION TABLE
-========================================================= */
-
-function removeSpecificationTable() {
-
-    ensureProductSpecificationStructure();
-
-
-    window.currentProduct.product.specs.table = {
-
-        headers: [],
-
-        rows: []
-
-    };
-
-
-    renderSpecificationTable();
-
-}
-
-
-/* =========================================================
-   ADD SPECIFICATION COLUMN
-========================================================= */
-
-function addSpecificationColumn() {
-
-    ensureProductSpecificationStructure();
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    const newColumnName =
-        "Thông số mới";
-
-
-    table.headers.push(
-        newColumnName
-    );
-
-
-    table.rows.forEach(
-
-        row => {
-
-            if (
-                Array.isArray(row)
-            ) {
-
-                row.push("");
-
-            }
-
-        }
-
-    );
-
-
-    renderSpecificationTable();
-
-}
-
-
-/* =========================================================
-   REMOVE SPECIFICATION COLUMN
-========================================================= */
-
-function removeSpecificationColumn(
-
-    columnIndex
-
-) {
-
-    ensureProductSpecificationStructure();
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    if (
-        columnIndex < 0 ||
-        columnIndex >= table.headers.length
-    ) {
-
-        return;
-
-    }
-
-
-    table.headers.splice(
-
-        columnIndex,
-
-        1
-
-    );
-
-
-    table.rows.forEach(
-
-        row => {
-
-            if (
-                Array.isArray(row)
-            ) {
-
-                row.splice(
-
-                    columnIndex,
-
-                    1
-
-                );
-
-            }
-
-        }
-
-    );
-
-
-    if (
-        table.headers.length === 0
-    ) {
-
-        table.rows = [];
-
-    }
-
-
-    renderSpecificationTable();
-
-}
-
-
-/* =========================================================
-   ADD SPECIFICATION ROW
-========================================================= */
-
-function addSpecificationRow() {
-
-    ensureProductSpecificationStructure();
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    if (
-        table.headers.length === 0
-    ) {
-
-        alert(
-
-            "Vui lòng thêm Specification Table trước."
-
-        );
-
-
-        return;
-
-    }
-
-
-    const newRow =
-        table.headers.map(
-
-            () => ""
-
-        );
-
-
-    table.rows.push(
-        newRow
-    );
-
-
-    renderSpecificationTable();
-
-}
-
-
-/* =========================================================
-   REMOVE SPECIFICATION ROW
-========================================================= */
-
-function removeSpecificationRow(
-
-    rowIndex
-
-) {
-
-    ensureProductSpecificationStructure();
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    if (
-        rowIndex < 0 ||
-        rowIndex >= table.rows.length
-    ) {
-
-        return;
-
-    }
-
-
-    table.rows.splice(
-
-        rowIndex,
-
-        1
-
-    );
-
-
-    renderSpecificationTable();
-
-}
-
-
-/* =========================================================
-   UPDATE HEADER
-========================================================= */
-
-function updateSpecificationHeader(
-
-    columnIndex,
-
-    value
-
-) {
-
-    ensureProductSpecificationStructure();
-
-
-    const headers =
-        window.currentProduct.product.specs.table.headers;
-
-
-    if (
-        columnIndex < 0 ||
-        columnIndex >= headers.length
-    ) {
-
-        return;
-
-    }
-
-
-    headers[columnIndex] =
-        value.trim();
-
-}
-
-
-/* =========================================================
-   UPDATE CELL
-========================================================= */
-
-function updateSpecificationCell(
-
-    rowIndex,
-
-    columnIndex,
-
-    value
-
-) {
-
-    ensureProductSpecificationStructure();
-
-
-    const table =
-        window.currentProduct.product.specs.table;
-
-
-    if (
-        !table.rows[rowIndex]
-    ) {
-
-        return;
-
-    }
-
-
-    table.rows[rowIndex][columnIndex] =
-        value.trim();
-
-}
-
-
-/* =========================================================
-   RENDER SPECIFICATION TEXT
-========================================================= */
-
-function renderSpecificationText() {
-
-    const container =
-        document.getElementById(
-            "specificationTextContainer"
-        );
-
-
-    if (!container) {
-
-        return;
-
-    }
-
-
-    ensureProductSpecificationStructure();
-
-
-    const texts =
-        window.currentProduct.product.specs.text;
-
-
-    container.innerHTML = "";
-
-
-    texts.forEach(
-
-        (
-            value,
-            index
-        ) => {
-
-
-            const block =
-                document.createElement(
-                    "div"
-                );
-
-
-            block.className =
-                "specification-text-item";
-
-
-            block.innerHTML = `
-
-                <textarea
-                    rows="4"
-                    placeholder="Nhập thông số kỹ thuật..."
-                    onchange="updateSpecificationText(
-                        ${index},
-                        this.value
-                    )"
-                >${escapeProductSpecificationHTML(
-                    value
-                )}</textarea>
-
-
-                <button
-                    type="button"
-                    onclick="removeSpecificationText(
-                        ${index}
-                    )"
-                >
-
-                    ✕ Remove
-
-                </button>
-
-            `;
-
-
-            container.appendChild(
-                block
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   ADD SPECIFICATION TEXT
-========================================================= */
-
-function addSpecificationText() {
-
-    ensureProductSpecificationStructure();
-
-
-    window.currentProduct.product.specs.text.push(
-
-        ""
-
-    );
-
-
-    renderSpecificationText();
-
-}
-
-
-/* =========================================================
-   REMOVE SPECIFICATION TEXT
-========================================================= */
-
-function removeSpecificationText(
-
-    index
-
-) {
-
-    ensureProductSpecificationStructure();
-
-
-    const texts =
-        window.currentProduct.product.specs.text;
-
-
-    if (
-        index < 0 ||
-        index >= texts.length
-    ) {
-
-        return;
-
-    }
-
-
-    texts.splice(
-
-        index,
-
-        1
-
-    );
-
-
-    renderSpecificationText();
-
-}
-
-
-/* =========================================================
-   UPDATE SPECIFICATION TEXT
-========================================================= */
-
-function updateSpecificationText(
-
-    index,
-
-    value
-
-) {
-
-    ensureProductSpecificationStructure();
-
-
-    const texts =
-        window.currentProduct.product.specs.text;
-
-
-    if (
-        index < 0 ||
-        index >= texts.length
-    ) {
-
-        return;
-
-    }
-
-
-    texts[index] =
-        value.trim();
-
-}
-
-
-/* =========================================================
-   SAVE STEP 4
-========================================================= */
-
-function saveProductSpecification() {
-
-    ensureProductSpecificationStructure();
-
-
-    const product =
-        window.currentProduct.product;
-
-
-    /* =========================================
-       PRODUCT NAME
-    ========================================== */
-
-    const name =
-        document.getElementById(
-            "specProductName"
-        );
-
-
-    if (name) {
-
-        product.name =
-            name.value.trim();
-
-    }
-
-
-    /* =========================================
-       PRODUCT DESCRIPTION
-    ========================================== */
-
-    const description =
-        document.getElementById(
-            "specProductDescription"
-        );
-
-
-    if (description) {
-
-        product.description =
-            description.value.trim();
-
-    }
-
-
-    /* =========================================
-       CLEAN TEXT
-    ========================================== */
-
-    product.specs.text =
-
-        product.specs.text
-
-            .map(
-
-                value =>
-
-                    String(
-                        value || ""
-                    ).trim()
-
-            )
-
-            .filter(
-
-                Boolean
-
-            );
-
-
-    /* =========================================
-       CLEAN TABLE
-    ========================================== */
-
-    product.specs.table.headers =
-
-        product.specs.table.headers
-
-            .map(
-
-                header =>
-
-                    String(
-                        header || ""
-                    ).trim()
-
-            );
-
-
-    product.specs.table.rows =
-
-        product.specs.table.rows
-
-            .map(
-
-                row =>
-
-                    Array.isArray(row)
-
-                        ? row.map(
-
-                            value =>
-
-                                String(
-                                    value || ""
-                                ).trim()
-
-                        )
-
-                        : []
-
-            );
-
-
-    /* =========================================
-       REMOVE LEGACY
-    ========================================== */
-
-    delete product.specification;
-
+    console.log("");
 
     console.log(
 
-        "STEP 4 SAVED:",
+        "========== STEP 4 SAVED =========="
+
+    );
+
+    console.log(
 
         product
+
+    );
+
+    console.log(
+
+        "=================================="
+
+    );
+
+
+    return product;
+
+}
+
+
+/* =========================================================
+   BACK TO STEP 3
+========================================================= */
+
+function backToProductContentImport() {
+
+    saveProductSpecification();
+
+
+    if (
+        typeof renderProductContentImport ===
+        "function"
+    ) {
+
+        renderProductContentImport();
+
+        return;
+
+    }
+
+
+    console.error(
+
+        "renderProductContentImport is not defined."
 
     );
 
@@ -1609,11 +1999,8 @@ function nextProductSpecification() {
     ========================================== */
 
     if (
-
         typeof saveProductDraft ===
-
         "function"
-
     ) {
 
         saveProductDraft();
@@ -1629,19 +2016,19 @@ function nextProductSpecification() {
 
     console.log(
 
-        "========== STEP 4 PRODUCT =========="
+        "========== NEXT STEP =========="
 
     );
 
     console.log(
 
-        window.currentProduct.product
+        window.currentProduct?.product
 
     );
 
     console.log(
 
-        "===================================="
+        "=============================="
 
     );
 
@@ -1649,15 +2036,19 @@ function nextProductSpecification() {
     /* =========================================
        STEP 5
        
-       Nếu hệ thống đã có hàm Preview
+       IMPORTANT
+
+       Nếu hệ thống của bạn đã có
+       renderProductPreview()
+       thì gọi nó.
+
+       Nếu tên hàm Step 5 khác,
+       thay đúng tên hàm tại đây.
     ========================================== */
 
     if (
-
         typeof renderProductPreview ===
-
         "function"
-
     ) {
 
         renderProductPreview();
@@ -1670,99 +2061,12 @@ function nextProductSpecification() {
     /* =========================================
        FALLBACK
 
-       Thử các tên hàm Preview khác
+       Không làm mất dữ liệu.
     ========================================== */
-
-    if (
-
-        typeof renderProductPreviewStep ===
-
-        "function"
-
-    ) {
-
-        renderProductPreviewStep();
-
-        return;
-
-    }
-
-
-    if (
-
-        typeof renderProductStepPreview ===
-
-        "function"
-
-    ) {
-
-        renderProductStepPreview();
-
-        return;
-
-    }
-
-
-    /* =========================================
-       CHƯA CÓ STEP 5
-    ========================================== */
-
-    console.warn(
-
-        "Step 5 Preview chưa được triển khai."
-
-    );
-
 
     alert(
 
-        "Đã lưu Product Specification. Step 5 Preview chưa được kết nối."
-
-    );
-
-}
-
-
-/* =========================================================
-   BACK TO STEP 3
-========================================================= */
-
-function backToProductContentImport() {
-
-    saveProductSpecification();
-
-
-    if (
-
-        typeof saveProductDraft ===
-
-        "function"
-
-    ) {
-
-        saveProductDraft();
-
-    }
-
-
-    if (
-
-        typeof renderProductContentImport ===
-
-        "function"
-
-    ) {
-
-        renderProductContentImport();
-
-        return;
-
-    }
-
-
-    console.error(
-
-        "renderProductContentImport không tồn tại."
+        "Đã lưu Step 4. Hàm chuyển sang Step 5 chưa được kết nối."
 
     );
 
@@ -1773,7 +2077,7 @@ function backToProductContentImport() {
    ESCAPE HTML
 ========================================================= */
 
-function escapeProductSpecificationHTML(
+function escapeSpecificationHTML(
 
     value
 
