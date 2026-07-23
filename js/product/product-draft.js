@@ -5,30 +5,16 @@
    PURPOSE
    -----------------------------------------------------
    - Lưu Product Draft vào localStorage
-   - Load Draft để tiếp tục chỉnh sửa
-   - Xóa từng Draft
+   - Không lưu Base64 ảnh vào localStorage
+   - Giữ ảnh trong window.currentProduct khi đang làm việc
+   - Load Draft
+   - Xóa Draft
    - Xóa toàn bộ Draft
    - Quản lý currentProduct
-   - Không can thiệp vào product.description
-   - Không can thiệp vào product.specs
 
    STORAGE KEY
    -----------------------------------------------------
    productDrafts
-
-   DATA FLOW
-
-   currentProduct
-        ↓
-   saveProductDraft()
-        ↓
-   localStorage
-        ↓
-   productDrafts
-        ↓
-   loadProductDraft()
-        ↓
-   currentProduct
 
 ===================================================== */
 
@@ -37,9 +23,7 @@
    STORAGE KEY
 ===================================================== */
 
-const PRODUCT_DRAFT_STORAGE_KEY =
-
-    "productDrafts";
+const PRODUCT_DRAFT_STORAGE_KEY = "productDrafts";
 
 
 /* =====================================================
@@ -50,14 +34,9 @@ function getProductDrafts() {
 
     try {
 
-        const raw =
-
-            localStorage.getItem(
-
-                PRODUCT_DRAFT_STORAGE_KEY
-
-            );
-
+        const raw = localStorage.getItem(
+            PRODUCT_DRAFT_STORAGE_KEY
+        );
 
         if (!raw) {
 
@@ -65,25 +44,17 @@ function getProductDrafts() {
 
         }
 
-
-        const drafts =
-
-            JSON.parse(raw);
-
+        const drafts = JSON.parse(raw);
 
         if (!Array.isArray(drafts)) {
 
             console.warn(
-
                 "productDrafts không phải Array."
-
             );
-
 
             return [];
 
         }
-
 
         return drafts;
 
@@ -92,13 +63,9 @@ function getProductDrafts() {
     catch (error) {
 
         console.error(
-
             "Không thể đọc Product Drafts:",
-
             error
-
         );
-
 
         return [];
 
@@ -123,7 +90,6 @@ function saveAllProductDrafts(drafts) {
 
         );
 
-
         return true;
 
     }
@@ -131,26 +97,229 @@ function saveAllProductDrafts(drafts) {
     catch (error) {
 
         console.error(
-
-            "Không thể lưu Product Drafts:",
-
+            "Không thể lưu Product Draft:",
             error
-
         );
 
+        console.error(
+            "Storage Error:",
+            error.name,
+            error.message
+        );
 
         alert(
-
-            "Không thể lưu Product Draft. " +
-
-            "Có thể bộ nhớ trình duyệt đã đầy."
-
+            "Không thể lưu Product Draft.\n\n" +
+            "Bộ nhớ trình duyệt có thể đã đầy."
         );
-
 
         return false;
 
     }
+
+}
+
+
+/* =====================================================
+   REMOVE BASE64 IMAGE
+   -----------------------------------------------------
+   Không lưu Base64 ảnh vào localStorage.
+===================================================== */
+
+function sanitizeDraftImage(image) {
+
+    if (!image) {
+
+        return image;
+
+    }
+
+
+    /* =========================
+       IMAGE STRING
+    ========================== */
+
+    if (typeof image === "string") {
+
+        if (
+            image.startsWith("data:image/")
+        ) {
+
+            return "";
+
+        }
+
+        return image;
+
+    }
+
+
+    /* =========================
+       IMAGE OBJECT
+    ========================== */
+
+    if (
+        typeof image === "object"
+    ) {
+
+        const cleanImage = {
+
+            ...image
+
+        };
+
+
+        if (
+            typeof cleanImage.src === "string" &&
+            cleanImage.src.startsWith("data:image/")
+        ) {
+
+            cleanImage.src = "";
+
+            cleanImage.base64Excluded = true;
+
+        }
+
+
+        return cleanImage;
+
+    }
+
+
+    return image;
+
+}
+
+
+/* =====================================================
+   SANITIZE PRODUCT DRAFT
+===================================================== */
+
+function sanitizeProductDraft(product) {
+
+    if (!product) {
+
+        return null;
+
+    }
+
+    let draft;
+
+    try {
+
+        draft = JSON.parse(
+
+            JSON.stringify(product)
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Không thể clone currentProduct:",
+            error
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================
+       MAIN IMAGE
+    ========================== */
+
+    if (draft.mainImage) {
+
+        draft.mainImage =
+
+            sanitizeDraftImage(
+
+                draft.mainImage
+
+            );
+
+    }
+
+
+    /* =========================
+       GALLERY
+    ========================== */
+
+    if (
+        Array.isArray(draft.gallery)
+    ) {
+
+        draft.gallery =
+
+            draft.gallery.map(
+
+                function (image) {
+
+                    return sanitizeDraftImage(
+
+                        image
+
+                    );
+
+                }
+
+            );
+
+    }
+
+
+    /* =========================
+       IMAGES OBJECT
+    ========================== */
+
+    if (
+        draft.images &&
+        typeof draft.images === "object"
+    ) {
+
+        if (draft.images.main) {
+
+            draft.images.main =
+
+                sanitizeDraftImage(
+
+                    draft.images.main
+
+                );
+
+        }
+
+
+        if (
+            Array.isArray(
+                draft.images.gallery
+            )
+        ) {
+
+            draft.images.gallery =
+
+                draft.images.gallery.map(
+
+                    function (image) {
+
+                        return sanitizeDraftImage(
+
+                            image
+
+                        );
+
+                    }
+
+                );
+
+        }
+
+    }
+
+
+    return draft;
 
 }
 
@@ -161,95 +330,68 @@ function saveAllProductDrafts(drafts) {
 
 function saveProductDraft() {
 
-    /* =========================================
+    /* =========================
        CHECK CURRENT PRODUCT
-    ========================================== */
+    ========================== */
 
     if (!window.currentProduct) {
 
         console.warn(
-
             "Không có currentProduct để lưu."
-
         );
-
 
         return false;
 
     }
 
 
-    /* =========================================
+    /* =========================
        CHECK ID
-    ========================================== */
+    ========================== */
 
     if (!window.currentProduct.id) {
 
         console.warn(
-
             "Product chưa có ID."
-
         );
-
 
         return false;
 
     }
 
 
-    /* =========================================
+    /* =========================
        GET DRAFTS
-    ========================================== */
+    ========================== */
 
-    const drafts =
-
-        getProductDrafts();
+    const drafts = getProductDrafts();
 
 
-    /* =========================================
-       CLONE CURRENT PRODUCT
+    /* =========================
+       CREATE SAFE DRAFT
+    ========================== */
 
-       Không lưu trực tiếp object gốc.
-    ========================================== */
+    const draft = sanitizeProductDraft(
 
-    let draft;
+        window.currentProduct
+
+    );
 
 
-    try {
-
-        draft =
-
-            JSON.parse(
-
-                JSON.stringify(
-
-                    window.currentProduct
-
-                )
-
-            );
-
-    }
-
-    catch (error) {
+    if (!draft) {
 
         console.error(
-
-            "Không thể clone currentProduct:",
-
-            error
-
+            "Không thể tạo Product Draft."
         );
-
 
         return false;
 
     }
 
 
-    /* =========================================
+    /* =========================
        META
-    ========================================== */
+    ========================== */
 
     if (!draft.createdAt) {
 
@@ -265,67 +407,61 @@ function saveProductDraft() {
         new Date().toISOString();
 
 
-    draft.status =
-
-        "draft";
+    draft.status = "draft";
 
 
-    /* =========================================
-       FIND EXISTING DRAFT
-    ========================================== */
+    /* =========================
+       FIND EXISTING
+    ========================== */
 
-    const index =
+    const index = drafts.findIndex(
 
-        drafts.findIndex(
+        function (item) {
 
-            item =>
+            return (
 
                 String(item.id) ===
 
                 String(draft.id)
 
-        );
+            );
+
+        }
+
+    );
 
 
-    /* =========================================
-       UPDATE EXISTING
-    ========================================== */
+    /* =========================
+       UPDATE
+    ========================== */
 
     if (index >= 0) {
 
-        drafts[index] =
-
-            draft;
+        drafts[index] = draft;
 
     }
 
 
-    /* =========================================
-       CREATE NEW
-    ========================================== */
+    /* =========================
+       CREATE
+    ========================== */
 
     else {
 
-        drafts.push(
-
-            draft
-
-        );
+        drafts.push(draft);
 
     }
 
 
-    /* =========================================
+    /* =========================
        SAVE
-    ========================================== */
+    ========================== */
 
-    const saved =
+    const saved = saveAllProductDrafts(
 
-        saveAllProductDrafts(
+        drafts
 
-            drafts
-
-        );
+    );
 
 
     if (!saved) {
@@ -335,48 +471,37 @@ function saveProductDraft() {
     }
 
 
-    /* =========================================
-       LOG
-    ========================================== */
+    /* =========================
+       DEBUG
+    ========================== */
 
     console.log("");
 
     console.log(
-
         "========== DRAFT SAVED =========="
-
     );
 
-    console.log(
-
-        draft
-
-    );
+    console.log(draft);
 
     console.log(
-
         "================================="
-
     );
 
 
-    /* =========================================
+    /* =========================
        REFRESH DRAFT LIST
-    ========================================== */
+    ========================== */
 
     renderDraftList();
 
 
-    /* =========================================
+    /* =========================
        REFRESH PRODUCT LIST
-    ========================================== */
+    ========================== */
 
     if (
-
         typeof renderProductList ===
-
         "function"
-
     ) {
 
         renderProductList();
@@ -411,25 +536,13 @@ function renderDraftList() {
     }
 
 
-    /* =========================================
-       CLEAR
-    ========================================== */
-
     container.innerHTML = "";
 
-
-    /* =========================================
-       GET DRAFTS
-    ========================================== */
 
     const drafts =
 
         getProductDrafts();
 
-
-    /* =========================================
-       EMPTY
-    ========================================== */
 
     if (!drafts.length) {
 
@@ -443,19 +556,14 @@ function renderDraftList() {
 
         `;
 
-
         return;
 
     }
 
 
-    /* =========================================
-       RENDER DRAFTS
-    ========================================== */
-
     drafts.forEach(
 
-        product => {
+        function (product) {
 
             const name =
 
@@ -468,132 +576,263 @@ function renderDraftList() {
 
             const id =
 
-                product.id ||
-
-                "";
+                product.id || "";
 
 
             const updatedAt =
 
-                product.updatedAt ||
-
-                "";
+                product.updatedAt || "";
 
 
-            container.innerHTML += `
+            const item =
 
-                <div
+                document.createElement(
 
-                    class="draft-item"
+                    "div"
 
-                    data-id="${escapeDraftHTML(id)}"
-
-                >
+                );
 
 
-                    <div
+            item.className =
 
-                        class="draft-product-name"
-
-                    >
-
-                        ${escapeDraftHTML(name)}
-
-                    </div>
+                "draft-item";
 
 
-                    <div
-
-                        class="draft-product-id"
-
-                    >
-
-                        ID:
-
-                        ${escapeDraftHTML(id)}
-
-                    </div>
+            item.dataset.id = id;
 
 
-                    ${
+            /* =========================
+               PRODUCT NAME
+            ========================== */
+
+            const nameElement =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+            nameElement.className =
+
+                "draft-product-name";
+
+
+            nameElement.textContent =
+
+                name;
+
+
+            /* =========================
+               PRODUCT ID
+            ========================== */
+
+            const idElement =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+            idElement.className =
+
+                "draft-product-id";
+
+
+            idElement.textContent =
+
+                "ID: " + id;
+
+
+            /* =========================
+               DATE
+            ========================== */
+
+            const dateElement =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+            dateElement.className =
+
+                "draft-product-date";
+
+
+            if (updatedAt) {
+
+                dateElement.textContent =
+
+                    "Updated: " +
+
+                    formatDraftDate(
+
                         updatedAt
 
-                            ? `
+                    );
 
-                            <div
-
-                                class="draft-product-date"
-
-                            >
-
-                                Updated:
-
-                                ${escapeDraftHTML(
-
-                                    formatDraftDate(
-
-                                        updatedAt
-
-                                    )
-
-                                )}
-
-                            </div>
-
-                            `
-
-                            : ""
-
-                    }
+            }
 
 
-                    <div
+            /* =========================
+               ACTIONS
+            ========================== */
 
-                        class="draft-actions"
+            const actions =
 
-                    >
+                document.createElement(
 
+                    "div"
 
-                        <button
-
-                            type="button"
-
-                            onclick="loadProductDraft(
-
-                                '${escapeDraftAttribute(id)}'
-
-                            )"
-
-                        >
-
-                            Edit
-
-                        </button>
+                );
 
 
-                        <button
+            actions.className =
 
-                            type="button"
-
-                            onclick="deleteProductDraft(
-
-                                '${escapeDraftAttribute(id)}'
-
-                            )"
-
-                        >
-
-                            Delete
-
-                        </button>
+                "draft-actions";
 
 
-                    </div>
+            /* =========================
+               EDIT BUTTON
+            ========================== */
+
+            const editButton =
+
+                document.createElement(
+
+                    "button"
+
+                );
 
 
-                </div>
+            editButton.type =
 
-            `;
+                "button";
+
+
+            editButton.textContent =
+
+                "Edit";
+
+
+            editButton.addEventListener(
+
+                "click",
+
+                function () {
+
+                    loadProductDraft(
+
+                        id
+
+                    );
+
+                }
+
+            );
+
+
+            /* =========================
+               DELETE BUTTON
+            ========================== */
+
+            const deleteButton =
+
+                document.createElement(
+
+                    "button"
+
+                );
+
+
+            deleteButton.type =
+
+                "button";
+
+
+            deleteButton.textContent =
+
+                "Delete";
+
+
+            deleteButton.addEventListener(
+
+                "click",
+
+                function () {
+
+                    deleteProductDraft(
+
+                        id
+
+                    );
+
+                }
+
+            );
+
+
+            /* =========================
+               APPEND
+            ========================== */
+
+            actions.appendChild(
+
+                editButton
+
+            );
+
+
+            actions.appendChild(
+
+                deleteButton
+
+            );
+
+
+            item.appendChild(
+
+                nameElement
+
+            );
+
+
+            item.appendChild(
+
+                idElement
+
+            );
+
+
+            if (updatedAt) {
+
+                item.appendChild(
+
+                    dateElement
+
+                );
+
+            }
+
+
+            item.appendChild(
+
+                actions
+
+            );
+
+
+            container.appendChild(
+
+                item
+
+            );
 
         }
 
@@ -608,75 +847,53 @@ function renderDraftList() {
 
 function loadProductDraft(id) {
 
-    /* =========================================
-       VALIDATE ID
-    ========================================== */
-
     if (
-
         id === null ||
-
         id === undefined ||
-
         String(id).trim() === ""
-
     ) {
 
         alert(
-
             "Product Draft không có ID."
-
         );
-
 
         return false;
 
     }
 
-
-    /* =========================================
-       GET DRAFTS
-    ========================================== */
 
     const drafts =
 
         getProductDrafts();
 
 
-    /* =========================================
-       FIND DRAFT
-    ========================================== */
+    const draft = drafts.find(
 
-    const draft =
+        function (item) {
 
-        drafts.find(
-
-            item =>
+            return (
 
                 String(item.id) ===
 
                 String(id)
 
-        );
+            );
+
+        }
+
+    );
 
 
     if (!draft) {
 
         alert(
-
             "Không tìm thấy Product Draft."
-
         );
-
 
         return false;
 
     }
 
-
-    /* =========================================
-       CLONE DATA
-    ========================================== */
 
     try {
 
@@ -704,22 +921,16 @@ function loadProductDraft(id) {
 
         );
 
-
         alert(
 
             "Không thể mở Product Draft."
 
         );
 
-
         return false;
 
     }
 
-
-    /* =========================================
-       DEBUG
-    ========================================== */
 
     console.log("");
 
@@ -741,10 +952,6 @@ function loadProductDraft(id) {
 
     );
 
-
-    /* =========================================
-       OPEN PRODUCT FORM
-    ========================================== */
 
     if (
 
@@ -770,75 +977,53 @@ function loadProductDraft(id) {
 
 function deleteProductDraft(id) {
 
-    /* =========================================
-       VALIDATE ID
-    ========================================== */
-
     if (
-
         id === null ||
-
         id === undefined ||
-
         String(id).trim() === ""
-
     ) {
 
         alert(
-
             "Không xác định được Draft cần xóa."
-
         );
-
 
         return false;
 
     }
 
-
-    /* =========================================
-       GET DRAFTS
-    ========================================== */
 
     const drafts =
 
         getProductDrafts();
 
 
-    /* =========================================
-       FIND DRAFT
-    ========================================== */
+    const draft = drafts.find(
 
-    const draft =
+        function (item) {
 
-        drafts.find(
-
-            item =>
+            return (
 
                 String(item.id) ===
 
                 String(id)
 
-        );
+            );
+
+        }
+
+    );
 
 
     if (!draft) {
 
         alert(
-
             "Không tìm thấy Product Draft."
-
         );
-
 
         return false;
 
     }
 
-
-    /* =========================================
-       PRODUCT NAME
-    ========================================== */
 
     const name =
 
@@ -849,27 +1034,21 @@ function deleteProductDraft(id) {
         "Unnamed Product";
 
 
-    /* =========================================
-       CONFIRM
-    ========================================== */
+    const confirmed = confirm(
 
-    const confirmed =
+        "Bạn có chắc muốn xóa Draft này?\n\n" +
 
-        confirm(
+        "Product: " +
 
-            "Bạn có chắc muốn xóa Draft này?\n\n" +
+        name +
 
-            "Product: " +
+        "\n\n" +
 
-            name +
+        "ID: " +
 
-            "\n\n" +
+        id
 
-            "ID: " +
-
-            id
-
-        );
+    );
 
 
     if (!confirmed) {
@@ -879,26 +1058,22 @@ function deleteProductDraft(id) {
     }
 
 
-    /* =========================================
-       REMOVE
-    ========================================== */
+    const newDrafts = drafts.filter(
 
-    const newDrafts =
+        function (item) {
 
-        drafts.filter(
-
-            item =>
+            return (
 
                 String(item.id) !==
 
                 String(id)
 
-        );
+            );
 
+        }
 
-    /* =========================================
-       SAVE
-    ========================================== */
+    );
+
 
     const saved =
 
@@ -916,13 +1091,6 @@ function deleteProductDraft(id) {
     }
 
 
-    /* =========================================
-       IF CURRENT PRODUCT IS SAME DRAFT
-
-       Chỉ xóa currentProduct nếu
-       ID trùng với Draft vừa xóa.
-    ========================================== */
-
     if (
 
         window.currentProduct &&
@@ -935,23 +1103,13 @@ function deleteProductDraft(id) {
 
     ) {
 
-        window.currentProduct =
-
-            null;
+        window.currentProduct = null;
 
     }
 
 
-    /* =========================================
-       REFRESH DRAFT LIST
-    ========================================== */
-
     renderDraftList();
 
-
-    /* =========================================
-       REFRESH PRODUCT LIST
-    ========================================== */
 
     if (
 
@@ -965,10 +1123,6 @@ function deleteProductDraft(id) {
 
     }
 
-
-    /* =========================================
-       LOG
-    ========================================== */
 
     console.log(
 
@@ -995,10 +1149,6 @@ function deleteAllProductDrafts() {
         getProductDrafts();
 
 
-    /* =========================================
-       CHECK EMPTY
-    ========================================== */
-
     if (!drafts.length) {
 
         alert(
@@ -1007,31 +1157,24 @@ function deleteAllProductDrafts() {
 
         );
 
-
         return false;
 
     }
 
 
-    /* =========================================
-       CONFIRM
-    ========================================== */
+    const confirmed = confirm(
 
-    const confirmed =
+        "Bạn có chắc muốn xóa TOÀN BỘ Product Draft?\n\n" +
 
-        confirm(
+        "Số lượng Draft: " +
 
-            "Bạn có chắc muốn xóa TOÀN BỘ Product Draft?\n\n" +
+        drafts.length +
 
-            "Số lượng Draft: " +
+        "\n\n" +
 
-            drafts.length +
+        "Thao tác này không thể hoàn tác."
 
-            "\n\n" +
-
-            "Thao tác này không thể hoàn tác."
-
-        );
+    );
 
 
     if (!confirmed) {
@@ -1040,17 +1183,6 @@ function deleteAllProductDrafts() {
 
     }
 
-
-    /* =========================================
-       CLEAR DRAFT STORAGE ONLY
-
-       KHÔNG XÓA:
-
-       - products
-       - settings
-       - CMS data khác
-       - localStorage khác
-    ========================================== */
 
     const saved =
 
@@ -1068,20 +1200,8 @@ function deleteAllProductDrafts() {
     }
 
 
-    /* =========================================
-       CLEAR CURRENT PRODUCT
+    window.currentProduct = null;
 
-       Chỉ currentProduct hiện tại.
-    ========================================== */
-
-    window.currentProduct =
-
-        null;
-
-
-    /* =========================================
-       REFRESH
-    ========================================== */
 
     renderDraftList();
 
@@ -1098,10 +1218,6 @@ function deleteAllProductDrafts() {
 
     }
 
-
-    /* =========================================
-       LOG
-    ========================================== */
 
     console.log(
 
@@ -1121,10 +1237,6 @@ function deleteAllProductDrafts() {
 
 function clearCurrentProductDraft() {
 
-    /* =========================================
-       CHECK CURRENT PRODUCT
-    ========================================== */
-
     if (
 
         !window.currentProduct ||
@@ -1139,20 +1251,14 @@ function clearCurrentProductDraft() {
 
         );
 
-
         return false;
 
     }
 
 
-    const id =
-
-        window.currentProduct.id;
-
-
     return deleteProductDraft(
 
-        id
+        window.currentProduct.id
 
     );
 
@@ -1187,15 +1293,19 @@ function getProductDraftById(id) {
 
         drafts.find(
 
-            item =>
+            function (item) {
 
-                String(item.id) ===
+                return (
 
-                String(id)
+                    String(item.id) ===
 
-        ) ||
+                    String(id)
 
-        null
+                );
+
+            }
+
+        ) || null
 
     );
 
@@ -1221,11 +1331,7 @@ function productDraftExists(id) {
    FORMAT DATE
 ===================================================== */
 
-function formatDraftDate(
-
-    value
-
-) {
+function formatDraftDate(value) {
 
     if (!value) {
 
@@ -1274,118 +1380,6 @@ function formatDraftDate(
 
 
 /* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeDraftHTML(
-
-    value
-
-) {
-
-    if (
-
-        value === null ||
-
-        value === undefined
-
-    ) {
-
-        return "";
-
-    }
-
-
-    return String(value)
-
-        .replace(
-
-            /&/g,
-
-            "&amp;"
-
-        )
-
-        .replace(
-
-            /</g,
-
-            "&lt;"
-
-        )
-
-        .replace(
-
-            />/g,
-
-            "&gt;"
-
-        )
-
-        .replace(
-
-            /"/g,
-
-            "&quot;"
-
-        )
-
-        .replace(
-
-            /'/g,
-
-            "&#039;"
-
-        );
-
-}
-
-
-/* =====================================================
-   ESCAPE ATTRIBUTE
-===================================================== */
-
-function escapeDraftAttribute(
-
-    value
-
-) {
-
-    if (
-
-        value === null ||
-
-        value === undefined
-
-    ) {
-
-        return "";
-
-    }
-
-
-    return String(value)
-
-        .replace(
-
-            /\\/g,
-
-            "\\\\"
-
-        )
-
-        .replace(
-
-            /'/g,
-
-            "\\'"
-
-        );
-
-}
-
-
-/* =====================================================
    AUTO RENDER
 ===================================================== */
 
@@ -1405,7 +1399,7 @@ document.addEventListener(
 /* =====================================================
    DEBUG API
 
-   Có thể dùng Console:
+   Console:
 
    getProductDrafts()
 
