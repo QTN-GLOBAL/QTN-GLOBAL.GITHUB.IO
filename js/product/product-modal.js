@@ -16,15 +16,39 @@ function createProductModal() {
 
                     <h2>📦 Add Product</h2>
 
-                    <button
-                        class="product-modal-close"
-                        onclick="closeProductModal()">
+                    <div class="product-modal-header-actions">
 
-                        ×
+                        <!-- FULLSCREEN -->
 
-                    </button>
+                        <button
+                            type="button"
+                            class="product-modal-fullscreen"
+                            onclick="toggleProductModalFullscreen()"
+                            title="Phóng to / Thu nhỏ">
+
+                            ⛶
+
+                        </button>
+
+
+                        <!-- CLOSE -->
+
+                        <button
+                            type="button"
+                            class="product-modal-close"
+                            onclick="closeProductModal()"
+                            title="Đóng">
+
+                            ×
+
+                        </button>
+
+                    </div>
 
                 </div>
+
+
+                <!-- PRODUCT MODAL BODY -->
 
                 <div
                     id="productModalBody"
@@ -34,7 +58,6 @@ function createProductModal() {
 
                 </div>
 
-               
             </div>
 
         </div>
@@ -43,32 +66,110 @@ function createProductModal() {
 
 }
 
+
 /* =====================================================
    OPEN
 ===================================================== */
 
-function openProductModal(){
+function openProductModal() {
 
     createProductModal();
 
-renderProductBasicForm();
+    const modal =
+        document.getElementById("productModal");
 
-document
-    .getElementById("productModal")
-    .classList
-    .add("show");
+    if (!modal) return;
+
+    /*
+        Khi mở Product Modal,
+        luôn bắt đầu ở chế độ bình thường.
+    */
+
+    const card =
+        modal.querySelector(".product-modal-card");
+
+    if (card) {
+
+        card.classList.remove(
+            "product-modal-fullscreen-active"
+        );
+
+    }
+
+    renderProductBasicForm();
+
+    modal.classList.add("show");
 
 }
+
+
+/* =====================================================
+   TOGGLE FULLSCREEN
+===================================================== */
+
+function toggleProductModalFullscreen() {
+
+    const modal =
+        document.getElementById("productModal");
+
+    if (!modal) return;
+
+    const card =
+        modal.querySelector(".product-modal-card");
+
+    if (!card) return;
+
+    card.classList.toggle(
+        "product-modal-fullscreen-active"
+    );
+
+    /*
+        Đổi icon để người dùng biết
+        đang ở chế độ nào.
+    */
+
+    const button =
+        modal.querySelector(
+            ".product-modal-fullscreen"
+        );
+
+    if (!button) return;
+
+    const isFullscreen =
+        card.classList.contains(
+            "product-modal-fullscreen-active"
+        );
+
+    if (isFullscreen) {
+
+        button.innerHTML = "⛶";
+
+        button.title =
+            "Thu nhỏ Product Modal";
+
+    } else {
+
+        button.innerHTML = "⛶";
+
+        button.title =
+            "Phóng to Product Modal";
+
+    }
+
+}
+
 
 /* =====================================================
    CLOSE
 ===================================================== */
 
-function closeProductModal(){
+function closeProductModal() {
 
-    document
-        .getElementById("productModal")
-        .classList
-        .remove("show");
+    const modal =
+        document.getElementById("productModal");
+
+    if (!modal) return;
+
+    modal.classList.remove("show");
 
 }
