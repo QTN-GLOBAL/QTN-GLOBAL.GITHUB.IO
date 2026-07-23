@@ -2,6 +2,10 @@
    PRODUCT SPECIFICATION
    STEP 4 / 6
 
+   VERSION
+   ---------------------------------------------------------
+   Version 5
+
    PURPOSE
    ---------------------------------------------------------
    Step 4 quản lý:
@@ -19,6 +23,30 @@
    3. Technical Specification
       - product.specs.table
       - product.specs.text
+
+
+   IMPORTANT
+   ---------------------------------------------------------
+
+   KHÔNG TỰ TẠO CỘT CỐ ĐỊNH:
+
+       Mức cân
+       Bước nhảy
+       Đĩa cân inox
+       Kích thước cân
+       Đơn vị cân
+
+   Nếu Step 3 import bảng từ website:
+
+       → Giữ nguyên headers
+       → Giữ nguyên rows
+       → Hiển thị đúng cấu trúc nguồn
+
+   Nếu Step 3 không có bảng:
+
+       → Không tự tạo bảng
+
+   Người dùng có thể tự thêm bảng thủ công.
 
 
    DATA STRUCTURE
@@ -66,13 +94,6 @@
 
        product.specification
 
-
-   STEP 4 KHÔNG TẠO:
-
-       Specification 1
-       Specification 2
-       Specification 3
-
    ========================================================= */
 
 
@@ -99,12 +120,22 @@ function renderProductSpecification() {
     }
 
 
+    /* =========================================
+       CURRENT PRODUCT
+    ========================================== */
+
     const product =
         window.currentProduct?.product || {};
 
 
     /* =========================================
-       NORMALIZE DATA
+       NORMALIZE SPECS
+
+       QUAN TRỌNG:
+
+       Không tạo cột mặc định.
+
+       Chỉ giữ đúng dữ liệu hiện có.
     ========================================== */
 
     const normalizedSpecs =
@@ -135,6 +166,7 @@ function renderProductSpecification() {
     body.innerHTML = `
 
         <div class="product-specification">
+
 
             <!-- =====================================
                  STEP TITLE
@@ -297,6 +329,7 @@ function renderProductSpecification() {
 
                 </div>
 
+
             </div>
 
 
@@ -332,6 +365,7 @@ function renderProductSpecification() {
                     với Technical Specification.
 
                 </small>
+
 
             </div>
 
@@ -394,6 +428,7 @@ function renderProductSpecification() {
 
                     ></div>
 
+
                 </div>
 
 
@@ -433,7 +468,9 @@ function renderProductSpecification() {
 
                     ></div>
 
+
                 </div>
+
 
             </div>
 
@@ -480,7 +517,7 @@ function renderProductSpecification() {
 
 
     /* =========================================
-       RENDER TABLES
+       RENDER TABLE
     ========================================== */
 
     renderSpecificationTables();
@@ -497,10 +534,27 @@ function renderProductSpecification() {
 
 /* =========================================================
    NORMALIZE STEP 4 SPECS
+
+   IMPORTANT
+
+   Không tạo dữ liệu mặc định.
+
+   Không tạo:
+
+       Mức cân
+       Bước nhảy
+       Đĩa cân inox
+       Kích thước cân
+       Đơn vị cân
+
+   Chỉ giữ dữ liệu đã import hoặc dữ liệu người dùng
+   đã nhập.
 ========================================================= */
 
 function normalizeStep4Specs(
+
     specs
+
 ) {
 
     const normalized = {
@@ -519,8 +573,11 @@ function normalizeStep4Specs(
 
 
     if (
+
         !specs ||
+
         typeof specs !== "object"
+
     ) {
 
         return normalized;
@@ -533,14 +590,28 @@ function normalizeStep4Specs(
     ========================================== */
 
     if (
+
         specs.table &&
+
         typeof specs.table === "object"
+
     ) {
 
+
+        /* =====================================
+           HEADERS
+
+           Giữ nguyên thứ tự và tên cột.
+        ====================================== */
+
         if (
+
             Array.isArray(
+
                 specs.table.headers
+
             )
+
         ) {
 
             normalized.table.headers =
@@ -549,19 +620,39 @@ function normalizeStep4Specs(
 
                     header =>
 
-                        String(
-                            header ?? ""
-                        ).trim()
+                        header === null ||
+
+                        header === undefined
+
+                            ? ""
+
+                            : String(
+
+                                header
+
+                            )
+
+                                .trim()
 
                 );
 
         }
 
 
+        /* =====================================
+           ROWS
+
+           Giữ nguyên cấu trúc hàng.
+        ====================================== */
+
         if (
+
             Array.isArray(
+
                 specs.table.rows
+
             )
+
         ) {
 
             normalized.table.rows =
@@ -571,7 +662,9 @@ function normalizeStep4Specs(
                     row => {
 
                         if (
+
                             !Array.isArray(row)
+
                         ) {
 
                             return [];
@@ -583,9 +676,17 @@ function normalizeStep4Specs(
 
                             value =>
 
-                                String(
-                                    value ?? ""
-                                ).trim()
+                                value === null ||
+
+                                value === undefined
+
+                                    ? ""
+
+                                    : String(
+
+                                        value
+
+                                    ).trim()
 
                         );
 
@@ -603,100 +704,28 @@ function normalizeStep4Specs(
     ========================================== */
 
     if (
+
         Array.isArray(
+
             specs.text
+
         )
+
     ) {
 
         normalized.text =
 
             specs.text
 
-                .map(
+                .flatMap(
 
-                    item => {
+                    item =>
 
-                        if (
-                            item === null ||
-                            item === undefined
-                        ) {
+                        normalizeStep4TextItem(
 
-                            return "";
-
-                        }
-
-
-                        if (
-                            typeof item === "string"
-                        ) {
-
-                            return item.trim();
-
-                        }
-
-
-                        if (
-                            typeof item === "object"
-                        ) {
-
-                            const name =
-
-                                item.name !== undefined
-
-                                    ? String(
-                                        item.name
-                                    ).trim()
-
-                                    : "";
-
-
-                            const value =
-
-                                item.value !== undefined
-
-                                    ? String(
-                                        item.value
-                                    ).trim()
-
-                                    : "";
-
-
-                            if (
-                                name &&
-                                value
-                            ) {
-
-                                return (
-
-                                    name +
-
-                                    ": " +
-
-                                    value
-
-                                );
-
-                            }
-
-
-                            return (
-
-                                name ||
-
-                                value ||
-
-                                ""
-
-                            );
-
-                        }
-
-
-                        return String(
                             item
-                        ).trim();
 
-                    }
+                        )
 
                 )
 
@@ -711,14 +740,232 @@ function normalizeStep4Specs(
 
 
 /* =========================================================
+   NORMALIZE TEXT ITEM
+
+   MỤC TIÊU:
+
+   - Giữ cấu trúc xuống dòng
+   - Giữ bullet
+   - Không gom tất cả thành một dòng
+
+   Ví dụ:
+
+   "- Độ chính xác cao
+    - Màn hình LED
+    - In hóa đơn"
+
+   vẫn giữ thành 3 dòng.
+
+========================================================= */
+
+function normalizeStep4TextItem(
+
+    item
+
+) {
+
+    if (
+
+        item === null ||
+
+        item === undefined
+
+    ) {
+
+        return [];
+
+    }
+
+
+    /* =========================================
+       STRING
+    ========================================== */
+
+    if (
+
+        typeof item === "string"
+
+    ) {
+
+        const text =
+
+            item
+
+                .replace(
+
+                    /\r\n/g,
+
+                    "\n"
+
+                )
+
+                .replace(
+
+                    /\r/g,
+
+                    "\n"
+
+                )
+
+                .trim();
+
+
+        if (!text) {
+
+            return [];
+
+        }
+
+
+        return [
+
+            text
+
+        ];
+
+    }
+
+
+    /* =========================================
+       ARRAY
+
+       Giữ từng phần tử riêng.
+    ========================================== */
+
+    if (
+
+        Array.isArray(item)
+
+    ) {
+
+        return item.flatMap(
+
+            child =>
+
+                normalizeStep4TextItem(
+
+                    child
+
+                )
+
+        );
+
+    }
+
+
+    /* =========================================
+       OBJECT
+
+       name + value
+
+       Không ép thành table.
+    ========================================== */
+
+    if (
+
+        typeof item === "object"
+
+    ) {
+
+        const name =
+
+            item.name !== undefined
+
+                ? String(
+
+                    item.name
+
+                ).trim()
+
+                : "";
+
+
+        const value =
+
+            item.value !== undefined
+
+                ? String(
+
+                    item.value
+
+                ).trim()
+
+                : "";
+
+
+        if (
+
+            name &&
+
+            value
+
+        ) {
+
+            return [
+
+                name +
+
+                ": " +
+
+                value
+
+            ];
+
+        }
+
+
+        if (name) {
+
+            return [
+
+                name
+
+            ];
+
+        }
+
+
+        if (value) {
+
+            return [
+
+                value
+
+            ];
+
+        }
+
+
+        return [];
+
+    }
+
+
+    return [
+
+        String(
+
+            item
+
+        ).trim()
+
+    ].filter(Boolean);
+
+}
+
+
+/* =========================================================
    RENDER SPECIFICATION TABLES
 ========================================================= */
 
 function renderSpecificationTables() {
 
     const container =
+
         document.getElementById(
+
             "specificationTablesContainer"
+
         );
 
 
@@ -730,17 +977,21 @@ function renderSpecificationTables() {
 
 
     const specs =
+
         window.currentProduct?.product?.specs || {};
 
 
     const table =
+
         specs.table || {};
 
 
     const headers =
 
         Array.isArray(
+
             table.headers
+
         )
 
             ? table.headers
@@ -751,7 +1002,9 @@ function renderSpecificationTables() {
     const rows =
 
         Array.isArray(
+
             table.rows
+
         )
 
             ? table.rows
@@ -760,12 +1013,17 @@ function renderSpecificationTables() {
 
 
     /* =========================================
-       NO TABLE
+       KHÔNG CÓ BẢNG
+
+       Không tự tạo bảng.
     ========================================== */
 
     if (
+
         headers.length === 0 &&
+
         rows.length === 0
+
     ) {
 
         container.innerHTML = "";
@@ -820,10 +1078,123 @@ function renderSingleSpecificationTable(
             : [];
 
 
+    /* =========================================
+       COLUMN COUNT
+
+       Nếu có headers:
+
+           dùng số cột của headers
+
+       Nếu không có headers:
+
+           lấy số cột lớn nhất từ rows
+    ========================================== */
+
+    let columnCount =
+
+        safeHeaders.length;
+
+
+    if (
+
+        columnCount === 0
+
+    ) {
+
+        columnCount =
+
+            safeRows.reduce(
+
+                (
+
+                    max,
+
+                    row
+
+                ) =>
+
+                    Math.max(
+
+                        max,
+
+                        Array.isArray(row)
+
+                            ? row.length
+
+                            : 0
+
+                    ),
+
+                0
+
+            );
+
+    }
+
+
+    /* =========================================
+       KHÔNG CÓ CỘT
+
+       Không render bảng.
+    ========================================== */
+
+    if (
+
+        columnCount === 0
+
+    ) {
+
+        container.innerHTML = "";
+
+        return;
+
+    }
+
+
+    /* =========================================
+       ENSURE HEADERS
+
+       Nếu nguồn chỉ có rows mà không có headers,
+       tạo header trống để người dùng tự đặt tên.
+
+       KHÔNG dùng tên cột cố định.
+    ========================================== */
+
+    const displayHeaders =
+
+        Array.from(
+
+            {
+
+                length: columnCount
+
+            },
+
+            (
+
+                _,
+
+                index
+
+            ) =>
+
+                safeHeaders[index] !== undefined
+
+                    ? safeHeaders[index]
+
+                    : ""
+
+        );
+
+
     container.innerHTML = `
 
         <div class="specification-table-card">
 
+
+            <!-- =================================
+                 TABLE HEADER
+            ================================== -->
 
             <div class="specification-table-card-header">
 
@@ -849,6 +1220,10 @@ function renderSingleSpecificationTable(
             </div>
 
 
+            <!-- =================================
+                 TABLE
+            ================================== -->
+
             <div class="specification-table-wrapper">
 
                 <table
@@ -857,13 +1232,24 @@ function renderSingleSpecificationTable(
 
                 >
 
+
+                    <!-- =============================
+                         HEAD
+                    ============================== -->
+
                     <thead>
 
                         <tr>
 
-                            ${safeHeaders.map(
+                            ${displayHeaders.map(
 
-                                (header, index) => `
+                                (
+
+                                    header,
+
+                                    index
+
+                                ) => `
 
                                     <th>
 
@@ -910,22 +1296,39 @@ function renderSingleSpecificationTable(
 
                             ).join("")}
 
+
                         </tr>
 
                     </thead>
 
 
+                    <!-- =============================
+                         BODY
+                    ============================== -->
+
                     <tbody>
 
                         ${safeRows.map(
 
-                            (row, rowIndex) => `
+                            (
+
+                                row,
+
+                                rowIndex
+
+                            ) => `
 
                                 <tr>
 
-                                    ${safeHeaders.map(
+                                    ${displayHeaders.map(
 
-                                        (_, columnIndex) => `
+                                        (
+
+                                            _,
+
+                                            columnIndex
+
+                                        ) => `
 
                                             <td>
 
@@ -940,7 +1343,11 @@ function renderSingleSpecificationTable(
                                                     data-column-index="${columnIndex}"
 
                                                     value="${escapeSpecificationHTML(
-                                                        row?.[columnIndex] || ""
+                                                        Array.isArray(row)
+
+                                                            ? row[columnIndex] || ""
+
+                                                            : ""
                                                     )}"
 
                                                     placeholder="Giá trị"
@@ -978,12 +1385,18 @@ function renderSingleSpecificationTable(
 
                         ).join("")}
 
+
                     </tbody>
+
 
                 </table>
 
             </div>
 
+
+            <!-- =================================
+                 TABLE ACTIONS
+            ================================== -->
 
             <div class="specification-table-actions">
 
@@ -1026,12 +1439,31 @@ function renderSingleSpecificationTable(
 
 /* =========================================================
    ADD SPECIFICATION TABLE
+
+   QUAN TRỌNG:
+
+   KHÔNG tạo:
+
+       Mức cân
+       Bước nhảy
+       Đĩa cân inox
+       Kích thước cân
+       Đơn vị cân
+
+   Bảng mới bắt đầu với:
+
+       1 cột trống
+       1 dòng trống
+
+   Người dùng tự đặt tên.
 ========================================================= */
 
 function addSpecificationTable() {
 
     if (
+
         !window.currentProduct
+
     ) {
 
         window.currentProduct = {};
@@ -1040,12 +1472,31 @@ function addSpecificationTable() {
 
 
     if (
+
         !window.currentProduct.product
+
     ) {
 
         window.currentProduct.product = {};
 
     }
+
+
+    const currentSpecs =
+
+        window.currentProduct.product.specs || {
+
+            table: {
+
+                headers: [],
+
+                rows: []
+
+            },
+
+            text: []
+
+        };
 
 
     window.currentProduct.product.specs = {
@@ -1054,29 +1505,13 @@ function addSpecificationTable() {
 
             headers: [
 
-                "Mức cân",
-
-                "Bước nhảy",
-
-                "Đĩa cân inox",
-
-                "Kích thước cân",
-
-                "Đơn vị cân"
+                ""
 
             ],
 
             rows: [
 
                 [
-
-                    "",
-
-                    "",
-
-                    "",
-
-                    "",
 
                     ""
 
@@ -1086,25 +1521,20 @@ function addSpecificationTable() {
 
         },
 
+
         text:
 
             Array.isArray(
 
-                window.currentProduct.product
-
-                    .specs
-
-                    ?.text
+                currentSpecs.text
 
             )
 
                 ? [
 
-                    ...window.currentProduct.product
+                    ...
 
-                        .specs
-
-                        .text
+                    currentSpecs.text
 
                 ]
 
@@ -1125,12 +1555,19 @@ function addSpecificationTable() {
 function removeSpecificationTable() {
 
     if (
+
         !window.currentProduct?.product
+
     ) {
 
         return;
 
     }
+
+
+    const currentSpecs =
+
+        window.currentProduct.product.specs || {};
 
 
     window.currentProduct.product.specs = {
@@ -1148,21 +1585,15 @@ function removeSpecificationTable() {
 
             Array.isArray(
 
-                window.currentProduct.product
-
-                    .specs
-
-                    ?.text
+                currentSpecs.text
 
             )
 
                 ? [
 
-                    ...window.currentProduct.product
+                    ...
 
-                        .specs
-
-                        .text
+                    currentSpecs.text
 
                 ]
 
@@ -1183,6 +1614,7 @@ function removeSpecificationTable() {
 function addSpecificationColumn() {
 
     const specs =
+
         window.currentProduct?.product?.specs;
 
 
@@ -1194,7 +1626,9 @@ function addSpecificationColumn() {
 
 
     if (
+
         !specs.table
+
     ) {
 
         specs.table = {
@@ -1210,7 +1644,7 @@ function addSpecificationColumn() {
 
     specs.table.headers.push(
 
-        "Thông số mới"
+        ""
 
     );
 
@@ -1221,7 +1655,15 @@ function addSpecificationColumn() {
 
             row => [
 
-                ...row,
+                ...(
+
+                    Array.isArray(row)
+
+                        ? row
+
+                        : []
+
+                ),
 
                 ""
 
@@ -1246,11 +1688,14 @@ function removeSpecificationColumn(
 ) {
 
     const specs =
+
         window.currentProduct?.product?.specs;
 
 
     if (
+
         !specs?.table
+
     ) {
 
         return;
@@ -1259,7 +1704,9 @@ function removeSpecificationColumn(
 
 
     if (
+
         specs.table.headers.length <= 1
+
     ) {
 
         alert(
@@ -1289,11 +1736,17 @@ function removeSpecificationColumn(
 
             row => {
 
-                const newRow = [
+                const newRow =
 
-                    ...row
+                    Array.isArray(row)
 
-                ];
+                        ? [
+
+                            ...row
+
+                        ]
+
+                        : [];
 
 
                 newRow.splice(
@@ -1324,11 +1777,14 @@ function removeSpecificationColumn(
 function addSpecificationRow() {
 
     const specs =
+
         window.currentProduct?.product?.specs;
 
 
     if (
+
         !specs?.table
+
     ) {
 
         return;
@@ -1342,7 +1798,9 @@ function addSpecificationRow() {
 
 
     if (
+
         columnCount === 0
+
     ) {
 
         return;
@@ -1353,7 +1811,9 @@ function addSpecificationRow() {
     specs.table.rows.push(
 
         new Array(
+
             columnCount
+
         ).fill("")
 
     );
@@ -1375,11 +1835,14 @@ function removeSpecificationRow(
 ) {
 
     const specs =
+
         window.currentProduct?.product?.specs;
 
 
     if (
+
         !specs?.table
+
     ) {
 
         return;
@@ -1403,22 +1866,33 @@ function removeSpecificationRow(
 
 /* =========================================================
    UPDATE SPECIFICATION TABLE
+
+   Lấy dữ liệu trực tiếp từ UI.
+
+   Không ép cột cố định.
 ========================================================= */
 
 function updateSpecificationTable() {
 
     const specs =
+
         window.currentProduct?.product?.specs;
 
 
     if (
+
         !specs?.table
+
     ) {
 
         return;
 
     }
 
+
+    /* =========================================
+       HEADERS
+    ========================================== */
 
     const headerInputs =
 
@@ -1444,6 +1918,10 @@ function updateSpecificationTable() {
         );
 
 
+    /* =========================================
+       ROWS
+    ========================================== */
+
     const rowInputs =
 
         document.querySelectorAll(
@@ -1458,19 +1936,28 @@ function updateSpecificationTable() {
         specs.table.headers.length;
 
 
+    if (
+
+        columnCount === 0
+
+    ) {
+
+        specs.table.rows = [];
+
+        return;
+
+    }
+
+
     const rowCount =
 
-        columnCount > 0
+        Math.ceil(
 
-            ? Math.ceil(
+            rowInputs.length /
 
-                rowInputs.length /
+            columnCount
 
-                columnCount
-
-            )
-
-            : 0;
+        );
 
 
     const newRows = [];
@@ -1544,8 +2031,11 @@ function updateSpecificationTable() {
 function renderSpecificationTexts() {
 
     const container =
+
         document.getElementById(
+
             "specificationTextContainer"
+
         );
 
 
@@ -1557,13 +2047,16 @@ function renderSpecificationTexts() {
 
 
     const specs =
+
         window.currentProduct?.product?.specs || {};
 
 
     const texts =
 
         Array.isArray(
+
             specs.text
+
         )
 
             ? specs.text
@@ -1575,7 +2068,13 @@ function renderSpecificationTexts() {
 
         texts.map(
 
-            (text, index) => `
+            (
+
+                text,
+
+                index
+
+            ) => `
 
                 <div
 
@@ -1597,7 +2096,9 @@ function renderSpecificationTexts() {
                         onchange="updateSpecificationTexts()"
 
                     >${escapeSpecificationHTML(
+
                         text
+
                     )}</textarea>
 
 
@@ -1634,7 +2135,9 @@ function addSpecificationText(
 ) {
 
     if (
+
         !window.currentProduct
+
     ) {
 
         window.currentProduct = {};
@@ -1643,7 +2146,9 @@ function addSpecificationText(
 
 
     if (
+
         !window.currentProduct.product
+
     ) {
 
         window.currentProduct.product = {};
@@ -1652,7 +2157,9 @@ function addSpecificationText(
 
 
     if (
+
         !window.currentProduct.product.specs
+
     ) {
 
         window.currentProduct.product.specs = {
@@ -1673,6 +2180,7 @@ function addSpecificationText(
 
 
     if (
+
         !Array.isArray(
 
             window.currentProduct.product
@@ -1682,6 +2190,7 @@ function addSpecificationText(
                 .text
 
         )
+
     ) {
 
         window.currentProduct.product.specs.text = [];
@@ -1712,13 +2221,18 @@ function removeSpecificationText(
 ) {
 
     const specs =
+
         window.currentProduct?.product?.specs;
 
 
     if (
+
         !Array.isArray(
+
             specs?.text
+
         )
+
     ) {
 
         return;
@@ -1742,6 +2256,15 @@ function removeSpecificationText(
 
 /* =========================================================
    UPDATE SPECIFICATION TEXTS
+
+   Giữ nguyên xuống dòng.
+
+   Không dùng:
+
+       /\s+/g
+
+   vì cách đó sẽ làm mất cấu trúc
+   xuống dòng của nội dung nguồn.
 ========================================================= */
 
 function updateSpecificationTexts() {
@@ -1756,7 +2279,9 @@ function updateSpecificationTexts() {
 
 
     if (
+
         !window.currentProduct?.product
+
     ) {
 
         return;
@@ -1765,7 +2290,9 @@ function updateSpecificationTexts() {
 
 
     if (
+
         !window.currentProduct.product.specs
+
     ) {
 
         window.currentProduct.product.specs = {
@@ -1795,7 +2322,7 @@ function updateSpecificationTexts() {
 
             input =>
 
-                input.value.trim()
+                input.value
 
         );
 
@@ -1809,7 +2336,9 @@ function updateSpecificationTexts() {
 function saveProductSpecification() {
 
     if (
+
         !window.currentProduct
+
     ) {
 
         window.currentProduct = {};
@@ -1818,7 +2347,9 @@ function saveProductSpecification() {
 
 
     if (
+
         !window.currentProduct.product
+
     ) {
 
         window.currentProduct.product = {};
@@ -1884,7 +2415,7 @@ function saveProductSpecification() {
 
         product.description =
 
-            descriptionInput.value.trim();
+            descriptionInput.value;
 
     }
 
@@ -1894,7 +2425,9 @@ function saveProductSpecification() {
     ========================================== */
 
     if (
+
         !product.specs
+
     ) {
 
         product.specs = {
@@ -1910,6 +2443,68 @@ function saveProductSpecification() {
             text: []
 
         };
+
+    }
+
+
+    if (
+
+        !product.specs.table
+
+    ) {
+
+        product.specs.table = {
+
+            headers: [],
+
+            rows: []
+
+        };
+
+    }
+
+
+    if (
+
+        !Array.isArray(
+
+            product.specs.table.headers
+
+        )
+
+    ) {
+
+        product.specs.table.headers = [];
+
+    }
+
+
+    if (
+
+        !Array.isArray(
+
+            product.specs.table.rows
+
+        )
+
+    ) {
+
+        product.specs.table.rows = [];
+
+    }
+
+
+    if (
+
+        !Array.isArray(
+
+            product.specs.text
+
+        )
+
+    ) {
+
+        product.specs.text = [];
 
     }
 
@@ -1961,8 +2556,11 @@ function backToProductContentImport() {
 
 
     if (
+
         typeof renderProductContentImport ===
+
         "function"
+
     ) {
 
         renderProductContentImport();
@@ -1999,8 +2597,11 @@ function nextProductSpecification() {
     ========================================== */
 
     if (
+
         typeof saveProductDraft ===
+
         "function"
+
     ) {
 
         saveProductDraft();
@@ -2035,20 +2636,14 @@ function nextProductSpecification() {
 
     /* =========================================
        STEP 5
-       
-       IMPORTANT
-
-       Nếu hệ thống của bạn đã có
-       renderProductPreview()
-       thì gọi nó.
-
-       Nếu tên hàm Step 5 khác,
-       thay đúng tên hàm tại đây.
     ========================================== */
 
     if (
+
         typeof renderProductPreview ===
+
         "function"
+
     ) {
 
         renderProductPreview();
@@ -2060,8 +2655,6 @@ function nextProductSpecification() {
 
     /* =========================================
        FALLBACK
-
-       Không làm mất dữ liệu.
     ========================================== */
 
     alert(
