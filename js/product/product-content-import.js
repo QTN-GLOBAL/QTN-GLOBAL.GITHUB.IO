@@ -4,7 +4,7 @@
 
    VERSION
    ---------------------------------------------------------
-   Version 5
+   Version 6
 
    PURPOSE
    ---------------------------------------------------------
@@ -34,7 +34,6 @@
    Nếu nguồn không có bảng:
 
        specs.table.headers = []
-
        specs.table.rows = []
 
    Nếu nguồn có bảng:
@@ -839,6 +838,62 @@ async function nextProductContentImport() {
 
 
         /* =====================================
+           ENSURE PRODUCT NAME
+        ====================================== */
+
+        if (
+
+            typeof mergedProduct.name !==
+            "string"
+
+        ) {
+
+            mergedProduct.name =
+
+                mergedProduct.name === null ||
+
+                mergedProduct.name === undefined
+
+                    ? ""
+
+                    : String(
+
+                        mergedProduct.name
+
+                    );
+
+        }
+
+
+        /* =====================================
+           ENSURE DESCRIPTION
+        ====================================== */
+
+        if (
+
+            typeof mergedProduct.description !==
+            "string"
+
+        ) {
+
+            mergedProduct.description =
+
+                mergedProduct.description === null ||
+
+                mergedProduct.description === undefined
+
+                    ? ""
+
+                    : String(
+
+                        mergedProduct.description
+
+                    );
+
+        }
+
+
+        /* =====================================
            ENSURE SPECS STRUCTURE
 
            KHÔNG TẠO CỘT CỐ ĐỊNH
@@ -852,7 +907,9 @@ async function nextProductContentImport() {
             "object" ||
 
             Array.isArray(
+
                 mergedProduct.specs
+
             )
 
         ) {
@@ -885,7 +942,13 @@ async function nextProductContentImport() {
             !mergedProduct.specs.table ||
 
             typeof mergedProduct.specs.table !==
-            "object"
+            "object" ||
+
+            Array.isArray(
+
+                mergedProduct.specs.table
+
+            )
 
         ) {
 
@@ -950,6 +1013,25 @@ async function nextProductContentImport() {
 
 
         /* =====================================
+           ENSURE IMAGES
+        ====================================== */
+
+        if (
+
+            !Array.isArray(
+
+                mergedProduct.images
+
+            )
+
+        ) {
+
+            mergedProduct.images = [];
+
+        }
+
+
+        /* =====================================
            SAVE FINAL PRODUCT
         ====================================== */
 
@@ -990,6 +1072,7 @@ async function nextProductContentImport() {
         console.log(
 
             window.currentProduct.product
+
                 .description
 
         );
@@ -1010,7 +1093,9 @@ async function nextProductContentImport() {
         console.log(
 
             window.currentProduct.product
+
                 .specs
+
                 .table
 
         );
@@ -1031,7 +1116,9 @@ async function nextProductContentImport() {
         console.log(
 
             window.currentProduct.product
+
                 .specs
+
                 .text
 
         );
@@ -1448,9 +1535,9 @@ function normalizeImportedValue(
 
    MỤC TIÊU:
 
-   - String → giữ nguyên
+   - String → giữ nội dung
    - Array → mỗi phần tử thành một đoạn
-   - HTML → giữ cấu trúc cơ bản
+   - HTML → giữ cấu trúc đoạn / list ở mức text
    - Object → chuyển thành text
 
 
@@ -1640,19 +1727,6 @@ function normalizeDescriptionItem(
 
 /* =========================================================
    NORMALIZE STRUCTURED HTML
-
-   Giữ:
-
-   <p>
-   <div>
-   <br>
-   <li>
-
-   Bullet/list:
-
-   mỗi item một dòng.
-
-   Không biến toàn bộ thành một dòng.
 ========================================================= */
 
 function normalizeStructuredHTML(
@@ -1786,8 +1860,6 @@ function normalizeStructuredHTML(
 
         /* =====================================
            BLOCK ELEMENTS
-
-           Nếu không có LI
         ====================================== */
 
         if (
@@ -1800,7 +1872,7 @@ function normalizeStructuredHTML(
 
                 doc.querySelectorAll(
 
-                    "p, div, section, article, h1, h2, h3, h4, h5, h6, br"
+                    "p, div, section, article, h1, h2, h3, h4, h5, h6"
 
                 );
 
@@ -1907,17 +1979,6 @@ function normalizeStructuredHTML(
 
 /* =========================================================
    NORMALIZE PRODUCT SPECS
-
-   KHÔNG TẠO CỘT CỐ ĐỊNH
-
-   Nếu source có table:
-       giữ table
-
-   Nếu source có text/list:
-       giữ text
-
-   Nếu source chỉ có specification legacy:
-       chuyển sang cấu trúc mới
 ========================================================= */
 
 function normalizeProductSpecs(
@@ -1966,16 +2027,13 @@ function normalizeProductSpecs(
 
     /* =========================================
        LEGACY FALLBACK
-
-       Chỉ dùng nếu không có specs
     ========================================== */
 
     if (
 
-        !sourceSpecs &&
+        sourceSpecs === undefined ||
 
-        product.specification !==
-        undefined
+        sourceSpecs === null
 
     ) {
 
@@ -2061,6 +2119,102 @@ function normalizeProductSpecs(
             );
 
         }
+
+
+        /* =====================================
+           DIRECT KEY / VALUE OBJECT
+
+           Ví dụ:
+
+           {
+               Capacity: "30kg",
+               Division: "5g"
+           }
+
+           Không tạo bảng.
+           Chuyển thành text.
+        ====================================== */
+
+        const reservedKeys = [
+
+            "table",
+
+            "text"
+
+        ];
+
+
+        Object.keys(
+
+            sourceSpecs
+
+        ).forEach(
+
+            key => {
+
+                if (
+
+                    reservedKeys.includes(
+
+                        key
+
+                    )
+
+                ) {
+
+                    return;
+
+                }
+
+
+                const value =
+
+                    sourceSpecs[key];
+
+
+                if (
+
+                    value === null ||
+
+                    value === undefined
+
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+
+                    typeof value ===
+                    "object"
+
+                ) {
+
+                    return;
+
+                }
+
+
+                const text =
+
+                    `${key}: ${String(value).trim()}`;
+
+
+                if (text.trim()) {
+
+                    result.text.push(
+
+                        text
+
+                    );
+
+                }
+
+            }
+
+        );
 
 
         return result;
@@ -2331,7 +2485,7 @@ function normalizeProductSpecs(
 
 
                     /* ============================
-                       LEGACY NAME / VALUE
+                       OBJECT NAME / VALUE
                     ============================= */
 
                     const converted =
@@ -2364,12 +2518,6 @@ function normalizeProductSpecs(
 
     /* =========================================
        DIRECT STRING
-
-       Nếu backend trả:
-
-       specs: "abc"
-
-       thì giữ thành một item.
     ========================================== */
 
     if (
@@ -2840,10 +2988,6 @@ function parseHTMLTextBlocks(
 
 /* =========================================================
    NORMALIZE SPECIFICATION TABLE
-
-   CHỈ GIỮ TABLE THỰC SỰ
-
-   KHÔNG TẠO HEADER MẶC ĐỊNH
 ========================================================= */
 
 function normalizeSpecificationTable(
