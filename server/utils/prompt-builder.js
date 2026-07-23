@@ -1,34 +1,61 @@
-/* ==========================================
+/* =========================================================
    PROMPT BUILDER
    VERSION 2
 
    PURPOSE
-   ------------------------------------------
-   AI đọc nội dung HTML sản phẩm và trả về
-   dữ liệu có cấu trúc nhưng KHÔNG làm thay
-   đổi cấu trúc nội dung gốc.
+   ---------------------------------------------------------
+   Xây dựng Prompt cho AI phân tích HTML sản phẩm.
 
-   NGUYÊN TẮC
+   NGUYÊN TẮC QUAN TRỌNG
+   ---------------------------------------------------------
 
-   1. Mô tả giữ nguyên cấu trúc.
-   2. Bảng HTML giữ nguyên cấu trúc bảng.
-   3. Danh sách giữ nguyên từng dòng.
-   4. Đoạn văn giữ nguyên dạng đoạn văn.
-   5. Không tự tạo cột kỹ thuật cố định.
-   6. Không tự chia nội dung thành các cột
-      như Mức cân, Bước nhảy...
-   7. Không viết lại nội dung.
-   8. Không dịch nội dung.
+   1. Không viết lại nội dung mô tả.
+   2. Không tự sáng tạo nội dung.
+   3. Không dịch nội dung.
+   4. Không ép Specification vào các cột cố định.
+   5. Nếu nguồn có TABLE -> trả về specs.table.
+   6. Nếu nguồn có danh sách UL / OL -> trả về specs.text
+      với từng item là một phần tử riêng.
+   7. Nếu nguồn có đoạn văn -> giữ thành đoạn văn.
+   8. Giữ cấu trúc nội dung gần nhất với trang nguồn.
    9. Không gộp các dòng riêng biệt thành một dòng.
-   10. Không biến bảng thành specification text.
-========================================== */
+   10. Không chuyển TABLE thành Specification Text.
+   11. Không sử dụng field "specification".
+   12. Kết quả cuối cùng dùng:
+
+       specs: {
+
+           table: {
+
+               headers: [],
+
+               rows: []
+
+           },
+
+           text: []
+
+       }
+
+========================================================= */
 
 
-/* ==========================================
+/* =========================================================
    BUILD PROMPT
-========================================== */
+========================================================= */
 
-export function buildPrompt(html, options = {}) {
+export function buildPrompt(
+
+    html,
+
+    options = {}
+
+) {
+
+
+    /* =====================================================
+       OPTIONS
+    ===================================================== */
 
     const {
 
@@ -45,39 +72,127 @@ export function buildPrompt(html, options = {}) {
     } = options;
 
 
+    /* =====================================================
+       RETURN PROMPT
+    ===================================================== */
+
     return `
 
-Bạn là hệ thống AI chuyên phân tích nội dung
-trang sản phẩm về:
+Bạn là hệ thống AI chuyên phân tích nội dung sản phẩm
+từ HTML của trang Web.
 
-- Cân điện tử
-- Thiết bị đo lường
-- Thiết bị công nghiệp
+Bạn cần đọc và phân tích HTML được cung cấp.
 
-==================================================
-NHIỆM VỤ
-==================================================
-
-Đọc và phân tích HTML của trang sản phẩm.
-
-Mục tiêu là trích xuất nội dung sản phẩm
-và GIỮ NGUYÊN CẤU TRÚC NỘI DUNG GỐC.
-
-KHÔNG được tự ý viết lại nội dung.
-
-KHÔNG được tự ý dịch nội dung.
-
-KHÔNG được tự ý rút gọn nội dung.
-
-KHÔNG được tự ý gộp các dòng khác nhau.
-
-KHÔNG được tự ý tạo thêm thông tin.
-
-KHÔNG được suy đoán thông tin không có
-trong HTML.
+Mục tiêu là trích xuất nội dung sản phẩm thành dữ liệu JSON
+để hệ thống CMS có thể đưa trực tiếp sang Step 4 chỉnh sửa
+thủ công.
 
 ==================================================
-LOẠI BỎ NỘI DUNG KHÔNG PHẢI SẢN PHẨM
+NGUYÊN TẮC QUAN TRỌNG NHẤT
+==================================================
+
+KHÔNG ĐƯỢC TỰ VIẾT LẠI NỘI DUNG.
+
+KHÔNG ĐƯỢC TÓM TẮT NỘI DUNG.
+
+KHÔNG ĐƯỢC DIỄN GIẢI THÊM.
+
+KHÔNG ĐƯỢC TỰ SÁNG TẠO THÔNG TIN.
+
+KHÔNG ĐƯỢC DỊCH NỘI DUNG.
+
+KHÔNG ĐƯỢC ĐỔI NGHĨA NỘI DUNG.
+
+Hãy lấy nội dung thực tế có trong HTML.
+
+Giữ nguyên nội dung và cấu trúc của nguồn ở mức tối đa
+có thể.
+
+Nếu nguồn viết thành đoạn văn thì giữ thành đoạn văn.
+
+Nếu nguồn có nhiều đoạn văn riêng biệt thì giữ riêng
+từng đoạn.
+
+Nếu nguồn có danh sách:
+
+<ul>
+<li>...</li>
+<li>...</li>
+</ul>
+
+hoặc:
+
+<ol>
+<li>...</li>
+<li>...</li>
+</ol>
+
+thì mỗi <li> phải trở thành một phần tử riêng trong
+"specs.text".
+
+KHÔNG được gộp tất cả <li> thành một đoạn duy nhất.
+
+Nếu nguồn có bảng HTML:
+
+<table>
+    <tr>
+        <th>...</th>
+        <th>...</th>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td>...</td>
+    </tr>
+</table>
+
+thì phải giữ thành:
+
+"specs": {
+
+    "table": {
+
+        "headers": [],
+
+        "rows": []
+
+    },
+
+    "text": []
+
+}
+
+KHÔNG được chuyển nội dung của bảng thành "specs.text".
+
+KHÔNG được tự đặt tên cột.
+
+KHÔNG được thay đổi tên cột.
+
+KHÔNG được áp dụng các cột cố định như:
+
+- Mức cân
+- Bước nhảy
+- Đĩa cân inox
+- Kích thước cân
+- Đơn vị cân
+
+hoặc bất kỳ cột nào khác.
+
+Tên cột phải lấy từ chính bảng trên trang nguồn.
+
+Nếu bảng nguồn có 2 cột thì trả về 2 cột.
+
+Nếu bảng nguồn có 3 cột thì trả về 3 cột.
+
+Nếu bảng nguồn có 5 cột thì trả về 5 cột.
+
+Không được tự thêm cột.
+
+Không được tự xóa cột.
+
+Không được tự thay đổi cấu trúc bảng.
+
+==================================================
+LOẠI BỎ NỘI DUNG KHÔNG PHẢI NỘI DUNG SẢN PHẨM
 ==================================================
 
 Bỏ qua:
@@ -88,140 +203,194 @@ Bỏ qua:
 - Navigation
 - Breadcrumb
 - Sidebar
-- Banner
+- Related Products
+- Related News
+- News
 - Advertisement
+- Advertisement Banner
+- Popup
+- Cookie Notice
 - Facebook
-- Youtube
+- YouTube
 - Social Media
 - Comment
-- Tin tức liên quan
-- Sản phẩm liên quan
-- Sản phẩm đề xuất
-- Gallery navigation
-- Nội dung quảng cáo không thuộc sản phẩm
+- Review
+- Contact information
+- Số điện thoại dùng cho liên hệ
+- Địa chỉ liên hệ
+- Logo
+- Banner quảng cáo
 
-Chỉ lấy nội dung thực sự thuộc về sản phẩm.
+Không lấy các nội dung này vào:
 
-==================================================
-CÁC LOẠI NỘI DUNG CẦN TRÍCH XUẤT
-==================================================
-
-1. Product Name
-
-2. Brand
-
-3. Origin
-
-4. Product Description
-
-5. Technical Specification
-
-6. Features
-
-7. Applications
-
-8. Accessories
+- description
+- specs.table
+- specs.text
 
 ==================================================
-QUY TẮC PRODUCT DESCRIPTION
+PRODUCT NAME
 ==================================================
 
-Nếu trang nguồn có phần mô tả sản phẩm:
+Lấy tên sản phẩm thực tế từ trang nguồn.
 
-- Lấy nội dung mô tả.
-- Giữ nguyên thứ tự.
-- Giữ nguyên đoạn văn.
-- Giữ nguyên xuống dòng nếu có.
-- Nếu có danh sách gạch đầu dòng thì giữ
-  từng mục riêng biệt.
-- Không chuyển thông số kỹ thuật vào Description.
-- Không tự viết lại.
-- Không tự tóm tắt.
+Ưu tiên:
 
-Nếu không tìm thấy mô tả sản phẩm:
+- Product Title
+- H1
+- Tên sản phẩm chính
+
+Không tự đặt tên mới.
+
+Không tự rút gọn tên sản phẩm.
+
+Không tự thêm thương hiệu nếu tên sản phẩm trên nguồn
+không có.
+
+==================================================
+BRAND
+==================================================
+
+Lấy thương hiệu nếu có thể xác định rõ từ HTML.
+
+Nếu không có:
+
+"brand": ""
+
+Không được đoán.
+
+==================================================
+ORIGIN
+==================================================
+
+Lấy xuất xứ nếu trang nguồn có thông tin rõ ràng.
+
+Nếu không có:
+
+"origin": ""
+
+Không được đoán.
+
+==================================================
+DESCRIPTION
+==================================================
+
+MỤC DESCRIPTION PHẢI ĐƯỢC LẤY TỪ NỘI DUNG MÔ TẢ SẢN PHẨM
+THỰC TẾ TRÊN TRANG NGUỒN.
+
+Ưu tiên các khu vực có ý nghĩa như:
+
+- Product Description
+- Description
+- Mô tả sản phẩm
+- Nội dung giới thiệu sản phẩm
+- Product Introduction
+- Product Overview
+- Overview
+
+Không lấy:
+
+- Header
+- Footer
+- Menu
+- Breadcrumb
+- Sidebar
+- Related Products
+- Related News
+- Advertisement
+
+Nếu phần mô tả có nhiều đoạn văn riêng biệt:
+
+Hãy giữ các đoạn riêng biệt bằng ký tự xuống dòng.
+
+Ví dụ nguồn:
+
+<p>Đoạn mô tả 1</p>
+
+<p>Đoạn mô tả 2</p>
+
+Kết quả:
+
+"description":
+"Đoạn mô tả 1
+
+Đoạn mô tả 2"
+
+Không được gộp sai cấu trúc.
+
+Nếu không tìm thấy mô tả thực sự:
 
 "description": ""
 
+KHÔNG được lấy Specification để thay thế Description.
+
+KHÔNG được lấy Features để thay thế Description.
+
+KHÔNG được tự viết Description.
+
 ==================================================
-QUY TẮC TECHNICAL SPECIFICATION
+SPECIFICATION
 ==================================================
 
-Đây là phần rất quan trọng.
-
-PHẢI GIỮ NGUYÊN CẤU TRÚC CỦA TRANG NGUỒN.
-
---------------------------------------------------
-TRƯỜNG HỢP 1: TRANG NGUỒN CÓ BẢNG HTML
---------------------------------------------------
-
-Nếu thông số kỹ thuật được trình bày bằng:
+Nếu nguồn có bảng kỹ thuật:
 
 <table>
 
-thì phải trả về:
+Phải đưa vào:
 
 "specs": {
 
     "table": {
 
-        "headers": [],
+        "headers": [...],
 
-        "rows": []
+        "rows": [...]
 
     },
 
-    "text": []
+    "text": [...]
 
 }
 
-Mỗi cột của bảng nguồn là một phần tử
-trong "headers".
+Ví dụ:
 
-Mỗi hàng của bảng nguồn là một phần tử
-trong "rows".
-
-Ví dụ HTML:
+Nguồn:
 
 <table>
 
 <tr>
-<th>Thông số</th>
-<th>Giá trị</th>
+<th>Mức cân</th>
+<th>Bước nhảy</th>
 </tr>
 
 <tr>
-<td>Mức cân</td>
-<td>300kg</td>
-</tr>
-
-<tr>
-<td>Bước nhảy</td>
-<td>50g</td>
+<td>300 kg</td>
+<td>50 g</td>
 </tr>
 
 </table>
 
-Phải trả về:
+Kết quả:
 
 "specs": {
 
     "table": {
 
         "headers": [
-            "Thông số",
-            "Giá trị"
+
+            "Mức cân",
+
+            "Bước nhảy"
+
         ],
 
         "rows": [
 
             [
-                "Mức cân",
-                "300kg"
-            ],
 
-            [
-                "Bước nhảy",
-                "50g"
+                "300 kg",
+
+                "50 g"
+
             ]
 
         ]
@@ -232,31 +401,35 @@ Phải trả về:
 
 }
 
-KHÔNG được tự tạo bảng mới.
+Không được trả về:
 
-KHÔNG được đổi tên cột.
+"specification": [...]
 
-KHÔNG được đặt cột cố định.
+==================================================
+SPECIFICATION TEXT
+==================================================
 
-KHÔNG được dùng các cột:
+Dùng:
 
-- Mức cân
-- Bước nhảy
-- Đĩa cân inox
-- Kích thước cân
-- Đơn vị cân
+specs.text
 
-trừ khi chính những nội dung đó thực sự xuất hiện
-trong bảng nguồn.
+cho các nội dung kỹ thuật không nằm trong bảng.
 
---------------------------------------------------
-TRƯỜNG HỢP 2: TRANG NGUỒN CÓ NỘI DUNG DẠNG TEXT
---------------------------------------------------
+Ví dụ:
 
-Nếu thông số kỹ thuật không nằm trong bảng
-mà là các đoạn văn hoặc danh sách:
+<p>Độ bền cao</p>
 
-thì đưa vào:
+<ul>
+
+<li>Máy in Head Độ bền: MCBF...</li>
+
+<li>Tốc độ in: 1.0 LPS...</li>
+
+<li>Ribbon Cassette: Khoảng...</li>
+
+</ul>
+
+Kết quả:
 
 "specs": {
 
@@ -268,88 +441,99 @@ thì đưa vào:
 
     },
 
-    "text": []
+    "text": [
+
+        "Độ bền cao",
+
+        "Máy in Head Độ bền: MCBF...",
+
+        "Tốc độ in: 1.0 LPS...",
+
+        "Ribbon Cassette: Khoảng..."
+
+    ]
 
 }
 
-Mỗi dòng hoặc mỗi mục riêng biệt của nguồn
-phải là một phần tử riêng trong "text".
+Mỗi dòng <li> là một phần tử riêng.
 
-Ví dụ:
-
-- Hóa đơn in: Tiếng Việt hoặc Tiếng Anh
-- Máy in Head Độ bền: MCBF 10x10 ^ 5 dòng
-- Tốc độ in: 1.0 LPS ± 20%
-
-thì:
-
-"text": [
-
-    "Hóa đơn in: Tiếng Việt hoặc Tiếng Anh",
-
-    "Máy in Head Độ bền: MCBF 10x10 ^ 5 dòng",
-
-    "Tốc độ in: 1.0 LPS ± 20%"
-
-]
-
-Không gộp thành một đoạn.
-
---------------------------------------------------
-TRƯỜNG HỢP 3: TRANG NGUỒN CÓ CẢ BẢNG VÀ TEXT
---------------------------------------------------
-
-Giữ riêng hai loại:
-
-- Bảng → specs.table
-- Text → specs.text
-
-Không chuyển bảng thành text.
-
-Không chuyển text thành bảng.
+Không gộp các <li> lại.
 
 ==================================================
-QUY TẮC GIỮ CẤU TRÚC
+QUAN TRỌNG: PHÂN BIỆT TABLE VÀ TEXT
 ==================================================
 
-Nếu nguồn là:
+Nếu nội dung trên trang nguồn nằm trong:
 
-Đoạn văn
+<table>
 
-→ giữ là đoạn văn.
+thì phải đưa vào:
 
-Nếu nguồn là:
+specs.table
 
-Danh sách
+Nếu nội dung nằm trong:
 
-→ giữ từng mục riêng biệt.
+<ul>
 
-Nếu nguồn là:
+<ol>
 
-Bảng
+<p>
 
-→ giữ thành bảng.
+<div>
 
-Nếu nguồn có nhiều bảng
+hoặc các nội dung text kỹ thuật riêng biệt
 
-→ cố gắng giữ các bảng theo đúng cấu trúc
-và thứ tự xuất hiện.
+thì đưa vào:
 
-Không gộp nội dung của nhiều bảng thành
-một bảng mới nếu không cần thiết.
+specs.text
 
-Không chuyển nội dung bảng thành:
+KHÔNG được biến TABLE thành TEXT.
 
-"name: value"
-
-hoặc:
-
-"Thông số: Giá trị"
-
-trong text.
+KHÔNG được biến TEXT thành TABLE.
 
 ==================================================
-CÁC MỤC TÙY CHỌN
+FEATURES
+==================================================
+
+Nếu features được yêu cầu:
+
+${features ? "YES" : "NO"}
+
+Lấy các đặc điểm sản phẩm có thật từ HTML.
+
+Không tự viết thêm.
+
+Không trùng lặp với description nếu không cần thiết.
+
+Các nội dung features dạng danh sách có thể được đưa vào
+specs.text nếu đó là nội dung kỹ thuật sản phẩm.
+
+==================================================
+APPLICATIONS
+==================================================
+
+Nếu applications được yêu cầu:
+
+${applications ? "YES" : "NO"}
+
+Lấy ứng dụng thực tế nếu có trong HTML.
+
+Không tự suy đoán.
+
+==================================================
+ACCESSORIES
+==================================================
+
+Nếu accessories được yêu cầu:
+
+${accessories ? "YES" : "NO"}
+
+Lấy phụ kiện nếu có trong HTML.
+
+Không tự suy đoán.
+
+==================================================
+OPTIONS
 ==================================================
 
 Description:
@@ -373,20 +557,22 @@ Accessories:
 ${accessories ? "YES" : "NO"}
 
 ==================================================
-ĐỊNH DẠNG JSON
+OUTPUT FORMAT
 ==================================================
 
-CHỈ trả về JSON hợp lệ.
+CHỈ TRẢ VỀ JSON.
 
-KHÔNG markdown.
+KHÔNG MARKDOWN.
 
-KHÔNG thêm:
+KHÔNG DÙNG:
 
 \`\`\`json
 
-KHÔNG giải thích.
+KHÔNG GIẢI THÍCH.
 
-Cấu trúc JSON:
+KHÔNG THÊM TEXT BÊN NGOÀI JSON.
+
+Cấu trúc JSON bắt buộc:
 
 {
 
@@ -421,64 +607,30 @@ Cấu trúc JSON:
 }
 
 ==================================================
-QUY TẮC QUAN TRỌNG NHẤT
+QUY TẮC JSON
 ==================================================
 
-1. Không tự viết lại nội dung.
+Luôn sử dụng:
 
-2. Không tự dịch.
+"specs"
 
-3. Không tự tóm tắt.
+KHÔNG sử dụng:
 
-4. Không tự tạo thông số.
+"specification"
 
-5. Không tự tạo cột.
+Không tạo:
 
-6. Không dùng cấu trúc:
+"specification": []
 
-"specification": [
+Không tạo:
 
-    {
-        "name": "",
-        "value": ""
-    }
+"technicalSpecification": []
 
-]
+Không tạo:
 
-Thay vào đó phải dùng:
+"technical_specification": []
 
-"specs": {
-
-    "table": {
-
-        "headers": [],
-
-        "rows": []
-
-    },
-
-    "text": []
-
-}
-
-7. Nếu dữ liệu nguồn là bảng thì bắt buộc
-   đưa vào specs.table.
-
-8. Nếu dữ liệu nguồn là text thì đưa vào
-   specs.text.
-
-9. Nếu dữ liệu nguồn có cả bảng và text thì
-   giữ riêng hai phần.
-
-10. Product Description phải được lấy riêng
-    và không được bỏ qua nếu HTML có nội dung
-    mô tả sản phẩm.
-
-11. Nếu không tìm thấy Description thì trả:
-
-"description": ""
-
-12. Nếu không tìm thấy Specification thì trả:
+Chỉ sử dụng:
 
 "specs": {
 
@@ -495,10 +647,55 @@ Thay vào đó phải dùng:
 }
 
 ==================================================
-HTML TRANG SẢN PHẨM
+QUY TẮC KHI KHÔNG CÓ DỮ LIỆU
+==================================================
+
+Nếu không tìm thấy:
+
+name:
+
+""
+
+brand:
+
+""
+
+origin:
+
+""
+
+description:
+
+""
+
+Bảng không có:
+
+"table": {
+
+    "headers": [],
+
+    "rows": []
+
+}
+
+Text không có:
+
+"text": []
+
+Không được tự tạo dữ liệu để lấp chỗ trống.
+
+==================================================
+HTML NGUỒN
 ==================================================
 
 ${html}
+
+==================================================
+KẾT THÚC HTML
+==================================================
+
+Hãy phân tích HTML ở trên và chỉ trả về JSON theo đúng
+cấu trúc đã yêu cầu.
 
 `;
 
