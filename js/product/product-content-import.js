@@ -1,36 +1,35 @@
-/* =========================================================
+/* =====================================================
    PRODUCT CONTENT IMPORT
    STEP 3 / 6
 
+   VERSION
+   -----------------------------------------------------
+   Version 5 - RAW SOURCE PRESERVATION
+
    PURPOSE
-   ---------------------------------------------------------
+   -----------------------------------------------------
    - Nhập URL sản phẩm
    - Gọi ProductImportEngine
-   - Nhận dữ liệu từ Backend / Free Parser / AI
-   - Giữ nguyên cấu trúc Description từ nguồn
-   - Giữ nguyên cấu trúc Specification từ nguồn
-   - Tách bullet / paragraph theo đúng cấu trúc dữ liệu
-   - Hỗ trợ Specification Table nếu nguồn trả về bảng
-   - Giữ Product Images
+   - Nhận dữ liệu từ Backend
+   - GIỮ NGUYÊN dữ liệu Backend trả về
+   - Không tự phân loại Description / Specification
+   - Không tự tách nội dung thành Specification Text
+   - Không tự ép nội dung vào Table
+   - Không tự nối các đoạn văn thành một đoạn
+   - Giữ nguyên Product Images
    - Chuyển dữ liệu sang Step 4
-
-   IMPORTANT
-   ---------------------------------------------------------
-   CHỈ SỬ DỤNG:
-
-       product.specs
-
-   KHÔNG SỬ DỤNG SAU KHI NORMALIZE:
-
-       product.specification
 
    DATA FLOW
 
    ProductImportEngine
           ↓
+   Backend
+          ↓
+   result
+          ↓
    extractImportedProduct()
           ↓
-   normalizeImportedProduct()
+   preserveImportedProduct()
           ↓
    mergeImportedProduct()
           ↓
@@ -38,12 +37,26 @@
           ↓
    renderProductSpecification()
 
-   ========================================================= */
+   IMPORTANT
+   -----------------------------------------------------
+   Step 3 KHÔNG chịu trách nhiệm:
+
+   - chỉnh sửa Description
+   - chia Description
+   - gộp Description
+   - tạo Specification Text
+   - tạo Specification Table
+   - chuyển Description sang Specs
+   - chuyển Specs sang Description
+
+   Step 4 mới là nơi người dùng chỉnh sửa thủ công.
+
+===================================================== */
 
 
-/* =========================================================
+/* =====================================================
    RENDER STEP 3
-========================================================= */
+===================================================== */
 
 function renderProductContentImport() {
 
@@ -159,8 +172,8 @@ function renderProductContentImport() {
 
             <small>
 
-                Nhập URL trang sản phẩm cần đọc
-                và phân tích.
+                Nhập URL trang sản phẩm cần AI
+                đọc và phân tích.
 
             </small>
 
@@ -205,13 +218,6 @@ function renderProductContentImport() {
 
                 <div>
 
-                    ✓ Specification Table
-
-                </div>
-
-
-                <div>
-
                     ✓ Product Images
 
                 </div>
@@ -221,9 +227,9 @@ function renderProductContentImport() {
 
             <small>
 
-                Nội dung được lấy từ Website và giữ
-                cấu trúc mà nguồn trả về.
-                Bạn có thể chỉnh sửa thủ công tại Step 4.
+                Dữ liệu sẽ được nhận từ Website
+                và giữ nguyên cấu trúc mà Backend
+                trả về để xử lý ở Step 4.
 
             </small>
 
@@ -326,9 +332,9 @@ function renderProductContentImport() {
 }
 
 
-/* =========================================================
+/* =====================================================
    INIT
-========================================================= */
+===================================================== */
 
 function initProductContentImport() {
 
@@ -342,9 +348,9 @@ function initProductContentImport() {
 }
 
 
-/* =========================================================
+/* =====================================================
    BACK TO STEP 2
-========================================================= */
+===================================================== */
 
 function backToProductImages() {
 
@@ -369,9 +375,9 @@ function backToProductImages() {
 }
 
 
-/* =========================================================
+/* =====================================================
    NEXT
-========================================================= */
+===================================================== */
 
 async function nextProductContentImport() {
 
@@ -390,7 +396,6 @@ async function nextProductContentImport() {
     if (
 
         typeof saveProductDraft ===
-
         "function"
 
     ) {
@@ -438,7 +443,6 @@ async function nextProductContentImport() {
     if (
 
         !source ||
-
         !source.url
 
     ) {
@@ -478,7 +482,6 @@ async function nextProductContentImport() {
         if (
 
             typeof ProductImportEngine ===
-
             "undefined"
 
         ) {
@@ -512,7 +515,6 @@ async function nextProductContentImport() {
         if (
 
             !result ||
-
             !result.success
 
         ) {
@@ -551,6 +553,27 @@ async function nextProductContentImport() {
             result;
 
 
+        console.log("");
+
+        console.log(
+
+            "========== RAW IMPORT RESULT =========="
+
+        );
+
+        console.log(
+
+            result
+
+        );
+
+        console.log(
+
+            "======================================="
+
+        );
+
+
         /* =====================================
            EXTRACT PRODUCT
         ====================================== */
@@ -580,7 +603,7 @@ async function nextProductContentImport() {
 
         console.log(
 
-            "========================================"
+            "======================================="
 
         );
 
@@ -598,6 +621,7 @@ async function nextProductContentImport() {
 
         /* =====================================
            OLD PRODUCT
+
            STEP 1 DATA HAS PRIORITY
         ====================================== */
 
@@ -660,35 +684,68 @@ async function nextProductContentImport() {
 
 
         /* =====================================
-           NORMALIZE
+           DEBUG STEP 1
         ====================================== */
 
-        const normalizedProduct =
+        console.log("");
 
-            normalizeImportedProduct(
+        console.log(
+
+            "========== STEP 1 PRODUCT =========="
+
+        );
+
+        console.log(
+
+            oldProduct
+
+        );
+
+        console.log(
+
+            "===================================="
+
+        );
+
+
+        /* =====================================
+           PRESERVE IMPORTED PRODUCT
+
+           KHÔNG NORMALIZE NỘI DUNG
+
+           Chỉ copy dữ liệu Backend.
+        ====================================== */
+
+        const preservedProduct =
+
+            preserveImportedProduct(
 
                 importedProduct
 
             );
 
 
+        /* =====================================
+           DEBUG PRESERVED PRODUCT
+        ====================================== */
+
         console.log("");
 
         console.log(
 
-            "========== NORMALIZED PRODUCT =========="
+            "========== PRESERVED PRODUCT =========="
 
         );
 
         console.log(
 
-            normalizedProduct
+            preservedProduct
 
         );
 
         console.log(
 
-            "========================================"
+            "======================================="
 
         );
 
@@ -703,7 +760,7 @@ async function nextProductContentImport() {
 
                 oldProduct,
 
-                normalizedProduct
+                preservedProduct
 
             );
 
@@ -758,21 +815,18 @@ async function nextProductContentImport() {
 
 
         /* =====================================
-           FINAL CLEAN
+           REMOVE LEGACY FIELD
+
+           Không sử dụng:
+
+           product.specification
+
+           Chỉ giữ:
+
+           product.specs
         ====================================== */
 
         delete mergedProduct.specification;
-
-
-        /* =====================================
-           ENSURE SPECS STRUCTURE
-        ====================================== */
-
-        ensureProductSpecsStructure(
-
-            mergedProduct
-
-        );
 
 
         /* =====================================
@@ -785,7 +839,7 @@ async function nextProductContentImport() {
 
 
         /* =====================================
-           DEBUG
+           DEBUG FINAL PRODUCT
         ====================================== */
 
         console.log("");
@@ -809,6 +863,10 @@ async function nextProductContentImport() {
         );
 
 
+        /* =====================================
+           DEBUG DESCRIPTION
+        ====================================== */
+
         console.log("");
 
         console.log(
@@ -819,7 +877,9 @@ async function nextProductContentImport() {
 
         console.log(
 
-            window.currentProduct.product.description
+            window.currentProduct.product
+
+                .description
 
         );
 
@@ -830,11 +890,15 @@ async function nextProductContentImport() {
         );
 
 
+        /* =====================================
+           DEBUG SPECS
+        ====================================== */
+
         console.log("");
 
         console.log(
 
-            "========== SPECS TABLE =========="
+            "========== SPECS =========="
 
         );
 
@@ -844,22 +908,24 @@ async function nextProductContentImport() {
 
                 .specs
 
-                .table
-
         );
 
         console.log(
 
-            "================================="
+            "==========================="
 
         );
 
+
+        /* =====================================
+           DEBUG IMAGES
+        ====================================== */
 
         console.log("");
 
         console.log(
 
-            "========== SPECS TEXT =========="
+            "========== IMAGES =========="
 
         );
 
@@ -867,15 +933,13 @@ async function nextProductContentImport() {
 
             window.currentProduct.product
 
-                .specs
-
-                .text
+                .images
 
         );
 
         console.log(
 
-            "================================"
+            "============================"
 
         );
 
@@ -925,7 +989,6 @@ async function nextProductContentImport() {
         if (
 
             typeof saveProductDraft ===
-
             "function"
 
         ) {
@@ -942,7 +1005,6 @@ async function nextProductContentImport() {
         if (
 
             typeof renderProductSpecification ===
-
             "function"
 
         ) {
@@ -954,9 +1016,15 @@ async function nextProductContentImport() {
         }
 
 
-        throw new Error(
+        console.error(
 
             "renderProductSpecification is not defined."
+
+        );
+
+        alert(
+
+            "Import thành công nhưng chưa kết nối được Step 4."
 
         );
 
@@ -996,10 +1064,10 @@ async function nextProductContentImport() {
 }
 
 
-/* =========================================================
+/* =====================================================
    EXTRACT IMPORTED PRODUCT
 
-   SUPPORT:
+   Hỗ trợ:
 
    result.product
 
@@ -1008,7 +1076,8 @@ async function nextProductContentImport() {
    result.data.product
 
    result.data
-========================================================= */
+
+===================================================== */
 
 function extractImportedProduct(
 
@@ -1028,7 +1097,6 @@ function extractImportedProduct(
         result.product &&
 
         typeof result.product ===
-
         "object"
 
     ) {
@@ -1051,7 +1119,6 @@ function extractImportedProduct(
         result.result.product &&
 
         typeof result.result.product ===
-
         "object"
 
     ) {
@@ -1074,7 +1141,6 @@ function extractImportedProduct(
         result.data.product &&
 
         typeof result.data.product ===
-
         "object"
 
     ) {
@@ -1086,6 +1152,8 @@ function extractImportedProduct(
 
     /* =========================================
        result.data
+
+       Nếu data là product
     ========================================== */
 
     if (
@@ -1095,24 +1163,27 @@ function extractImportedProduct(
         result.data &&
 
         typeof result.data ===
-
         "object" &&
 
-        !Array.isArray(result.data)
+        !Array.isArray(
+
+            result.data
+
+        )
 
     ) {
 
         if (
 
-            result.data.name ||
+            result.data.name !== undefined ||
 
-            result.data.description ||
+            result.data.description !== undefined ||
 
-            result.data.specs ||
+            result.data.specs !== undefined ||
 
-            result.data.specification ||
+            result.data.specification !== undefined ||
 
-            result.data.images
+            result.data.images !== undefined
 
         ) {
 
@@ -1128,17 +1199,27 @@ function extractImportedProduct(
 }
 
 
-/* =========================================================
-   NORMALIZE IMPORTED PRODUCT
+/* =====================================================
+   PRESERVE IMPORTED PRODUCT
 
    IMPORTANT
-   ---------------------------------------------------------
-   Không ép Description vào Specs.
-   Không ép Specs vào Description.
-   Không ép text thành một dòng duy nhất.
-========================================================= */
 
-function normalizeImportedProduct(
+   Không normalize nội dung.
+
+   Không:
+
+   - join array
+   - split string
+   - trim HTML
+   - chuyển object thành text
+   - chuyển specs thành description
+   - chuyển description thành specs
+
+   Chỉ sao chép dữ liệu nhận được.
+
+===================================================== */
+
+function preserveImportedProduct(
 
     importedProduct
 
@@ -1150,21 +1231,16 @@ function normalizeImportedProduct(
         !importedProduct ||
 
         typeof importedProduct !==
-
         "object"
 
     ) {
 
-        return {
-
-            specs: createEmptyProductSpecs()
-
-        };
+        return {};
 
     }
 
 
-    const normalized = {
+    const preserved = {
 
         ...importedProduct
 
@@ -1173,32 +1249,115 @@ function normalizeImportedProduct(
 
     /* =========================================
        DESCRIPTION
+
+       GIỮ NGUYÊN GIÁ TRỊ
+
+       Có thể là:
+
+       string
+       HTML string
+       array
+       object
+
+       Không biến đổi.
     ========================================== */
 
-    normalized.description =
+    if (
 
-        normalizeProductDescription(
+        Object.prototype.hasOwnProperty.call(
 
-            importedProduct.description
+            importedProduct,
 
-        );
+            "description"
+
+        )
+
+    ) {
+
+        preserved.description =
+
+            importedProduct.description;
+
+    }
 
 
     /* =========================================
        SPECS
+
+       GIỮ NGUYÊN GIÁ TRỊ
+
+       Không ép thành:
+
+       table
+       text
+
+       nếu Backend không trả như vậy.
     ========================================== */
 
-    normalized.specs =
+    if (
 
-        normalizeProductSpecs(
+        Object.prototype.hasOwnProperty.call(
 
-            importedProduct
+            importedProduct,
 
-        );
+            "specs"
+
+        )
+
+    ) {
+
+        preserved.specs =
+
+            importedProduct.specs;
+
+    }
+
+
+    /* =========================================
+       LEGACY SPECIFICATION
+
+       Nếu Backend chỉ trả:
+
+       specification
+
+       thì giữ tạm trong product.
+
+       Sau đó merge sẽ chuyển sang specs
+       nếu cần.
+
+    ========================================== */
+
+    if (
+
+        !Object.prototype.hasOwnProperty.call(
+
+            importedProduct,
+
+            "specs"
+
+        ) &&
+
+        Object.prototype.hasOwnProperty.call(
+
+            importedProduct,
+
+            "specification"
+
+        )
+
+    ) {
+
+        preserved.specification =
+
+            importedProduct.specification;
+
+    }
 
 
     /* =========================================
        IMAGES
+
+       GIỮ NGUYÊN MẢNG ẢNH
     ========================================== */
 
     if (
@@ -1211,2150 +1370,38 @@ function normalizeImportedProduct(
 
     ) {
 
-        normalized.images =
+        preserved.images =
 
-            normalizeProductImages(
+            [
 
-                importedProduct.images
+                ...importedProduct.images
 
-            );
+            ];
 
     }
 
 
-    /* =========================================
-       REMOVE LEGACY
-    ========================================== */
-
-    delete normalized.specification;
-
-
-    return normalized;
+    return preserved;
 
 }
 
 
-/* =========================================================
-   NORMALIZE PRODUCT DESCRIPTION
-
-   GIỮ CẤU TRÚC DÒNG
-
-   Không:
-
-       .replace(/\s+/g, " ")
-
-   Vì sẽ làm mất:
-
-       - bullet
-       - xuống dòng
-       - paragraph
-       - cấu trúc nguồn
-========================================================= */
-
-function normalizeProductDescription(
-
-    value
-
-) {
-
-
-    if (
-
-        value === null ||
-
-        value === undefined
-
-    ) {
-
-        return "";
-
-    }
-
-
-    /* =========================================
-       STRING
-    ========================================== */
-
-    if (
-
-        typeof value ===
-
-        "string"
-
-    ) {
-
-        return normalizeStructuredText(
-
-            value
-
-        );
-
-    }
-
-
-    /* =========================================
-       ARRAY
-    ========================================== */
-
-    if (
-
-        Array.isArray(value)
-
-    ) {
-
-        return value
-
-            .map(
-
-                item =>
-
-                    normalizeStructuredTextItem(
-
-                        item
-
-                    )
-
-            )
-
-            .filter(Boolean)
-
-            .join("\n");
-
-    }
-
-
-    /* =========================================
-       OBJECT
-    ========================================== */
-
-    if (
-
-        typeof value ===
-
-        "object"
-
-    ) {
-
-        /* -------------------------------------
-           HTML / CONTENT
-        -------------------------------------- */
-
-        if (
-
-            typeof value.html ===
-
-            "string"
-
-        ) {
-
-            return normalizeStructuredText(
-
-                value.html
-
-            );
-
-        }
-
-
-        if (
-
-            typeof value.content ===
-
-            "string"
-
-        ) {
-
-            return normalizeStructuredText(
-
-                value.content
-
-            );
-
-        }
-
-
-        if (
-
-            typeof value.text ===
-
-            "string"
-
-        ) {
-
-            return normalizeStructuredText(
-
-                value.text
-
-            );
-
-        }
-
-
-        /* -------------------------------------
-           BLOCKS
-        -------------------------------------- */
-
-        if (
-
-            Array.isArray(
-
-                value.blocks
-
-            )
-
-        ) {
-
-            return value.blocks
-
-                .map(
-
-                    normalizeStructuredTextItem
-
-                )
-
-                .filter(Boolean)
-
-                .join("\n");
-
-        }
-
-
-        /* -------------------------------------
-           PARAGRAPHS
-        -------------------------------------- */
-
-        if (
-
-            Array.isArray(
-
-                value.paragraphs
-
-            )
-
-        ) {
-
-            return value.paragraphs
-
-                .map(
-
-                    normalizeStructuredTextItem
-
-                )
-
-                .filter(Boolean)
-
-                .join("\n");
-
-        }
-
-
-        /* -------------------------------------
-           LIST ITEMS
-        -------------------------------------- */
-
-        if (
-
-            Array.isArray(
-
-                value.items
-
-            )
-
-        ) {
-
-            return value.items
-
-                .map(
-
-                    normalizeStructuredTextItem
-
-                )
-
-                .filter(Boolean)
-
-                .join("\n");
-
-        }
-
-
-        /* -------------------------------------
-           LEGACY OBJECT
-        -------------------------------------- */
-
-        return normalizeLegacySpecObject(
-
-            value
-
-        );
-
-    }
-
-
-    return String(
-
-        value
-
-    ).trim();
-
-}
-
-
-/* =========================================================
-   NORMALIZE PRODUCT SPECS
-
-   FINAL:
-
-   specs: {
-
-       table: {
-
-           headers: [],
-
-           rows: []
-
-       },
-
-       text: []
-
-   }
-
-========================================================= */
-
-function normalizeProductSpecs(
-
-    product
-
-) {
-
-
-    const result =
-
-        createEmptyProductSpecs();
-
-
-    if (
-
-        !product ||
-
-        typeof product !==
-
-        "object"
-
-    ) {
-
-        return result;
-
-    }
-
-
-    /* =========================================
-       SOURCE SPECS
-    ========================================== */
-
-    let sourceSpecs =
-
-        product.specs;
-
-
-    /* =========================================
-       LEGACY FALLBACK
-
-       Chỉ dùng khi không có specs
-    ========================================== */
-
-    if (
-
-        !sourceSpecs &&
-
-        product.specification !==
-
-        undefined
-
-    ) {
-
-        sourceSpecs =
-
-            product.specification;
-
-    }
-
-
-    /* =========================================
-       NEW OBJECT
-    ========================================== */
-
-    if (
-
-        sourceSpecs &&
-
-        typeof sourceSpecs ===
-
-        "object" &&
-
-        !Array.isArray(sourceSpecs)
-
-    ) {
-
-
-        /* =====================================
-           TABLE
-        ====================================== */
-
-        if (
-
-            sourceSpecs.table &&
-
-            typeof sourceSpecs.table ===
-
-            "object"
-
-        ) {
-
-            result.table =
-
-                normalizeSpecificationTable(
-
-                    sourceSpecs.table
-
-                );
-
-        }
-
-
-        /* =====================================
-           TEXT
-        ====================================== */
-
-        if (
-
-            Array.isArray(
-
-                sourceSpecs.text
-
-            )
-
-        ) {
-
-            result.text =
-
-                sourceSpecs.text
-
-                    .map(
-
-                        normalizeStructuredTextItem
-
-                    )
-
-                    .filter(Boolean);
-
-        }
-
-
-        /* =====================================
-           RAW HTML
-        ====================================== */
-
-        if (
-
-            typeof sourceSpecs.html ===
-
-            "string"
-
-        ) {
-
-            const parsed =
-
-                parseSpecificationHTML(
-
-                    sourceSpecs.html
-
-                );
-
-
-            mergeParsedSpecification(
-
-                result,
-
-                parsed
-
-            );
-
-        }
-
-
-        return result;
-
-    }
-
-
-    /* =========================================
-       ARRAY
-    ========================================== */
-
-    if (
-
-        Array.isArray(
-
-            sourceSpecs
-
-        )
-
-    ) {
-
-        sourceSpecs.forEach(
-
-            item => {
-
-
-                /* =================================
-                   STRING
-                ================================= */
-
-                if (
-
-                    typeof item ===
-
-                    "string"
-
-                ) {
-
-                    const text =
-
-                        item.trim();
-
-
-                    if (!text) {
-
-                        return;
-
-                    }
-
-
-                    /* -----------------------------
-                       HTML TABLE
-                    ------------------------------ */
-
-                    if (
-
-                        isHTMLTable(
-
-                            text
-
-                        )
-
-                    ) {
-
-                        const parsedTable =
-
-                            parseHTMLSpecificationTable(
-
-                                text
-
-                            );
-
-
-                        if (
-
-                            parsedTable.headers.length ||
-
-                            parsedTable.rows.length
-
-                        ) {
-
-                            result.table =
-
-                                parsedTable;
-
-                        }
-
-
-                        return;
-
-                    }
-
-
-                    /* -----------------------------
-                       NORMAL TEXT
-
-                       GIỮ NGUYÊN XUỐNG DÒNG
-                    ------------------------------ */
-
-                    const lines =
-
-                        splitStructuredLines(
-
-                            text
-
-                        );
-
-
-                    result.text.push(
-
-                        ...lines
-
-                    );
-
-
-                    return;
-
-                }
-
-
-                /* =================================
-                   OBJECT
-                ================================= */
-
-                if (
-
-                    item &&
-
-                    typeof item ===
-
-                    "object"
-
-                ) {
-
-
-                    /* -----------------------------
-                       TABLE
-                    ------------------------------ */
-
-                    if (
-
-                        item.table &&
-
-                        typeof item.table ===
-
-                        "object"
-
-                    ) {
-
-                        const parsedTable =
-
-                            normalizeSpecificationTable(
-
-                                item.table
-
-                            );
-
-
-                        if (
-
-                            parsedTable.headers.length ||
-
-                            parsedTable.rows.length
-
-                        ) {
-
-                            result.table =
-
-                                parsedTable;
-
-                        }
-
-
-                        if (
-
-                            Array.isArray(
-
-                                item.text
-
-                            )
-
-                        ) {
-
-                            result.text.push(
-
-                                ...item.text
-
-                                    .map(
-
-                                        normalizeStructuredTextItem
-
-                                    )
-
-                                    .filter(Boolean)
-
-                            );
-
-                        }
-
-
-                        return;
-
-                    }
-
-
-                    /* -----------------------------
-                       HTML
-                    ------------------------------ */
-
-                    if (
-
-                        typeof item.html ===
-
-                        "string"
-
-                    ) {
-
-                        const parsed =
-
-                            parseSpecificationHTML(
-
-                                item.html
-
-                            );
-
-
-                        mergeParsedSpecification(
-
-                            result,
-
-                            parsed
-
-                        );
-
-
-                        return;
-
-                    }
-
-
-                    /* -----------------------------
-                       CONTENT
-                    ------------------------------ */
-
-                    if (
-
-                        typeof item.content ===
-
-                        "string"
-
-                    ) {
-
-                        result.text.push(
-
-                            ...splitStructuredLines(
-
-                                item.content
-
-                            )
-
-                        );
-
-
-                        return;
-
-                    }
-
-
-                    /* -----------------------------
-                       TEXT
-                    ------------------------------ */
-
-                    if (
-
-                        typeof item.text ===
-
-                        "string"
-
-                    ) {
-
-                        result.text.push(
-
-                            ...splitStructuredLines(
-
-                                item.text
-
-                            )
-
-                        );
-
-
-                        return;
-
-                    }
-
-
-                    /* -----------------------------
-                       NAME / VALUE
-                    ------------------------------ */
-
-                    const converted =
-
-                        normalizeLegacySpecObject(
-
-                            item
-
-                        );
-
-
-                    if (converted) {
-
-                        result.text.push(
-
-                            converted
-
-                        );
-
-                    }
-
-
-                    return;
-
-                }
-
-            }
-
-        );
-
-    }
-
-
-    return result;
-
-}
-
-
-/* =========================================================
-   NORMALIZE SPECIFICATION TABLE
-========================================================= */
-
-function normalizeSpecificationTable(
-
-    table
-
-) {
-
-
-    const normalized = {
-
-        headers: [],
-
-        rows: []
-
-    };
-
-
-    if (
-
-        !table ||
-
-        typeof table !==
-
-        "object"
-
-    ) {
-
-        return normalized;
-
-    }
-
-
-    /* =========================================
-       HEADERS
-    ========================================== */
-
-    if (
-
-        Array.isArray(
-
-            table.headers
-
-        )
-
-    ) {
-
-        normalized.headers =
-
-            table.headers
-
-                .map(
-
-                    value =>
-
-                        normalizeCellValue(
-
-                            value
-
-                        )
-
-                );
-
-    }
-
-
-    /* =========================================
-       ROWS
-    ========================================== */
-
-    if (
-
-        Array.isArray(
-
-            table.rows
-
-        )
-
-    ) {
-
-        normalized.rows =
-
-            table.rows
-
-                .map(
-
-                    row => {
-
-                        if (
-
-                            !Array.isArray(row)
-
-                        ) {
-
-                            return [];
-
-                        }
-
-
-                        return row.map(
-
-                            value =>
-
-                                normalizeCellValue(
-
-                                    value
-
-                                )
-
-                        );
-
-                    }
-
-                )
-
-                .filter(
-
-                    row =>
-
-                        row.some(
-
-                            cell =>
-
-                                cell !== ""
-
-                        )
-
-                );
-
-    }
-
-
-    return normalized;
-
-}
-
-
-/* =========================================================
-   PARSE HTML SPECIFICATION TABLE
-========================================================= */
-
-function parseHTMLSpecificationTable(
-
-    html
-
-) {
-
-
-    const result = {
-
-        headers: [],
-
-        rows: []
-
-    };
-
-
-    if (
-
-        typeof html !==
-
-        "string" ||
-
-        !html.trim()
-
-    ) {
-
-        return result;
-
-    }
-
-
-    try {
-
-
-        const parser =
-
-            new DOMParser();
-
-
-        const doc =
-
-            parser.parseFromString(
-
-                html,
-
-                "text/html"
-
-            );
-
-
-        const table =
-
-            doc.querySelector(
-
-                "table"
-
-            );
-
-
-        if (!table) {
-
-            return result;
-
-        }
-
-
-        /* =====================================
-           THEAD
-        ====================================== */
-
-        const headerCells =
-
-            table.querySelectorAll(
-
-                "thead th"
-
-            );
-
-
-        if (
-
-            headerCells.length
-
-        ) {
-
-            result.headers =
-
-                Array.from(
-
-                    headerCells
-
-                ).map(
-
-                    cell =>
-
-                        normalizeCellValue(
-
-                            cell.textContent
-
-                        )
-
-                );
-
-        }
-
-
-        /* =====================================
-           ALL ROWS
-        ====================================== */
-
-        const rows =
-
-            table.querySelectorAll(
-
-                "tr"
-
-            );
-
-
-        Array.from(
-
-            rows
-
-        ).forEach(
-
-            (row, index) => {
-
-
-                const cells =
-
-                    row.querySelectorAll(
-
-                        "th, td"
-
-                    );
-
-
-                if (!cells.length) {
-
-                    return;
-
-                }
-
-
-                const values =
-
-                    Array.from(
-
-                        cells
-
-                    ).map(
-
-                        cell =>
-
-                            normalizeCellValue(
-
-                                cell.textContent
-
-                            )
-
-                    );
-
-
-                /* =================================
-                   HEADER FROM FIRST ROW
-                ================================== */
-
-                if (
-
-                    !result.headers.length &&
-
-                    index === 0 &&
-
-                    row.querySelector("th")
-
-                ) {
-
-                    result.headers =
-
-                        values;
-
-                    return;
-
-                }
-
-
-                /* =================================
-                   NORMAL ROW
-                ================================== */
-
-                if (
-
-                    values.some(
-
-                        value =>
-
-                            value !== ""
-
-                    )
-
-                ) {
-
-                    result.rows.push(
-
-                        values
-
-                    );
-
-                }
-
-            }
-
-        );
-
-
-        return result;
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-
-            "HTML TABLE PARSE ERROR:",
-
-            error
-
-        );
-
-
-        return result;
-
-    }
-
-}
-
-
-/* =========================================================
-   PARSE GENERIC HTML CONTENT
-
-   Dùng khi Engine trả về:
-
-       specs.html
-
-       item.html
-
-   Mục tiêu:
-
-       - table → table
-       - li → từng dòng
-       - p → từng đoạn
-       - div → từng block
-========================================================= */
-
-function parseSpecificationHTML(
-
-    html
-
-) {
-
-
-    const result =
-
-        createEmptyProductSpecs();
-
-
-    if (
-
-        typeof html !==
-
-        "string" ||
-
-        !html.trim()
-
-    ) {
-
-        return result;
-
-    }
-
-
-    try {
-
-
-        const parser =
-
-            new DOMParser();
-
-
-        const doc =
-
-            parser.parseFromString(
-
-                html,
-
-                "text/html"
-
-            );
-
-
-        /* =========================================
-           TABLE
-        ========================================== */
-
-        const table =
-
-            doc.querySelector(
-
-                "table"
-
-            );
-
-
-        if (table) {
-
-            result.table =
-
-                parseHTMLSpecificationTable(
-
-                    html
-
-                );
-
-        }
-
-
-        /* =========================================
-           LIST ITEMS
-        ========================================== */
-
-        const listItems =
-
-            Array.from(
-
-                doc.querySelectorAll(
-
-                    "li"
-
-                )
-
-            )
-
-                .map(
-
-                    item =>
-
-                        item.textContent.trim()
-
-                )
-
-                .filter(Boolean);
-
-
-        /* =========================================
-           PARAGRAPHS
-        ========================================== */
-
-        const paragraphs =
-
-            Array.from(
-
-                doc.querySelectorAll(
-
-                    "p"
-
-                )
-
-            )
-
-                .map(
-
-                    item =>
-
-                        item.textContent.trim()
-
-                )
-
-                .filter(Boolean);
-
-
-        /* =========================================
-           DIV BLOCKS
-
-           Chỉ dùng nếu không có p/li
-        ========================================== */
-
-        let blocks = [];
-
-
-        if (
-
-            !listItems.length &&
-
-            !paragraphs.length
-
-        ) {
-
-            blocks =
-
-                Array.from(
-
-                    doc.querySelectorAll(
-
-                        "div"
-
-                    )
-
-                )
-
-                    .map(
-
-                        item =>
-
-                            item.textContent.trim()
-
-                    )
-
-                    .filter(Boolean);
-
-        }
-
-
-        result.text = [
-
-            ...listItems,
-
-            ...paragraphs,
-
-            ...blocks
-
-        ];
-
-
-        return result;
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-
-            "SPECIFICATION HTML PARSE ERROR:",
-
-            error
-
-        );
-
-
-        return result;
-
-    }
-
-}
-
-
-/* =========================================================
-   MERGE PARSED SPECIFICATION
-========================================================= */
-
-function mergeParsedSpecification(
-
-    target,
-
-    parsed
-
-) {
-
-
-    if (
-
-        !target ||
-
-        !parsed
-
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-
-        parsed.table &&
-
-        (
-
-            parsed.table.headers.length ||
-
-            parsed.table.rows.length
-
-        )
-
-    ) {
-
-        target.table =
-
-            parsed.table;
-
-    }
-
-
-    if (
-
-        Array.isArray(
-
-            parsed.text
-
-        )
-
-    ) {
-
-        target.text.push(
-
-            ...parsed.text
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CHECK HTML TABLE
-========================================================= */
-
-function isHTMLTable(
-
-    value
-
-) {
-
-    return (
-
-        typeof value ===
-
-        "string" &&
-
-        /<table[\s>]/i.test(
-
-            value
-
-        )
-
-    );
-
-}
-
-
-/* =========================================================
-   NORMALIZE LEGACY SPEC OBJECT
-========================================================= */
-
-function normalizeLegacySpecObject(
-
-    item
-
-) {
-
-
-    if (
-
-        !item ||
-
-        typeof item !==
-
-        "object"
-
-    ) {
-
-        return "";
-
-    }
-
-
-    const name =
-
-        item.name !== undefined
-
-            ? normalizeCellValue(
-
-                item.name
-
-            )
-
-            : "";
-
-
-    const value =
-
-        item.value !== undefined
-
-            ? normalizeCellValue(
-
-                item.value
-
-            )
-
-            : "";
-
-
-    if (
-
-        name &&
-
-        value
-
-    ) {
-
-        return (
-
-            `${name}: ${value}`
-
-        );
-
-    }
-
-
-    return (
-
-        name ||
-
-        value ||
-
-        ""
-
-    );
-
-}
-
-
-/* =========================================================
-   NORMALIZE STRUCTURED TEXT ITEM
-========================================================= */
-
-function normalizeStructuredTextItem(
-
-    value
-
-) {
-
-
-    if (
-
-        value === null ||
-
-        value === undefined
-
-    ) {
-
-        return "";
-
-    }
-
-
-    if (
-
-        typeof value ===
-
-        "string"
-
-    ) {
-
-        return normalizeStructuredText(
-
-            value
-
-        );
-
-    }
-
-
-    if (
-
-        typeof value ===
-
-        "object"
-
-    ) {
-
-        if (
-
-            typeof value.text ===
-
-            "string"
-
-        ) {
-
-            return normalizeStructuredText(
-
-                value.text
-
-            );
-
-        }
-
-
-        if (
-
-            typeof value.content ===
-
-            "string"
-
-        ) {
-
-            return normalizeStructuredText(
-
-                value.content
-
-            );
-
-        }
-
-
-        return normalizeLegacySpecObject(
-
-            value
-
-        );
-
-    }
-
-
-    return String(
-
-        value
-
-    ).trim();
-
-}
-
-
-/* =========================================================
-   NORMALIZE STRUCTURED TEXT
-
-   GIỮ CẤU TRÚC DÒNG
-
-   Không gom toàn bộ thành một dòng.
-========================================================= */
-
-function normalizeStructuredText(
-
-    value
-
-) {
-
-
-    if (
-
-        typeof value !==
-
-        "string"
-
-    ) {
-
-        return "";
-
-    }
-
-
-    return value
-
-        .replace(
-
-            /\r\n/g,
-
-            "\n"
-
-        )
-
-        .replace(
-
-            /\r/g,
-
-            "\n"
-
-        )
-
-        .split("\n")
-
-        .map(
-
-            line =>
-
-                line
-
-                    .replace(
-
-                        /[ \t]+/g,
-
-                        " "
-
-                    )
-
-                    .trim()
-
-        )
-
-        .filter(
-
-            line =>
-
-                line !== ""
-
-        )
-
-        .join("\n")
-
-        .trim();
-
-}
-
-
-/* =========================================================
-   SPLIT STRUCTURED LINES
-
-   Xử lý:
-
-   - xuống dòng
-   - bullet
-   - danh sách
-   - paragraph
-
-   Ví dụ:
-
-   • Độ chính xác: 1/15000
-   • Có chức năng đếm
-   • Có chức năng in
-
-   Kết quả:
-
-   [
-
-       "• Độ chính xác: 1/15000",
-
-       "• Có chức năng đếm",
-
-       "• Có chức năng in"
-
-   ]
-========================================================= */
-
-function splitStructuredLines(
-
-    value
-
-) {
-
-
-    if (
-
-        typeof value !==
-
-        "string"
-
-    ) {
-
-        return [];
-
-    }
-
-
-    const normalized =
-
-        value
-
-            .replace(
-
-                /\r\n/g,
-
-                "\n"
-
-            )
-
-            .replace(
-
-                /\r/g,
-
-                "\n"
-
-            );
-
-
-    const lines =
-
-        normalized
-
-            .split("\n")
-
-            .map(
-
-                line =>
-
-                    line
-
-                        .replace(
-
-                            /[ \t]+/g,
-
-                            " "
-
-                        )
-
-                        .trim()
-
-            )
-
-            .filter(Boolean);
-
-
-    return lines;
-
-}
-
-
-/* =========================================================
-   NORMALIZE CELL VALUE
-========================================================= */
-
-function normalizeCellValue(
-
-    value
-
-) {
-
-
-    if (
-
-        value === null ||
-
-        value === undefined
-
-    ) {
-
-        return "";
-
-    }
-
-
-    return String(
-
-        value
-
-    )
-
-        .replace(
-
-            /\r\n/g,
-
-            "\n"
-
-        )
-
-        .replace(
-
-            /\r/g,
-
-            "\n"
-
-        )
-
-        .trim();
-
-}
-
-
-/* =========================================================
-   CREATE EMPTY SPECS
-========================================================= */
-
-function createEmptyProductSpecs() {
-
-    return {
-
-        table: {
-
-            headers: [],
-
-            rows: []
-
-        },
-
-        text: []
-
-    };
-
-}
-
-
-/* =========================================================
-   ENSURE SPECS STRUCTURE
-========================================================= */
-
-function ensureProductSpecsStructure(
-
-    product
-
-) {
-
-
-    if (
-
-        !product ||
-
-        typeof product !==
-
-        "object"
-
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-
-        !product.specs ||
-
-        typeof product.specs !==
-
-        "object" ||
-
-        Array.isArray(
-
-            product.specs
-
-        )
-
-    ) {
-
-        product.specs =
-
-            createEmptyProductSpecs();
-
-    }
-
-
-    if (
-
-        !product.specs.table ||
-
-        typeof product.specs.table !==
-
-        "object" ||
-
-        Array.isArray(
-
-            product.specs.table
-
-        )
-
-    ) {
-
-        product.specs.table = {
-
-            headers: [],
-
-            rows: []
-
-        };
-
-    }
-
-
-    if (
-
-        !Array.isArray(
-
-            product.specs.table.headers
-
-        )
-
-    ) {
-
-        product.specs.table.headers = [];
-
-    }
-
-
-    if (
-
-        !Array.isArray(
-
-            product.specs.table.rows
-
-        )
-
-    ) {
-
-        product.specs.table.rows = [];
-
-    }
-
-
-    if (
-
-        !Array.isArray(
-
-            product.specs.text
-
-        )
-
-    ) {
-
-        product.specs.text = [];
-
-    }
-
-}
-
-
-/* =========================================================
-   NORMALIZE PRODUCT IMAGES
-========================================================= */
-
-function normalizeProductImages(
-
-    images
-
-) {
-
-
-    if (
-
-        !Array.isArray(images)
-
-    ) {
-
-        return [];
-
-    }
-
-
-    return images
-
-        .map(
-
-            image => {
-
-
-                if (
-
-                    typeof image ===
-
-                    "string"
-
-                ) {
-
-                    return image.trim();
-
-                }
-
-
-                if (
-
-                    image &&
-
-                    typeof image ===
-
-                    "object"
-
-                ) {
-
-                    return {
-
-                        ...image
-
-                    };
-
-                }
-
-
-                return "";
-
-            }
-
-        )
-
-        .filter(
-
-            image =>
-
-                image !== ""
-
-        );
-
-}
-
-
-/* =========================================================
+/* =====================================================
    MERGE IMPORTED PRODUCT
-========================================================= */
+
+   NGUYÊN TẮC
+
+   1. Step 1 giữ nguyên dữ liệu lựa chọn.
+
+   2. Nội dung từ Website được copy nguyên trạng.
+
+   3. Không normalize Description.
+
+   4. Không normalize Specs.
+
+   5. Không tự tạo Specification Text.
+
+===================================================== */
 
 function mergeImportedProduct(
 
@@ -3372,86 +1419,16 @@ function mergeImportedProduct(
     };
 
 
-    /* =========================================
-       VALID VALUE
-    ========================================== */
+    if (
 
-    function isValidImportedValue(
+        !importedProduct ||
 
-        value
+        typeof importedProduct !==
+        "object"
 
     ) {
 
-
-        if (
-
-            value === null ||
-
-            value === undefined
-
-        ) {
-
-            return false;
-
-        }
-
-
-        if (
-
-            typeof value ===
-
-            "string"
-
-        ) {
-
-
-            const text =
-
-                value.trim();
-
-
-            if (!text) {
-
-                return false;
-
-            }
-
-
-            const invalidValues = [
-
-                "unknown",
-
-                "undefined",
-
-                "null",
-
-                "n/a",
-
-                "na",
-
-                "none"
-
-            ];
-
-
-            if (
-
-                invalidValues.includes(
-
-                    text.toLowerCase()
-
-                )
-
-            ) {
-
-                return false;
-
-            }
-
-        }
-
-
-        return true;
+        return merged;
 
     }
 
@@ -3462,30 +1439,49 @@ function mergeImportedProduct(
 
     if (
 
-        isValidImportedValue(
+        Object.prototype.hasOwnProperty.call(
 
-            importedProduct.name
+            importedProduct,
+
+            "name"
 
         )
 
     ) {
 
-        merged.name =
+        if (
 
-            importedProduct.name;
+            importedProduct.name !==
+            null &&
+
+            importedProduct.name !==
+            undefined
+
+        ) {
+
+            merged.name =
+
+                importedProduct.name;
+
+        }
 
     }
 
 
     /* =========================================
        DESCRIPTION
+
+       COPY NGUYÊN TRẠNG
+
     ========================================== */
 
     if (
 
-        isValidImportedValue(
+        Object.prototype.hasOwnProperty.call(
 
-            importedProduct.description
+            importedProduct,
+
+            "description"
 
         )
 
@@ -3500,117 +1496,64 @@ function mergeImportedProduct(
 
     /* =========================================
        SPECS
+
+       COPY NGUYÊN TRẠNG
+
     ========================================== */
 
     if (
 
-        importedProduct.specs &&
+        Object.prototype.hasOwnProperty.call(
 
-        typeof importedProduct.specs ===
+            importedProduct,
 
-        "object"
+            "specs"
+
+        )
 
     ) {
 
-        merged.specs = {
+        merged.specs =
 
-            table: {
+            importedProduct.specs;
 
-                headers:
-
-                    Array.isArray(
-
-                        importedProduct.specs
-
-                            .table
-
-                            ?.headers
-
-                    )
-
-                        ? [
-
-                            ...
-
-                            importedProduct.specs
-
-                                .table
-
-                                .headers
-
-                        ]
-
-                        : [],
+    }
 
 
-                rows:
+    /* =========================================
+       LEGACY SPECIFICATION
 
-                    Array.isArray(
+       Nếu Backend chưa dùng specs
 
-                        importedProduct.specs
+       Chuyển nguyên trạng sang specs.
 
-                            .table
+       Không biến đổi nội dung.
 
-                            ?.rows
+    ========================================== */
 
-                    )
+    else if (
 
-                        ? importedProduct.specs
+        Object.prototype.hasOwnProperty.call(
 
-                            .table
+            importedProduct,
 
-                            .rows
+            "specification"
 
-                            .map(
+        )
 
-                                row =>
+    ) {
 
-                                    Array.isArray(row)
+        merged.specs =
 
-                                        ? [
-
-                                            ...row
-
-                                        ]
-
-                                        : []
-
-                            )
-
-                        : []
-
-            },
-
-
-            text:
-
-                Array.isArray(
-
-                    importedProduct.specs
-
-                        .text
-
-                )
-
-                    ? [
-
-                        ...
-
-                        importedProduct.specs
-
-                            .text
-
-                    ]
-
-                    : []
-
-        };
+            importedProduct.specification;
 
     }
 
 
     /* =========================================
        IMAGES
+
+       COPY NGUYÊN TRẠNG
     ========================================== */
 
     if (
@@ -3619,21 +1562,76 @@ function mergeImportedProduct(
 
             importedProduct.images
 
-        ) &&
-
-        importedProduct.images.length > 0
+        )
 
     ) {
 
         merged.images =
 
-            importedProduct.images;
+            [
+
+                ...importedProduct.images
+
+            ];
 
     }
 
 
     /* =========================================
-       FINAL CLEAN
+       OTHER IMPORTED DATA
+
+       Giữ lại các trường khác mà Backend
+       trả về nếu Step 1 chưa có.
+    ========================================== */
+
+    Object.keys(
+
+        importedProduct
+
+    ).forEach(
+
+        key => {
+
+
+            if (
+
+                key === "name" ||
+
+                key === "description" ||
+
+                key === "specs" ||
+
+                key === "specification" ||
+
+                key === "images"
+
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+
+                merged[key] ===
+                undefined
+
+            ) {
+
+                merged[key] =
+
+                    importedProduct[key];
+
+            }
+
+        }
+
+    );
+
+
+    /* =========================================
+       REMOVE LEGACY FIELD
     ========================================== */
 
     delete merged.specification;
@@ -3644,9 +1642,14 @@ function mergeImportedProduct(
 }
 
 
-/* =========================================================
+/* =====================================================
    PREVIEW IMPORT RESULT
-========================================================= */
+
+   Preview chỉ hiển thị thông tin tổng quan.
+
+   Không sửa dữ liệu.
+
+===================================================== */
 
 function renderContentImportPreview(
 
@@ -3695,55 +1698,12 @@ function renderContentImportPreview(
 
     const description =
 
-        product?.description ||
-
-        "Chưa có mô tả";
+        product?.description;
 
 
-    const table =
+    const specs =
 
-        product?.specs?.table ||
-
-        {};
-
-
-    const headers =
-
-        Array.isArray(
-
-            table.headers
-
-        )
-
-            ? table.headers
-
-            : [];
-
-
-    const rows =
-
-        Array.isArray(
-
-            table.rows
-
-        )
-
-            ? table.rows
-
-            : [];
-
-
-    const text =
-
-        Array.isArray(
-
-            product?.specs?.text
-
-        )
-
-            ? product.specs.text
-
-            : [];
+        product?.specs;
 
 
     const images =
@@ -3759,6 +1719,221 @@ function renderContentImportPreview(
             : [];
 
 
+    /* =========================================
+       DESCRIPTION PREVIEW
+
+       Nếu HTML:
+
+       Render HTML.
+
+       Nếu string:
+
+       Giữ xuống dòng.
+
+       Nếu array:
+
+       Hiển thị từng item riêng.
+
+    ========================================== */
+
+    let descriptionHTML =
+
+        "Chưa có mô tả";
+
+
+    if (
+
+        typeof description ===
+        "string"
+
+    ) {
+
+        if (
+
+            /<[^>]+>/.test(
+
+                description
+
+            )
+
+        ) {
+
+            descriptionHTML =
+
+                description;
+
+        }
+
+        else {
+
+            descriptionHTML =
+
+                escapeContentImportHTML(
+
+                    description
+
+                )
+
+                    .replace(
+
+                        /\n/g,
+
+                        "<br>"
+
+                    );
+
+        }
+
+    }
+
+
+    else if (
+
+        Array.isArray(
+
+            description
+
+        )
+
+    ) {
+
+        descriptionHTML =
+
+            description
+
+                .map(
+
+                    item =>
+
+                        `
+
+                        <div>
+
+                            ${
+
+                                escapeContentImportHTML(
+
+                                    item
+
+                                )
+
+                            }
+
+                        </div>
+
+                        `
+
+                )
+
+                .join("");
+
+    }
+
+
+    else if (
+
+        description &&
+
+        typeof description ===
+        "object"
+
+    ) {
+
+        descriptionHTML =
+
+            escapeContentImportHTML(
+
+                JSON.stringify(
+
+                    description
+
+                )
+
+            );
+
+    }
+
+
+    /* =========================================
+       SPECS PREVIEW
+
+       Chỉ đếm dữ liệu.
+
+       Không thay đổi.
+    ========================================== */
+
+    let specsInfo =
+
+        "Đã nhận dữ liệu";
+
+
+    if (
+
+        specs === null ||
+
+        specs === undefined
+
+    ) {
+
+        specsInfo =
+
+            "Chưa có thông số";
+
+    }
+
+
+    else if (
+
+        Array.isArray(
+
+            specs
+
+        )
+
+    ) {
+
+        specsInfo =
+
+            `${
+
+                specs.length
+
+            } item(s)`;
+
+    }
+
+
+    else if (
+
+        typeof specs ===
+        "object"
+
+    ) {
+
+        specsInfo =
+
+            `${
+
+                Object.keys(
+
+                    specs
+
+                ).length
+
+            } field(s)`;
+
+    }
+
+
+    else {
+
+        specsInfo =
+
+            "Đã nhận dữ liệu";
+
+    }
+
+
     content.innerHTML = `
 
         <div>
@@ -3769,7 +1944,15 @@ function renderContentImportPreview(
 
             </strong>
 
-            ${escapeContentImportHTML(name)}
+            ${
+
+                escapeContentImportHTML(
+
+                    name
+
+                )
+
+            }
 
         </div>
 
@@ -3785,15 +1968,15 @@ function renderContentImportPreview(
 
             <div
 
-                style="white-space:pre-line;"
+                class="import-description-preview"
 
             >
 
-                ${escapeContentImportHTML(
+                ${
 
-                    description
+                    descriptionHTML
 
-                )}
+                }
 
             </div>
 
@@ -3804,32 +1987,19 @@ function renderContentImportPreview(
 
             <strong>
 
-                Specification Table:
+                Technical Specification:
 
             </strong>
 
-            ${headers.length}
+            ${
 
-            column(s) /
+                escapeContentImportHTML(
 
-            ${rows.length}
+                    specsInfo
 
-            row(s)
+                )
 
-        </div>
-
-
-        <div>
-
-            <strong>
-
-                Specification Text:
-
-            </strong>
-
-            ${text.length}
-
-            item(s)
+            }
 
         </div>
 
@@ -3842,7 +2012,11 @@ function renderContentImportPreview(
 
             </strong>
 
-            ${images.length}
+            ${
+
+                images.length
+
+            }
 
             image(s)
 
@@ -3858,9 +2032,14 @@ function renderContentImportPreview(
 }
 
 
-/* =========================================================
+/* =====================================================
    ESCAPE HTML
-========================================================= */
+
+   Chỉ dùng cho dữ liệu hiển thị an toàn.
+
+   Không dùng để lưu dữ liệu sản phẩm.
+
+===================================================== */
 
 function escapeContentImportHTML(
 
@@ -3886,7 +2065,11 @@ function escapeContentImportHTML(
 
             ? ""
 
-            : String(value);
+            : String(
+
+                value
+
+            );
 
 
     return div.innerHTML;
@@ -3894,9 +2077,9 @@ function escapeContentImportHTML(
 }
 
 
-/* =========================================================
+/* =====================================================
    SAVE CONTENT IMPORT
-========================================================= */
+===================================================== */
 
 function saveProductContentImport() {
 
@@ -3932,8 +2115,6 @@ function saveProductContentImport() {
 
             )?.value ||
 
-            existingSource.type ||
-
             "website",
 
 
@@ -3944,8 +2125,6 @@ function saveProductContentImport() {
                 "contentSourceUrl"
 
             )?.value.trim() ||
-
-            existingSource.url ||
 
             "",
 
@@ -3983,9 +2162,9 @@ function saveProductContentImport() {
 }
 
 
-/* =========================================================
+/* =====================================================
    LOAD CONTENT IMPORT
-========================================================= */
+===================================================== */
 
 function loadProductContentImport() {
 
@@ -4063,9 +2242,9 @@ function loadProductContentImport() {
 }
 
 
-/* =========================================================
+/* =====================================================
    MARK IMPORT SUCCESS
-========================================================= */
+===================================================== */
 
 function markProductContentImported() {
 
@@ -4100,5 +2279,101 @@ function markProductContentImported() {
     window.currentProduct.source.importedAt =
 
         new Date().toISOString();
+
+}
+
+
+/* =====================================================
+   OPTIONAL DEBUG HELPER
+
+   Có thể gọi trong Console:
+
+   debugImportedProduct()
+
+===================================================== */
+
+function debugImportedProduct() {
+
+
+    console.log("");
+
+    console.log(
+
+        "========================================"
+
+    );
+
+    console.log(
+
+        "CURRENT PRODUCT DEBUG"
+
+    );
+
+    console.log(
+
+        "========================================"
+
+    );
+
+
+    console.log(
+
+        "SOURCE:",
+
+        window.currentProduct?.source
+
+    );
+
+
+    console.log(
+
+        "RAW IMPORT RESULT:",
+
+        window.currentProduct?.importResult
+
+    );
+
+
+    console.log(
+
+        "FINAL PRODUCT:",
+
+        window.currentProduct?.product
+
+    );
+
+
+    console.log(
+
+        "DESCRIPTION:",
+
+        window.currentProduct?.product?.description
+
+    );
+
+
+    console.log(
+
+        "SPECS:",
+
+        window.currentProduct?.product?.specs
+
+    );
+
+
+    console.log(
+
+        "IMAGES:",
+
+        window.currentProduct?.product?.images
+
+    );
+
+
+    console.log(
+
+        "========================================"
+
+    );
 
 }
