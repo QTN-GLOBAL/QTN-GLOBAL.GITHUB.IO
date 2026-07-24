@@ -103,5 +103,5 @@ function renderWebsiteProducts(){
         </table>
 
     `;
-bindProductEvents();
+
 }
