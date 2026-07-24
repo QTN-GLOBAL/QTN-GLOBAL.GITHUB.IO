@@ -1,69 +1,166 @@
-// ==========================================================
-// IMPORT
-// ==========================================================
+/*****************************************************************
+ * QTN GLOBAL CMS
+ * Module : Step 0 - Import
+ * File   : step0-import.js
+ *****************************************************************/
 
-Step0.import = async function (url) {
+(function (window) {
 
-    url = ProductUtils.trim(url);
+    "use strict";
 
-    if (!url) {
+    const Step0 = {};
 
-        alert("Vui lòng nhập URL.");
+    //==========================================================
+    // RENDER
+    //==========================================================
 
-        return;
+    Step0.render = function (container) {
 
-    }
+        container.innerHTML = `
+            <div class="step0-import">
 
-    try {
+                <h2>Step 0 - Import Product</h2>
 
-        const response = await fetch(
-            "http://localhost:3000/api/import",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    url: url
-                })
-            }
-        );
+                <p>
+                    Nhập URL sản phẩm từ website nguồn để tự động lấy dữ liệu.
+                </p>
 
-        const result = await response.json();
+                <input
+                    id="importUrl"
+                    type="text"
+                    placeholder="https://..."
+                    style="width:100%;padding:10px;margin-top:10px;"
+                >
 
-        if (!response.ok || !result.success) {
+                <br><br>
 
-            throw new Error(
-                result.message || "Import thất bại."
-            );
+                <button id="btnImport">
+                    Import URL
+                </button>
+
+            </div>
+        `;
+
+        document
+            .getElementById("btnImport")
+            .onclick = function () {
+
+                Step0.import(
+
+                    document.getElementById("importUrl").value
+
+                );
+
+            };
+
+    };
+
+    //==========================================================
+    // IMPORT
+    //==========================================================
+
+    Step0.import = async function (url) {
+
+        url = ProductUtils.trim(url);
+
+        if (!url) {
+
+            alert("Vui lòng nhập URL.");
+
+            return;
 
         }
 
-        window.draftProduct =
-            ProductUtils.productToDraft(
-                result.product
+        try {
+
+            const response = await fetch(
+
+                "http://localhost:3000/api/import",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type": "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        url
+
+                    })
+
+                }
+
             );
 
-        document.dispatchEvent(
+            const result = await response.json();
 
-            new CustomEvent("product:imported", {
+            if (!response.ok || !result.success) {
 
-                detail: window.draftProduct
+                throw new Error(
 
-            })
+                    result.message || "Import thất bại."
 
-        );
+                );
+
+            }
+
+            window.draftProduct =
+
+                ProductUtils.productToDraft(
+
+                    result.product
+
+                );
+
+            document.dispatchEvent(
+
+                new CustomEvent(
+
+                    "product:imported",
+
+                    {
+
+                        detail: window.draftProduct
+
+                    }
+
+                )
+
+            );
+
+            ProductWizard.next();
+
+        }
+
+        catch (err) {
+
+            console.error(err);
+
+            alert(err.message);
+
+        }
+
+    };
+
+    //==========================================================
+    // NEXT
+    //==========================================================
+
+    Step0.next = function () {
 
         ProductWizard.next();
 
-    }
+    };
 
-    catch (err) {
+    //==========================================================
+    // EXPORT
+    //==========================================================
 
-        console.error(err);
+    window.Step0 = Step0;
 
-        alert(err.message);
-
-    }
-
-};
+})(window);
