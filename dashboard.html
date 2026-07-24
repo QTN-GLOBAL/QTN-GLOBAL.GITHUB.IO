@@ -184,61 +184,72 @@
 <script src="js/website/components/image-picker.js"></script>
 <script src="js/website/components/checkbox-group.js"></script>
 <script src="js/website/components/index.js"></script>
-<!-- PRODUCT DATA -->
+<!-- ==========================================
+     PRODUCT DATA
+========================================== -->
+
 <script src="products.js"></script>
 
 <!-- ==========================================
      PRODUCT CORE
 ========================================== -->
 
-<script src="js/product/product-session.js"></script>
+<script src="js/product/product-schema.js"></script>
+<script src="js/product/product-utils.js"></script>
+<script src="js/product/product-validator.js"></script>
+<script src="js/product/build-product.js"></script>
+<script src="js/product/product-exporter.js"></script>
 
-<script src="js/product/product-sync.js"></script>
+<script src="js/product/product-wizard.js"></script>
 
-<script src="js/product/product-folder.js"></script>
+<!-- ==========================================
+     PRODUCT UTILS
+========================================== -->
+
+<script src="js/product/utils/session.js"></script>
+<script src="js/product/utils/folder.js"></script>
+<script src="js/product/utils/html-cleaner.js"></script>
+<script src="js/product/utils/prompt-builder.js"></script>
+
+<!-- ==========================================
+     PRODUCT PARSER
+========================================== -->
+
+<script src="js/product/parser/source-loader.js"></script>
+<script src="js/product/parser/content-parser.js"></script>
+<script src="js/product/parser/ai-parser.js"></script>
 
 <!-- ==========================================
      PRODUCT STEPS
 ========================================== -->
 
-<script src="js/product/product-basic.js"></script>
-<!-- Product Draft -->
-<script src="js/product/product-draft.js"></script>
+<!-- STEP 0 -->
+<script src="js/product/step0-import.js"></script>
+<script src="js/product/step0-preview.js"></script>
 
-<script src="js/product/product-images.js"></script>
+<!-- STEP 1 -->
+<script src="js/product/step1-basic.js"></script>
 
-<script src="js/product/product-images-upload.js"></script>
+<!-- STEP 2 -->
+<script src="js/product/step2-specification.js"></script>
 
-<script src="js/product/product-gallery.js"></script>
+<!-- STEP 3 -->
+<script src="js/product/step3-features.js"></script>
 
+<!-- STEP 4 -->
+<script src="js/product/step4-media.js"></script>
 
+<!-- STEP 5 -->
+<script src="js/product/step5-seo.js"></script>
 
-<script src="js/product/product-content-import.js"></script>
-<script src="js/product/product-specification.js"></script>
-<script src="js/product/product-import-engine.js"></script>
-<script src="js/product/product-source-loader.js"></script>
-<script src="js/product/product-html-cleaner.js"></script>
-<script src="js/product/product-prompt-builder.js"></script>
-<script src="js/product/product-ai-parser.js"></script>
-<script src="js/product/product-json-validator.js"></script>
-<script src="js/product/product-import-result.js"></script>
-
-
-<script src="js/product/product-preview.js"></script>
-<script src="js/product/product-seo.js"></script>
-
-
-
+<!-- STEP 6 -->
+<script src="js/product/step6-review.js"></script>
 
 <!-- ==========================================
      PRODUCT UI
 ========================================== -->
 
-<script src="js/product/product-form.js"></script>
-
-<script src="js/product/product-modal.js"></script>
-
-<script src="js/product/product-manager.js"></script>
+<script src="js/product/product-dialog.js"></script>
 <!-- ROUTER LUÔN CUỐI -->
 <script src="js/dashboard/dashboard-router.js"></script>
 
