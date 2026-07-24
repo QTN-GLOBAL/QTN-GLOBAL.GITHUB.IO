@@ -193,7 +193,62 @@
         return errors;
 
     };
+// ==========================================================
+// PRODUCT -> DRAFT
+// ==========================================================
 
+ProductUtils.productToDraft = function (product) {
+
+    const draft = ProductUtils.createDraft();
+
+    if (!product) {
+
+        return draft;
+
+    }
+
+    /* =====================================
+       BASIC
+    ===================================== */
+
+    draft.basic.name = ProductUtils.trim(product.name);
+
+    draft.basic.brand = ProductUtils.normalizeBrand(product.brand);
+
+    draft.basic.category = ProductUtils.normalizeCategory(product.category);
+
+    draft.basic.origin = ProductUtils.normalizeOrigin(product.origin);
+
+    draft.basic.description = ProductUtils.trim(product.description);
+
+    draft.basic.folder = ProductUtils.trim(product.folder);
+
+    draft.basic.slug = ProductUtils.slugify(product.name);
+
+    /* =====================================
+       TECHNICAL
+    ===================================== */
+
+    draft.technical.specs = Array.isArray(product.specs)
+        ? ProductUtils.deepClone(product.specs)
+        : [];
+
+    /* =====================================
+       SYSTEM
+    ===================================== */
+
+    draft.system.id =
+        product.id || ProductUtils.getNextProductId();
+
+    draft.system.createdAt =
+        new Date().toISOString();
+
+    draft.system.updatedAt =
+        new Date().toISOString();
+
+    return draft;
+
+};
     // ==========================================================
     // EXPORT
     // ==========================================================
