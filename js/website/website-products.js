@@ -20,11 +20,14 @@ function renderWebsiteProducts(){
 
             <h2>📦 Products</h2>
 
-            <button class="btn-primary">
+            <button
+    type="button"
+    class="btn-primary"
+    onclick="openProductModal()">
 
-                + Add Product
+    + Add Product
 
-            </button>
+</button>
 
         </div>
 

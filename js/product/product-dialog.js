@@ -66,7 +66,21 @@ function createProductModal() {
 
 }
 
+/* =====================================================
+   RENDER WIZARD CONTAINER
+===================================================== */
 
+function renderWizardContainer() {
+
+    const body = document.getElementById("productModalBody");
+
+    if (!body) return;
+
+    body.innerHTML = `
+        <div id="productWizardContainer"></div>
+    `;
+
+}
 /* =====================================================
    OPEN
 ===================================================== */
@@ -80,11 +94,6 @@ function openProductModal() {
 
     if (!modal) return;
 
-    /*
-        Khi mở Product Modal,
-        luôn bắt đầu ở chế độ bình thường.
-    */
-
     const card =
         modal.querySelector(".product-modal-card");
 
@@ -96,7 +105,17 @@ function openProductModal() {
 
     }
 
-    renderProductBasicForm();
+    // Khởi tạo vùng Wizard
+
+    renderWizardContainer();
+
+    // Tạo Product Draft mới
+
+    ProductWizard.newDraft();
+
+    // Khởi động Wizard
+
+    ProductWizard.start();
 
     modal.classList.add("show");
 
