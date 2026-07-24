@@ -89,12 +89,53 @@
     // BASIC
     //==========================================================
 
-    ProductParser.getName = function (html) {
+   ProductParser.getName = function (html) {
 
+    if (!html)
         return "";
 
-    };
+    // Ưu tiên thẻ H1
+    let match = html.match(/<h1[^>]*>(.*?)<\/h1>/is);
 
+    if (match) {
+
+        return ProductParser.cleanText(match[1]);
+
+    }
+
+    // Nếu không có H1 thì lấy title
+    match = html.match(/<title[^>]*>(.*?)<\/title>/is);
+
+    if (match) {
+
+        let title = ProductParser.cleanText(match[1]);
+
+        title = title.split("|")[0];
+
+        title = title.split("-")[0];
+
+        return title.trim();
+
+    }
+
+    return "";
+
+};
+ProductParser.cleanText = function (text) {
+
+    return String(text || "")
+
+        .replace(/<[^>]+>/g, " ")
+
+        .replace(/&nbsp;/g, " ")
+
+        .replace(/&amp;/g, "&")
+
+        .replace(/\s+/g, " ")
+
+        .trim();
+
+};
     ProductParser.getModel = function (name) {
 
         return "";
