@@ -55,7 +55,9 @@
                     </button>
 
                 </div>
+<hr>
 
+<div id="step0Preview"></div>
             </div>
 
         `;
