@@ -1,55 +1,135 @@
+/*****************************************************************
+ * QTN GLOBAL CMS
+ * Module : Product Wizard View
+ * File   : product-wizard-view.js
+ * Version: 1.0.0
+ *****************************************************************/
+
 (function (window) {
 
     "use strict";
 
     const ProductWizardView = {};
 
-    ProductWizardView.render = function(step){
+    //==========================================================
+    // ROOT
+    //==========================================================
 
-        const container =
-            document.getElementById("productWizardContainer");
+    ProductWizardView.getContainer = function () {
 
-        if(!container) return;
+        return document.getElementById("productWizardContainer");
 
-        switch(step){
+    };
+
+    //==========================================================
+    // RENDER
+    //==========================================================
+
+    ProductWizardView.render = function (step) {
+
+        const container = ProductWizardView.getContainer();
+
+        if (!container) return;
+
+        switch (step) {
 
             case 0:
-                container.innerHTML = Step0.render();
+
+                if (window.Step0 && Step0.render) {
+
+                    Step0.render(container);
+
+                }
+
                 break;
 
             case 1:
-                container.innerHTML = Step1.render();
+
+                if (window.Step1 && Step1.render) {
+
+                    Step1.render(container);
+
+                }
+
                 break;
 
             case 2:
-                container.innerHTML = Step2.render();
+
+                if (window.Step2 && Step2.render) {
+
+                    Step2.render(container);
+
+                }
+
                 break;
 
             case 3:
-                container.innerHTML = Step3.render();
+
+                if (window.Step3 && Step3.render) {
+
+                    Step3.render(container);
+
+                }
+
                 break;
 
             case 4:
-                container.innerHTML = Step4.render();
+
+                if (window.Step4 && Step4.render) {
+
+                    Step4.render(container);
+
+                }
+
                 break;
 
             case 5:
-                container.innerHTML = Step5.render();
+
+                if (window.Step5 && Step5.render) {
+
+                    Step5.render(container);
+
+                }
+
                 break;
 
             case 6:
-                container.innerHTML = Step6.render();
+
+                if (window.Step6 && Step6.render) {
+
+                    Step6.render(container);
+
+                }
+
                 break;
 
         }
 
     };
 
-    document.addEventListener("wizard:change",function(e){
+    //==========================================================
+    // WIZARD EVENT
+    //==========================================================
 
-        ProductWizardView.render(e.detail.step);
+    document.addEventListener(
 
-    });
+        "wizard:change",
+
+        function (e) {
+
+            ProductWizardView.render(
+
+                e.detail.step
+
+            );
+
+        }
+
+    );
+
+    //==========================================================
+    // EXPORT
+    //==========================================================
 
     window.ProductWizardView = ProductWizardView;
 
