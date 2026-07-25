@@ -177,32 +177,73 @@
     };
 
     // ==========================================================
-    // ORIGIN
-    // ==========================================================
+// ORIGIN
+// ==========================================================
 
-    ProductUtils.normalizeOrigin = function (origin) {
+ProductUtils.normalizeOrigin = function (origin) {
 
-        origin =
 
-            ProductUtils.trim(origin)
+    origin =
 
-                .toLowerCase();
+        ProductUtils.trim(origin)
 
-        const map = {
+            .toLowerCase();
 
-            taiwan: "Đài Loan",
 
-            japan: "Nhật Bản",
 
-            korea: "Hàn Quốc",
+    const map = {
 
-            china: "Trung Quốc"
 
-        };
+        // Asia
 
-        return map[origin] || origin;
+        taiwan: "Đài Loan",
+
+        "đài loan": "Đài Loan",
+
+        japan: "Nhật Bản",
+
+        "nhật bản": "Nhật Bản",
+
+        korea: "Hàn Quốc",
+
+        "hàn quốc": "Hàn Quốc",
+
+        china: "Trung Quốc",
+
+        "trung quốc": "Trung Quốc",
+
+
+
+        // Europe
+
+        switzerland: "Thụy Sĩ",
+
+        swiss: "Thụy Sĩ",
+
+        "thụy sĩ": "Thụy Sĩ",
+
+
+
+        // USA
+
+        usa: "Mỹ",
+
+        america: "Mỹ",
+
+        "united states": "Mỹ",
+
+        my: "Mỹ",
+
+        "mỹ": "Mỹ"
+
 
     };
+
+
+    return map[origin] || origin;
+
+
+};
 
     // ==========================================================
     // PRODUCT ID
@@ -375,46 +416,42 @@ draft.basic.category =
     );
 
 
-
-let origin =
-    product.origin ||
-    product.Origin ||
-    auto.origin ||
-    "";
-
-
 if(!origin){
 
     const brand =
-        draft.basic.brand;
+        draft.basic.brand || "";
 
 
     const originMap = {
 
-        "Ohaus":"Mỹ",
+        "ohaus":"Mỹ",
 
-        "Jadever":"Đài Loan",
+        "jadever":"Đài Loan",
 
-        "Vibra":"Nhật Bản",
+        "vibra":"Nhật Bản",
 
-        "Excell":"Đài Loan",
+        "excell":"Đài Loan",
 
-        "CAS":"Hàn Quốc",
+        "cas":"Hàn Quốc",
 
-        "AND":"Nhật Bản",
+        "and":"Nhật Bản",
 
-        "Mettler Toledo":"Thụy Sĩ"
+        "mettler toledo":"Thụy Sĩ"
 
     };
 
 
     origin =
-        originMap[brand] || "";
+        originMap[
+            brand.toLowerCase()
+        ] || "";
 
 }
 
 
+
 draft.basic.origin =
+
     ProductUtils.normalizeOrigin(origin);
 
         // ======================================================
