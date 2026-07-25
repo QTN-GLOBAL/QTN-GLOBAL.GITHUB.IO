@@ -153,7 +153,9 @@
             ProductParser.getImages(html);
 
 
-
+console.log("========== PARSER DEBUG ==========");
+console.log(product.basic.description);
+console.log("==================================");
 
         return product;
 
