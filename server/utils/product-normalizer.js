@@ -1,97 +1,242 @@
 /* ==========================================
    PRODUCT NORMALIZER
+   QTN GLOBAL CMS
+   VERSION 2.0
 ========================================== */
+
 
 export function normalizeProduct(data = {}) {
 
+
+    const specification =
+
+        Array.isArray(data.specification)
+
+            ? data.specification
+
+            : [];
+
+
+
+    const rows =
+
+        specification.map(item => {
+
+
+            if (
+
+                typeof item === "object"
+
+            ) {
+
+
+                return [
+
+                    item.name || "",
+
+                    item.value || ""
+
+                ];
+
+            }
+
+
+
+            return [
+
+                "",
+
+                String(item)
+
+            ];
+
+
+        });
+
+
+
     return {
+
 
         /* ==========================
            BASIC
         ========================== */
 
+
         name:
 
             data.name || "",
+
+
+
+        model:
+
+            data.model || "",
+
+
 
         brand:
 
             data.brand || "",
 
+
+
         origin:
 
             data.origin || "",
+
+
+
+        category:
+
+            data.category || "",
+
+
+
+
+        folder:
+
+            data.folder || "",
+
+
+
+
+        slug:
+
+            data.slug || "",
+
+
+
 
         /* ==========================
            DESCRIPTION
         ========================== */
 
+
         description:
 
             data.description || "",
 
-        /* ==========================
-           SPECIFICATION
-        ========================== */
 
-        specification:
 
-            Array.isArray(data.specification)
-
-                ? data.specification
-
-                : [],
 
         /* ==========================
-           FEATURES
+           TECHNICAL
         ========================== */
 
-        features:
 
-            Array.isArray(data.features)
+        technical:{
 
-                ? data.features
 
-                : [],
+            table:{
+
+
+                headers:[
+
+                    "Thông số",
+
+                    "Giá trị"
+
+                ],
+
+
+                rows
+
+            },
+
+
+            specifications:
+
+                specification,
+
+
+            features:
+
+                Array.isArray(data.features)
+
+                    ? data.features
+
+                    : [],
+
+
+
+            applications:
+
+                Array.isArray(data.applications)
+
+                    ? data.applications
+
+                    : [],
+
+
+
+            accessories:
+
+                Array.isArray(data.accessories)
+
+                    ? data.accessories
+
+                    : []
+
+        },
+
+
+
 
         /* ==========================
-           APPLICATIONS
+           MEDIA
         ========================== */
 
-        applications:
 
-            Array.isArray(data.applications)
+        media:{
 
-                ? data.applications
 
-                : [],
+            images:
 
-        /* ==========================
-           ACCESSORIES
-        ========================== */
 
-        accessories:
+                Array.isArray(data.images)
 
-            Array.isArray(data.accessories)
+                    ? data.images
 
-                ? data.accessories
+                    : [],
 
-                : [],
+
+
+            pdf:
+
+                data.pdf || "",
+
+
+
+            video:
+
+                data.video || ""
+
+        },
+
+
+
 
         /* ==========================
            AI INFO
         ========================== */
 
-        ai: {
 
-            imported: true,
+        ai:{
+
+
+            imported:true,
+
 
             importedAt:
 
                 new Date().toISOString()
 
+
         }
 
+
     };
+
 
 }
