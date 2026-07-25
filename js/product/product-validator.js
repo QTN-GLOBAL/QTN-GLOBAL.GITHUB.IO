@@ -1,9 +1,8 @@
 /*****************************************************************
- * QTN GLOBAL CMS
- * Module : Product Validator
- * File   : validator.js
- * Version: 1.0.0
- *****************************************************************/
+ QTN GLOBAL CMS
+ File   : product-validator.js
+ PART 1 / 2
+*****************************************************************/
 
 (function (window) {
 
@@ -38,43 +37,86 @@
     //==========================================================
     // TECHNICAL
     //==========================================================
-ProductValidator.validateTechnical = function (draft) {
 
-    const errors = [];
+    ProductValidator.validateTechnical = function (draft) {
 
+        const errors = [];
 
-    if (!draft.technical) {
-        errors.push("Thiếu dữ liệu kỹ thuật");
+        if (!draft.technical) {
+
+            errors.push("Thiếu dữ liệu kỹ thuật");
+
+            return errors;
+
+        }
+
+        //======================================================
+        // CAPACITIES
+        //======================================================
+
+        if (
+
+            !Array.isArray(
+
+                draft.technical.capacities
+
+            )
+
+        ) {
+
+            errors.push(
+
+                "Capacities không hợp lệ"
+
+            );
+
+        }
+
+        //======================================================
+        // SPECIFICATIONS
+        //======================================================
+
+        if (
+
+            !draft.technical.specifications ||
+
+            typeof draft.technical.specifications !== "object"
+
+        ) {
+
+            errors.push(
+
+                "Thiếu Specifications"
+
+            );
+
+        }
+
+        //======================================================
+        // FEATURES
+        //======================================================
+
+        if (
+
+            !Array.isArray(
+
+                draft.technical.features
+
+            )
+
+        ) {
+
+            errors.push(
+
+                "Features không hợp lệ"
+
+            );
+
+        }
+
         return errors;
-    }
 
-
-    if (!draft.technical.table) {
-        errors.push("Chưa tạo bảng thông số");
-        return errors;
-    }
-
-
-    if (!draft.technical.table.headers ||
-        !draft.technical.table.headers.length) {
-
-        errors.push("Thiếu tiêu đề bảng thông số");
-
-    }
-
-
-    if (!draft.technical.table.rows ||
-        !draft.technical.table.rows.length) {
-
-        errors.push("Chưa có dữ liệu bảng");
-
-    }
-
-
-    return errors;
-
-};
-
+    };
     //==========================================================
     // MEDIA
     //==========================================================
@@ -83,8 +125,27 @@ ProductValidator.validateTechnical = function (draft) {
 
         const errors = [];
 
-        if (!draft.media.images.length)
-            errors.push("Chưa có hình ảnh");
+        if (
+
+            !draft.media ||
+
+            !Array.isArray(
+
+                draft.media.images
+
+            ) ||
+
+            draft.media.images.length === 0
+
+        ) {
+
+            errors.push(
+
+                "Chưa có hình ảnh"
+
+            );
+
+        }
 
         return errors;
 
@@ -98,11 +159,29 @@ ProductValidator.validateTechnical = function (draft) {
 
         const errors = [];
 
-        if (!draft.seo.title)
-            errors.push("Thiếu SEO Title");
+        if (
 
-        if (!draft.seo.description)
-            errors.push("Thiếu SEO Description");
+            !draft.seo.title
+
+        )
+
+            errors.push(
+
+                "Thiếu SEO Title"
+
+            );
+
+        if (
+
+            !draft.seo.description
+
+        )
+
+            errors.push(
+
+                "Thiếu SEO Description"
+
+            );
 
         return errors;
 
@@ -114,20 +193,58 @@ ProductValidator.validateTechnical = function (draft) {
 
     ProductValidator.validate = function (draft) {
 
+        draft =
+
+            draft ||
+
+            window.draftProduct;
+
         return {
 
-            basic: ProductValidator.validateBasic(draft),
+            basic:
 
-            technical: ProductValidator.validateTechnical(draft),
+                ProductValidator.validateBasic(
 
-            media: ProductValidator.validateMedia(draft),
+                    draft
 
-            seo: ProductValidator.validateSEO(draft)
+                ),
+
+            technical:
+
+                ProductValidator.validateTechnical(
+
+                    draft
+
+                ),
+
+            media:
+
+                ProductValidator.validateMedia(
+
+                    draft
+
+                ),
+
+            seo:
+
+                ProductValidator.validateSEO(
+
+                    draft
+
+                )
 
         };
 
     };
 
+    //==========================================================
+    // EXPORT
+    //==========================================================
+
     window.ProductValidator = ProductValidator;
 
 })(window);
+
+/*****************************************************************
+===== END OF FILE : product-validator.js =====
+*****************************************************************/
