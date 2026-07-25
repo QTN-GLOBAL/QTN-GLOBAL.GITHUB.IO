@@ -623,52 +623,7 @@ product.description = product.description
         }
 
     }
-/* ======================================
-   FINAL DESCRIPTION CLEAN
-====================================== */
 
-if (product.description) {
-
-    product.description = product.description
-
-        // chuẩn hóa xuống dòng
-        .replace(/\r/g, "")
-        .replace(/\n{3,}/g, "\n\n")
-
-        // bỏ hotline
-        .replace(/Hotline[\s\S]*$/i, "")
-
-        // bỏ hỗ trợ kỹ thuật
-        .replace(/Hỗ trợ kỹ thuật[\s\S]*$/i, "")
-
-        // bỏ danh mục
-        .replace(/Danh mục[\s\S]*$/i, "")
-
-        // bỏ liên hệ
-        .replace(/Liên hệ[\s\S]*$/i, "")
-
-        .trim();
-
-}
-
-    console.log("");
-
-    console.log(
-
-        "DESCRIPTION:",
-
-        product.description
-
-    );
-
-
-    console.log(
-
-        "DESCRIPTION LENGTH:",
-
-        product.description.length
-
-    );
 
 
     /* ==========================================
