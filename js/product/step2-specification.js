@@ -19,10 +19,28 @@
 
         const draft = window.draftProduct;
 
-        console.log("Specification");
 
-        console.table(draft.technical.table.rows);
+if(!draft.technical){
 
+    draft.technical={};
+
+}
+
+
+if(!draft.technical.table){
+
+    draft.technical.table={
+        rows:[]
+    };
+
+}
+
+
+console.log("Specification");
+
+console.table(
+    draft.technical.table.rows
+);
     };
 
     //==========================================================

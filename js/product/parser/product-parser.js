@@ -15,76 +15,94 @@
     // Parse Product
     //==========================================================
 
-    ProductParser.parse = function (html, options = {}) {
+  ProductParser.parse=function(html,options={}){
 
-        const product = {
 
-            name: "",
+const product={
 
-            model: "",
 
-            brand: "",
+basic:{
 
-            origin: "",
+name:"",
+model:"",
+brand:"",
+origin:"",
+category:"",
+description:"",
+folder:"",
+slug:""
 
-            category: "",
+},
 
-            description: "",
 
-            specification: [],
+system:{
 
-            features: [],
+business:"measure"
 
-            applications: [],
+},
 
-            accessories: [],
 
-            images: [],
+technical:{
 
-            pdf: "",
+table:{
+rows:[]
+}
 
-            video: ""
+},
 
-        };
 
-        product.name = ProductParser.getName(html);
+media:{
 
-        product.model = ProductParser.getModel(product.name);
+images:[]
 
-        product.brand = ProductParser.getBrand(html);
+}
 
-        product.origin = ProductParser.getOrigin(html);
 
-        product.category = ProductParser.getCategory(html);
+};
 
-        product.description = ProductParser.getDescription(html);
 
-        product.specification = ProductParser.getSpecification(html);
 
-        product.features = ProductParser.getFeatures(html);
+product.basic.name =
+ProductParser.getName(html);
 
-        product.applications = ProductParser.getApplications(html);
 
-        product.accessories = ProductParser.getAccessories(html);
+product.basic.model =
+ProductParser.getModel(
+product.basic.name
+);
 
-        product.images = ProductParser.getImages(html);
 
-        product.pdf = ProductParser.getPdf(html);
+product.basic.brand =
+ProductParser.getBrand(html);
 
-        product.video = ProductParser.getVideo(html);
 
-        product.ai = {
+product.basic.origin =
+ProductParser.getOrigin(html);
 
-            imported: true,
 
-            importedAt: new Date().toISOString()
+product.basic.category =
+ProductParser.getCategory(html);
 
-        };
 
-        return product;
+product.basic.description =
+ProductParser.getDescription(html);
 
-    };
 
+
+product.technical.table.rows =
+ProductParser.getSpecification(html);
+
+
+
+product.media.images =
+ProductParser.getImages(html);
+
+
+
+return product;
+
+
+};
     //==========================================================
     // BASIC
     //==========================================================

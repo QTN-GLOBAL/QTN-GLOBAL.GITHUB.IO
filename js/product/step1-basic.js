@@ -73,27 +73,57 @@
 
     Step1.render = function () {
 
-        const d = window.draftProduct;
+    const d = window.draftProduct;
 
-        Step1.elements.name.value = d.basic.name || "";
+    if(!d || !d.basic)
+        return;
 
-        Step1.elements.model.value = d.basic.model || "";
 
-        Step1.elements.brand.value = d.basic.brand || "";
+    const set = (el,value)=>{
 
-        Step1.elements.category.value = d.basic.category || "";
-
-        Step1.elements.origin.value = d.basic.origin || "";
-
-        Step1.elements.business.value = d.system.business || "";
-
-        Step1.elements.description.value = d.basic.description || "";
-
-        Step1.elements.folder.value = d.basic.folder || "";
-
-        Step1.elements.slug.value = d.basic.slug || "";
+        if(el)
+            el.value = value || "";
 
     };
+
+
+    set(Step1.elements.name,d.basic.name);
+
+    set(Step1.elements.model,d.basic.model);
+
+    set(Step1.elements.brand,d.basic.brand);
+
+    set(Step1.elements.category,d.basic.category);
+
+    set(Step1.elements.origin,d.basic.origin);
+
+
+    if(d.system)
+
+        set(
+            Step1.elements.business,
+            d.system.business
+        );
+
+
+    set(
+        Step1.elements.description,
+        d.basic.description
+    );
+
+
+    set(
+        Step1.elements.folder,
+        d.basic.folder
+    );
+
+
+    set(
+        Step1.elements.slug,
+        d.basic.slug
+    );
+
+};
 
     //==========================================================
     // Save
