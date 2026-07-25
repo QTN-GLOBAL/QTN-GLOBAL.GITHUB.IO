@@ -156,15 +156,21 @@
 
         const map = {
 
-            jadever: "Jadever",
+    jadever: "Jadever",
 
-            vibra: "Vibra",
+    vibra: "Vibra",
 
-            excell: "Excell",
+    excell: "Excell",
 
-            cas: "CAS"
+    cas: "CAS",
 
-        };
+    ohaus: "Ohaus",
+
+    and: "AND",
+
+    "mettler toledo": "Mettler Toledo"
+
+};
 
         return map[brand] || brand;
 
@@ -370,19 +376,46 @@ draft.basic.category =
 
 
 
+let origin =
+    product.origin ||
+    product.Origin ||
+    auto.origin ||
+    "";
+
+
+if(!origin){
+
+    const brand =
+        draft.basic.brand;
+
+
+    const originMap = {
+
+        "Ohaus":"Mỹ",
+
+        "Jadever":"Đài Loan",
+
+        "Vibra":"Nhật Bản",
+
+        "Excell":"Đài Loan",
+
+        "CAS":"Hàn Quốc",
+
+        "AND":"Nhật Bản",
+
+        "Mettler Toledo":"Thụy Sĩ"
+
+    };
+
+
+    origin =
+        originMap[brand] || "";
+
+}
+
+
 draft.basic.origin =
-
-    ProductUtils.normalizeOrigin(
-
-        product.origin ||
-
-        product.Origin ||
-
-        auto.origin ||
-
-        ""
-
-    );
+    ProductUtils.normalizeOrigin(origin);
 
         // ======================================================
         // TECHNICAL
