@@ -341,7 +341,35 @@ export function parseProductFromHtml(
         .replace(/[ \t]+/g, " ")
 
         .trim();
+//==============================
+// CLEAN DESCRIPTION
+//==============================
 
+// bỏ "Lien he"
+text = text.replace(/^.*?Lien he\s*/i, "");
+
+// bỏ Hotline
+text = text.replace(
+    /Hotline[\s\S]*$/i,
+    ""
+);
+
+// bỏ Hỗ trợ kỹ thuật
+text = text.replace(
+    /Hỗ trợ kỹ thuật[\s\S]*$/i,
+    ""
+);
+
+// bỏ Danh mục
+text = text.replace(
+    /Danh mục[\s\S]*$/i,
+    ""
+);
+
+// bỏ dòng trống
+text = text
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 
             if (
 
