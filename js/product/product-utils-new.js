@@ -1,14 +1,20 @@
 /*****************************************************************
  QTN GLOBAL CMS
  File   : product-utils.js
- PART 1 / 3
+ Version: 2.1.0
+ Purpose:
+ - Product data conversion
+ - Normalize brand/category/origin
+ - Import product draft
 *****************************************************************/
 
 (function (window) {
 
     "use strict";
 
+
     const ProductUtils = {};
+
 
     // ==========================================================
     // CLONE
@@ -16,29 +22,34 @@
 
     ProductUtils.deepClone = function (obj) {
 
-        return JSON.parse(JSON.stringify(obj));
-
-    };
-
-    ProductUtils.createDraft = function () {
-
-        return ProductUtils.deepClone(
-
-            window.PRODUCT_SCHEMA
-
+        return JSON.parse(
+            JSON.stringify(obj)
         );
 
     };
 
+
+
+    ProductUtils.createDraft = function () {
+
+        return ProductUtils.deepClone(
+            window.PRODUCT_SCHEMA
+        );
+
+    };
+
+
+
     ProductUtils.resetDraft = function () {
 
         window.draftProduct =
-
             ProductUtils.createDraft();
 
         return window.draftProduct;
 
     };
+
+
 
     // ==========================================================
     // BASIC
@@ -50,37 +61,37 @@
 
     };
 
+
+
     ProductUtils.isEmpty = function (value) {
 
-        if (
 
+        if(
             value === null ||
-
             value === undefined
-
         )
 
             return true;
 
-        if (
 
-            typeof value === "string"
 
-        )
+        if(typeof value === "string")
 
             return value.trim() === "";
 
-        if (
 
-            Array.isArray(value)
 
-        )
+        if(Array.isArray(value))
 
             return value.length === 0;
+
+
 
         return false;
 
     };
+
+
 
     // ==========================================================
     // SLUG
@@ -88,178 +99,241 @@
 
     ProductUtils.slugify = function (text) {
 
+
         return String(text || "")
 
             .normalize("NFD")
 
-            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[\u0300-\u036f]/g,"")
 
-            .replace(/đ/g, "d")
+            .replace(/đ/g,"d")
 
-            .replace(/Đ/g, "D")
+            .replace(/Đ/g,"D")
 
             .toLowerCase()
 
-            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/[^a-z0-9]+/g,"-")
 
-            .replace(/^-+|-+$/g, "");
+            .replace(/^-+|-+$/g,"");
+
 
     };
+
+
 
     // ==========================================================
     // FOLDER
     // ==========================================================
 
-    ProductUtils.generateFolder = function (model) {
+    ProductUtils.generateFolder = function(model){
 
         return ProductUtils.slugify(model);
 
     };
 
+
+
     // ==========================================================
     // CATEGORY
     // ==========================================================
 
-    ProductUtils.normalizeCategory = function (value) {
+    ProductUtils.normalizeCategory = function(value){
 
-        value = ProductUtils.slugify(value);
+
+        value =
+            ProductUtils.slugify(value);
+
+
 
         const map = {
 
-            "bench-scale": "can-ban",
 
-            "table-scale": "can-ban",
+            "bench-scale":
+                "can-ban",
 
-            "counting-scale": "can-dem",
 
-            "platform-scale": "can-san",
+            "table-scale":
+                "can-ban",
 
-            "waterproof-scale": "can-chong-nuoc"
+
+            "counting-scale":
+                "can-dem",
+
+
+            "platform-scale":
+                "can-san",
+
+
+            "floor-scale":
+                "can-san",
+
+
+            "waterproof-scale":
+                "can-chong-nuoc"
+
 
         };
 
+
+
         return map[value] || value;
 
+
     };
+
+
 
     // ==========================================================
     // BRAND
     // ==========================================================
 
-    ProductUtils.normalizeBrand = function (brand) {
+    ProductUtils.normalizeBrand = function(brand){
+
 
         brand =
 
             ProductUtils.trim(brand)
-
-                .toLowerCase();
-
-        const map = {
-
-    jadever: "Jadever",
-
-    vibra: "Vibra",
-
-    excell: "Excell",
-
-    cas: "CAS",
-
-    ohaus: "Ohaus",
-
-    and: "AND",
-
-    "mettler toledo": "Mettler Toledo"
-
-};
-
-        return map[brand] || brand;
-
-    };
-
-    // ==========================================================
-// ORIGIN
-// ==========================================================
-
-ProductUtils.normalizeOrigin = function (origin) {
-
-
-    origin =
-
-        ProductUtils.trim(origin)
-
             .toLowerCase();
 
 
 
-    const map = {
+        const map = {
 
 
-        // Asia
-
-        taiwan: "Đài Loan",
-
-        "đài loan": "Đài Loan",
-
-        japan: "Nhật Bản",
-
-        "nhật bản": "Nhật Bản",
-
-        korea: "Hàn Quốc",
-
-        "hàn quốc": "Hàn Quốc",
-
-        china: "Trung Quốc",
-
-        "trung quốc": "Trung Quốc",
+            "jadever":
+                "Jadever",
 
 
-
-        // Europe
-
-        switzerland: "Thụy Sĩ",
-
-        swiss: "Thụy Sĩ",
-
-        "thụy sĩ": "Thụy Sĩ",
+            "vibra":
+                "Vibra",
 
 
+            "excell":
+                "Excell",
 
-        // USA
 
-        usa: "Mỹ",
+            "cas":
+                "CAS",
 
-        america: "Mỹ",
 
-        "united states": "Mỹ",
+            "ohaus":
+                "Ohaus",
 
-        my: "Mỹ",
 
-        "mỹ": "Mỹ"
+            "and":
+                "AND",
+
+
+            "mettler toledo":
+                "Mettler Toledo"
+
+
+        };
+
+
+
+        return map[brand] || brand;
 
 
     };
 
 
-    return map[origin] || origin;
+
+    // ==========================================================
+    // ORIGIN
+    // ==========================================================
+
+    ProductUtils.normalizeOrigin = function(origin){
 
 
-};
+        origin =
+
+            ProductUtils.trim(origin)
+            .toLowerCase();
+
+
+
+        const map = {
+
+
+            "taiwan":
+                "Đài Loan",
+
+            "đài loan":
+                "Đài Loan",
+
+
+            "japan":
+                "Nhật Bản",
+
+            "nhật bản":
+                "Nhật Bản",
+
+
+            "korea":
+                "Hàn Quốc",
+
+            "hàn quốc":
+                "Hàn Quốc",
+
+
+            "china":
+                "Trung Quốc",
+
+            "trung quốc":
+                "Trung Quốc",
+
+
+            "switzerland":
+                "Thụy Sĩ",
+
+            "swiss":
+                "Thụy Sĩ",
+
+
+            "usa":
+                "Mỹ",
+
+            "america":
+                "Mỹ",
+
+            "united states":
+                "Mỹ",
+
+
+            "my":
+                "Mỹ",
+
+            "mỹ":
+                "Mỹ"
+
+
+        };
+
+
+
+        return map[origin] || origin;
+
+
+    };
+
+
 
     // ==========================================================
     // PRODUCT ID
     // ==========================================================
 
-    ProductUtils.getNextProductId = function () {
+    ProductUtils.getNextProductId = function(){
 
-        if (
 
+        if(
             !window.products ||
-
             !window.products.length
-
         )
 
             return 1;
+
+
 
         return Math.max(
 
@@ -271,35 +345,46 @@ ProductUtils.normalizeOrigin = function (origin) {
 
         ) + 1;
 
+
     };
+
+
 
     // ==========================================================
     // VALIDATE
     // ==========================================================
 
-    ProductUtils.validateRequired = function (fields) {
+    ProductUtils.validateRequired = function(fields){
 
-        const errors = [];
 
-        fields.forEach(function (field) {
+        const errors=[];
 
-            if (
 
+
+        fields.forEach(function(field){
+
+
+            if(
                 ProductUtils.isEmpty(
-
                     field.value
-
                 )
+            )
 
-            ) {
+            {
 
-                errors.push(field.name);
+                errors.push(
+                    field.name
+                );
 
             }
 
+
         });
 
+
+
         return errors;
+
 
     };
     // ==========================================================
@@ -308,15 +393,20 @@ ProductUtils.normalizeOrigin = function (origin) {
 
     ProductUtils.productToDraft = function (product) {
 
+
         const draft =
 
             ProductUtils.createDraft();
+
+
 
         if (!product) {
 
             return draft;
 
         }
+
+
 
         // ======================================================
         // SYSTEM
@@ -328,135 +418,316 @@ ProductUtils.normalizeOrigin = function (origin) {
 
             ProductUtils.getNextProductId();
 
+
+
         draft.system.business =
 
             product.business ||
 
             "measure";
 
+
+
         draft.system.createdAt =
 
             new Date().toISOString();
+
+
 
         draft.system.updatedAt =
 
             new Date().toISOString();
 
+
+
         // ======================================================
-// BASIC IMPORT FIX
-// ======================================================
-
-const productName =
-    product.name ||
-    product.Name ||
-    "";
+        // BASIC IMPORT
+        // ======================================================
 
 
-draft.basic.name =
-    ProductUtils.trim(productName);
+        const productName =
 
+            product.name ||
 
+            product.Name ||
 
-let auto = {};
-
-if(window.ProductParser &&
-   ProductParser.analyzeName){
-
-    auto =
-    ProductParser.analyzeName(productName);
-
-}
+            "";
 
 
 
-draft.basic.model =
+        draft.basic.name =
 
-    ProductUtils.trim(
+            ProductUtils.trim(
 
-        product.model ||
+                productName
 
-        product.Model ||
-
-        auto.model ||
-
-        ""
-
-    );
+            );
 
 
 
-draft.basic.brand =
+        // ------------------------------------------
+        // AUTO ANALYZE NAME
+        // ------------------------------------------
 
-    ProductUtils.normalizeBrand(
-
-        product.brand ||
-
-        product.Brand ||
-
-        auto.brand ||
-
-        ""
-
-    );
+        let auto = {};
 
 
 
-draft.basic.category =
+        if(
 
-    ProductUtils.normalizeCategory(
+            window.ProductParser &&
 
-        product.category ||
+            ProductParser.analyzeName
 
-        product.Category ||
+        ){
 
-        auto.category ||
+            auto =
 
-        ""
+                ProductParser.analyzeName(
 
-    );
+                    productName
 
+                ) || {};
 
-if(!origin){
-
-    const brand =
-        draft.basic.brand || "";
-
-
-    const originMap = {
-
-        "ohaus":"Mỹ",
-
-        "jadever":"Đài Loan",
-
-        "vibra":"Nhật Bản",
-
-        "excell":"Đài Loan",
-
-        "cas":"Hàn Quốc",
-
-        "and":"Nhật Bản",
-
-        "mettler toledo":"Thụy Sĩ"
-
-    };
-
-
-    origin =
-        originMap[
-            brand.toLowerCase()
-        ] || "";
-
-}
+        }
 
 
 
-draft.basic.origin =
+        // ------------------------------------------
+        // MODEL
+        // ------------------------------------------
 
-    ProductUtils.normalizeOrigin(origin);
+        draft.basic.model =
+
+            ProductUtils.trim(
+
+                product.model ||
+
+                product.Model ||
+
+                auto.model ||
+
+                ""
+
+            );
+
+
+
+        // ------------------------------------------
+        // BRAND
+        // ------------------------------------------
+
+        draft.basic.brand =
+
+            ProductUtils.normalizeBrand(
+
+                product.brand ||
+
+                product.Brand ||
+
+                auto.brand ||
+
+                ""
+
+            );
+
+
+
+        // ------------------------------------------
+        // CATEGORY
+        // ------------------------------------------
+
+        draft.basic.category =
+
+            ProductUtils.normalizeCategory(
+
+                product.category ||
+
+                product.Category ||
+
+                auto.category ||
+
+                ""
+
+            );
+
+
+
+        // ======================================================
+        // ORIGIN AUTO DETECT
+        // ======================================================
+
+
+        let origin =
+
+
+            product.origin ||
+
+            product.Origin ||
+
+            auto.origin ||
+
+            "";
+
+
+
+        // ------------------------------------------
+        // REMOVE WRONG URL DATA
+        // ------------------------------------------
+
+        if(
+
+            origin.includes("http") ||
+
+            origin.includes("www") ||
+
+            origin.includes(".com") ||
+
+            origin.includes(".vn") ||
+
+            origin.includes("github")
+
+        ){
+
+            origin = "";
+
+        }
+
+
+
+        // ------------------------------------------
+        // AUTO BY BRAND
+        // ------------------------------------------
+
+        if(!origin){
+
+
+            const brand =
+
+                draft.basic.brand || "";
+
+
+
+            const originMap = {
+
+
+                "ohaus":
+
+                    "Mỹ",
+
+
+                "jadever":
+
+                    "Đài Loan",
+
+
+                "vibra":
+
+                    "Nhật Bản",
+
+
+                "excell":
+
+                    "Đài Loan",
+
+
+                "cas":
+
+                    "Hàn Quốc",
+
+
+                "and":
+
+                    "Nhật Bản",
+
+
+                "mettler toledo":
+
+                    "Thụy Sĩ"
+
+
+            };
+
+
+
+            origin =
+
+                originMap[
+
+                    brand.toLowerCase()
+
+                ] || "";
+
+        }
+
+
+
+        draft.basic.origin =
+
+            ProductUtils.normalizeOrigin(
+
+                origin
+
+            );
+
+
+
+        // ======================================================
+        // FOLDER + SLUG
+        // ======================================================
+
+
+        draft.basic.folder =
+
+            ProductUtils.trim(
+
+                product.folder ||
+
+                ProductUtils.generateFolder(
+
+                    draft.basic.model
+
+                )
+
+            );
+
+
+
+        draft.basic.slug =
+
+            ProductUtils.slugify(
+
+                product.slug ||
+
+                draft.basic.name
+
+            );
+
+
+
+        // ======================================================
+        // DESCRIPTION
+        // ======================================================
+
+
+        draft.basic.description =
+
+            ProductUtils.trim(
+
+                product.description ||
+
+                product.Description ||
+
+                ""
+
+            );
+
+
 
         // ======================================================
         // TECHNICAL
         // ======================================================
+
 
         draft.technical.capacities =
 
@@ -466,25 +737,37 @@ draft.basic.origin =
 
             )
 
-                ? ProductUtils.deepClone(
+            ?
 
-                    product.capacities
+            ProductUtils.deepClone(
 
-                )
+                product.capacities
 
-                : [];
+            )
+
+            :
+
+            [];
+
+
 
         draft.technical.specifications =
 
             product.specifications
 
-                ? ProductUtils.deepClone(
+            ?
 
-                    product.specifications
+            ProductUtils.deepClone(
 
-                )
+                product.specifications
 
-                : {};
+            )
+
+            :
+
+            {};
+
+
 
         draft.technical.features =
 
@@ -494,17 +777,24 @@ draft.basic.origin =
 
             )
 
-                ? ProductUtils.deepClone(
+            ?
 
-                    product.features
+            ProductUtils.deepClone(
 
-                )
+                product.features
 
-                : [];
+            )
+
+            :
+
+            [];
+
+
 
         // ======================================================
         // MEDIA
         // ======================================================
+
 
         draft.media.images =
 
@@ -514,126 +804,228 @@ draft.basic.origin =
 
             )
 
-                ? ProductUtils.deepClone(
+            ?
 
-                    product.images
+            ProductUtils.deepClone(
 
-                )
+                product.images
 
-                : [];
+            )
+
+            :
+
+            [];
+
+
 
         draft.media.pdf =
 
-            product.pdf || "";
+            product.pdf ||
+
+            "";
+
+
 
         draft.media.video =
 
-            product.video || "";
+            product.video ||
+
+            "";
+
+
+
         // ======================================================
         // SEO
         // ======================================================
 
-        if (product.seo) {
 
-            draft.seo = ProductUtils.deepClone(
+        if(product.seo){
 
-                product.seo
 
-            );
+            draft.seo =
+
+                ProductUtils.deepClone(
+
+                    product.seo
+
+                );
+
 
         }
+
+
 
         // ======================================================
         // DISPLAY
         // ======================================================
 
-        if (product.display) {
 
-            draft.display = ProductUtils.deepClone(
+        if(product.display){
 
-                product.display
 
-            );
+            draft.display =
+
+                ProductUtils.deepClone(
+
+                    product.display
+
+                );
+
 
         }
 
+
+
         return draft;
 
-    };
 
+    };
     // ==========================================================
     // DRAFT -> PRODUCT
     // ==========================================================
 
     ProductUtils.draftToProduct = function (draft) {
 
-        draft = draft || window.draftProduct;
+
+        draft =
+
+            draft ||
+
+            window.draftProduct;
+
+
 
         return {
 
-            id: draft.system.id,
 
-            business: draft.system.business,
+            id:
 
-            name: draft.basic.name,
+                draft.system.id,
 
-            model: draft.basic.model,
 
-            category: draft.basic.category,
+            business:
 
-            brand: draft.basic.brand,
+                draft.system.business,
 
-            origin: draft.basic.origin,
 
-            folder: draft.basic.folder,
+            name:
 
-            slug: draft.basic.slug,
+                draft.basic.name,
 
-            description: draft.basic.description,
 
-            capacities: ProductUtils.deepClone(
+            model:
 
-                draft.technical.capacities
+                draft.basic.model,
 
-            ),
 
-            specifications: ProductUtils.deepClone(
+            category:
 
-                draft.technical.specifications
+                draft.basic.category,
 
-            ),
 
-            features: ProductUtils.deepClone(
+            brand:
 
-                draft.technical.features
+                draft.basic.brand,
 
-            ),
 
-            images: ProductUtils.deepClone(
+            origin:
 
-                draft.media.images
+                draft.basic.origin,
 
-            ),
 
-            pdf: draft.media.pdf,
+            folder:
 
-            video: draft.media.video,
+                draft.basic.folder,
 
-            seo: ProductUtils.deepClone(
 
-                draft.seo
+            slug:
 
-            ),
+                draft.basic.slug,
 
-            display: ProductUtils.deepClone(
 
-                draft.display
+            description:
 
-            )
+                draft.basic.description,
+
+
+
+            capacities:
+
+                ProductUtils.deepClone(
+
+                    draft.technical.capacities
+
+                ),
+
+
+
+            specifications:
+
+                ProductUtils.deepClone(
+
+                    draft.technical.specifications
+
+                ),
+
+
+
+            features:
+
+                ProductUtils.deepClone(
+
+                    draft.technical.features
+
+                ),
+
+
+
+            images:
+
+                ProductUtils.deepClone(
+
+                    draft.media.images
+
+                ),
+
+
+
+            pdf:
+
+                draft.media.pdf,
+
+
+
+            video:
+
+                draft.media.video,
+
+
+
+            seo:
+
+                ProductUtils.deepClone(
+
+                    draft.seo
+
+                ),
+
+
+
+            display:
+
+                ProductUtils.deepClone(
+
+                    draft.display
+
+                )
+
 
         };
 
+
     };
+
+
 
     // ==========================================================
     // EXPORT
@@ -641,7 +1033,10 @@ draft.basic.origin =
 
     window.ProductUtils = ProductUtils;
 
+
+
 })(window);
+
 
 /*****************************************************************
 ===== END OF FILE : product-utils.js =====
