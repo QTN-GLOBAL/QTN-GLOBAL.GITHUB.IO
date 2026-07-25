@@ -43,11 +43,13 @@ business:"measure"
 
 
 technical:{
-
-table:{
-rows:[]
-}
-
+    table:{
+        headers:[
+            "Thông số",
+            "Giá trị"
+        ],
+        rows:[]
+    }
 },
 
 

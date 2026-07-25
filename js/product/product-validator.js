@@ -38,20 +38,42 @@
     //==========================================================
     // TECHNICAL
     //==========================================================
+ProductValidator.validateTechnical = function (draft) {
 
-    ProductValidator.validateTechnical = function (draft) {
+    const errors = [];
 
-        const errors = [];
 
-        if (!draft.technical.table.headers.length)
-            errors.push("Thiếu tiêu đề bảng thông số");
-
-        if (!draft.technical.table.rows.length)
-            errors.push("Chưa có dữ liệu bảng");
-
+    if (!draft.technical) {
+        errors.push("Thiếu dữ liệu kỹ thuật");
         return errors;
+    }
 
-    };
+
+    if (!draft.technical.table) {
+        errors.push("Chưa tạo bảng thông số");
+        return errors;
+    }
+
+
+    if (!draft.technical.table.headers ||
+        !draft.technical.table.headers.length) {
+
+        errors.push("Thiếu tiêu đề bảng thông số");
+
+    }
+
+
+    if (!draft.technical.table.rows ||
+        !draft.technical.table.rows.length) {
+
+        errors.push("Chưa có dữ liệu bảng");
+
+    }
+
+
+    return errors;
+
+};
 
     //==========================================================
     // MEDIA
