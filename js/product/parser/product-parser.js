@@ -751,6 +751,7 @@ ProductParser.cleanDescription = function (html) {
     return lines.join("\n");
 
 };
+}
 
 
 
