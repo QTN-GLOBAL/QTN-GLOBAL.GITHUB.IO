@@ -98,6 +98,12 @@
             );
 
             const result = await response.json();
+console.log("========== FULL API RESULT ==========");
+console.log(result);
+console.log("========== PRODUCT ==========");
+console.log(result.product);
+console.log("========== TECHNICAL ==========");
+console.log(result.product?.technical);
 console.log("===== API PRODUCT RESULT =====");
 
 console.log(
