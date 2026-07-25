@@ -194,18 +194,64 @@
 
     };
 // ==========================================================
-// PRODUCT -> DRAFT
+// DRAFT -> PRODUCT
 // ==========================================================
 
-ProductUtils.productToDraft = function (product) {
+ProductUtils.draftToProduct = function (draft) {
 
-    const draft = ProductUtils.createDraft();
+    draft = draft || window.draftProduct;
 
-    if (!product) {
+    return {
 
-        return draft;
+        id: draft.system.id,
 
-    }
+        business: draft.system.business,
+
+        name: draft.basic.name,
+
+        model: draft.basic.model,
+
+        category: draft.basic.category,
+
+        brand: draft.basic.brand,
+
+        origin: draft.basic.origin,
+
+        folder: draft.basic.folder,
+
+        slug: draft.basic.slug,
+
+        description: draft.basic.description,
+
+        capacities:
+            ProductUtils.deepClone(
+                draft.technical.capacities
+            ),
+
+        specifications:
+            ProductUtils.deepClone(
+                draft.technical.specifications
+            ),
+
+        features:
+            ProductUtils.deepClone(
+                draft.technical.features
+            ),
+
+        images:
+            ProductUtils.deepClone(
+                draft.media.images
+            ),
+
+        pdf:
+            draft.media.pdf,
+
+        video:
+            draft.media.video
+
+    };
+
+};
 
     /* =====================================
        BASIC
@@ -226,11 +272,22 @@ ProductUtils.productToDraft = function (product) {
     draft.basic.slug = ProductUtils.slugify(product.name);
 
     /* =====================================
-       TECHNICAL
-    ===================================== */
+   TECHNICAL
+===================================== */
 
-    draft.technical.specs = Array.isArray(product.specs)
-        ? ProductUtils.deepClone(product.specs)
+draft.technical.capacities =
+    Array.isArray(product.capacities)
+        ? ProductUtils.deepClone(product.capacities)
+        : [];
+
+draft.technical.specifications =
+    product.specifications
+        ? ProductUtils.deepClone(product.specifications)
+        : {};
+
+draft.technical.features =
+    Array.isArray(product.features)
+        ? ProductUtils.deepClone(product.features)
         : [];
 
     /* =====================================
