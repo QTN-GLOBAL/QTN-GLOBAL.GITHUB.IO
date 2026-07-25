@@ -328,13 +328,19 @@ export function parseProductFromHtml(
             }
 
 
-            const text =
+           let text =
 
-                cleanText(
+    element
 
-                    element.text()
+        .text()
 
-                );
+        .replace(/\r/g, "")
+
+        .replace(/\n{2,}/g, "\n")
+
+        .replace(/[ \t]+/g, " ")
+
+        .trim();
 
 
             if (
