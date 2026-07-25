@@ -296,84 +296,93 @@
             new Date().toISOString();
 
         // ======================================================
-        // BASIC
-        // ======================================================
+// BASIC IMPORT FIX
+// ======================================================
 
-        draft.basic.name =
+const productName =
+    product.name ||
+    product.Name ||
+    "";
 
-    ProductUtils.trim(
 
-        product.name ||
+draft.basic.name =
+    ProductUtils.trim(productName);
 
-        product.Name
 
-    );
 
-       draft.basic.model =
+let auto = {};
+
+if(window.ProductParser &&
+   ProductParser.analyzeName){
+
+    auto =
+    ProductParser.analyzeName(productName);
+
+}
+
+
+
+draft.basic.model =
 
     ProductUtils.trim(
 
         product.model ||
 
-        product.Model
+        product.Model ||
+
+        auto.model ||
+
+        ""
 
     );
 
-       draft.basic.category =
 
-    ProductUtils.normalizeCategory(
 
-        product.category ||
-
-        product.Category
-
-    );
-
-        draft.basic.brand =
+draft.basic.brand =
 
     ProductUtils.normalizeBrand(
 
         product.brand ||
 
-        product.Brand
+        product.Brand ||
+
+        auto.brand ||
+
+        ""
 
     );
 
-        draft.basic.origin =
+
+
+draft.basic.category =
+
+    ProductUtils.normalizeCategory(
+
+        product.category ||
+
+        product.Category ||
+
+        auto.category ||
+
+        ""
+
+    );
+
+
+
+draft.basic.origin =
 
     ProductUtils.normalizeOrigin(
 
         product.origin ||
 
-        product.Origin
+        product.Origin ||
+
+        auto.origin ||
+
+        ""
 
     );
-
-        draft.basic.folder =
-
-            ProductUtils.trim(
-
-                product.folder
-
-            );
-
-        draft.basic.slug =
-
-            ProductUtils.slugify(
-
-                product.slug ||
-
-                product.name
-
-            );
-
-        draft.basic.description =
-
-            ProductUtils.trim(
-
-                product.description
-
-            );
 
         // ======================================================
         // TECHNICAL
