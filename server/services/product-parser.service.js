@@ -300,7 +300,23 @@ export function parseProductFromHtml(
             ".entry-content .description"
 
         ];
+// selector phổ biến của nhiều website
 
+descriptionSelectors.push(
+
+    ".field-name-body",
+    ".node-product .content",
+    ".product-content",
+    ".product-detail",
+    ".product-description-full",
+    ".field-item.even",
+    ".tabs-panel",
+    "#tab-description",
+    "#description",
+    ".woocommerce-Tabs-panel",
+    ".woocommerce-product-details__short-description"
+
+);
 
         for (
 
@@ -333,6 +349,34 @@ export function parseProductFromHtml(
     element
 
         .text()
+//==================================================
+// EXCELL:
+// nếu selector quá lớn thì chỉ lấy phần có nhiều <p>
+//==================================================
+
+if (selector === ".product-detail") {
+
+    const paragraphs = [];
+
+    element.find("p").each(function () {
+
+        const t = cleanText($(this).text());
+
+        if (t.length > 20) {
+
+            paragraphs.push(t);
+
+        }
+
+    });
+
+    if (paragraphs.length) {
+
+        text = paragraphs.join("\n");
+
+    }
+
+}
 
         .replace(/\r/g, "")
 
@@ -413,6 +457,36 @@ text = text
             !product.description
 
         ) {
+//==================================================
+// EXCELL / GENERIC
+// lấy toàn bộ đoạn văn trong article nếu chưa có mô tả
+//==================================================
+
+const article = $("article").first();
+
+if (article.length) {
+
+    const paragraphs = [];
+
+    article.find("p").each(function () {
+
+        const t = cleanText($(this).text());
+
+        if (t.length > 20) {
+
+            paragraphs.push(t);
+
+        }
+
+    });
+
+    if (paragraphs.length) {
+
+        product.description = paragraphs.join("\n");
+
+    }
+
+}
 
             const productContainers = [
 
@@ -525,8 +599,20 @@ text = text
 
                             )
 
-                            .join(" ");
+                            .join("\n");
+//==============================
+// Loại bỏ Hotline, Hỗ trợ, Danh mục
+//==============================
 
+product.description = product.description
+
+    .replace(/Hotline[\s\S]*$/i, "")
+
+    .replace(/Hỗ trợ kỹ thuật[\s\S]*$/i, "")
+
+    .replace(/Danh mục[\s\S]*$/i, "")
+
+    .trim();
 
                     break;
 
@@ -537,7 +623,33 @@ text = text
         }
 
     }
+/* ======================================
+   FINAL DESCRIPTION CLEAN
+====================================== */
 
+if (product.description) {
+
+    product.description = product.description
+
+        // chuẩn hóa xuống dòng
+        .replace(/\r/g, "")
+        .replace(/\n{3,}/g, "\n\n")
+
+        // bỏ hotline
+        .replace(/Hotline[\s\S]*$/i, "")
+
+        // bỏ hỗ trợ kỹ thuật
+        .replace(/Hỗ trợ kỹ thuật[\s\S]*$/i, "")
+
+        // bỏ danh mục
+        .replace(/Danh mục[\s\S]*$/i, "")
+
+        // bỏ liên hệ
+        .replace(/Liên hệ[\s\S]*$/i, "")
+
+        .trim();
+
+}
 
     console.log("");
 
