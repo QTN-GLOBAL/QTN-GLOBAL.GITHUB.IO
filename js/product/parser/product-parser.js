@@ -636,74 +636,121 @@
 
 
     //==========================================================
-    // DESCRIPTION
-    //==========================================================
+// DESCRIPTION
+//==========================================================
 
+ProductParser.getDescription = function (html) {
 
-    ProductParser.getDescription = function(html){
-
-
-        if(!html)
-
-            return "";
-
-
-
-        let match =
-
-
-            html.match(
-
-                /<meta[^>]+name=["']description["'][^>]+content=["'](.*?)["']/is
-
-            );
-
-
-
-        if(match){
-
-
-            return ProductParser.cleanText(
-
-                match[1]
-
-            );
-
-
-        }
-
-
-
-        match =
-
-
-            html.match(
-
-                /<p[^>]*>(.*?)<\/p>/is
-
-            );
-
-
-
-        if(match){
-
-
-            return ProductParser.cleanText(
-
-                match[1]
-
-            );
-
-
-        }
-
-
-
+    if (!html)
         return "";
 
+    // Ưu tiên lấy phần mô tả WooCommerce
 
-    };
+    let match = html.match(
 
+        /<div[^>]*class="[^"]*(woocommerce-product-details__short-description|product-short-description)[^"]*"[^>]*>([\s\S]*?)<\/div>/i
+
+    );
+
+    if (!match) {
+
+        match = html.match(
+
+            /<meta[^>]+name=["']description["'][^>]+content=["'](.*?)["']/i
+
+        );
+
+        if (match) {
+
+            return ProductParser.cleanDescription(match[1]);
+
+        }
+
+    }
+
+    if (match) {
+
+        return ProductParser.cleanDescription(match[2]);
+
+    }
+
+    match = html.match(
+
+        /<p[^>]*>([\s\S]*?)<\/p>/i
+
+    );
+
+    if (match) {
+
+        return ProductParser.cleanDescription(match[1]);
+
+    }
+
+    return "";
+
+};
+//==========================================================
+// CLEAN DESCRIPTION
+//==========================================================
+
+ProductParser.cleanDescription = function (html) {
+
+    if (!html)
+        return "";
+
+    let text = String(html);
+
+    text = text.replace(/<br\s*\/?>/gi, "\n");
+
+    text = text.replace(/<\/p>/gi, "\n");
+
+    text = text.replace(/<li[^>]*>/gi, "• ");
+
+    text = text.replace(/<\/li>/gi, "\n");
+
+    text = text.replace(/<[^>]+>/g, "");
+
+    text = text.replace(/&nbsp;/g, " ");
+
+    text = text.replace(/&amp;/g, "&");
+
+    const blacklist = [
+
+        /^hotline/i,
+        /^hỗ trợ kỹ thuật/i,
+        /^điện thoại/i,
+        /^phone/i,
+        /^liên hệ/i,
+        /^website/i,
+        /^email/i,
+        /^facebook/i,
+        /^zalo/i,
+        /^danh mục/i,
+        /^tags?/i
+
+    ];
+
+    const lines = text
+
+        .split("\n")
+
+        .map(s => s.trim())
+
+        .filter(Boolean)
+
+        .filter(function (line) {
+
+            return !blacklist.some(function (rule) {
+
+                return rule.test(line);
+
+            });
+
+        });
+
+    return lines.join("\n");
+
+};
 
 
 
