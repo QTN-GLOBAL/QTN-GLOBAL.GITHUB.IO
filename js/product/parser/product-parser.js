@@ -21,7 +21,7 @@
 
     ProductParser.parse = function(html, options = {}) {
 
-
+console.log(">>> ProductParser.parse() RUNNING <<<");
         const product = {
 
 
