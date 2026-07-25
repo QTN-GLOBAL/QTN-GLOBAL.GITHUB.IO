@@ -301,43 +301,53 @@
 
         draft.basic.name =
 
-            ProductUtils.trim(
+    ProductUtils.trim(
 
-                product.name
+        product.name ||
 
-            );
+        product.Name
 
-        draft.basic.model =
+    );
 
-            ProductUtils.trim(
+       draft.basic.model =
 
-                product.model
+    ProductUtils.trim(
 
-            );
+        product.model ||
 
-        draft.basic.category =
+        product.Model
 
-            ProductUtils.normalizeCategory(
+    );
 
-                product.category
+       draft.basic.category =
 
-            );
+    ProductUtils.normalizeCategory(
+
+        product.category ||
+
+        product.Category
+
+    );
 
         draft.basic.brand =
 
-            ProductUtils.normalizeBrand(
+    ProductUtils.normalizeBrand(
 
-                product.brand
+        product.brand ||
 
-            );
+        product.Brand
+
+    );
 
         draft.basic.origin =
 
-            ProductUtils.normalizeOrigin(
+    ProductUtils.normalizeOrigin(
 
-                product.origin
+        product.origin ||
 
-            );
+        product.Origin
+
+    );
 
         draft.basic.folder =
 
