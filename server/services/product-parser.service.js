@@ -345,8 +345,18 @@ export function parseProductFromHtml(
 // CLEAN DESCRIPTION
 //==============================
 
-// bỏ "Lien he"
-text = text.replace(/^.*?Lien he\s*/i, "");
+//==============================
+// BỎ PHẦN ĐẦU TRƯỚC DÒNG ĐẦU TIÊN
+// "Cân Bàn Điện Tử"
+//==============================
+
+const firstProduct = text.indexOf("Cân Bàn Điện Tử");
+
+if (firstProduct > 0) {
+
+    text = text.substring(firstProduct);
+
+}
 
 // bỏ Hotline
 text = text.replace(
