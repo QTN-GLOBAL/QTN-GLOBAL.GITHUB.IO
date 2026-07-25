@@ -98,6 +98,17 @@
             );
 
             const result = await response.json();
+console.log("===== API PRODUCT RESULT =====");
+
+console.log(
+    JSON.stringify(
+        result.product,
+        null,
+        2
+    )
+);
+
+console.log("==============================");
 
             if (!response.ok || !result.success) {
 
