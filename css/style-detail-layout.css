@@ -1,415 +1,843 @@
 /* =====================================================
-   PAGE LAYOUT
+   QTN GLOBAL
+   PRODUCT DETAIL PAGE LAYOUT
+   CLEAN VERSION
 ===================================================== */
+
+
+/* =====================================================
+   PAGE LAYOUT
+   Khung tổng:
+   Sidebar trái
+   Nội dung chi tiết phải
+===================================================== */
+
 .detail-page{
+
     display:grid;
-    grid-template-columns:240px 1fr;
+
+    grid-template-columns:240px minmax(0,1fr);
+
     gap:20px;
 
     align-items:start;
 
+    width:100%;
+
     overflow:visible;
+
 }
+
+
+
 /* =====================================================
    SIDEBAR
+   Danh mục sản phẩm bên trái
 ===================================================== */
-/* SIDEBAR */
+
 .sidebar{
+
     background:#fff;
+
     border-radius:12px;
+
     padding:18px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    box-shadow:
+    0 2px 10px rgba(0,0,0,.08);
+
 
     position:sticky;
+
     top:130px;
 
+
     align-self:start;
+
+
     height:fit-content;
+
 }
 
-/* =====================================================
-   BREADCRUMB
-===================================================== */
-
-
 
 /* =====================================================
-   DETAIL CONTAINER
+   DETAIL CONTENT MAIN GRID
+   Khu vực sản phẩm:
+   
+   Cột 1:
+   Ảnh + sản phẩm cùng loại
+
+   Cột 2:
+   Tên + mô tả + thông số bảng
+
 ===================================================== */
+
 .detail-content{
 
     display:grid;
 
-    grid-template-columns:460px 1fr;
 
-    gap:30px;
+    grid-template-columns:
+    460px minmax(0,1fr);
+
+
+    column-gap:25px;
+
+
+    row-gap:10px;
+
 
     width:100%;
 
+
     min-width:0;
+
 
     align-items:start;
 
 }
-/* =====================================
-   TEXT THÔNG SỐ KỸ THUẬT
-   CHIẾM CỘT SLIDER + CỘT THÔNG TIN
-===================================== */
 
-.product-text-specs{
 
-    grid-column:1 / 3;
 
-    width:100%;
+/* =====================================================
+   PRODUCT IMAGE GALLERY
+   Khu vực ảnh sản phẩm
+===================================================== */
 
-    background:#fafafa;
+.detail-left{
 
-    border:1px solid #eee;
 
-    border-radius:10px;
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    align-items:center;
+
+
+    background:#fff;
+
+
+    border-radius:14px;
+
 
     padding:20px;
+
 
     box-sizing:border-box;
 
 }
 
 
-.product-text-specs h3{
+
+/* =====================================================
+   MAIN PRODUCT IMAGE
+===================================================== */
+
+#mainImage{
+
+
+    width:100%;
+
+
+    max-width:420px;
+
+
+    height:320px;
+
+
+    object-fit:contain;
+
+
+    background:#fff;
+
+
+    border:1px solid #eee;
+
+
+    border-radius:10px;
+
+
+}
+
+
+
+/* =====================================================
+   IMAGE THUMBNAILS
+   Ảnh nhỏ bên dưới
+===================================================== */
+
+#thumbList{
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    margin-top:15px;
+
+
+    flex-wrap:nowrap;
+
+
+}
+
+
+
+#thumbList img{
+
+
+    width:78px;
+
+
+    height:78px;
+
+
+    object-fit:contain;
+
+
+    border:1px solid #ddd;
+
+
+    border-radius:8px;
+
+
+    cursor:pointer;
+
+
+    transition:.2s;
+
+}
+
+
+
+#thumbList img:hover{
+
+
+    border-color:#1565c0;
+
+
+}
+
+
+#thumbList img.active{
+
+
+    border:2px solid #1565c0;
+
+
+}
+
+
+
+/* =====================================================
+   DETAIL INFORMATION
+   Thông tin sản phẩm bên phải
+===================================================== */
+
+.detail-right{
+
+
+    background:#fff;
+
+
+    border-radius:14px;
+
+
+    padding:10px 20px;
+
+
+    min-width:0;
+
+
+    box-sizing:border-box;
+
+
+}
+
+
+
+/* =====================================================
+   PRODUCT TITLE
+===================================================== */
+
+.detail-right h1{
+
+
+    font-size:42px;
+
 
     color:#1565c0;
 
-    margin-top:0;
 
-    margin-bottom:15px;
+    line-height:1.2;
+
+
+    margin:
+
+
+    0 0 15px 0;
+
 
 }
+
+
+
+/* =====================================================
+   PRODUCT BASIC INFO
+   Hãng - Xuất xứ - Mô tả
+===================================================== */
+
+.detail-right p{
+
+
+    margin:
+
+
+    0 0 8px 0;
+
+
+    line-height:1.7;
+
+
+}
+
+
+
+.detail-right h3{
+
+
+    color:#1565c0;
+
+
+    margin:
+
+
+    18px 0 10px 0;
+
+
+}
+/* =====================================================
+   TECHNICAL SPECIFICATION TABLE
+   Bảng thông số kỹ thuật
+===================================================== */
+
+.detail-right table{
+
+
+    width:100%;
+
+
+    border-collapse:collapse;
+
+
+    margin-top:5px;
+
+
+    font-size:15px;
+
+
+}
+
+
+
+.detail-right th{
+
+
+    background:#1565c0;
+
+
+    color:#fff;
+
+
+    padding:10px;
+
+
+    border:1px solid #ddd;
+
+
+}
+
+
+
+.detail-right td{
+
+
+    padding:10px;
+
+
+    border:1px solid #ddd;
+
+
+}
+
+
+
+/* vùng chứa bảng */
+
+#productTableSpecs{
+
+
+    width:100%;
+
+
+}
+
+
+
+/* =====================================================
+   TEXT SPECIFICATION BELOW
+   Thông số dạng text phía dưới
+   
+   Quan trọng:
+   - nằm sát ngay dưới 2 cột trên
+   - không tạo khoảng trống lớn
+===================================================== */
+
+
+.product-text-specs{
+
+
+    grid-column:1 / 3;
+
+
+    width:100%;
+
+
+    background:#fafafa;
+
+
+    border:1px solid #eee;
+
+
+    border-radius:10px;
+
+
+    padding:15px;
+
+
+    margin-top:0;
+
+
+    box-sizing:border-box;
+
+
+}
+
+
+
+.product-text-specs h3{
+
+
+    color:#1565c0;
+
+
+    margin:
+
+
+    0 0 10px 0;
+
+
+}
+
 
 
 .product-text-specs p{
 
-    margin:8px 0;
 
-    line-height:1.7;
+    margin:5px 0;
+
+
+    line-height:1.6;
+
 
 }
-
-
-/* =====================================================
-   GALLERY
-===================================================== */
-/* IMAGE AREA */
-.detail-left{
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    background:#fff;
-
-    border-radius:14px;
-
-    padding:20px;
-}
-/* MAIN IMAGE */
-#mainImage{
-    width:100%;
-    max-width:420px;
-    height:320px;
-
-    object-fit:contain;
-
-    background:#fff;
-
-    border:1px solid #eee;
-
-    border-radius:10px;
-}
-
-
-/* =====================================================
-   THUMBNAILS
-===================================================== */
-/* THUMB */
-#thumbList{
-    display:flex;
-
-    justify-content:center;
-
-    gap:12px;
-
-    margin-top:18px;
-
-    flex-wrap:nowrap;
-}
-
-#thumbList img{
-
-    width:78px;
-
-    height:78px;
-
-    object-fit:contain;
-
-    border:1px solid #ddd;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-#thumbList img:hover{
-    border-color:#1565c0;
-}
-
-
-/* =====================================================
-   DETAIL INFO
-===================================================== */
-.detail-right{
-
-    background:#fff;
-
-    border-radius:14px;
-
-    padding:10px 20px;
-
-    min-width:0;
-}
-.detail-right p{
-
-    margin-bottom:10px;
-
-    line-height:1.7;
-}
-.detail-right h3{
-    margin-top:25px;
-    margin-bottom:15px;
-    color:#1565c0;
-}
-
-
-/* =====================================================
-   TITLE
-===================================================== */
-.detail-right h1{
-
-    font-size:42px;
-
-    color:#1565c0;
-
-    margin-bottom:20px;
-
-    line-height:1.2;
-}
-
-
-/* =====================================================
-   PRICE
-===================================================== */
-
-
-
-/* =====================================================
-   SPECIFICATION
-===================================================== */
-.detail-right table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:10px;
-    font-size:15px;
-}
-
-.detail-right th{
-    background:#1565c0;
-    color:#fff;
-    padding:12px;
-    border:1px solid #ddd;
-}
-
-.detail-right td{
-    padding:12px;
-    border:1px solid #ddd;
-}
-#productSpecs{
-
-    background:#fafafa;
-
-    border:1px solid #eee;
-
-    padding:15px;
-
-    border-radius:8px;
-}
-
-
-/* =====================================================
-   DESCRIPTION
-===================================================== */
 
 
 
 /* =====================================================
    ACTION BUTTONS
+   Nút thêm giỏ hàng / mua ngay
 ===================================================== */
+
+
+.detail-buttons{
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    gap:15px;
+
+
+    margin-top:20px;
+
+
+    width:100%;
+
+
+}
+
+
+
+.btn-addcart,
+.btn-buynow{
+
+
+    padding:12px 22px;
+
+
+    border-radius:8px;
+
+
+    border:none;
+
+
+    cursor:pointer;
+
+
+    font-weight:600;
+
+
+    transition:.3s;
+
+
+}
 
 
 
 /* =====================================================
    RELATED PRODUCTS
+   Sản phẩm cùng loại
 ===================================================== */
+
+
 .related-products{
+
+
     width:100%;
-    margin-top:25px;
+
+
+    margin-top:15px;
+
+
 }
+
+
 
 .related-products h3{
+
+
     text-align:center;
-    margin-bottom:15px;
+
+
     color:#1565c0;
+
+
+    margin:
+
+
+    10px 0 12px 0;
+
+
 }
+
+
 
 .related-grid{
+
+
     display:grid;
+
+
     grid-template-columns:repeat(4,1fr);
+
+
     gap:12px;
+
+
 }
+
+
 
 .related-card{
+
+
     background:#fff;
+
+
     border:1px solid #eee;
+
+
     border-radius:8px;
+
+
     overflow:hidden;
+
+
     cursor:pointer;
+
+
     transition:.2s;
+
+
 }
+
+
 
 .related-card:hover{
+
+
     transform:translateY(-3px);
+
+
     box-shadow:0 4px 12px rgba(0,0,0,.12);
+
+
 }
+
+
 
 .related-card img{
+
+
     width:100%;
+
+
     height:120px;
+
+
     object-fit:contain;
-    background:#fff;
+
+
 }
 
+
+
 .related-card p{
+
+
     padding:8px;
+
+
     text-align:center;
+
+
     font-size:13px;
+
+
     line-height:1.4;
+
+
     min-height:50px;
+
+
 }
-/* =========================
-   AMWAY BUTTONS
-========================= */
+
+
+
+/* =====================================================
+   AMWAY BUTTON SECTION
+===================================================== */
+
+
 .amway-action-buttons{
+
+
     display:flex;
+
+
     gap:15px;
+
+
     flex-wrap:wrap;
-    margin-top:20px;
+
+
+    margin-top:15px;
+
+
 }
+
+
 
 .contact-btn,
 .amway-btn{
 
+
     display:inline-block;
+
 
     padding:12px 22px;
 
+
     border-radius:8px;
 
-    text-decoration:none;
 
     color:#fff;
 
+
+    text-decoration:none;
+
+
     font-weight:600;
 
-    transition:.3s;
+
 }
+
+
 
 .contact-btn{
+
+
     background:#2c7be5;
+
+
 }
 
-.contact-btn:hover{
-    background:#1d5fbf;
-}
+
 
 .amway-btn{
+
+
     background:#009933;
+
+
 }
 
-.amway-btn:hover{
-    background:#007d2b;
-}
-
-
-/* =====================================================
-   TABS
-===================================================== */
 
 
 
 /* =====================================================
-   SCROLL
+   FOOTER FIX
+   Không để grid kéo footer lệch trái
 ===================================================== */
+
+
 footer{
+
+
     clear:both;
+
+
+    width:100%;
+
+
     position:relative;
+
+
     z-index:10;
-}
-.detail-page{
-    display:grid;
-    grid-template-columns:240px 1fr;
-    gap:20px;
-}
 
 
-/* vùng bên phải sidebar */
-.detail-content{
-    display:grid;
-    grid-template-columns:460px 1fr;
-    gap:30px;
 }
 
 
 
-/* TEXT CHỈ ĂN PHẦN BÊN PHẢI */
-.product-text-specs{
+/* =====================================================
+   RESPONSIVE MOBILE
+===================================================== */
 
-    grid-column:2;
 
-    background:#fafafa;
+@media(max-width:1100px){
 
-    border:1px solid #eee;
 
-    border-radius:10px;
+    .detail-page{
 
-    padding:20px;
 
-    margin-top:20px;
+        grid-template-columns:1fr;
+
+
+    }
+
+
+    .sidebar{
+
+
+        position:relative;
+
+
+        top:0;
+
+
+    }
+
+
+    .detail-content{
+
+
+        grid-template-columns:1fr;
+
+
+    }
+
+
+    .product-text-specs{
+
+
+        grid-column:1;
+
+
+    }
+
 
 }
 
 
-.product-text-specs h3{
 
-    color:#1565c0;
-
-    margin-top:0;
-
-}
+@media(max-width:600px){
 
 
-.product-text-specs p{
+    .detail-right h1{
 
-    line-height:1.7;
+
+        font-size:28px;
+
+
+    }
+
+
+
+    #mainImage{
+
+
+        height:260px;
+
+
+    }
+
+
+
+    #thumbList img{
+
+
+        width:60px;
+
+
+        height:60px;
+
+
+    }
+
+
+
+    .related-grid{
+
+
+        grid-template-columns:repeat(2,1fr);
+
+
+    }
+
 
 }
