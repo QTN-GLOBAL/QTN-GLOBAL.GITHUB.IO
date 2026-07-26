@@ -1304,23 +1304,12 @@ finalTable += `
 `;
 
 
-
 document.getElementById("productTableSpecs").innerHTML =
 finalTable;
 
 
-
 document.getElementById("productTextSpecs").innerHTML =
 "";
-
-
-
-
-
-document.getElementById("productTextSpecs").innerHTML =
-textHTML;
-
-
 
 
 
@@ -1333,13 +1322,75 @@ renderRelatedProducts();
 
 
 
+setTimeout(()=>{
+
+
+    if(
+        !window.relatedProducts ||
+        window.relatedProducts.length <= 4
+    ){
+
+        return;
+
+    }
+
+
+
+    window.relatedTimer =
+    setInterval(()=>{
+
+
+        const track =
+        document.querySelector(".related-track");
+
+
+
+        if(!track) return;
+
+
+
+        track.style.transition =
+        "transform .8s ease";
+
+
+
+        track.style.transform =
+        "translateX(-25%)";
+
+
+
+        setTimeout(()=>{
+
+
+            track.appendChild(
+                track.firstElementChild
+            );
+
+
+
+            track.style.transition =
+            "none";
+
+
+
+            track.style.transform =
+            "translateX(0)";
+
+
+
+        },800);
+
+
+
+    },2500);
+
+
+
+},500);
+
+
+
 setTimeout(applyI18nDetail,0);
-
-
-
-}
-
-
 
 
 
