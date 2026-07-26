@@ -1,14 +1,26 @@
-/*****************************************************************
- PART 1
- IMPORT + HEADER + CREATE EMPTY PRODUCT
- File : service/product-parser.service.js
-*****************************************************************/
+/* ==========================================
+   PRODUCT PARSER SERVICE
+   VERSION 2
+
+   MỤC TIÊU:
+   - Không dùng OpenAI
+   - Không tốn API
+   - Lấy dữ liệu thật từ HTML
+   - Lọc nội dung sản phẩm
+   - Tách Description
+   - Tách Specification
+   - Tách Features
+   - Tách Applications
+   - Tách Accessories
+   - Lấy Images
+========================================== */
 
 import * as cheerio from "cheerio";
 
-/* ============================================================
+
+/* ==========================================
    MAIN PARSER
-============================================================ */
+========================================== */
 
 export function parseProductFromHtml(
 
@@ -21,44 +33,1263 @@ export function parseProductFromHtml(
     console.log("");
 
     console.log(
-        "========== FREE PRODUCT PARSER V3 =========="
+        "========== FREE PRODUCT PARSER V2 =========="
     );
 
-    /* ============================================================
+
+    /* ==========================================
        CHECK HTML
-    ============================================================ */
+    ========================================== */
 
     if (!html) {
 
-        console.log("HTML EMPTY");
+        console.log(
+            "HTML EMPTY"
+        );
 
         return createEmptyProduct();
 
     }
 
-    /* ============================================================
+
+    /* ==========================================
        LOAD HTML
-    ============================================================ */
+    ========================================== */
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(
 
-    /* ============================================================
-       CREATE PRODUCT
-    ============================================================ */
+        html,
 
-    const product = createEmptyProduct();
+        {
 
-/*****************************************************************
- END PART 1
-*****************************************************************/
-/*****************************************************************
- PART 2
- HELPER FUNCTIONS
-*****************************************************************/
+            decodeEntities: true
 
-/* ============================================================
-   CREATE EMPTY PRODUCT
-============================================================ */
+        }
+
+    );
+
+
+    /* ==========================================
+       RESULT
+    ========================================== */
+
+    const product =
+
+        createEmptyProduct();
+
+
+    /* ==========================================
+       HELPER:
+       CLEAN TEXT
+    ========================================== */
+
+    function cleanText(
+
+        text
+
+    ) {
+
+        return String(
+
+            text || ""
+
+        )
+
+            .replace(/\u00a0/g, " ")
+
+            .replace(/\s+/g, " ")
+
+            .trim();
+
+    }
+
+
+    /* ==========================================
+       HELPER:
+       REMOVE DUPLICATES
+    ========================================== */
+
+    function uniqueArray(
+
+        array
+
+    ) {
+
+        return [
+
+            ...new Set(
+
+                array
+
+                    .map(
+
+                        item =>
+
+                            cleanText(item)
+
+                    )
+
+                    .filter(Boolean)
+
+            )
+
+        ];
+
+    }
+
+
+    /* ==========================================
+       HELPER:
+       FIND FIRST TEXT
+    ========================================== */
+
+    function findFirstText(
+
+        selectors = []
+
+    ) {
+
+        for (
+
+            const selector of selectors
+
+        ) {
+
+            const element =
+
+                $(selector)
+
+                    .first();
+
+
+            if (
+
+                element.length
+
+            ) {
+
+                const text =
+
+                    cleanText(
+
+                        element.text()
+
+                    );
+
+
+                if (
+
+                    text
+
+                ) {
+
+                    return text;
+
+                }
+
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /* ==========================================
+       STEP 1
+       PRODUCT NAME
+    ========================================== */
+
+    product.name =
+
+        findFirstText([
+
+            "h1.product-title",
+
+            "h1.product-name",
+
+            ".product-detail h1",
+
+            ".product-info h1",
+
+            ".product-content h1",
+
+            "h1"
+
+        ]);
+
+
+    console.log("");
+
+    console.log(
+
+        "PRODUCT NAME:",
+
+        product.name
+
+    );
+
+
+    /* ==========================================
+       STEP 2
+       BRAND
+    ========================================== */
+
+    product.brand =
+
+        findFirstText([
+
+            ".product-brand",
+
+            ".brand-name",
+
+            ".brand",
+
+            "[class*='brand']"
+
+        ]);
+
+
+    /* ==========================================
+       STEP 3
+       ORIGIN
+    ========================================== */
+
+    product.origin =
+
+        findFirstText([
+
+            ".product-origin",
+
+            ".origin",
+
+            "[class*='origin']"
+
+        ]);
+
+
+    /* ==========================================
+       STEP 4
+       DESCRIPTION
+    ========================================== */
+
+    if (
+
+        options.description !== false
+
+    ) {
+
+        const descriptionSelectors = [
+
+            ".product-description",
+
+            ".product-detail-description",
+
+            ".product-intro",
+
+            ".product-summary",
+
+            ".product-short-description",
+
+            ".product-detail .description",
+
+            ".product-info .description",
+
+            ".entry-content .description"
+
+        ];
+// selector phổ biến của nhiều website
+
+descriptionSelectors.push(
+
+    ".field-name-body",
+    ".node-product .content",
+    ".product-content",
+    ".product-detail",
+    ".product-description-full",
+    ".field-item.even",
+    ".tabs-panel",
+    "#tab-description",
+    "#description",
+    ".woocommerce-Tabs-panel",
+    ".woocommerce-product-details__short-description"
+
+);
+
+        for (
+
+            const selector of
+
+            descriptionSelectors
+
+        ) {
+
+            const element =
+
+                $(selector)
+
+                    .first();
+
+
+            if (
+
+                !element.length
+
+            ) {
+
+                continue;
+
+            }
+
+
+           let text =
+
+    element
+
+        .text()
+//==================================================
+// EXCELL:
+// nếu selector quá lớn thì chỉ lấy phần có nhiều <p>
+//==================================================
+
+if (selector === ".product-detail") {
+
+    const paragraphs = [];
+
+    element.find("p").each(function () {
+
+        const t = cleanText($(this).text());
+
+        if (t.length > 20) {
+
+            paragraphs.push(t);
+
+        }
+
+    });
+
+    if (paragraphs.length) {
+
+        text = paragraphs.join("\n");
+
+    }
+
+}
+
+        .replace(/\r/g, "")
+
+        .replace(/\n{2,}/g, "\n")
+
+        .replace(/[ \t]+/g, " ")
+
+        .trim();
+//==============================
+// CLEAN DESCRIPTION
+//==============================
+
+//==============================
+// BỎ PHẦN ĐẦU TRƯỚC DÒNG ĐẦU TIÊN
+// "Cân Bàn Điện Tử"
+//==============================
+
+const firstProduct = text.indexOf("Cân Bàn Điện Tử");
+
+if (firstProduct > 0) {
+
+    text = text.substring(firstProduct);
+
+}
+
+// bỏ Hotline
+text = text.replace(
+    /Hotline[\s\S]*$/i,
+    ""
+);
+
+// bỏ Hỗ trợ kỹ thuật
+text = text.replace(
+    /Hỗ trợ kỹ thuật[\s\S]*$/i,
+    ""
+);
+
+// bỏ Danh mục
+text = text.replace(
+    /Danh mục[\s\S]*$/i,
+    ""
+);
+
+// bỏ dòng trống
+text = text
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+            if (
+
+                text.length >= 30 &&
+
+                text.length <= 5000
+
+            ) {
+
+                product.description =
+
+                    text;
+
+                break;
+
+            }
+
+        }
+
+
+        /* ======================================
+           FALLBACK DESCRIPTION
+
+           Nếu không tìm được selector
+           cụ thể thì lấy đoạn văn đầu tiên
+           trong khu vực product.
+        ====================================== */
+
+        if (
+
+            !product.description
+
+        ) {
+//==================================================
+// EXCELL / GENERIC
+// lấy toàn bộ đoạn văn trong article nếu chưa có mô tả
+//==================================================
+
+const article = $("article").first();
+
+if (article.length) {
+
+    const paragraphs = [];
+
+    article.find("p").each(function () {
+
+        const t = cleanText($(this).text());
+
+        if (t.length > 20) {
+
+            paragraphs.push(t);
+
+        }
+
+    });
+
+    if (paragraphs.length) {
+
+        product.description = paragraphs.join("\n");
+
+    }
+
+}
+
+            const productContainers = [
+
+                ".product-detail",
+
+                ".product-content",
+
+                ".product-info",
+
+                "main",
+
+                "article"
+
+            ];
+
+
+            for (
+
+                const selector of
+
+                productContainers
+
+            ) {
+
+                const container =
+
+                    $(selector)
+
+                        .first();
+
+
+                if (
+
+                    !container.length
+
+                ) {
+
+                    continue;
+
+                }
+
+
+                let paragraphs = [];
+
+
+                container
+
+                    .find("p")
+
+                    .each(
+
+                        function () {
+
+                            const text =
+
+                                cleanText(
+
+                                    $(this)
+
+                                        .text()
+
+                                );
+
+
+                            if (
+
+                                text.length >= 30 &&
+
+                                text.length <= 1000
+
+                            ) {
+
+                                paragraphs.push(
+
+                                    text
+
+                                );
+
+                            }
+
+                        }
+
+                    );
+
+
+                paragraphs =
+
+                    uniqueArray(
+
+                        paragraphs
+
+                    );
+
+
+                if (
+
+                    paragraphs.length
+
+                ) {
+
+                    product.description =
+
+                        paragraphs
+
+                            .slice(
+
+                                0,
+
+                                5
+
+                            )
+
+                            .join("\n");
+//==============================
+// Loại bỏ Hotline, Hỗ trợ, Danh mục
+//==============================
+
+product.description = product.description
+
+    .replace(/Hotline[\s\S]*$/i, "")
+
+    .replace(/Hỗ trợ kỹ thuật[\s\S]*$/i, "")
+
+    .replace(/Danh mục[\s\S]*$/i, "")
+
+    .trim();
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+
+    /* ==========================================
+       STEP 5
+       SPECIFICATION
+    ========================================== */
+
+    if (
+
+        options.specification !== false
+
+    ) {
+
+        $("table").each(
+
+            function () {
+
+                const table =
+
+                    $(this);
+
+
+                const rows =
+
+                    table.find("tr");
+
+
+                if (
+
+                    !rows.length
+
+                ) {
+
+                    return;
+
+                }
+
+
+                rows.each(
+
+                    function () {
+
+                        const cells =
+
+                            $(this)
+
+                                .find(
+
+                                    "th, td"
+
+                                );
+
+
+                        if (
+
+                            cells.length < 2
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const name =
+
+                            cleanText(
+
+                                $(cells[0])
+
+                                    .text()
+
+                            );
+
+
+                        const value =
+
+                            cleanText(
+
+                                $(cells[1])
+
+                                    .text()
+
+                            );
+
+
+                        /* ======================
+                           FILTER
+                        ====================== */
+
+                        if (
+
+                            !name ||
+
+                            !value
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        if (
+
+                            name.length > 150
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        if (
+
+                            value.length > 1000
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        /* ======================
+                           LOẠI BỎ MENU / LINK
+                        ====================== */
+
+                        const lowerName =
+
+                            name.toLowerCase();
+
+
+                        const invalidNames = [
+
+                            "menu",
+
+                            "home",
+
+                            "search",
+
+                            "login",
+
+                            "email",
+
+                            "facebook",
+
+                            "youtube",
+
+                            "instagram"
+
+                        ];
+
+
+                        if (
+
+                            invalidNames.includes(
+
+                                lowerName
+
+                            )
+
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        product.specification
+
+                            .push({
+
+                                name,
+
+                                value
+
+                            });
+
+                    }
+
+                );
+
+            }
+
+        );
+
+
+        /* ======================================
+           REMOVE DUPLICATE SPECIFICATION
+        ====================================== */
+
+        product.specification =
+
+            product.specification.filter(
+
+                (
+
+                    item,
+
+                    index,
+
+                    array
+
+                ) =>
+
+                    index ===
+
+                    array.findIndex(
+
+                        other =>
+
+                            other.name ===
+
+                                item.name &&
+
+                            other.value ===
+
+                                item.value
+
+                    )
+
+            );
+
+    }
+
+
+    console.log("");
+
+    console.log(
+
+        "SPECIFICATION COUNT:",
+
+        product.specification.length
+
+    );
+
+
+    /* ==========================================
+       STEP 6
+       FIND LIST BY HEADING
+    ========================================== */
+
+    function findListByHeading(
+
+        keywords = []
+
+    ) {
+
+        const result = [];
+
+
+        $("h1, h2, h3, h4, h5, h6")
+
+            .each(
+
+                function () {
+
+                    const heading =
+
+                        cleanText(
+
+                            $(this)
+
+                                .text()
+
+                        );
+
+
+                    const lowerHeading =
+
+                        heading
+
+                            .toLowerCase();
+
+
+                    const matched =
+
+                        keywords.some(
+
+                            keyword =>
+
+                                lowerHeading
+
+                                    .includes(
+
+                                        keyword
+
+                                    )
+
+                        );
+
+
+                    if (
+
+                        !matched
+
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    /* ======================
+                       TÌM LIST GẦN HEADING
+                    ====================== */
+
+                    let container =
+
+                        $(this)
+
+                            .next();
+
+
+                    if (
+
+                        !container.length
+
+                    ) {
+
+                        container =
+
+                            $(this)
+
+                                .parent();
+
+                    }
+
+
+                    container
+
+                        .find("li")
+
+                        .each(
+
+                            function () {
+
+                                const text =
+
+                                    cleanText(
+
+                                        $(this)
+
+                                            .text()
+
+                                    );
+
+
+                                if (
+
+                                    text &&
+
+                                    text.length <= 500
+
+                                ) {
+
+                                    result.push(
+
+                                        text
+
+                                    );
+
+                                }
+
+                            }
+
+                        );
+
+                }
+
+            );
+
+
+        return uniqueArray(
+
+            result
+
+        );
+
+    }
+
+
+    /* ==========================================
+       STEP 7
+       FEATURES
+    ========================================== */
+
+    if (
+
+        options.features !== false
+
+    ) {
+
+        product.features =
+
+            findListByHeading([
+
+                "feature",
+
+                "features",
+
+                "tính năng",
+
+                "đặc điểm",
+
+                "ưu điểm"
+
+            ]);
+
+    }
+
+
+    /* ==========================================
+       STEP 8
+       APPLICATIONS
+    ========================================== */
+
+    if (
+
+        options.applications !== false
+
+    ) {
+
+        product.applications =
+
+            findListByHeading([
+
+                "application",
+
+                "applications",
+
+                "ứng dụng"
+
+            ]);
+
+    }
+
+
+    /* ==========================================
+       STEP 9
+       ACCESSORIES
+    ========================================== */
+
+    if (
+
+        options.accessories !== false
+
+    ) {
+
+        product.accessories =
+
+            findListByHeading([
+
+                "accessory",
+
+                "accessories",
+
+                "phụ kiện"
+
+            ]);
+
+    }
+
+
+    /* ==========================================
+       STEP 10
+       IMAGES
+    ========================================== */
+
+    if (
+
+        options.images !== false
+
+    ) {
+
+        $("img")
+
+            .each(
+
+                function () {
+
+                    const src =
+
+                        $(this)
+
+                            .attr("src") ||
+
+                        $(this)
+
+                            .attr("data-src") ||
+
+                        $(this)
+
+                            .attr(
+
+                                "data-original"
+
+                            );
+
+
+                    if (
+
+                        !src
+
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    if (
+
+                        src.startsWith(
+
+                            "data:"
+
+                        )
+
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    if (
+
+                        !product.images
+
+                            .includes(
+
+                                src
+
+                            )
+
+                    ) {
+
+                        product.images
+
+                            .push(
+
+                                src
+
+                            );
+
+                    }
+
+                }
+
+            );
+
+    }
+
+
+    /* ==========================================
+       FINAL RESULT
+    ========================================== */
+
+    console.log("");
+
+    console.log(
+
+        "========== PARSER V2 RESULT =========="
+
+    );
+
+
+    console.log(
+
+        "NAME:",
+
+        product.name
+
+    );
+
+
+    console.log(
+
+        "BRAND:",
+
+        product.brand
+
+    );
+
+
+    console.log(
+
+        "ORIGIN:",
+
+        product.origin
+
+    );
+
+
+    console.log(
+
+        "DESCRIPTION LENGTH:",
+
+        product.description.length
+
+    );
+
+
+    console.log(
+
+        "SPECIFICATION:",
+
+        product.specification.length
+
+    );
+
+
+    console.log(
+
+        "FEATURES:",
+
+        product.features.length
+
+    );
+
+
+    console.log(
+
+        "APPLICATIONS:",
+
+        product.applications.length
+
+    );
+
+
+    console.log(
+
+        "ACCESSORIES:",
+
+        product.accessories.length
+
+    );
+
+
+    console.log(
+
+        "IMAGES:",
+
+        product.images.length
+
+    );
+
+
+    console.log(
+
+        "======================================="
+
+    );
+
+
+    return product;
+
+}
+
+
+/* ==========================================
+   EMPTY PRODUCT
+========================================== */
 
 function createEmptyProduct() {
 
@@ -66,11 +1297,7 @@ function createEmptyProduct() {
 
         name: "",
 
-        model: "",
-
         brand: "",
-
-        category: "",
 
         origin: "",
 
@@ -89,1189 +1316,3 @@ function createEmptyProduct() {
     };
 
 }
-
-/* ============================================================
-   CLEAN TEXT
-============================================================ */
-
-function cleanText(text = "") {
-
-    return String(text)
-
-        .replace(/\u00A0/g, " ")
-
-        .replace(/\r/g, "")
-
-        .replace(/[ \t]+/g, " ")
-
-        .replace(/\n{3,}/g, "\n\n")
-
-        .trim();
-
-}
-
-/* ============================================================
-   REMOVE DUPLICATE ARRAY
-============================================================ */
-
-function uniqueArray(arr = []) {
-
-    return [...new Set(
-
-        arr
-
-            .map(item => cleanText(item))
-
-            .filter(Boolean)
-
-    )];
-
-}
-
-/* ============================================================
-   FIND FIRST TEXT
-============================================================ */
-
-function findFirstText($, selectors = []) {
-
-    for (const selector of selectors) {
-
-        const el = $(selector).first();
-
-        if (!el.length) continue;
-
-        const text = cleanText(el.text());
-
-        if (text) {
-
-            return text;
-
-        }
-
-    }
-
-    return "";
-
-}
-
-/*****************************************************************
- END PART 2
-*****************************************************************/
-/*****************************************************************
- PART 3
- PRODUCT NAME + BRAND + MODEL + CATEGORY
-*****************************************************************/
-
-/* ============================================================
-   PRODUCT NAME
-============================================================ */
-
-product.name = findFirstText($, [
-
-    "h1.product-title",
-
-    "h1.product-name",
-
-    ".product-detail h1",
-
-    ".product-info h1",
-
-    ".product-content h1",
-
-    ".node-title",
-
-    ".page-title",
-
-    "h1"
-
-]);
-
-console.log("");
-console.log("PRODUCT NAME :", product.name);
-
-/* ============================================================
-   BRAND
-============================================================ */
-
-const brands = [
-
-    "Ohaus",
-
-    "Jadever",
-
-    "Vibra",
-
-    "Excell",
-
-    "CAS",
-
-    "AND",
-
-    "Mettler Toledo",
-
-    "Yaohua",
-
-    "DIWI",
-
-    "Keli"
-
-];
-
-for (const brand of brands) {
-
-    if (
-
-        product.name
-
-            .toLowerCase()
-
-            .includes(
-
-                brand.toLowerCase()
-
-            )
-
-    ) {
-
-        product.brand = brand;
-
-        break;
-
-    }
-
-}
-
-/* ============================================================
-   MODEL
-============================================================ */
-
-const modelMatch = product.name.match(
-
-    /\b[A-Z0-9]+(?:[-+][A-Z0-9]+)*\b/
-
-);
-
-if (modelMatch) {
-
-    product.model = modelMatch[0];
-
-}
-
-/* ============================================================
-   CATEGORY
-============================================================ */
-
-const lowerName = product.name.toLowerCase();
-
-if (
-
-    lowerName.includes("cân bàn")
-
-) {
-
-    product.category = "can-ban";
-
-}
-
-else if (
-
-    lowerName.includes("cân treo")
-
-) {
-
-    product.category = "can-treo";
-
-}
-
-else if (
-
-    lowerName.includes("đếm")
-
-) {
-
-    product.category = "can-dem";
-
-}
-
-else if (
-
-    lowerName.includes("phân tích")
-
-) {
-
-    product.category = "can-phan-tich";
-
-}
-
-else if (
-
-    lowerName.includes("thủy sản") ||
-
-    lowerName.includes("inox") ||
-
-    lowerName.includes("chống nước")
-
-) {
-
-    product.category = "can-chong-nuoc";
-
-}
-
-console.log("BRAND    :", product.brand);
-console.log("MODEL    :", product.model);
-console.log("CATEGORY :", product.category);
-
-/*****************************************************************
- END PART 3
-*****************************************************************/
-/*****************************************************************
- PART 4
- ORIGIN + DESCRIPTION
-*****************************************************************/
-
-/* ============================================================
-   ORIGIN
-============================================================ */
-
-const pageText = $("body").text().toLowerCase();
-
-const origins = [
-
-    ["đài loan","Đài Loan"],
-    ["taiwan","Đài Loan"],
-
-    ["nhật bản","Nhật Bản"],
-    ["japan","Nhật Bản"],
-
-    ["hàn quốc","Hàn Quốc"],
-    ["korea","Hàn Quốc"],
-
-    ["trung quốc","Trung Quốc"],
-    ["china","Trung Quốc"],
-
-    ["mỹ","Mỹ"],
-    ["usa","Mỹ"],
-
-    ["thụy sĩ","Thụy Sĩ"],
-    ["switzerland","Thụy Sĩ"]
-
-];
-
-for(const item of origins){
-
-    if(pageText.includes(item[0])){
-
-        product.origin=item[1];
-
-        break;
-
-    }
-
-}
-
-console.log("ORIGIN :",product.origin);
-
-/* ============================================================
-   DESCRIPTION
-============================================================ */
-
-const descriptionSelectors=[
-
-    ".product-description",
-
-    ".product-detail-description",
-
-    ".product-intro",
-
-    ".product-summary",
-
-    ".product-short-description",
-
-    ".woocommerce-product-details__short-description",
-
-    ".entry-content",
-
-    ".field-item",
-
-    ".node-content",
-
-    "article",
-
-    "main"
-
-];
-
-for(const selector of descriptionSelectors){
-
-    const element=$(selector).first();
-
-    if(!element.length) continue;
-
-    let text=element.text();
-
-    text=text.replace(/\r/g,"");
-
-    text=text.replace(/[ \t]+/g," ");
-
-    text=text.replace(/\n{3,}/g,"\n\n");
-
-    text=text.trim();
-
-    if(text.length<30) continue;
-
-    product.description=text;
-
-    break;
-
-}
-
-console.log("");
-
-console.log("DESCRIPTION LENGTH :",product.description.length);
-
-/*****************************************************************
- END PART 4
-*****************************************************************/
-/*****************************************************************
- PART 5
- DESCRIPTION CLEANER
-*****************************************************************/
-
-if(product.description){
-
-    let text = product.description;
-
-    /* ============================================================
-       CHUẨN HÓA XUỐNG DÒNG
-    ============================================================ */
-
-    text = text.replace(/\r/g,"");
-
-    text = text.replace(/[ \t]+/g," ");
-
-    text = text.replace(/\n{3,}/g,"\n\n");
-
-    /* ============================================================
-       TỰ XUỐNG DÒNG TRƯỚC CÁC DÒNG CÂN
-    ============================================================ */
-
-    text = text.replace(
-
-        /(Cân\s+(?:Bàn|Điện|Treo|Đếm|Phân\s*Tích))/gi,
-
-        "\n$1"
-
-    );
-
-    /* ============================================================
-       XÓA LIÊN HỆ
-    ============================================================ */
-
-    text = text.replace(
-
-        /Hotline[\s\S]*$/i,
-
-        ""
-
-    );
-
-    text = text.replace(
-
-        /Liên\s*hệ[\s\S]*$/i,
-
-        ""
-
-    );
-
-    text = text.replace(
-
-        /Lien\s*he[\s\S]*$/i,
-
-        ""
-
-    );
-
-    text = text.replace(
-
-        /Hỗ\s*trợ\s*kỹ\s*thuật[\s\S]*$/i,
-
-        ""
-
-    );
-
-    /* ============================================================
-       XÓA DANH MỤC
-    ============================================================ */
-
-    text = text.replace(
-
-        /Danh\s*mục[\s\S]*$/i,
-
-        ""
-
-    );
-
-    /* ============================================================
-       XÓA TAG
-    ============================================================ */
-
-    text = text.replace(
-
-        /Tags?[\s\S]*$/i,
-
-        ""
-
-    );
-
-    /* ============================================================
-       XÓA CHIA SẺ
-    ============================================================ */
-
-    text = text.replace(
-
-        /Share[\s\S]*$/i,
-
-        ""
-
-    );
-
-    text = text.replace(
-
-        /Facebook[\s\S]*$/i,
-
-        ""
-
-    );
-
-    /* ============================================================
-       XÓA DÒNG TRỐNG
-    ============================================================ */
-
-    text = text
-
-        .split("\n")
-
-        .map(x=>x.trim())
-
-        .filter(Boolean)
-
-        .join("\n");
-
-    product.description = text;
-
-}
-
-console.log("");
-
-console.log("DESCRIPTION CLEANED");
-
-console.log(product.description);
-
-/*****************************************************************
- END PART 5
-*****************************************************************/
-/*****************************************************************
- PART 6
- SPECIFICATION PARSER
-*****************************************************************/
-
-const specificationMap = new Map();
-
-/* ============================================================
-   TABLE PARSER
-============================================================ */
-
-$("table").each(function(){
-
-    $(this).find("tr").each(function(){
-
-        const cells=$(this).find("th,td");
-
-        if(cells.length<2) return;
-
-        const name=cleanText($(cells[0]).text());
-
-        const value=cleanText($(cells[1]).text());
-
-        if(!name||!value) return;
-
-        if(name.length>150) return;
-
-        if(value.length>1000) return;
-
-        specificationMap.set(name,value);
-
-    });
-
-});
-
-/* ============================================================
-   DIV PARSER
-============================================================ */
-
-$(".specification li,.technical li,.product-spec li").each(function(){
-
-    const text=cleanText($(this).text());
-
-    if(!text.includes(":")) return;
-
-    const parts=text.split(":");
-
-    if(parts.length<2) return;
-
-    const name=cleanText(parts.shift());
-
-    const value=cleanText(parts.join(":"));
-
-    if(name&&value){
-
-        specificationMap.set(name,value);
-
-    }
-
-});
-
-/* ============================================================
-   DL PARSER
-============================================================ */
-
-$("dl").each(function(){
-
-    const dt=$(this).find("dt");
-
-    const dd=$(this).find("dd");
-
-    dt.each(function(i){
-
-        const name=cleanText($(this).text());
-
-        const value=cleanText($(dd[i]).text());
-
-        if(name&&value){
-
-            specificationMap.set(name,value);
-
-        }
-
-    });
-
-});
-
-/* ============================================================
-   EXPORT
-============================================================ */
-
-product.specification=[];
-
-for(const [name,value] of specificationMap){
-
-    product.specification.push({
-
-        name,
-
-        value
-
-    });
-
-}
-
-console.log("");
-
-console.log(
-
-    "SPECIFICATION COUNT :",
-
-    product.specification.length
-
-);
-
-/*****************************************************************
- END PART 6
-*****************************************************************/
-/*****************************************************************
- PART 7
- FEATURES PARSER
-*****************************************************************/
-
-/* ============================================================
-   FIND FEATURES
-============================================================ */
-
-const featureKeywords=[
-
-    "tính năng",
-
-    "đặc điểm",
-
-    "ưu điểm",
-
-    "features",
-
-    "feature",
-
-    "advantages"
-
-];
-
-product.features=[];
-
-$("h1,h2,h3,h4,h5,h6").each(function(){
-
-    const heading=cleanText($(this).text()).toLowerCase();
-
-    const matched=featureKeywords.some(
-
-        keyword=>heading.includes(keyword)
-
-    );
-
-    if(!matched) return;
-
-    let container=$(this).next();
-
-    if(!container.length){
-
-        container=$(this).parent();
-
-    }
-
-    container.find("li").each(function(){
-
-        const text=cleanText($(this).text());
-
-        if(
-
-            text &&
-
-            text.length>5 &&
-
-            text.length<500
-
-        ){
-
-            product.features.push(text);
-
-        }
-
-    });
-
-});
-
-product.features=uniqueArray(product.features);
-
-console.log("");
-
-console.log(
-
-    "FEATURES COUNT :",
-
-    product.features.length
-
-);
-
-/*****************************************************************
- END PART 7
-*****************************************************************/
-/*****************************************************************
- PART 8
- APPLICATIONS PARSER
-*****************************************************************/
-
-/* ============================================================
-   FIND APPLICATIONS
-============================================================ */
-
-const applicationKeywords = [
-
-    "ứng dụng",
-
-    "application",
-
-    "applications",
-
-    "lĩnh vực",
-
-    "sử dụng",
-
-    "use"
-
-];
-
-product.applications = [];
-
-$("h1,h2,h3,h4,h5,h6").each(function(){
-
-    const heading = cleanText(
-
-        $(this).text()
-
-    ).toLowerCase();
-
-    const matched = applicationKeywords.some(
-
-        keyword => heading.includes(keyword)
-
-    );
-
-    if(!matched) return;
-
-    let container = $(this).next();
-
-    if(!container.length){
-
-        container = $(this).parent();
-
-    }
-
-    container.find("li").each(function(){
-
-        const text = cleanText(
-
-            $(this).text()
-
-        );
-
-        if(
-
-            text &&
-
-            text.length > 5 &&
-
-            text.length < 500
-
-        ){
-
-            product.applications.push(text);
-
-        }
-
-    });
-
-});
-
-product.applications = uniqueArray(
-
-    product.applications
-
-);
-
-console.log("");
-
-console.log(
-
-    "APPLICATIONS COUNT :",
-
-    product.applications.length
-
-);
-
-/*****************************************************************
- END PART 8
-*****************************************************************/
-/*****************************************************************
- PART 9
- ACCESSORIES PARSER
-*****************************************************************/
-
-/* ============================================================
-   FIND ACCESSORIES
-============================================================ */
-
-const accessoryKeywords=[
-
-    "phụ kiện",
-
-    "accessory",
-
-    "accessories",
-
-    "đi kèm",
-
-    "included"
-
-];
-
-product.accessories=[];
-
-$("h1,h2,h3,h4,h5,h6").each(function(){
-
-    const heading=cleanText(
-
-        $(this).text()
-
-    ).toLowerCase();
-
-    const matched=accessoryKeywords.some(
-
-        keyword=>heading.includes(keyword)
-
-    );
-
-    if(!matched) return;
-
-    let container=$(this).next();
-
-    if(!container.length){
-
-        container=$(this).parent();
-
-    }
-
-    container.find("li").each(function(){
-
-        const text=cleanText(
-
-            $(this).text()
-
-        );
-
-        if(
-
-            text &&
-
-            text.length>5 &&
-
-            text.length<500
-
-        ){
-
-            product.accessories.push(text);
-
-        }
-
-    });
-
-});
-
-product.accessories=uniqueArray(
-
-    product.accessories
-
-);
-
-console.log("");
-
-console.log(
-
-    "ACCESSORIES COUNT :",
-
-    product.accessories.length
-
-);
-
-/*****************************************************************
- END PART 9
-*****************************************************************/
-/*****************************************************************
- PART 10
- SMART IMAGE PARSER V2
-*****************************************************************/
-
-/* ============================================================
-   FIND PRODUCT IMAGES
-============================================================ */
-
-product.images = [];
-
-$("img").each(function(){
-
-    let src =
-
-        $(this).attr("src") ||
-
-        $(this).attr("data-src") ||
-
-        $(this).attr("data-original") ||
-
-        $(this).attr("data-lazy-src");
-
-    if(!src) return;
-
-    src = src.trim();
-
-    if(src.startsWith("data:")) return;
-
-    const lower = src.toLowerCase();
-
-    /* ==========================================
-       LOẠI BỎ ẢNH KHÔNG PHẢI SẢN PHẨM
-    ========================================== */
-
-    const invalid = [
-
-        "logo",
-
-        "icon",
-
-        "banner",
-
-        "favicon",
-
-        "loading",
-
-        "spinner",
-
-        "facebook",
-
-        "youtube",
-
-        "zalo",
-
-        "messenger",
-
-        "instagram",
-
-        "iso",
-
-        "certificate",
-
-        "chungchi",
-
-        "footer",
-
-        "header",
-
-        "menu",
-
-        "find-store",
-
-        "qr",
-
-        "avatar"
-
-    ];
-
-    if(
-
-        invalid.some(
-
-            item => lower.includes(item)
-
-        )
-
-    ){
-
-        return;
-
-    }
-
-    /* ==========================================
-       CHỈ NHẬN FILE ẢNH
-    ========================================== */
-
-    if(
-
-        !/\.(jpg|jpeg|png|webp)/i.test(lower)
-
-    ){
-
-        return;
-
-    }
-
-    product.images.push(src);
-
-});
-
-/* ==========================================
-   REMOVE DUPLICATE
-========================================== */
-
-product.images = uniqueArray(product.images);
-
-/* ==========================================
-   ƯU TIÊN ẢNH GỐC
-========================================== */
-
-product.images = product.images.filter(function(image){
-
-    if(
-
-        image.includes("-300x300") ||
-
-        image.includes("-150x150") ||
-
-        image.includes("-100x100") ||
-
-        image.includes("thumbnail")
-
-    ){
-
-        const original = image
-
-            .replace(/-300x300/i,"")
-
-            .replace(/-150x150/i,"")
-
-            .replace(/-100x100/i,"");
-
-        return !product.images.includes(original);
-    }
-
-    return true;
-
-});
-
-/* ==========================================
-   CHỈ GIỮ 10 ẢNH
-========================================== */
-
-product.images = product.images.slice(0,10);
-
-console.log("");
-
-console.log(
-
-    "IMAGE COUNT :",
-
-    product.images.length
-
-);
-
-/*****************************************************************
- END PART 10
-*****************************************************************/
-/*****************************************************************
- PART 11
- FINALIZE & RETURN
-*****************************************************************/
-
-/* ============================================================
-   BUILD TECHNICAL OBJECT
-============================================================ */
-
-product.technical = {
-
-    table:{
-
-        headers:[
-
-            "Thông số",
-
-            "Giá trị"
-
-        ],
-
-        rows: product.specification.map(item=>([
-
-            item.name,
-
-            item.value
-
-        ]))
-
-    },
-
-    specifications: product.specification,
-
-    features: product.features,
-
-    applications: product.applications,
-
-    accessories: product.accessories
-
-};
-
-/* ============================================================
-   BUILD MEDIA OBJECT
-============================================================ */
-
-product.media={
-
-    images:product.images,
-
-    pdf:"",
-
-    video:""
-
-};
-
-/* ============================================================
-   REMOVE TEMP DATA
-============================================================ */
-
-delete product.specification;
-
-delete product.features;
-
-delete product.applications;
-
-delete product.accessories;
-
-delete product.images;
-
-/* ============================================================
-   AI INFO
-============================================================ */
-
-product.ai={
-
-    imported:true,
-
-    importedAt:new Date().toISOString()
-
-};
-
-/* ============================================================
-   LOG RESULT
-============================================================ */
-
-console.log("");
-
-console.log("========== PARSER RESULT ==========");
-
-console.log(product);
-
-console.log("===================================");
-
-/* ============================================================
-   RETURN
-============================================================ */
-
-return product;
-
-}
-
-/* ==========================================
-   EMPTY PRODUCT
-========================================== */
-
-function createEmptyProduct(){
-
-    return{
-
-        name:"",
-
-        model:"",
-
-        brand:"",
-
-        origin:"",
-
-        category:"",
-
-        folder:"",
-
-        slug:"",
-
-        description:"",
-
-        specification:[],
-
-        features:[],
-
-        applications:[],
-
-        accessories:[],
-
-        images:[]
-
-    };
-
-}
-
-/*****************************************************************
- THE END
- product-parser.service.js
- VERSION 3.0
-*****************************************************************/
