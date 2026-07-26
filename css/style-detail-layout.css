@@ -748,10 +748,9 @@
 
 
 /* =====================================================
-   15. FOOTER FIX
-   FOOTER LUÔN FULL WIDTH
+   FOOTER FULL WIDTH FIX
+   KHÔNG THUỘC DETAIL GRID
 ===================================================== */
-
 
 footer.footer{
 
@@ -761,9 +760,11 @@ footer.footer{
 
     position:relative;
 
-    left:0;
+    display:block;
 
     margin-left:0;
+
+    left:auto;
 
 }
 
