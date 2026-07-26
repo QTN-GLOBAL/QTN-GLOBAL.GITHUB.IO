@@ -697,6 +697,90 @@
     display:none;
 
 }
+/* =====================================================
+   FIX SPEC COMBINE FULL WIDTH
+   KHÔNG CẮT BẢNG
+===================================================== */
+
+
+.spec-combine-box{
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+/* BẢNG THÔNG SỐ CHÍNH */
+
+#productTableSpecs{
+
+    width:100%;
+
+}
+
+
+
+#productTableSpecs table{
+
+    width:100%;
+
+    max-width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:auto;
+
+}
+
+
+
+#productTableSpecs th,
+#productTableSpecs td{
+
+    white-space:normal;
+
+    word-break:break-word;
+
+}
+
+
+
+/* TEXT PHÍA DƯỚI */
+
+#productTextSpecs{
+
+    width:100%;
+
+}
+
+
+
+.spec-text-grid{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .spec-text-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+}
 
 
 
