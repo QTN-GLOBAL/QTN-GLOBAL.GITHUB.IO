@@ -383,3 +383,223 @@ if(product){
 
 
 }
+/* =====================================================
+   PART 3:
+   RELATED PRODUCT CONVEYOR SLIDER
+
+   Chức năng:
+   - Sản phẩm cùng loại
+   - Chạy liên tục phải -> trái
+   - Hover dừng
+===================================================== */
+
+
+
+function renderRelatedProducts(){
+
+
+
+    if(!rawProduct) return;
+
+
+
+    const related = products.filter(p =>
+
+        p.category === rawProduct.category &&
+        p.id !== rawProduct.id
+
+    );
+
+
+
+    window.relatedProducts =
+    related;
+
+
+
+    const track =
+    document.getElementById("relatedProducts");
+
+
+
+    if(!track) return;
+
+
+
+    let html = "";
+
+
+
+    related.forEach(p=>{
+
+
+        const item =
+        getTranslatedProduct(p) || p;
+
+
+
+        html += `
+
+        <div class="related-card"
+             onclick="location.href='chitiet.html?id=${p.id}'">
+
+
+            <img src="images/${p.category}/${p.folder}/main.jpg">
+
+
+            <p>
+                ${item.name}
+            </p>
+
+
+        </div>
+
+
+        `;
+
+
+    });
+
+
+
+    // nhân đôi để chạy vô hạn
+
+    track.innerHTML =
+    html + html;
+
+
+
+    startRelatedSlider();
+
+
+}
+
+
+
+
+
+
+
+function startRelatedSlider(){
+
+
+
+    const track =
+    document.getElementById("relatedProducts");
+
+
+
+    if(!track) return;
+
+
+
+    let position = 0;
+
+
+
+    let speed = 0.5;
+
+
+
+    let running = true;
+
+
+
+    function move(){
+
+
+
+        if(running){
+
+
+
+            position -= speed;
+
+
+
+            const half =
+            track.scrollWidth / 2;
+
+
+
+            if(Math.abs(position) >= half){
+
+
+                position = 0;
+
+
+            }
+
+
+
+            track.style.transform =
+            `translateX(${position}px)`;
+
+
+        }
+
+
+
+        requestAnimationFrame(move);
+
+
+
+    }
+
+
+
+    move();
+
+
+
+
+    const windowBox =
+    document.querySelector(".related-slider-window");
+
+
+
+    if(windowBox){
+
+
+
+        windowBox.addEventListener(
+            "mouseenter",
+            ()=>{
+
+                running=false;
+
+            }
+        );
+
+
+
+        windowBox.addEventListener(
+            "mouseleave",
+            ()=>{
+
+                running=true;
+
+            }
+        );
+
+
+
+    }
+
+
+}
+
+
+
+
+
+
+// chạy sau khi load sản phẩm
+
+setTimeout(()=>{
+
+
+    renderRelatedProducts();
+
+
+},500);
