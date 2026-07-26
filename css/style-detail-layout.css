@@ -668,3 +668,48 @@ footer.footer{
     z-index:10;
 
 }
+/* =====================================================
+   PRODUCT TEXT SPECS ALIGNMENT
+   Căn chỉnh thông số kỹ thuật bên dưới
+===================================================== */
+
+
+.product-text-specs{
+
+    margin-top:10px;
+
+    text-align:left;
+
+    padding:20px 25px;
+
+}
+
+
+
+.product-text-specs h3{
+
+    text-align:center;
+
+    width:100%;
+
+    color:#1565c0;
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.product-text-specs p{
+
+    text-align:left;
+
+    padding-left:5px;
+
+    margin:8px 0;
+
+    line-height:1.8;
+
+}
