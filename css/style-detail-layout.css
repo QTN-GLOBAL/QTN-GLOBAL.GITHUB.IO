@@ -707,3 +707,63 @@ footer.footer{
     line-height:1.8;
 
 }
+/* =====================================================
+   PRODUCT INFORMATION TABS
+===================================================== */
+
+.product-tabs{
+    grid-column:1 / 3;
+    width:100%;
+    margin-top:20px;
+}
+
+
+/* TAB BUTTON */
+
+.tab-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+
+/* TAB CONTENT */
+
+.tab-content{
+    display:none;
+    padding:25px;
+}
+
+
+.tab-content.active{
+    display:block;
+}
+
+
+/* =====================================================
+   SPECIFICATION TAB
+===================================================== */
+
+.spec-layout{
+
+    display:grid;
+
+    grid-template-columns:45% 55%;
+
+    gap:30px;
+
+}
+
+
+/* BẢNG BÊN TRÁI */
+
+.spec-table-box{
+
+}
+
+
+/* TEXT BÊN PHẢI */
+
+.spec-text-box{
+
+}
