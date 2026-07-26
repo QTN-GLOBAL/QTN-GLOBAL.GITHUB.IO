@@ -479,3 +479,62 @@ footer.footer{
     display:none;
 
 }
+/* =====================================================
+   PRODUCT IMAGE SLIDER
+   SLIDER ẢNH CHÍNH
+===================================================== */
+
+.detail-left{
+    overflow:hidden;
+}
+
+
+#mainImage{
+
+    display:block;
+
+    width:100%;
+
+    max-width:420px;
+
+    height:320px;
+
+    object-fit:contain;
+
+}
+
+
+
+/* THUMBNAIL */
+
+#thumbList{
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:15px;
+
+    overflow:hidden;
+
+}
+
+
+
+#thumbList img{
+
+    flex:none;
+
+    width:75px;
+
+    height:75px;
+
+    object-fit:contain;
+
+}
