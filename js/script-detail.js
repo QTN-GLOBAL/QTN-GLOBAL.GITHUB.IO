@@ -889,3 +889,98 @@ function openProductTab(event, tabId){
 
 
 }
+/* =====================================================
+   PART 6:
+   PRODUCT MANUAL PDF
+
+   Hiển thị file hướng dẫn sử dụng
+===================================================== */
+
+
+function renderProductManual(){
+
+
+    const box =
+    document.getElementById("productManual");
+
+
+
+    if(!box){
+
+        return;
+
+    }
+
+
+
+    if(!product.manual){
+
+
+        box.innerHTML = "";
+
+
+        return;
+
+    }
+
+
+
+
+    box.innerHTML = `
+
+
+    <div class="manual-box">
+
+
+        <h3>
+            HƯỚNG DẪN SỬ DỤNG
+        </h3>
+
+
+
+        <p>
+            Tài liệu hướng dẫn sử dụng sản phẩm:
+        </p>
+
+
+
+        <a class="btn-manual"
+           href="${product.manual}"
+           target="_blank">
+
+
+            📄 XEM HƯỚNG DẪN PDF
+
+
+        </a>
+
+
+
+        <a class="btn-manual download"
+           href="${product.manual}"
+           download>
+
+
+            ⬇ TẢI FILE PDF
+
+
+        </a>
+
+
+    </div>
+
+
+    `;
+
+
+}
+
+
+
+setTimeout(()=>{
+
+
+    renderProductManual();
+
+
+},800);
