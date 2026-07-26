@@ -125,3 +125,200 @@ if(product){
 
 
 }
+/* =====================================================
+   PART 2:
+   PRODUCT IMAGE SLIDER
+
+   Chức năng:
+   - Ảnh chính
+   - Thumbnail
+   - Click đổi ảnh
+===================================================== */
+
+
+
+if(product){
+
+
+
+    // =================================================
+    // TẠO DANH SÁCH ẢNH
+    // =================================================
+
+
+    const imageList = [];
+
+
+    for(let i = 1; i <= 5; i++){
+
+
+        imageList.push(
+
+            `images/${product.category}/${product.folder}/${i}.jpg`
+
+        );
+
+
+    }
+
+
+
+
+
+    // =================================================
+    // HIỂN THỊ ẢNH CHÍNH
+    // =================================================
+
+
+    const mainImage =
+    document.getElementById("mainImage");
+
+
+
+    if(mainImage){
+
+
+        mainImage.src =
+        imageList[0];
+
+
+    }
+
+
+
+
+
+
+    // =================================================
+    // TẠO THUMBNAIL
+    // =================================================
+
+
+    const thumbList =
+    document.getElementById("thumbList");
+
+
+
+    if(thumbList){
+
+
+
+        let html = "";
+
+
+
+        imageList.forEach((img,index)=>{
+
+
+
+            html += `
+
+            <img 
+                src="${img}"
+                data-index="${index}"
+                onclick="changeDetailImage(${index})"
+                onerror="this.style.display='none'"
+            >
+
+            `;
+
+
+        });
+
+
+
+        thumbList.innerHTML =
+        html;
+
+
+    }
+
+
+
+
+
+    // =================================================
+    // ĐỔI ẢNH KHI CLICK
+    // =================================================
+
+
+    window.changeDetailImage =
+    function(index){
+
+
+
+        if(mainImage){
+
+
+            mainImage.src =
+            imageList[index];
+
+
+        }
+
+
+
+        document
+        .querySelectorAll("#thumbList img")
+        .forEach(img=>{
+
+
+            img.classList.remove("active");
+
+
+        });
+
+
+
+
+        const active =
+        document.querySelector(
+            '#thumbList img[data-index="' + index + '"]'
+        );
+
+
+
+        if(active){
+
+
+            active.classList.add("active");
+
+
+        }
+
+
+    };
+
+
+
+
+
+
+    // =================================================
+    // ACTIVE ẢNH ĐẦU TIÊN
+    // =================================================
+
+
+    setTimeout(()=>{
+
+
+        const first =
+        document.querySelector("#thumbList img");
+
+
+
+        if(first){
+
+
+            first.classList.add("active");
+
+
+        }
+
+
+
+    },100);
+
+
+
+}
