@@ -585,39 +585,28 @@
 }
 /* =====================================================
    11. SPECIFICATION TAB
-   BẢNG TRÁI - TEXT PHẢI
+   BẢNG + TEXT CHUNG 1 KHỐI
 ===================================================== */
 
 
-.spec-layout{
+/* KHUNG CHUNG */
 
-    display:grid;
+.spec-combine-box{
 
-    grid-template-columns:50% 50%;
+    width:100%;
 
-    gap:25px;
-
-    align-items:start;
+    background:#fff;
 
 }
 
 
 
 /* =====================================================
-   12. SPEC TABLE
    BẢNG THÔNG SỐ
 ===================================================== */
 
 
-.spec-table-box{
-
-    width:100%;
-
-}
-
-
-
-.spec-table-box table{
+.spec-combine-box table{
 
     width:100%;
 
@@ -629,7 +618,7 @@
 
 
 
-.spec-table-box th{
+.spec-combine-box th{
 
     background:#1565c0;
 
@@ -639,51 +628,71 @@
 
     border:1px solid #ddd;
 
+    text-align:center;
+
 }
 
 
 
-.spec-table-box td{
+.spec-combine-box td{
 
     padding:12px;
 
     border:1px solid #ddd;
 
+    vertical-align:top;
+
 }
-
-
 
 
 
 /* =====================================================
-   13. SPEC TEXT
-   THÔNG SỐ DẠNG DÒNG
+   PHẦN TEXT THÔNG SỐ
+   CHIA 2 CỘT TRONG CÙNG BẢNG
 ===================================================== */
 
 
-.spec-text-box{
+#productTextSpecs{
 
     width:100%;
 
-    padding-left:15px;
+    margin-top:0;
 
 }
 
 
 
-.spec-text-box p{
+.spec-text-grid{
 
-    margin:8px 0;
+    display:grid;
 
-    line-height:1.8;
+    grid-template-columns:1fr 1fr;
+
+    width:100%;
 
 }
 
 
 
-/* XÓA TIÊU ĐỀ TRÙNG */
+.spec-text-grid p{
 
-.spec-text-box h3{
+    margin:0;
+
+    padding:10px 15px;
+
+    border:1px solid #ddd;
+
+    line-height:1.7;
+
+    min-height:45px;
+
+}
+
+
+
+/* ẨN TIÊU ĐỀ CŨ */
+
+#productTextSpecs h3{
 
     display:none;
 

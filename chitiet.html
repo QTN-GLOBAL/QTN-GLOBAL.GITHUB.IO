@@ -589,36 +589,14 @@ onclick="runSearch()">
 
 
 
-            <div class="spec-layout">
+            <div class="spec-combine-box">
+
+    <div id="productTableSpecs"></div>
 
 
-                <!-- BẢNG BÊN TRÁI -->
+    <div id="productTextSpecs"></div>
 
-                <div class="spec-table-box">
-
-
-                    <div id="productTableSpecs"></div>
-
-
-                </div>
-
-
-
-
-
-                <!-- TEXT BÊN PHẢI -->
-
-                <div class="spec-text-box">
-
-
-                    <div id="productTextSpecs"></div>
-
-
-                </div>
-
-
-
-            </div>
+</div>
 
 
         </div>
@@ -1265,9 +1243,48 @@ document.getElementById("productTableSpecs").innerHTML =
 tableSpecs;
 
 
+let textArray = [];
+
+product.specs.forEach(spec => {
+
+    if(!spec.includes("<table")){
+
+        textArray.push(
+            "✓ " + spec
+        );
+
+    }
+
+});
+
+
+let textHTML = `
+
+<div class="spec-text-grid">
+
+`;
+
+
+textArray.forEach(item => {
+
+    textHTML += `
+
+        <p>${item}</p>
+
+    `;
+
+});
+
+
+textHTML += `
+
+</div>
+
+`;
+
 
 document.getElementById("productTextSpecs").innerHTML =
-textSpecs;
+textHTML;
 
 
 
