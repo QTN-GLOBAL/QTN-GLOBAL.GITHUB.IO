@@ -1111,6 +1111,15 @@ setTimeout(() => {
 function openProductTab(event, tabId){
 
 
+    const currentTab =
+    document.getElementById(tabId);
+
+
+    const isOpen =
+    currentTab.classList.contains("active");
+
+
+    // đóng tất cả tab
     document
     .querySelectorAll(".tab-content")
     .forEach(tab=>{
@@ -1129,13 +1138,17 @@ function openProductTab(event, tabId){
     });
 
 
-    document
-    .getElementById(tabId)
-    .classList.add("active");
 
+    // nếu trước đó chưa mở thì mở
+    if(!isOpen){
 
-    event.currentTarget
-    .classList.add("active");
+        currentTab.classList.add("active");
+
+        event.currentTarget
+        .classList.add("active");
+
+    }
+
 
 }
 document.getElementById("languageSelect").addEventListener("change", (e) => {
