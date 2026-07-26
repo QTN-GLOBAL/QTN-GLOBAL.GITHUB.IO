@@ -398,7 +398,11 @@ onclick="runSearch()">
 <div class="detail-content">
 
 
-    <!-- LEFT -->
+    <!-- =========================
+         LEFT COLUMN
+         ẢNH + NÚT MUA
+    ========================== -->
+
     <div class="detail-left">
 
 
@@ -408,10 +412,12 @@ onclick="runSearch()">
         <div id="thumbList"></div>
 
 
+
         <div class="detail-buttons">
 
 
-            <button class="btn-addcart" onclick="openAddCartPopup()">
+            <button class="btn-addcart"
+                    onclick="openAddCartPopup()">
 
                 <i class="fa fa-cart-shopping"></i>
 
@@ -421,7 +427,8 @@ onclick="runSearch()">
 
 
 
-            <button class="btn-buynow" onclick="openBuyPopup()">
+            <button class="btn-buynow"
+                    onclick="openBuyPopup()">
 
                 <i class="fa fa-bolt"></i>
 
@@ -433,37 +440,23 @@ onclick="runSearch()">
         </div>
 
 
-
-        <!-- SẢN PHẨM CÙNG LOẠI -->
-        <div class="related-products">
-
-
-            <h3 data-i18n="relatedProductsTitle">
-
-                Sản phẩm cùng loại
-
-            </h3>
-
-
-            <div id="relatedProducts"
-                 class="related-grid">
-            </div>
-
-
-        </div>
-
-
     </div>
 
 
 
 
 
-    <!-- RIGHT -->
+    <!-- =========================
+         RIGHT COLUMN
+         THÔNG TIN SẢN PHẨM
+    ========================== -->
+
+
     <div class="detail-right">
 
 
         <h1 id="productName"></h1>
+
 
 
         <p>
@@ -475,6 +468,7 @@ onclick="runSearch()">
             <span id="productBrand"></span>
 
         </p>
+
 
 
 
@@ -490,6 +484,7 @@ onclick="runSearch()">
 
 
 
+
         <h3 data-i18n="descTitle">
             Mô tả
         </h3>
@@ -498,21 +493,53 @@ onclick="runSearch()">
         <p id="productDesc"></p>
 
 
+
     </div>
 
 
 
 
-    <!-- =====================================================
-         PRODUCT INFORMATION TABS
-         NẰM DƯỚI CẢ 2 CỘT
-    ====================================================== -->
+
+    <!-- =========================
+         RELATED PRODUCTS
+         SẢN PHẨM CÙNG LOẠI
+         FULL 2 CỘT
+    ========================== -->
+
+
+    <div class="related-products">
+
+
+        <h3 data-i18n="relatedProductsTitle">
+
+            Sản phẩm cùng loại
+
+        </h3>
+
+
+
+        <div id="relatedProducts"
+             class="related-grid">
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- =========================
+         PRODUCT TABS
+         THÔNG SỐ - TÙY CHỌN - HƯỚNG DẪN
+         FULL 2 CỘT
+    ========================== -->
 
 
     <div class="product-tabs">
 
 
-        <!-- TAB BUTTON -->
 
         <div class="tab-buttons">
 
@@ -525,11 +552,13 @@ onclick="runSearch()">
             </button>
 
 
+
             <button onclick="openProductTab(event,'optionTab')">
 
                 TÙY CHỌN
 
             </button>
+
 
 
             <button onclick="openProductTab(event,'guideTab')">
@@ -545,16 +574,18 @@ onclick="runSearch()">
 
 
 
-        <!-- TAB 1 -->
+        <!-- TAB THÔNG SỐ -->
+
         <div id="specTab"
              class="tab-content active">
+
 
 
             <div class="spec-layout">
 
 
 
-                <!-- BẢNG BÊN TRÁI -->
+                <!-- BẢNG -->
 
                 <div class="spec-table-box">
 
@@ -568,7 +599,7 @@ onclick="runSearch()">
 
 
 
-                <!-- TEXT BÊN PHẢI -->
+                <!-- TEXT -->
 
                 <div class="spec-text-box">
 
@@ -589,7 +620,7 @@ onclick="runSearch()">
 
 
 
-        <!-- TAB 2 -->
+        <!-- TAB TÙY CHỌN -->
 
         <div id="optionTab"
              class="tab-content">
@@ -601,7 +632,7 @@ onclick="runSearch()">
 
 
             <p>
-                Nội dung tùy chọn sẽ cập nhật sau.
+                Nội dung tùy chọn cập nhật sau.
             </p>
 
 
@@ -611,7 +642,7 @@ onclick="runSearch()">
 
 
 
-        <!-- TAB 3 -->
+        <!-- TAB HƯỚNG DẪN -->
 
         <div id="guideTab"
              class="tab-content">
@@ -623,7 +654,7 @@ onclick="runSearch()">
 
 
             <p>
-                Nội dung hướng dẫn sử dụng sẽ cập nhật sau.
+                Nội dung hướng dẫn cập nhật sau.
             </p>
 
 
@@ -634,11 +665,9 @@ onclick="runSearch()">
     </div>
 
 
+
 </div>
 <!-- đóng detail-content -->
-
-
-<!-- đóng detail-page -->
 
 <!-- POPUP ADD CART -->
 <div id="addCartPopup" class="popup-overlay" style="display:none">
