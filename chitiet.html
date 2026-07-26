@@ -852,19 +852,11 @@ function renderRelatedSlider(){
     if(!container) return;
 
 
-    if(!window.relatedProducts ||
-       window.relatedProducts.length === 0){
+    let html="";
 
-        container.innerHTML =
-        "<p>Không có sản phẩm cùng loại</p>";
-
-        return;
-    }
-
-
-    let html = "";
 
     window.relatedProducts.forEach(p=>{
+
 
         const product =
             getTranslatedProduct(p) || p;
@@ -875,38 +867,68 @@ function renderRelatedSlider(){
         <div class="related-card"
              onclick="location.href='chitiet.html?id=${p.id}'">
 
+
             <img src="images/${p.category}/${p.folder}/main.jpg">
 
+
             <p>${product.name}</p>
+
 
         </div>
 
         `;
 
+
     });
 
 
-    container.innerHTML =
-    `
-    <div class="related-track">
-        ${html}
-    </div>
-    `;
+    container.innerHTML = html;
 
 }
-function moveRelated(step){
+function autoRelatedSlider(){
 
-    if(!window.relatedProducts) return;
 
-    const total =
-        window.relatedProducts.length;
+    const track =
+        document.getElementById("relatedProducts");
 
-    if(total <= 4) return;
 
-    window.relatedIndex =
-        (window.relatedIndex + step + total) % total;
+    if(!track) return;
 
-    renderRelatedSlider();
+
+    let index=0;
+
+
+    setInterval(()=>{
+
+
+        const card =
+            track.querySelector(".related-card");
+
+
+        if(!card) return;
+
+
+        index++;
+
+
+        if(index >
+           window.relatedProducts.length-4){
+
+            index=0;
+
+        }
+
+
+        const move =
+            card.offsetWidth + 12;
+
+
+        track.style.transform =
+            `translateX(-${index * move}px)`;
+
+
+    },3000);
+
 }
 
 function applyI18nDetail() {
