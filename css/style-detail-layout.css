@@ -290,18 +290,6 @@
 
 
 /* =====================================================
-   FOOTER FIX
-===================================================== */
-
-
-footer.footer{
-
-    width:100%;
-
-    clear:both;
-
-}
-/* =====================================================
    PRODUCT DETAIL TAB AREA
    TAB NẰM DƯỚI CẢ 2 CỘT
 ===================================================== */
@@ -607,5 +595,37 @@ footer.footer{
     font-size:13px;
 
     line-height:1.4;
+
+}
+/* =====================================================
+   FOOTER FULL WIDTH FIX
+   KHÔNG BỊ ẢNH HƯỞNG BỞI SIDEBAR
+===================================================== */
+
+footer.footer{
+
+    width:100%;
+
+    clear:both;
+
+    position:relative;
+
+    left:0;
+
+    margin-left:0;
+
+    grid-column:1 / -1;
+
+}
+/* =====================================================
+   DETAIL PAGE FOOTER RESET
+===================================================== */
+
+.detail-page + .footer,
+.detail-page ~ .footer{
+
+    width:100%;
+
+    margin-left:0;
 
 }
