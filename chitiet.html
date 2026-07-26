@@ -1204,115 +1204,117 @@ first.classList.add("active");
 ===================================================== */
 
 
-let tableSpecs="";
-let textSpecs="";
+let tableSpecs = "";
+let textArray = [];
 
 
-
-product.specs.forEach(spec=>{
-
-
-if(spec.includes("<table")){
+product.specs.forEach(spec => {
 
 
-tableSpecs += spec;
+    if(spec.includes("<table")){
+
+        tableSpecs = spec;
 
 
-}
-else{
+    }else{
 
 
-textSpecs +=`
+        textArray.push(
+            "✓ " + spec
+        );
 
-<p>
-✓ ${spec}
-</p>
 
-`;
-
-}
-
+    }
 
 
 });
 
 
 
+/* LẤY NỘI DUNG TRONG BẢNG CŨ */
 
-let combineHTML = "";
-
-
-/* BẢNG THÔNG SỐ */
-
-combineHTML += tableSpecs;
+let tableBody = "";
 
 
-
-/* TEXT THÔNG SỐ */
-
-if(textSpecs){
-
-    const specsArray =
-        textSpecs
-        .split("</p>")
-        .filter(x=>x.trim()!="");
+const temp =
+document.createElement("div");
 
 
-    combineHTML += `
-
-    <table class="spec-full-table">
-
-        <tbody>
-
-    `;
+temp.innerHTML = tableSpecs;
 
 
-    for(let i=0;i<specsArray.length;i+=2){
+const oldTable =
+temp.querySelector("table");
 
 
-        combineHTML += `
 
-        <tr>
+if(oldTable){
 
-
-            <td>
-                ${specsArray[i]}
-            </td>
-
-
-            <td>
-                ${specsArray[i+1] || ""}
-            </td>
-
-
-        </tr>
-
-        `;
-
-
-    }
-
-
-    combineHTML += `
-
-        </tbody>
-
-    </table>
-
-    `;
-
+    tableBody =
+    oldTable.innerHTML;
 
 }
 
 
 
+/* TẠO BẢNG DUY NHẤT */
+
+let finalTable = `
+
+<table class="spec-main-table">
+
+${tableBody}
+
+
+<tbody>
+
+`;
+
+
+
+for(let i=0;i<textArray.length;i+=2){
+
+
+finalTable += `
+
+<tr>
+
+<td>
+${textArray[i] || ""}
+</td>
+
+<td>
+${textArray[i+1] || ""}
+</td>
+
+</tr>
+
+`;
+
+
+}
+
+
+finalTable += `
+
+</tbody>
+
+</table>
+
+`;
+
+
+
 document.getElementById("productTableSpecs").innerHTML =
-combineHTML;
+finalTable;
 
 
 
 document.getElementById("productTextSpecs").innerHTML =
 "";
+
+
+
 
 
 document.getElementById("productTextSpecs").innerHTML =
