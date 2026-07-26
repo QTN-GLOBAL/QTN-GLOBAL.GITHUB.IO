@@ -1239,48 +1239,80 @@ textSpecs +=`
 
 
 
-document.getElementById("productTableSpecs").innerHTML =
-tableSpecs;
+let combineHTML = "";
 
 
-let textArray = [];
+/* BẢNG THÔNG SỐ */
 
-product.specs.forEach(spec => {
-
-    if(!spec.includes("<table")){
-
-        textArray.push(
-            "✓ " + spec
-        );
-
-    }
-
-});
+combineHTML += tableSpecs;
 
 
-let textHTML = `
 
-<div class="spec-text-grid">
+/* TEXT THÔNG SỐ */
 
-`;
+if(textSpecs){
+
+    const specsArray =
+        textSpecs
+        .split("</p>")
+        .filter(x=>x.trim()!="");
 
 
-textArray.forEach(item => {
+    combineHTML += `
 
-    textHTML += `
+    <table class="spec-full-table">
 
-        <p>${item}</p>
+        <tbody>
 
     `;
 
-});
+
+    for(let i=0;i<specsArray.length;i+=2){
 
 
-textHTML += `
+        combineHTML += `
 
-</div>
+        <tr>
 
-`;
+
+            <td>
+                ${specsArray[i]}
+            </td>
+
+
+            <td>
+                ${specsArray[i+1] || ""}
+            </td>
+
+
+        </tr>
+
+        `;
+
+
+    }
+
+
+    combineHTML += `
+
+        </tbody>
+
+    </table>
+
+    `;
+
+
+}
+
+
+
+document.getElementById("productTableSpecs").innerHTML =
+combineHTML;
+
+
+
+document.getElementById("productTextSpecs").innerHTML =
+"";
 
 
 document.getElementById("productTextSpecs").innerHTML =

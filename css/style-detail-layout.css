@@ -702,68 +702,82 @@
    KHÔNG CẮT BẢNG
 ===================================================== */
 
+/* =====================================================
+   BẢNG THÔNG SỐ CHUNG
+===================================================== */
+
 
 .spec-combine-box{
 
     width:100%;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
 
     overflow:hidden;
 
 }
 
 
-/* BẢNG THÔNG SỐ CHÍNH */
 
-#productTableSpecs{
-
-    width:100%;
-
-}
-
-
-
-#productTableSpecs table{
+.spec-combine-box table{
 
     width:100%;
-
-    max-width:100%;
 
     border-collapse:collapse;
 
-    table-layout:auto;
+    font-size:15px;
 
 }
 
 
 
-#productTableSpecs th,
-#productTableSpecs td{
+.spec-combine-box th{
 
-    white-space:normal;
+    background:#1565c0;
 
-    word-break:break-word;
+    color:white;
 
-}
+    padding:12px;
 
+    border:1px solid #ddd;
 
-
-/* TEXT PHÍA DƯỚI */
-
-#productTextSpecs{
-
-    width:100%;
+    text-align:center;
 
 }
 
 
 
-.spec-text-grid{
+.spec-combine-box td{
 
-    width:100%;
+    padding:12px;
 
-    display:grid;
+    border:1px solid #ddd;
 
-    grid-template-columns:1fr 1fr;
+    vertical-align:top;
+
+    line-height:1.6;
+
+}
+
+
+
+/* BẢNG TEXT NỐI TIẾP */
+
+.spec-full-table td{
+
+    width:50%;
+
+}
+
+
+
+/* bỏ tiêu đề cũ */
+
+#productTextSpecs h3{
+
+    display:none;
 
 }
 
