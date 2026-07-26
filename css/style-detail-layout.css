@@ -1,14 +1,16 @@
 /* =====================================================
    QTN GLOBAL
    PRODUCT DETAIL LAYOUT
-   VERSION CLEAN 2.0
+   VERSION CLEAN 3.0
 ===================================================== */
 
 
 /* =====================================================
-   PAGE LAYOUT
-   SIDEBAR + CONTENT
+   01. PAGE LAYOUT
+   KHUNG TỔNG:
+   SIDEBAR + DETAIL CONTENT
 ===================================================== */
+
 
 .detail-page{
 
@@ -22,12 +24,17 @@
 
     align-items:start;
 
+    overflow:visible;
+
 }
 
 
+
 /* =====================================================
-   SIDEBAR
+   02. SIDEBAR
+   DANH MỤC SẢN PHẨM BÊN TRÁI
 ===================================================== */
+
 
 .sidebar{
 
@@ -37,20 +44,74 @@
 
     padding:18px;
 
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    box-shadow:
+    0 2px 10px rgba(0,0,0,.08);
 
     position:sticky;
 
     top:130px;
 
+    height:fit-content;
+
+    align-self:start;
+
 }
 
 
+
+.sidebar h2{
+
+    font-size:18px;
+
+    color:#1565c0;
+
+    margin:0 0 15px;
+
+}
+
+
+
+.sidebar ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+
+
+.sidebar li{
+
+    padding:10px 5px;
+
+    border-bottom:1px solid #eee;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+
+.sidebar li:hover{
+
+    color:#1565c0;
+
+    padding-left:10px;
+
+}
+
+
+
 /* =====================================================
-   DETAIL CONTENT
-   2 CỘT:
-   LEFT IMAGE
-   RIGHT INFO
+   03. DETAIL CONTENT
+   HAI CỘT:
+   LEFT  : HÌNH ẢNH
+   RIGHT : THÔNG TIN
 ===================================================== */
 
 
@@ -64,13 +125,19 @@
 
     width:100%;
 
+    min-width:0;
+
+    align-items:start;
+
 }
 
 
 
 /* =====================================================
-   LEFT COLUMN
+   04. LEFT COLUMN
+   ẢNH + NÚT MUA
 ===================================================== */
+
 
 .detail-left{
 
@@ -86,12 +153,156 @@
 
     align-items:center;
 
+    overflow:hidden;
+
 }
 
 
 
 /* =====================================================
-   RIGHT COLUMN
+   05. PRODUCT IMAGE
+   ẢNH CHÍNH
+===================================================== */
+
+
+#mainImage{
+
+    display:block;
+
+    width:100%;
+
+    max-width:420px;
+
+    height:320px;
+
+    object-fit:contain;
+
+    background:#fff;
+
+    border-radius:10px;
+
+}
+
+
+
+/* =====================================================
+   06. THUMBNAIL
+   ẢNH NHỎ
+===================================================== */
+
+
+#thumbList{
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:15px;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+
+#thumbList img{
+
+    flex:none;
+
+    width:75px;
+
+    height:75px;
+
+    object-fit:contain;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+
+#thumbList img:hover,
+#thumbList img.active{
+
+    border-color:#1565c0;
+
+}
+
+
+
+/* =====================================================
+   07. ACTION BUTTONS
+   THÊM GIỎ HÀNG + MUA NGAY
+===================================================== */
+
+
+.detail-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    width:100%;
+
+    margin-top:20px;
+
+}
+
+
+
+.btn-addcart,
+.btn-buynow{
+
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+
+
+.btn-addcart{
+
+    background:#1565c0;
+
+    color:#fff;
+
+}
+
+
+
+.btn-buynow{
+
+    background:#e53935;
+
+    color:#fff;
+
+}
+/* =====================================================
+   08. RIGHT COLUMN
+   THÔNG TIN SẢN PHẨM
 ===================================================== */
 
 
@@ -103,196 +314,193 @@
 
     padding:20px;
 
+    min-width:0;
+
 }
 
 
 
+.detail-right h1{
+
+    font-size:38px;
+
+    line-height:1.25;
+
+    color:#1565c0;
+
+    margin:0 0 20px;
+
+}
+
+
+
+.detail-right p{
+
+    line-height:1.7;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.detail-right h3{
+
+    color:#1565c0;
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+
 /* =====================================================
-   PRODUCT TABS
-   NẰM FULL 2 CỘT
+   09. RELATED PRODUCTS
+   SẢN PHẨM CÙNG LOẠI
+   FULL CHIỀU RỘNG CỘT 2 + 3
 ===================================================== */
 
 
-.product-tabs{
+.related-products{
 
-    grid-column:1 / 3;
+    grid-column:2;
 
     width:100%;
 
-    margin-top:20px;
+    overflow:hidden;
 
-    margin-bottom:40px;
+    margin-top:25px;
 
 }
 
 
 
-/* =====================================================
-   TAB MENU
-===================================================== */
+.related-products h3{
+
+    text-align:center;
+
+    color:#1565c0;
+
+    margin-bottom:15px;
+
+}
 
 
-.tab-buttons{
+
+
+
+/* KHUNG CẮT SLIDER */
+
+
+.related-slider-window{
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+
+
+
+/* THANH PHIM */
+
+
+.related-track{
 
     display:flex;
 
-    justify-content:center;
+    gap:15px;
 
-    gap:10px;
+    width:max-content;
 
-}
+    transition:transform .8s ease;
 
-
-.tab-buttons button{
-
-    padding:12px 25px;
-
-    border:none;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-weight:600;
-
-    background:#eee;
+    will-change:transform;
 
 }
 
 
 
-.tab-buttons button.active{
-
-    background:#1565c0;
-
-    color:white;
-
-}
 
 
-
-/* =====================================================
-   TAB CONTENT
-===================================================== */
+/* CARD SẢN PHẨM */
 
 
-.tab-content{
+.related-card{
 
-    display:none;
+    flex:0 0 220px;
 
     background:#fff;
 
-    border-radius:12px;
+    border:1px solid #eee;
 
-    padding:20px;
+    border-radius:10px;
 
-}
+    overflow:hidden;
 
+    cursor:pointer;
 
-
-.tab-content.active{
-
-    display:block;
+    transition:.3s;
 
 }
 
 
 
-/* =====================================================
-   SPECIFICATION TAB
-   TABLE + TEXT
-===================================================== */
+.related-card:hover{
 
+    transform:translateY(-3px);
 
-.spec-layout{
+    box-shadow:
 
-    display:grid;
-
-    grid-template-columns:45% 55%;
-
-    gap:30px;
-
-    align-items:start;
+    0 4px 12px rgba(0,0,0,.12);
 
 }
 
 
 
-/* =====================================================
-   TABLE BOX
-===================================================== */
-
-
-.spec-table-box{
+.related-card img{
 
     width:100%;
 
-}
+    height:130px;
 
+    object-fit:contain;
 
-
-.spec-table-box table{
-
-    width:100%;
-
-    border-collapse:collapse;
+    background:#fff;
 
 }
 
 
 
-.spec-table-box th{
+.related-card p{
 
-    background:#1565c0;
+    text-align:center;
 
-    color:white;
+    padding:10px;
 
-    padding:12px;
+    font-size:14px;
 
-    border:1px solid #ddd;
+    line-height:1.4;
 
-}
-
-
-
-.spec-table-box td{
-
-    padding:12px;
-
-    border:1px solid #ddd;
+    min-height:55px;
 
 }
+
+
 
 
 
 /* =====================================================
-   TEXT BOX
+   10. PRODUCT TABS
+   NẰM DƯỚI PHẦN SẢN PHẨM
 ===================================================== */
 
-
-.spec-text-box{
-
-    width:100%;
-
-    padding-left:20px;
-
-}
-
-
-
-.spec-text-box p{
-
-    line-height:1.8;
-
-    margin:8px 0;
-
-}
-
-
-/* =====================================================
-   PRODUCT DETAIL TAB AREA
-   TAB NẰM DƯỚI CẢ 2 CỘT
-===================================================== */
 
 .product-tabs{
 
@@ -300,15 +508,16 @@
 
     width:100%;
 
-    margin-top:20px;
+    margin-top:25px;
 
 }
 
 
 
-/* =====================================================
-   TAB BUTTON
-===================================================== */
+
+
+/* MENU TAB */
+
 
 .tab-buttons{
 
@@ -346,15 +555,16 @@
 
     background:#1565c0;
 
-    color:white;
+    color:#fff;
 
 }
 
 
 
-/* =====================================================
-   TAB CONTENT
-===================================================== */
+
+
+/* NỘI DUNG TAB */
+
 
 .tab-content{
 
@@ -375,11 +585,8 @@
     display:block;
 
 }
-
-
-
 /* =====================================================
-   SPECIFICATION TAB
+   11. SPECIFICATION TAB
    BẢNG TRÁI - TEXT PHẢI
 ===================================================== */
 
@@ -390,7 +597,7 @@
 
     grid-template-columns:50% 50%;
 
-    gap:20px;
+    gap:25px;
 
     align-items:start;
 
@@ -398,7 +605,11 @@
 
 
 
-/* BẢNG */
+/* =====================================================
+   12. SPEC TABLE
+   BẢNG THÔNG SỐ
+===================================================== */
+
 
 .spec-table-box{
 
@@ -414,6 +625,8 @@
 
     border-collapse:collapse;
 
+    font-size:15px;
+
 }
 
 
@@ -422,17 +635,9 @@
 
     background:#1565c0;
 
-    color:white;
+    color:#fff;
 
-    padding:10px;
-
-}
-
-
-
-.spec-table-box td{
-
-    padding:10px;
+    padding:12px;
 
     border:1px solid #ddd;
 
@@ -440,11 +645,29 @@
 
 
 
-/* TEXT */
+.spec-table-box td{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+}
+
+
+
+
+
+/* =====================================================
+   13. SPEC TEXT
+   THÔNG SỐ DẠNG DÒNG
+===================================================== */
+
 
 .spec-text-box{
 
     width:100%;
+
+    padding-left:15px;
 
 }
 
@@ -454,163 +677,83 @@
 
     margin:8px 0;
 
-    line-height:1.7;
+    line-height:1.8;
 
 }
 
 
 
-/* XÓA TIÊU ĐỀ THÔNG SỐ KỸ THUẬT BỊ LẶP */
+/* XÓA TIÊU ĐỀ TRÙNG */
 
 .spec-text-box h3{
 
     display:none;
 
 }
-/* =====================================================
-   PRODUCT IMAGE SLIDER
-   SLIDER ẢNH CHÍNH
-===================================================== */
-
-.detail-left{
-    overflow:hidden;
-}
-
-
-#mainImage{
-
-    display:block;
-
-    width:100%;
-
-    max-width:420px;
-
-    height:320px;
-
-    object-fit:contain;
-
-}
 
 
 
-/* THUMBNAIL */
 
-#thumbList{
-
-    display:flex;
-
-    flex-direction:row;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:12px;
-
-    margin-top:15px;
-
-    overflow:hidden;
-
-}
-
-
-
-#thumbList img{
-
-    flex:none;
-
-    width:75px;
-
-    height:75px;
-
-    object-fit:contain;
-
-}
-/* =====================================================
-   RELATED PRODUCT SLIDER
-   SẢN PHẨM CÙNG LOẠI HIỂN THỊ NGANG
-===================================================== */
 
 /* =====================================================
-   RELATED PRODUCT FILM SLIDER
+   14. AMWAY BUTTON
 ===================================================== */
 
-.related-grid{
+
+.amway-action-buttons{
 
     display:flex;
 
     gap:15px;
 
-    overflow:hidden;
+    flex-wrap:wrap;
 
-    width:100%;
-
-    scroll-behavior:smooth;
+    margin-top:20px;
 
 }
 
 
 
+.contact-btn,
+.amway-btn{
 
-
-
-/* từng sản phẩm */
-
-.related-card{
-
-    flex:0 0 calc(25% - 12px);
-
-    background:#fff;
-
-    border:1px solid #eee;
+    padding:12px 22px;
 
     border-radius:8px;
 
-    overflow:hidden;
+    color:#fff;
 
-    cursor:pointer;
+    text-decoration:none;
 
-    transition:.3s;
-
-}
-
-
-.related-card:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-    0 4px 12px rgba(0,0,0,.12);
+    font-weight:600;
 
 }
 
 
-.related-card img{
 
-    width:100%;
+.contact-btn{
 
-    height:120px;
-
-    object-fit:contain;
+    background:#2c7be5;
 
 }
 
 
-.related-card p{
 
-    text-align:center;
+.amway-btn{
 
-    padding:8px;
-
-    font-size:13px;
-
-    line-height:1.4;
+    background:#009933;
 
 }
+
+
+
+
+
 /* =====================================================
-   FOOTER FULL WIDTH FIX
-   KHÔNG BỊ ẢNH HƯỞNG BỞI SIDEBAR
+   15. FOOTER FIX
+   FOOTER LUÔN FULL WIDTH
 ===================================================== */
+
 
 footer.footer{
 
@@ -624,110 +767,110 @@ footer.footer{
 
     margin-left:0;
 
-    grid-column:1 / -1;
-
 }
+
+
+
+
+
 /* =====================================================
-   DETAIL PAGE FOOTER RESET
-===================================================== */
-
-.detail-page + .footer,
-.detail-page ~ .footer{
-
-    width:100%;
-
-    margin-left:0;
-
-}
-.tab-content{
-    display:none;
-}
-
-.tab-content.active{
-    display:block;
-}
-/* =====================================================
-   RELATED PRODUCT FILM SLIDER
-   SẢN PHẨM CÙNG LOẠI CUỘN NGANG
+   16. RESPONSIVE
+   MOBILE / TABLET
 ===================================================== */
 
 
-.related-products{
-
-    overflow:hidden;
-
-}
+@media(max-width:1100px){
 
 
-.related-grid{
+    .detail-page{
 
-    overflow:hidden;
+        grid-template-columns:1fr;
 
-}
-
-
-
-.related-track{
-
-    display:flex;
-
-    gap:12px;
-
-    width:max-content;
-
-    transition:transform .8s ease;
-
-}
+    }
 
 
+    .sidebar{
 
-.related-card{
+        position:relative;
 
-    flex:0 0 220px;
+        top:0;
 
-}
-
-
-
-.related-card img{
-
-    width:100%;
-
-    height:120px;
-
-    object-fit:contain;
-
-}
-/* =====================================================
-   RELATED PRODUCT SLIDER
-   CUỘN NGANG MƯỢT
-===================================================== */
+    }
 
 
-.related-slider-window{
+    .detail-content{
 
-    width:100%;
+        grid-template-columns:1fr;
 
-    overflow:hidden;
+    }
+
+
+    .product-tabs{
+
+        grid-column:1;
+
+    }
+
+
+    .related-products{
+
+        grid-column:1;
+
+    }
+
+
+    .spec-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
 
 }
 
 
 
-.related-track{
-
-    display:flex;
-
-    gap:12px;
-
-    transition:transform .6s ease;
-
-}
+@media(max-width:600px){
 
 
+    .detail-left,
+    .detail-right{
 
-.related-card{
+        padding:15px;
 
-    flex:0 0 calc(25% - 9px);
+    }
+
+
+
+    #mainImage{
+
+        height:260px;
+
+    }
+
+
+
+    .tab-buttons{
+
+        flex-direction:column;
+
+    }
+
+
+
+    .tab-buttons button{
+
+        width:100%;
+
+    }
+
+
+
+    .related-card{
+
+        flex-basis:180px;
+
+    }
+
 
 }
