@@ -577,7 +577,7 @@ onclick="runSearch()">
         <!-- TAB THÔNG SỐ -->
 
         <div id="specTab"
-             class="tab-content active">
+     class="tab-content">
 
 
 
@@ -840,36 +840,31 @@ function renderRelatedProducts() {
 
     renderRelatedSlider();
 }
-function renderRelatedSlider() {
+function renderRelatedSlider(){
 
     const container =
         document.getElementById("relatedProducts");
 
-    if (!container) return;
+    if(!container) return;
 
-    if (!window.relatedProducts ||
-        window.relatedProducts.length === 0) {
+
+    if(!window.relatedProducts ||
+       window.relatedProducts.length === 0){
 
         container.innerHTML =
-            "<p>Không có sản phẩm cùng loại</p>";
+        "<p>Không có sản phẩm cùng loại</p>";
 
         return;
     }
 
-    const total =
-        window.relatedProducts.length;
 
     let html = "";
 
-    for(let i = 0; i < Math.min(4,total); i++){
+    window.relatedProducts.forEach(p=>{
 
-        const index =
-            (window.relatedIndex + i) % total;
-
-        const p =
-            window.relatedProducts[index];
         const product =
             getTranslatedProduct(p) || p;
+
 
         html += `
 
@@ -883,9 +878,17 @@ function renderRelatedSlider() {
         </div>
 
         `;
-    }
 
-    container.innerHTML = html;
+    });
+
+
+    container.innerHTML =
+    `
+    <div class="related-track">
+        ${html}
+    </div>
+    `;
+
 }
 function moveRelated(step){
 
@@ -1009,18 +1012,10 @@ if (product) {
             return;
         }
 
-        setInterval(() => {
-
-            currentImage++;
-
-            if (currentImage >= validImages.length) {
-                currentImage = 0;
-            }
-
-            changeImage(currentImage);
-
-        }, 3000);
-
+       container.scrollBy({
+    left: 260,
+    behavior:"smooth"
+});
     }, 500);
 
     let tableSpecs = "";
@@ -1072,15 +1067,77 @@ setTimeout(() => {
         return;
     }
 
-    window.relatedTimer = setInterval(() => {
+   window.relatedTimer = setInterval(()=>{
 
-        moveRelated(1);
 
-    },3000);
+    const track =
+    document.querySelector(".related-track");
+
+
+    if(!track) return;
+
+
+    track.style.transition =
+    "transform .8s ease";
+
+
+    track.style.transform =
+    "translateX(-25%)";
+
+
+    setTimeout(()=>{
+
+
+        track.appendChild(
+            track.firstElementChild
+        );
+
+
+        track.style.transition =
+        "none";
+
+
+        track.style.transform =
+        "translateX(0)";
+
+
+    },800);
+
+
+},3000);
 
 },500);
 }
+function openProductTab(event, tabId){
 
+
+    document
+    .querySelectorAll(".tab-content")
+    .forEach(tab=>{
+
+        tab.classList.remove("active");
+
+    });
+
+
+    document
+    .querySelectorAll(".tab-buttons button")
+    .forEach(btn=>{
+
+        btn.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById(tabId)
+    .classList.add("active");
+
+
+    event.currentTarget
+    .classList.add("active");
+
+}
 document.getElementById("languageSelect").addEventListener("change", (e) => {
 
     setLanguage(e.target.value);

@@ -531,6 +531,10 @@
    SẢN PHẨM CÙNG LOẠI HIỂN THỊ NGANG
 ===================================================== */
 
+/* =====================================================
+   RELATED PRODUCT FILM SLIDER
+===================================================== */
+
 .related-grid{
 
     display:flex;
@@ -541,7 +545,13 @@
 
     width:100%;
 
+    scroll-behavior:smooth;
+
 }
+
+
+
+
 
 
 /* từng sản phẩm */
@@ -628,4 +638,11 @@ footer.footer{
 
     margin-left:0;
 
+}
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
 }
