@@ -821,7 +821,7 @@ window.products = [
     category:"can-dem",
 
     folder:"alh4",
-    manual:"images/manuals/alh4.pdf"
+    manual:"images/manuals/alh4.pdf",
              
 
 
