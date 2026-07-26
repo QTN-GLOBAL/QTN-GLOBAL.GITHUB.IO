@@ -365,3 +365,51 @@ footer{
     position:relative;
     z-index:10;
 }
+.detail-page{
+    display:grid;
+    grid-template-columns:240px 1fr;
+    gap:20px;
+}
+
+
+/* vùng bên phải sidebar */
+.detail-content{
+    display:grid;
+    grid-template-columns:460px 1fr;
+    gap:30px;
+}
+
+
+
+/* TEXT CHỈ ĂN PHẦN BÊN PHẢI */
+.product-text-specs{
+
+    grid-column:2;
+
+    background:#fafafa;
+
+    border:1px solid #eee;
+
+    border-radius:10px;
+
+    padding:20px;
+
+    margin-top:20px;
+
+}
+
+
+.product-text-specs h3{
+
+    color:#1565c0;
+
+    margin-top:0;
+
+}
+
+
+.product-text-specs p{
+
+    line-height:1.7;
+
+}
