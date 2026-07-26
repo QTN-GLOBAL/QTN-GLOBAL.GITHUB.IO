@@ -698,3 +698,36 @@ footer.footer{
     object-fit:contain;
 
 }
+/* =====================================================
+   RELATED PRODUCT SLIDER
+   CUỘN NGANG MƯỢT
+===================================================== */
+
+
+.related-slider-window{
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+
+.related-track{
+
+    display:flex;
+
+    gap:12px;
+
+    transition:transform .6s ease;
+
+}
+
+
+
+.related-card{
+
+    flex:0 0 calc(25% - 9px);
+
+}
