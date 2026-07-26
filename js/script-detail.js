@@ -809,3 +809,83 @@ setTimeout(()=>{
 
 
 },300);
+/* =====================================================
+   PART 5:
+   PRODUCT TAB CONTROL
+
+   Chức năng:
+   - Bấm mở tab
+   - Bấm lần 2 đóng tab
+   - Chỉ mở 1 tab
+===================================================== */
+
+
+function openProductTab(event, tabId){
+
+
+    const target =
+    document.getElementById(tabId);
+
+
+
+    if(!target){
+
+        return;
+
+    }
+
+
+
+    const isOpen =
+    target.classList.contains("active");
+
+
+
+
+    // đóng toàn bộ nội dung tab
+
+    document
+    .querySelectorAll(".tab-content")
+    .forEach(tab=>{
+
+
+        tab.classList.remove("active");
+
+
+    });
+
+
+
+
+    // bỏ trạng thái nút
+
+    document
+    .querySelectorAll(".tab-buttons button")
+    .forEach(btn=>{
+
+
+        btn.classList.remove("active");
+
+
+    });
+
+
+
+
+
+    // nếu trước đó chưa mở
+    // thì mở
+
+    if(!isOpen){
+
+
+        target.classList.add("active");
+
+
+        event.currentTarget.classList.add("active");
+
+
+    }
+
+
+}
