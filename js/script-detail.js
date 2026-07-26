@@ -322,3 +322,64 @@ if(product){
 
 
 }
+/* =====================================================
+   PART 2.1:
+   AUTO IMAGE SLIDER
+
+   Chức năng:
+   - Tự động đổi ảnh
+   - Chạy vòng lặp
+   - Không ảnh hưởng thumbnail
+===================================================== */
+
+
+if(product){
+
+
+    let autoIndex = 0;
+
+
+
+    setInterval(()=>{
+
+
+        const thumbs =
+        document.querySelectorAll("#thumbList img");
+
+
+
+        if(thumbs.length <= 1){
+
+            return;
+
+        }
+
+
+
+        autoIndex++;
+
+
+
+        if(autoIndex >= thumbs.length){
+
+            autoIndex = 0;
+
+        }
+
+
+
+        if(window.changeDetailImage){
+
+
+            window.changeDetailImage(autoIndex);
+
+
+        }
+
+
+
+    },4000);
+
+
+
+}
