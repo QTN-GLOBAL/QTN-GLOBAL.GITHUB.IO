@@ -398,63 +398,132 @@ onclick="runSearch()">
 <!-- DETAIL CONTENT -->
 <div class="detail-content">
 
+
     <!-- LEFT -->
     <div class="detail-left">
 
-    <img id="mainImage">
 
-    <div id="thumbList"></div>
+        <img id="mainImage">
 
-    <div class="detail-buttons">
 
-        <button class="btn-addcart" onclick="openAddCartPopup()">
-            <i class="fa fa-cart-shopping"></i>
-            <span data-i18n="addCartBtn"></span>
-        </button>
+        <div id="thumbList"></div>
 
-        <button class="btn-buynow" onclick="openBuyPopup()">
-            <i class="fa fa-bolt"></i>
-            <span data-i18n="buyNowBtn"></span>
-        </button>
+
+        <div class="detail-buttons">
+
+
+            <button class="btn-addcart" onclick="openAddCartPopup()">
+
+                <i class="fa fa-cart-shopping"></i>
+
+                <span data-i18n="addCartBtn"></span>
+
+            </button>
+
+
+
+            <button class="btn-buynow" onclick="openBuyPopup()">
+
+                <i class="fa fa-bolt"></i>
+
+                <span data-i18n="buyNowBtn"></span>
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- SẢN PHẨM CÙNG LOẠI -->
+        <div class="related-products">
+
+
+            <h3 data-i18n="relatedProductsTitle">
+
+                Sản phẩm cùng loại
+
+            </h3>
+
+
+            <div id="relatedProducts"
+                 class="related-grid">
+            </div>
+
+
+        </div>
+
 
     </div>
 
-   <!-- SẢN PHẨM CÙNG LOẠI -->
-<div class="related-products">
 
-    <h3 data-i18n="relatedProductsTitle">
-        Sản phẩm cùng loại
-    </h3>
 
-    <div id="relatedProducts" class="related-grid"></div>
 
-</div>
 
-</div>
     <!-- RIGHT -->
     <div class="detail-right">
 
+
         <h1 id="productName"></h1>
 
+
         <p>
-            <b data-i18n="brandLabel">Hãng:</b>
+
+            <b data-i18n="brandLabel">
+                Hãng:
+            </b>
+
             <span id="productBrand"></span>
+
         </p>
+
+
 
         <p>
-            <b data-i18n="originLabel">Xuất xứ:</b>
+
+            <b data-i18n="originLabel">
+                Xuất xứ:
+            </b>
+
             <span id="productOrigin"></span>
+
         </p>
 
-        <h3 data-i18n="descTitle">Mô tả</h3>
+
+
+        <h3 data-i18n="descTitle">
+            Mô tả
+        </h3>
+
 
         <p id="productDesc"></p>
 
-        <h3 data-i18n="specTitle">Thông số</h3>
 
-        <div id="productSpecs"></div>
-       </div>
+
+        <h3 data-i18n="specTitle">
+            Thông số
+        </h3>
+
+
+
+        <!-- CHỈ HIỂN THỊ BẢNG -->
+        <div id="productTableSpecs"></div>
+
+
     </div>
+
+
+
+
+
+    <!-- TEXT THÔNG SỐ BAO CẢ CỘT 2 + CỘT 3 -->
+    <div class="product-text-specs"
+         id="productTextSpecs">
+
+
+    </div>
+
+
 
 </div>
 <!-- POPUP ADD CART -->
@@ -811,12 +880,38 @@ if (product) {
 
     }, 500);
 
-    document.getElementById("productSpecs").innerHTML =
-        product.specs.map(spec =>
-            spec.includes("<table")
-                ? spec
-                : `<p>• ${spec}</p>`
-        ).join("");
+    let tableSpecs = "";
+let textSpecs = "";
+
+
+product.specs.forEach(spec => {
+
+    if(spec.includes("<table")){
+
+        tableSpecs += spec;
+
+    }else{
+
+        textSpecs += `
+            <p>
+                ✓ ${spec}
+            </p>
+        `;
+
+    }
+
+});
+
+
+document.getElementById("productTableSpecs").innerHTML =
+    tableSpecs;
+
+
+document.getElementById("productTextSpecs").innerHTML =
+    `
+    <h3>THÔNG SỐ KỸ THUẬT</h3>
+    ${textSpecs}
+    `;
 
     document.getElementById("buyProductName").innerText =
         product.name;
