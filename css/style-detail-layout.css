@@ -873,27 +873,3 @@ footer.footer{
 
 
 }
-/* =====================================================
-   FOOTER FINAL FIX
-   FOOTER THEO TOÀN BỘ CHIỀU RỘNG TRANG
-===================================================== */
-
-footer.footer{
-
-    display:block;
-
-    width:100%;
-
-    clear:both;
-
-    position:relative;
-
-    left:auto;
-
-    transform:none;
-
-    margin-left:0;
-
-    margin-right:0;
-
-}
