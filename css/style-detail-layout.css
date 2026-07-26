@@ -873,3 +873,30 @@ footer.footer{
 
 
 }
+/* =====================================================
+   FORCE FOOTER OUTSIDE DETAIL GRID
+===================================================== */
+
+.detail-page{
+    overflow:visible;
+}
+
+
+footer,
+footer.footer{
+
+    display:block;
+
+    width:100vw;
+
+    max-width:none;
+
+    position:relative;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    margin-top:40px;
+
+}
