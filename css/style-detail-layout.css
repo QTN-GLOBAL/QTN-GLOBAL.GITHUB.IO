@@ -874,29 +874,26 @@ footer.footer{
 
 }
 /* =====================================================
-   FORCE FOOTER OUTSIDE DETAIL GRID
+   FOOTER FINAL FIX
+   FOOTER THEO TOÀN BỘ CHIỀU RỘNG TRANG
 ===================================================== */
 
-.detail-page{
-    overflow:visible;
-}
-
-
-footer,
 footer.footer{
 
     display:block;
 
-    width:100vw;
+    width:100%;
 
-    max-width:none;
+    clear:both;
 
     position:relative;
 
-    left:50%;
+    left:auto;
 
-    transform:translateX(-50%);
+    transform:none;
 
-    margin-top:40px;
+    margin-left:0;
+
+    margin-right:0;
 
 }
