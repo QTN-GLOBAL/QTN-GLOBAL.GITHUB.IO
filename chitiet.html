@@ -394,7 +394,6 @@ onclick="runSearch()">
     </ul>
 
 </aside>
-
 <!-- DETAIL CONTENT -->
 <div class="detail-content">
 
@@ -499,36 +498,148 @@ onclick="runSearch()">
         <p id="productDesc"></p>
 
 
-
-        <h3 data-i18n="specTitle">
-            Thông số
-        </h3>
-
-
-
-        <!-- CHỈ HIỂN THỊ BẢNG -->
-        <div id="productTableSpecs"></div>
-
-
     </div>
 
 
+
+
+    <!-- =====================================================
+         PRODUCT INFORMATION TABS
+         NẰM DƯỚI CẢ 2 CỘT
+    ====================================================== -->
+
+
+    <div class="product-tabs">
+
+
+        <!-- TAB BUTTON -->
+
+        <div class="tab-buttons">
+
+
+            <button class="active"
+                    onclick="openProductTab(event,'specTab')">
+
+                THÔNG SỐ KỸ THUẬT
+
+            </button>
+
+
+            <button onclick="openProductTab(event,'optionTab')">
+
+                TÙY CHỌN
+
+            </button>
+
+
+            <button onclick="openProductTab(event,'guideTab')">
+
+                HƯỚNG DẪN SỬ DỤNG
+
+            </button>
+
+
+        </div>
+
+
+
+
+
+        <!-- TAB 1 -->
+        <div id="specTab"
+             class="tab-content active">
+
+
+            <div class="spec-layout">
+
+
+
+                <!-- BẢNG BÊN TRÁI -->
+
+                <div class="spec-table-box">
+
+
+                    <div id="productTableSpecs"></div>
+
+
+                </div>
+
+
+
+
+
+                <!-- TEXT BÊN PHẢI -->
+
+                <div class="spec-text-box">
+
+
+                    <div id="productTextSpecs"></div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <!-- TAB 2 -->
+
+        <div id="optionTab"
+             class="tab-content">
+
+
+            <h3>
+                Tùy chọn sản phẩm
+            </h3>
+
+
+            <p>
+                Nội dung tùy chọn sẽ cập nhật sau.
+            </p>
+
+
+        </div>
+
+
+
+
+
+        <!-- TAB 3 -->
+
+        <div id="guideTab"
+             class="tab-content">
+
+
+            <h3>
+                Hướng dẫn sử dụng
+            </h3>
+
+
+            <p>
+                Nội dung hướng dẫn sử dụng sẽ cập nhật sau.
+            </p>
+
+
+        </div>
+
+
+
+    </div>
 
 
 </div>
 <!-- đóng detail-content -->
 
 
-<!-- TEXT THÔNG SỐ BAO CỘT 2 + CỘT 3 -->
-<div class="product-text-specs"
-     id="productTextSpecs">
-
-
-</div>
-
-
-</div>
 <!-- đóng detail-page -->
+
 <!-- POPUP ADD CART -->
 <div id="addCartPopup" class="popup-overlay" style="display:none">
 <div class="popup-box">
