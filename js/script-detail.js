@@ -603,3 +603,209 @@ setTimeout(()=>{
 
 
 },500);
+/* =====================================================
+   PART 4:
+   SPECIFICATION TABLE
+
+   Chức năng:
+   - Gộp bảng + text
+   - Một bảng duy nhất
+   - Không bị cắt
+===================================================== */
+
+
+
+function renderSpecification(){
+
+
+
+    if(!product || !product.specs){
+
+        return;
+
+    }
+
+
+
+    let oldTableHTML = "";
+
+    let textArray = [];
+
+
+
+
+    product.specs.forEach(spec=>{
+
+
+        if(spec.includes("<table")){
+
+
+            const box =
+            document.createElement("div");
+
+
+            box.innerHTML =
+            spec;
+
+
+
+            const table =
+            box.querySelector("table");
+
+
+
+            if(table){
+
+
+                oldTableHTML =
+                table.innerHTML;
+
+
+            }
+
+
+
+        }
+        else{
+
+
+            textArray.push(
+                "✓ " + spec
+            );
+
+
+        }
+
+
+    });
+
+
+
+
+
+    let html = `
+
+
+    <table class="spec-main-table">
+
+
+        ${oldTableHTML}
+
+
+
+        <tbody>
+
+    `;
+
+
+
+
+    // thêm phần text
+
+    for(
+        let i=0;
+        i<textArray.length;
+        i+=2
+    ){
+
+
+
+        html += `
+
+
+        <tr>
+
+
+            <td>
+
+                ${textArray[i] || ""}
+
+            </td>
+
+
+
+            <td>
+
+                ${textArray[i+1] || ""}
+
+            </td>
+
+
+        </tr>
+
+
+        `;
+
+
+    }
+
+
+
+    html += `
+
+
+        </tbody>
+
+
+    </table>
+
+
+    `;
+
+
+
+
+
+    const target =
+    document.getElementById(
+        "productTableSpecs"
+    );
+
+
+
+    if(target){
+
+
+        target.innerHTML =
+        html;
+
+
+    }
+
+
+
+    const textBox =
+    document.getElementById(
+        "productTextSpecs"
+    );
+
+
+
+    if(textBox){
+
+
+        textBox.innerHTML =
+        "";
+
+
+    }
+
+
+
+
+}
+
+
+
+
+
+
+// chạy sau khi load sản phẩm
+
+setTimeout(()=>{
+
+
+    renderSpecification();
+
+
+},300);
