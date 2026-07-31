@@ -606,20 +606,29 @@ setTimeout(()=>{
 /* =====================================================
    PART 4:
    SPECIFICATION TABLE
+   BẢNG + TEXT CHUNG MỘT BẢNG
 
-   Chức năng:
-   - Gộp bảng + text
-   - Một bảng duy nhất
-   - Không bị cắt
+   Cách hoạt động:
+   1. Đọc bảng thông số gốc từ product.specs
+   2. Tự động xác định bảng có bao nhiêu cột
+   3. Phần text bên dưới sẽ dùng đúng số cột đó
+   4. Ô thiếu ở dòng cuối sẽ để trống
+   5. Toàn bộ nằm trong MỘT bảng duy nhất
+   6. Không tạo thêm bảng thứ hai
 ===================================================== */
-
 
 
 function renderSpecification(){
 
 
+    /* ---------------------------------------------
+       KIỂM TRA SẢN PHẨM
+    --------------------------------------------- */
 
-    if(!product || !product.specs){
+    if(
+        !product ||
+        !Array.isArray(product.specs)
+    ){
 
         return;
 
@@ -627,152 +636,272 @@ function renderSpecification(){
 
 
 
-    let oldTableHTML = "";
+    /* ---------------------------------------------
+       BIẾN LƯU BẢNG VÀ TEXT
+    --------------------------------------------- */
+
+    let tableHTML = "";
 
     let textArray = [];
 
 
 
+    /* ---------------------------------------------
+       ĐỌC DỮ LIỆU SPECS
+    --------------------------------------------- */
 
-    product.specs.forEach(spec=>{
-
-
-        if(spec.includes("<table")){
-
-
-            const box =
-            document.createElement("div");
+    product.specs.forEach(spec => {
 
 
-            box.innerHTML =
-            spec;
+        if(
+            typeof spec === "string" &&
+            spec.includes("<table")
+        ){
+
+            tableHTML = spec;
 
 
-
-            const table =
-            box.querySelector("table");
+        }else{
 
 
+            if(
+                spec !== null &&
+                spec !== undefined &&
+                String(spec).trim() !== ""
+            ){
 
-            if(table){
-
-
-                oldTableHTML =
-                table.innerHTML;
-
+                textArray.push(
+                    "✓ " + String(spec).trim()
+                );
 
             }
 
-
-
         }
-        else{
-
-
-            textArray.push(
-                "✓ " + spec
-            );
-
-
-        }
-
 
     });
 
 
 
+    /* ---------------------------------------------
+       TÁCH BẢNG GỐC
+    --------------------------------------------- */
+
+    const temp =
+    document.createElement("div");
 
 
-    let html = `
+    temp.innerHTML =
+    tableHTML;
 
 
-    <table class="spec-main-table">
-
-
-        ${oldTableHTML}
-
-
-
-        <tbody>
-
-    `;
-
-
-
-
-    // thêm phần text
-
-    for(
-        let i=0;
-        i<textArray.length;
-        i+=2
-    ){
+    const oldTable =
+    temp.querySelector("table");
 
 
 
-        html += `
+    if(!oldTable){
 
-
-        <tr>
-
-
-            <td>
-
-                ${textArray[i] || ""}
-
-            </td>
-
-
-
-            <td>
-
-                ${textArray[i+1] || ""}
-
-            </td>
-
-
-        </tr>
-
-
-        `;
-
+        return;
 
     }
 
 
 
-    html += `
+    /* ---------------------------------------------
+       LẤY SỐ LƯỢNG CỘT CỦA BẢNG
 
+       Ví dụ:
+
+       2 cột → text 2 cột
+       3 cột → text 3 cột
+       5 cột → text 5 cột
+    --------------------------------------------- */
+
+    const firstRow =
+    oldTable.querySelector("tr");
+
+
+    let columnCount = 2;
+
+
+
+    if(firstRow){
+
+        const cells =
+        firstRow.querySelectorAll("th, td");
+
+
+        if(cells.length > 0){
+
+            columnCount =
+            cells.length;
+
+        }
+
+    }
+
+
+
+    /* ---------------------------------------------
+       LẤY TOÀN BỘ NỘI DUNG BẢNG GỐC
+    --------------------------------------------- */
+
+    let tableRows = "";
+
+
+    oldTable
+    .querySelectorAll("tr")
+    .forEach(row => {
+
+
+        tableRows += `
+
+        <tr>
+
+            ${row.innerHTML}
+
+        </tr>
+
+        `;
+
+    });
+
+
+
+    /* ---------------------------------------------
+       TẠO BẢNG DUY NHẤT
+    --------------------------------------------- */
+
+    let finalTable = `
+
+    <table class="spec-main-table">
+
+        <tbody>
+
+            ${tableRows}
 
         </tbody>
-
-
-    </table>
-
 
     `;
 
 
 
+    /* ---------------------------------------------
+       THÊM TEXT VÀO CUỐI BẢNG
+
+       SỐ CỘT TEXT = SỐ CỘT BẢNG
+    --------------------------------------------- */
+
+    if(textArray.length > 0){
 
 
-    const target =
+        finalTable += `
+
+        <tbody class="spec-text-body">
+
+        `;
+
+
+
+        for(
+            let i = 0;
+            i < textArray.length;
+            i += columnCount
+        ){
+
+
+            finalTable += `
+
+            <tr>
+
+            `;
+
+
+
+            /* -----------------------------------------
+               TẠO ĐÚNG SỐ Ô THEO BẢNG
+            ----------------------------------------- */
+
+            for(
+                let col = 0;
+                col < columnCount;
+                col++
+            ){
+
+
+                const text =
+                textArray[i + col] || "";
+
+
+
+                finalTable += `
+
+                <td>
+
+                    ${text}
+
+                </td>
+
+                `;
+
+            }
+
+
+
+            finalTable += `
+
+            </tr>
+
+            `;
+
+
+        }
+
+
+
+        finalTable += `
+
+        </tbody>
+
+        `;
+
+    }
+
+
+
+    finalTable += `
+
+    </table>
+
+    `;
+
+
+
+    /* ---------------------------------------------
+       HIỂN THỊ BẢNG
+    --------------------------------------------- */
+
+    const tableBox =
     document.getElementById(
         "productTableSpecs"
     );
 
 
 
-    if(target){
+    if(tableBox){
 
-
-        target.innerHTML =
-        html;
-
+        tableBox.innerHTML =
+        finalTable;
 
     }
 
 
+
+    /* ---------------------------------------------
+       KHÔNG DÙNG KHUNG TEXT RIÊNG
+
+       Toàn bộ text đã nằm trong bảng
+    --------------------------------------------- */
 
     const textBox =
     document.getElementById(
@@ -780,35 +909,25 @@ function renderSpecification(){
     );
 
 
-
     if(textBox){
 
-
-        textBox.innerHTML =
-        "";
-
+        textBox.innerHTML = "";
 
     }
-
-
-
 
 }
 
 
 
+/* =====================================================
+   KHỞI TẠO THÔNG SỐ KỸ THUẬT
+===================================================== */
 
-
-
-// chạy sau khi load sản phẩm
-
-setTimeout(()=>{
-
+setTimeout(() => {
 
     renderSpecification();
 
-
-},300);
+}, 300);
 /* =====================================================
    PART 5:
    PRODUCT TAB CONTROL
